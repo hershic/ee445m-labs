@@ -16,6 +16,7 @@ include(CMakeForceCompiler)
 # Targeting an embedded system, no OS.
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR cortex-m4)
+set(BUILD_FOR_EMBEDDED True)
 
 CMAKE_FORCE_C_COMPILER(arm-none-eabi-gcc GNU)
 CMAKE_FORCE_CXX_COMPILER(arm-none-eabi-g++ GNU)
@@ -54,6 +55,7 @@ set(CMAKE_C_FLAGS
 
 if (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m4")
 
+  message(STATUS "Setting processor to cortex-m4")
   set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS}"
     "-mcpu=cortex-m4 -march=armv7e-m -mthumb"
@@ -61,7 +63,7 @@ if (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m4")
   )
 
 elseif (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m3")
-
+  message(STATUS "Setting processor to cortex-m3")
   set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS}"
     "-mcpu=cortex-m3 -march=armv7-m -mthumb"
@@ -82,4 +84,3 @@ string(REGEX REPLACE ";" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING "")
 
 set(BUILD_SHARED_LIBS OFF)
-
