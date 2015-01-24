@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 2.8.7)
 
 # If we're not building for an embedded system, then we should also
 # build the validation programs
