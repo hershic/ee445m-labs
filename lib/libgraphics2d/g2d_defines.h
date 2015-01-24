@@ -12,9 +12,9 @@
 /*** Custom data types ***/
 /* swiss army knife data types */
 #define null    0x00
-#define uchar   unsigned char
-#define ushort	unsigned short
-#define ulong	unsigned long
+typedef unsigned char uchar;
+typedef unsigned short ushort;
+typedef unsigned long ulong;
 #define bool    unsigned char
 	
 #ifndef true
