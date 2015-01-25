@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 3.0)
 # build the validation programs
 if (BUILD_FOR_EMBEDDED)
   add_subdirectory(board-progs)
+  add_subdirectory(driverlib)
+  add_subdirectory(utils)
 else()
   message("To build the board programs, do: rm -rf * && cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-gcc-arm-embedded.cmake")
   add_subdirectory(validation)

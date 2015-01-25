@@ -50,7 +50,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(CMAKE_C_FLAGS
   "${CMAKE_C_FLAGS}"
-  "-fno-common -ffunction-sections -fdata-sections"
+  "-g -fno-common -ffunction-sections -fdata-sections"
 )
 
 if (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m4")
