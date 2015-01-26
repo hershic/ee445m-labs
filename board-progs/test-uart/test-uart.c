@@ -44,14 +44,15 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
+    /* Set the active uart channel */
+    uart_set_active_channel(UART0_BASE);
+
     /* Set GPIO A0 and A1 as UART pins. */
     uart_init();
 
     /* Prompt for text to be entered. */
-    /* UARTSend((uint8_t *)"\033[2JEnter text: ", 16); */
-
     uart_send("Enter text:");
 
-    /* Do nothing */
+    /* Postpone death */
     while (1) {}
 }
