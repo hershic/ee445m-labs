@@ -71,6 +71,7 @@ void uart_send_string_(const long channel, const char* text);
 /*! Read a char from the active uart channel.
  *  \brief Read a char from the active uart channel.
  *  \details Read a char from the active uart channel.
+ *  \returns char read from uart
  */
 char uart_get_char();
 
@@ -78,6 +79,7 @@ char uart_get_char();
  *  \brief Read a char from the specified uart channel.
  *  \details Read a char from the specified uart channel.
  *  \param channel The uart channel to read.
+ *  \returns char read from uart
  */
 char uart_get_char_(const long channel);
 
@@ -85,6 +87,7 @@ char uart_get_char_(const long channel);
  *  \brief Read a char array from the active uart channel.
  *  \details Read a char array from the active uart channel.
  *  \param string_length The maximum number of characters to read.
+ *  \returns char array read from uart
  */
 char* uart_get_string(const long string_length);
 
@@ -93,5 +96,6 @@ char* uart_get_string(const long string_length);
  *  \details Read a char array from the active uart channel.
  *  \param channel The uart channel to read.
  *  \param string_length The maximum number of characters to read.
+ *  \returns char array read from uart
  */
 char* uart_get_string_(const long channel, const long string_length);
