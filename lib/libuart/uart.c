@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #include "uart.h"
 
 #include "inc/hw_memmap.h"
