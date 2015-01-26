@@ -62,7 +62,7 @@ int main(void) {
 
             /* TODO: Update our report of the data somehow (whatever
                means we define are necessary). For now the data
-               resides in g_pui32ADCData ready for copying and
+               resides in adc_data_buffer ready for copying and
                interpretation. */
         }
     }
