@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 /* Created by Hershal Bhave and Eric Crosson on 2015-01-24 */
 /* Revision History: Look in Git FGT */
 
@@ -20,7 +21,9 @@
 
 #include "libuart/uart.h"
 
-
+/*! Read the next character from the UART and write it back to the UART.
+ *  \return void
+ */
 void UART0_Handler(void) {
 
     uint32_t ui32Status;
@@ -33,29 +36,28 @@ void UART0_Handler(void) {
 
     /* Loop while there are characters in the receive FIFO. */
     while(UARTCharsAvail(UART0_BASE)) {
-        /* Read the next character from the UART and write it back to the UART. */
-        UARTCharPutNonBlocking(UART0_BASE, UARTCharGetNonBlocking(UART0_BASE));
+	/* Read the next character from the UART and write it back to the UART. */
+	uart_send_char(uart_get_char());
 
-        /* WARNING: This clears the UART0 FIFO. Do not use in
-           combination with the above line. */
-        /* UARTCharGetNonBlocking(UART0_BASE); */
+	/* Blink the LED to show a character transfer is occuring. */
+	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
 
-        /* Blink the LED to show a character transfer is occuring. */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+	/* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
+	SysCtlDelay(SysCtlClockGet() / (1000 * 3));
 
-        /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
-        SysCtlDelay(SysCtlClockGet() / (1000 * 3));
-
-        /* Turn off the LED */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+	/* Turn off the LED */
+	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
     }
 }
 
+/*! Accept input on UART 0, and parrot input back out to UART 0.
+ * \return Exit status
+ */
 int main(void) {
 
     FPUEnable();
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-                   SYSCTL_XTAL_16MHZ);
+		   SYSCTL_XTAL_16MHZ);
 
     /* Enable the GPIO port that is used for the on-board LED. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);

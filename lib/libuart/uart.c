@@ -55,12 +55,23 @@ void uart_init_(const long channel) {
   UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
 }
 
-void uart_send(const char* text) {
+void uart_send_char(const char text) {
 
-  uart_send_(uart_active_channel, text);
+  uart_send_char_(uart_active_channel, text);
 }
 
-void uart_send_(const long channel, const char* text) {
+/* TODO: update uart0_base with channel */
+void uart_send_char_(const long channel, const char text) {
+
+  UARTCharPutNonBlocking(UART0_BASE, text);
+}
+
+void uart_send_string(const char* text) {
+
+  uart_send_string_(uart_active_channel, text);
+}
+
+void uart_send_string_(const long channel, const char* text) {
 
   uint32_t cnt = ustrlen(text);
   char* ptr = (char*)text;
@@ -86,7 +97,7 @@ char* uart_get_string(const long string_length) {
   return uart_get_string_(uart_active_channel, string_length);
 }
 
-/* TODO: replace UART0_BASE with channel */
+/* TODO: replace uart0_base with channel */
 char* uart_get_string_(const long channel,
 		       const long string_length) {
 

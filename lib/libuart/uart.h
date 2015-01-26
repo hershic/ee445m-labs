@@ -45,15 +45,27 @@ void uart_init_(const long channel);
  *  \param text The null-terminated array of chars to send via uart.
  *  \return void
  */
-void uart_send(const char* text);
+void uart_send_char(const char text);
 
 /*! Send a char array over the specified uart channel.
  *  \param channel The uart channel to send \text over.
  *  \param text The null-terminated array of chars to send via uart.
  *  \return void
  */
-void uart_send_(const long channel, const char* text);
+void uart_send_char_(const long channel, const char text);
 
+/*! Send a char array over the active uart channel.
+ *  \param text The null-terminated array of chars to send via uart.
+ *  \return void
+ */
+void uart_send_string(const char* text);
+
+/*! Send a char array over the specified uart channel.
+ *  \param channel The uart channel to send \text over.
+ *  \param text The null-terminated array of chars to send via uart.
+ *  \return void
+ */
+void uart_send_string_(const long channel, const char* text);
 
 /*! Read a char from the active uart channel.
  *  \brief Read a char from the active uart channel.
