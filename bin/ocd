@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+#
+## @file
+## @author Eric Crosson <eric.s.crosson@utexas.edu>
+## @brief Wrap openocd for communication with the cortex M4 used in ee445m.
+## @copyright WTFPLv2
+## @version 1.0
+#
+#########
+# License:
+#
+#             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+#
+# Copyright (C) 2015 Eric Crosson
+#
+# Everyone is permitted to copy and distribute verbatim or modified
+# copies of this license document, and changing it is allowed as long
+# as the name is changed.
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+#
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+#
+#########
+#
+## @details
+## @par Script abstract
+##
+## This script acts as a wrapper to use openocd for communication with
+## the cortex M4 used in ee445m.
+##
+## @par Usage
+## @param help Display the help screen
+## @param dry-run Don't attempt to execute anything
+## @param program Program the M4
+## @param debug Open GDB for debugging on the M4
+#
+## @defgroup openocd
+
+# Execute getopt
+ARGS=$(getopt -o pdnh -l "program,debug,dry-run,help" -n "$0" -- "$@");
+
+# Fail on bad arguments
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+eval set -- "${ARGS}";
+
+# Determine the context in which openocd will be invoked
+## @var execute
+## @brief For internal use only.
+## @details Controls the executing context of the openocd command.
+## @ingroup openocd
+declare execute=sudo
+
+## @var hershal_file
+## @brief For internal use only.
+## @details Hershal's path to openocd interface.
+## @ingroup openocd
+declare -r hershal_file=/opt/local/share/openocd/scripts/board/ek-lm4f120xl.cfg
+
+## @var eric_file
+## @brief For internal use only.
+## @details Eric's path to openocd interface.
+## @ingroup openocd
+declare -r eric_file=/usr/share/openocd/scripts/board/ek-lm4f120xl.cfg
+
+## @var file
+## @brief For internal use only.
+## @details Path to openocd interface for use on this system.
+## @ingroup openocd
+declare -r file=$(
+if [[ $(whoami) == "eric" ]]; then
+    echo ${eric_file}
+else
+    echo ${hershal_file}
+fi)
+
+## @var openocd_args_program
+## @brief For internal use only.
+## @details Openocd command to program the M4.
+## @ingroup openocd
+declare -r openocd_args_program="program test-uart verify reset"
+
+## @var openocd_args_debug
+## @brief For internal use only.
+## @details Port to communicate to gdb with.
+## @ingroup openocd
+declare -ri gdb_port=3333
+
+## @var openocd_args_debug
+## @brief For internal use only.
+## @details Openocd command to open gdb on the M4.
+## @ingroup openocd
+declare -r openocd_args_debug="gdb_port ${gdb_port}"
+
+while true; do
+    case "$1" in
+	-p|--program)
+	    ${execute} openocd --file ${file} -c ${openocd_args_program}
+	    shift ;;
+
+	-d|--debug)
+	    ${execute} openocd --file ${file} -c ${openocd_args_debug}
+	    shift ;;
+
+	-n|--dry_run)
+	    # Transform the context in which openocd is invoked
+	    execute=echo
+	    shift ;;
+
+	-h|--help)
+	    cat <<EOF
+$0 : Wrap openocd for communication with the cortex M4 used in ee445m.
+
+Usage : [-n] [-p|-d]
+
+  -h : print this help menu
+  -n : dry-run -- don't execute anything
+  -p : program
+  -d : debug
+
+EOF
+	    shift ;;
+
+	--)
+	    shift
+	    break ;;
+    esac
+done
