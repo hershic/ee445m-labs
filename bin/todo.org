@@ -1,5 +1,6 @@
 #+startup: content
-* [0/2] Doxygen
+* [0/3] Doxygen
 - [ ] Allow here docs in declare -r statements
 - [ ] Publish generated docs
   - re-generate on push
+- [ ] make doxygen html output a consistent format
