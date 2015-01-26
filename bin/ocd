@@ -49,7 +49,24 @@ fi
 
 eval set -- "${ARGS}";
 
-# Determine the context in which openocd will be invoked
+## @var HELP
+## @brief Contains script invocation information
+## @details Contains script invocation information and abstract.
+## @ingroup openocd
+declare -r HELP=$(cat <<'EOF'
+$0 : Wrap openocd for communication with the cortex M4 used in ee445m.
+
+Usage : [-n] [-p|-d]
+
+  -h : print this help menu
+  -n : dry-run -- don't execute anything
+  -p : program
+  -d : debug
+
+EOF
+)
+
+# Determine the context in which openocd will be invoked: su, or echo
 ## @var execute
 ## @brief For internal use only.
 ## @details Controls the executing context of the openocd command.
@@ -97,37 +114,50 @@ declare -ri gdb_port=3333
 ## @ingroup openocd
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
+# TODO: sound less retarded
+## @fn openocd_program()
+## @brief Program the M4
+## @initial_delay and @repeat_delay.
+## @retval 0 if success
+## @ingroup openocd
+openocd_program() {
+
+    ${execute} openocd --file ${file} -c ${openocd_args_program}
+}
+
+# TODO: sound less retarded
+## @fn openocd_debug()
+## @brief Open GDB on the M4
+## @initial_delay and @repeat_delay.
+## @retval 0 if success
+## @ingroup openocd
+openocd_debug() {
+
+    ${execute} openocd --file ${file} -c ${openocd_args_debug}
+}
+
+
 while true; do
     case "$1" in
 	-p|--program)
-	    ${execute} openocd --file ${file} -c ${openocd_args_program}
-	    shift ;;
+	    openocd_program
+	    ;;
 
 	-d|--debug)
-	    ${execute} openocd --file ${file} -c ${openocd_args_debug}
-	    shift ;;
+	    openocd_debug
+	    ;;
 
 	-n|--dry_run)
 	    # Transform the context in which openocd is invoked
 	    execute=echo
-	    shift ;;
+	    ;;
 
 	-h|--help)
-	    cat <<EOF
-$0 : Wrap openocd for communication with the cortex M4 used in ee445m.
-
-Usage : [-n] [-p|-d]
-
-  -h : print this help menu
-  -n : dry-run -- don't execute anything
-  -p : program
-  -d : debug
-
-EOF
-	    shift ;;
+	    echo -e "${HELP}"
+	    ;;
 
 	--)
-	    shift
 	    break ;;
     esac
+    shift
 done
