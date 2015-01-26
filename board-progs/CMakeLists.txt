@@ -6,3 +6,4 @@ configure_file(map.ld map.ld COPYONLY)
 
 add_subdirectory(blinky)
 add_subdirectory(test-uart)
+add_subdirectory(test-adc)
