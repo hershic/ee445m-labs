@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-## @file
-## @author Eric Crosson <eric.s.crosson@utexas.edu>
-## @brief Wrap openocd for communication with the cortex M4 used in ee445m.
-## @copyright WTFPLv2
-## @version 1.0
+## \file
+## \author Eric Crosson <eric.s.crosson@utexas.edu>
+## \brief Wrap openocd for communication with the cortex M4 used in ee445m.
+## \copyright WTFPLv2
+## \version 1.0
 #
 #########
 # License:
@@ -25,19 +25,19 @@
 #
 #########
 #
-## @details
-## @par Script abstract
+## \details
+## \par Script abstract
 ##
 ## This script acts as a wrapper to use openocd for communication with
 ## the cortex M4 used in ee445m.
 ##
-## @par Usage
-## @param help Display the help screen
-## @param dry-run Don't attempt to execute anything
-## @param program Program the M4
-## @param debug Open GDB for debugging on the M4
+## \par Usage
+## \param help Display the help screen
+## \param dry-run Don't attempt to execute anything
+## \param program Program the M4
+## \param debug Open GDB for debugging on the M4
 #
-## @defgroup openocd
+## \addtogroup openocd
 
 # Execute getopt
 ARGS=$(getopt -o pdnh -l "program,debug,dry-run,help" -n "$0" -- "$@");
@@ -53,7 +53,8 @@ eval set -- "${ARGS}";
 ## @brief Contains script invocation information
 ## @details Contains script invocation information and abstract.
 ## @ingroup openocd
-declare -r HELP=$(cat <<'EOF'
+declare HELP
+HELP=$(cat <<'EOF'
 $0 : Wrap openocd for communication with the cortex M4 used in ee445m.
 
 Usage : [-n] [-p|-d]
@@ -66,7 +67,7 @@ Usage : [-n] [-p|-d]
 EOF
 )
 
-# Determine the context in which openocd will be invoked: su, or echo
+# Determine the context in which openocd will be invoked: su or echo
 ## @var execute
 ## @brief For internal use only.
 ## @details Controls the executing context of the openocd command.
@@ -89,7 +90,8 @@ declare -r eric_file=/usr/share/openocd/scripts/board/ek-lm4f120xl.cfg
 ## @brief For internal use only.
 ## @details Path to openocd interface for use on this system.
 ## @ingroup openocd
-declare -r file=$(
+declare file
+file=$(
 if [[ $(whoami) == "eric" ]]; then
     echo ${eric_file}
 else
@@ -102,7 +104,7 @@ fi)
 ## @ingroup openocd
 declare -r openocd_args_program="program test-uart verify reset"
 
-## @var openocd_args_debug
+## @var gdb_port
 ## @brief For internal use only.
 ## @details Port to communicate to gdb with.
 ## @ingroup openocd
@@ -117,7 +119,6 @@ declare -r openocd_args_debug="gdb_port ${gdb_port}"
 # TODO: sound less retarded
 ## @fn openocd_program()
 ## @brief Program the M4
-## @initial_delay and @repeat_delay.
 ## @retval 0 if success
 ## @ingroup openocd
 openocd_program() {
@@ -128,7 +129,6 @@ openocd_program() {
 # TODO: sound less retarded
 ## @fn openocd_debug()
 ## @brief Open GDB on the M4
-## @initial_delay and @repeat_delay.
 ## @retval 0 if success
 ## @ingroup openocd
 openocd_debug() {
