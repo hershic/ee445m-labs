@@ -22,7 +22,33 @@
 
 
 void UART0_Handler(void) {
-    uart_recv();
+
+    uint32_t ui32Status;
+
+    /* Get the interrrupt status. */
+    ui32Status = UARTIntStatus(UART0_BASE, true);
+
+    /* Clear the asserted interrupts. */
+    UARTIntClear(UART0_BASE, ui32Status);
+
+    /* Loop while there are characters in the receive FIFO. */
+    while(UARTCharsAvail(UART0_BASE)) {
+        /* Read the next character from the UART and write it back to the UART. */
+        UARTCharPutNonBlocking(UART0_BASE, UARTCharGetNonBlocking(UART0_BASE));
+
+        /* WARNING: This clears the UART0 FIFO. Do not use in
+           combination with the above line. */
+        /* UARTCharGetNonBlocking(UART0_BASE); */
+
+        /* Blink the LED to show a character transfer is occuring. */
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+
+        /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
+        SysCtlDelay(SysCtlClockGet() / (1000 * 3));
+
+        /* Turn off the LED */
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+    }
 }
 
 int main(void) {

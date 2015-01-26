@@ -5,6 +5,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #include "driverlib/pin_map.h"
 #include "driverlib/gpio.h"
@@ -134,9 +135,9 @@ char* uart_get_string_(const long channel,
 
   long remaining_chars = string_length;
 
-  /* \read is a null-terminated string */
-  char* read = calloc(string_length, sizeof(char));
-  read[string_length] = 0;
+  /* \buffer is a null-terminated string */
+  char* buffer = mem_malloc(string_length*sizeof(char));
+  buffer[string_length] = 0;
 
   /* Get the interrrupt status. */
   ui32Status = UARTIntStatus(UART0_BASE, true);
@@ -145,11 +146,11 @@ char* uart_get_string_(const long channel,
   UARTIntClear(UART0_BASE, ui32Status);
 
   while(UARTCharsAvail(UART0_BASE) && remaining_chars > 0) {
-    read[remaining_chars - string_length] = uart_get_char_(channel);
+    buffer[remaining_chars - string_length] = uart_get_char_(channel);
     remaining_chars--;
   }
 
-  return read;
+  return buffer;
 }
 
 /*! Read a char from the active uart channel.
