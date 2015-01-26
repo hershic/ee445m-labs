@@ -58,25 +58,30 @@ declare execute=sudo
 
 ## @var hershal_file
 ## @brief For internal use only.
-## @details Path to openocd interface
+## @details Hershal's path to openocd interface.
 ## @ingroup openocd
 declare -r hershal_file=/opt/local/share/openocd/scripts/board/ek-lm4f120xl.cfg
 
 ## @var eric_file
 ## @brief For internal use only.
-## @details Path to openocd interface
+## @details Eric's path to openocd interface.
 ## @ingroup openocd
 declare -r eric_file=/usr/share/openocd/scripts/board/ek-lm4f120xl.cfg
 
+## @var file
+## @brief For internal use only.
+## @details Path to openocd interface for use on this system.
+## @ingroup openocd
+declare -r file=$(
 if [[ $(whoami) == "eric" ]]; then
-    declare -r file=eric_file
+    echo ${eric_file}
 else
-    declare -r file=hershal_file
-fi
+    echo ${hershal_file}
+fi)
 
 ## @var openocd_args_program
 ## @brief For internal use only.
-## @details Openocd command to
+## @details Openocd command to program the M4.
 ## @ingroup openocd
 declare -r openocd_args_program="program test-uart verify reset"
 
