@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+#
+## \file
+## \author Eric Crosson <eric.s.crosson@utexas.edu>
+## \brief Setup the development environment.
+## \copyright WTFPLv2
+## \version 1.0
+#
+#########
+# License:
+#
+#             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+#
+# Copyright (C) 2015 Eric Crosson
+#
+# Everyone is permitted to copy and distribute verbatim or modified
+# copies of this license document, and changing it is allowed as long
+# as the name is changed.
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+#
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+#
+#########
+#
+## \details
+## \par Script abstract
+##
+## This script sets up the development environment.
+##
+## \par Usage
+## Only the invocation of this script matters; all arguments are
+## ignored. Invoke the script as follows:
+##
+## \code
+## source ./setenv
+## \endcode
+#
+## \addtogroup environment
+
+# Add this directory to the working PATH
+export PATH="$(pwd):$PATH"
