@@ -1,30 +1,13 @@
 #include "ObservationAgent.h"
+#include "AgentLED.h"
+
+#include "Process.h"
 
 #include <stdlib.h>
 
 #ifndef NDEBUG
 #include <stdio.h>
 #endif
-
-#include "StringCase.h"
-
-char* led_identify_as_string() {
-
-  return "> I am an LED! This is my string\n";
-}
-
-StringCase led_string_cases[] = {
-  {kString, led_identify_as_string},
-};
-
-char* led_identify(char* identification_format) {
-
-  return StringCase_chars_chars(led_string_cases, identification_format);
-}
-
-bool led_make_observable() {
-
-}
 
 int main(void) {
 
@@ -48,9 +31,8 @@ int main(void) {
   printf("Let's try to pass it a message\n");
 #endif
   /* TODO: simplify this code with a lib */
-  ProcessEnvelope envelope = calloc(1, sizeof(ProcessEnvelope));
+  ProcessEnvelope* envelope = new( ProcessEnvelope() );
 
-  envelope->process = monitor1;
   led->deliver_process_envelope(envelope);
 
   /* TODO: display contents of process_envelope */

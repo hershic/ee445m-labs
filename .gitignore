@@ -4,3 +4,5 @@ build*
 /doc/ideas/a.out
 /doc/ideas/ObservationAgent.h.gch
 /doc/ideas/StringCase.h.gch
+/doc/ideas/AgentLED.h.gch
+/doc/ideas/Process.h.gch

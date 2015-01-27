@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 #include "StringCase.h"
+#include "Process.h"
 
 /* TODO: Doxygenize */
 
@@ -11,19 +12,6 @@
 #define OA_MAX_LEN_DESCRIPTION 16
 
 #define new(a) new_##a
-
-typedef long pid;
-
-typedef struct Node {
-
-  pid process;
-  struct Node* next;
-} Node;
-
-typedef struct {
-
-  Node* process;
-} ProcessEnvelope;
 
 typedef struct {
 
