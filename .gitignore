@@ -2,3 +2,4 @@ build*
 .DS_Store
 /TAGS
 /doc/ideas/a.out
+/doc/ideas/ObservationAgent.h.gch

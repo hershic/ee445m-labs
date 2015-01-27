@@ -1,5 +1,7 @@
 #include <stdbool.h>
 
+/* TODO: Doxygenize */
+
 /* 15 chars for description ++ '\0' */
 #define OA_MAX_LEN_DESCRIPTION 16
 
@@ -19,7 +21,6 @@ typedef struct {
   Node* process;
 } ProcessEnvelope;
 
-/* TODO: document */
 typedef struct {
 
   /* Member variables */
@@ -29,3 +30,6 @@ typedef struct {
   char* (*identify)();
   bool (*make_observable)();
 } ObservationAgent;
+
+ObservationAgent* new_ObservationAgent(char* description);
+bool is_ObservationAgent();
