@@ -68,9 +68,11 @@ EOF
 # Obey command line arguments
 while true; do
     case "$1" in
+
 	-h|--help)
 	    echo -e "${HELP}"
 	    ;;
+
 	--)
 	    break ;;
     esac

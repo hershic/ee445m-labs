@@ -139,6 +139,7 @@ openocd_debug() {
 # Obey command line arguments
 while true; do
     case "$1" in
+
 	-p|--program)
 	    openocd_program
 	    ;;
