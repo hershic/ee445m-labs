@@ -1,4 +1,9 @@
+#ifndef _OBSERVATION_AGENT_
+#define _OBSERVATION_AGENT_
+
 #include <stdbool.h>
+
+#include "StringCase.h"
 
 /* TODO: Doxygenize */
 
@@ -17,7 +22,6 @@ typedef struct Node {
 
 typedef struct {
 
-  /* long size; */
   Node* process;
 } ProcessEnvelope;
 
@@ -28,8 +32,11 @@ typedef struct {
 
   /* Member functions */
   char* (*identify)();
-  bool (*make_observable)();
+  bool (*deliver_process_envelope)(ProcessEnvelope*);
+  bool (*make_observable)(char*);
 } ObservationAgent;
 
-ObservationAgent* new_ObservationAgent(char* description);
+ObservationAgent* new_ObservationAgent(char*);
 bool is_ObservationAgent();
+
+#endif
