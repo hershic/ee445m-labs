@@ -5,15 +5,15 @@
 
 typedef long pid;
 
-typedef struct Node {
+typedef struct ProcessNode {
 
   pid process;
-  struct Node* next;
-} Node;
+  struct ProcessNode* next;
+} ProcessNode;
 
 typedef struct {
 
-  Node* process;
+  ProcessNode* process;
 } ProcessEnvelope;
 
 ProcessEnvelope* new_ProcessEnvelope();

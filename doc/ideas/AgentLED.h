@@ -3,11 +3,11 @@
 
 #include <stdbool.h>
 
+#include "Agent.h"
 #include "Process.h"
-#include "StringCase.h"
 
 /* Must include the 3 functions that define an ObservationAgent */
-char* led_identify(char*);
+AgentID led_identify();
 bool led_make_observable();
 bool deliver_process_envelope(ProcessEnvelope* envelope);
 
