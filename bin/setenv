@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #
 ## \file
 ## \author Eric Crosson <eric.s.crosson@utexas.edu>
@@ -50,12 +50,12 @@ fi
 
 eval set -- "${ARGS}";
 
-## @var HELP
+## @var HELP_SETENV
 ## @brief Contains script invocation information
 ## @details Contains script invocation information and abstract.
 ## @ingroup environment
-declare HELP
-HELP=$(cat <<'EOF'
+declare HELP_SETENV
+HELP_SETENV=$(cat <<'EOF'
 source $0 : Set up the development environment for ee445m.
 
 Usage : source $0 [-h]
@@ -70,7 +70,7 @@ while true; do
     case "$1" in
 
 	-h|--help)
-	    echo -e "${HELP}"
+	    echo -e "${HELP_SETENV}"
 	    ;;
 
 	--)

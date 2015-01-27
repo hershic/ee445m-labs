@@ -49,12 +49,12 @@ fi
 
 eval set -- "${ARGS}";
 
-## @var HELP
+## @var HELP_OCD
 ## @brief Contains script invocation information
 ## @details Contains script invocation information and abstract.
 ## @ingroup openocd
-declare HELP
-HELP=$(cat <<'EOF'
+declare HELP_OCD
+HELP_OCD=$(cat <<'EOF'
 $0 : Wrap openocd for communication with the cortex M4 used in ee445m.
 
 Usage : [-n] [-p|-d]
@@ -154,7 +154,7 @@ while true; do
 	    ;;
 
 	-h|--help)
-	    echo -e "${HELP}"
+	    echo -e "${HELP_OCD}"
 	    ;;
 
 	--)
