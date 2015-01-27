@@ -136,7 +136,7 @@ openocd_debug() {
     ${execute} openocd --file ${file} -c ${openocd_args_debug}
 }
 
-
+# Obey command line arguments
 while true; do
     case "$1" in
 	-p|--program)
