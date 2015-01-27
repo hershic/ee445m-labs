@@ -74,17 +74,17 @@ EOF
 ## @ingroup openocd
 declare execute=sudo
 
-## @var hershal_file
+## @var file_hershal
 ## @brief For internal use only.
 ## @details Hershal's path to openocd interface.
 ## @ingroup openocd
-declare -r hershal_file=/opt/local/share/openocd/scripts/board/ek-lm4f120xl.cfg
+declare -r file_hershal=/opt/local/share/openocd/scripts/board/ek-lm4f120xl.cfg
 
-## @var eric_file
+## @var file_eric
 ## @brief For internal use only.
 ## @details Eric's path to openocd interface.
 ## @ingroup openocd
-declare -r eric_file=/usr/share/openocd/scripts/board/ek-lm4f120xl.cfg
+declare -r file_eric=/usr/share/openocd/scripts/board/ek-lm4f120xl.cfg
 
 ## @var file
 ## @brief For internal use only.
@@ -93,9 +93,9 @@ declare -r eric_file=/usr/share/openocd/scripts/board/ek-lm4f120xl.cfg
 declare file
 file=$(
 if [[ $(whoami) == "eric" ]]; then
-    echo ${eric_file}
+    echo ${file_eric}
 else
-    echo ${hershal_file}
+    echo ${file_hershal}
 fi)
 
 ## @var openocd_args_program
