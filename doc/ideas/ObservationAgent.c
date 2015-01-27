@@ -1,9 +1,11 @@
+#include "ObservationAgent.h"
+
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "ObservationAgent.h"
+
+/* TODO: Doxygenize */
 
 ObservationAgent* new_ObservationAgent(char* description) {
 
@@ -18,16 +20,26 @@ bool is_ObservationAgent() {
 
 }
 
+char* led_identify() {
+
+}
+
+bool led_make_observable() {
+
+}
+
 int main(void) {
 
   Node* root = calloc(1, sizeof(Node));
   Node* next = calloc(1, sizeof(Node));
-  root->next = next;
   root->process = 1;
-  next->next = 0;
+  root->next = next;
   next->process = 2;
+  next->next = 0;
 
-
+  /* Create the observation agent for our (imaginary) LED */
   char description[] = "Test agent";
-  ObservationAgent* led = new(ObservationAgent(description));
+  ObservationAgent* led = new( ObservationAgent(description) );
+  led->identify = led_identify;
+  led->make_observable = led_make_observable;
 }
