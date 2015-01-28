@@ -2,7 +2,7 @@
 #
 ## \file
 ## \author Eric Crosson <eric.s.crosson@utexas.edu>
-## \brief Wrap openocd for communication with the cortex M4 used in ee445m.
+## \brief Wrap OpenOCD for communication with the cortex M4 used in ee445m.
 ## \copyright WTFPLv2
 ## \version 1.0
 #
@@ -28,7 +28,7 @@
 ## \details
 ## \par Script abstract
 ##
-## This script acts as a wrapper to use openocd for communication with
+## This script acts as a wrapper to use OpenOCD for communication with
 ## the cortex M4 used in ee445m.
 ##
 ## \par Usage
@@ -37,7 +37,7 @@
 ## \param program Program the M4
 ## \param debug Open GDB for debugging on the M4
 #
-## \addtogroup openocd OpenOCD invocation wrapper
+## \addtogroup OpenOCD OpenOCD invocation wrapper
 
 # Execute getopt
 ARGS=$(getopt -o pdnh -l "program,debug,dry-run,help" -n "$0" -- "$@");
@@ -52,10 +52,10 @@ eval set -- "${ARGS}";
 ## @var HELP_OCD
 ## @brief Contains script invocation information
 ## @details Contains script invocation information and abstract.
-## @ingroup openocd
+## @ingroup OpenOCD
 declare HELP_OCD
 HELP_OCD=$(cat <<'EOF'
-$0 : Wrap openocd for communication with the cortex M4 used in ee445m.
+$0 : Wrap OpenOCD for communication with the cortex M4 used in ee445m.
 
 Usage : [-n] [-p|-d]
 
@@ -67,29 +67,29 @@ Usage : [-n] [-p|-d]
 EOF
 )
 
-# Determine the context in which openocd will be invoked: su or echo
+# Determine the context in which OpenOCD will be invoked: su or echo
 ## @var execute
 ## @brief For internal use only.
 ## @details Controls the executing context of the openocd command.
-## @ingroup openocd
+## @ingroup OpenOCD
 declare execute=sudo
 
 ## @var file_prefix_hershal
 ## @brief For internal use only.
-## @details Hershal's path to openocd interface.
-## @ingroup openocd
+## @details Hershal's path to OpenOCD interface.
+## @ingroup OpenOCD
 declare -r file_prefix_hershal=/opt/local/share
 
 ## @var file_prefix_eric
 ## @brief For internal use only.
-## @details Eric's path to openocd interface.
-## @ingroup openocd
+## @details Eric's path to OpenOCD interface.
+## @ingroup OpenOCD
 declare -r file_prefix_eric=/usr/share
 
 ## @var file
 ## @brief For internal use only.
-## @details Path to openocd interface for use on this system.
-## @ingroup openocd
+## @details Path to OpenOCD interface for use on this system.
+## @ingroup OpenOCD
 declare file=/openocd/scripts/board/ek-lm4f120xl.cfg
 file=$(
 if [[ $(whoami) == "eric" ]]; then
@@ -101,26 +101,26 @@ fi)${file}
 ## @var openocd_args_program
 ## @brief For internal use only.
 ## @details Openocd command to program the M4.
-## @ingroup openocd
+## @ingroup OpenOCD
 declare -r openocd_args_program="program test-uart verify reset"
 
 ## @var gdb_port
 ## @brief For internal use only.
 ## @details Port to communicate to gdb with.
-## @ingroup openocd
+## @ingroup OpenOCD
 declare -ri gdb_port=3333
 
 ## @var openocd_args_debug
 ## @brief For internal use only.
 ## @details Openocd command to open gdb on the M4.
-## @ingroup openocd
+## @ingroup OpenOCD
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
 # TODO: sound less retarded
 ## @fn openocd_program()
 ## @brief Program the M4
 ## @retval 0 if success
-## @ingroup openocd
+## @ingroup OpenOCD
 openocd_program() {
 
     ${execute} openocd --file ${file} -c ${openocd_args_program}
@@ -130,7 +130,7 @@ openocd_program() {
 ## @fn openocd_debug()
 ## @brief Open GDB on the M4
 ## @retval 0 if success
-## @ingroup openocd
+## @ingroup OpenOCD
 openocd_debug() {
 
     ${execute} openocd --file ${file} -c ${openocd_args_debug}
