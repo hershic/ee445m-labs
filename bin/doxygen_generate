@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Doxygen the bin directory
+pushd $(dirname $(readlink -e "$0")) &>/dev/null
+mkdir -p ../doc/html/bin
+doxygen Doxyfile
+
+# Doxygen the main project
+pushd .. &>/dev/null
+doxygen Doxyfile
