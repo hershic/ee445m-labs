@@ -1,8 +1,9 @@
 #+startup: content
-* [2/5] Doxygen
+* [3/6] Doxygen
 - [X] publish Doxygen on an external website
       http://hershic.github.io/ee445m-labs/
 - [X] link all doxygen projects together to show on one page
+- [X] write main project information in doxygen
 - [ ] Allow here docs in declare -r statements
 - [ ] re-generate Doxygen on push (and update)
 - [ ] make doxygen html output a consistent format
