@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ocd',['ocd',['.././external/bin/html/ocd.html',1,'']]]
+  ['ocd',['ocd',['.././bin/html/ocd.html',1,'']]]
 ];

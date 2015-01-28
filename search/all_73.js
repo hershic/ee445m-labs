@@ -11,7 +11,7 @@ var searchData=
   ['schedulertaskenable',['SchedulerTaskEnable',['../group__scheduler__api.html#gadd0709e8d6a81b83c46b538f1e5c8c04',1,'SchedulerTaskEnable(uint32_t ui32Index, bool bRunNow):&#160;scheduler.c'],['../group__scheduler__api.html#gadd0709e8d6a81b83c46b538f1e5c8c04',1,'SchedulerTaskEnable(uint32_t ui32Index, bool bRunNow):&#160;scheduler.c']]],
   ['schedulertickcountget',['SchedulerTickCountGet',['../group__scheduler__api.html#ga7c659662570a71d12edfcec7dc446ec6',1,'SchedulerTickCountGet(void):&#160;scheduler.c'],['../group__scheduler__api.html#ga7c659662570a71d12edfcec7dc446ec6',1,'SchedulerTickCountGet(void):&#160;scheduler.c']]],
   ['seconds',['seconds',['../structclocktime.html#a1c37159d28c6a098f51285f31319a5d8',1,'clocktime']]],
-  ['setenv',['setenv',['.././external/bin/html/setenv.html',1,'']]],
+  ['setenv',['setenv',['.././bin/html/setenv.html',1,'']]],
   ['shade',['shade',['../structpoint.html#a82bf95a73b4c6933132396e5a07bb67c',1,'point']]],
   ['shamd5_2ec',['shamd5.c',['../shamd5_8c.html',1,'']]],
   ['shamd5_2eh',['shamd5.h',['../shamd5_8h.html',1,'']]],

@@ -2,7 +2,7 @@ var searchData=
 [
   ['scheduler_2ec',['scheduler.c',['../scheduler_8c.html',1,'']]],
   ['scheduler_2eh',['scheduler.h',['../scheduler_8h.html',1,'']]],
-  ['setenv',['setenv',['.././external/bin/html/setenv.html',1,'']]],
+  ['setenv',['setenv',['.././bin/html/setenv.html',1,'']]],
   ['shamd5_2ec',['shamd5.c',['../shamd5_8c.html',1,'']]],
   ['shamd5_2eh',['shamd5.h',['../shamd5_8h.html',1,'']]],
   ['shape_2ec',['shape.c',['../shape_8c.html',1,'']]],

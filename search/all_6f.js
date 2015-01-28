@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ocd',['ocd',['.././external/bin/html/ocd.html',1,'']]],
+  ['ocd',['ocd',['.././bin/html/ocd.html',1,'']]],
   ['offset_5ffrom_5faddr',['OFFSET_FROM_ADDR',['../group__eeprom__api.html#ga61336c84894c0de12b62834a54db5968',1,'eeprom.c']]],
   ['onewire0_5fbase',['ONEWIRE0_BASE',['../hw__memmap_8h.html#a078be1a993179e55c7f894295d988e6c',1,'hw_memmap.h']]],
   ['os_5fdelay',['OS_DELAY',['../rtos__bindings_8h.html#a1c36936a73df943e131b8c69ffb4a289',1,'rtos_bindings.h']]],
