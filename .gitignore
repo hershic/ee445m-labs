@@ -5,5 +5,5 @@ build*
 TAGS
 html
 *.tag
-
+doxygen.log
 /doc/latex/
