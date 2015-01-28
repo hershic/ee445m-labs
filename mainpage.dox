@@ -1,0 +1,13 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/**
+ * \mainpage EE445M Real Time Operating Systems Documentation
+ *
+ * This is the documentation for the Real Time Operating System
+ * developed by Hershal Bhave and Eric Crosson at the University of
+ * Texas for EE445M during the spring semester of 2015.
+ *
+ * Both the C source code used for the RToS and the scripts used in
+ * the development process are documented with Doxygen. Special thanks
+ * goes to TI for its driverlib and Anvil for his
+ * [bash-doxygen](https://github.com/Anvil/bash-doxygen) project.
+ */
