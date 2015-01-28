@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: Doxygenize
+
 # Doxygen the bin directory
 pushd $(dirname $(readlink -e "$0")) &>/dev/null
 mkdir -p ../doc/html/bin
