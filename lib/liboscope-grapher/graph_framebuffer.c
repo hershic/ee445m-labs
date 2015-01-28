@@ -23,7 +23,7 @@
   Outputs: void
 */
 void FBDrawFullscreenGraph(framebuffer fb, graph* g) {
-  point* origin = SHCreatePoint((pixel_t) 0, (pixel_t) 0, (shade_t) 15);
+  point* origin = shape_create_point((pixel_t) 0, (pixel_t) 0, (shade_t) 15);
   FBDrawGraph(fb, g, origin, (pixel_t) OLED_WIDTH, (pixel_t) OLED_HEIGHT);
   SHDestroyPoint(origin);
 }
@@ -36,7 +36,7 @@ void FBDrawFullscreenGraph(framebuffer fb, graph* g) {
   Outputs: void
 */
 void FBEraseFullscreenGraph(framebuffer fb, graph* g) {
-  point* origin = SHCreatePoint((x_pixel_t) 0, (y_pixel_t) 0, (shade_t) FB_COLOR_ERASE);
+  point* origin = shape_create_point((x_pixel_t) 0, (y_pixel_t) 0, (shade_t) FB_COLOR_ERASE);
   FBEraseGraph(fb, g, origin, (x_pixel_t) OLED_WIDTH, (y_pixel_t) OLED_HEIGHT);
   SHDestroyPoint(origin);
 }
@@ -49,7 +49,7 @@ void FBEraseFullscreenGraph(framebuffer fb, graph* g) {
   Outputs: void
 */
 void FBEraseFullscreenGraphData(framebuffer fb, graph* g) {
-  point* origin = SHCreatePoint((x_pixel_t) 0, (y_pixel_t) 0, (shade_t) FB_COLOR_ERASE);
+  point* origin = shape_create_point((x_pixel_t) 0, (y_pixel_t) 0, (shade_t) FB_COLOR_ERASE);
   FBEraseGraphData(fb, g, origin, (x_pixel_t) OLED_WIDTH, (y_pixel_t) OLED_HEIGHT);
   SHDestroyPoint(origin);
 }
@@ -166,19 +166,19 @@ private void _FBDrawGraphBounds(framebuffer fb,
                                 shade_t shade) {
   /* Draw X axis boundaries (aka vertical lines) */
   FBDrawAnonLine(fb,
-                 SHCreatePoint(top_left_corner->x + x_range_padding,
+                 shape_create_point(top_left_corner->x + x_range_padding,
                                top_left_corner->y,
                                shade),
-                 SHCreatePoint(top_left_corner->x + x_range_padding,
+                 shape_create_point(top_left_corner->x + x_range_padding,
                                top_left_corner->y + (height - y_range_padding),
                                shade),
                  shade);
   /* Draw Y axis boundaries (aka horizontal lines) */
   FBDrawAnonLine(fb,
-                 SHCreatePoint(top_left_corner->x + x_range_padding,
+                 shape_create_point(top_left_corner->x + x_range_padding,
                                top_left_corner->y + height - y_range_padding,
                                shade),
-                 SHCreatePoint(top_left_corner->x + x_range_padding + width,
+                 shape_create_point(top_left_corner->x + x_range_padding + width,
                                top_left_corner->y + height - y_range_padding,
                                shade),
                  shade);
@@ -222,8 +222,8 @@ private void _FBDrawGraphData(framebuffer fb, graph* g, point* top_left_corner, 
       y2 = g->y_pixel_end   - ((g->data[idx+1]+g->y_min)*(g->y_pixel_end-g->y_pixel_start)/(g->y_max-g->y_min));
 
       FBDrawAnonLine(fb,
-                     SHCreatePoint(x1, y1, shade),
-                     SHCreatePoint(x2, y2, shade),
+                     shape_create_point(x1, y1, shade),
+                     shape_create_point(x2, y2, shade),
                      shade);
 
       when (debug) {fprintf(stderr, "Line from:\t(%u,\t%u) to (%u,\t%u)\n",x1,y1,x2,y2);}

@@ -216,8 +216,8 @@ private void _FBDrawLine(framebuffer fb, point* pta, point* ptb, shade_t shade) 
   point* b;
   int dx, dy, sx, sy, e2, err;
 
-  a = SHDuplicatePoint(pta);
-  b = SHDuplicatePoint(ptb);
+  a = shape_duplicate_point(pta);
+  b = shape_duplicate_point(ptb);
 
   dx = abs(b->x-a->x); sx = (a->x < b->x) ? 1 : -1;
   dy = abs(b->y-a->y); sy = (a->y < b->y) ? 1 : -1;
@@ -436,7 +436,7 @@ void FBEraseStringAnonPt(framebuffer fb, point* top_left_corner, char* string) {
   Outputs: void
 */
 void FBEraseString(framebuffer fb, point* top_left_corner, char* string) {
-  point* pt = SHDuplicatePoint(top_left_corner);
+  point* pt = shape_duplicate_point(top_left_corner);
   pt->shade = FB_COLOR_ERASE;
   _FBDrawString(fb, pt, string);
   SHDestroyPoint(pt);
@@ -451,7 +451,7 @@ void FBEraseString(framebuffer fb, point* top_left_corner, char* string) {
 */
 private void _FBDrawString(framebuffer fb, point* top_left_corner, char* string) {
   uchar active, col, row, mask;
-  point* pen = SHDuplicatePoint(top_left_corner);
+  point* pen = shape_duplicate_point(top_left_corner);
 
   while(*string != null) {
     for(col=0; col < VALVANO_FONT_WIDTH; ++col) {
