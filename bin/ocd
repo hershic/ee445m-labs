@@ -74,29 +74,18 @@ EOF
 ## @ingroup OpenOCD
 declare execute=sudo
 
-## @var file_prefix_hershal
+## @var interface_prefixes
 ## @brief For internal use only.
-## @details Hershal's path to OpenOCD interface.
+## @details Users paths to OpenOCD interfaces.
 ## @ingroup OpenOCD
-declare -r file_prefix_hershal=/opt/local/share
+declare -A interface_prefixes
+interface_prefixes=([eric]=/usr/share [hershal]=/opt/local/share)
 
-## @var file_prefix_eric
-## @brief For internal use only.
-## @details Eric's path to OpenOCD interface.
-## @ingroup OpenOCD
-declare -r file_prefix_eric=/usr/share
-
-## @var file
+## @var interface
 ## @brief For internal use only.
 ## @details Path to OpenOCD interface for use on this system.
 ## @ingroup OpenOCD
-declare file=/openocd/scripts/board/ek-lm4f120xl.cfg
-file=$(
-if [[ $(whoami) == "eric" ]]; then
-    echo ${file_prefix_eric}
-else
-    echo ${file_prefix_hershal}
-fi)${file}
+declare interface=${interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f120xl.cfg
 
 ## @var openocd_args_program
 ## @brief For internal use only.
@@ -123,7 +112,7 @@ declare -r openocd_args_debug="gdb_port ${gdb_port}"
 ## @ingroup OpenOCD
 openocd_program() {
 
-    ${execute} openocd --file ${file} -c ${openocd_args_program}
+    ${execute} openocd --file ${interface} -c ${openocd_args_program}
 }
 
 # TODO: sound less retarded
@@ -133,7 +122,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    ${execute} openocd --file ${file} -c ${openocd_args_debug}
+    ${execute} openocd --file ${interface} -c ${openocd_args_debug}
 }
 
 # Obey command line arguments
