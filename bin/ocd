@@ -91,7 +91,7 @@ declare interface=${interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f
 ## @brief For internal use only.
 ## @details Openocd command to program the M4.
 ## @ingroup OpenOCD
-declare -r openocd_args_program="program test-uart verify reset"
+declare -r openocd_args_program="program $3 verify reset"
 
 ## @var gdb_port
 ## @brief For internal use only.
@@ -112,7 +112,7 @@ declare -r openocd_args_debug="gdb_port ${gdb_port}"
 ## @ingroup OpenOCD
 openocd_program() {
 
-    ${execute_ocd} openocd --file ${interface} -c ${openocd_args_program}
+    ${execute_ocd} openocd --file ${interface} -c "${openocd_args_program}"
 }
 
 # TODO: sound less retarded
