@@ -38,7 +38,7 @@
 ## source ./setenv
 ## \endcode
 #
-## \addtogroup environment
+## \addtogroup environment Development environment setup
 
 # Execute getopt
 ARGS=$(getopt -o h -l "help" -n "$0" -- "$@");

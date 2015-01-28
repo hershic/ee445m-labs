@@ -37,7 +37,7 @@
 ## \param program Program the M4
 ## \param debug Open GDB for debugging on the M4
 #
-## \addtogroup openocd
+## \addtogroup openocd OpenOCD invocation wrapper
 
 # Execute getopt
 ARGS=$(getopt -o pdnh -l "program,debug,dry-run,help" -n "$0" -- "$@");
