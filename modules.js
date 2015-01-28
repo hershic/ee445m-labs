@@ -46,6 +46,7 @@ var modules =
     [ "Spi_flash_api", "group__spi__flash__api.html", null ],
     [ "Uartstdio_api", "group__uartstdio__api.html", null ],
     [ "Ustdlib_api", "group__ustdlib__api.html", null ],
+    [ "Doxygen tools", "./bin/html/group__Doxygen.html", null ],
     [ "OpenOCD invocation wrapper", "./bin/html/group__OpenOCD.html", null ],
     [ "Development environment setup", "./bin/html/group__Environment.html", null ]
 ];

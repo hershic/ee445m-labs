@@ -1,6 +1,25 @@
 <?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
+    <name>generate_doxygen</name>
+    <path>/home/eric/classes/ee445m/bin/</path>
+    <filename>generate__doxygen</filename>
+    <member kind="variable">
+      <type>LowerCase String</type>
+      <name>execute</name>
+      <anchorfile>group__Doxygen.html</anchorfile>
+      <anchor>ga2ef5e84ca7e5154b43fbaf5bce7fcb03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>HELP_GENERATE_DOXYGEN</name>
+      <anchorfile>group__Doxygen.html</anchorfile>
+      <anchor>ga4b753c2197dabf7c993327a295a4fd36</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>ocd</name>
     <path>/home/eric/classes/ee445m/bin/</path>
     <filename>ocd</filename>
@@ -21,8 +40,8 @@
     <member kind="variable">
       <type>String</type>
       <name>execute</name>
-      <anchorfile>group__OpenOCD.html</anchorfile>
-      <anchor>ga2ef5e84ca7e5154b43fbaf5bce7fcb03</anchor>
+      <anchorfile>ocd.html</anchorfile>
+      <anchor>a88aae6f3f4966dc6739fa48c3ee2e3d3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -81,6 +100,25 @@
     </member>
   </compound>
   <compound kind="group">
+    <name>Doxygen</name>
+    <title>Doxygen tools</title>
+    <filename>group__Doxygen.html</filename>
+    <member kind="variable">
+      <type>LowerCase String</type>
+      <name>execute</name>
+      <anchorfile>group__Doxygen.html</anchorfile>
+      <anchor>ga2ef5e84ca7e5154b43fbaf5bce7fcb03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>HELP_GENERATE_DOXYGEN</name>
+      <anchorfile>group__Doxygen.html</anchorfile>
+      <anchor>ga4b753c2197dabf7c993327a295a4fd36</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
     <name>OpenOCD</name>
     <title>OpenOCD invocation wrapper</title>
     <filename>group__OpenOCD.html</filename>
@@ -97,13 +135,6 @@
       <anchorfile>group__OpenOCD.html</anchorfile>
       <anchor>gabc8dc8e29bf3b35230a7f9d6cefa60d9</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>String</type>
-      <name>execute</name>
-      <anchorfile>group__OpenOCD.html</anchorfile>
-      <anchor>ga2ef5e84ca7e5154b43fbaf5bce7fcb03</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>ReadOnly Integer</type>

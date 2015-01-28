@@ -68,6 +68,7 @@ var searchData=
   ['g_5fui8timerintmaprowssnowflake',['g_ui8TimerIntMapRowsSnowflake',['../group__timer__api.html#ga6eb784383a76251572dd14036ac15a3c',1,'timer.c']]],
   ['g_5fui8uartintmaprows',['g_ui8UARTIntMapRows',['../group__uart__api.html#ga0e48496af16c7eb3317b337a515de1b5',1,'uart.c']]],
   ['g_5fui8uartintmaprowssnowflake',['g_ui8UARTIntMapRowsSnowflake',['../group__uart__api.html#gab204f944459fef26a909bc2678de5e43',1,'uart.c']]],
+  ['generate_5fdoxygen',['generate_doxygen',['.././bin/html/generate__doxygen.html',1,'']]],
   ['gl_5fblank_5fsteps_5fpreceeding_5fstale_5fdata',['GL_BLANK_STEPS_PRECEEDING_STALE_DATA',['../graphlib_8h.html#ab3e9ed2e9b19468de8b498f74abbcd6c',1,'graphlib.h']]],
   ['glcreategraph',['GLCreateGraph',['../graphlib_8c.html#ab918490054cec226a7db7de67362261d',1,'GLCreateGraph(long x_min, long x_max, long y_min, long y_max, long x_steps):&#160;graphlib.c'],['../graphlib_8h.html#ab918490054cec226a7db7de67362261d',1,'GLCreateGraph(long x_min, long x_max, long y_min, long y_max, long x_steps):&#160;graphlib.c']]],
   ['gldestroygraph',['GLDestroyGraph',['../graphlib_8c.html#adc9b06036c2e03a9f0eee8252ff13985',1,'GLDestroyGraph(graph *g):&#160;graphlib.c'],['../graphlib_8h.html#a53e923da5452ace35d91ee75f2de6028',1,'GLDestroyGraph(graph *graph):&#160;graphlib.c']]],
