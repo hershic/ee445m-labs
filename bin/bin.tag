@@ -6,9 +6,9 @@
     <filename>generate__doxygen</filename>
     <member kind="variable">
       <type>LowerCase String</type>
-      <name>execute</name>
+      <name>execute_generate_doxygen</name>
       <anchorfile>group__Doxygen.html</anchorfile>
-      <anchor>ga2ef5e84ca7e5154b43fbaf5bce7fcb03</anchor>
+      <anchor>ga91579128a48aea844a741fba431315a5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -39,9 +39,9 @@
     </member>
     <member kind="variable">
       <type>String</type>
-      <name>execute</name>
-      <anchorfile>ocd.html</anchorfile>
-      <anchor>a88aae6f3f4966dc6739fa48c3ee2e3d3</anchor>
+      <name>execute_ocd</name>
+      <anchorfile>group__OpenOCD.html</anchorfile>
+      <anchor>ga79e16cc6da318221c8dac440cefb09c0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -105,9 +105,9 @@
     <filename>group__Doxygen.html</filename>
     <member kind="variable">
       <type>LowerCase String</type>
-      <name>execute</name>
+      <name>execute_generate_doxygen</name>
       <anchorfile>group__Doxygen.html</anchorfile>
-      <anchor>ga2ef5e84ca7e5154b43fbaf5bce7fcb03</anchor>
+      <anchor>ga91579128a48aea844a741fba431315a5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -135,6 +135,13 @@
       <anchorfile>group__OpenOCD.html</anchorfile>
       <anchor>gabc8dc8e29bf3b35230a7f9d6cefa60d9</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>String</type>
+      <name>execute_ocd</name>
+      <anchorfile>group__OpenOCD.html</anchorfile>
+      <anchor>ga79e16cc6da318221c8dac440cefb09c0</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>ReadOnly Integer</type>
