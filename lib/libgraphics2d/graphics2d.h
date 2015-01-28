@@ -9,6 +9,7 @@
  *  \version   0.1
  *  \date      2014
  *  \copyright GNU Public License.
+ *  \addtogroup Graphics Graphial manipulation framework.
  */
 
 #include "g2d_defines.h"
