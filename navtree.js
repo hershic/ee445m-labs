@@ -1,6 +1,7 @@
 var NAVTREE =
 [
-  [ "EE 445M", "index.html", [
+  [ "EE445M Real Time Operating Systems", "index.html", [
+    [ "EE445M Real Time Operating Systems Documentation", "index.html", null ],
     [ "Related Pages", "pages.html", "pages" ],
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", null, [

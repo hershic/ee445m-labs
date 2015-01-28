@@ -2,6 +2,7 @@ var searchData=
 [
   ['mac_5faddr_5foffset',['MAC_ADDR_OFFSET',['../group__emac__api.html#ga41a8df12498a982bf9c89b72e5a70bf7',1,'emac.c']]],
   ['main',['main',['../blinky_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;blinky.c'],['../test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;test-adc.c'],['../test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;test-uart.c'],['../console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;console-fb.c'],['../console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;console-grapher.c'],['../tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;tk_tb.c']]],
+  ['mainpage_2edox',['mainpage.dox',['../mainpage_8dox.html',1,'']]],
   ['map_5fadcbusy',['MAP_ADCBusy',['../rom__map_8h.html#ae583852f5f93ac76450e32bfbe69928d',1,'rom_map.h']]],
   ['map_5fadccomparatorconfigure',['MAP_ADCComparatorConfigure',['../rom__map_8h.html#a29c0fd86b9e1bbce6c0a5544d51f9017',1,'rom_map.h']]],
   ['map_5fadccomparatorintclear',['MAP_ADCComparatorIntClear',['../rom__map_8h.html#aa080dddb9b0db2a757226ff96040a30c',1,'rom_map.h']]],
