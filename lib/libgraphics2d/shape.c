@@ -1,25 +1,9 @@
-/* shape.c
- * Hershal Bhave and Eric Crosson
- * 2014-02-08
- * Representation of a shape (polygon) comprised of vertices (points)
- * and connected by line segments.
- * Lab 3
- * Last Revision: LOOK IN GIT FGT
- * LM3S1968
- */
-
 #include <stdlib.h>
 #include <stdarg.h>
+
 #include "shape.h"
 
-/*
-  Return a point that describes the given arguments.
-  Input:  x        x coordinate
-          y        y coordinate
-          color    shading of this point
-  Output: A newly created point
-*/
-point* SHCreatePoint(ushort x, ushort y, shade_t shade) {
+point* shape_create_point(ushort x, ushort y, shade_t shade) {
     point* p = malloc(sizeof(point));
     p->x = x;
     p->y = y;
@@ -27,117 +11,68 @@ point* SHCreatePoint(ushort x, ushort y, shade_t shade) {
     return p;
 }
 
-/*
-  A handy function to create a triangle.
-  Input:  p0          vertex 1 of the triangle
-          p1          vertex 2 of the triangle
-          p2          vertex 3 of the triangle
-  Output: pointer to the described triangle
- */
-shape* SHCreateTriangle(point* p0, point* p1, point* p2) {
-  return SHCreateShape(3, p0, p1, p2);
+shape* shape_create_triangle(point* p0, point* p1, point* p2) {
+
+  return shape_create(3, p0, p1, p2);
 }
 
-/*
-  A handy function to create a general quadrilateral.
-  Input:  p0          vertex 1 of the triangle
-          p1          vertex 2 of the triangle
-          p2          vertex 3 of the triangle
-  Output: pointer to the described quadrilateral
- */
-shape* SHCreateQuad(point* top_left_corner, uchar width, uchar height) {
+shape* shape_create_quad(point* top_left_corner, uchar width, uchar height) {
+
     ushort x = top_left_corner->x;
     ushort y = top_left_corner->y;
     shade_t shade = top_left_corner->shade;
-    return SHCreateShape(4,
-			 top_left_corner,
-			 SHCreatePoint(x+width, y,        shade),
-			 SHCreatePoint(x+width, y+height, shade),
-			 SHCreatePoint(x,       y+height, shade));
+    return shape_create(4,
+			top_left_corner,
+			shape_create_point(x+width, y,        shade),
+			shape_create_point(x+width, y+height, shade),
+			shape_create_point(x,       y+height, shade));
 }
 
-/*
-  Return a pointer to a shape with numPoints points.
-  Input:  numpoints        number of points to follow
-          points...        comma separated points
-  Output: pointer to the described shape
-  Note: va_args requires a preceeding argument.
- */
-shape* SHCreateShape(ushort numPoints, ...) {
+shape* shape_create(ushort num_points, ...) {
 
   unsigned char i;
   shape* sh = (shape*) calloc(1, sizeof(shape));
-  point** pts = (point**) calloc(numPoints, sizeof(point*));
+  point** pts = (point**) calloc(num_points, sizeof(point*));
   va_list args;
 
-  va_start(args, numPoints);
-  for(i=0; i < numPoints; ++i) {
+  va_start(args, num_points);
+  for(i=0; i < num_points; ++i) {
     pts[i] = va_arg(args, point*);
   }
   va_end(args);			/* clean up the list */
 
-  sh->numPoints = numPoints;
+  sh->num_points = num_points;
   sh->points = pts;
   return sh;
 }
 
-/*
-  Destroy a shape object.
-  Inputs:  sh    shape object to destroy
-  Outputs: void
- */
-void SHDestroyShape(shape* sh) {
+void shape_destroy_shape(shape* sh) {
 
   ushort i;
-  for(i=0; i<sh->numPoints; ++i) {
+  for(i=0; i<sh->num_points; ++i) {
     free(sh->points[i]);
   }
   free(sh->points);
 }
 
-/*
-  Return a pointer to a circle in memory described by center and
-  radius.
-  Input:  center      point describing the center of the circle
-          radius      length of the radius in "units"
-  Output: pointer to the described circle
- */
-circle* SHCreateCircle(ushort radius, point* center) {
+circle* shape_create_circle(ushort radius, point* center) {
 
-    circle* c = (circle*) calloc(1, sizeof(circle));
-    c->center = center;
-    c->radius = radius;
-    return c;
+    circle* cir = (circle*) calloc(1, sizeof(circle));
+    cir->center = center;
+    cir->radius = radius;
+    return cir;
 }
 
-/*
-  Destroy a circle object.
-  radius.
-  Input:  circle      circle object to destroy
-  Output: void
- */
-void SHDestroyCircle(circle* cir) {
-  /* free(cir->pt_center); */
-  free(cir);
-}
-
-/*
-  Duplicate a shape object.
-  radius.
-  Input:  shape      the shape to duplicate
-  Output: shape      a duplicate of the given shape
- */
-shape* SHDuplicateShape(shape* s) {
+shape* shape_duplicate_shape(shape* s) {
 
     ushort i;
     shape* dup = (shape*) calloc(1, sizeof(shape));
 
-    dup->numPoints = s->numPoints;
-    dup->points = (point**) calloc(dup->numPoints, sizeof(point*));
+    dup->num_points = s->num_points;
+    dup->points = (point**) calloc(dup->num_points, sizeof(point*));
 
-    for(i=0; i < dup->numPoints; ++i) {
+    for(i=0; i < dup->num_points; ++i) {
 	dup->points[i] = s->points[i];
     }
-
     return dup;
 }

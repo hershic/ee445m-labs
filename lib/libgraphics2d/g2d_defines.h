@@ -1,39 +1,35 @@
-/* globals.h
- * Hershal Bhave and Eric Crosson
- * 2014-02-08
- * Global defines and useful macros
- * Lab 3
- * Last Revision: LOOK IN GIT FGT
- * LM3S1968
+/*!
+ * \brief Global values and typedef definitions
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Globals Global variables and typedefs
  */
 
-#ifndef __GLOBALS__
+#ifndef __G2D_DEFINES__
+#define __G2D_DEFINES__
 
 /*** Custom data types ***/
 /* swiss army knife data types */
-#define null    0x00
+#define null 0x00
+#define NULL 0x00
 typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned long ulong;
-#define bool    unsigned char
-	
-#ifndef true
-#define true 1
-#endif
 
-#ifndef false
-#define false 0
-#endif
+#include <stdbool.h>
 
 /* shape.h data types */
-#define shade_t			unsigned char
-#define mu_fields_t		unsigned char
-#define mu_input_event_t	unsigned char
+#define shade_t           unsigned char
+#define mu_fields_t       unsigned char
+#define mu_input_event_t  unsigned char
 
 /* OLED data types */
-#define pixel_t		unsigned char
-#define x_pixel_t	pixel_t
-#define y_pixel_t	pixel_t
+#define pixel_t    unsigned char
+#define x_pixel_t  pixel_t
+#define y_pixel_t  pixel_t
 
 /* Graphlib data types */
 #define y_range_t
@@ -59,53 +55,52 @@ typedef unsigned long ulong;
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 /* mnemonics for framebuffer shades */
-#define FB_SHADE_ERASE	((shade_t) 0)
-#define FB_SHADE_MIN	((shade_t) 1)
-#define FB_SHADE_MINOR	((shade_t) 4)
-#define FB_SHADE_MID	((shade_t) 7)
-#define FB_SHADE_MUCH	((shade_t) 11)
-#define FB_SHADE_MAX	((shade_t) 15)
+#define FB_SHADE_ERASE  ((shade_t) 0)
+#define FB_SHADE_MIN    ((shade_t) 1)
+#define FB_SHADE_MINOR  ((shade_t) 4)
+#define FB_SHADE_MID    ((shade_t) 7)
+#define FB_SHADE_MUCH   ((shade_t) 11)
+#define FB_SHADE_MAX    ((shade_t) 15)
 /* whoops..  backwards compatability */
-#define FB_COLOR_ERASE	((shade_t) 0)
-#define FB_COLOR_MIN	((shade_t) 1)
-#define FB_COLOR_MINOR	((shade_t) 4)
-#define FB_COLOR_MID	((shade_t) 7)
-#define FB_COLOR_MUCH	((shade_t) 11)
-#define FB_COLOR_MAX	((shade_t) 15)
+#define FB_COLOR_ERASE  ((shade_t) 0)
+#define FB_COLOR_MIN    ((shade_t) 1)
+#define FB_COLOR_MINOR  ((shade_t) 4)
+#define FB_COLOR_MID    ((shade_t) 7)
+#define FB_COLOR_MUCH   ((shade_t) 11)
+#define FB_COLOR_MAX    ((shade_t) 15)
 
 /* custom shading through terminal */
 #define SHADE_0 '.'
 #define SHADE_1 '-'
 #define SHADE_2 '*'
 #define SHADE_3 '#'
-#define SHADE_SIZE 4 // bits necessary to represent different shades
+#define SHADE_SIZE 4 /* bits necessary to represent different shades */
 
 /* would be in framebuffer.h but we had scoping issues... */
-#define VALVANO_FONT_HEIGHT		((pixel_t) 8)
-#define VALVANO_FONT_WIDTH		((pixel_t) 5)
-#define VALVANO_FONT_KERNING		((pixel_t) 2)
+#define VALVANO_FONT_HEIGHT   ((pixel_t) 8)
+#define VALVANO_FONT_WIDTH    ((pixel_t) 5)
+#define VALVANO_FONT_KERNING  ((pixel_t) 2)
 
 /* vertical space between lines      */
-#define VALVANO_FONT_LINE_SPACING	((pixel_t) 2)
+#define VALVANO_FONT_LINE_SPACING  ((pixel_t) 2)
 /* vertical space between paragraphs */
 #define VALVANO_FONT_PARAGRAPH_SPACING  (VALVANO_FONT_LINE_SPACING+3)
 
 /* OLED screen dimensions */
-#define OLED_HEIGHT	((pixel_t) 96)
-#define OLED_WIDTH	((pixel_t) 128)
+#define OLED_HEIGHT    ((pixel_t) 96)
+#define OLED_WIDTH     ((pixel_t) 128)
 /* synonyms used in different contexts */
-#define RIT_FB_HEIGHT	((pixel_t) OLED_HEIGHT)
-#define RIT_FB_WIDTH	((pixel_t) OLED_WIDTH/2)
+#define RIT_FB_HEIGHT  ((pixel_t) OLED_HEIGHT)
+#define RIT_FB_WIDTH   ((pixel_t) OLED_WIDTH/2)
 /* synonyms make for happy developers */
-#define FB_HEIGHT	((pixel_t) 96)
-#define FB_WIDTH	((pixel_t) 128)
+#define FB_HEIGHT      ((pixel_t) 96)
+#define FB_WIDTH       ((pixel_t) 128)
 
 /* framebuffer constants */
-#define FB_CLOCK_SET_TEXT_ROW		((pixel_t) 45)
-#define FB_CLOCK_SET_DIGITS_ROW		((pixel_t) 55)
-#define FB_CLOCK_SET_HOUR_COLUMN	((pixel_t) 47)
-#define FB_CLOCK_SET_COLON_COLUMN	((pixel_t) 61)
-#define FB_CLOCK_SET_MIN_COLUMN		((pixel_t) 66)
+#define FB_CLOCK_SET_TEXT_ROW      ((pixel_t) 45)
+#define FB_CLOCK_SET_DIGITS_ROW    ((pixel_t) 55)
+#define FB_CLOCK_SET_HOUR_COLUMN   ((pixel_t) 47)
+#define FB_CLOCK_SET_COLON_COLUMN  ((pixel_t) 61)
+#define FB_CLOCK_SET_MIN_COLUMN    ((pixel_t) 66)
 
-#define __GLOBALS__
-#endif	/* __GLOBALS__ */
+#endif

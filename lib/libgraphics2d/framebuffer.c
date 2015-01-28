@@ -85,7 +85,7 @@ void FBEraseShape(framebuffer fb, shape* sh) {
 private void _FBDrawShape(framebuffer fb, shape* sh, shade_t shade) {
 
   unsigned short p;
-  for(p=0; p < sh->numPoints; ++p) {
+  for(p=0; p < sh->num_points; ++p) {
     FBSetPixel(fb, sh->points[p]->x, sh->points[p]->y, shade);
     /* TODO: add gradient between points */
     if (p > 0) {
