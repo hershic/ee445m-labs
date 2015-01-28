@@ -52,7 +52,7 @@ PROJECT_LOGO           =
 # If a relative path is entered, it will be relative to the location
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       =
+OUTPUT_DIRECTORY       = ../doc/html/bin
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create
 # 4096 sub-directories (in 2 levels) under the output directory of each output
@@ -1540,7 +1540,7 @@ TAGFILES               =
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create
 # a tag file that is based on the input files it reads.
 
-GENERATE_TAGFILE       = bin.tag
+GENERATE_TAGFILE       = ../doc/html/bin/bin.tag
 
 # If the ALLEXTERNALS tag is set to YES all external classes will be listed
 # in the class index. If set to NO only the inherited external classes
@@ -1599,7 +1599,7 @@ HAVE_DOT               = NO
 # explicitly to a value larger than 0 to get control over the balance
 # between CPU load and processing speed.
 
-DOT_NUM_THREADS        = 0
+DOT_NUM_THREADS        = 32
 
 # By default doxygen will use the Helvetica font for all dot files that
 # doxygen generates. When you want a differently looking font you can specify

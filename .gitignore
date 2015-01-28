@@ -6,3 +6,4 @@ TAGS
 html
 *.tag
 
+/doc/latex/
