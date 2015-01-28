@@ -5,6 +5,8 @@
 /* Standard Libs */
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* TI Includes */
 #include "inc/hw_ints.h"
@@ -21,6 +23,8 @@
 
 #include "libuart/uart.h"
 
+#include <sys/stat.h>
+
 /*! Read the next character from the UART and write it back to the UART.
  *  \return void
  */
@@ -28,25 +32,22 @@ void UART0_Handler(void) {
 
     uint32_t ui32Status;
 
-    /* Get the interrrupt status. */
-    ui32Status = UARTIntStatus(UART0_BASE, true);
-
-    /* Clear the asserted interrupts. */
-    UARTIntClear(UART0_BASE, ui32Status);
-
     /* Loop while there are characters in the receive FIFO. */
     while(UARTCharsAvail(UART0_BASE)) {
-	/* Read the next character from the UART and write it back to the UART. */
-	uart_send_char(uart_get_char());
+        /* Read the next character from the UART and write it back to the UART. */
+        /* uart_send_char(uart_get_char()); */
+        char* received_string = uart_get_string(1);
+        uart_send_char(received_string[0]);
+        free(received_string);
 
-	/* Blink the LED to show a character transfer is occuring. */
-	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+        /* Blink the LED to show a character transfer is occuring. */
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
 
-	/* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
-	SysCtlDelay(SysCtlClockGet() / (1000 * 3));
+        /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
+        SysCtlDelay(SysCtlClockGet() / (1000 * 3));
 
-	/* Turn off the LED */
-	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+        /* Turn off the LED */
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
     }
 }
 
@@ -57,7 +58,7 @@ int main(void) {
 
     FPUEnable();
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-		   SYSCTL_XTAL_16MHZ);
+                   SYSCTL_XTAL_16MHZ);
 
     /* Enable the GPIO port that is used for the on-board LED. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
@@ -79,8 +80,8 @@ int main(void) {
     uart_init();
 
     /* Prompt for text to be entered. */
-    uart_send("Enter text:");
+    uart_send_string("Enter text:");
 
-    /* Postpone death */
+   /* Postpone death */
     while (1) {}
 }
