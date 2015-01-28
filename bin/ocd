@@ -155,6 +155,7 @@ while true; do
 
 	-h|--help)
 	    echo -e "${HELP_OCD}"
+	    exit
 	    ;;
 
 	--)
