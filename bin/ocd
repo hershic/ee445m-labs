@@ -68,11 +68,11 @@ EOF
 )
 
 # Determine the context in which OpenOCD will be invoked: su or echo
-## @var execute
+## @var execute_ocd
 ## @brief For internal use only.
 ## @details Controls the executing context of the openocd command.
 ## @ingroup OpenOCD
-declare execute=sudo
+declare execute_ocd=sudo
 
 ## @var interface_prefixes
 ## @brief For internal use only.
@@ -112,7 +112,7 @@ declare -r openocd_args_debug="gdb_port ${gdb_port}"
 ## @ingroup OpenOCD
 openocd_program() {
 
-    ${execute} openocd --file ${interface} -c ${openocd_args_program}
+    ${execute_ocd} openocd --file ${interface} -c ${openocd_args_program}
 }
 
 # TODO: sound less retarded
@@ -122,7 +122,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    ${execute} openocd --file ${interface} -c ${openocd_args_debug}
+    ${execute_ocd} openocd --file ${interface} -c ${openocd_args_debug}
 }
 
 # Obey command line arguments
@@ -139,7 +139,7 @@ while true; do
 
 	-n|--dry_run)
 	    # Transform the context in which openocd is invoked
-	    execute=echo
+	    execute_ocd=echo
 	    ;;
 
 	-h|--help)

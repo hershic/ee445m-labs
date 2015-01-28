@@ -61,11 +61,11 @@ Usage : [-n] [-p|-d]
 EOF
 )
 
-## @var execute
+## @var execute_generate_doxygen
 ## @brief For internal use only.
 ## @details The context with which to execute commands: normal or echo
 ## @ingroup Doxygen
-declare -l execute=""
+declare -l execute_generate_doxygen=""
 
 # Obey command line arguments
 while true; do
@@ -73,7 +73,7 @@ while true; do
 
 	-n|--dry_run)
 	    # Transform the context in which openocd is invoked
-	    execute=echo
+	    execute_generate_doxygen=echo
 	    ;;
 
 	-h|--help)
@@ -89,13 +89,13 @@ while true; do
 done
 
 # Doxygen the bin directory
-${execute} pushd $(dirname $(readlink -e "$0")) &>/dev/null
-${execute} mkdir -p ../doc/html/bin
-${execute} doxygen Doxyfile
+${execute_generate_doxygen} pushd $(dirname $(readlink -e "$0")) &>/dev/null
+${execute_generate_doxygen} mkdir -p ../doc/html/bin
+${execute_generate_doxygen} doxygen Doxyfile
 
 # Doxygen the main project
-${execute} pushd .. &>/dev/null
-${execute} doxygen Doxyfile
+${execute_generate_doxygen} pushd .. &>/dev/null
+${execute_generate_doxygen} doxygen Doxyfile
 
 # todo: update the gh-pages branch and push.
 #
