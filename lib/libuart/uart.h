@@ -1,4 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
+#ifndef __UART__
+#define __UART__
+
 #include <stdbool.h>
 
 /*!
@@ -9,7 +12,7 @@
  *  \version   0.1
  *  \date      2015
  *  \pre       None
- *  \bug       No scoreboard to detect UART collisions yet
+ *  \bug       No scoreboard - UART collisions will not be detected
  *  \warning   Do not bother a UART who is busy slaving for another user.
  *  \copyright GNU Public License.
  */
@@ -99,3 +102,5 @@ char* uart_get_string(const long string_length);
  *  \returns char array read from uart
  */
 char* uart_get_string_(const long channel, const long string_length);
+
+#endif
