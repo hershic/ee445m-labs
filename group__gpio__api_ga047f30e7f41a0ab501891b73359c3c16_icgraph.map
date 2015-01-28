@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__gpio__api.html#ga1f4dc05f3fbf4fbafdec98f69ae9108f" title="GPIOIntRegister" alt="" coords="204,5,321,35"/>
+<area shape="rect" id="node5" href="$group__gpio__api.html#ga5d8442c8534e08a8d2c91b684ddcf065" title="GPIOIntUnregister" alt="" coords="197,59,328,88"/>
+</map>

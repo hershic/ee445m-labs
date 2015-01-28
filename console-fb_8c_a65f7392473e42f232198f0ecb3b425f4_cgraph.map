@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$framebuffer_8c.html#a12707896adbc1561778cea3666808e46" title="FBDestroy" alt="" coords="272,5,357,35"/>
+<area shape="rect" id="node5" href="$framebuffer_8c.html#a56c73fb8ef594891283a1a9b5b487865" title="FBDrawEllipseFill" alt="" coords="783,56,908,85"/>
+<area shape="rect" id="node12" href="$framebuffer_8c.html#ab701f4b0e7f2df181de8fd3dda2cad6b" title="FBDrawLine" alt="" coords="799,109,892,139"/>
+<area shape="rect" id="node17" href="$framebuffer_8c.html#a14fe52cd631beee3be0c83d5215d66c8" title="FBDrawShapeArr" alt="" coords="253,160,376,189"/>
+<area shape="rect" id="node25" href="$framebuffer_8c.html#a3e67f85f114151f833dd4a8a8ec461d2" title="FBInit" alt="" coords="287,213,343,243"/>
+<area shape="rect" id="node27" href="$graphics2d_8c.html#a6a74f2b08ea64694a7cc663ba4a2677a" title="G2ConvertFBToRITFormat" alt="" coords="225,267,404,296"/>
+<area shape="rect" id="node29" href="$console__framebuffer_8c.html#a2a7520ad9704f94677e4e1a8d7ee1369" title="printFramebuffer" alt="" coords="256,320,373,349"/>
+<area shape="rect" id="node31" href="$shape_8c.html#a3a83d2082d27116cb1cc3f3a8952f584" title="SHCreatePoint" alt="" coords="457,397,567,427"/>
+<area shape="rect" id="node33" href="$shape_8c.html#a38f793e06e025bc31392cf5646a5eb49" title="SHCreateQuad" alt="" coords="260,424,369,453"/>
+<area shape="rect" id="node38" href="$shape_8c.html#ab0aa95a7e3e8965451eeb1a5d1029eed" title="SHCreateTriangle" alt="" coords="252,477,377,507"/>
+<area shape="rect" id="node7" href="$framebuffer_8c.html#ae003ae8066eb9d9e52ba596652f7afd1" title="_FBFillFourEllipsePoints" alt="" coords="957,5,1123,35"/>
+<area shape="rect" id="node9" href="$framebuffer_8c.html#affd9b8ca0dd10a77547346df9bd06496" title="FBSetPixel" alt="" coords="1171,84,1259,113"/>
+<area shape="rect" id="node14" href="$framebuffer_8c.html#ab8502320f03a46f5efc1b3d1ff9581b7" title="_FBDrawLine" alt="" coords="989,109,1091,139"/>
+<area shape="rect" id="node19" href="$framebuffer_8c.html#abedee860e851944b3828257cbc00ae0f" title="FBDrawShape" alt="" coords="459,160,565,189"/>
+<area shape="rect" id="node21" href="$framebuffer_8c.html#a618cd20982bf703068f63e53a1cfe632" title="_FBDrawShape" alt="" coords="619,160,733,189"/>
+<area shape="rect" id="node36" href="$shape_8c.html#a27efd0db1c3ed11c474b5fab2c56e395" title="SHCreateShape" alt="" coords="453,464,571,493"/>
+</map>

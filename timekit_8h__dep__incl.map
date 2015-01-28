@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$clock_8h.html" title="lib/libclock/clock.h" alt="" coords="109,83,237,112"/>
+<area shape="rect" id="node7" href="$console-fb_8c.html" title="validation/console&#45;clock/console&#45;fb.c" alt="" coords="157,160,392,189"/>
+<area shape="rect" id="node9" href="$timekit_8c.html" title="lib/libtime/timekit.c" alt="" coords="312,83,443,112"/>
+<area shape="rect" id="node12" href="$tk__tb_8c.html" title="validation/time&#45;testbench/tk_tb.c" alt="" coords="467,83,677,112"/>
+<area shape="rect" id="node5" href="$clock_8c.html" title="lib/libclock/clock.c" alt="" coords="5,160,133,189"/>
+</map>

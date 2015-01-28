@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__softssi__api.html#ga086dad06f8a77ca862da46c1632b0591" title="SoftSSIDataGet" alt="" coords="192,5,309,35"/>
+<area shape="rect" id="node5" href="$group__softssi__api.html#ga710316d8840a7e155ce843d1097e085f" title="SoftSSIDataGetNonBlocking" alt="" coords="156,59,345,88"/>
+<area shape="rect" id="node7" href="$group__softssi__api.html#ga67cf214e67af2ac5c7be5e8f4758805c" title="SoftSSITimerTick" alt="" coords="188,112,313,141"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__eeprom__api.html#ga4f7e5ad7c68f5b4b4a09bcdd2badda6c" title="_EEPROMWaitForDone" alt="" coords="153,5,316,35"/>
+<area shape="rect" id="node5" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="187,59,283,88"/>
+<area shape="rect" id="node7" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="157,112,312,141"/>
+</map>

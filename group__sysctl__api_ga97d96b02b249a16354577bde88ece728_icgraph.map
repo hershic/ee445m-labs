@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="181,5,280,35"/>
+<area shape="rect" id="node5" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="172,59,289,88"/>
+<area shape="rect" id="node9" href="$lib_2libuart_2uart_8h.html#ac720323e085cb349e70d972a0f6fe261" title="uart_init_" alt="" coords="193,112,268,141"/>
+<area shape="rect" id="node7" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="340,59,436,88"/>
+<area shape="rect" id="node11" href="$lib_2libuart_2uart_8h.html#a01f5996cfbcef121abc486e732b208c7" title="uart_init" alt="" coords="355,112,421,141"/>
+<area shape="rect" id="node13" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="485,112,536,141"/>
+</map>

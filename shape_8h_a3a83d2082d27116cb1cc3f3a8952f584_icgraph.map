@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$graph__framebuffer_8h.html#aee5d577204044b8e9af1e9cec1f86202" title="_FBDrawGraphBounds" alt="" coords="168,132,323,161"/>
+<area shape="rect" id="node7" href="$graph__framebuffer_8h.html#a68ea6bab8c3bda3ce5c7ee4e5d984951" title="FBDrawFullscreenGraph" alt="" coords="608,81,773,110"/>
+<area shape="rect" id="node13" href="$graph__framebuffer_8h.html#a2b78e955f04080df1984657aef576cbc" title="FBEraseFullscreenGraph" alt="" coords="607,28,775,57"/>
+<area shape="rect" id="node16" href="$graph__framebuffer_8h.html#a014fd5ea43e798f61692d4f68449bf05" title="_FBDrawGraphData" alt="" coords="176,185,315,214"/>
+<area shape="rect" id="node22" href="$graph__framebuffer_8h.html#a4acdd109c31ab920a368c31202e23b39" title="FBEraseFullscreenGraphData" alt="" coords="593,210,788,240"/>
+<area shape="rect" id="node24" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="181,289,309,318"/>
+<area shape="rect" id="node28" href="$console-fb_8c.html#a65f7392473e42f232198f0ecb3b425f4" title="demonstrateDrawShapes" alt="" coords="375,369,543,398"/>
+<area shape="rect" id="node30" href="$console-fb_8c.html#adde4ebe710a0f22c922af6ec2c4a3a4e" title="demonstrateDrawString" alt="" coords="167,446,324,476"/>
+<area shape="rect" id="node35" href="$shape_8h.html#a38f793e06e025bc31392cf5646a5eb49" title="SHCreateQuad" alt="" coords="191,342,300,372"/>
+<area shape="rect" id="node5" href="$graph__framebuffer_8h.html#a659ad2ef6e8e5e173ca0b81dd98a02a8" title="FBDrawGraph" alt="" coords="407,132,511,161"/>
+<area shape="rect" id="node11" href="$graph__framebuffer_8h.html#ae120d98ef41c59e3ab681a48c86574aa" title="FBEraseGraph" alt="" coords="405,78,512,108"/>
+<area shape="rect" id="node9" href="$console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="837,54,888,84"/>
+<area shape="rect" id="node20" href="$graph__framebuffer_8h.html#a1b07bf3e42b3bddeebe422adce9e3d7e" title="FBEraseGraphData" alt="" coords="391,185,527,214"/>
+<area shape="rect" id="node26" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="433,289,484,318"/>
+</map>

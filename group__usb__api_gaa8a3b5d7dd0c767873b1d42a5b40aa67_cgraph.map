@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__usb__api.html#gac630e5bea6974c6d98f789ccc05d2559" title="_USBIntNumberGet" alt="" coords="168,5,307,35"/>
+<area shape="rect" id="node5" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="199,59,276,88"/>
+<area shape="rect" id="node7" href="$group__interrupt__api.html#ga0a32aafea7f4904d2a64ee18b45f96c9" title="IntRegister" alt="" coords="195,112,280,141"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structshape.html" title="{shape\n|+ numPoints\l+ points\l|}" alt="" coords="50,193,146,295"/>
+<area shape="rect" id="node8" href="$structclockhand.html" title="{clockhand\n|+ radius\l+ center\l+ type\l+ shapeBuffer\l+ angle\l+ pointOnCircumference\l|}" alt="" coords="113,363,276,535"/>
+<area shape="rect" id="node4" href="$structpoint.html" title="{point\n|+ x\l+ y\l+ shade\l|}" alt="" coords="121,5,190,125"/>
+<area shape="rect" id="node6" href="$structclocktime.html" title="{clocktime\n|+ hours\l+ minutes\l+ seconds\l+ ms\l+ mode\l+ printBuffer\l|}" alt="" coords="300,363,393,535"/>
+</map>

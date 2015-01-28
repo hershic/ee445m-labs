@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$test-adc_8c.html" title="board&#45;progs/test&#45;adc/test&#45;adc.c" alt="" coords="5,83,208,112"/>
+<area shape="rect" id="node5" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart/test&#45;uart.c" alt="" coords="232,83,437,112"/>
+<area shape="rect" id="node7" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="461,83,571,112"/>
+</map>

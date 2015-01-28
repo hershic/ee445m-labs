@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__adc__api.html#ga207d2cf2a807efe846f15200462166b0" title="ADCIntClear" alt="" coords="144,5,240,35"/>
+<area shape="rect" id="node5" href="$group__adc__api.html#ga10cececc7f912630401a2f0f6f90446f" title="ADCIntStatus" alt="" coords="140,59,244,88"/>
+<area shape="rect" id="node7" href="$group__adc__api.html#ga440fa9e04a1f5ebb18233e317159652d" title="ADCProcessorTrigger" alt="" coords="117,112,267,141"/>
+<area shape="rect" id="node9" href="$group__adc__api.html#gab6fb9d66d42093d8cf3a9ab58419fa38" title="ADCSequenceDataGet" alt="" coords="113,165,271,195"/>
+<area shape="rect" id="node11" href="$group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6" title="FPUEnable" alt="" coords="148,219,236,248"/>
+<area shape="rect" id="node13" href="$group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="105,272,279,301"/>
+<area shape="rect" id="node19" href="$interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="133,325,251,355"/>
+<area shape="rect" id="node21" href="$group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="135,379,249,408"/>
+<area shape="rect" id="node25" href="$group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="112,432,272,461"/>
+<area shape="rect" id="node15" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="328,245,464,275"/>
+<area shape="rect" id="node17" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="335,299,457,328"/>
+<area shape="rect" id="node23" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="348,379,444,408"/>
+</map>

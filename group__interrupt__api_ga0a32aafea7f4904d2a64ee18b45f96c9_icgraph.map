@@ -1,0 +1,28 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__adc__api.html#gaf1483d72bc3c85d239b21eaa07d41e93" title="ADCIntRegister" alt="" coords="161,5,276,35"/>
+<area shape="rect" id="node5" href="$group__aes__api.html#ga99b80df7ba8623ba6203ff8d034dedbf" title="AESIntRegister" alt="" coords="163,59,275,88"/>
+<area shape="rect" id="node7" href="$group__can__api.html#ga922cb343caeba31e3fff78a0e4d19d9b" title="CANIntRegister" alt="" coords="161,112,276,141"/>
+<area shape="rect" id="node9" href="$group__comp__api.html#gafcdc39f74f8e19ad43a7538610658052" title="ComparatorIntRegister" alt="" coords="141,165,296,195"/>
+<area shape="rect" id="node11" href="$group__des__api.html#ga6e60ca0b3f52903602f68d0cb6f11a9d" title="DESIntRegister" alt="" coords="161,219,276,248"/>
+<area shape="rect" id="node13" href="$group__emac__api.html#gac81628900772eda30e2865a84e09cdf6" title="EMACIntRegister" alt="" coords="156,272,281,301"/>
+<area shape="rect" id="node15" href="$group__epi__api.html#ga4b2d512849c4f92fc15196d62ff30bd2" title="EPIIntRegister" alt="" coords="165,325,272,355"/>
+<area shape="rect" id="node17" href="$group__flash__api.html#gadc9618455a71ab80e02dd0139a30767b" title="FlashIntRegister" alt="" coords="160,379,277,408"/>
+<area shape="rect" id="node19" href="$group__gpio__api.html#ga1f4dc05f3fbf4fbafdec98f69ae9108f" title="GPIOIntRegister" alt="" coords="160,432,277,461"/>
+<area shape="rect" id="node21" href="$group__hibernate__api.html#gaa9e238a3aca3b9977c285eecb8c40288" title="HibernateIntRegister" alt="" coords="148,485,289,515"/>
+<area shape="rect" id="node23" href="$group__i2c__api.html#ga0d2b0e0e18ba83c8307f8e1eeef05c0a" title="I2CIntRegister" alt="" coords="165,539,272,568"/>
+<area shape="rect" id="node25" href="$group__lcd__api.html#gae412fc5b3e3629aa802702a03f4832ab" title="LCDIntRegister" alt="" coords="163,592,275,621"/>
+<area shape="rect" id="node27" href="$group__mpu__api.html#ga5f391e2bed9919c3e98ee744d76a5a03" title="MPUIntRegister" alt="" coords="161,645,276,675"/>
+<area shape="rect" id="node29" href="$group__pwm__api.html#gada200e22c312dd4015e26717821ffb39" title="PWMFaultIntRegister" alt="" coords="145,699,292,728"/>
+<area shape="rect" id="node31" href="$group__pwm__api.html#ga1bd27374e6dce2e1a2689166b79be9f6" title="PWMGenIntRegister" alt="" coords="148,752,289,781"/>
+<area shape="rect" id="node33" href="$group__qei__api.html#gae3856bbcfbd6abe8e3b0ca7ff1462605" title="QEIIntRegister" alt="" coords="164,805,273,835"/>
+<area shape="rect" id="node35" href="$group__shamd5__api.html#ga8ee0bdcd3aa789319379904cad13696e" title="SHAMD5IntRegister" alt="" coords="148,859,289,888"/>
+<area shape="rect" id="node37" href="$group__ssi__api.html#gacdf1425d778fc513d2951759bd3d472b" title="SSIIntRegister" alt="" coords="165,912,272,941"/>
+<area shape="rect" id="node39" href="$group__sysctl__api.html#gaad3caf3c0e7eddea266b7dc2fcb121c4" title="SysCtlIntRegister" alt="" coords="156,965,281,995"/>
+<area shape="rect" id="node41" href="$group__sysexc__api.html#ga8414d9d87050c988e37172dd37fcd512" title="SysExcIntRegister" alt="" coords="153,1019,284,1048"/>
+<area shape="rect" id="node43" href="$group__systick__api.html#ga4921bef366ee31ca37ef271abecedcb5" title="SysTickIntRegister" alt="" coords="152,1072,285,1101"/>
+<area shape="rect" id="node45" href="$group__timer__api.html#ga7802775703f5b161bd39e8ef3858ce8d" title="TimerIntRegister" alt="" coords="160,1125,277,1155"/>
+<area shape="rect" id="node47" href="$group__uart__api.html#ga29c627a9df14328949ba6db3e96af135" title="UARTIntRegister" alt="" coords="157,1179,280,1208"/>
+<area shape="rect" id="node49" href="$group__udma__api.html#ga38e714509554e38d29563bf7832f7098" title="uDMAIntRegister" alt="" coords="157,1232,280,1261"/>
+<area shape="rect" id="node51" href="$group__usb__api.html#gaa8a3b5d7dd0c767873b1d42a5b40aa67" title="USBIntRegister" alt="" coords="161,1285,276,1315"/>
+<area shape="rect" id="node53" href="$group__watchdog__api.html#gad743a6df21f37bbea0e338cc8875f374" title="WatchdogIntRegister" alt="" coords="147,1339,291,1368"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$framebuffer_8h.html#a5e27130386fb9a571a976cb79fa240a6" title="FBDrawString" alt="" coords="187,32,291,61"/>
+<area shape="rect" id="node11" href="$framebuffer_8h.html#a6a378ee3b7c35cec1be6639b1e08e1d0" title="FBDrawStringAnonPt" alt="" coords="165,85,312,115"/>
+<area shape="rect" id="node13" href="$framebuffer_8h.html#a05e4db86612c1fa337425afbd6fd7221" title="FBEraseString" alt="" coords="185,139,292,168"/>
+<area shape="rect" id="node5" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="376,5,504,35"/>
+<area shape="rect" id="node9" href="$console-fb_8c.html#adde4ebe710a0f22c922af6ec2c4a3a4e" title="demonstrateDrawString" alt="" coords="361,59,519,88"/>
+<area shape="rect" id="node7" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="568,5,619,35"/>
+<area shape="rect" id="node15" href="$framebuffer_8h.html#af810e9f60da2c83f8a013240198aba80" title="FBEraseStringAnonPt" alt="" coords="365,139,515,168"/>
+</map>

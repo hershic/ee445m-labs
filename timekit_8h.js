@@ -1,0 +1,27 @@
+var timekit_8h =
+[
+    [ "TK_MAX_PRINTBUFFER_LEN", "timekit_8h.html#aee30733b094abacf4162d0e58e7be345", null ],
+    [ "TK_NUM_HOURS", "timekit_8h.html#a7c45b093890ac786027a3c1c1d212162", null ],
+    [ "TK_NUM_MINUTES", "timekit_8h.html#a243de551ec920949a1add3e3a5fa5a6a", null ],
+    [ "TK_NUM_MS", "timekit_8h.html#a3c0d6f021caa04bf2dea9f299087bf2c", null ],
+    [ "TK_NUM_SECONDS", "timekit_8h.html#a651fe0824eb9d2696f5baa318881da4a", null ],
+    [ "TK_PRINT_MODE_HOURS_MINUTES", "timekit_8h.html#acdc01fc8e773a5b50d63cd6cb64f8851", null ],
+    [ "TK_PRINT_MODE_HOURS_MINUTES_SECONDS", "timekit_8h.html#ab2945aa809b5efbe222f36f37ea41165", null ],
+    [ "TK_PRINT_MODE_HOURS_MINUTES_SECONDS_MS", "timekit_8h.html#a2208f1fd553db184b8e9ff076d56e6fb", null ],
+    [ "TK_TIME_INVALID_HOURS", "timekit_8h.html#a9922aa8e827307e04184825e044607ac", null ],
+    [ "TK_TIME_INVALID_MINUTES", "timekit_8h.html#a079eae7047cfb9a11a9300e450374aed", null ],
+    [ "TK_TIME_INVALID_MS", "timekit_8h.html#ab043ff57106832b1f82eb43a9a7cb4fd", null ],
+    [ "TK_TIME_INVALID_SECONDS", "timekit_8h.html#a45b77d014fae59b44058079dfec25da0", null ],
+    [ "TK_TIME_VALID", "timekit_8h.html#aef29fefb092bea79ec6da424a82c0a8f", null ],
+    [ "clocktime", "timekit_8h.html#a499f04c676384634c58d3575ad21a3fa", null ],
+    [ "TKCleanupTime", "timekit_8h.html#a60dc21e27ab7ed5bca5a05c3370b4244", null ],
+    [ "TKCreateTimeHandle", "timekit_8h.html#afd4a71d6317f51982b8b77e5c9fb378c", null ],
+    [ "TKDestroy", "timekit_8h.html#a6c8a15594ba42dde5ab3c1334fba8a61", null ],
+    [ "TKDuplicateTimeHandle", "timekit_8h.html#a3a54603bed070ab21f18185d0f0b9c38", null ],
+    [ "TKIncrementHours", "timekit_8h.html#a0bf7ac612277a46f706c05e5cc6ffa01", null ],
+    [ "TKIncrementMinutes", "timekit_8h.html#a0648bf2808c0bdaca69be00c10d00021", null ],
+    [ "TKIncrementMS", "timekit_8h.html#a79b0633e06d4dd083602517a13d6dd41", null ],
+    [ "TKIncrementSeconds", "timekit_8h.html#afd0611daffa420c0aa7eb693d2cd61e6", null ],
+    [ "TKToString", "timekit_8h.html#a67cecf45b96e615dd32707cf944a5735", null ],
+    [ "TKValidateTime", "timekit_8h.html#a406e6394ad6b4b3d7d1e511bcb69d8c1", null ]
+];

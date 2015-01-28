@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$framebuffer_8c.html#a618cd20982bf703068f63e53a1cfe632" title="_FBDrawShape" alt="" coords="160,32,275,61"/>
+<area shape="rect" id="node5" href="$framebuffer_8c.html#ab701f4b0e7f2df181de8fd3dda2cad6b" title="FBDrawLine" alt="" coords="324,5,417,35"/>
+<area shape="rect" id="node9" href="$framebuffer_8c.html#affd9b8ca0dd10a77547346df9bd06496" title="FBSetPixel" alt="" coords="616,32,704,61"/>
+<area shape="rect" id="node7" href="$framebuffer_8c.html#ab8502320f03a46f5efc1b3d1ff9581b7" title="_FBDrawLine" alt="" coords="467,5,568,35"/>
+</map>

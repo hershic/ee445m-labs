@@ -1,0 +1,28 @@
+var structt_soft_u_a_r_t =
+[
+    [ "pfnIntCallback", "structt_soft_u_a_r_t.html#a527d90fa301618dd320435a6a329413c", null ],
+    [ "pui16RxBuffer", "structt_soft_u_a_r_t.html#ac1471703be863e05fd876a7f5d4259f2", null ],
+    [ "pui8TxBuffer", "structt_soft_u_a_r_t.html#a387388250b6a0a3583253a23389878a4", null ],
+    [ "ui16Config", "structt_soft_u_a_r_t.html#a1023dcc75af50fad3fc2f3e661e5b42d", null ],
+    [ "ui16IntMask", "structt_soft_u_a_r_t.html#a96f29b9adc864efe98cce4db3395728b", null ],
+    [ "ui16IntStatus", "structt_soft_u_a_r_t.html#ab2d64fa6d493c2735f2ac648deed997c", null ],
+    [ "ui16RxBufferLen", "structt_soft_u_a_r_t.html#ac64f3b202cde9aaa51fb611fbeaeb718", null ],
+    [ "ui16RxBufferLevel", "structt_soft_u_a_r_t.html#a1666a32f595e61cf0c82e1769857333b", null ],
+    [ "ui16RxBufferRead", "structt_soft_u_a_r_t.html#ad13e8d767c1e53a488ccc69ee91c0c17", null ],
+    [ "ui16RxBufferWrite", "structt_soft_u_a_r_t.html#a4d8c6b5c36cba1f05bcc883c16f55107", null ],
+    [ "ui16TxBufferLen", "structt_soft_u_a_r_t.html#a859d4e0cfa9fc1e4b2937f930cdbc853", null ],
+    [ "ui16TxBufferLevel", "structt_soft_u_a_r_t.html#a15cb537e9e1fcd0dc6e5bfb20c268735", null ],
+    [ "ui16TxBufferRead", "structt_soft_u_a_r_t.html#aa11075bf2fc59c1854170d373cdb1e3c", null ],
+    [ "ui16TxBufferWrite", "structt_soft_u_a_r_t.html#a1c00929cd1632299432a45b639bc709f", null ],
+    [ "ui32RxGPIOPort", "structt_soft_u_a_r_t.html#a923a127cbf93264521f66831fbc67364", null ],
+    [ "ui32TxGPIO", "structt_soft_u_a_r_t.html#a7cee18c36cede5a024640e6a3b87193e", null ],
+    [ "ui8Flags", "structt_soft_u_a_r_t.html#abc1401be530caee9099819d122a13a55", null ],
+    [ "ui8RxData", "structt_soft_u_a_r_t.html#a2b8b7580a800455c9a48e9c48671d3b3", null ],
+    [ "ui8RxFlags", "structt_soft_u_a_r_t.html#ac6eea2a05117ec277d76874bee51ba26", null ],
+    [ "ui8RxPin", "structt_soft_u_a_r_t.html#a2fe1439f62f02e7d7f1bbf4eead69ef9", null ],
+    [ "ui8RxState", "structt_soft_u_a_r_t.html#abfa8b22652f92e7dfee031b94afad287", null ],
+    [ "ui8RxStatus", "structt_soft_u_a_r_t.html#a8a3fa5f4b42287bfd1e64f84c962f6ea", null ],
+    [ "ui8TxData", "structt_soft_u_a_r_t.html#aaf61b1b13367a5dc22df497581aa0306", null ],
+    [ "ui8TxNext", "structt_soft_u_a_r_t.html#adb028e12bcc5634f4f2b30f442615ef3", null ],
+    [ "ui8TxState", "structt_soft_u_a_r_t.html#a212f164cdfacf50978412c2f8fa789e5", null ]
+];

@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$clock_8h.html" title="lib/libclock/clock.h" alt="" coords="56,83,184,112"/>
+<area shape="rect" id="node7" href="$console-fb_8c.html" title="validation/console&#45;clock/console&#45;fb.c" alt="" coords="123,237,357,267"/>
+<area shape="rect" id="node9" href="$framebuffer_8h.html" title="lib/libgraphics2d/framebuffer.h" alt="" coords="527,83,721,112"/>
+<area shape="rect" id="node22" href="$graph__framebuffer_8c.html" title="lib/liboscope&#45;grapher/graph_framebuffer.c" alt="" coords="952,237,1213,267"/>
+<area shape="rect" id="node27" href="$shape_8c.html" title="lib/libgraphics2d/shape.c" alt="" coords="1131,83,1296,112"/>
+<area shape="rect" id="node5" href="$clock_8c.html" title="lib/libclock/clock.c" alt="" coords="5,160,133,189"/>
+<area shape="rect" id="node11" href="$framebuffer_8c.html" title="lib/libgraphics2d/framebuffer.c" alt="" coords="309,160,504,189"/>
+<area shape="rect" id="node13" href="$graphics2d_8h.html" title="lib/libgraphics2d/graphics2d.h" alt="" coords="528,160,720,189"/>
+<area shape="rect" id="node18" href="$console-grapher_8c.html" title="validation/console&#45;grapher/console&#45;grapher.c" alt="" coords="628,237,908,267"/>
+<area shape="rect" id="node20" href="$graph__framebuffer_8h.html" title="lib/liboscope&#45;grapher/graph_framebuffer.h" alt="" coords="795,160,1056,189"/>
+<area shape="rect" id="node15" href="$graphics2d_8c.html" title="lib/libgraphics2d/graphics2d.c" alt="" coords="412,237,604,267"/>
+</map>

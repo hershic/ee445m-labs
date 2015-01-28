@@ -1,0 +1,26 @@
+var clock_8h =
+[
+    [ "CH_ANGLE_OFFSET", "clock_8h.html#a7e098763c79c53fbd6f4ff2ee76c908f", null ],
+    [ "CH_HOURS", "clock_8h.html#a41a3287a59b3d6d723ebf78c706cd3c2", null ],
+    [ "CH_MAX_DEGREES", "clock_8h.html#a8d7934cdc15281886c0350df5e1576f7", null ],
+    [ "CH_MAX_HOURS", "clock_8h.html#a2fb7406b6b7743bebcdda3111b62f7f8", null ],
+    [ "CH_MAX_MINUTES", "clock_8h.html#a7f9604ad17666d82bb025316d4765a0c", null ],
+    [ "CH_MAX_MS", "clock_8h.html#a688083449674a4c6019355cca6d4c880", null ],
+    [ "CH_MAX_SECONDS", "clock_8h.html#a94b87aad0f71385360e017c69c975a60", null ],
+    [ "CH_MINUTES", "clock_8h.html#a30f05c04faa8a9ea0aecd655faf4cf11", null ],
+    [ "CH_MS", "clock_8h.html#a98e219b8e2f0fd8a45d540477a9c4fee", null ],
+    [ "CH_SECONDS", "clock_8h.html#a49fd842a7c4c9047e6cbae804b3ffcc3", null ],
+    [ "PI_PI", "clock_8h.html#a9cc8ecf507f4a132c424590509f09f74", null ],
+    [ "clockface", "clock_8h.html#aa4580e38656994c5f9f02c578107bdf2", null ],
+    [ "clockhand", "clock_8h.html#a03ee841b92346809078f8253148f05d3", null ],
+    [ "CFCreateClockFace", "clock_8h.html#a6c74dde4ccefbe402c92c7e475893e4d", null ],
+    [ "CFDestroyClockFace", "clock_8h.html#a0f43dcd3387b8c831526090facb7d490", null ],
+    [ "CFDestroyShapes", "clock_8h.html#a8b0bb147ee84b9aa4fa4fdb24f43854b", null ],
+    [ "CFToShapes", "clock_8h.html#aeaf9d0be8dc802b7edacf73345fea084", null ],
+    [ "CFUpdateTime", "clock_8h.html#aceb030c669e3d88474cb52cc30ee6f50", null ],
+    [ "CHCalculateAngle", "clock_8h.html#a080b982b1f9a0065cd4dce12cebf72bb", null ],
+    [ "CHCreateClockHand", "clock_8h.html#acb40bab7a366b9f925fd49e12f6ae54b", null ],
+    [ "CHDestroyClockHand", "clock_8h.html#abfb467ebd246f1eb3db4ed4067f37cb3", null ],
+    [ "CHDestroyClockHandShape", "clock_8h.html#a8be70ed9fdc71a5727e9ed039d55d978", null ],
+    [ "CHToShape", "clock_8h.html#a19b0971a9f8a0a52499f4a7da3579699", null ]
+];

@@ -1,0 +1,35 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__hibernate__api.html#ga4673e23f0ae5ce04b38a721162d9024b" title="_HibernateCalendarSet" alt="" coords="268,32,425,61"/>
+<area shape="rect" id="node9" href="$group__hibernate__api.html#ga74ba4cc82387398559b5e6797ef2424f" title="HibernateBatCheckStart" alt="" coords="265,85,428,115"/>
+<area shape="rect" id="node11" href="$group__hibernate__api.html#gafe1d67912326104ef84f083cc46d401b" title="HibernateClockConfig" alt="" coords="272,139,421,168"/>
+<area shape="rect" id="node13" href="$group__hibernate__api.html#ga97a504a0525e66367e32b45cecd03f0d" title="HibernateCounterMode" alt="" coords="269,192,424,221"/>
+<area shape="rect" id="node15" href="$group__hibernate__api.html#gac79ebf2b2bddbc6eaa966a75f431acb8" title="HibernateDataSet" alt="" coords="284,245,409,275"/>
+<area shape="rect" id="node17" href="$group__hibernate__api.html#gaa99ae3587e64aa2d59d208173f581427" title="HibernateDisable" alt="" coords="285,299,408,328"/>
+<area shape="rect" id="node19" href="$group__hibernate__api.html#ga26e357385c28ec8c0aa8710067765fa3" title="HibernateEnableExpClk" alt="" coords="267,352,427,381"/>
+<area shape="rect" id="node21" href="$group__hibernate__api.html#gae63c6812171ee2d0e04029b545488b0b" title="HibernateGPIORetentionDisable" alt="" coords="241,405,452,435"/>
+<area shape="rect" id="node23" href="$group__hibernate__api.html#ga043940e5456e32e017470532fddcf010" title="HibernateGPIORetentionEnable" alt="" coords="244,459,449,488"/>
+<area shape="rect" id="node25" href="$group__hibernate__api.html#gadb3d64fc33447f66bf6f34f8b7c3021d" title="HibernateIntClear" alt="" coords="285,512,408,541"/>
+<area shape="rect" id="node27" href="$group__hibernate__api.html#ga5c0f75e5c9bf12f9f4c34e93c09148aa" title="HibernateIntDisable" alt="" coords="279,565,415,595"/>
+<area shape="rect" id="node29" href="$group__hibernate__api.html#ga9b307048b9b8e319e168ca3adbfc0c27" title="HibernateIntEnable" alt="" coords="280,619,413,648"/>
+<area shape="rect" id="node31" href="$group__hibernate__api.html#gabd9581d7a8446c62333daa5a83e0920b" title="HibernateLowBatSet" alt="" coords="276,672,417,701"/>
+<area shape="rect" id="node33" href="$group__hibernate__api.html#ga9b3277ea6364acee80abdd108c4fd650" title="HibernateRequest" alt="" coords="284,725,409,755"/>
+<area shape="rect" id="node35" href="$group__hibernate__api.html#ga2149eb6f01c46b8e0ddc5f2a730ea2ed" title="HibernateRTCDisable" alt="" coords="272,779,421,808"/>
+<area shape="rect" id="node37" href="$group__hibernate__api.html#gae17a0d8df9a8e3ab26b0395114681a3d" title="HibernateRTCEnable" alt="" coords="273,832,420,861"/>
+<area shape="rect" id="node39" href="$group__hibernate__api.html#gaf26a5cd0b0bbad4dcc07947b5fca105e" title="HibernateRTCMatchSet" alt="" coords="265,885,428,915"/>
+<area shape="rect" id="node41" href="$group__hibernate__api.html#ga8c7db49078fabc2b38c8aca1736fbd2e" title="HibernateRTCSet" alt="" coords="284,939,409,968"/>
+<area shape="rect" id="node43" href="$group__hibernate__api.html#ga203ec1702aa11c4314db6b580f3a6aaa" title="HibernateRTCSSMatchSet" alt="" coords="257,992,436,1021"/>
+<area shape="rect" id="node45" href="$group__hibernate__api.html#gaa9cdd6a50d41a41e2e30d3a012954d49" title="HibernateRTCTrimSet" alt="" coords="271,1045,423,1075"/>
+<area shape="rect" id="node47" href="$group__hibernate__api.html#gaebd82a4c7fb44e5e3984e429ee8e8a7e" title="HibernateTamperDisable" alt="" coords="264,1099,429,1128"/>
+<area shape="rect" id="node49" href="$group__hibernate__api.html#ga180c25c864284a557d187cffb536fa50" title="HibernateTamperEnable" alt="" coords="265,1152,428,1181"/>
+<area shape="rect" id="node51" href="$group__hibernate__api.html#ga602f3af326a3e8a806bec9b7cdc655ee" title="HibernateTamperEventsClear" alt="" coords="249,1205,444,1235"/>
+<area shape="rect" id="node53" href="$group__hibernate__api.html#ga91c7419a3712092c58dd86790d2c4cfe" title="HibernateTamperEventsClearNoLock" alt="" coords="228,1259,465,1288"/>
+<area shape="rect" id="node55" href="$group__hibernate__api.html#ga680c67b585465813c27c4b04f7d207a7" title="HibernateTamperEventsConfig" alt="" coords="247,1312,447,1341"/>
+<area shape="rect" id="node57" href="$group__hibernate__api.html#gadeb55665990a2b589db64f0d6bf49cf5" title="HibernateTamperExtOscRecover" alt="" coords="240,1365,453,1395"/>
+<area shape="rect" id="node59" href="$group__hibernate__api.html#gadc7533e1588699dada1e126701aa2233" title="HibernateTamperIODisable" alt="" coords="257,1419,436,1448"/>
+<area shape="rect" id="node61" href="$group__hibernate__api.html#ga3db7f3153ab80d78215e6013ea288e9d" title="HibernateTamperIOEnable" alt="" coords="259,1472,435,1501"/>
+<area shape="rect" id="node63" href="$group__hibernate__api.html#ga9ac32e16b6d7a606f08d0a1b991d6ec7" title="HibernateTamperLock" alt="" coords="272,1525,421,1555"/>
+<area shape="rect" id="node65" href="$group__hibernate__api.html#ga211ca75fc69cf688ead0e1b71455d601" title="HibernateTamperUnLock" alt="" coords="264,1579,429,1608"/>
+<area shape="rect" id="node67" href="$group__hibernate__api.html#gab2a9a40792b72e0f7d1f73c62e03de42" title="HibernateWakeSet" alt="" coords="281,1632,412,1661"/>
+<area shape="rect" id="node5" href="$group__hibernate__api.html#gad1d60e87a1185eb1b0f9a334ff0adefb" title="HibernateCalendarMatchSet" alt="" coords="515,5,701,35"/>
+<area shape="rect" id="node7" href="$group__hibernate__api.html#ga52aa63836e21d8646f290274d8c9e0d0" title="HibernateCalendarSet" alt="" coords="533,59,683,88"/>
+</map>
