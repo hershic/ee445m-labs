@@ -74,13 +74,8 @@ void uart_init_(const long channel) {
     GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
     UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 115200,
-<<<<<<< variant A
                         (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                          UART_CONFIG_PAR_NONE));
->>>>>>> variant B
-			(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-			 UART_CONFIG_PAR_NONE));
-======= end
 
     /* Enable the UART interrupt. */
     IntEnable(INT_UART0);
@@ -150,13 +145,10 @@ char* uart_get_string(const long string_length) {
 
 /* TODO: replace uart0_base with channel */
 char* uart_get_string_(const long channel,
-<<<<<<< variant A
                        const long string_length) {
->>>>>>> variant B
-		       const long string_length) {
-======= end
 
     char* buffer;
+    uint32_t ui32Status;
 
     long remaining_chars = string_length;
 
