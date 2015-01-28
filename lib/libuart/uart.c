@@ -86,23 +86,23 @@ void uart_init_(const long channel) {
 #endif
 }
 
-    void uart_send_char(const char text) {
+void uart_send_char(const char text) {
 
     uart_send_char_(uart_active_channel, text);
 }
 
 /* TODO: update uart0_base with channel */
-    void uart_send_char_(const long channel, const char text) {
+void uart_send_char_(const long channel, const char text) {
 
     UARTCharPutNonBlocking(UART0_BASE, text);
 }
 
-    void uart_send_string(const char* text) {
+void uart_send_string(const char* text) {
 
     uart_send_string_(uart_active_channel, text);
 }
 
-    void uart_send_string_(const long channel, const char* text) {
+void uart_send_string_(const long channel, const char* text) {
 
     uint32_t cnt = ustrlen(text);
     char* ptr = (char*)text;
@@ -163,8 +163,8 @@ char* uart_get_string_(const long channel,
     UARTIntClear(UART0_BASE, ui32Status);
 
     while(UARTCharsAvail(UART0_BASE) && remaining_chars > 0) {
-	buffer[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
-	remaining_chars--;
+        buffer[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
+        remaining_chars--;
     }
 
 #ifndef NDEBUG
