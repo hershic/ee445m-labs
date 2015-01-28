@@ -75,6 +75,7 @@ while true; do
 	    ;;
 
 	--)
+	    shift
 	    break ;;
     esac
     shift
