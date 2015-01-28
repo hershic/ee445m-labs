@@ -174,7 +174,7 @@ extern int main(void);
 // Reserve space for the system stack.
 //
 //*****************************************************************************
-static uint32_t pui32Stack[256];
+static uint32_t pui32Stack[64];
 
 //*****************************************************************************
 //
@@ -182,6 +182,7 @@ static uint32_t pui32Stack[256];
 // ensure that it ends up at physical address 0x0000.0000.
 //
 //*****************************************************************************
+
 __attribute__ ((section(".isr_vector")))
 void (* const g_pfnVectors[])(void) =
 {
