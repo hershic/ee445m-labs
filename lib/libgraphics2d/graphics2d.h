@@ -4,12 +4,12 @@
 /*!
  * \brief Framebuffer/OLED interaction.
  * \details Graphics engine for interfacing with display vendor's libs.
- *  \author    Hershal Bhave
- *  \author    Eric Crosson
- *  \version   0.1
- *  \date      2014
- *  \copyright GNU Public License.
- *  \addtogroup Graphics Graphial manipulation framework.
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Graphics Graphial manipulation framework
  */
 
 #include "g2d_defines.h"

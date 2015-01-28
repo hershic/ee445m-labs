@@ -1,25 +1,26 @@
 #ifndef __FRAMEBUFFER__
 #define __FRAMEBUFFER__
 
-/* framebuffer.h
- * Hershal Bhave and Eric Crosson
- * 2014-02-08
- * Function: represent a framebuffer of an image in memory.
- * Lab 3
- * Last Revision: LOOK IN GIT FGT
- * LM3S1968
- */
-
-/* ** NOTICE **
-   Private functions are helper functions, and not to be accessed
+/*!
+ * \brief Frame bufer representation in memory
+ * \details Represent and transform one frame's buffer in memory.
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Graphics Graphial manipulation framework
+ * \warning Private functions are helper functions, and not to be accessed
    (though possible) outside of the scope of this class. The purpose of
    these functions is to reduce duplicated code.
+ * \bug This library is not modal.
  */
+
+/* TODO: mark the privates */
 
 #include <stdarg.h>
 #include "g2d_defines.h"
 #include "shape.h"
-/* #include "graphlib.h" */
 
 /* TODO: Optimize this so we don't waste memory */
 typedef char** framebuffer;
@@ -157,59 +158,294 @@ static const unsigned char valvanoFont[129][5] = {
     { 0x00, 0x00, 0x00, 0x00, 0x00 }  // DEL
 };
 
+/* TODO: convert into inline functions and document */
 #define max_pixel_width_of_long(x, y)  (max_uc(_FBPixelWidthOfLong(x), _FBPixelWidthOfLong(y)))
 #define max_pixel_height_of_long(x, y) (max_uc(_FBPixelHeightOfLong(x),_FBPixelHeightOfLong(y)))
 
-/* Helpful functions used in this object */
 unsigned char max_uc(unsigned char one, unsigned char two);
+
+/*
+  Convert an intever to a string.
+  Inputs;  i        int to convert into a string
+  buffer   buffer for string contents
+  length   length of allocated buffer
+  Outputs: char*    buffer containing i as a string
+*/
 char* itoa(int i, char* buffer, uchar length);
 
-/* Framebuffer memory management */
+/*
+  Create a framebuffer object and return the handle.
+  Inputs:  none
+  Outputs: framebuffer
+*/
 framebuffer FBInit(void);
+
+/*
+  Destroy a framebuffer object.
+  Inputs:  fb    framebuffer to send to valhalla
+  Outputs: none
+*/
 void FBDestroy(framebuffer fb);
 
-/* Functions to aid the drawing of shapes in a framebuffer */
+/*
+  Draw string on fb starting at top_left_corner.
+  Inputs:  fb               framebuffer to use as canvas
+  top_left_corner  coordinate of top left corner on string on fb
+  string           string to draw
+  Outputs: void
+*/
 void FBDrawString(framebuffer fb, point* top_left_corner, char* string);
+
+/* TODO: document */
 void FBDrawStringAnonPt(framebuffer fb, point* top_left_corner, char* string);
+
+/*
+  Erase string on fb starting at top_left_corner.
+  Inputs:  fb               framebuffer to use as canvas
+  top_left_corner  coordinate of top left corner on string on fb
+  string           string to erase
+  Outputs: void
+*/
 void FBEraseString(framebuffer fb, point* top_left_corner, char* string);
+
 void FBEraseStringAnonPt(framebuffer fb, point* top_left_corner, char* string);
+
 void FBEraseChar(framebuffer, point* top_left_corner);
-void _FBDrawString(framebuffer fb, point* top_left_corner, char* string);
 
+/*
+  Helper function that peforms the base work of all framebuffer string drawing requests.
+  Inputs:  fb              framebuffer to use as canvas
+  top_left_corner coordinate of top left corner on string on fb
+  string          string to draw or undraw
+  Outputs: void
+*/
+private void _FBDrawString(framebuffer fb, point* top_left_corner, char* string);
+
+/*
+  Using fb as a canvas, draw sh.
+  Input:  fb       framebuffer to use as canvas
+  sh       shape to draw
+  Output: none
+
+  ** NOTICE **
+  Note that this function can also draw points and lines, i.e. a shape
+  with only one or two points respectively.
+*/
 void FBDrawShape(framebuffer fb, shape* sh);
-void FBEraseShape(framebuffer fb, shape* sh);
-void FBDrawMultipleShapes(framebuffer fb, ushort numShapes, ...);
-void FBDrawShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
-void FBEraseShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
-void _FBDrawShape(framebuffer fb, shape* sh, shade_t shade);
 
-/* Functions to manipulate individual pixels in a framebuffer */
+/*
+  Using fb as a canvas, draw sh.
+  Input:  fb       framebuffer to use as canvas
+  sh       shape to draw
+  Output: none
+
+  ** NOTICE **
+  Note that this function can also draw points and lines, i.e. a shape
+  with only one or two points respectively.
+*/
+void FBEraseShape(framebuffer fb, shape* sh);
+
+/*
+  Method to draw multiple shapes on fb. Provide the number of shapes
+  to draw for va_args.
+  Input:  fb         framebuffer to use as canvas
+  numShapes  number of shapes to draw before returning
+  Output: void
+*/
+void FBDrawMultipleShapes(framebuffer fb, ushort numShapes, ...);
+
+/*
+  Method to draw an array of shapes on fb.
+  Input:  fb         framebuffer to use as canvas
+  numShapes  number of shapes to draw before returning
+  shapeArr   array containing shapes to draw
+  Output: void
+*/
+void FBDrawShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
+
+/*
+  Method to erase an array of shapes from fb.
+  Input:  fb         framebuffer to use as canvas
+  numShapes  number of shapes to erase before returning
+  shapeArr   array containing shapes to erase
+  Output: void
+*/
+void FBEraseShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
+
+/*
+  Internal helper function that performs the mechanics of drawing a
+  shape. The purpose of this function is to reduce duplicated code in
+  memory.
+  Input:  fb        framebuffer to use as canvas
+  sh        shape to draw
+  shade     color of shape
+  Output: void
+*/
+private void _FBDrawShape(framebuffer fb, shape* sh, shade_t shade);
+
+/*
+  In fb, set pixel (x,y) to shade
+  Input:  fb       framebuffer to use as canvas
+  x        x coordinate
+  y        y coordinate
+  shade    shade to set pixel
+  Output: void
+  Error behavior: when pixel (x,y) is not writeable (off screen)
+  this function does nothing.
+*/
 void FBSetPixel(framebuffer fb, uchar x, uchar y, shade_t shade);
+
+/*
+  In fb, clear pixel (x,y). This is an alias for FBSetPixel with a
+  shade of zero.
+  Input:  fb       framebuffer to use as canvas
+  x        x coordinate
+  y        y coordinate
+  Output: void
+  Error behavior: when pixel (x,y) is not writeable (off screen)
+  this function does nothing.
+*/
 void FBClearPixel(framebuffer fb, uchar x, uchar y);
 
-/* Functions to odraw a line between two points */
+/*
+  Draw a line segment on fb from a to b of color shade.
+  Input:  fb        framebuffer to use as canvas
+  a         beginning of line segment
+  b         end of line segment
+  shade     color of line segment
+  Output: void
+*/
 void FBDrawLine(framebuffer fb, point* a, point* b, shade_t shade);
-void FBDrawAnonLine(framebuffer fb, point* a, point* b, shade_t shade);
+
+/*
+  Pass this function two newly created points and it will draw a line
+  connecting the points before destroying the points for you.
+  Inputs:  fb      framebuffer to use as canvas
+  a       one endpoint of the line to draw
+  b       the other endpoint of the line to draw
+  shade   desired shade of the line on fb
+  Outputs: void
+  \warning This function destroys \a and \b.
+*/
+private void FBDrawAnonLine(framebuffer fb, point* a, point* b, shade_t shade);
+
+/*
+  Remove a line segment on fb from a to b.
+  Input:  fb        framebuffer to use as canvas
+  a         beginning of line segment
+  b         end of line segment
+  Output: void
+*/
 void FBEraseLine(framebuffer fb, point* pta, point* ptb);
+
+/*
+  Pass this function two newly created points and it will erase a line
+  connecting the points before destroying the points for you.
+  Inputs:  fb      framebuffer to use as canvas
+  a       one endpoint of the line to draw
+  b       the other endpoint of the line to draw
+  shade   desired shade of the line on fb
+  Outputs: void
+  \warning This function destroys \a and \b.
+*/
 void FBEraseAnonLine(framebuffer fb, point* a, point* b);
-/* internal helper function to reduce duplicated code */
-void _FBDrawLine(framebuffer fb, point* a, point* b, shade_t shade);
 
-/* Functions for drawing round blobs */
+private void _FBDrawLine(framebuffer fb, point* a, point* b, shade_t shade);
+
+/*
+  Draw a circle in fb at center with radius of color shade.
+  Input:  fb         framebuffer to use as canvas
+  center     center of circle to draw
+  radius     radius of circle to draw
+  shade      shade to draw circle with on fb
+  Output: void
+*/
 void FBDrawCircle(framebuffer fb, circle* c);
-void FBDrawEllipse(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t shade);
+
+/*
+  Draw an ellipse in fb at center with specified x- and y-radii, of
+  color shade.
+  Input:  fb         framebuffer to use as canvas
+  center     center of ellipse to draw
+  x_radius   x radius of specified ellipse
+  y_radius   y radius of specified ellipse
+  shade      shade to draw ellipse with on fb
+  Output: void
+*/
+void FBDrawEllipse(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t
+		   shade);
+
+/*
+  Fill on fb from the four symmetric points on an ellipse described by
+  a center and x- and y-offsets, to the axis of said ellipse.
+  Input:  fb            framebuffer to use as canvas
+  center        geometric center of the ellipse
+  x             x offset of point to plot
+  y             y offset of point to plot
+  Output: void
+  Note: points will be shaded with the value in center->shade.
+*/
+private void _FBFillFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y);
+/*
+  Draw on fb a shaded ellipse described by center, x- and y-radii.
+  Input:  fb            framebuffer to use as canvas
+  center        gemoetric center of the ellipse
+  x_radius      x radius of ellipse to plot
+  y_radius      y radius of ellipse to plot
+  shade         color to fill ellipse with
+  OPTIONAL TODO: allow for different specified border color
+*/
 void FBDrawEllipseFill(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t shade);
-void _FBPlotFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y);
-void _FBFillFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y);
 
-/* Information about pixels and fonts */
-pixel_t _FBPixelWidthOfLong(long l);
-pixel_t _FBPixelHeightOfLong(long l);
-pixel_t _FBPixelWidthOfString(char* str);
+/*
+  Plot on fb the four symmetric points on an ellipse described by a
+  center and x- and y-offsets.
+  Input:  fb            framebuffer to use as canvas
+  center        geometric center of the ellipse
+  x             x offset of point to plot
+  y             y offset of point to plot
+  Output: void
+  Note: points will be shaded with the value in center->shade.
+*/
+private void _FBPlotFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y);
 
+private pixel_t _FBPixelWidthOfLong(long l);
+
+private pixel_t _FBPixelHeightOfLong(long l);
+
+private pixel_t _FBPixelWidthOfString(char* str);
+
+/* TODO: document below */
 /* Methods to print points to the console. Will not work on an
  * embedded system (functions will return immediately). */
+
+/*
+  Print a point (ordered pair) to the console. Only applicable on a
+  computer (not for use on microcontrollers).
+
+  ** NOTICE **
+  This function appends a newline to the console after printing the
+  ordered pair. To just print the ordered pair (sans newline) call
+  function FBPrintPointToConsoleWithoutNewline instead.
+
+  Inputs:  p       point to printf to the console
+  Outputs: void
+*/
 void FBPrintPointToConsole(point* p);
+
+/*
+  Print a point (ordered pair) to the console. Only applicable on a
+  computer (not for use on microcontrollers).
+
+  ** NOTICE **
+
+  This function does not append a newline to the console after
+  printing the ordered pair. To just print the ordered pair WITH
+  a newline call function FBPrintPointToConsole instead.
+
+  Inputs:  p       point to printf to the console
+  Outputs: void
+*/
 void FBPrintPointToConsoleWithoutNewline(point* p);
 
 #endif	/* __FRAMEBUFFER__ */

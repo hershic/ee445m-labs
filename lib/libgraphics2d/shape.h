@@ -14,7 +14,7 @@
  *  \warning   Destroy whatever you create.
  *  \note      This library is intended for use with the LM3S1968.
  *  \copyright GNU Public License.
- *  \addtogroup Graphics Graphial manipulation framework.
+ *  \addtogroup Graphics Graphial manipulation framework
  */
 
 #include <stdlib.h>
