@@ -3,7 +3,7 @@
 
 #include "shape.h"
 
-point* SHCreatePoint(ushort x, ushort y, shade_t shade) {
+point* shape_create_point(ushort x, ushort y, shade_t shade) {
     point* p = malloc(sizeof(point));
     p->x = x;
     p->y = y;
@@ -11,67 +11,68 @@ point* SHCreatePoint(ushort x, ushort y, shade_t shade) {
     return p;
 }
 
-shape* SHCreateTriangle(point* p0, point* p1, point* p2) {
-  return SHCreateShape(3, p0, p1, p2);
+shape* shape_create_triangle(point* p0, point* p1, point* p2) {
+
+  return shape_create(3, p0, p1, p2);
 }
 
-shape* SHCreateQuad(point* top_left_corner, uchar width, uchar height) {
+shape* shape_create_quad(point* top_left_corner, uchar width, uchar height) {
+
     ushort x = top_left_corner->x;
     ushort y = top_left_corner->y;
     shade_t shade = top_left_corner->shade;
-    return SHCreateShape(4,
-			 top_left_corner,
-			 SHCreatePoint(x+width, y,        shade),
-			 SHCreatePoint(x+width, y+height, shade),
-			 SHCreatePoint(x,       y+height, shade));
+    return shape_create(4,
+			top_left_corner,
+			shape_create_point(x+width, y,        shade),
+			shape_create_point(x+width, y+height, shade),
+			shape_create_point(x,       y+height, shade));
 }
 
-shape* SHCreateShape(ushort numPoints, ...) {
+shape* shape_create(ushort num_points, ...) {
 
   unsigned char i;
   shape* sh = (shape*) calloc(1, sizeof(shape));
-  point** pts = (point**) calloc(numPoints, sizeof(point*));
+  point** pts = (point**) calloc(num_points, sizeof(point*));
   va_list args;
 
-  va_start(args, numPoints);
-  for(i=0; i < numPoints; ++i) {
+  va_start(args, num_points);
+  for(i=0; i < num_points; ++i) {
     pts[i] = va_arg(args, point*);
   }
   va_end(args);			/* clean up the list */
 
-  sh->numPoints = numPoints;
+  sh->num_points = num_points;
   sh->points = pts;
   return sh;
 }
 
-void SHDestroyShape(shape* sh) {
+void shape_destroy_shape(shape* sh) {
 
   ushort i;
-  for(i=0; i<sh->numPoints; ++i) {
+  for(i=0; i<sh->num_points; ++i) {
     free(sh->points[i]);
   }
   free(sh->points);
 }
 
-circle* SHCreateCircle(ushort radius, point* center) {
+circle* shape_create_circle(ushort radius, point* center) {
 
-    circle* c = (circle*) calloc(1, sizeof(circle));
-    c->center = center;
-    c->radius = radius;
-    return c;
+    circle* cir = (circle*) calloc(1, sizeof(circle));
+    cir->center = center;
+    cir->radius = radius;
+    return cir;
 }
 
-shape* SHDuplicateShape(shape* s) {
+shape* shape_duplicate_shape(shape* s) {
 
     ushort i;
     shape* dup = (shape*) calloc(1, sizeof(shape));
 
-    dup->numPoints = s->numPoints;
-    dup->points = (point**) calloc(dup->numPoints, sizeof(point*));
+    dup->num_points = s->num_points;
+    dup->points = (point**) calloc(dup->num_points, sizeof(point*));
 
-    for(i=0; i < dup->numPoints; ++i) {
+    for(i=0; i < dup->num_points; ++i) {
 	dup->points[i] = s->points[i];
     }
-
     return dup;
 }

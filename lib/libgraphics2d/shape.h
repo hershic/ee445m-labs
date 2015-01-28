@@ -37,7 +37,7 @@ typedef struct point {
  */
 typedef struct shape {
 
-    unsigned short numPoints;
+    unsigned short num_points;
     point** points;
 } shape;
 
@@ -45,7 +45,7 @@ typedef struct shape {
  *  \brief Representation of a circle
  *  \details A circle defined by a center and a radius.
  */
-Typedef struct circle {
+typedef struct circle {
 
     /* A circle consists of a center and a radius */
     point* center;
@@ -55,22 +55,25 @@ Typedef struct circle {
 /* TODO: either document or convert these to inline functions */
 /* Macro to create a duplicate of a point object. Don't forget to
  * destroy the duplicate. */
-#define SHDuplicatePoint(p) SHCreatePoint(p->x, p->y, p->shade);
+inline point* shape_duplicate_point(p) {
+
+    return shape_create_point(p->x, p->y, p->shade);
+}
 
 /*! Destroys a point described by x and y coordinates.
  * \param p Point to destroy
  */
-inline void SHDestroyPoint(point* p) {
+inline void shape_destroy_point(point* p) {
 
-  free(p);
+    free(p);
 }
 
 /*! Destroys a circle described by center and radius.
  *  \param cir Circle to destroy
  */
-inline void SHDestroyCircle(circle* cir) {
+inline void shape_destroy_circle(circle* cir) {
 
-  free(cir);
+    free(cir);
 }
 
 /*! Return a point that describes the given arguments.
@@ -79,7 +82,7 @@ inline void SHDestroyCircle(circle* cir) {
  *  \param shade shading of this point
  *  Output: A newly created point
  */
-point* SHCreatePoint(ushort, ushort, shade_t);
+point* shape_create_point(ushort, ushort, shade_t);
 
 /*! Return a pointer to a shape with numPoints points.
  *  \param  numpoints Number of vertices in this polygon
@@ -87,19 +90,19 @@ point* SHCreatePoint(ushort, ushort, shade_t);
  *  \returns point* Pointer to the described polygon
  *  Note: va_args requires a preceeding argument.
  */
-shape* SHCreateShape(ushort numPoints, ...);
+shape* shape_create(ushort numPoints, ...);
 
 /*! Duplicate a shape object.
  *  \param shape The shape to duplicate
  *  \returns shape A duplicate of the given shape
  */
-shape* SHDuplicateShape(shape* s);
+shape* shape_duplicate_shape(shape* s);
 
 /*! Destroy a shape object.
  *  \param sh Shape object to destroy
  *  \returns void
  */
-void   SHDestroyShape(shape* sh);
+void   shape_destroy_shape(shape* sh);
 
 /*! Return a pointer to a circle in memory described by center and
  *  radius.
@@ -107,7 +110,7 @@ void   SHDestroyShape(shape* sh);
  *  \param radius Length of the radius in units
  *  \returns shape* to newly described circle
  */
-circle* SHCreateCircle(ushort radius, point* center);
+circle* shape_create_circle(ushort radius, point* center);
 
 /*! A handy function to create a triangle.
  *  \param p0 Vertex a
@@ -115,7 +118,7 @@ circle* SHCreateCircle(ushort radius, point* center);
  *  \param p2 Vertex c
  *  \returns shape* to newly described triangle
  */
-shape*  SHCreateTriangle(point* p0, point* p1, point* p2);
+shape*  shape_create_triangle(point* p0, point* p1, point* p2);
 
 /*! A handy function to create a general quadrilateral.
  *  \param top_left_corner Coordinates of the top left corner of the quadrilateral
@@ -123,6 +126,6 @@ shape*  SHCreateTriangle(point* p0, point* p1, point* p2);
  *  \param p2 height Height of the quadrilateral
  *  \returns shape* to newly described quadrilateral
  */
-shape*  SHCreateQuad(point* top_left_corner, uchar width, uchar height);
+shape*  shape_create_quad(point* top_left_corner, uchar width, uchar height);
 
 #endif	/*  __SHAPE__ */
