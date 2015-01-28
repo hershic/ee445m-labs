@@ -1,7 +1,0 @@
-#+startup: content
-* [0/4] Doxygen
-- [ ] Allow here docs in declare -r statements
-- [ ] Publish generated docs to cloud at cost
-  - re-generate on push
-- [ ] make doxygen html output a consistent format
-- [ ] link all doxygen projects together to show on one page
