@@ -1,19 +1,8 @@
 #ifndef __GRAPHICS_2D__
 #define __GRAPHICS_2D__
 
-/*!
- * \brief Framebuffer/OLED interaction.
- * \details Graphics engine for interfacing with display vendor's libs.
- * \author    Hershal Bhave
- * \author    Eric Crosson
- * \version   0.1
- * \date      2014
- * \copyright GNU Public License.
- * \addtogroup Graphics Graphical manipulation framework
- */
-
-#include "g2d_defines.h"
-#include "framebuffer.h"
+#include "libstd/defines.h"
+#include "libframebuffer/framebuffer.h"
 
 /*! Draw (unpacked) fb on the OLED.
  *  \param fb Framebuffer type (char**)

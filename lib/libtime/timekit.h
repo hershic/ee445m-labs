@@ -1,15 +1,6 @@
 #ifndef __TIMEKIT__
 #define __TIMEKIT__
 
-/* timekit.h
- * Hershal Bhave and Eric Crosson
- * 2013-02-04
- * TimeKit framework for time representation
- * Lab 3
- * Last Revision: LOOK IN GIT FGT
- * LM3S1968- pinless
- */
-
 #define TK_MAX_PRINTBUFFER_LEN 20
 
 #define TK_PRINT_MODE_HOURS_MINUTES			0

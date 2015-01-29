@@ -1,0 +1,11 @@
+/*!
+ *  \brief      Two dimensional shape library.
+ *  \details    Graphics framework for describing 2D systems.
+ *  \author     Hershal Bhave
+ *  \author     Eric Crosson
+ *  \version    0.1
+ *  \date       2014
+ *  \note       Destroy whatever you create.
+ *  \copyright  GNU Public License.
+ *  \addtogroup Geometry Geometric modeling
+ */

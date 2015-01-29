@@ -1,0 +1,16 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ * \brief Frame bufer representation in memory
+ * \details Represent and transform one frame's buffer in memory.
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Framebuffer Framebuffer manipulation framework
+ * \note Private functions (beginning with an underscore) are helper
+   functions, not to be accessed outside the scope of this file. The
+   purpose of these functions is to reduce duplicated code.
+ * \bug This library is not modal (taking one framebuffer to act upon
+ * at a time).
+ */

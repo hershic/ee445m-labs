@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "g2d_defines.h"
+#include "libstd/defines.h"
 #include "console_framebuffer.h"
 
 void printFramebuffer(unsigned char* fb) {
