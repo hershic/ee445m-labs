@@ -169,22 +169,36 @@
   \end{Ex}
 \item
   \begin{Ex}
-    Search through the \verb|ST7735\_4C123.zip| project to answer these
+    Search through the \verb|ST7735_4C123.zip| project to answer these
     questions about the LCD interface.
     \begin{enumerate}
     \item What synchronization method is used for the low-level
       command writedata?
     \item Explain the parameters of the function
-      \verb|ST7735\_DrawChar|. I.e., how do you use this function?
+      \verb|ST7735_DrawChar|. I.e., how do you use this function?
     \item Which port pins are used for the LCD? Find the connection
       diagram needed to interface the LCD.
     \item Specify which other device shares pins with the LCD.
     \end{enumerate}
     \begin{solution} \hfill \vspace{.75em} \\
       \begin{enumerate}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item Spinlock.
+      \item Draw a character \verb|c|, at position (\verb|x|,
+        \verb|y|), with color \verb|color|, background \verb|bg|, and
+        font size \verb|size|.
+      \item 
+        \begin{itemize}
+        \item pin 10 (Backlight) connected to +3.3 V
+        \item pin 9 (\verb|MISO|) unconnected
+        \item pin 8 (\verb|SCK|) connected to PA2 (\verb|SSI0Clk|)
+        \item pin 7 (\verb|MOSI|) connected to PA5 (\verb|SSI0Tx|)
+        \item pin 6 (\verb|TFT_CS|) connected to PA3 (\verb|SSI0Fss|)
+        \item pin 5 (\verb|CARD_CS|) unconnected
+        \item pin 4 (Data/Command) connected to PA6 (\verb|GPIO|)
+        \item pin 3 (\verb|RESET|) connected to PA7 (\verb|GPIO|)
+        \item pin 2 (\verb|VCC|) connected to +3.3 V
+        \item pin 1 (\verb|GND|) connected to ground
+        \end{itemize}
       \item {\huge \color{red} TODO}
       \end{enumerate}
     \end{solution}
@@ -197,9 +211,9 @@
     \begin{enumerate}
     \item What C code defines the period of the SysTick
       interrupt?
-    \item The \verb|GPIO\_4C123| project runs at 16 MHz, the
-      \verb|PeriodicSysTickInts\_4C123| project runs at 50 MHz, and the
-      \verb|ST7735\_4C123| project runs at 80 MHz. Find the RCC and RCC2
+    \item The \verb|GPIO_4C123| project runs at 16 MHz, the
+      \verb|PeriodicSysTickInts_4C123| project runs at 50 MHz, and the
+      \verb|ST7735_4C123| project runs at 80 MHz. Find the RCC and RCC2
       registers in the data sheet. Look at these three projects to
       explain how the system clock is established. We will be running
       at 80 MHz for most labs in the class.
