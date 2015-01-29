@@ -551,19 +551,24 @@ void _fb_plot_four_ellipse_points(framebuffer fb,
 				  ushort      y);
 
 
-/* TODO: convert into inline functions and document */
-#define max_pixel_width_of_long(x, y)  (max_uc(_fb_pixel_width_of_long(x), _fb_pixel_width_of_long(y)))
-#define max_pixel_height_of_long(x, y) (max_uc(_fb_pixel_height_of_long(x),_fb_pixel_height_of_long(y)))
+/* TODO: document */
+inline
+unsigned char max_pixel_width_of_long(uchar x, uchar y) {
+
+    return max_uc(_fb_pixel_width_of_long(x), _fb_pixel_width_of_long(y));
+    }
+
+inline
+unsigned char max_pixel_height_of_long(uchar x, uchar y) {
+
+    return max_uc(_fb_pixel_height_of_long(x),_fb_pixel_height_of_long(y));
+}
 
 
-private pixel_t _fb_pixel_width_of_long(long);
+/* private pixel_t _fb_pixel_width_of_long(long); */
+/* private pixel_t _fb_pixel_height_of_long(long); */
+/* private pixel_t _fb_pixel_width_of_string(char*); */
 
-private pixel_t _fb_pixel_height_of_long(long);
-
-private pixel_t _fb_pixel_width_of_string(char* str);
-
-/*! TODO: document below */
-/*! TODO: remove header's var names */
 /*! Methods to print points to the console. Will not work on an
  * embedded system (functions will return immediately). */
 
