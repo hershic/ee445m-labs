@@ -10,7 +10,7 @@
  * \version   0.1
  * \date      2014
  * \copyright GNU Public License.
- * \addtogroup Graphics Graphial manipulation framework
+ * \addtogroup Graphics Graphical manipulation framework
  * \warning Private functions are helper functions, and not to be accessed
    (though possible) outside of the scope of this class. The purpose of
    these functions is to reduce duplicated code.

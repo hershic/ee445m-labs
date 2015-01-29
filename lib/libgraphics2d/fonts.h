@@ -1,12 +1,24 @@
 #ifndef __FONTS__
 #define __FONTS__
 
-/* TODO: Create a font directory (hash in memory, a map in c) wherein
+/*!
+ * \brief Font library
+ * \details Font library
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Font Font faces and transformations
+ */
+
+/* OPTIMIZE: Create a font directory (hash in memory, a map in c) wherein
  * fonts may be loaded and accessed dynamically. */
 
 /*! \var "const unsigned char" font_valvano
  *  \brief Font definition: Professor Valvano style.
  *  \note All unenglishifyable chars are represented by a space.
+ *  \ingroup Font
  */
 static const unsigned char font_valvano[129][5] = {
     { 0x00, 0x00, 0x00, 0x00, 0x00 }, // NUL
