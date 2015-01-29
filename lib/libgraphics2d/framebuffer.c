@@ -294,7 +294,7 @@ void _fb_draw_char(framebuffer fb, point* pen, char c) {
 	}
 	for(row=0; row < FONT_VALVANO_HEIGHT; ++row) {
 	    if (pen->y+row >= FB_HEIGHT) {break;}
-	    active = mask & valvanoFont[c][col];
+	    active = mask & font_valvano[c][col];
 	    fb_set_pixel(fb, pen->x + col, pen->y + row, active ? pen->shade : 0);
 	    mask = mask << 1;
 	}
