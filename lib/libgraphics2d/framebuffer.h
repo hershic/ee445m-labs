@@ -188,7 +188,7 @@ void fb_draw_shape(framebuffer, shape*);
  *  \returns void
  *  \ingroup Graphics
  */
-void fb_draw_multiple_shapes(framebuffer, ushort, ...);
+void fb_draw_shapes(framebuffer, ushort, ...);
 
 /*! Method to draw an array of shapes on \fb.
  *  Method to draw an array of shapes on \fb.

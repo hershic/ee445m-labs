@@ -53,7 +53,7 @@ void _fb_draw_shape(framebuffer fb, shape* sh, shade_t shade) {
     }
 }
 
-void fb_draw_multiple_shapes(framebuffer fb, ushort numShapes, ...) {
+void fb_draw_shapes(framebuffer fb, ushort numShapes, ...) {
 
     unsigned char i;
     va_list args;
