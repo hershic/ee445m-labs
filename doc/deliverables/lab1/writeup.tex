@@ -4,9 +4,11 @@
 \date{Due Sometime Soon}
 
 \usepackage[in]{fullpage}
+\usepackage{listings}
 \usepackage{cleveref}
 \usepackage[nosolutionfiles]{answers}
 \usepackage{xcolor}
+\usepackage{color}
 \usepackage{enumerate}
 
 \newenvironment{Ex}{\textbf{Problem}\vspace{.75em}\\}{}
@@ -18,6 +20,38 @@
 \newcommand{\dd}[1]{\:\mathrm{d}{#1}}
 \newcommand{\ddt}[1]{\frac{\dd{}}{\dd{#1}}}
 \newcommand{\dddt}[1]{\frac{\dd{}^2}{\dd{#1}^2}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+% \definecolor{mygreen}{rgb}{0.13,0.55,0.13}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  backgroundcolor=\color{white},
+  basicstyle=\scriptsize\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{mygreen},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  frame=single,
+  keywordstyle=\color{blue},
+  % language=Octave,
+  % numbers=left,
+  % numbersep=5pt,
+  % numberstyle=\tiny\color{mygray},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  % stepnumber=2,
+  stringstyle=\color{mymauve},
+  tabsize=2,
+  title=\lstname,
+  columns=fullflexible,
+}
 
 \begin{document}
 \maketitle
@@ -38,15 +72,15 @@
       Ok.
     \end{solution}
   \end{Ex}
-\item 
+\item
   \begin{Ex}
     Search through the \verb|UARTInts_4C123| project to answer these
     questions about the UART port.
     \begin{enumerate}
     \item This example used UART0. What lines of C code define which
-      port will be used for the UART channel? b) What lines of C code
-      define the baud rate, parity, data bits and stop bits for the
-      UART?
+      port will be used for the UART channel?
+    \item What lines of C code define the baud rate, parity, data bits
+      and stop bits for the UART?
     \item Which port pins are used for the UART? Which pin transmits
       and which pin receives?
     \item Look in the uart.c driver to find what low-level C code
@@ -74,11 +108,60 @@
     \end{enumerate}
     \begin{solution} \hfill \vspace{.75em} \\
       \begin{enumerate}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item \hfill
+        \begin{lstlisting}[language=C]
+          // enable alt funct on PA1-0
+          GPIO_PORTA_AFSEL_R |= 0x03;
+
+          // enable digital I/O on PA1-0
+          GPIO_PORTA_DEN_R |= 0x03;
+
+          // configure PA1-0 as UART
+          GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R&0xFFFFFF00)+0x00000011;
+
+          // disable analog functionality on PA
+          GPIO_PORTA_AMSEL_R = 0;
+        \end{lstlisting}
+      \item \hfill
+        \begin{lstlisting}[language=C]
+          // IBRD = int(50,000,000 / (16 * 115,200)) = int(27.1267)
+          UART0_IBRD_R = 27;
+          // FBRD = int(0.1267 * 64 + 0.5) = 8
+          // 8 bit word length (no parity bits, one stop bit, FIFOs)
+          UART0_FBRD_R = 8;
+        \end{lstlisting}
+
+      \item \verb|PA0| and \verb|PA1| are used for the
+        UART. \verb|PA0| receives and \verb|PA1| transmits.
+      \item \hfill
+        \begin{lstlisting}[language=C]
+
+          // input ASCII character from UART
+          // spin if RxFifo is empty
+          char UART_InChar(void){
+            char letter;
+            while(RxFifo_Get(&letter) == FIFOFAIL){};
+            return(letter);
+          }
+        \end{lstlisting}
+      \item \hfill
+        \begin{lstlisting}[language=C]
+
+          // output ASCII character to UART
+          // spin if TxFifo is full
+          void UART_OutChar(char data){
+            while(TxFifo_Put(data) == FIFOFAIL){};
+            // disable TX FIFO interrupt
+            UART0_IM_R &= ~UART_IM_TXIM;
+            copySoftwareToHardware();
+            // enable TX FIFO interrupt
+            UART0_IM_R |= UART_IM_TXIM;
+          }
+        \end{lstlisting}
+
+      \item The vector table exists in \verb|startup.s|. The system
+        finds the named function and calls that function when the
+        interrupt is received, in our case,
       \item {\huge \color{red} TODO}
       \item {\huge \color{red} TODO}
       \end{enumerate}
@@ -104,7 +187,7 @@
       \item {\huge \color{red} TODO}
       \item {\huge \color{red} TODO}
       \end{enumerate}
-    \end{solution} 
+    \end{solution}
   \end{Ex}
 \item
   \begin{Ex}
@@ -131,7 +214,7 @@
       \end{enumerate}
     \end{solution}
   \end{Ex}
-\item 
+\item
   \begin{Ex}
     Look up the explicit sequence of events that occur as an interrupt
     is processed. Read section 2.5 in the TM4C123 data sheet
