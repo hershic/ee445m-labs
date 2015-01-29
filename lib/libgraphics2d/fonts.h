@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #ifndef __FONTS__
 #define __FONTS__
 
