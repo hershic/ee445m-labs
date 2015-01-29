@@ -266,6 +266,22 @@ inline void fb_clear_pixel(framebuffer fb, uchar x, uchar y) {
     fb_set_pixel(fb, x, y, FB_COLOR_ERASE);
 }
 
+/*! Erase pixel (x,y) in \fb.
+ *  \brief Erase pixel (x,y) in \fb.
+ *  \details This is an alias for \fb_set_pixel with a shade of zero.
+ *  \param fb Framebuffer to use as canvas
+ *  \param x X coordinate
+ *  \param y Y coordinate
+ *  \returns void
+ *  \Note Error behavior: when pixel (x,y) is not writeable (off screen)
+ *  this function does nothing.
+ *  \ingroup Graphics
+ */
+inline void fb_erase_pixel(framebuffer fb, uchar x, uchar y) {
+
+    fb_clear_pixel(fb, x, y);
+}
+
 /*!
  * \brief The heavy-lifter (pixel-setter) in line-segment-drawing.
  * \param fb The framebuffer to draw a line on
