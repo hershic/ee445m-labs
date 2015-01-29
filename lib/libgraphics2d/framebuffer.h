@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #ifndef __FRAMEBUFFER__
 #define __FRAMEBUFFER__
 
@@ -159,69 +160,129 @@ static const unsigned char valvanoFont[129][5] = {
 };
 
 /* TODO: convert into inline functions and document */
-#define max_pixel_width_of_long(x, y)  (max_uc(_FBPixelWidthOfLong(x), _FBPixelWidthOfLong(y)))
-#define max_pixel_height_of_long(x, y) (max_uc(_FBPixelHeightOfLong(x),_FBPixelHeightOfLong(y)))
+#define max_pixel_width_of_long(x, y)  (max_uc(_fb_pixel_width_of_long(x), _fb_pixel_width_of_long(y)))
+#define max_pixel_height_of_long(x, y) (max_uc(_fb_pixel_height_of_long(x),_fb_pixel_height_of_long(y)))
 
-unsigned char max_uc(unsigned char one, unsigned char two);
+/* TODO: add all to group Graphics */
 
-/*
-  Convert an intever to a string.
-  Inputs;  i        int to convert into a string
-  buffer   buffer for string contents
-  length   length of allocated buffer
-  Outputs: char*    buffer containing i as a string
-*/
-char* itoa(int i, char* buffer, uchar length);
+/*! Determine the max of two unsigned chars.
+ *  \brief Determine the max of two unsigned chars.
+ *  \param one
+ *  \param two
+ *  \returns "unsigned char" The larger value of one and two
+ */
+unsigned char max_uc(unsigned char, unsigned char);
 
-/*
-  Create a framebuffer object and return the handle.
-  Inputs:  none
-  Outputs: framebuffer
-*/
-framebuffer FBInit(void);
+/*! Convert an intever to a string.
+ *  \brief Convert an integer to a string.
+ *  \param i Int to convert into a string
+ *  \param buffer Buffer for string contents
+ *  \param length Length of allocated buffer
+ *  \returns char* Buffer containing i represented as a string
+ */
+char* itoa(int, char*, uchar);
 
-/*
-  Destroy a framebuffer object.
-  Inputs:  fb    framebuffer to send to valhalla
-  Outputs: none
-*/
-void FBDestroy(framebuffer fb);
+/*! Create a framebuffer object and return the handle.
+ *  \brief Create a framebuffer object and return the handle.
+ *  \returns framebuffer Newly malloc'd framebuffer
+ */
+framebuffer fb_init(void);
 
-/*
-  Draw string on fb starting at top_left_corner.
-  Inputs:  fb               framebuffer to use as canvas
-  top_left_corner  coordinate of top left corner on string on fb
-  string           string to draw
-  Outputs: void
-*/
-void FBDrawString(framebuffer fb, point* top_left_corner, char* string);
+/*! Destroy a framebuffer object.
+ *  \brief Destroy a framebuffer object.
+ *  \param fb Framebuffer to destroy
+ */
+void fb_destroy(framebuffer);
 
-/* TODO: document */
-void FBDrawStringAnonPt(framebuffer fb, point* top_left_corner, char* string);
+/*! Draw string on fb starting at top_left_corner.
+ *  \brief Draw string on fb starting at top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner of string on fb
+ *  \param string Character array to draw
+ *  \returns void
+ */
+void fb_draw_string(framebuffer, point*, char*);
 
-/*
-  Erase string on fb starting at top_left_corner.
-  Inputs:  fb               framebuffer to use as canvas
-  top_left_corner  coordinate of top left corner on string on fb
-  string           string to erase
-  Outputs: void
-*/
-void FBEraseString(framebuffer fb, point* top_left_corner, char* string);
+/*! Call fb_draw_string and destroy top_left_corner.
+ *  \brief Call fb_draw_string and destroy top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner of string on fb. Will be destroyed.
+ *  \param string Character array to draw
+ *  \returns void
+ */
+void fb_draw_string_anon(framebuffer, point*, char*);
 
-void FBEraseStringAnonPt(framebuffer fb, point* top_left_corner, char* string);
+/*! Erase string on fb starting at top_left_corner.
+ *  \brief Erase string on fb starting at top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner of string on fb
+ *  \param string String to erase from fb
+ *  \returns void
+ *  \Note In order to erase a string successfully the fonts, char
+ *  arrays and coordinates must be identical.
+ *  \Warning This will clear the values of the affected pixels; it is
+ *  a destructive action and will not 'undo' changes to the canvas.
+ */
+void fb_erase_string(framebuffer, point*, char*);
 
-void FBEraseChar(framebuffer, point* top_left_corner);
+/*! Call \fb_erase_string_anon and free top_left_corner.
+ *  \brief Erase string on fb starting at top_left_corner, then free top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner of string on fb
+ *  \param string String to erase from fb
+ *  \returns void
+ *  \Note In order to erase a string successfully the fonts, char
+ *  arrays and coordinates must be identical.
+ *  \Warning This will clear the values of the affected pixels; it is
+ *  a destructive action and will not 'undo' changes to the canvas.
+ */
+void fb_erase_string_anon(framebuffer, point*, char*);
 
-/*
-  Helper function that peforms the base work of all framebuffer string drawing requests.
-  Inputs:  fb              framebuffer to use as canvas
-  top_left_corner coordinate of top left corner on string on fb
-  string          string to draw or undraw
-  Outputs: void
-*/
-private void _FBDrawString(framebuffer fb, point* top_left_corner, char* string);
+/*! Erase char on fb starting at top_left_corner.
+ *  \brief Erase char on fb starting at top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner on char on fb
+ *  \param c Char to erase from fb
+ *  \returns void
+ *  \Note In order to erase a char successfully the fonts, char and
+ *  coordinates must be identical.
+ *  \Warning This will clear the values of the affected pixels; it is
+ *  a destructive action and will not 'undo' changes to the canvas.
+ */
+void fb_erase_char(framebuffer, point*, char);
 
-/*
+/*! Call \fb_erase_char and free top_left_corner.
+ *  \brief Call \fb_erase_char and free top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner on char on fb. Will be destroyed.
+ *  \param c Char to erase from fb
+ *  \returns void
+ *  \Note In order to erase a char successfully the fonts, char and
+ *  coordinates must be identical.
+ *  \Warning This will clear the values of the affected pixels; it is
+ *  a destructive action and will not 'undo' changes to the canvas.
+ */
+void fb_erase_char_anon(framebuffer, point*, char);
+
+/*! Draw a string on the framebuffer starting square against top_left_corner.
+ * \brief Draw a string on the framebuffer starting square against top_left_corner.
+ * \param fb Framebuffer to use as canvas
+ * \param top_left_corner Coordinate of top left corner of string on fb
+ * \param string String to draw
+ * \returns void
+ */
+private void _fb_draw_string(framebuffer fb, point* top_left_corner, char* string);
+
+/*! Peforms the base work of all framebuffer string drawing requests.
+ * \brief Peforms the base work of all framebuffer string drawing requests.
+ * \param fb Framebuffer to use as canvas
+ * \param pen Coordinate of top left corner of char on fb
+ * \param c Character to draw
+ * \returns void
+ */
+private void _fb_draw_char(framebuffer, point*, char);
+
+/*!
   Using fb as a canvas, draw sh.
   Input:  fb       framebuffer to use as canvas
   sh       shape to draw
@@ -231,9 +292,9 @@ private void _FBDrawString(framebuffer fb, point* top_left_corner, char* string)
   Note that this function can also draw points and lines, i.e. a shape
   with only one or two points respectively.
 */
-void FBDrawShape(framebuffer fb, shape* sh);
+void fb_draw_shape(framebuffer fb, shape* sh);
 
-/*
+/*!
   Using fb as a canvas, draw sh.
   Input:  fb       framebuffer to use as canvas
   sh       shape to draw
@@ -243,36 +304,36 @@ void FBDrawShape(framebuffer fb, shape* sh);
   Note that this function can also draw points and lines, i.e. a shape
   with only one or two points respectively.
 */
-void FBEraseShape(framebuffer fb, shape* sh);
+void fb_erase_shape(framebuffer fb, shape* sh);
 
-/*
+/*!
   Method to draw multiple shapes on fb. Provide the number of shapes
   to draw for va_args.
   Input:  fb         framebuffer to use as canvas
   numShapes  number of shapes to draw before returning
   Output: void
 */
-void FBDrawMultipleShapes(framebuffer fb, ushort numShapes, ...);
+void fb_draw_multiple_shapes(framebuffer, ushort, ...);
 
-/*
+/*!
   Method to draw an array of shapes on fb.
   Input:  fb         framebuffer to use as canvas
   numShapes  number of shapes to draw before returning
-  shapeArr   array containing shapes to draw
+  shape_arr   array containing shapes to draw
   Output: void
 */
-void FBDrawShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
+void fb_draw_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr);
 
-/*
+/*!
   Method to erase an array of shapes from fb.
   Input:  fb         framebuffer to use as canvas
   numShapes  number of shapes to erase before returning
-  shapeArr   array containing shapes to erase
+  shape_arr   array containing shapes to erase
   Output: void
 */
-void FBEraseShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
+void fb_erase_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr);
 
-/*
+/*!
   Internal helper function that performs the mechanics of drawing a
   shape. The purpose of this function is to reduce duplicated code in
   memory.
@@ -281,9 +342,9 @@ void FBEraseShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr);
   shade     color of shape
   Output: void
 */
-private void _FBDrawShape(framebuffer fb, shape* sh, shade_t shade);
+private void _fb_draw_shape(framebuffer fb, shape* sh, shade_t shade);
 
-/*
+/*!
   In fb, set pixel (x,y) to shade
   Input:  fb       framebuffer to use as canvas
   x        x coordinate
@@ -293,10 +354,10 @@ private void _FBDrawShape(framebuffer fb, shape* sh, shade_t shade);
   Error behavior: when pixel (x,y) is not writeable (off screen)
   this function does nothing.
 */
-void FBSetPixel(framebuffer fb, uchar x, uchar y, shade_t shade);
+void fb_set_pixel(framebuffer fb, uchar x, uchar y, shade_t shade);
 
-/*
-  In fb, clear pixel (x,y). This is an alias for FBSetPixel with a
+/*!
+  In fb, clear pixel (x,y). This is an alias for fb_set_pixel with a
   shade of zero.
   Input:  fb       framebuffer to use as canvas
   x        x coordinate
@@ -305,9 +366,9 @@ void FBSetPixel(framebuffer fb, uchar x, uchar y, shade_t shade);
   Error behavior: when pixel (x,y) is not writeable (off screen)
   this function does nothing.
 */
-void FBClearPixel(framebuffer fb, uchar x, uchar y);
+void fb_clear_pixel(framebuffer fb, uchar x, uchar y);
 
-/*
+/*!
   Draw a line segment on fb from a to b of color shade.
   Input:  fb        framebuffer to use as canvas
   a         beginning of line segment
@@ -315,44 +376,44 @@ void FBClearPixel(framebuffer fb, uchar x, uchar y);
   shade     color of line segment
   Output: void
 */
-void FBDrawLine(framebuffer fb, point* a, point* b, shade_t shade);
+void fb_draw_line(framebuffer fb, point* a, point* b, shade_t shade);
 
-/*
+/*!
   Pass this function two newly created points and it will draw a line
   connecting the points before destroying the points for you.
-  Inputs:  fb      framebuffer to use as canvas
+  \param  fb      framebuffer to use as canvas
   a       one endpoint of the line to draw
   b       the other endpoint of the line to draw
   shade   desired shade of the line on fb
-  Outputs: void
+  \returns void
   \warning This function destroys \a and \b.
 */
-private void FBDrawAnonLine(framebuffer fb, point* a, point* b, shade_t shade);
+private void fb_draw_anon_line(framebuffer fb, point* a, point* b, shade_t shade);
 
-/*
+/*!
   Remove a line segment on fb from a to b.
   Input:  fb        framebuffer to use as canvas
   a         beginning of line segment
   b         end of line segment
   Output: void
 */
-void FBEraseLine(framebuffer fb, point* pta, point* ptb);
+void fb_erase_line(framebuffer fb, point* pta, point* ptb);
 
-/*
+/*!
   Pass this function two newly created points and it will erase a line
   connecting the points before destroying the points for you.
-  Inputs:  fb      framebuffer to use as canvas
+  \param  fb      framebuffer to use as canvas
   a       one endpoint of the line to draw
   b       the other endpoint of the line to draw
   shade   desired shade of the line on fb
-  Outputs: void
+  \returns void
   \warning This function destroys \a and \b.
 */
-void FBEraseAnonLine(framebuffer fb, point* a, point* b);
+void fb_erase_anon_line(framebuffer fb, point* a, point* b);
 
-private void _FBDrawLine(framebuffer fb, point* a, point* b, shade_t shade);
+private void _fb_draw_line(framebuffer fb, point* a, point* b, shade_t shade);
 
-/*
+/*!
   Draw a circle in fb at center with radius of color shade.
   Input:  fb         framebuffer to use as canvas
   center     center of circle to draw
@@ -360,9 +421,9 @@ private void _FBDrawLine(framebuffer fb, point* a, point* b, shade_t shade);
   shade      shade to draw circle with on fb
   Output: void
 */
-void FBDrawCircle(framebuffer fb, circle* c);
+void fb_draw_circle(framebuffer fb, circle* c);
 
-/*
+/*!
   Draw an ellipse in fb at center with specified x- and y-radii, of
   color shade.
   Input:  fb         framebuffer to use as canvas
@@ -372,10 +433,10 @@ void FBDrawCircle(framebuffer fb, circle* c);
   shade      shade to draw ellipse with on fb
   Output: void
 */
-void FBDrawEllipse(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t
+void fb_draw_ellipse(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t
 		   shade);
 
-/*
+/*!
   Fill on fb from the four symmetric points on an ellipse described by
   a center and x- and y-offsets, to the axis of said ellipse.
   Input:  fb            framebuffer to use as canvas
@@ -385,8 +446,8 @@ void FBDrawEllipse(framebuffer fb, point* center, ushort x_radius, ushort y_radi
   Output: void
   Note: points will be shaded with the value in center->shade.
 */
-private void _FBFillFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y);
-/*
+private void _fb_fill_four_ellipse_points(framebuffer fb, point* center, ushort x, ushort y);
+/*!
   Draw on fb a shaded ellipse described by center, x- and y-radii.
   Input:  fb            framebuffer to use as canvas
   center        gemoetric center of the ellipse
@@ -395,9 +456,9 @@ private void _FBFillFourEllipsePoints(framebuffer fb, point* center, ushort x, u
   shade         color to fill ellipse with
   OPTIONAL TODO: allow for different specified border color
 */
-void FBDrawEllipseFill(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t shade);
+void fb_draw_ellipse_fill(framebuffer fb, point* center, ushort x_radius, ushort y_radius, shade_t shade);
 
-/*
+/*!
   Plot on fb the four symmetric points on an ellipse described by a
   center and x- and y-offsets.
   Input:  fb            framebuffer to use as canvas
@@ -407,33 +468,34 @@ void FBDrawEllipseFill(framebuffer fb, point* center, ushort x_radius, ushort y_
   Output: void
   Note: points will be shaded with the value in center->shade.
 */
-private void _FBPlotFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y);
+private void _fb_plot_four_ellipse_points(framebuffer fb, point* center, ushort x, ushort y);
 
-private pixel_t _FBPixelWidthOfLong(long l);
+private pixel_t _fb_pixel_width_of_long(long);
 
-private pixel_t _FBPixelHeightOfLong(long l);
+private pixel_t _fb_pixel_height_of_long(long);
 
-private pixel_t _FBPixelWidthOfString(char* str);
+private pixel_t _fb_pixel_width_of_string(char* str);
 
-/* TODO: document below */
-/* Methods to print points to the console. Will not work on an
+/*! TODO: document below */
+/*! TODO: remove header's var names */
+/*! Methods to print points to the console. Will not work on an
  * embedded system (functions will return immediately). */
 
-/*
+/*!
   Print a point (ordered pair) to the console. Only applicable on a
   computer (not for use on microcontrollers).
 
   ** NOTICE **
   This function appends a newline to the console after printing the
   ordered pair. To just print the ordered pair (sans newline) call
-  function FBPrintPointToConsoleWithoutNewline instead.
+  function \fb_print_point_console instead.
 
-  Inputs:  p       point to printf to the console
-  Outputs: void
+  \param  p       point to printf to the console
+  \returns void
 */
-void FBPrintPointToConsole(point* p);
+void fb_println_point_console(point* p);
 
-/*
+/*!
   Print a point (ordered pair) to the console. Only applicable on a
   computer (not for use on microcontrollers).
 
@@ -441,11 +503,11 @@ void FBPrintPointToConsole(point* p);
 
   This function does not append a newline to the console after
   printing the ordered pair. To just print the ordered pair WITH
-  a newline call function FBPrintPointToConsole instead.
+  a newline call function fb_println_point_console instead.
 
-  Inputs:  p       point to printf to the console
-  Outputs: void
+  \param  p       point to printf to the console
+  \returns void
 */
-void FBPrintPointToConsoleWithoutNewline(point* p);
+void fb_print_point_console(point* p);
 
-#endif	/* __FRAMEBUFFER__ */
+#endif	/*! __FRAMEBUFFER__ */

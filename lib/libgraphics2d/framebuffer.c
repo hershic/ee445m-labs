@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #include <math.h>
 #include <stdlib.h>
 #include "string.h"
@@ -10,7 +11,8 @@
 #include <stdio.h>
 #endif
 
-framebuffer FBInit() {
+framebuffer fb_init() {
+
   /* OPTIONAL OPTIMIZE: bit-strap this struct to reduce memory consumption */
   unsigned char i;
   unsigned char** fb = (unsigned char**) calloc(OLED_WIDTH, sizeof(unsigned char*));
@@ -20,7 +22,7 @@ framebuffer FBInit() {
   return (framebuffer) fb;
 }
 
-void FBDestroy(framebuffer fb) {
+void fb_destroy(framebuffer fb) {
 
   unsigned char i;
   for(i = 0; i < OLED_WIDTH; ++i) {
@@ -29,86 +31,103 @@ void FBDestroy(framebuffer fb) {
   free(fb);
 }
 
-void FBDrawShape(framebuffer fb, shape* sh) {
+void fb_draw_shape(framebuffer fb, shape* sh) {
 
-  when (sh->points[0] != null) {
-    _FBDrawShape(fb, sh, sh->points[0]->shade);
+  if (sh->points[0] != null) {
+    _fb_draw_shape(fb, sh, sh->points[0]->shade);
   }
 }
 
-void FBEraseShape(framebuffer fb, shape* sh) {
+void fb_erase_shape(framebuffer fb, shape* sh) {
 
-  _FBDrawShape(fb, sh, FB_COLOR_ERASE);
+  _fb_draw_shape(fb, sh, FB_COLOR_ERASE);
 }
 
-private void _FBDrawShape(framebuffer fb, shape* sh, shade_t shade) {
+private
+void _fb_draw_shape(framebuffer fb, shape* sh, shade_t shade) {
 
   unsigned short p;
   for(p=0; p < sh->num_points; ++p) {
-    FBSetPixel(fb, sh->points[p]->x, sh->points[p]->y, shade);
-    /* TODO: add gradient between points */
+    fb_set_pixel(fb, sh->points[p]->x, sh->points[p]->y, shade);
+    /* OPTIONAL: add gradient between points */
     if (p > 0) {
-      FBDrawLine(fb, sh->points[p-1], sh->points[p], shade);
+      fb_draw_line(fb, sh->points[p-1], sh->points[p], shade);
     }
   }
 
   /* Enclose the figure */
   if(p>1) {
-    FBDrawLine(fb, sh->points[0], sh->points[p-1], shade);
+    fb_draw_line(fb, sh->points[0], sh->points[p-1], shade);
   }
 }
 
-void FBDrawMultipleShapes(framebuffer fb, ushort numShapes, ...) {
+void fb_draw_multiple_shapes(framebuffer fb, ushort numShapes, ...) {
 
   unsigned char i;
   va_list args;
 
   va_start(args, numShapes);
   for(i=0; i < numShapes; ++i) {
-    FBDrawShape(fb, va_arg(args, shape*));
+    fb_draw_shape(fb, va_arg(args, shape*));
   }
   va_end(args);                 /* clean up the list */
 }
 
-void FBDrawShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr) {
+void fb_draw_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr) {
 
   unsigned char i;
   for(i=0; i < numShapes; ++i) {
-    FBDrawShape(fb, shapeArr[i]);
+    fb_draw_shape(fb, shape_arr[i]);
   }
 }
 
-void FBEraseShapeArr(framebuffer fb, ushort numShapes, shape** shapeArr) {
+void fb_erase_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr) {
 
   unsigned char i;
   for(i=0; i < numShapes; ++i) {
-    FBEraseShape(fb, shapeArr[i]);
+    fb_erase_shape(fb, shape_arr[i]);
   }
 }
 
-void FBSetPixel(framebuffer fb, uchar x, uchar y, shade_t shade) {
+void fb_set_pixel(framebuffer fb, uchar x, uchar y, shade_t shade) {
 
   if (x < FB_WIDTH && y < FB_HEIGHT) {
     fb[x][y] = shade;
   }
 }
 
-void FBClearPixel(framebuffer fb, uchar x, uchar y) {
+void fb_clear_pixel(framebuffer fb, uchar x, uchar y) {
 
-  FBSetPixel(fb, x, y, FB_COLOR_ERASE);
+  fb_set_pixel(fb, x, y, FB_COLOR_ERASE);
 }
 
-void FBDrawLine(framebuffer fb, point* pta, point* ptb, shade_t shade) {
+void fb_draw_line(framebuffer fb, point* pta, point* ptb, shade_t shade) {
 
-  _FBDrawLine(fb, pta, ptb, shade);
+  _fb_draw_line(fb, pta, ptb, shade);
 }
 
-void FBEraseLine(framebuffer fb, point* pta, point* ptb) {
+void fb_erase_line(framebuffer fb, point* pta, point* ptb) {
 
-  _FBDrawLine(fb, pta, ptb, FB_COLOR_ERASE);
+  _fb_draw_line(fb, pta, ptb, FB_COLOR_ERASE);
 }
 
-private void _FBDrawLine(framebuffer fb, point* pta, point* ptb, shade_t shade) {
+void fb_erase_char(framebuffer fb, point* top_left_corner, char c) {
+
+  char* string = calloc(2, sizeof(char));
+  string[1] = 0;
+  top_left_corner->shade = FB_COLOR_ERASE;
+  _fb_draw_string(fb, top_left_corner, string);
+  free(string);
+}
+
+void fb_erase_char_anon(framebuffer fb, point* top_left_corner, char c) {
+
+  fb_erase_char_anon(fb, top_left_corner);
+  free(top_left_corner);
+}
+
+private
+void _fb_draw_line(framebuffer fb, point* pta, point* ptb, shade_t shade) {
 
   point* a;
   point* b;
@@ -121,7 +140,7 @@ private void _FBDrawLine(framebuffer fb, point* pta, point* ptb, shade_t shade) 
   dy = abs(b->y-a->y); sy = (a->y < b->y) ? 1 : -1;
   err = (dx>dy ? dx : -dy)/2;
   for(;;) {
-    FBSetPixel(fb, a->x, a->y, shade);
+    fb_set_pixel(fb, a->x, a->y, shade);
     if (a->x == b->x && a->y == b->y) {break;}
     e2 = err;
     if (e2 >-dx) {err -= dy; a->x += sx;}
@@ -131,12 +150,31 @@ private void _FBDrawLine(framebuffer fb, point* pta, point* ptb, shade_t shade) 
   SHDestroyPoint(b);
 }
 
-void FBDrawCircle(framebuffer fb, circle* c) {
+void fb_draw_circle(framebuffer fb, circle* c) {
 
-  FBDrawEllipse(fb, c->center, c->radius, c->radius, c->center->shade);
+  fb_draw_ellipse(fb, c->center, c->radius, c->radius, c->center->shade);
 }
 
-void FBDrawEllipse(framebuffer fb,
+private
+void _fb_plot_four_ellipse_points(framebuffer fb, point* center, ushort x, ushort y) {
+
+  fb_set_pixel(fb, center->x + x, center->y + y, center->shade);
+  fb_set_pixel(fb, center->x - x, center->y + y, center->shade);
+  fb_set_pixel(fb, center->x - x, center->y - y, center->shade);
+  fb_set_pixel(fb, center->x + x, center->y - y, center->shade);
+}
+
+private
+void _fb_fill_four_ellipse_points(framebuffer fb, point* center, ushort x, ushort y) {
+
+  int i;
+  for(i = -x; i <= x; ++i) {
+    fb_set_pixel(fb, center->x + i, center->y + y, center->shade);
+    fb_set_pixel(fb, center->x + i, center->y - y, center->shade);
+  }
+}
+
+void fb_draw_ellipse(framebuffer fb,
 		   point*      center,
                    ushort      x_radius,
 		   ushort      y_radius,
@@ -163,7 +201,7 @@ void FBDrawEllipse(framebuffer fb,
   error = 0;
 
   while (stop_x > stop_y) {
-    _FBPlotFourEllipsePoints(fb, center, x, y);
+    _fb_plot_four_ellipse_points(fb, center, x, y);
     ++y;
     stop_y += xx2;
     error += dy;
@@ -186,7 +224,7 @@ void FBDrawEllipse(framebuffer fb,
   stop_y = xx2*y_radius;
 
   while (stop_x <= stop_y) {
-    _FBPlotFourEllipsePoints(fb, center, x, y);
+    _fb_plot_four_ellipse_points(fb, center, x, y);
     x++;
     stop_x += yy2;
     error += dx;
@@ -200,24 +238,7 @@ void FBDrawEllipse(framebuffer fb,
   }
 }
 
-private void _FBPlotFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y) {
-
-  FBSetPixel(fb, center->x + x, center->y + y, center->shade);
-  FBSetPixel(fb, center->x - x, center->y + y, center->shade);
-  FBSetPixel(fb, center->x - x, center->y - y, center->shade);
-  FBSetPixel(fb, center->x + x, center->y - y, center->shade);
-}
-
-private void _FBFillFourEllipsePoints(framebuffer fb, point* center, ushort x, ushort y) {
-
-  int i;
-  for(i = -x; i <= x; ++i) {
-    FBSetPixel(fb, center->x + i, center->y + y, center->shade);
-    FBSetPixel(fb, center->x + i, center->y - y, center->shade);
-  }
-}
-
-void FBDrawEllipseFill(framebuffer fb,
+void fb_draw_ellipse_fill(framebuffer fb,
 		       point*      center,
                        ushort      x_radius,
 		       ushort      y_radius,
@@ -235,7 +256,7 @@ void FBDrawEllipseFill(framebuffer fb,
 
   // fill the horizontal diameter
   for (i = -x_radius; i <= x_radius; ++i) {
-    FBSetPixel(fb, center->x + i, center->y, center->shade);
+    fb_set_pixel(fb, center->x + i, center->y, center->shade);
   }
 
   /* First set of points is done, now plot the second set */
@@ -250,7 +271,7 @@ void FBDrawEllipseFill(framebuffer fb,
   last_y_filled = y;
   while (stop_x <= stop_y) {
     if (y != last_y_filled) {
-      _FBFillFourEllipsePoints(fb, center, x, y);
+      _fb_fill_four_ellipse_points(fb, center, x, y);
       last_y_filled = y;
     }
     x++;
@@ -266,52 +287,67 @@ void FBDrawEllipseFill(framebuffer fb,
   }
 }
 
-void FBDrawStringAnonPt(framebuffer fb, point* top_left_corner, char* string) {
+void fb_draw_string_anon_pt(framebuffer fb, point* top_left_corner, char* string) {
 
-  _FBDrawString(fb, top_left_corner, string);
+  _fb_draw_string(fb, top_left_corner, string);
   free(top_left_corner);
 }
 
-void FBDrawString(framebuffer fb, point* top_left_corner, char* string) {
+void fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
 
-  _FBDrawString(fb, top_left_corner, string);
+  _fb_draw_string(fb, top_left_corner, string);
 }
 
-void FBEraseStringAnonPt(framebuffer fb, point* top_left_corner, char* string) {
+void fb_erase_string_anon(framebuffer fb, point* top_left_corner, char* string) {
 
-  FBEraseString(fb, top_left_corner, string);
+  fb_erase_string(fb, top_left_corner, string);
   free(top_left_corner);
 }
 
-void FBEraseString(framebuffer fb, point* top_left_corner, char* string) {
+void fb_erase_string(framebuffer fb, point* top_left_corner, char* string) {
 
   point* pt = SHDuplicatePoint(top_left_corner);
   pt->shade = FB_COLOR_ERASE;
-  _FBDrawString(fb, pt, string);
+  _fb_draw_string(fb, pt, string);
   SHDestroyPoint(pt);
 }
 
-private void _FBDrawString(framebuffer fb, point* top_left_corner, char* string) {
+private
+void _fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
 
-  uchar active, col, row, mask;
   point* pen = SHDuplicatePoint(top_left_corner);
-
   while(*string != null) {
-    for(col=0; col < VALVANO_FONT_WIDTH; ++col) {
-      mask = 0x01;
-      if (pen->x+col >= FB_WIDTH) {break;}
-      for(row=0; row < VALVANO_FONT_HEIGHT; ++row) {
-        if (pen->y+row >= FB_HEIGHT) {break;}
-        active = mask & valvanoFont[*string][col];
-        FBSetPixel(fb, pen->x + col, pen->y + row, active ? pen->shade : 0);
-        mask = mask << 1;
-      }
-    }
-    pen->x += VALVANO_FONT_WIDTH + VALVANO_FONT_KERNING;
-    ++string;
+    _fb_draw_char(fb, pen, *(string++));
+    pen->x += FONT_VALVANO_WIDTH + FONT_VALVANO_KERNING;
   }
   SHDestroyPoint(pen);
 }
+
+/* TODO: Allow for newline/carriage returns, printf style perhaps */
+/* TODO: abstract font usage (modal), allow for multiple fonts to be
+ * loaded/unloaded from memory (map). */
+private
+void _fb_draw_char(framebuffer fb, point* pen, char c) {
+
+  uchar active, col, row, mask;
+  for(col=0; col < FONT_VALVANO_WIDTH; ++col) {
+    mask = 0x01;
+    if (pen->x+col >= FB_WIDTH) {
+      /* We have exceeded the number of pixels on the screen */
+#ifndef NDEBUG
+      printf("%s pen has gone offscreen. Ignoring rest of character...\n", __FUNCTION__);
+#endif
+      break;
+    }
+    for(row=0; row < FONT_VALVANO_HEIGHT; ++row) {
+      if (pen->y+row >= FB_HEIGHT) {break;}
+      active = mask & valvanoFont[c][col];
+      fb_set_pixel(fb, pen->x + col, pen->y + row, active ? pen->shade : 0);
+      mask = mask << 1;
+    }
+  }
+}
+
 
 char* itoa(int i, char* buffer, uchar length) {
 
@@ -321,32 +357,39 @@ char* itoa(int i, char* buffer, uchar length) {
   return buffer;
 }
 
-void FBDrawAnonLine(framebuffer fb, point* a, point* b, shade_t shade) {
+void fb_draw_anon_line(framebuffer fb, point* a, point* b, shade_t shade) {
 
-  _FBDrawLine(fb, a, b, shade);
+  _fb_draw_line(fb, a, b, shade);
   SHDestroyPoint(a);
   SHDestroyPoint(b);
 }
 
-void FBEraseAnonLine(framebuffer fb, point* a, point* b) {
+void fb_erase_anon_line(framebuffer fb, point* a, point* b) {
 
-  _FBDrawLine(fb, a, b, FB_COLOR_ERASE);
+  _fb_draw_line(fb, a, b, FB_COLOR_ERASE);
   SHDestroyPoint(a);
   SHDestroyPoint(b);
 }
 
-void FBPrintPointToConsole(point* p) {
+void fb_println_point_console(point* p) {
 
 #ifdef __GNUC__
   printf("(%d,%d):%d\n", p->x, p->y, p->shade);
+#else
+#ifndef NDEBUG
+  printf("%s This function was called in an inappropriate context.\n", __FUNCTION__);
+  printf("%s Please consult the documentation.\n", __FUNCTION__);
 #endif
-  /* OPTIONAL: log error */
+#endif
 }
 
-void FBPrintPointToConsoleWithoutNewline(point* p) {
+void fb_print_point_console(point* p) {
 
 #ifdef __GNUC__
   printf("(%d,%d):%d", p->x, p->y, p->shade);
+#ifndef NDEBUG
+  printf("%s This function was called in an inappropriate context.\n", __FUNCTION__);
+  printf("%s Please consult the documentation.\n", __FUNCTION__);
 #endif
-  /* OPTIONAL: log error */
+#endif
 }
