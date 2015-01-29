@@ -12,4 +12,3 @@ else()
 endif()
 
 add_subdirectory(lib)
-add_subdirectory(doc/deliverables)

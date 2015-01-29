@@ -25,8 +25,7 @@ shape* CHToShape(clockhand* ch) {
   ch->pointOnCircumference->x = ch->center->x+x;
   ch->pointOnCircumference->y = ch->center->y+y;
 
-  ch->shapeBuffer =
-    SHCreateShape(2, ch->center, ch->pointOnCircumference);
+  ch->shapeBuffer = shape_create(2, ch->center, ch->pointOnCircumference);
   return ch->shapeBuffer;
 }
 
@@ -34,12 +33,12 @@ clockhand* CHCreateClockHand(point* center, ushort radius, uchar type) {
   clockhand* ch = (clockhand*) calloc(1, sizeof(clockhand));
 
   ch->radius = radius;
-  ch->center = SHDuplicatePoint(center);
+  ch->center = shape_duplicate_point(center);
   ch->type = type;
 
   ch->angle = 0;
 
-  ch->pointOnCircumference = SHDuplicatePoint(center);
+  ch->pointOnCircumference = shape_duplicate_point(center);
 
   return ch;
 }
@@ -119,10 +118,10 @@ clockhand* CHDuplicateClockHand(clockhand* ch) {
     clockhand* dup = (clockhand*) calloc(1, sizeof(clockhand));
 
     dup->radius = ch->radius;
-    dup->center = SHDuplicatePoint(ch->center);
+    dup->center = shape_duplicate_point(ch->center);
     dup->type = ch->type;
-    dup->shapeBuffer = SHDuplicateShape(ch->shapeBuffer);
-    dup->pointOnCircumference = SHDuplicatePoint(ch->pointOnCircumference);
+    dup->shapeBuffer = shape_duplicate_shape(ch->shapeBuffer);
+    dup->pointOnCircumference = shape_duplicate_point(ch->pointOnCircumference);
     return dup;
 }
 

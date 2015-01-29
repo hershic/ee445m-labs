@@ -49,7 +49,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(CMAKE_C_FLAGS
-  "${CMAKE_C_FLAGS}"
+  "${CMAKE_C_FLAGS} -Werror"
   "-g -fno-common -ffunction-sections -fdata-sections -Dgcc -DPART_TM4C123GH6PM"
 )
 
