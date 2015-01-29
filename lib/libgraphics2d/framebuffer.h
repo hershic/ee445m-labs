@@ -22,7 +22,7 @@
 #include "shape.h"
 #include "fonts.h"
 
-/* TODO: Optimize this so we don't waste memory */
+/* OPTIMIZE: Pack this so we don't waste memory */
 typedef char** framebuffer;
 
 /*! Convert an intever to a string.
