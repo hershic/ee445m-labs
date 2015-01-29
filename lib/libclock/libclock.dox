@@ -1,7 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/*! Provide usable fonts.
+/*! Model all parts of a clock.
  *  \brief     Model all parts of a clock.
- *  \details Contain all shapes needed to represent a clock and
+ *  \details Encapsulate all shapes needed to represent a clock and
  *  functions to determine how to arrange the hands based on the
  *  current state (time).
  *  \author    Hershal Bhave
@@ -10,6 +10,4 @@
  *  \date      2015
  *  \pre       None
  *  \copyright GNU Public License.
- *  \addtogroup Font Font faces and transformations.
- *  \bug No font transformation functions are included yet.
  */

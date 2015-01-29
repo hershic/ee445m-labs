@@ -1,7 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /*!
- * \brief     A library for displaying framebuffers on physical screens.
- * \details A library for transforming a framebuffer representation
+ * \brief     Library for displaying framebuffers on physical screens.
+ * \details Library for transforming a framebuffer representation
  * into a data structure suitable for projection onto a physical
  * screen.
  * \author    Hershal Bhave
