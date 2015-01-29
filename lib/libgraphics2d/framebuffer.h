@@ -17,8 +17,6 @@
  * \bug This library is not modal.
  */
 
-/* TODO: mark the privates */
-
 #include <stdarg.h>
 #include "g2d_defines.h"
 #include "shape.h"
@@ -176,7 +174,7 @@ unsigned char max_uc(unsigned char, unsigned char);
  *  \param length Length of allocated buffer
  *  \returns char* Buffer containing i represented as a string
  */
-char* itoa(int, char*, uchar);
+char* itoa(int, char*, unsigned char);
 
 /*! Create a framebuffer object and return the handle.
  *  \brief Create a framebuffer object and return the handle.
@@ -189,33 +187,6 @@ framebuffer fb_init(void);
  *  \param fb Framebuffer to destroy
  */
 void fb_destroy(framebuffer);
-
-/*! Draw string on \fb starting at \top_left_corner.
- *  \brief Draw string on fb starting at top_left_corner.
- *  \param fb Framebuffer to use as canvas
- *  \param top_left_corner Coordinate of top left corner of string on fb
- *  \param string Character array to draw
- *  \returns void
- */
-void fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
-
-    _fb_draw_string(fb, top_left_corner, string);
-}
-
-/*! Call \fb_draw_string and destroy \top_left_corner.
- *  \brief Call fb_draw_string and destroy top_left_corner.
- *  \param fb Framebuffer to use as canvas
- *  \param top_left_corner Coordinate of top left corner of string on
- *  fb. Will be destroyed.
- *  \param string Character array to draw
- *  \returns void
- */
-inline
-void fb_draw_string_anon_pt(framebuffer fb, point* top_left_corner, char* string) {
-
-    _fb_draw_string(fb, top_left_corner, string);
-    free(top_left_corner);
-}
 
 /*! Erase \string on \fb starting at \top_left_corner.
  *  \brief Erase string on fb starting at top_left_corner.
@@ -273,9 +244,10 @@ void fb_erase_char(framebuffer, point*, char);
  *  \Warning This will clear the values of the affected pixels; it is
  *  a destructive action and will not 'undo' changes to the canvas.
  */
-inline void fb_erase_char_anon(framebuffer fb, point* top_left_corner, char c) {
+inline
+void fb_erase_char_anon(framebuffer fb, point* top_left_corner, char c) {
 
-    fb_erase_char_anon(fb, top_left_corner);
+    fb_erase_char_anon(fb, top_left_corner, c);
     free(top_left_corner);
 }
 
@@ -287,7 +259,36 @@ inline void fb_erase_char_anon(framebuffer fb, point* top_left_corner, char c) {
  * \param string String to draw
  * \returns void
  */
-private void _fb_draw_string(framebuffer fb, point* top_left_corner, char* string);
+private void _fb_draw_string(framebuffer, point*, char*);
+
+/*! Draw string on \fb starting at \top_left_corner.
+ *  \brief Draw string on fb starting at top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner of string on fb
+ *  \param string Character array to draw
+ *  \returns void
+ */
+inline
+void fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
+
+    _fb_draw_string(fb, top_left_corner, string);
+}
+
+/*! Call \fb_draw_string and destroy \top_left_corner.
+ *  \brief Call fb_draw_string and destroy top_left_corner.
+ *  \param fb Framebuffer to use as canvas
+ *  \param top_left_corner Coordinate of top left corner of string on
+ *  fb. Will be destroyed.
+ *  \param string Character array to draw
+ *  \returns void
+ */
+inline
+void fb_draw_string_anon_pt(framebuffer fb, point* top_left_corner, char* string) {
+
+    _fb_draw_string(fb, top_left_corner, string);
+    free(top_left_corner);
+}
+
 
 /*! Peforms the base work of all framebuffer string drawing requests.
  * \brief For internal use only.
@@ -307,36 +308,7 @@ private void _fb_draw_char(framebuffer, point*, char);
  *  \Note This function can also draw points and lines, i.e. a shape
  *   with only one or two points respectively.
  */
-void fb_draw_shape(framebuffer fb, shape* sh);
-
-/*! Draw a line segment on \fb from \point1 to \point2.
- *  \brief Draw a line segment on \fb from \point1 to \point2.
- *  \param fb Framebuffer to use as canvas
- *  \param point1 Beginning of line segment
- *  \param point2 End of line segment
- *  \returns void
- *  \bug This function is not implemented yet (pass-through).
- */
-inline void fb_draw_line_gradient(framebuffer fb,
-				  point*      point1,
-				  point*      point2,
-				  shade_t     shade) {
-
-    fb_draw_line(fb, point1, point2, shade);
-}
-
-/*! Using \fb as a canvas, draw \sh.
- *  \brief Using \fb as a canvas, draw \sh.
- *  \param fb Framebuffer to use as canvas
- *  \param sh Shape to draw
- *  \returns void
- *  \note This function can also draw points and lines, i.e. a shape
- *  with only one or two points respectively.
- */
-inline void fb_erase_shape(framebuffer fb, shape* sh) {
-
-    _fb_draw_shape(fb, sh, FB_COLOR_ERASE);
-}
+void fb_draw_shape(framebuffer, shape*);
 
 /*! Method to draw multiple shapes on \fb.
  *  Method to draw multiple shapes on \fb. Provide the number of shapes
@@ -354,7 +326,7 @@ void fb_draw_multiple_shapes(framebuffer, ushort, ...);
  *  \param shape_arr Array of shapes to draw
  *  \returns void
  */
-void fb_draw_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr);
+void fb_draw_shape_arr(framebuffer, ushort, shape**);
 
 /*! Method to erase an array of shapes from \fb.
  *  Method to erase an array of shapes from \fb.
@@ -363,7 +335,7 @@ void fb_draw_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr);
  *  \param shape_arr Array containing shapes to erase
  *  \returns void
  */
-void fb_erase_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr);
+void fb_erase_shape_arr(framebuffer, ushort, shape**);
 
 /*! Helper function that performs the mechanics of drawing a shape.
  *  \brief For internal use only.
@@ -375,7 +347,20 @@ void fb_erase_shape_arr(framebuffer fb, ushort numShapes, shape** shape_arr);
  *  \param shade Color of shape
  *  \returns void
  */
-private void _fb_draw_shape(framebuffer fb, shape* sh, shade_t shade);
+private void _fb_draw_shape(framebuffer, shape*, shade_t);
+
+/*! Using \fb as a canvas, draw \sh.
+ *  \brief Using \fb as a canvas, draw \sh.
+ *  \param fb Framebuffer to use as canvas
+ *  \param sh Shape to draw
+ *  \returns void
+ *  \note This function can also draw points and lines, i.e. a shape
+ *  with only one or two points respectively.
+ */
+inline void fb_erase_shape(framebuffer fb, shape* sh) {
+
+    _fb_draw_shape(fb, sh, FB_COLOR_ERASE);
+}
 
 /*! In \fb, set pixel (x,y) to \shade.
  *  \brief In fb, set pixel (x,y) to \shade.
@@ -387,7 +372,7 @@ private void _fb_draw_shape(framebuffer fb, shape* sh, shade_t shade);
  *  \Note Error behavior: when pixel (x,y) is not writeable (off screen)
  *  this function does nothing.
  */
-void fb_set_pixel(framebuffer fb, uchar x, uchar y, shade_t shade);
+void fb_set_pixel(framebuffer, uchar, uchar, shade_t);
 
 /*! Clear pixel (x,y) in \fb.
  *  \brief Clear pixel (x,y) in \fb.
@@ -402,6 +387,63 @@ void fb_set_pixel(framebuffer fb, uchar x, uchar y, shade_t shade);
 inline void fb_clear_pixel(framebuffer fb, uchar x, uchar y) {
 
     fb_set_pixel(fb, x, y, FB_COLOR_ERASE);
+}
+
+/*!
+ * \brief The heavy-lifter (pixel-setter) in line-segment-drawing.
+ * \param fb The framebuffer to draw a line on
+ * \param point1 The first endpoint of the line-segment to draw
+ * \param point2 The final endpoint of the line-segment to draw
+ * \param shade The shade of the line-segment to draw
+ * \returns void
+ */
+private void _fb_draw_line(framebuffer, point*, point*, shade_t);
+
+/*! Erases a line connecting two points before destroys the two points.
+ *  \brief Erases a line connecting two points before destroys the two points.
+ *  \param fb Framebuffer to use as canvas
+ *  \param point1 One endpoint of the line to draw
+ *  \param point2 The other endpoint of the line to draw
+ *  \param shade Desired shade of the line on fb
+ *  \returns void
+ *  \warning This function destroys \a and \b.
+ */
+inline
+void fb_erase_anon_line(framebuffer fb, point* point1, point* point2) {
+
+    _fb_draw_line(fb, point1, point2, FB_COLOR_ERASE);
+    SHDestroyPoint(point1);
+    SHDestroyPoint(point2);
+}
+
+/*! Remove a line segment on \fb from \point1 to \point2.
+ *  \brief Remove a line segment on \fb from \point1 to \point2.
+ *  \param fb Framebuffer to use as canvas
+ *  \param a Beginning of line segment
+ *  \param b End of line segment
+ *  \returns void
+ */
+inline
+void fb_erase_line(framebuffer fb, point* point1, point* point2) {
+
+    _fb_draw_line(fb, point1, point2, FB_COLOR_ERASE);
+}
+
+/*! Draws a line connecting two points before destroying the two points.
+ *  \brief Draws a line connecting two points before destroying the two points.
+ *  \param fb Framebuffer to use as canvas
+ *  \param point1 One endpoint of the line to draw
+ *  \param point2 The other endpoint of the line to draw
+ *  \param shade Desired shade of the line on fb
+ *  \returns void
+ *  \warning This function destroys \a and \b.
+ */
+inline
+void fb_draw_anon_line(framebuffer fb, point* point1, point* point2, shade_t shade) {
+
+    _fb_draw_line(fb, point1, point2, shade);
+    SHDestroyPoint(point1);
+    SHDestroyPoint(point2);
 }
 
 /*! Draw a line segment on \fb from \point1 to \point2 of color \shade.
@@ -419,59 +461,33 @@ void fb_draw_line(framebuffer fb, point* point1, point* point2, shade_t shade) {
     _fb_draw_line(fb, point1, point2, shade);
 }
 
-/*! Draws a line connecting two points before destroying the two points.
- *  \brief Draws a line connecting two points before destroying the two points.
+/*! Draw a line segment on \fb from \point1 to \point2.
+ *  \brief Draw a line segment on \fb from \point1 to \point2.
  *  \param fb Framebuffer to use as canvas
- *  \param point1 One endpoint of the line to draw
- *  \param point2 The other endpoint of the line to draw
- *  \param shade Desired shade of the line on fb
+ *  \param point1 Beginning of line segment
+ *  \param point2 End of line segment
  *  \returns void
- *  \warning This function destroys \a and \b.
+ *  \bug This function is not implemented yet (pass-through).
  */
-inline void fb_draw_anon_line(framebuffer fb, point* point1, point* point2, shade_t shade) {
+inline void fb_draw_line_gradient(framebuffer fb,
+				  point*      point1,
+				  point*      point2,
+				  shade_t     shade) {
 
-    _fb_draw_line(fb, point1, point2, shade);
-    SHDestroyPoint(point1);
-    SHDestroyPoint(point2);
+    fb_draw_line(fb, point1, point2, shade);
 }
 
-/*! Remove a line segment on \fb from \point1 to \point2.
- *  \brief Remove a line segment on \fb from \point1 to \point2.
+/*! Draw an ellipse in fb at center with x- and y- radii of color shade.
+ *  \brief Draw an ellipse in fb at center with specified x- and y-radii of
+ *  color shade.
  *  \param fb Framebuffer to use as canvas
- *  \param a Beginning of line segment
- *  \param b End of line segment
+ *  \param center Center of ellipse to draw
+ *  \param x_radius X radius of specified ellipse
+ *  \param y_radius Y radius of specified ellipse
+ *  \param shade Shade to draw ellipse with on fb
  *  \returns void
  */
-inline void fb_erase_line(framebuffer fb, point* point1, point* point2) {
-
-    _fb_draw_line(fb, point1, point2, FB_COLOR_ERASE);
-}
-
-/*! Erases a line connecting two points before destroys the two points.
- *  \brief Erases a line connecting two points before destroys the two points.
- *  \param fb Framebuffer to use as canvas
- *  \param point1 One endpoint of the line to draw
- *  \param point2 The other endpoint of the line to draw
- *  \param shade Desired shade of the line on fb
- *  \returns void
- *  \warning This function destroys \a and \b.
- */
-inline void fb_erase_anon_line(framebuffer fb, point* point1, point* point2) {
-
-    _fb_draw_line(fb, point1, point2, FB_COLOR_ERASE);
-    SHDestroyPoint(point1);
-    SHDestroyPoint(point2);
-}
-
-/*!
- * \brief The heavy-lifter (pixel-setter) in line-segment-drawing.
- * \param fb The framebuffer to draw a line on
- * \param point1 The first endpoint of the line-segment to draw
- * \param point2 The final endpoint of the line-segment to draw
- * \param shade The shade of the line-segment to draw
- * \returns void
- */
-private void _fb_draw_line(framebuffer, point*, point*, shade_t);
+void fb_draw_ellipse(framebuffer, point*, ushort, ushort, shade_t);
 
 /*! Draw a circle in \fb at \center with radius of color \shade.
  *  \brief Draw a circle in \fb at \center with radius of color \shade.
@@ -486,22 +502,6 @@ inline void fb_draw_circle(framebuffer fb, circle* c) {
     fb_draw_ellipse(fb, c->center, c->radius, c->radius, c->center->shade);
 }
 
-/*! Draw an ellipse in fb at center with x- and y- radii of color shade.
- *  \brief Draw an ellipse in fb at center with specified x- and y-radii of
- *  color shade.
- *  \param fb Framebuffer to use as canvas
- *  \param center Center of ellipse to draw
- *  \param x_radius X radius of specified ellipse
- *  \param y_radius Y radius of specified ellipse
- *  \param shade Shade to draw ellipse with on fb
- *  \returns void
- */
-void fb_draw_ellipse(framebuffer fb,
-                     point*      center,
-                     ushort      x_radius,
-                     ushort      y_radius,
-                     shade_t     shade);
-
 /*! Fill an ellipse on fb.
  *  \brief Fill an ellipse on fb.
  *  \details Fill on fb from the four symmetric points on an ellipse
@@ -514,10 +514,7 @@ void fb_draw_ellipse(framebuffer fb,
  *  \returns void
  *  \note Points will be shaded with the value in center->shade.
  */
-private void _fb_fill_four_ellipse_points(framebuffer fb,
-					  point*      center,
-					  ushort      x,
-					  ushort      y);
+private void _fb_fill_four_ellipse_points(framebuffer, point*, ushort, ushort);
 
 /*! Draw on fb a shaded ellipse described by center, x- and y-radii.
  *  \brief Draw on fb a shaded ellipse described by center, x- and y-radii.
@@ -528,11 +525,7 @@ private void _fb_fill_four_ellipse_points(framebuffer fb,
  *  \param shade Color to fill ellipse with
  *  OPTIONAL: allow for different specified border color
  */
-void fb_draw_ellipse_fill(framebuffer fb,
-			  point*      center,
-			  ushort      x_radius,
-			  ushort      y_radius,
-			  shade_t     shade);
+void fb_draw_ellipse_fill(framebuffer, point*, ushort, ushort, shade_t);
 
 /*! Plot on fb the four symmetric points on an ellipse.
  *  \brief Plot on fb the four symmetric points on an ellipse
@@ -545,29 +538,22 @@ void fb_draw_ellipse_fill(framebuffer fb,
  *  \note Points will be shaded with the value in \center->shade.
  */
 private
-void _fb_plot_four_ellipse_points(framebuffer fb,
-				  point*      center,
-				  ushort      x,
-				  ushort      y);
+void _fb_plot_four_ellipse_points(framebuffer, point*, ushort, ushort);
 
 
-/* TODO: document */
-inline
-unsigned char max_pixel_width_of_long(uchar x, uchar y) {
+/* TODO: were these functions ever used? */
+/* /\* TODO: document *\/ */
+/* inline */
+/* unsigned char max_pixel_width_of_long(uchar x, uchar y) { */
 
-    return max_uc(_fb_pixel_width_of_long(x), _fb_pixel_width_of_long(y));
-    }
+/*     return max_uc(_fb_pixel_width_of_long(x), _fb_pixel_width_of_long(y)); */
+/* } */
 
-inline
-unsigned char max_pixel_height_of_long(uchar x, uchar y) {
+/* inline */
+/* unsigned char max_pixel_height_of_long(uchar x, uchar y) { */
 
-    return max_uc(_fb_pixel_height_of_long(x),_fb_pixel_height_of_long(y));
-}
-
-
-/* private pixel_t _fb_pixel_width_of_long(long); */
-/* private pixel_t _fb_pixel_height_of_long(long); */
-/* private pixel_t _fb_pixel_width_of_string(char*); */
+/*     return max_uc(_fb_pixel_height_of_long(x),_fb_pixel_height_of_long(y)); */
+/* } */
 
 /*! Methods to print points to the console. Will not work on an
  * embedded system (functions will return immediately). */
@@ -623,5 +609,10 @@ void fb_console_println_coordinate(uchar, uchar, shade_t);
  *  \returns void
  */
 void fb_console_print_coordinate(uchar, uchar, shade_t);
+
+/** These functions were not implemented at the conclusion of EE445L. **/
+/* private pixel_t _fb_pixel_width_of_long(long); */
+/* private pixel_t _fb_pixel_height_of_long(long); */
+/* private pixel_t _fb_pixel_width_of_string(char*); */
 
 #endif	/*! __FRAMEBUFFER__ */

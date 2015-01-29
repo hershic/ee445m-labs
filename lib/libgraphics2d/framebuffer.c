@@ -1,15 +1,12 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "string.h"
 #include "g2d_defines.h"
 #include "framebuffer.h"
 
 #define NDEBUG
-
-#ifndef NDEBUG
-#include <stdio.h>
-#endif
 
 framebuffer fb_init() {
 
@@ -98,7 +95,7 @@ void fb_set_pixel(framebuffer fb, uchar x, uchar y, shade_t shade) {
 
 void fb_erase_char(framebuffer fb, point* top_left_corner, char c) {
 
-    point* pen = SHDuplicatePoint(top_left_corner);
+    point* pen = shape_duplicate_point(top_left_corner);
     pen->shade = FB_COLOR_ERASE;
     _fb_draw_char(fb, pen, c);
     SHDestroyPoint(pen);
@@ -111,8 +108,8 @@ void _fb_draw_line(framebuffer fb, point* point1, point* point2, shade_t shade) 
     point* b;
     int dx, dy, sx, sy, e2, err;
 
-    a = SHDuplicatePoint(point1);
-    b = SHDuplicatePoint(point2);
+    a = shape_duplicate_point(point1);
+    b = shape_duplicate_point(point2);
 
     dx = abs(b->x-a->x); sx = (a->x < b->x) ? 1 : -1;
     dy = abs(b->y-a->y); sy = (a->y < b->y) ? 1 : -1;
@@ -262,7 +259,7 @@ void fb_draw_ellipse_fill(framebuffer fb,
 
 void fb_erase_string(framebuffer fb, point* top_left_corner, char* string) {
 
-    point* pt = SHDuplicatePoint(top_left_corner);
+    point* pt = shape_duplicate_point(top_left_corner);
     pt->shade = FB_COLOR_ERASE;
     _fb_draw_string(fb, pt, string);
     SHDestroyPoint(pt);
@@ -271,7 +268,7 @@ void fb_erase_string(framebuffer fb, point* top_left_corner, char* string) {
 private
 void _fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
 
-    point* pen = SHDuplicatePoint(top_left_corner);
+    point* pen = shape_duplicate_point(top_left_corner);
     while(*string != null) {
 	_fb_draw_char(fb, pen, *(string++));
 	pen->x += FONT_VALVANO_WIDTH + FONT_VALVANO_KERNING;

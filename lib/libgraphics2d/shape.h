@@ -56,17 +56,6 @@ typedef struct circle {
     ushort radius;
 } circle;
 
-/*! Duplicate a point
- *  \param p Point to duplicate
- *  \returns point* Duplicated point
- *  \warning Don't forget to destroy each duplicated (created) point.
- *  \ingroup Graphics
- */
-inline point* shape_duplicate_point(point* p) {
-
-    return shape_create_point(p->x, p->y, p->shade);
-}
-
 /*! Destroys a point described by x and y coordinates.
  *  \param p Point to destroy
  *  \ingroup Graphics
@@ -93,6 +82,17 @@ inline void shape_destroy_circle(circle* cir) {
  *  \ingroup Graphics
  */
 point* shape_create_point(ushort, ushort, shade_t);
+
+/*! Duplicate a point
+ *  \param p Point to duplicate
+ *  \returns point* Duplicated point
+ *  \warning Don't forget to destroy each duplicated (created) point.
+ *  \ingroup Graphics
+ */
+inline point* shape_duplicate_point(point* p) {
+
+    return shape_create_point(p->x, p->y, p->shade);
+}
 
 /*! Return a pointer to a shape with numPoints points.
  *  \param  numpoints Number of vertices in this polygon
