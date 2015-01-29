@@ -13,15 +13,12 @@
 
 /*** Custom data types ***/
 /* swiss army knife data types */
-
 #ifndef null
 #define null 0x00
-#endif /* null */
-
+#endif
 #ifndef NULL
 #define NULL 0x00
-#endif /* NULL */
-
+#endif
 typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned long ulong;
@@ -84,14 +81,14 @@ typedef unsigned long ulong;
 #define SHADE_SIZE 4 /* bits necessary to represent different shades */
 
 /* would be in framebuffer.h but we had scoping issues... */
-#define VALVANO_FONT_HEIGHT   ((pixel_t) 8)
-#define VALVANO_FONT_WIDTH    ((pixel_t) 5)
-#define VALVANO_FONT_KERNING  ((pixel_t) 2)
+#define FONT_VALVANO_HEIGHT   ((pixel_t) 8)
+#define FONT_VALVANO_WIDTH    ((pixel_t) 5)
+#define FONT_VALVANO_KERNING  ((pixel_t) 2)
 
 /* vertical space between lines      */
-#define VALVANO_FONT_LINE_SPACING  ((pixel_t) 2)
+#define FONT_VALVANO_LINE_SPACING  ((pixel_t) 2)
 /* vertical space between paragraphs */
-#define VALVANO_FONT_PARAGRAPH_SPACING  (VALVANO_FONT_LINE_SPACING+3)
+#define FONT_VALVANO_PARAGRAPH_SPACING  (FONT_VALVANO_LINE_SPACING+3)
 
 /* OLED screen dimensions */
 #define OLED_HEIGHT    ((pixel_t) 96)

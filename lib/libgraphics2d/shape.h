@@ -14,7 +14,7 @@
  *  \warning   Destroy whatever you create.
  *  \note      This library is intended for use with the LM3S1968.
  *  \copyright GNU Public License.
- *  \addtogroup Graphics Graphial manipulation framework
+ *  \addtogroup Graphics Graphical manipulation framework
  */
 
 #include <stdlib.h>
@@ -56,6 +56,24 @@ typedef struct circle {
     ushort radius;
 } circle;
 
+/*! Destroys a point described by x and y coordinates.
+ *  \param p Point to destroy
+ *  \ingroup Graphics
+ */
+inline void shape_destroy_point(point* p) {
+
+    free(p);
+}
+
+/*! Destroys a circle described by center and radius.
+ *  \param cir Circle to destroy
+ *  \ingroup Graphics
+ */
+inline void shape_destroy_circle(circle* cir) {
+
+    free(cir);
+}
+
 /*! Return a point that describes the given arguments.
  *  \param x x coordinate
  *  \param y y coordinate
@@ -74,24 +92,6 @@ point* shape_create_point(ushort, ushort, shade_t);
 inline point* shape_duplicate_point(point* p) {
 
     return shape_create_point(p->x, p->y, p->shade);
-}
-
-/*! Destroys a point described by x and y coordinates.
- *  \param p Point to destroy
- *  \ingroup Graphics
- */
-inline void shape_destroy_point(point* p) {
-
-    free(p);
-}
-
-/*! Destroys a circle described by center and radius.
- *  \param cir Circle to destroy
- *  \ingroup Graphics
- */
-inline void shape_destroy_circle(circle* cir) {
-
-    free(cir);
 }
 
 /*! Return a pointer to a shape with numPoints points.
