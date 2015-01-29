@@ -1,0 +1,13 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ * \brief     A library for displaying framebuffers on physical screens.
+ * \details A library for transforming a framebuffer representation
+ * into a data structure suitable for projection onto a physical
+ * screen.
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Graphics Graphical manipulation framework
+ */
