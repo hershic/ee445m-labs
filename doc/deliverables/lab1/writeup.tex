@@ -161,9 +161,12 @@
 
       \item The vector table exists in \verb|startup.s|. The system
         finds the named function and calls that function when the
-        interrupt is received, in our case,
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+        interrupt is received.
+      \item The acknowledgement occurs by setting a bit in a
+        memory-mapped hardware register. For this device, bit 6 is set
+        to acknowledge the interrupt.
+      \item The TM4C is like a PC. It has two 16-byte FIFOs (one for
+        transmit, one for receive).
       \end{enumerate}
     \end{solution}
   \end{Ex}
@@ -186,7 +189,7 @@
       \item Draw a character \verb|c|, at position (\verb|x|,
         \verb|y|), with color \verb|color|, background \verb|bg|, and
         font size \verb|size|.
-      \item 
+      \item
         \begin{itemize}
         \item pin 10 (Backlight) connected to +3.3 V
         \item pin 9 (\verb|MISO|) unconnected
@@ -199,7 +202,7 @@
         \item pin 2 (\verb|VCC|) connected to +3.3 V
         \item pin 1 (\verb|GND|) connected to ground
         \end{itemize}
-      \item {\huge \color{red} TODO}
+      \item The I$^2$C shares PA6 and PA7. SSI pins also shared.
       \end{enumerate}
     \end{solution}
   \end{Ex}
@@ -222,9 +225,39 @@
     \end{enumerate}
     \begin{solution}
       \begin{enumerate} \hfill \vspace{.75em} \\
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item \verb|NVIC_ST_RELOAD_R = NVIC_ST_RELOAD_M;|
+      \item The system clock is established by the \verb|PLL_Init|
+        function.
+        
+        \begin{lstlisting}[language=C]
+          void PLL_Init(void){
+            // 0) configure the system to use RCC2 for advanced features
+            //    such as 400 MHz PLL and non-integer System Clock Divisor
+            SYSCTL_RCC2_R |= SYSCTL_RCC2_USERCC2;
+            // 1) bypass PLL while initializing
+            SYSCTL_RCC2_R |= SYSCTL_RCC2_BYPASS2;
+            // 2) select the crystal value and oscillator source
+            SYSCTL_RCC_R &= ~SYSCTL_RCC_XTAL_M;   // clear XTAL field
+            SYSCTL_RCC_R += SYSCTL_RCC_XTAL_16MHZ;// configure for 16 MHz crystal
+            SYSCTL_RCC2_R &= ~SYSCTL_RCC2_OSCSRC2_M;// clear oscillator source field
+            SYSCTL_RCC2_R += SYSCTL_RCC2_OSCSRC2_MO;// configure for main oscillator source
+            // 3) activate PLL by clearing PWRDN
+            SYSCTL_RCC2_R &= ~SYSCTL_RCC2_PWRDN2;
+            // 4) set the desired system divider and the system divider least significant bit
+            SYSCTL_RCC2_R |= SYSCTL_RCC2_DIV400;  // use 400 MHz PLL
+            SYSCTL_RCC2_R = (SYSCTL_RCC2_R&~0x1FC00000) // clear system clock divider field
+            + (SYSDIV2<<22);      // configure for 80 MHz clock
+            // 5) wait for the PLL to lock by polling PLLLRIS
+            while((SYSCTL_RIS_R&SYSCTL_RIS_PLLLRIS)==0){};
+            // 6) enable use of PLL by clearing BYPASS
+            SYSCTL_RCC2_R &= ~SYSCTL_RCC2_BYPASS2;
+          }
+        \end{lstlisting}
+        The 80MHz version sets \verb|SYSDIV2=4|, the 50MHz version
+        sets \verb|SYSDIV2=7|, and the 16MHz version does not set the
+        PLL at all.
+      \item The interrupt is acknowledged by reading the \verb|COUNT|
+        bit of the \verb|STCTRL| register.
       \end{enumerate}
     \end{solution}
   \end{Ex}
@@ -238,13 +271,24 @@
     \item What is the first assembly instruction in the ISR? What is
       the last instruction?
     \item How does the system save the prior context as it switches
-      threads when an interrupt is triggered? c) How does the system
-      restore context as it switches back after executing the ISR?
+      threads when an interrupt is triggered?
+    \item How does the system restore context as it switches back
+      after executing the ISR?
     \end{enumerate}
     \begin{solution} \hfill \vspace{.75em} \\
       \begin{enumerate}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item The first action upon entry into the ISR is to put the
+        \verb|EXC_RETURN| value into the \verb|LR|. The last
+        instruction can be any of the three:
+        \begin{itemize}
+        \item A \verb|LDM| or \verb|POP|
+        \item A \verb|BX|
+        \item A \verb|LDR| with the \verb|PC| as the destination
+        \end{itemize}
+      \item The system saves context by pushing all the registers onto
+        the stack.
+      \item The system restores context by popping all the register
+        values from the stack.
       \end{enumerate}
     \end{solution}
   \end{Ex}
