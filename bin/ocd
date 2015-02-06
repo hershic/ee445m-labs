@@ -111,7 +111,7 @@ declare -ri gdb_port=3333
 ## @ingroup OpenOCD
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
-# TODO: document
+# TODO: extract as separate script
 retry() {
     local n=0
     local try=$1
@@ -130,7 +130,7 @@ retry() {
 ## @ingroup OpenOCD
 openocd_program() {
 
-    retry 10 ${execute_ocd} openocd --file ${interface} -c "${openocd_args_program}"
+    retry 10 ${execute_ocd} openocd --file "${interface}" -c "'${openocd_args_program}'"
 }
 
 ## @fn openocd_debug()
@@ -139,7 +139,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    retry 10 ${execute_ocd} openocd --file ${interface} -c "${openocd_args_debug}"
+    retry 10 ${execute_ocd} openocd --file "${interface}" -c "'${openocd_args_debug}'"
 }
 
 # Obey command line arguments
