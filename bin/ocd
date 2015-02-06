@@ -111,7 +111,7 @@ declare -ri gdb_port=3333
 ## @ingroup OpenOCD
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
-# TODO: extract as separate script
+# TODO: document
 retry() {
     local n=0
     local try=$1
