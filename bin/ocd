@@ -112,6 +112,7 @@ declare -ri gdb_port=3333
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
 # TODO: document
+# TODO: kill after three seconds of no activity
 retry() {
     local n=0
     local try=$1
