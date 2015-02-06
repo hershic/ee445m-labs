@@ -58,7 +58,7 @@ int main(void) {
 
     /* Postpone death */
     while (1) {
-        SysCtlDelay(SysCtlClockGet() / (1000 * 3));
+        SysCtlDelay(1000 * SysCtlClockGet() / (1000 * 3));
         blink_onboard_led();
     }
 }

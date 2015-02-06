@@ -121,7 +121,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    ${execute_ocd} openocd --file ${interface} -c ${openocd_args_debug}
+    ${execute_ocd} openocd --file ${interface} -c "${openocd_args_debug}"
     until !!; do :; done
 }
 
