@@ -2,28 +2,13 @@
 #ifndef __SHAPE__
 #define __SHAPE__
 
-/*!
- *  \brief     Two dimensional shape library.
- *  \details   Graphics framework for describing 2D systems.
- *  \author    Hershal Bhave
- *  \author    Eric Crosson
- *  \version   0.1
- *  \date      2015
- *  \pre       None
- *  \bug       No scoreboard to detect UART collisions yet
- *  \warning   Destroy whatever you create.
- *  \note      This library is intended for use with the LM3S1968.
- *  \copyright GNU Public License.
- *  \addtogroup Graphics Graphical manipulation framework
- */
-
 #include <stdlib.h>
-#include "g2d_defines.h"
+#include "libstd/defines.h"
 
 /*! \struct point
  *  \brief Representation of an ordered pair with a shade
  *  \details An ordered pair to a Cartesian coordinate system.
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 typedef struct point {
 
@@ -36,7 +21,7 @@ typedef struct point {
 /*! \struct shape
  *  \brief Representation of a shape
  *  \details A shape defined by multiple points.
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 typedef struct shape {
 
@@ -47,7 +32,7 @@ typedef struct shape {
 /*! \struct circle
  *  \brief Representation of a circle
  *  \details A circle defined by a center and a radius.
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 typedef struct circle {
 
@@ -58,7 +43,7 @@ typedef struct circle {
 
 /*! Destroys a point described by x and y coordinates.
  *  \param p Point to destroy
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 inline void shape_destroy_point(point* p) {
 
@@ -67,7 +52,7 @@ inline void shape_destroy_point(point* p) {
 
 /*! Destroys a circle described by center and radius.
  *  \param cir Circle to destroy
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 inline void shape_destroy_circle(circle* cir) {
 
@@ -79,7 +64,7 @@ inline void shape_destroy_circle(circle* cir) {
  *  \param y y coordinate
  *  \param shade shading of this point
  *  \returns point* The newly created point
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 point* shape_create_point(ushort, ushort, shade_t);
 
@@ -87,7 +72,7 @@ point* shape_create_point(ushort, ushort, shade_t);
  *  \param p Point to duplicate
  *  \returns point* Duplicated point
  *  \warning Don't forget to destroy each duplicated (created) point.
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 inline point* shape_duplicate_point(point* p) {
 
@@ -98,7 +83,7 @@ inline point* shape_duplicate_point(point* p) {
  *  \param  numpoints Number of vertices in this polygon
  *  \param points... Comma separated point-defined polygon
  *  \returns point* Pointer to the described polygon
- *  \ingroup Graphics
+ *  \ingroup Geometry
  *  \note va_args requires a preceeding argument (size va_args).
  */
 shape* shape_create(ushort, ...);
@@ -106,14 +91,14 @@ shape* shape_create(ushort, ...);
 /*! Duplicate a shape object.
  *  \param shape The shape to duplicate
  *  \returns shape A duplicate of the given shape
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 shape* shape_duplicate_shape(shape*);
 
 /*! Destroy a shape object.
  *  \param sh Shape object to destroy
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 void   shape_destroy_shape(shape*);
 
@@ -122,7 +107,7 @@ void   shape_destroy_shape(shape*);
  *  \param center Point describing the center of the circle
  *  \param radius Length of the radius in units
  *  \returns shape* to newly described circle
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 circle* shape_create_circle(ushort, point*);
 
@@ -131,7 +116,7 @@ circle* shape_create_circle(ushort, point*);
  *  \param p1 Vertex b
  *  \param p2 Vertex c
  *  \returns shape* to newly described triangle
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 shape*  shape_create_triangle(point*, point*, point*);
 
@@ -140,7 +125,7 @@ shape*  shape_create_triangle(point*, point*, point*);
  *  \param width Width of the quadrilateral
  *  \param p2 height Height of the quadrilateral
  *  \returns shape* to newly described quadrilateral
- *  \ingroup Graphics
+ *  \ingroup Geometry
  */
 shape*  shape_create_quad(point*, uchar, uchar);
 

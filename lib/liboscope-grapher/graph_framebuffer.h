@@ -2,7 +2,7 @@
 #define __GRAPH_FRAMEBUFFER__
 
 #include "graphlib.h"
-#include "g2d_defines.h"
+#include "libstd/defines.h"
 #include "framebuffer.h"
 
 /* Graph functions */

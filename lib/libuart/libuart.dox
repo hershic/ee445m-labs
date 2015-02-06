@@ -1,0 +1,11 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ *  \brief     UART standard library
+ *  \details   UART initialization, transmission, reception.
+ *  \author    Eric Crosson
+ *  \version   0.1
+ *  \date      2015
+ *  \pre       None
+ *  \bug       No scoreboard - UART collisions will not be detected
+ *  \copyright GNU Public License.
+ */

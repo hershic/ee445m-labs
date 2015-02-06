@@ -1,0 +1,9 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*! Model a time that can be advanced and rewound.
+ *  \brief Model a time that can be advanced and rewound.
+ *  \author    Hershal Bhave
+ *  \version   0.1
+ *  \date      2014
+ *  \pre       None
+ *  \copyright GNU Public License.
+ */

@@ -8,6 +8,8 @@
  * \addtogroup Globals Global variables and typedefs
  */
 
+/* TODO: Doxygenize better */
+
 #ifndef __G2D_DEFINES__
 #define __G2D_DEFINES__
 

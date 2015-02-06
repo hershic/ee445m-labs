@@ -4,19 +4,6 @@
 
 #include <stdbool.h>
 
-/*!
- *  \brief     UART standard library
- *  \details   UART initialization, transmission, reception.
- *  \author    Hershal Bhave
- *  \author    Eric Crosson
- *  \version   0.1
- *  \date      2015
- *  \pre       None
- *  \bug       No scoreboard - UART collisions will not be detected
- *  \warning   Do not bother a UART who is busy slaving for another user.
- *  \copyright GNU Public License.
- */
-
 #define UART_UNUSED -1
 
 /*! Modally set the active uart channel.

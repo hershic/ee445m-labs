@@ -10,7 +10,7 @@
  * LM3S1968
  */
 
-#include "shape.h"
+#include "libmath/geometry/shape.h"
 #include "timekit.h"
 
 #define CH_HOURS	1

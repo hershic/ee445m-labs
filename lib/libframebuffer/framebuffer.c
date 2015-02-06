@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "string.h"
-#include "g2d_defines.h"
+#include "libstd/defines.h"
 #include "framebuffer.h"
 
 #define NDEBUG

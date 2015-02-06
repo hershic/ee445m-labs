@@ -1,0 +1,10 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*! Provide an interface for framebuffers to be displayed via terminal (GNU/Linux style).
+ *  \brief Provide an interface for framebuffers to be displayed via terminal (GNU/Linux style).
+ *  \author    Hershal Bhave
+ *  \author    Eric Crosson
+ *  \version   0.1
+ *  \date      2015
+ *  \pre       None
+ *  \copyright GNU Public License.
+ */

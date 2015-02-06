@@ -2,50 +2,26 @@
 #ifndef __FRAMEBUFFER__
 #define __FRAMEBUFFER__
 
-/*!
- * \brief Frame bufer representation in memory
- * \details Represent and transform one frame's buffer in memory.
- * \author    Hershal Bhave
- * \author    Eric Crosson
- * \version   0.1
- * \date      2014
- * \copyright GNU Public License.
- * \addtogroup Graphics Graphical manipulation framework
- * \warning Private functions are helper functions, and not to be accessed
-   (though possible) outside of the scope of this class. The purpose of
-   these functions is to reduce duplicated code.
- * \bug This library is not modal.
- */
-
 #include <stdarg.h>
-#include "g2d_defines.h"
-#include "shape.h"
-#include "fonts.h"
+#include "libstd/defines.h"
+#include "libstd/nexus.h"
+#include "libmath/geometry/shape.h"
+#include "libfont/font.h"
 
 /* OPTIMIZE: Pack this so we don't waste memory */
 typedef char** framebuffer;
 
-/*! Convert an intever to a string.
- *  \brief Convert an integer to a string.
- *  \param i Int to convert into a string
- *  \param buffer Buffer for string contents
- *  \param length Length of allocated buffer
- *  \returns char* Buffer containing i represented as a string
- *  \ingroup Graphics
- */
-char* itoa(int, char*, unsigned char);
-
 /*! Create a framebuffer object and return the handle.
  *  \brief Create a framebuffer object and return the handle.
  *  \returns framebuffer Newly malloc'd framebuffer
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 framebuffer fb_init(void);
 
 /*! Destroy a framebuffer object.
  *  \brief Destroy a framebuffer object.
  *  \param fb Framebuffer to destroy
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_destroy(framebuffer);
 
@@ -59,7 +35,7 @@ void fb_destroy(framebuffer);
  *  arrays and coordinates must be identical.
  *  \Warning This will clear the values of the affected pixels; it is
  *  a destructive action and will not 'undo' changes to the canvas.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_erase_string(framebuffer, point*, char*);
 
@@ -73,7 +49,7 @@ void fb_erase_string(framebuffer, point*, char*);
  *  arrays and coordinates must be identical.
  *  \Warning This will clear the values of the affected pixels; it is
  *  a destructive action and will not 'undo' changes to the canvas.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_erase_string_anon(framebuffer fb, point* top_left_corner, char* string) {
@@ -92,7 +68,7 @@ void fb_erase_string_anon(framebuffer fb, point* top_left_corner, char* string) 
  *  coordinates must be identical.
  *  \Warning This will clear the values of the affected pixels; it is
  *  a destructive action and will not 'undo' changes to the canvas.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_erase_char(framebuffer, point*, char);
 
@@ -107,7 +83,7 @@ void fb_erase_char(framebuffer, point*, char);
  *  coordinates must be identical.
  *  \Warning This will clear the values of the affected pixels; it is
  *  a destructive action and will not 'undo' changes to the canvas.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_erase_char_anon(framebuffer fb, point* top_left_corner, char c) {
@@ -123,7 +99,7 @@ void fb_erase_char_anon(framebuffer fb, point* top_left_corner, char c) {
  *  \param top_left_corner Coordinate of top left corner of string on fb
  *  \param string String to draw
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 private void _fb_draw_string(framebuffer, point*, char*);
 
@@ -133,7 +109,7 @@ private void _fb_draw_string(framebuffer, point*, char*);
  *  \param top_left_corner Coordinate of top left corner of string on fb
  *  \param string Character array to draw
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
@@ -148,7 +124,7 @@ void fb_draw_string(framebuffer fb, point* top_left_corner, char* string) {
  *  fb. Will be destroyed.
  *  \param string Character array to draw
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_draw_string_anon_pt(framebuffer fb, point* top_left_corner, char* string) {
@@ -165,7 +141,7 @@ void fb_draw_string_anon_pt(framebuffer fb, point* top_left_corner, char* string
  *  \param pen Coordinate of top left corner of char on fb
  *  \param c Character to draw
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 private void _fb_draw_char(framebuffer, point*, char);
 
@@ -176,7 +152,7 @@ private void _fb_draw_char(framebuffer, point*, char);
  *  \returns void
  *  \Note This function can also draw points and lines, i.e. a shape
  *  with only one or two points respectively.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_draw_shape(framebuffer, shape*);
 
@@ -186,7 +162,7 @@ void fb_draw_shape(framebuffer, shape*);
  *  \param fb Framebuffer to use as canvas
  *  \param numShapes Number of shapes to draw
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_draw_shapes(framebuffer, ushort, ...);
 
@@ -196,7 +172,7 @@ void fb_draw_shapes(framebuffer, ushort, ...);
  *  \param numShapes Number of shapes to draw
  *  \param shape_arr Array of shapes to draw
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_draw_shape_arr(framebuffer, ushort, shape**);
 
@@ -206,7 +182,7 @@ void fb_draw_shape_arr(framebuffer, ushort, shape**);
  *  \param numShapes Number of shapes to erase
  *  \param shape_arr Array containing shapes to erase
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_erase_shape_arr(framebuffer, ushort, shape**);
 
@@ -219,7 +195,7 @@ void fb_erase_shape_arr(framebuffer, ushort, shape**);
  *  \param sh Shape to draw
  *  \param shade Color of shape
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 private void _fb_draw_shape(framebuffer, shape*, shade_t);
 
@@ -230,7 +206,7 @@ private void _fb_draw_shape(framebuffer, shape*, shade_t);
  *  \returns void
  *  \note This function can also draw points and lines, i.e. a shape
  *  with only one or two points respectively.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline void fb_erase_shape(framebuffer fb, shape* sh) {
 
@@ -246,7 +222,7 @@ inline void fb_erase_shape(framebuffer fb, shape* sh) {
  *  \returns void
  *  \Note Error behavior: when pixel (x,y) is not writeable (off screen)
  *  this function does nothing.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_set_pixel(framebuffer, uchar, uchar, shade_t);
 
@@ -259,7 +235,7 @@ void fb_set_pixel(framebuffer, uchar, uchar, shade_t);
  *  \returns void
  *  \Note Error behavior: when pixel (x,y) is not writeable (off screen)
  *  this function does nothing.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline void fb_clear_pixel(framebuffer fb, uchar x, uchar y) {
 
@@ -275,7 +251,7 @@ inline void fb_clear_pixel(framebuffer fb, uchar x, uchar y) {
  *  \returns void
  *  \Note Error behavior: when pixel (x,y) is not writeable (off screen)
  *  this function does nothing.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline void fb_erase_pixel(framebuffer fb, uchar x, uchar y) {
 
@@ -289,7 +265,7 @@ inline void fb_erase_pixel(framebuffer fb, uchar x, uchar y) {
  * \param point2 The final endpoint of the line-segment to draw
  * \param shade The shade of the line-segment to draw
  * \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 private void _fb_draw_line(framebuffer, point*, point*, shade_t);
 
@@ -301,7 +277,7 @@ private void _fb_draw_line(framebuffer, point*, point*, shade_t);
  *  \param shade Desired shade of the line on fb
  *  \returns void
  *  \warning This function destroys \a and \b.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_erase_anon_line(framebuffer fb, point* point1, point* point2) {
@@ -317,7 +293,7 @@ void fb_erase_anon_line(framebuffer fb, point* point1, point* point2) {
  *  \param a Beginning of line segment
  *  \param b End of line segment
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_erase_line(framebuffer fb, point* point1, point* point2) {
@@ -333,7 +309,7 @@ void fb_erase_line(framebuffer fb, point* point1, point* point2) {
  *  \param shade Desired shade of the line on fb
  *  \returns void
  *  \warning This function destroys \a and \b.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_draw_anon_line(framebuffer fb, point* point1, point* point2, shade_t shade) {
@@ -351,7 +327,7 @@ void fb_draw_anon_line(framebuffer fb, point* point1, point* point2, shade_t sha
  *  \param point2 End of line segment
  *  \param shade Color of line segment
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline
 void fb_draw_line(framebuffer fb, point* point1, point* point2, shade_t shade) {
@@ -366,7 +342,7 @@ void fb_draw_line(framebuffer fb, point* point1, point* point2, shade_t shade) {
  *  \param point2 End of line segment
  *  \returns void
  *  \bug This function is not implemented yet (pass-through).
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline void fb_draw_line_gradient(framebuffer fb,
 				  point*      point1,
@@ -385,7 +361,7 @@ inline void fb_draw_line_gradient(framebuffer fb,
  *  \param y_radius Y radius of specified ellipse
  *  \param shade Shade to draw ellipse with on fb
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_draw_ellipse(framebuffer, point*, ushort, ushort, shade_t);
 
@@ -396,7 +372,7 @@ void fb_draw_ellipse(framebuffer, point*, ushort, ushort, shade_t);
  *  \param radius Radius of circle to draw
  *  \param shade Shade to draw circle with on fb
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 inline void fb_draw_circle(framebuffer fb, circle* c) {
 
@@ -414,7 +390,7 @@ inline void fb_draw_circle(framebuffer fb, circle* c) {
  *  \param y Y offset of point to plot
  *  \returns void
  *  \note Points will be shaded with the value in center->shade.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 private void _fb_fill_four_ellipse_points(framebuffer, point*, ushort, ushort);
 
@@ -425,7 +401,7 @@ private void _fb_fill_four_ellipse_points(framebuffer, point*, ushort, ushort);
  *  \param x_radius X radius of ellipse to plot
  *  \param y_radius Y radius of ellipse to plot
  *  \param shade Color to fill ellipse with
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  *  OPTIONAL: allow for different specified border color
  */
 void fb_draw_ellipse_fill(framebuffer, point*, ushort, ushort, shade_t);
@@ -439,7 +415,7 @@ void fb_draw_ellipse_fill(framebuffer, point*, ushort, ushort, shade_t);
  *  \param y Y offset of point to plot
  *  \returns void
  *  \note Points will be shaded with the value in \center->shade.
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 private
 void _fb_plot_four_ellipse_points(framebuffer, point*, ushort, ushort);
@@ -453,7 +429,7 @@ void _fb_plot_four_ellipse_points(framebuffer, point*, ushort, ushort);
  *  newline) call function \fb_console_print_point instead.
  *  \param p Point to printf to the console
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_console_println_point(point*);
 
@@ -466,7 +442,7 @@ void fb_console_println_point(point*);
  *  WITH a newline call function fb_console_println_point instead.
  *  \param p Point to printf to the console
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_console_print_point(point*);
 
@@ -481,7 +457,7 @@ void fb_console_print_point(point*);
  *  \param y Y coordinate of the coordinate to print
  *  \param shade Shade of the coodrinate to print
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_console_println_coordinate(uchar, uchar, shade_t);
 
@@ -496,7 +472,7 @@ void fb_console_println_coordinate(uchar, uchar, shade_t);
  *  \param y Y coordinate of the coordinate to print
  *  \param shade Shade of the coodrinate to print
  *  \returns void
- *  \ingroup Graphics
+ *  \ingroup Framebuffer
  */
 void fb_console_print_coordinate(uchar, uchar, shade_t);
 

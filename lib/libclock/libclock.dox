@@ -1,0 +1,13 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*! Model all parts of a clock.
+ *  \brief     Model all parts of a clock.
+ *  \details Encapsulate all shapes needed to represent a clock and
+ *  functions to determine how to arrange the hands based on the
+ *  current state (time).
+ *  \author    Hershal Bhave
+ *  \author    Eric Crosson
+ *  \version   0.1
+ *  \date      2015
+ *  \pre       None
+ *  \copyright GNU Public License.
+ */

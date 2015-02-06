@@ -1,0 +1,14 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*! Provide usable fonts.
+ *  \brief Provide usable fonts.
+ *  \details Provide pixel by pixel representations of characters for
+ *  use as a font type. Functions for transforming (scaling, bolding,
+ *  etc) fonts are included.
+ *  \author    Eric Crosson
+ *  \version   0.1
+ *  \date      2015
+ *  \pre       None
+ *  \copyright GNU Public License.
+ *  \addtogroup Font Font faces and transformations.
+ *  \bug No font transformation functions are included yet.
+ */

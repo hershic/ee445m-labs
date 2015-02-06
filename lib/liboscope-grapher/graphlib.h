@@ -1,7 +1,7 @@
 #ifndef __GRAPHLIB__
 #define __GRAPHLIB__
 
-#include "g2d_defines.h"
+#include "libstd/defines.h"
 
 /*
   TODO: finish implementing this behavior

@@ -2,17 +2,6 @@
 #ifndef __FONTS__
 #define __FONTS__
 
-/*!
- * \brief Font library
- * \details Font library
- * \author    Hershal Bhave
- * \author    Eric Crosson
- * \version   0.1
- * \date      2014
- * \copyright GNU Public License.
- * \addtogroup Font Font faces and transformations
- */
-
 /* OPTIMIZE: Create a font directory (hash in memory, a map in c) wherein
  * fonts may be loaded and accessed dynamically. */
 
