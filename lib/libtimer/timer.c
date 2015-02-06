@@ -16,7 +16,7 @@
 int timer_add_periodic_thread(void(*task)(void),
 			      unsigned long period_in_ms,
 			      unsigned long priority,
-			      timer_t timer_peripheral) {
+			      utimer_t timer_peripheral) {
 
     unsigned long timer_base, timer_periph, timer_int;
 

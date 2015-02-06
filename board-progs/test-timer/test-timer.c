@@ -21,7 +21,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/rom.h"
 
-#include "libuart/uart.h"
+#include "libtimer/timer.h"
 
 #include <sys/stat.h>
 
@@ -54,11 +54,9 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    /* Do useful stuff */
+    timer_add_periodic_thread(blink_onboard_led, 1000, 1, TIMER0);
 
     /* Postpone death */
     while (1) {
-        SysCtlDelay(1000 * SysCtlClockGet() / (1000 * 3));
-        blink_onboard_led();
     }
 }

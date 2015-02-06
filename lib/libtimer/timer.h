@@ -16,12 +16,12 @@
  * this context.
  */
 
-typedef enum {TIMER0, TIMER1, TIMER2} timer_t;
+typedef enum {TIMER0, TIMER1, TIMER2} utimer_t;
 
 int timer_add_periodic_thread(void(*task)(void),
 			      unsigned long period_in_ms,
 			      unsigned long priority,
-			      timer_t timer_peripheral);
+			      utimer_t timer_peripheral);
 static void (*_task0)(void);
 static void (*_task1)(void);
 static void (*_task2)(void);

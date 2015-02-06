@@ -6,3 +6,4 @@ include_directories(../../lib/)
 include_directories(../../)
 
 add_library (timer STATIC ${timer-src})
+target_link_libraries(timer driverlib)
