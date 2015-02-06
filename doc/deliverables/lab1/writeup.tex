@@ -4,9 +4,11 @@
 \date{Due Sometime Soon}
 
 \usepackage[in]{fullpage}
+\usepackage{listings}
 \usepackage{cleveref}
 \usepackage[nosolutionfiles]{answers}
 \usepackage{xcolor}
+\usepackage{color}
 \usepackage{enumerate}
 
 \newenvironment{Ex}{\textbf{Problem}\vspace{.75em}\\}{}
@@ -18,6 +20,38 @@
 \newcommand{\dd}[1]{\:\mathrm{d}{#1}}
 \newcommand{\ddt}[1]{\frac{\dd{}}{\dd{#1}}}
 \newcommand{\dddt}[1]{\frac{\dd{}^2}{\dd{#1}^2}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+% \definecolor{mygreen}{rgb}{0.13,0.55,0.13}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  backgroundcolor=\color{white},
+  basicstyle=\scriptsize\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{mygreen},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  frame=single,
+  keywordstyle=\color{blue},
+  % language=Octave,
+  % numbers=left,
+  % numbersep=5pt,
+  % numberstyle=\tiny\color{mygray},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  % stepnumber=2,
+  stringstyle=\color{mymauve},
+  tabsize=2,
+  title=\lstname,
+  columns=fullflexible,
+}
 
 \begin{document}
 \maketitle
@@ -38,15 +72,15 @@
       Ok.
     \end{solution}
   \end{Ex}
-\item 
+\item
   \begin{Ex}
     Search through the \verb|UARTInts_4C123| project to answer these
     questions about the UART port.
     \begin{enumerate}
     \item This example used UART0. What lines of C code define which
-      port will be used for the UART channel? b) What lines of C code
-      define the baud rate, parity, data bits and stop bits for the
-      UART?
+      port will be used for the UART channel?
+    \item What lines of C code define the baud rate, parity, data bits
+      and stop bits for the UART?
     \item Which port pins are used for the UART? Which pin transmits
       and which pin receives?
     \item Look in the uart.c driver to find what low-level C code
@@ -74,37 +108,103 @@
     \end{enumerate}
     \begin{solution} \hfill \vspace{.75em} \\
       \begin{enumerate}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item \hfill
+        \begin{lstlisting}[language=C]
+          // enable alt funct on PA1-0
+          GPIO_PORTA_AFSEL_R |= 0x03;
+
+          // enable digital I/O on PA1-0
+          GPIO_PORTA_DEN_R |= 0x03;
+
+          // configure PA1-0 as UART
+          GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R&0xFFFFFF00)+0x00000011;
+
+          // disable analog functionality on PA
+          GPIO_PORTA_AMSEL_R = 0;
+        \end{lstlisting}
+      \item \hfill
+        \begin{lstlisting}[language=C]
+          // IBRD = int(50,000,000 / (16 * 115,200)) = int(27.1267)
+          UART0_IBRD_R = 27;
+          // FBRD = int(0.1267 * 64 + 0.5) = 8
+          // 8 bit word length (no parity bits, one stop bit, FIFOs)
+          UART0_FBRD_R = 8;
+        \end{lstlisting}
+
+      \item \verb|PA0| and \verb|PA1| are used for the
+        UART. \verb|PA0| receives and \verb|PA1| transmits.
+      \item \hfill
+        \begin{lstlisting}[language=C]
+
+          // input ASCII character from UART
+          // spin if RxFifo is empty
+          char UART_InChar(void){
+            char letter;
+            while(RxFifo_Get(&letter) == FIFOFAIL){};
+            return(letter);
+          }
+        \end{lstlisting}
+      \item \hfill
+        \begin{lstlisting}[language=C]
+
+          // output ASCII character to UART
+          // spin if TxFifo is full
+          void UART_OutChar(char data){
+            while(TxFifo_Put(data) == FIFOFAIL){};
+            // disable TX FIFO interrupt
+            UART0_IM_R &= ~UART_IM_TXIM;
+            copySoftwareToHardware();
+            // enable TX FIFO interrupt
+            UART0_IM_R |= UART_IM_TXIM;
+          }
+        \end{lstlisting}
+
+      \item The vector table exists in \verb|startup.s|. The system
+        finds the named function and calls that function when the
+        interrupt is received.
+      \item The acknowledgement occurs by setting a bit in a
+        memory-mapped hardware register. For this device, bit 6 is set
+        to acknowledge the interrupt.
+      \item The TM4C is like a PC. It has two 16-byte FIFOs (one for
+        transmit, one for receive).
       \end{enumerate}
     \end{solution}
   \end{Ex}
 \item
   \begin{Ex}
-    Search through the \verb|ST7735\_4C123.zip| project to answer these
+    Search through the \verb|ST7735_4C123.zip| project to answer these
     questions about the LCD interface.
     \begin{enumerate}
     \item What synchronization method is used for the low-level
       command writedata?
     \item Explain the parameters of the function
-      \verb|ST7735\_DrawChar|. I.e., how do you use this function?
+      \verb|ST7735_DrawChar|. I.e., how do you use this function?
     \item Which port pins are used for the LCD? Find the connection
       diagram needed to interface the LCD.
     \item Specify which other device shares pins with the LCD.
     \end{enumerate}
     \begin{solution} \hfill \vspace{.75em} \\
       \begin{enumerate}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item Spinlock.
+      \item Draw a character \verb|c|, at position (\verb|x|,
+        \verb|y|), with color \verb|color|, background \verb|bg|, and
+        font size \verb|size|.
+      \item
+        \begin{itemize}
+        \item pin 10 (Backlight) connected to +3.3 V
+        \item pin 9 (\verb|MISO|) unconnected
+        \item pin 8 (\verb|SCK|) connected to PA2 (\verb|SSI0Clk|)
+        \item pin 7 (\verb|MOSI|) connected to PA5 (\verb|SSI0Tx|)
+        \item pin 6 (\verb|TFT_CS|) connected to PA3 (\verb|SSI0Fss|)
+        \item pin 5 (\verb|CARD_CS|) unconnected
+        \item pin 4 (Data/Command) connected to PA6 (\verb|GPIO|)
+        \item pin 3 (\verb|RESET|) connected to PA7 (\verb|GPIO|)
+        \item pin 2 (\verb|VCC|) connected to +3.3 V
+        \item pin 1 (\verb|GND|) connected to ground
+        \end{itemize}
+      \item The I$^2$C shares PA6 and PA7. SSI pins also shared.
       \end{enumerate}
-    \end{solution} 
+    \end{solution}
   \end{Ex}
 \item
   \begin{Ex}
@@ -114,9 +214,9 @@
     \begin{enumerate}
     \item What C code defines the period of the SysTick
       interrupt?
-    \item The \verb|GPIO\_4C123| project runs at 16 MHz, the
-      \verb|PeriodicSysTickInts\_4C123| project runs at 50 MHz, and the
-      \verb|ST7735\_4C123| project runs at 80 MHz. Find the RCC and RCC2
+    \item The \verb|GPIO_4C123| project runs at 16 MHz, the
+      \verb|PeriodicSysTickInts_4C123| project runs at 50 MHz, and the
+      \verb|ST7735_4C123| project runs at 80 MHz. Find the RCC and RCC2
       registers in the data sheet. Look at these three projects to
       explain how the system clock is established. We will be running
       at 80 MHz for most labs in the class.
@@ -125,13 +225,43 @@
     \end{enumerate}
     \begin{solution}
       \begin{enumerate} \hfill \vspace{.75em} \\
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item \verb|NVIC_ST_RELOAD_R = NVIC_ST_RELOAD_M;|
+      \item The system clock is established by the \verb|PLL_Init|
+        function.
+        
+        \begin{lstlisting}[language=C]
+          void PLL_Init(void){
+            // 0) configure the system to use RCC2 for advanced features
+            //    such as 400 MHz PLL and non-integer System Clock Divisor
+            SYSCTL_RCC2_R |= SYSCTL_RCC2_USERCC2;
+            // 1) bypass PLL while initializing
+            SYSCTL_RCC2_R |= SYSCTL_RCC2_BYPASS2;
+            // 2) select the crystal value and oscillator source
+            SYSCTL_RCC_R &= ~SYSCTL_RCC_XTAL_M;   // clear XTAL field
+            SYSCTL_RCC_R += SYSCTL_RCC_XTAL_16MHZ;// configure for 16 MHz crystal
+            SYSCTL_RCC2_R &= ~SYSCTL_RCC2_OSCSRC2_M;// clear oscillator source field
+            SYSCTL_RCC2_R += SYSCTL_RCC2_OSCSRC2_MO;// configure for main oscillator source
+            // 3) activate PLL by clearing PWRDN
+            SYSCTL_RCC2_R &= ~SYSCTL_RCC2_PWRDN2;
+            // 4) set the desired system divider and the system divider least significant bit
+            SYSCTL_RCC2_R |= SYSCTL_RCC2_DIV400;  // use 400 MHz PLL
+            SYSCTL_RCC2_R = (SYSCTL_RCC2_R&~0x1FC00000) // clear system clock divider field
+            + (SYSDIV2<<22);      // configure for 80 MHz clock
+            // 5) wait for the PLL to lock by polling PLLLRIS
+            while((SYSCTL_RIS_R&SYSCTL_RIS_PLLLRIS)==0){};
+            // 6) enable use of PLL by clearing BYPASS
+            SYSCTL_RCC2_R &= ~SYSCTL_RCC2_BYPASS2;
+          }
+        \end{lstlisting}
+        The 80MHz version sets \verb|SYSDIV2=4|, the 50MHz version
+        sets \verb|SYSDIV2=7|, and the 16MHz version does not set the
+        PLL at all.
+      \item The interrupt is acknowledged by reading the \verb|COUNT|
+        bit of the \verb|STCTRL| register.
       \end{enumerate}
     \end{solution}
   \end{Ex}
-\item 
+\item
   \begin{Ex}
     Look up the explicit sequence of events that occur as an interrupt
     is processed. Read section 2.5 in the TM4C123 data sheet
@@ -141,13 +271,24 @@
     \item What is the first assembly instruction in the ISR? What is
       the last instruction?
     \item How does the system save the prior context as it switches
-      threads when an interrupt is triggered? c) How does the system
-      restore context as it switches back after executing the ISR?
+      threads when an interrupt is triggered?
+    \item How does the system restore context as it switches back
+      after executing the ISR?
     \end{enumerate}
     \begin{solution} \hfill \vspace{.75em} \\
       \begin{enumerate}
-      \item {\huge \color{red} TODO}
-      \item {\huge \color{red} TODO}
+      \item The first action upon entry into the ISR is to put the
+        \verb|EXC_RETURN| value into the \verb|LR|. The last
+        instruction can be any of the three:
+        \begin{itemize}
+        \item A \verb|LDM| or \verb|POP|
+        \item A \verb|BX|
+        \item A \verb|LDR| with the \verb|PC| as the destination
+        \end{itemize}
+      \item The system saves context by pushing all the registers onto
+        the stack.
+      \item The system restores context by popping all the register
+        values from the stack.
       \end{enumerate}
     \end{solution}
   \end{Ex}
