@@ -1,6 +1,6 @@
 add_subdirectory(libclock libclock)
 add_subdirectory(libgraphics2d libgraphics2d)
-add_subdirectory(libtime libtime)
+add_subdirectory(libtimekit libtimekit)
 add_subdirectory(liboscope-grapher liboscope-grapher)
 add_subdirectory(libconsole libconsole)
 add_subdirectory(libuart libuart)
