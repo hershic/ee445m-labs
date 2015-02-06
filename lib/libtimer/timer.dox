@@ -1,0 +1,10 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*! Provide system timer information and a way to periodically call tasks.
+ *  \brief Provide system timer information and a way to periodically call tasks.
+ *  \author    Hershal Bhave
+ *  \author    Eric Crosson
+ *  \version   0.1
+ *  \date      2014
+ *  \pre       None
+ *  \copyright GNU Public License.
+ */
