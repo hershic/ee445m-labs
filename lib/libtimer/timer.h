@@ -2,7 +2,8 @@
 /*!
  * \brief Schedule a task (function) to be invoked periodically.
  * \param task A pointer to the function to execute every \period milliseconds
- * \param period Number of milliseconds to wait before invoking \task repeatedly
+ * \param period_in_ms Number of milliseconds to wait before invoking
+ * \task repeatedly
  * \param priority The value to be specified in the NVIC for this thread (task)
  * \param timer_peripheral The timer device (peripheral) to use for scheduling
  * \returns TODO
@@ -14,7 +15,13 @@
  * said function on the designated schedule. No true threads exist in
  * this context.
  */
+
+typedef enum {TIMER0, TIMER1, TIMER2} timer_t;
+
 int timer_add_periodic_thread(void(*task)(void),
-			      unsigned long period,
+			      unsigned long period_in_ms,
 			      unsigned long priority,
-			      unsigned long timer_peripheral);
+			      timer_t timer_peripheral);
+static void (*_task0)(void);
+static void (*_task1)(void);
+static void (*_task2)(void);
