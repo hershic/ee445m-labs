@@ -92,6 +92,7 @@ declare interface=${interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f
 ## @details Openocd command to program the M4.
 ## @ingroup OpenOCD
 declare -r openocd_args_program="program $3 verify reset"
+# TODO: instead of $3 capture the argument to -p with getopt
 
 ## @var gdb_port
 ## @brief For internal use only.
@@ -105,14 +106,33 @@ declare -ri gdb_port=3333
 ## @ingroup OpenOCD
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
+# TODO: document
+retry() {
+        local n=0
+        local try=$1
+        local cmd="${@: 2}"
+        [[ $# -le 1 ]] && {
+        echo "Usage $0 <retry_number> <Command>"; }
+
+        until [[ $n -ge $try ]]
+        do
+                $cmd && break || {
+                        echo "Command Fail.."
+                        ((n++))
+                        echo "retry $n ::"
+                        sleep 1;
+                        }
+
+        done
+}
+
 ## @fn openocd_program()
 ## @brief Program the M4
 ## @retval 0 if success
 ## @ingroup OpenOCD
 openocd_program() {
 
-    ${execute_ocd} openocd --file ${interface} -c "${openocd_args_program}"
-    until !!; do :; done
+    retry ${execute_ocd} openocd --file ${interface} -c "${openocd_args_program}"
 }
 
 ## @fn openocd_debug()
@@ -121,8 +141,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    ${execute_ocd} openocd --file ${interface} -c ${openocd_args_debug}
-    until !!; do :; done
+    retry ${execute_ocd} openocd --file ${interface} -c ${openocd_args_debug}
 }
 
 # Obey command line arguments
