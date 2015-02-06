@@ -40,7 +40,7 @@
 ## \addtogroup OpenOCD OpenOCD invocation wrapper
 
 # Execute getopt
-ARGS=$(getopt -o pdnh -l "program,debug,dry-run,help" -n "$0" -- "$@");
+ARGS=$(getopt -o p:dnh -l "program:,debug,dry-run,help" -n "$0" -- "$@");
 
 # Fail on bad arguments
 if [ $? -ne 0 ]; then
@@ -87,11 +87,17 @@ interface_prefixes=([eric]=/usr/share [hershal]=/opt/local/share)
 ## @ingroup OpenOCD
 declare interface=${interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f120xl.cfg
 
+## @var openocd_target_binary
+## @brief For internal use only.
+## @details Target binary to flash to M4.
+## @ingroup OpenOCD
+declare openocd_target_binary
+
 ## @var openocd_args_program
 ## @brief For internal use only.
 ## @details Openocd command to program the M4.
 ## @ingroup OpenOCD
-declare -r openocd_args_program="program $3 verify reset"
+declare openocd_args_program
 
 ## @var gdb_port
 ## @brief For internal use only.
@@ -105,14 +111,26 @@ declare -ri gdb_port=3333
 ## @ingroup OpenOCD
 declare -r openocd_args_debug="gdb_port ${gdb_port}"
 
+# TODO: document
+retry() {
+    local n=0
+    local try=$1
+    local cmd="${@: 2}"
+
+    until [[ $n -ge $try ]]; do
+        $cmd && break || {
+		((n++))
+	    }
+    done
+}
+
 ## @fn openocd_program()
 ## @brief Program the M4
 ## @retval 0 if success
 ## @ingroup OpenOCD
 openocd_program() {
 
-    ${execute_ocd} openocd --file ${interface} -c "${openocd_args_program}"
-    until !!; do :; done
+    retry 10 ${execute_ocd} openocd --file ${interface} -c "${openocd_args_program}"
 }
 
 ## @fn openocd_debug()
@@ -121,8 +139,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    ${execute_ocd} openocd --file ${interface} -c "${openocd_args_debug}"
-    until !!; do :; done
+    retry 10 ${execute_ocd} openocd --file ${interface} -c "${openocd_args_debug}"
 }
 
 # Obey command line arguments
@@ -130,6 +147,9 @@ while true; do
     case "$1" in
 
 	-p|--program)
+	    shift
+	    openocd_target_binary="$1"
+	    openocd_args_program="program ${openocd_target_binary} verify reset"
 	    openocd_program
 	    ;;
 

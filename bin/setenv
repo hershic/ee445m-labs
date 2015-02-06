@@ -40,6 +40,12 @@
 #
 ## \addtogroup Environment Development environment setup
 
+# _zero="${BASH_SOURCE[0]}"
+# _zero="$(basename ${_zero%.sh})"
+# _zero=$(echo "${_zero}" | tr [a-z] [A-Z] | sed -e 's/[.-]/_/g')
+# [[ -n "${!_zero}" ]] && return
+# printf -v ${_zero} "Loaded"
+
 # Execute getopt
 ARGS=$(getopt -o h -l "help" -n "$0" -- "$@");
 
