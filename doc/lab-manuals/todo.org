@@ -1,0 +1,50 @@
+#+startup: content
+#+options: H:1 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:nil LaTeX:t
+#+todo: TODO(t) VERIFY(v) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+#+author: Hershal Bhave
+#+author: Eric Crosson
+* Labs
+** [0/3] Lab 1
+*** TODO lcd driver [0%]
+  - [ ] contains logically separate displays
+    - horizontal split
+  - [ ] 4+ lines per display
+  - [ ] API to write to displays individually
+*** TODO adc driver [0%]
+  - [ ] samples from 100 - 10,000 Hz
+  - [ ] samples from ADC0 - ADC11
+  - [ ] have 1 to 1 abilities as this api
+    #+BEGIN_SRC c
+      unsigned short ADC_In(void);
+      int ADC_Open(unsigned int channelNum);
+      int ADC_Collect(unsigned int channelNum, unsigned int fs,
+                      unsigned short buffer[], unsigned int numberOfSamples);
+    #+END_SRC
+*** TODO interpreter [0%]
+  - [ ] serial port
+  - [ ] interrupts
+  - OPTIONAL hardware fifo
+  - [ ] software fifo x2
+
+Use the stdio library and remap the serial stream to the UART. See the
+=retarget.c= file in the =Keil\ARM\Boards\Keil\MCBSTM32\Blinky= project
+included in the Keil installation. In particular, you need to create a
+fputc function like this:
+#+BEGIN_SRC c
+  int fputc(int ch, FILE *f){
+    UART0_OutChar(ch);
+    return (1);
+  }
+  int fgetc (FILE *f){
+    return (UART0_InChar());
+  }
+  int ferror(FILE *f){
+  /* Your implementation of ferror */
+    return EOF;
+  }
+#+END_SRC
+*** TODO Checkout
+DEADLINE: <2015-02-09 Mon 10:30>
+- demonstrate measuring of timer2 ISR overhead
+- be prepared to field questions addressing interrupts/FIFOs
+- demonstrate each interpreter command
