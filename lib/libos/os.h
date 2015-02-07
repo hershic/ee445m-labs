@@ -1,5 +1,21 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-#include "../libtimer/timer.h"
+
+#include "libtimer/timer.h"
+
+#include "inc/hw_memmap.h"
+#include "inc/hw_ints.h"
+#include "inc/hw_types.h"
+
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+#include "driverlib/pin_map.h"
+#include "driverlib/gpio.h"
+#include "driverlib/uart.h"
+
+#include "utils/ustdlib.h"
+
 /* Make this doxygen output match libtimer's */
 
 /*!
@@ -16,32 +32,73 @@
  * said function on the designated schedule. No true threads exist in
  * this context.
  */
-inline
-int OS_AddPeriodicThread(void(*task)(void),
-			 unsigned long period,
-			 unsigned long priority) {
+#define NUMTHREADS  3        /* maximum number of threads */
+#define STACKSIZE   100      /* number of 32-bit words in stack */
 
-  timer_add_periodic_thread(task, period, priority);
-}
+typedef enum {
+    /* thread is not running and will not run */
+    THREAD_DEAD,
 
-/*!
- * \brief Clear the current 32-bit global timer counter.
- * \returns void
- */
-inline
-void OS_ClearPeriodicTime(void) {
+    /* thread is waiting and will run when the timer runs out */
+    THREAD_SLEEPING,
 
-  /* TODO: implement */
-}
+    /* thread is running */
+    THREAD_RUNNING,
 
-/*!
- * \brief Return the current 32-bit global timer counter.
- * \returns unsigned long The current 32-bit global counter.
- * \note The units of this system time are the period of interrupt
- * passed in by the user when initializing with OS_AddPeriodicThread.
- */
-inline
-unsigned long OS_ReadPeriodicTime(void) {
+    /* thread is not running but will run eventually */
+    THREAD_ACTIVE
+} tstate_t;
 
-  /* TODO: implement */
-}
+typedef struct tcb {
+    /*! pointer to stack (valid for threads not running */
+    int32_t *sp;  
+
+    /*! linked-list pointer to next thread */
+    struct tcb *next_thread;  
+
+    /*! state of this thread */
+    tstate_t status;
+
+    /* int32_t sleep_timer; */
+    /* int8_t priority; */
+} tcb_t;
+
+/* This data structure was stolen from Valvano website
+   http://users.ece.utexas.edu/~valvano/arm/os.c */
+/*! \brief  */
+typedef enum {
+    R_THUMB = STACKSIZE-1,
+    R_PC = STACKSIZE-2,
+    R_R0 = STACKSIZE-8,
+    R_R1 = STACKSIZE-7,
+    R_R2 = STACKSIZE-6,
+    R_R3 = STACKSIZE-5,
+    R_R4 = STACKSIZE-16,
+    R_R5 = STACKSIZE-15,
+    R_R6 = STACKSIZE-14,
+    R_R7 = STACKSIZE-13,
+    R_R8 = STACKSIZE-12,
+    R_R9 = STACKSIZE-11,
+    R_R10 = STACKSIZE-10,
+    R_R11 = STACKSIZE-9,
+    R_R12 = STACKSIZE-4,
+    R_R14 = STACKSIZE-3
+} stack_reg;
+
+/*! \brief resets the stack for a particular thread */
+/*! \param thread the thread whose stack is to be reset */
+void os_reset_thread_stack(uint32_t thread);
+
+/*! \brief returns the next dead thread from the thread pool */
+/*! \param thread_id is populated by this function with the id of the
+    closest dead thread */
+/*! \returns whether there was an available dead thread slot */
+bool os_next_dead_thread(int* thread_id);
+
+/*! \brief sets the pc for a thread to a specified function */
+/*! \param thread_id which thread's pc to set */
+/*! \param task the function to set the thread's pc to */
+void os_set_thread_pc(int thread_id, void(*task)(void));
+
+/*! \brief a do-nothing idle thread */
+void idle_thread();
