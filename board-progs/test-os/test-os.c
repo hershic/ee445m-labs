@@ -49,6 +49,7 @@ int main() {
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 100);
     SysTickEnable();
+    SysTickIntEnable();
     IntMasterEnable();
 
     os_threading_init();

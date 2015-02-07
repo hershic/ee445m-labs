@@ -7,7 +7,7 @@ static int32_t program_stacks[NUMTHREADS][STACKSIZE];
 static tcb_t tcb_list[NUMTHREADS];
 static tcb_t running_thread;
 
-bool systick_has_run = false;
+bool my_systick_has_run = false;
 
 /* This data structure was stolen from Valvano website
    http://users.ece.utexas.edu/~valvano/arm/os.c */
@@ -75,5 +75,5 @@ void idle_thread() {
 
 void SysTick_Handler() {
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
-    systick_has_run = true;
+    my_systick_has_run = true;
 }
