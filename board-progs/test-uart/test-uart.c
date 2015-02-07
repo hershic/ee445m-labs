@@ -36,9 +36,7 @@ void UART0_Handler(void) {
     while(UARTCharsAvail(UART0_BASE)) {
         /* Read the next character from the UART and write it back to the UART. */
         /* uart_send_char(uart_get_char()); */
-        char* received_string = uart_get_string(1);
-        uart_send_char(received_string[0]);
-        free(received_string);
+        uart_send_char(uart_get_char());
 
         /* Blink the LED to show a character transfer is occuring. */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
