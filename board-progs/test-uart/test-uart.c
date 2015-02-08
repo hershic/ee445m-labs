@@ -22,6 +22,7 @@
 #include "driverlib/rom.h"
 
 #include "libuart/uart.h"
+#include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
@@ -41,13 +42,13 @@ void UART0_Handler(void) {
         free(received_string);
 
         /* Blink the LED to show a character transfer is occuring. */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+	heart_beat();
 
         /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
         SysCtlDelay(SysCtlClockGet() / (1000 * 3));
 
         /* Turn off the LED */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+        heart_off();
     }
 }
 
