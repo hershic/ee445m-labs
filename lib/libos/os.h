@@ -1,6 +1,12 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "../libtimer/timer.h"
-/* Make this doxygen output match libtimer's */
+
+/* TODO: Make this doxygen output match libtimer's */
+
+typedef struct {
+  int32_t *sp;       // pointer to stack (valid for threads not running
+  struct tcb *next;  // linked-list pointer
+} os_tcb;
 
 /*!
  * \brief Schedule a task (function) to be invoked periodically.

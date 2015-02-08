@@ -1,0 +1,12 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ * \brief Library to provide an interpreter
+ * \details This is the core of the interaction between the viod RTOS
+ * and the user. Magnificent, isn't she?
+ * \details None as of yet
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Notifications Notices and notifications
+ */
