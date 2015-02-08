@@ -29,8 +29,6 @@
 
 #include <sys/stat.h>
 
-/* ///////////////////////////////////////////////////////////////////// */
-/* Hence begins the UART Representation Entity code */
 void UART0_Handler(void) {
 
     unsigned short i;
