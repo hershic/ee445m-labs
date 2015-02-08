@@ -1,9 +1,8 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "shell.h"
 
-#include "libhw/libhw.h"
+#include "libhw/hardware.h"
 #include "libstd/nexus.h"
-#include "libshell/shell.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -23,15 +22,12 @@ unsigned short shell_buffer_position;
 void shell_spawn() {
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    /* device class, device specifics, task's interrupt handler */
+
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
+
     /* clear current contents of shell_buffer */
     memset(shell_buffer, 0, sizeof(shell_buffer));
     shell_buffer_position = 0;
-
-    /* check: if this breaks, try the below line (indicating
-     * shell_buffer is on the heap) */
-    /* memset(shell_buffer, 0, SHELL_BUFFER_LENGTH*sizeof(*shell_buffer)); */
 }
 
 char* shell_represent() {

@@ -21,7 +21,7 @@
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
 *** TODO interpreter [0%]
-- [ ] serial port
+- [ ] uart port
 - [ ] interrupts
 - OPTIONAL hardware fifo
 - [ ] software fifo x2

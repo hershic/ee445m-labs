@@ -1,5 +1,5 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-#include "libhw/libhw.h"
+#include "libhw/hardware.h"
 #include "libstd/defines.h"
 #include "inc/hw_memmap.h"
 

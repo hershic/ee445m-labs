@@ -23,9 +23,8 @@
 
 #include "libtimer/timer.h"
 #include "libshell/shell.h"
-/* TODO: make this consistent! query-replace-regexp is fucking me over here */
-#include "libnotify/libnotify.h"
-#include "libhw/libhw.h"
+#include "libnotify/notify.h"
+#include "libhw/hardware.h"
 #include "libuart/uart.h"
 
 #include <sys/stat.h>

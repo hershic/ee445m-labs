@@ -1,7 +1,9 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
+#ifndef __HARDWARE__
+#define __HARDWARE__
 
 #include <stdbool.h>
-#include "libnotify/libnotify.h"
+#include "libnotify/notify.h"
 
 #define HW_DRIVER_MAX_CHANNELS 8
 #define HW_DRIVER_MAX_SUBSCRIPTIONS 8
@@ -47,3 +49,5 @@ void hw_notify(HW_DEVICES hw_group,
 	       long channel,
 	       hw_notification notification,
 	       HW_NOTIFICATION_TYPE notification_type);
+
+#endif

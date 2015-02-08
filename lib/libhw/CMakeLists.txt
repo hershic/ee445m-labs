@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.7)
 
-set (libhw-src libhw.c)
+set (libhw-src hardware.c)
 include_directories(../)
 include_directories(../../)
 include_directories(../../inc)

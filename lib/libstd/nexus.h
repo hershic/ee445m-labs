@@ -10,6 +10,7 @@
  *  \returns char* Buffer containing i represented as a string
  *  \ingroup Framebuffer
  */
-char* itoa(int, char*, unsigned char);
+/* char* itoa(int, char*, unsigned char); */
+void* memset(void*, int, int);
 
 #endif
