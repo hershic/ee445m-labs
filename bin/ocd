@@ -111,7 +111,7 @@ declare -ri openocd_gdb_port=3333
 ## @brief For internal use only.
 ## @details Openocd command to open gdb on the M4.
 ## @ingroup OpenOCD
-declare -r openocd_args_debug="openocd_gdb_port ${openocd_gdb_port}"
+declare -r openocd_args_debug="gdb_port ${openocd_gdb_port}"
 
 ## @var openocd_timeout
 ## @brief For internal use only.

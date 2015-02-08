@@ -89,4 +89,4 @@ done
 
 # Add this directory to the working PATH
 # TODO: use modpath
-export PATH="$(readlink -e $0):$PATH"
+export PATH="$(readlink -e $(dirname $0)):$PATH"
