@@ -39,6 +39,8 @@ int main(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
+
     /* Enable processor interrupts. */
     IntMasterEnable();
 
@@ -49,22 +51,27 @@ int main(void) {
        required for proper init. */
     ADCProcessorTrigger(ADC0_BASE, 0);
 
+    adc_open(0);
+    adc_collect(0, 10, &adc_data_buffer[0], 10, TIMER0);
+
     /* Do nothing */
-    while (1) {
+    /* while (1) { */
+    /*  */
+    /*     if(ADCIntStatus(ADC0_BASE, 0, false) != 0) { */
+    /*         /\* Clear the ADC interrupt. *\/ */
+    /*         ADCIntClear(ADC0_BASE, 0); */
+    /*  */
+    /*         /\* Read the data and trigger a new sample request. *\/ */
+    /*         ADCSequenceDataGet(ADC0_BASE, 0, &adc_data_buffer[0]); */
+    /*         ADCProcessorTrigger(ADC0_BASE, 0); */
+    /*  */
+    /*         /\* TODO: Update our report of the data somehow (whatever */
+    /*            means we define are necessary). For now the data */
+    /*            resides in adc_data_buffer ready for copying and */
+    /*            interpretation. *\/ */
+    /*     } */
+    /* } */
+    while (1) {}
 
-        if(ADCIntStatus(ADC0_BASE, 0, false) != 0) {
-            /* Clear the ADC interrupt. */
-            ADCIntClear(ADC0_BASE, 0);
-
-            /* Read the data and trigger a new sample request. */
-            ADCSequenceDataGet(ADC0_BASE, 0, &adc_data_buffer[0]);
-            ADCProcessorTrigger(ADC0_BASE, 0);
-
-            /* TODO: Update our report of the data somehow (whatever
-               means we define are necessary). For now the data
-               resides in adc_data_buffer ready for copying and
-               interpretation. */
-        }
-    }
 }
  
