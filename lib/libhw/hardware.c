@@ -107,7 +107,8 @@ void hw_notify(HW_DEVICES           hw_group,
 
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
 	if (channel.isr_subscriptions[i].valid) {
-	    channel.isr_subscriptions[i].slot(notification, notification_type);    break;
+	    /* TODO: schedule */
+	    channel.isr_subscriptions[i].slot(notification, notification_type);
 	}
     }
 }
