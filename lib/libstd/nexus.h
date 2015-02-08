@@ -12,5 +12,6 @@
  */
 /* char* itoa(int, char*, unsigned char); */
 void* memset(void*, int, int);
+void *memcpy(void*, const void*, long);
 
 #endif

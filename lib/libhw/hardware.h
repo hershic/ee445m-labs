@@ -42,12 +42,11 @@ void hw_channel_init(hw_channel);
 
 /* TODO: add single-shot dis/connect functions */
 /* Connect a signal to a slot */
-void hw_connect(HW_DEVICES, long, const void*);
-void hw_disconnect(HW_DEVICES, long, const void*);
-
+bool hw_connect(HW_DEVICES, long, const void*);
+bool hw_disconnect(HW_DEVICES, long, const void*);
 
 long _hw_channel_to_index(long channel, HW_DEVICES hw_group);
-hw_driver hw_driver_singleton(HW_DEVICES hw_group);
+/* hw_driver& hw_driver_singleton(HW_DEVICES hw_group); */
 
 void hw_notify(HW_DEVICES hw_group,
 	       long channel,
