@@ -8,3 +8,4 @@ doxygen.log
 /doc/latex/
 /doc/html/
 /lib/libgraphics2d/libgraphics2d.a
+/bin/modpath

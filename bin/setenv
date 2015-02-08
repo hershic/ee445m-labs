@@ -88,5 +88,5 @@ while true; do
 done
 
 # Add this directory to the working PATH
-# TODO: change to modpath
-export PATH="$(pwd):$PATH"
+# TODO: use modpath
+export PATH="$(readlink -e $0):$PATH"
