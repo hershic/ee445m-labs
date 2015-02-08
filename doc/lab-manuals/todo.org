@@ -20,11 +20,11 @@
       int ADC_Collect(unsigned int channelNum, unsigned int fs,
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
-*** TODO interpreter [0%]
+*** TODO interpreter [33%]
 - [ ] uart port
 - [ ] interrupts
 - OPTIONAL hardware fifo
-- [ ] software fifo x2
+- [X] software fifo x2
 
 Use the stdio library and remap the serial stream to the UART. See the
 =retarget.c= file in the =Keil\ARM\Boards\Keil\MCBSTM32\Blinky= project
@@ -48,3 +48,4 @@ DEADLINE: <2015-02-09 Mon 10:30>
 - demonstrate measuring of timer2 ISR overhead
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
+- show screen displaying two stuffs
