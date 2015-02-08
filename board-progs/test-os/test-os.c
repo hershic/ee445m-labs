@@ -46,16 +46,16 @@ int main() {
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
 
+    os_threading_init();
+    os_add_thread(turn_on_led);
+    os_add_thread(turn_off_led);
+
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 100);
     SysTickEnable();
     SysTickIntEnable();
     IntMasterEnable();
 
-    os_threading_init();
-    os_add_thread(turn_on_led);
-    os_add_thread(turn_off_led);
-
     /* And we're done; this should never execute */
-    idle_thread();
+    idle();
 }

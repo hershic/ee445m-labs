@@ -4,76 +4,115 @@
 #include <stdint.h>
 
 static int32_t program_stacks[NUMTHREADS][STACKSIZE];
-static tcb_t tcb_list[NUMTHREADS];
-static tcb_t running_thread;
+static thread_t thread_list[NUMTHREADS];
+static thread_t* running_thread;
 
 bool my_systick_has_run = false;
 
 /* This data structure was stolen from Valvano website
    http://users.ece.utexas.edu/~valvano/arm/os.c */
-void os_reset_thread_stack(uint32_t thread) {
-    tcb_list[thread].sp = &program_stacks[thread][STACKSIZE-16];
-    program_stacks[thread][R_R0]  = 0xDEAD0000;
-    program_stacks[thread][R_R1]  = 0xDEAD0001;
-    program_stacks[thread][R_R2]  = 0xDEAD0002;
-    program_stacks[thread][R_R3]  = 0xDEAD0003;
-    program_stacks[thread][R_R4]  = 0xDEAD0004;
-    program_stacks[thread][R_R5]  = 0xDEAD0005;
-    program_stacks[thread][R_R6]  = 0xDEAD0006;
-    program_stacks[thread][R_R7]  = 0xDEAD0007;
-    program_stacks[thread][R_R8]  = 0xDEAD0008;
-    program_stacks[thread][R_R9]  = 0xDEAD0009;
-    program_stacks[thread][R_R10] = 0xDEAD0010;
-    program_stacks[thread][R_R11] = 0xDEAD0011;
-    program_stacks[thread][R_R12] = 0xDEAD0012;
-    /* program_stacks[thread][R_R13] = 0xDEAD0013; */
-    program_stacks[thread][R_R14] = 0xDEAD0014;
+void os_reset_thread_stack(thread_t* thread) {
+    uint32_t th_id = thread->thread_id;
+    thread_list[th_id].sp = &program_stacks[th_id][STACKSIZE-16];
+    program_stacks[th_id][R_R0]  = 0xDEAD0000;
+    program_stacks[th_id][R_R1]  = 0xDEAD0001;
+    program_stacks[th_id][R_R2]  = 0xDEAD0002;
+    program_stacks[th_id][R_R3]  = 0xDEAD0003;
+    program_stacks[th_id][R_R4]  = 0xDEAD0004;
+    program_stacks[th_id][R_R5]  = 0xDEAD0005;
+    program_stacks[th_id][R_R6]  = 0xDEAD0006;
+    program_stacks[th_id][R_R7]  = 0xDEAD0007;
+    program_stacks[th_id][R_R8]  = 0xDEAD0008;
+    program_stacks[th_id][R_R9]  = 0xDEAD0009;
+    program_stacks[th_id][R_R10] = 0xDEAD0010;
+    program_stacks[th_id][R_R11] = 0xDEAD0011;
+    program_stacks[th_id][R_R12] = 0xDEAD0012;
+    /* program_stacks[th_id][R_R13] = 0xDEAD0013; */
+    program_stacks[th_id][R_R14] = 0xDEAD0014;
 }
 
 void os_threading_init() {
     int i;
+    thread_t* idle_thread;
 
     for (i=0; i<NUMTHREADS; ++i) {
-        tcb_list[i].status = THREAD_DEAD;
-        os_reset_thread_stack(i);
+        thread_list[i].status = THREAD_DEAD;
+        thread_list[i].thread_id = i;
+
+        /* yes, I do a double-indirection here, but we're only doing
+           it once and the code is much cleaner this way. */
+        os_reset_thread_stack(&thread_list[i]);
+
+        thread_list[i].next_thread = &thread_list[i+1];
     }
 
-    os_add_thread(idle_thread);
-    tcb_list[i].status = THREAD_ACTIVE;
+    thread_list[NUMTHREADS-1].next_thread = &thread_list[0];
+
+    idle_thread = os_add_thread(idle);
+    running_thread = idle_thread;
 }
 
-int os_add_thread(void(*task)(void)) {
-    int thread_id;
-    if (os_next_dead_thread(&thread_id)) {
-        os_reset_thread_stack(thread_id);
-        os_set_thread_pc(thread_id, task);
-        tcb_list[thread_id].status = THREAD_ACTIVE;
-        return 1;
+thread_t* os_add_thread(void(*task)(void)) {
+    thread_t* thread;
+    if (thread = os_first_dead_thread()) {
+        os_reset_thread_stack(thread);
+        os_set_thread_pc(thread, task);
+        thread->status = THREAD_ACTIVE;
+        return thread;
     }
     return 0;
 }
 
-bool os_next_dead_thread(int* thread_id) {
+thread_t* os_first_dead_thread() {
     int i;
     for (i=0; i<NUMTHREADS; ++i) {
-        if (tcb_list[i].status == THREAD_DEAD) {
-            *thread_id = i;
-            return true;
+        if (thread_list[i].status == THREAD_DEAD) {
+            return &thread_list[i];
         }
     }
-    return false;
+    return 0;
 }
 
-void os_set_thread_pc(int thread_id, void(*task)(void)) {
-    program_stacks[thread_id][R_PC] = (int32_t)(task);
+thread_t* os_next_active_thread(thread_t* from_thread) {
+    thread_t* th;
+    for (th=from_thread->next_thread; th != from_thread; th = th->next_thread) {
+        if (th->status == THREAD_ACTIVE) {
+            return th;
+        }
+    }
+    return 0;
+}
+
+void os_set_thread_pc(thread_t* thread, void(*task)(void)) {
+    program_stacks[thread->thread_id][R_PC] = (int32_t)(task);
 }
 
 /* Do-nothing thread */
-void idle_thread() {
+void idle() {
     while (1) {}
 }
 
 void SysTick_Handler() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+
+    thread_t* next_thread;
+    /* Look until we can find a new thread to run */
+    while (next_thread = (thread_t*)(running_thread->next_thread)) {
+    /*     __asm("SysTick_Handler                ; 1) Saves R0-R3,R12,LR,PC,PSR */
+    /* CPSID   I                  ; 2) Prevent interrupt during switch */
+    /* PUSH    {R4-R11}           ; 3) Save remaining regs r4-11 */
+    /* LDR     R0, =RunPt         ; 4) R0=pointer to RunPt, old thread */
+    /* LDR     R1, [R0]           ;    R1 = RunPt */
+    /* STR     SP, [R1]           ; 5) Save SP into TCB */
+    /* LDR     R1, [R1,#4]        ; 6) R1 = RunPt->next */
+    /* STR     R1, [R0]           ;    RunPt = R1 */
+    /* LDR     SP, [R1]           ; 7) new thread SP; SP = RunPt->sp; */
+    /* POP     {R4-R11}           ; 8) restore regs r4-11 */
+    /* CPSIE   I                  ; 9) tasks run with interrupts enabled */
+    /* BX      LR                 ; 10) restore R0-R3,R12,LR,PC,PSR") */
+
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+    }
+
     my_systick_has_run = true;
 }
+

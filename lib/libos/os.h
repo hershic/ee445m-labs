@@ -49,19 +49,23 @@ typedef enum {
     THREAD_ACTIVE
 } tstate_t;
 
-typedef struct tcb {
+typedef struct thread {
     /*! pointer to stack (valid for threads not running */
-    int32_t *sp;  
+    int32_t *sp;
+
+    /*! numerical identifier for the thread */
+    /* DO NOT MODIFY THIS VARIABLE */
+    int32_t thread_id;
 
     /*! linked-list pointer to next thread */
-    struct tcb *next_thread;  
+    struct thread *next_thread;
 
     /*! state of this thread */
     tstate_t status;
 
     /* int32_t sleep_timer; */
     /* int8_t priority; */
-} tcb_t;
+} thread_t;
 
 /* This data structure was stolen from Valvano website
    http://users.ece.utexas.edu/~valvano/arm/os.c */
@@ -87,18 +91,16 @@ typedef enum {
 
 /*! \brief resets the stack for a particular thread */
 /*! \param thread the thread whose stack is to be reset */
-void os_reset_thread_stack(uint32_t thread);
+void os_reset_thread_stack(thread_t* thread);
 
-/*! \brief returns the next dead thread from the thread pool */
-/*! \param thread_id is populated by this function with the id of the
-    closest dead thread */
-/*! \returns whether there was an available dead thread slot */
-bool os_next_dead_thread(int* thread_id);
+thread_t* os_add_thread(void(*task)(void));
+thread_t* os_first_dead_thread();
+thread_t* os_next_active_thread(thread_t* from_thread);
 
 /*! \brief sets the pc for a thread to a specified function */
-/*! \param thread_id which thread's pc to set */
+/*! \param thread the thread whose pc is to be set */
 /*! \param task the function to set the thread's pc to */
-void os_set_thread_pc(int thread_id, void(*task)(void));
+void os_set_thread_pc(thread_t* thread, void(*task)(void));
 
 /*! \brief a do-nothing idle thread */
-void idle_thread();
+void idle();
