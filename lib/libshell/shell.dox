@@ -1,2 +1,10 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/* TODO: document */
+/*!
+ * \brief Library to provide an interpreter
+ * \details None as of yet
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Shell Command line interpreter
+ */

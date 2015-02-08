@@ -10,7 +10,6 @@ typedef unsigned char hw_iterator;
 #define HW_DRIVER_MAX_SUBSCRIPTIONS 8
 
 /* TODO: document */
-/* TODO: consider uthash http://troydhanson.github.io/uthash/index.html */
 
 /* A driver consists of individual channels */
 /* TODO: this needs to be generalized to satisfy the requirements of
