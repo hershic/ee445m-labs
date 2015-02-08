@@ -39,7 +39,7 @@ void UART0_Handler(void) {
         /* uart_send_char(uart_get_char()); */
         char* received_string = uart_get_string(1);
         uart_send_char(received_string[0]);
-        free(received_string);
+        /* free(received_string); */
 
         /* Blink the LED to show a character transfer is occuring. */
 	heart_beat();
