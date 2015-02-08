@@ -26,11 +26,15 @@
 #include <sys/stat.h>
 
 void turn_on_led() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+    while (1) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+    }
 }
 
 void turn_off_led() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+    while (1) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+    }
 }
 
 int main() {
@@ -57,5 +61,5 @@ int main() {
     IntMasterEnable();
 
     /* And we're done; this should never execute */
-    idle();
+    while (1) {}
 }

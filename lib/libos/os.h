@@ -53,12 +53,12 @@ typedef struct thread {
     /*! pointer to stack (valid for threads not running */
     int32_t *sp;
 
+    /*! linked-list pointer to next thread */
+    struct thread *next_thread;
+
     /*! numerical identifier for the thread */
     /* DO NOT MODIFY THIS VARIABLE */
     int32_t thread_id;
-
-    /*! linked-list pointer to next thread */
-    struct thread *next_thread;
 
     /*! state of this thread */
     tstate_t status;
