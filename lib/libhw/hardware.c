@@ -6,9 +6,28 @@
 hw_driver HW_UART_DRIVER;
 hw_notification HW_UART_NOTIFICATION;
 
+void hw_driver_init(HW_DEVICES hw_group) {
+
+    hw_iterator i;
+    hw_channel channel;
+    hw_driver driver = hw_driver_singleton(hw_group);
+
+    for(i=0; i<HW_DRIVER_MAX_CHANNELS; ++i) {
+	hw_channel_init(driver.channels[i]);
+    }
+}
+
+void hw_channel_init(hw_channel channel) {
+
+    hw_iterator i;
+    for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
+	channel.isr_subscriptions[i].valid = false;
+    }
+}
+
 void hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
 
-    unsigned short i;
+    hw_iterator i;
     long channel_index = _hw_channel_to_index(channel_id, hw_group);
     hw_channel channel = hw_driver_singleton(hw_group).channels[channel_index];
 
@@ -17,7 +36,8 @@ void hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
     }
     if(channel.isr_subscriptions[i].valid) {
 	/* There are no empty slots for a new subscriber */
-	/* TODO: determine something horrific to do! */
+	/* TODO: HardFault_Handler(); */
+	while(1) {};		/* penis */
     }
     channel.isr_subscriptions[i].valid = true;
     channel.isr_subscriptions[i].slot = isr;
@@ -28,7 +48,7 @@ void hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
  * the time right now. Comment created Saturday February 7, 2015 15:46 */
 void hw_disconnect(HW_DEVICES hw_group, long channel_id, const void* isr) {
 
-    unsigned short i;
+    hw_iterator i;
     long channel_index = _hw_channel_to_index(channel_id, hw_group);
     hw_channel channel = hw_driver_singleton(hw_group).channels[channel_index];
 
@@ -81,7 +101,7 @@ void hw_notify(HW_DEVICES           hw_group,
 	       hw_notification      notification,
 	       HW_NOTIFICATION_TYPE notification_type) {
 
-    unsigned short i;
+    hw_iterator i;
     long channel_index = _hw_channel_to_index(channel_id, hw_group);
     hw_channel channel = hw_driver_singleton(hw_group).channels[channel_index];
 

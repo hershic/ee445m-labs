@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include "libnotify/notify.h"
 
+typedef unsigned char hw_iterator;
 #define HW_DRIVER_MAX_CHANNELS 8
 #define HW_DRIVER_MAX_SUBSCRIPTIONS 8
 
@@ -26,6 +27,7 @@ typedef struct hw_channel {
     _isr_subscription isr_subscriptions[HW_DRIVER_MAX_SUBSCRIPTIONS];
 } hw_channel;
 
+/* Why is this a struct? http://stackoverflow.com/a/4523537 */
 typedef struct hw_driver {
 
     hw_channel channels[HW_DRIVER_MAX_CHANNELS];
@@ -35,6 +37,9 @@ typedef enum  {
     HW_UART,
     HW_LCD,
 } HW_DEVICES;
+
+void hw_driver_init(HW_DEVICES);
+void hw_channel_init(hw_channel);
 
 /* TODO: add single-shot dis/connect functions */
 /* Connect a signal to a slot */

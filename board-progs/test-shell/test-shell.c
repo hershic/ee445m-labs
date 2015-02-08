@@ -31,7 +31,7 @@
 
 /* ///////////////////////////////////////////////////////////////////// */
 /* Hence begins the UART Representation Entity code */
-void UART0_HANDLER(void) {
+void UART0_Handler(void) {
 
     unsigned short i;
 
@@ -45,6 +45,7 @@ void UART0_HANDLER(void) {
 
 	/* TODO: schedule this thread instead of running it immediately */
 	hw_notify(HW_UART, UART0_BASE, notification, NOTIFY_CHAR);
+	uart_send_char(notification._char);
     }
 }
 
@@ -59,11 +60,12 @@ int main(void) {
     /* Enable the peripherals used by this example. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
+    hw_driver_init(HW_UART);
+    shell_spawn();
+
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    shell_spawn();
-    /* output_entity_uart_spawn(); */
 
     /* Postpone death */
     while(1) {};
