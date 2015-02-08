@@ -14,7 +14,7 @@
 #include "driverlib/sysctl.h"
 
 int timer_add_periodic_thread(void(*task)(void),
-			      unsigned long period_in_ms,
+			      unsigned long frequency,
 			      unsigned long priority,
 			      utimer_t timer_peripheral) {
 
@@ -46,7 +46,7 @@ int timer_add_periodic_thread(void(*task)(void),
 
     SysCtlPeripheralEnable(timer_periph);
     TimerConfigure(timer_base, TIMER_CFG_PERIODIC);
-    TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / 1000 * period_in_ms);
+    TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / frequency);
 
     TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
     IntEnable(timer_int, priority);

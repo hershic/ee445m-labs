@@ -19,7 +19,7 @@
 typedef enum {TIMER0, TIMER1, TIMER2} utimer_t;
 
 int timer_add_periodic_thread(void(*task)(void),
-			      unsigned long period_in_ms,
+			      unsigned long frequency,
 			      unsigned long priority,
 			      utimer_t timer_peripheral);
 static void (*_task0)(void);
