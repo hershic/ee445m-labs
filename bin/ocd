@@ -40,7 +40,7 @@
 ## \addtogroup OpenOCD OpenOCD invocation wrapper
 
 # Execute getopt
-ARGS=$(getopt -o p:dnh -l "program:,debug,dry-run,help" -n "$0" -- "$@");
+ARGS=$(getopt -o p:dt::nh -l "program:,debug,timeout::,dry-run,help" -n "$0" -- "$@");
 
 # Fail on bad arguments
 if [ $? -ne 0 ]; then
@@ -57,35 +57,37 @@ declare HELP_OCD
 HELP_OCD=$(cat <<'EOF'
 $0 : Wrap OpenOCD for communication with the cortex M4 used in ee445m.
 
-Usage : [-n] [-p|-d]
+Usage : [-n] [-p binary|-d] <-t <timeout>>
 
   -h : print this help menu
   -n : dry-run -- don't execute anything
-  -p : program
+  -t : number of seconds to delay instead of 3 OR
+       without an argument, let openocd complete on its own
+  -p : program the M4 with binary
   -d : debug
 
 EOF
 )
 
 # Determine the context in which OpenOCD will be invoked: su or echo
-## @var execute_ocd
+## @var ocd_execute
 ## @brief For internal use only.
 ## @details Controls the executing context of the openocd command.
 ## @ingroup OpenOCD
-declare execute_ocd=sudo
+declare ocd_execute=sudo
 
-## @var interface_prefixes
+## @var ocd_interface_prefixes
 ## @brief For internal use only.
 ## @details Users paths to OpenOCD interfaces.
 ## @ingroup OpenOCD
-declare -A interface_prefixes
-interface_prefixes=([eric]=/usr/share [hershal]=/opt/local/share)
+declare -A ocd_interface_prefixes
+ocd_interface_prefixes=([eric]=/usr/share [hershal]=/opt/local/share)
 
-## @var interface
+## @var ocd_interface
 ## @brief For internal use only.
 ## @details Path to OpenOCD interface for use on this system.
 ## @ingroup OpenOCD
-declare interface=${interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f120xl.cfg
+declare ocd_interface=${ocd_interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f120xl.cfg
 
 ## @var openocd_target_binary
 ## @brief For internal use only.
@@ -99,17 +101,24 @@ declare openocd_target_binary
 ## @ingroup OpenOCD
 declare openocd_args_program
 
-## @var gdb_port
+## @var openocd_gdb_port
 ## @brief For internal use only.
 ## @details Port to communicate to gdb with.
 ## @ingroup OpenOCD
-declare -ri gdb_port=3333
+declare -ri openocd_gdb_port=3333
 
 ## @var openocd_args_debug
 ## @brief For internal use only.
 ## @details Openocd command to open gdb on the M4.
 ## @ingroup OpenOCD
-declare -r openocd_args_debug="gdb_port ${gdb_port}"
+declare -r openocd_args_debug="openocd_gdb_port ${openocd_gdb_port}"
+
+## @var openocd_timeout
+## @brief For internal use only.
+## @details Openocd command to open gdb on the M4.
+## @ingroup OpenOCD
+declare openocd_timeout="timeout 3"
+
 
 # TODO: document
 # TODO: kill after three seconds of no activity
@@ -131,7 +140,7 @@ retry() {
 ## @ingroup OpenOCD
 openocd_program() {
 
-    retry 10 ${execute_ocd} openocd --file "${interface}" -c "${openocd_args_program}"
+    retry 10 ${ocd_timeout} ${ocd_execute} openocd --file "${ocd_interface}" -c "${openocd_args_program}"
 }
 
 ## @fn openocd_debug()
@@ -140,7 +149,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    retry 10 ${execute_ocd} openocd --file "${interface}" -c "${openocd_args_debug}"
+    retry 10 ${ocd_timeout} ${ocd_execute} openocd --file "${ocd_interface}" -c "${openocd_args_debug}"
 }
 
 # Obey command line arguments
@@ -158,9 +167,18 @@ while true; do
 	    openocd_debug
 	    ;;
 
+	-t|--timeout)
+            case "$2" in
+                "") openocd_timeout="" ;;
+                *)  openocd_timeout="timeout $2"
+		    shift
+		    ;;
+            esac
+	    ;;
+
 	-n|--dry_run)
 	    # Transform the context in which openocd is invoked
-	    execute_ocd=echo
+	    ocd_execute=echo
 	    ;;
 
 	-h|--help)
