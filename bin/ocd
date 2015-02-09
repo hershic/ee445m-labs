@@ -39,6 +39,9 @@
 #
 ## \addtogroup OpenOCD OpenOCD invocation wrapper
 
+# stderr is redirected to stdout for cooperation with acoc
+exec 2>&1
+
 # Execute getopt
 ARGS=$(getopt -o p:dt::nh -l "program:,debug,timeout::,dry-run,help" -n "$0" -- "$@");
 
@@ -78,7 +81,6 @@ ocd_ctrl_c() {
 }
 trap ocd_ctrl_c INT
 
-
 # Determine the context in which OpenOCD will be invoked: su or echo
 ## @var ocd_execute
 ## @brief For internal use only.
@@ -86,12 +88,13 @@ trap ocd_ctrl_c INT
 ## @ingroup OpenOCD
 declare ocd_execute=sudo
 
+# acoc="/home/eric/.gem/ruby/2.2.0/bin/acoc"
 # Determine the context in which OpenOCD will be invoked: su or echo
 ## @var ocd_openocd
 ## @brief For internal use only.
 ## @details Invocation of openocd command
 ## @ingroup OpenOCD
-declare -r ocd_openocd="/home/eric/.gem/ruby/2.2.0/bin/acoc openocd"
+declare -r ocd_openocd="openocd"
 
 ## @var ocd_interface_prefixes
 ## @brief For internal use only.
