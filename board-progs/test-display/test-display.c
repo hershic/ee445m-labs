@@ -47,18 +47,15 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    /* ST7735_InitR(INITR_BLACKTAB); */
-    /* ST7735_FillScreen(0); */
-    /* ST7735_Split_Horz(); */
-    /* ST7735_Split_Lines(1); */
-
     ST7735_InitR(INITR_REDTAB);
+
     ST7735_OutString("test on screen 0\n");
     ST7735_OutString("test on screen 0\n");
 
-    ST7735_OutString2("test on screen 1\n");
-    ST7735_OutString2("test on screen 1\n");
+    ST7735_DrawFastHLine(0, 70, 128, ST7735_YELLOW);
 
+    ST7735_OutString2("test on screen 1\n");
+    ST7735_OutString2("test on screen 1\n");
 
     /* Postpone death */
     while (1) {}
