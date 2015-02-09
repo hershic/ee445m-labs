@@ -51,7 +51,7 @@ int timer_add_periodic_thread(void(*task)(void),
     ROM_TimerLoadSet(timer_base, TIMER_A, ROM_SysCtlClockGet() / frequency);
 
     ROM_TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
-    /* ROM_IntEnable(timer_int, priority); */
+    ROM_IntEnable(timer_int);
     ROM_TimerEnable(timer_base, TIMER_A);
 
     /* Success */
