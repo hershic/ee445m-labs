@@ -27,6 +27,7 @@
 #include "libhw/hardware.h"
 #include "libuart/uart.h"
 #include "libheart/heartbeat.h"
+#include "libstd/nexus.h"
 
 #include <sys/stat.h>
 
@@ -74,6 +75,5 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    /* Postpone death */
-    while(1) {};
+    postpone_death();
 }

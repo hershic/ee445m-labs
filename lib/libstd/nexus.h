@@ -13,6 +13,13 @@
  *  \ingroup Framebuffer
  */
 /* char* itoa(int, char*, unsigned char); */
+
+inline static
+void postpone_death() {
+
+    while(1) {};
+}
+
 void* memset(void*, int, int);
 void *memcpy(void*, const void*, long);
 int strcmp(const char* s1, const char* s2);
