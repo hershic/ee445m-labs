@@ -122,7 +122,7 @@ uint32_t adc_collect(uint32_t channel, uint32_t frequency,
         adc_sample_buffer[channel] = (int32_t)buffer;
 
         /* low priority */
-        timer_add_periodic_thread(do_adc_func, 1, 1, timer_peripheral);
+        timer_add_periodic_thread(do_adc_func, frequency, 1, timer_peripheral);
         return 1;
     }
     return 0;

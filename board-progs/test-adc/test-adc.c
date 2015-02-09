@@ -35,10 +35,7 @@ int main(void) {
     /* Enable the GPIO pins for the LED (PF2). */
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
 
-    /* Enable the peripherals used by this example. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-
+    /* Enable TIMER2 (we are using) */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
     /* Enable processor interrupts. */
@@ -55,22 +52,6 @@ int main(void) {
     ADCProcessorTrigger(ADC0_BASE, 0);
 
     /* Do nothing */
-    /* while (1) { */
-    /*  */
-    /*     if(ADCIntStatus(ADC0_BASE, 0, false) != 0) { */
-    /*         /\* Clear the ADC interrupt. *\/ */
-    /*         ADCIntClear(ADC0_BASE, 0); */
-    /*  */
-    /*         /\* Read the data and trigger a new sample request. *\/ */
-    /*         ADCSequenceDataGet(ADC0_BASE, 0, &adc_data_buffer[0]); */
-    /*         ADCProcessorTrigger(ADC0_BASE, 0); */
-    /*  */
-    /*         /\* TODO: Update our report of the data somehow (whatever */
-    /*            means we define are necessary). For now the data */
-    /*            resides in adc_data_buffer ready for copying and */
-    /*            interpretation. *\/ */
-    /*     } */
-    /* } */
     while (1) {}
 
 }
