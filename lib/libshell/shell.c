@@ -24,6 +24,7 @@ void shell_spawn() {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
     shell_clear_shell_buffer();
+    shell_print_prompt();
 }
 
 char* shell_represent() {
@@ -45,7 +46,9 @@ void shell_uart0_handler(char recv) {
     switch(recv) {
     case '\r':
 	shell_execute_command();
+	uart_send_char('\n');
 	shell_clear_shell_buffer();
+	shell_print_prompt();
 	break;
     case 8:
 	/* TODO: backspace */
@@ -62,6 +65,13 @@ void shell_clear_shell_buffer() {
 
     memset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
     SHELL_BUFFER_POSITION = 0;
+}
+
+/* TODO: globalize prompt */
+/* TODO: make sure shell is explicit about its uart channel */
+void shell_print_prompt() {
+
+    uart_send_string("> ");
 }
 
 /* returns success (could be out of room) */
@@ -82,7 +92,6 @@ bool shell_register_command(const char* command_name, int(*command)()) {
 bool shell_deregister_command(const char* command_name) {
 
     shell_iterator i=0;
-    strcmp(SHELL_COMMANDS[i].name, command_name);
     while(i<SHELL_MAX_COMMANDS &&
     	  0 != strcmp(SHELL_COMMANDS[i].name, command_name)) {
     	++i;

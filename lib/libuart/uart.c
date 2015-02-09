@@ -78,7 +78,7 @@ void uart_send_char(const char text) {
 /* TODO: update uart0_base with channel */
 void uart_send_char_(const long channel, const char text) {
 
-    UARTCharPutNonBlocking(UART0_BASE, text);
+    UARTCharPut(UART0_BASE, text);
 }
 
 void uart_send_string(const char* text) {
@@ -112,7 +112,6 @@ char uart_get_char_(const long channel) {
     /* Clear the asserted interrupts. */
     UARTIntClear(UART0_BASE, ui32Status);
 
-    return UARTCharGetNonBlocking(UART0_BASE);
     char ret = UARTCharGetNonBlocking(UART0_BASE);
 
 #ifndef NDEBUG

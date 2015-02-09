@@ -20,7 +20,7 @@
       int ADC_Collect(unsigned int channelNum, unsigned int fs,
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
-*** TODO interpreter [75%]
+*** TODO [#B] interpreter [75%]
 - [X] uart port
 - [X] interrupts
 - OPTIONAL hardware fifo
