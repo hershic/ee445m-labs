@@ -47,12 +47,12 @@ int main(void) {
     /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
     adc_init();
 
+    adc_open(0);
+    adc_collect(0, 10, &adc_data_buffer[0], 10, TIMER0);
+
     /* Trigger an initial ADC sequence. As far as I know this is
        required for proper init. */
     ADCProcessorTrigger(ADC0_BASE, 0);
-
-    adc_open(0);
-    adc_collect(0, 10, &adc_data_buffer[0], 10, TIMER0);
 
     /* Do nothing */
     /* while (1) { */

@@ -42,15 +42,15 @@ void adc_init(void) {
     GPIOPinTypeADC(GPIO_PORTE_AHB_BASE, GPIO_PIN_3 | GPIO_PIN_2 | GPIO_PIN_1);
 
     /* Configure the sequencer for 3 steps. */
-    /* for(ui32Chan = 0; ui32Chan < 2; ui32Chan++) { */
-    /*     /\* Configure the sequence step *\/ */
-    /*     ADCSequenceStepConfigure(ADC0_BASE, 0, ui32Chan, ui32Chan); */
-    /* } */
+    for(i = 0; i < 2; ++i) {
+        /* Configure the sequence step */
+        ADCSequenceStepConfigure(ADC0_BASE, 0, i, i);
+    }
 
-    /* ADCSequenceStepConfigure(ADC0_BASE, 0, 2, ADC_CTL_CH2 | ADC_CTL_IE | */
-    /*                          ADC_CTL_END); */
+    ADCSequenceStepConfigure(ADC0_BASE, 0, 2, ADC_CTL_CH2 | ADC_CTL_IE |
+                             ADC_CTL_END);
     /* Enable the sequence but do not start it yet. */
-    /* ADCSequenceEnable(ADC0_BASE, 0); */
+    ADCSequenceEnable(ADC0_BASE, 0);
 
     for (i=0; i<NUM_ADC_CHANNELS; ++i) {
         adc_active_scoreboard[i] = false;
@@ -130,9 +130,10 @@ uint32_t adc_collect(uint32_t channel, uint32_t frequency,
 
 void do_adc_func() {
 
-    /* GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2); */
+    uint32_t status = ADCIntStatus(ADC0_BASE, 0, false);
+    if (status != 0) {
 
-    while (ADCIntStatus(ADC0_BASE, 0, false) == 0) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
         /* Clear the ADC interrupt. */
         ADCIntClear(ADC0_BASE, 0);
     
@@ -146,9 +147,6 @@ void do_adc_func() {
            resides in adc_data_buffer ready for copying and
            interpretation. */
     }
-    /*  */
-    /* ADCProcessorTrigger(ADC0_BASE, 0); */
-
 }
 
 void ADC0Seq0_Handler(void) {
