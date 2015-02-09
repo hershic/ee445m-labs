@@ -67,8 +67,6 @@ int main(void) {
 
     hw_driver_init(HW_UART);
     uart_init();		/* defaults to UART0_BASE (thanks hw_driver) */
-    /* TODO: remove */
-    uart_send_string("Driver initialized!\n");
 
     shell_spawn();
     shell_register_command((const char*) "doctor", doctor);

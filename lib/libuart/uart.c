@@ -92,7 +92,7 @@ void uart_send_string_(const long channel, const char* text) {
     char* ptr = (char*)text;
 
     while(cnt--) {
-        UARTCharPutNonBlocking(channel, *(ptr++));
+        UARTCharPut(channel, *(ptr++));
     }
 }
 
