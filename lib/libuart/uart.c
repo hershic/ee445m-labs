@@ -5,14 +5,10 @@
 #include "inc/hw_ints.h"
 
 #include <stdint.h>
-#include <stdbool.h>
-#include <stdlib.h>
 
 #include "driverlib/pin_map.h"
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
-
-#include "utils/ustdlib.h"
 
 #define NDEBUG
 
@@ -20,33 +16,19 @@
 #include <stdio.h>
 #endif
 
-extern int  _HEAP_START;
-extern int  _HEAP_END;
-
 static char UART_BUFFER[128];
-
-extern void *_sbrk(int incr)
-{
-    static unsigned char *heap = NULL;
-    unsigned char *prev_heap;
-
-    if (heap == NULL) {
-        heap = (unsigned char *)&_HEAP_START;
-    }
-    prev_heap = heap;
-
-    if ((heap + incr) >= (unsigned char *)&_HEAP_END) {
-        return 0;
-    }
-    heap += incr;
-    return (void *)prev_heap;
-}
 
 /*
  * \var long uart_active_channel
  * \brief Allows for modal interaction with uart channels.
  */
 long uart_active_channel = UART_UNUSED;
+
+uint32_t ustrlen(const char *s) {
+    uint32_t len = 0;
+    while(s[len]) { ++len; }
+    return(len);
+}
 
 void uart_set_active_channel(const long channel) {
 

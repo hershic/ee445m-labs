@@ -7,4 +7,3 @@ include_directories(../../)
 add_library (uart STATIC ${uart-src})
 
 target_link_libraries(uart driverlib)
-target_link_libraries(uart utils)
