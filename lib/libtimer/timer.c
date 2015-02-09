@@ -13,6 +13,8 @@
 #include "driverlib/timer.h"
 #include "driverlib/sysctl.h"
 
+#include "driverlib/rom.h"
+
 int timer_add_periodic_thread(void(*task)(void),
 			      unsigned long frequency,
 			      unsigned long priority,
@@ -44,30 +46,30 @@ int timer_add_periodic_thread(void(*task)(void),
         return 1;
     }
 
-    SysCtlPeripheralEnable(timer_periph);
-    TimerConfigure(timer_base, TIMER_CFG_PERIODIC);
-    TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / frequency);
+    ROM_SysCtlPeripheralEnable(timer_periph);
+    ROM_TimerConfigure(timer_base, TIMER_CFG_PERIODIC);
+    ROM_TimerLoadSet(timer_base, TIMER_A, ROM_SysCtlClockGet() / frequency);
 
-    TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
-    IntEnable(timer_int, priority);
-    TimerEnable(timer_base, TIMER_A);
+    ROM_TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
+    /* ROM_IntEnable(timer_int, priority); */
+    ROM_TimerEnable(timer_base, TIMER_A);
 
     /* Success */
     return 0;
 }
 
 void Timer0A_Handler(void) {
-    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     _task0();
 }
 
 void Timer1A_Handler(void) {
-    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+    ROM_TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
     _task1();
 }
 
 void Timer2A_Handler(void) {
-    TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
+    ROM_TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
     _task2();
 }
 
