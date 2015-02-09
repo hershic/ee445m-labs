@@ -71,6 +71,16 @@ Usage : [-n] [-p binary|-d] <-t <timeout>>
 EOF
 )
 
+## @fn ocd_ctrl_c
+## @brief For internal use only.
+## @details Allows the user to quit regardless of number of current
+## attempts
+ocd_ctrl_c() {
+    exit 1
+}
+trap ocd_ctrl_c INT
+
+
 # Determine the context in which OpenOCD will be invoked: su or echo
 ## @var ocd_execute
 ## @brief For internal use only.
