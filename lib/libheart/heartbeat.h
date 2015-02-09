@@ -3,33 +3,35 @@
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
+#include "driverlib/rom.h"
+
 inline
 void heart_init() {
 
     /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+    ROM_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
 }
 
 inline
 void heart_off() {
 
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+    ROM_GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
 }
 
 inline
 void heart_on() {
 
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 1);
+    ROM_GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
 }
 
 inline
 void heart_toggle() {
 
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-		 GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+    ROM_GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     ROM_GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
 }
 
 inline

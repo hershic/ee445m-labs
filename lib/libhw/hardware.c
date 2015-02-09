@@ -16,11 +16,12 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
-#include "driverlib/rom.h"
 
 #include "libhw/hardware.h"
 #include "libstd/defines.h"
 #include "inc/hw_memmap.h"
+
+#include "driverlib/rom.h"
 
 hw_driver HW_UART_DRIVER;
 hw_notification HW_UART_NOTIFICATION;
@@ -35,8 +36,8 @@ void hw_driver_init(HW_DEVICES hw_group) {
 
     /* Enable the peripherals this driver is responsible for */
     /* TODO: allow flexibility with channel */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
     /* Initialize driver data structures */
     for(i=0; i<HW_DRIVER_MAX_CHANNELS; ++i) {

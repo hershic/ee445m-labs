@@ -9,12 +9,13 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-/* #include <stdlib.h> */
 
 #include "driverlib/pin_map.h"
 #include "driverlib/timer.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
+
+#include "driverlib/rom.h"
 
 unsigned short SHELL_BUFFER_POSITION;
 char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
@@ -22,7 +23,7 @@ shell_command SHELL_COMMANDS[SHELL_MAX_COMMANDS];
 
 void shell_spawn() {
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
 
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
 

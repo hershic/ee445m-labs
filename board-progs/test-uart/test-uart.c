@@ -34,7 +34,7 @@ void UART0_Handler(void) {
     uint32_t ui32Status;
 
     /* Loop while there are characters in the receive FIFO. */
-    while(UARTCharsAvail(UART0_BASE)) {
+    while(ROM_UARTCharsAvail(UART0_BASE)) {
         /* Read the next character from the UART and write it back to the UART. */
         uart_send_char(uart_get_char());
         /* char* received_string = uart_get_string(1); */
@@ -42,10 +42,10 @@ void UART0_Handler(void) {
         /* free(received_string); */
 
         /* Blink the LED to show a character transfer is occuring. */
-	heart_beat();
+        heart_on();
 
         /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
-        SysCtlDelay(SysCtlClockGet() / (1000 * 3));
+        ROM_SysCtlDelay(ROM_SysCtlClockGet() / (1000 * 3));
 
         /* Turn off the LED */
         heart_off();
@@ -57,22 +57,21 @@ void UART0_Handler(void) {
  */
 int main(void) {
 
-    FPUEnable();
-    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+    ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
     /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+    ROM_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
 
     /* Enable the peripherals used by this example. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
     /* Enable processor interrupts. */
-    IntMasterEnable();
+    ROM_IntMasterEnable();
 
     /* Set the active uart channel */
     uart_set_active_channel(UART0_BASE);

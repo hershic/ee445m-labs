@@ -5,11 +5,11 @@
 #+author: Eric Crosson
 * Labs
 ** [0/3] Lab 1
-*** TODO lcd driver [0%]
-  - [ ] contains logically separate displays
+*** TODO lcd driver [100%]
+  - [X] contains logically separate displays
     - horizontal split
-  - [ ] 4+ lines per display
-  - [ ] API to write to displays individually
+  - [X] 4+ lines per display
+  - [X] API to write to displays individually
 *** TODO adc driver [0%]
   - [ ] samples from 100 - 10,000 Hz
   - [ ] samples from ADC0 - ADC11
@@ -20,9 +20,9 @@
       int ADC_Collect(unsigned int channelNum, unsigned int fs,
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
-*** TODO interpreter [33%]
-- [ ] uart port
-- [ ] interrupts
+*** TODO interpreter [100%]
+- [X] uart port
+- [X] interrupts
 - OPTIONAL hardware fifo
 - [X] software fifo x2
 
@@ -45,7 +45,7 @@ fputc function like this:
 #+END_SRC
 *** TODO Checkout
 DEADLINE: <2015-02-09 Mon 10:30>
-- demonstrate measuring of timer2 ISR overhead
-- be prepared to field questions addressing interrupts/FIFOs
-- demonstrate each interpreter command
-- show screen displaying two stuffs
+- [ ] demonstrate measuring of timer2 ISR overhead
+- [ ] be prepared to field questions addressing interrupts/FIFOs
+- [X] demonstrate each interpreter command
+- [X] show screen displaying two stuffs

@@ -12,6 +12,8 @@
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
 
+#include "driverlib/rom.h"
+
 #include "utils/ustdlib.h"
 
 #define NDEBUG
@@ -51,17 +53,17 @@ void uart_init() {
 /* TODO: update uart0_base with channel */
 void uart_init_(const long channel) {
 
-    GPIOPinConfigure(GPIO_PA0_U0RX);
-    GPIOPinConfigure(GPIO_PA1_U0TX);
-    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    ROM_GPIOPinConfigure(GPIO_PA0_U0RX);
+    ROM_GPIOPinConfigure(GPIO_PA1_U0TX);
+    ROM_GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
-    UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 115200,
-                        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-                         UART_CONFIG_PAR_NONE));
+    ROM_UARTConfigSetExpClk(UART0_BASE, ROM_SysCtlClockGet(), 115200,
+                            (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
+                             UART_CONFIG_PAR_NONE));
 
     /* Enable the UART interrupt. */
-    IntEnable(INT_UART0);
-    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
+    ROM_IntEnable(INT_UART0);
+    ROM_UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
 #ifndef NDEBUG
     /* TODO: uncomment when uart0_base has been updated with channel */
     printf("%s channel %d initialized\n", __FUNCTION__, channel);
@@ -76,7 +78,7 @@ void uart_send_char(const char text) {
 /* TODO: update uart0_base with channel */
 void uart_send_char_(const long channel, const char text) {
 
-    UARTCharPutNonBlocking(UART0_BASE, text);
+    ROM_UARTCharPutNonBlocking(UART0_BASE, text);
 }
 
 void uart_send_string(const char* text) {
@@ -90,7 +92,7 @@ void uart_send_string_(const long channel, const char* text) {
     char* ptr = (char*)text;
 
     while(cnt--) {
-        UARTCharPutNonBlocking(channel, *(ptr++));
+        ROM_UARTCharPutNonBlocking(channel, *(ptr++));
     }
 }
 
@@ -105,13 +107,13 @@ char uart_get_char_(const long channel) {
     uint32_t ui32Status;
 
     /* Get the interrrupt status. */
-    ui32Status = UARTIntStatus(UART0_BASE, true);
+    ui32Status = ROM_UARTIntStatus(UART0_BASE, true);
 
     /* Clear the asserted interrupts. */
-    UARTIntClear(UART0_BASE, ui32Status);
+    ROM_UARTIntClear(UART0_BASE, ui32Status);
 
-    return UARTCharGetNonBlocking(UART0_BASE);
-    char ret = UARTCharGetNonBlocking(UART0_BASE);
+    return ROM_UARTCharGetNonBlocking(UART0_BASE);
+    char ret = ROM_UARTCharGetNonBlocking(UART0_BASE);
 
 #ifndef NDEBUG
     printf("%s got char: %c", ret);
@@ -139,13 +141,13 @@ char* uart_get_string_(const long channel,
     UART_BUFFER[string_length] = 0;
 
     /* Get the interrrupt status. */
-    ui32Status = UARTIntStatus(UART0_BASE, true);
+    ui32Status = ROM_UARTIntStatus(UART0_BASE, true);
 
     /* Clear the asserted interrupts. */
-    UARTIntClear(UART0_BASE, ui32Status);
+    ROM_UARTIntClear(UART0_BASE, ui32Status);
 
-    while(UARTCharsAvail(UART0_BASE) && remaining_chars > 0) {
-        buffer[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
+    while(ROM_UARTCharsAvail(UART0_BASE) && remaining_chars > 0) {
+        buffer[remaining_chars - string_length] = ROM_UARTCharGetNonBlocking(channel);
         remaining_chars--;
     }
 
