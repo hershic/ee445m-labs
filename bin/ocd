@@ -39,8 +39,6 @@
 #
 ## \addtogroup OpenOCD OpenOCD invocation wrapper
 
-# TODO: trap control c with exit
-
 # Execute getopt
 ARGS=$(getopt -o p:dt::nh -l "program:,debug,timeout::,dry-run,help" -n "$0" -- "$@");
 
@@ -87,6 +85,13 @@ trap ocd_ctrl_c INT
 ## @details Controls the executing context of the openocd command.
 ## @ingroup OpenOCD
 declare ocd_execute=sudo
+
+# Determine the context in which OpenOCD will be invoked: su or echo
+## @var ocd_openocd
+## @brief For internal use only.
+## @details Invocation of openocd command
+## @ingroup OpenOCD
+declare -r ocd_openocd="/home/eric/.gem/ruby/2.2.0/bin/acoc openocd"
 
 ## @var ocd_interface_prefixes
 ## @brief For internal use only.
@@ -152,7 +157,7 @@ retry() {
 ## @ingroup OpenOCD
 openocd_program() {
 
-    retry 10 ${ocd_timeout} ${ocd_execute} openocd --file "${ocd_interface}" -c "${openocd_args_program}"
+    retry 10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_program}" 2>&1
 }
 
 ## @fn openocd_debug()
@@ -161,7 +166,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    retry 10 ${ocd_timeout} ${ocd_execute} openocd --file "${ocd_interface}" -c "${openocd_args_debug}"
+    retry 10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_debug}" 2>&1
 }
 
 # Obey command line arguments
