@@ -39,6 +39,8 @@
 #
 ## \addtogroup OpenOCD OpenOCD invocation wrapper
 
+# TODO: trap control c with exit
+
 # Execute getopt
 ARGS=$(getopt -o p:dt::nh -l "program:,debug,timeout::,dry-run,help" -n "$0" -- "$@");
 
