@@ -1,1 +1,11 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c; c-basic-offset: 4; -*- *
+/*!
+ * \brief Rip open that chest cavity to provide manual stimulation of
+ * the ventricles.
+ * \details Make changing heart state as unconcious as IRL.
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Heart Heart manipulation API. Oh the feels
+ */

@@ -1,8 +1,12 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/* TODO: doxygenize */
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
+/*!
+ *  \brief Initialize the heart for visible transformation
+ *  \returns void
+ *  \ingroup Heart
+ */
 inline
 void heart_init() {
 
@@ -13,18 +17,34 @@ void heart_init() {
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
 }
 
+/*!
+ *  \brief Turn the heart off
+ *  \returns void
+ *  \ingroup Heart
+ */
 inline
 void heart_off() {
 
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
 }
 
+/*!
+ *  \brief Turn the heart on
+ *  \returns void
+ *  \ingroup Heart
+ */
 inline
 void heart_on() {
 
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 1);
 }
 
+/*!
+ *  \brief Toggle the heart once
+ *  \details end_state = ~starting_state
+ *  \returns void
+ *  \ingroup Heart
+ */
 inline
 void heart_toggle() {
 
@@ -32,11 +52,20 @@ void heart_toggle() {
 		 GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
 }
 
+/*!
+ *  \brief Toggle the heart twice
+ *  \details end_state = starting_state
+ *  \returns void
+ *  \ingroup Heart
+ */
 inline
 void heart_beat() {
 
     heart_toggle();
     heart_toggle();
 }
+
+/* TOOD: use bind (or equivalent function) to wrap a fn pointer with
+ * beat(), ptr(), toggle() and return prt()'s ret value */
 
 #endif
