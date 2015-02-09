@@ -20,25 +20,7 @@
 #include <stdio.h>
 #endif
 
-extern int  _HEAP_START;
-extern int  _HEAP_END;
-
-extern void *_sbrk(int incr)
-{
-    static unsigned char *heap = NULL;
-    unsigned char *prev_heap;
-
-    if (heap == NULL) {
-        heap = (unsigned char *)&_HEAP_START;
-    }
-    prev_heap = heap;
-
-    if ((heap + incr) >= (unsigned char *)&_HEAP_END) {
-        return 0;
-    }
-    heap += incr;
-    return (void *)prev_heap;
-}
+static char UART_BUFFER[128];
 
 /*
  * \var long uart_active_channel
@@ -153,8 +135,8 @@ char* uart_get_string_(const long channel,
     long remaining_chars = string_length;
 
     /* \buffer is a null-terminated string */
-    buffer = malloc(string_length*sizeof(char) + 1);
-    buffer[string_length] = 0;
+    /* buffer = malloc(string_length*sizeof(char) + 1); */
+    UART_BUFFER[string_length] = 0;
 
     /* Get the interrrupt status. */
     ui32Status = UARTIntStatus(UART0_BASE, true);

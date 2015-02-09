@@ -21,3 +21,7 @@ void* memset(void* b, int c, int len) {
     }
     return b;
 }
+
+void *memcpy(void *str1, const void *str2, long n) {
+
+}
