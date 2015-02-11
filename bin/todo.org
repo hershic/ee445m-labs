@@ -1,4 +1,7 @@
 #+startup: content
+* [0/1] dev environment
+- [ ] eldoc for our functions!
+- [ ] disaster for arm!
 * [4/8] Doxygen
 - [X] publish Doxygen on an external website
       http://hershic.github.io/ee445m-labs/

@@ -3,9 +3,10 @@
 #define __SHELL__
 
 #include <stdbool.h>
-/* TODO: doxygenize */
 
-/* TODO: allow passing of arguments */
+#include "libstd/nexus.h"
+
+/* TODO: doxygenize */
 
 typedef unsigned char shell_iterator;
 #define SHELL_BUFFER_LENGTH 64
@@ -25,6 +26,9 @@ char* shell_represent();
 void shell_kill();
 
 void shell_uart0_handler(char);
+
+void shell_clear_shell_buffer();
+void shell_print_prompt();
 
 bool shell_register_command(const char*, int(*)());
 bool shell_deregister_command(const char*);

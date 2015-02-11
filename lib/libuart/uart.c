@@ -5,14 +5,10 @@
 #include "inc/hw_ints.h"
 
 #include <stdint.h>
-#include <stdbool.h>
-#include <stdlib.h>
 
 #include "driverlib/pin_map.h"
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
-
-#include "utils/ustdlib.h"
 
 #define NDEBUG
 
@@ -27,6 +23,12 @@ static char UART_BUFFER[128];
  * \brief Allows for modal interaction with uart channels.
  */
 long uart_active_channel = UART_UNUSED;
+
+uint32_t ustrlen(const char *s) {
+    uint32_t len = 0;
+    while(s[len]) { ++len; }
+    return(len);
+}
 
 void uart_set_active_channel(const long channel) {
 
@@ -76,7 +78,7 @@ void uart_send_char(const char text) {
 /* TODO: update uart0_base with channel */
 void uart_send_char_(const long channel, const char text) {
 
-    UARTCharPutNonBlocking(UART0_BASE, text);
+    UARTCharPut(UART0_BASE, text);
 }
 
 void uart_send_string(const char* text) {
@@ -90,7 +92,7 @@ void uart_send_string_(const long channel, const char* text) {
     char* ptr = (char*)text;
 
     while(cnt--) {
-        UARTCharPutNonBlocking(channel, *(ptr++));
+        UARTCharPut(channel, *(ptr++));
     }
 }
 
@@ -110,7 +112,6 @@ char uart_get_char_(const long channel) {
     /* Clear the asserted interrupts. */
     UARTIntClear(UART0_BASE, ui32Status);
 
-    return UARTCharGetNonBlocking(UART0_BASE);
     char ret = UARTCharGetNonBlocking(UART0_BASE);
 
 #ifndef NDEBUG
@@ -129,7 +130,7 @@ char* uart_get_string(const long string_length) {
 char* uart_get_string_(const long channel,
                        const long string_length) {
 
-    char* buffer;
+    /* char* buffer; */
     uint32_t ui32Status;
 
     long remaining_chars = string_length;
@@ -145,12 +146,12 @@ char* uart_get_string_(const long channel,
     UARTIntClear(UART0_BASE, ui32Status);
 
     while(UARTCharsAvail(UART0_BASE) && remaining_chars > 0) {
-        buffer[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
+        UART_BUFFER[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
         remaining_chars--;
     }
 
 #ifndef NDEBUG
-    printf("%s Got string: %s\n", __FUNCTION__, buffer);
+    printf("%s Got string: %s\n", __FUNCTION__, UART_BUFFER);
 #endif
-    return buffer;
+    return UART_BUFFER;
 }
