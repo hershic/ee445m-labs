@@ -309,8 +309,16 @@
   frequency. With this feature we added a method
   \verb|timer_add_periodic_thread|.
 \item ADC \\
-
-  \todo
+  We envisioned that the ADC on our device would mainly be used for
+  periodic data acquisition, so the driver was designed primarily with
+  that use case in mind. We have designed the ADC driver to work in
+  conjunction with our timer interface for quick and easy consumption
+  of ADC data. When the user wishes to collect ADC data in a periodic
+  manner, all the user needs to do is supply the frequency with which
+  they would like to sample at, a buffer to be filled with analog
+  data, and the timer to bind the sampling process to. When the timer
+  is triggered, the ADC is immediately sampled and the supplied buffer
+  is filled with new data.
 \item UART \\
   The UART driver is capable of accepting susbcriptions from
   tasks. When an interrupt is triggered by an incoming character, the
