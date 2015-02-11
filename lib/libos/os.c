@@ -12,6 +12,8 @@ static tcb_t OS_THREADS[OS_MAX_THREADS];
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
 
+bool os_remove_this_thread;
+
 void os_threading_init() {
 
     uint32_t i;
@@ -27,32 +29,34 @@ void os_threading_init() {
     }
 }
 
-tcb_t* os_add_thread(task_t task) {
+tcb_t* os_add_task(task_t task) {
 
     int32_t atom;
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
-    /* atomic ( */
-        /* 2. Pop the task from the dead_thread pile and add it to the
-         * list of running threads. */
-        thread_to_add = os_dead_threads;
-        CDL_DELETE(os_dead_threads, thread_to_add);
-        CDL_PREPEND(os_running_threads, thread_to_add);
+    atom = StartCritical();
 
-        /* 3. Set the initial stack contents for the new thread. */
-        os_reset_thread_stack(thread_to_add, task);
+    /* 2. Pop the task from the dead_thread pile and add it to the
+     * list of running threads. */
+    thread_to_add = os_dead_threads;
+    CDL_DELETE(os_dead_threads, thread_to_add);
+    CDL_PREPEND(os_running_threads, thread_to_add);
 
-        /* 4. Set metadata for this thread's TCB. */
-        thread_to_add->status = THREAD_RUNNING;
-        thread_to_add->sleep_timer = 0;
-        thread_to_add->entry_point = task;
-    /* ) */
+    /* 3. Set the initial stack contents for the new thread. */
+    os_reset_thread_stack(thread_to_add, task);
+
+    /* 4. Set metadata for this thread's TCB. */
+    thread_to_add->status = THREAD_RUNNING;
+    thread_to_add->sleep_timer = 0;
+    thread_to_add->entry_point = task;
+
     /* 5. Return. */
+    EndCritical(atom);
     return thread_to_add;
 }
 
-tcb_t* os_remove_thread(task_t task) {
+tcb_t* os_remove_task(task_t task) {
 
     int32_t status ;
     tcb_t* thread_to_remove;
@@ -82,9 +86,39 @@ tcb_t* os_remove_thread(task_t task) {
     return thread_to_remove;
 }
 
-void os_remove_thread_and_switch(task_t task) {
-    if (os_remove_thread(task)) {
+void os_remove_thread(tcb_t* thread_to_remove) {
+
+    int32_t status;
+
+    /* 1. Disable interrupts and save the priority mask */
+    status = StartCritical();
+
+    /* 2. Pop the task from the running_thread pile and add it to the
+     * list of dead threads. */
+    CDL_DELETE(os_running_threads, thread_to_remove);
+    /* Means high tcb_t memory reusability */
+    CDL_PREPEND(os_dead_threads, thread_to_remove);
+
+    /* OPTIONAL TODO: do the check for overwritten stacks as long as
+     * we kill every thread in our testing we'll get valuable yet
+     * unobtrusive debugging data. also consider a check on the
+     * immutable fields, using the offset from the array base as
+     * verification. */
+
+    /* 3. Reset metadata for this thread's TCB. */
+    thread_to_remove->status = THREAD_DEAD;
+    thread_to_remove->entry_point = NULL;
+
+    /* 4. Return. */
+    EndCritical(status);
+}
+
+void os_remove_task_and_switch(task_t task) {
+
+    while (1) {
+        os_remove_this_thread = true;
         IntPendSet(FAULT_PENDSV);
+        /* wait for interrupt to kill everyone */
     }
 }
 
@@ -172,12 +206,6 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
     /* swcontext->r11 = 0x11111111; */
 
     tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
-    asm volatile ("PUSH {R9, R10, R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
-    asm volatile ( "mrs     r11, msp" );
-    asm volatile ( "mrs     r10, control" );
-
-    asm volatile ("POP {R9, R10, R11, R12}");
 }
 
 /*! \warning Ensure you have something to run before enabling
@@ -190,10 +218,10 @@ void SysTick_Handler() {
      * here call a method, something like os_reschedule_tasks
 
      * - build a new list with CDL_PREPEND, prepending tasks in order
-         of lowest priority to highest. this will reassign all *next,
-         *prev pointers and when we do the unmodified PendSV_Handler
-         it'll grab not the round-robin *next ptr but the
-         just-calculated next thread to grant foreground.
+     of lowest priority to highest. this will reassign all *next,
+     *prev pointers and when we do the unmodified PendSV_Handler
+     it'll grab not the round-robin *next ptr but the
+     just-calculated next thread to grant foreground.
 
      * notes: still seems a little sub-optimal to me so we'll put a
      * pin in it, let our subconsciousness do the designing, continue
@@ -205,7 +233,8 @@ void SysTick_Handler() {
 
 void PendSV_Handler() {
 
-    asm volatile("CPSID  I            ;// mask all (except faults)\n");
+    /* mask all (except faults) */
+    asm volatile("CPSID  I");
 
     /* -------------------------------------------------- */
     /* phase 1: store context                             */
@@ -221,24 +250,29 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
-    /* load the value of os_running_threads */
-    asm volatile("LDR     R2, =os_running_threads");
+    if (os_remove_this_thread) {
+        os_remove_this_thread = false;
+        os_remove_thread(os_running_threads);
+    }
 
-    /* r3 = *os_running_threads, of thread A */
-    asm volatile("LDR     R3, [R2]");
+    /* load the value of os_running_threads */
+    asm volatile("ldr     r2, =os_running_threads");
+
+    /* r3 = *os_running_threads, of thread a */
+    asm volatile("ldr     r3, [r2]");
 
     /* load the value of os_running_threads->next into r1 */
-    asm volatile("LDR     R1, [R3,#4]");
+    asm volatile("ldr     r1, [r3,#4]");
 
     /* os_running_threads = os_running_threads->next */
-    asm volatile("STR     R1, [R2]");
+    asm volatile("str     r1, [r2]");
+
+    /* store the psp from thread a */
+    asm volatile("str     r12, [r3, #0]");
 
     /* -------------------------------------------------- */
     /* phase 3: load context                              */
     /* -------------------------------------------------- */
-
-    /* store the psp from thread A */
-    asm volatile("str     r12, [r3, #0]");
 
     /* load thread B's psp */
     asm volatile("ldr     r12, [r1]");

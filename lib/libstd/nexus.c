@@ -80,5 +80,6 @@ int32_t StartCritical() {
 }
 
 void EndCritical(int32_t primask) {
-    asm("MSR    PRIMASK, R0\n");
+    asm("MSR    PRIMASK, R0\n"
+        "CPSIE  I            ;// unmask all \n");
 }

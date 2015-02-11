@@ -43,7 +43,7 @@ void Thread1(void){
     heart_toggle_modal(&pf1);
     ++CountPF1;
 
-    os_remove_thread_and_switch(Thread1);
+    os_remove_task_and_switch(Thread1);
 }
 
 /*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
@@ -51,7 +51,7 @@ void Thread2(void){
     heart_toggle_modal(&pf2);
     ++CountPF2;
 
-    os_remove_thread_and_switch(Thread2);
+    os_remove_task_and_switch(Thread2);
 }
 
 /*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
@@ -59,7 +59,7 @@ void Thread3(void){
     heart_toggle_modal(&pf3);
     ++CountPF3;
 
-    os_remove_thread_and_switch(Thread3);
+    os_remove_task_and_switch(Thread3);
 }
 
 void flash_some_led(notification button_bitmask) {
@@ -81,9 +81,7 @@ void flash_some_led(notification button_bitmask) {
     }
 
     which_led = which_led+1 % 3;
-    atom = StartCritical();
-    os_add_thread(task);
-    EndCritical(atom);
+    os_add_task(task);
 }
 
 void postpone_death_() {
@@ -114,7 +112,7 @@ int main() {
     os_threading_init();
 
     atom = StartCritical();
-    os_add_thread(postpone_death_);
+    os_add_task(postpone_death_);
     EndCritical(atom);
 
     /* os_trap_ */

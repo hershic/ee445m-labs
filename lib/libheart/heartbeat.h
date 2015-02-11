@@ -277,8 +277,7 @@ void heart_toggle_modal(muscle_t* ancillary_muscle) {
 
 #if !(defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+		 heart_status_modal(ancillary_muscle) ^ ancillary_muscle->pin);
 #endif
 }
 
