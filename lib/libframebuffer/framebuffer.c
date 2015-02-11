@@ -301,15 +301,6 @@ void _fb_draw_char(framebuffer fb, point* pen, char c) {
     }
 }
 
-
-char* itoa(int i, char* buffer, uchar length) {
-
-    if (snprintf(buffer, length, "%02d", i) == -1) {
-	return ""; /* base case, or error */
-    }
-    return buffer;
-}
-
 void fb_console_println_point(point* p) {
 
 #ifdef __GNUC__

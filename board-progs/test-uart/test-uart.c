@@ -22,6 +22,7 @@
 #include "driverlib/rom.h"
 
 #include "libuart/uart.h"
+#include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
@@ -35,19 +36,19 @@ void UART0_Handler(void) {
     /* Loop while there are characters in the receive FIFO. */
     while(UARTCharsAvail(UART0_BASE)) {
         /* Read the next character from the UART and write it back to the UART. */
-        /* uart_send_char(uart_get_char()); */
-        char* received_string = uart_get_string(1);
-        uart_send_char(received_string[0]);
-        free(received_string);
+        uart_send_char(uart_get_char());
+        /* char* received_string = uart_get_string(1); */
+        /* uart_send_char(received_string[0]); */
+        /* free(received_string); */
 
         /* Blink the LED to show a character transfer is occuring. */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+	heart_beat();
 
         /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
         SysCtlDelay(SysCtlClockGet() / (1000 * 3));
 
         /* Turn off the LED */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+        heart_off();
     }
 }
 

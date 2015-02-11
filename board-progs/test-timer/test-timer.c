@@ -54,7 +54,7 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    timer_add_periodic_thread(blink_onboard_led, 1000, 1, TIMER0);
+    timer_add_periodic_thread(blink_onboard_led, 1, 1, TIMER0);
 
     /* Postpone death */
     while (1) {

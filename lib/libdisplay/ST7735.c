@@ -59,6 +59,10 @@
 // Requires (11 + size*size*6*8) bytes of transmission for each character
 uint32_t StX=0; // position along the horizonal axis 0 to 20 
 uint32_t StY=0; // position along the vertical axis 0 to 15
+
+uint32_t StX2=0; // position along the horizonal axis 0 to 20 hi i'm a dirty whore
+uint32_t StY2=10; // position along the vertical axis 0 to 15 hi i'm a dirty whore
+
 uint16_t StTextColor = ST7735_YELLOW;
 
 #define ST7735_NOP     0x00
@@ -1502,6 +1506,25 @@ void ST7735_OutChar(uint8_t ch){
   }
   return;
 }
+
+void ST7735_OutChar2(uint8_t ch){
+  if((ch == 10) || (ch == 13) || (ch == 27)){
+    StY2++; StX2=0;
+    if(StY2>15){
+      StY2 = 10;
+    }
+    ST7735_DrawString(0,StY2,"                     ",StTextColor);
+    return;
+  }
+  ST7735_DrawCharS(StX2*6,StY2*10,ch,ST7735_YELLOW,ST7735_BLACK, 1);
+  StX2++;
+  if(StX2>20){
+    StX2 = 20;
+    ST7735_DrawCharS(StX2*6,StY2*10,'*',ST7735_RED,ST7735_BLACK, 1);
+  }
+  return;
+}
+
 //********ST7735_OutString*****************
 // Print a string of characters to the ST7735 LCD.
 // Position determined by ST7735_SetCursor command
@@ -1515,6 +1538,14 @@ void ST7735_OutString(uint8_t *ptr){
     ptr = ptr + 1;
   }
 }
+
+void ST7735_OutString2(uint8_t *ptr){
+  while(*ptr){
+    ST7735_OutChar2(*ptr);
+    ptr = ptr + 1;
+  }
+}
+
 // ************** ST7735_SetTextColor ************************
 // Sets the color in which the characters will be printed 
 // Background color is fixed at black

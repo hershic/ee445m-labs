@@ -1,6 +1,10 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 
+<<<<<<< variant A
 #include "libtimer/timer.h"
+>>>>>>> variant B
+/* TODO: Make this doxygen output match libtimer's */
+======= end
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"

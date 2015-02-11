@@ -1,0 +1,16 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ * \brief Library to extend hardware interaction to OS-shuffled tasks
+ * \details This library allows a number of tasks, each managed by the
+ * viod RTOS, to access all of the hardware input and output
+ * interrupts as if it was the only program running on the
+ * microcontroller at the time. This is accomplished by allowing tasks
+ * to subscribe to events that are recognized by hardware drivers;
+ * after each event the driver schedules each subscribed task to be
+ * notified of the interrupt.
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \copyright GNU Public License.
+ * \addtogroup Drivers Hardware drivers
+ */

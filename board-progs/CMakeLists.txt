@@ -8,6 +8,7 @@ add_subdirectory(blinky)
 add_subdirectory(test-uart)
 add_subdirectory(test-adc)
 add_subdirectory(test-timer)
+add_subdirectory(test-shell)
 add_subdirectory(test-display)
 add_subdirectory(test-os)
 
