@@ -57,14 +57,16 @@ typedef struct thread {
     struct thread *next_thread;
 
     /*! numerical identifier for the thread */
-    /* DO NOT MODIFY THIS VARIABLE */
     int32_t thread_id;
 
     /*! state of this thread */
     tstate_t status;
 
-    /* int32_t sleep_timer; */
-    /* int8_t priority; */
+    /*! sleep timer of the thread */
+    int32_t sleep_timer;
+
+    /*! priority of the thread */
+    int8_t priority;
 } thread_t;
 
 /* This data structure was stolen from Valvano website
@@ -102,5 +104,12 @@ thread_t* os_next_active_thread(thread_t* from_thread);
 /*! \param task the function to set the thread's pc to */
 void os_set_thread_pc(thread_t* thread, void(*task)(void));
 
+void os_notify_thread_with_bool(thread_t* thread, bool* signal);
+void os_sleep_thread(thread_t* thread_to_sleep);
+void os_sleep_thread_util(thread_t* thread_to_sleep, bool until_true);
+
+
 /*! \brief a do-nothing idle thread */
 void idle();
+/*! \brief a basic do-nothing-util-variable-is-true semaphore lock */
+void idle_until(bool* until_this_is_true);

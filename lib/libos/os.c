@@ -86,10 +86,24 @@ void os_set_thread_pc(thread_t* thread, void(*task)(void)) {
     program_stacks[thread->thread_id][R_PC] = (int32_t)(task);
 }
 
+void os_sleep_thread(thread_t* thread_to_sleep) {
+    /* TODO: Fill in */
+}
+
+void os_sleep_thread_util(thread_t* thread_to_sleep, bool until_true) {
+    /* TODO: Fill in */
+}
+
 /* Do-nothing thread */
 void idle() {
     while (1) {
         my_idle_has_run = true;
+    }
+}
+
+void idle_until(bool* until_this_is_true) {
+    while (*until_this_is_true) {
+        lock_idle_has_run = true;
     }
 }
 
