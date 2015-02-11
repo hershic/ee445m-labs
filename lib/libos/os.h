@@ -1,10 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 
-<<<<<<< variant A
 #include "libtimer/timer.h"
->>>>>>> variant B
 /* TODO: Make this doxygen output match libtimer's */
-======= end
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -58,7 +55,7 @@ typedef struct thread {
     int32_t *sp;
 
     /*! linked-list pointer to next thread */
-    struct thread *next_thread;
+    /* struct thread *next_thread; */
 
     /*! numerical identifier for the thread */
     int32_t thread_id;
@@ -78,21 +75,22 @@ typedef struct thread {
 /*! \brief  */
 typedef enum {
     R_THUMB = STACKSIZE-1,
-    R_PC = STACKSIZE-2,
-    R_R0 = STACKSIZE-8,
-    R_R1 = STACKSIZE-7,
-    R_R2 = STACKSIZE-6,
-    R_R3 = STACKSIZE-5,
-    R_R4 = STACKSIZE-16,
-    R_R5 = STACKSIZE-15,
-    R_R6 = STACKSIZE-14,
-    R_R7 = STACKSIZE-13,
-    R_R8 = STACKSIZE-12,
-    R_R9 = STACKSIZE-11,
-    R_R10 = STACKSIZE-10,
-    R_R11 = STACKSIZE-9,
+    R_PC = STACKSIZE-2,         /* R15: PC */
+    R_R14 = STACKSIZE-3,        /* R14: LR */
     R_R12 = STACKSIZE-4,
-    R_R14 = STACKSIZE-3
+
+    R_R3 = STACKSIZE-5,
+    R_R2 = STACKSIZE-6,
+    R_R1 = STACKSIZE-7,
+    R_R0 = STACKSIZE-8,
+    R_R11 = STACKSIZE-9,
+    R_R10 = STACKSIZE-10,
+    R_R9 = STACKSIZE-11,
+    R_R8 = STACKSIZE-12,
+    R_R7 = STACKSIZE-13,
+    R_R6 = STACKSIZE-14,
+    R_R5 = STACKSIZE-15,
+    R_R4 = STACKSIZE-16,
 } stack_reg;
 
 /*! \brief resets the stack for a particular thread */

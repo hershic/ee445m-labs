@@ -59,6 +59,7 @@ int main() {
     SysTickEnable();
     SysTickIntEnable();
     IntMasterEnable();
+    os_begin();
 
     /* And we're done; this should never execute */
     while (1) {}
