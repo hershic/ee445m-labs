@@ -340,5 +340,24 @@ No hardware design is required for this lab.
 \begin{enumerate}[1)]
   \item Estimated time to run the periodic interrupt \\ \todo
   \item Measured time to run the periodic timer interrupt \\ \todo
+  \end{enumerate}
+\section{Analysis and Discussion}
+\begin{enumerate}[1)]
+  \item What are the range, resolution, and precision of the ADC?
+  \item List the ways the ADC conversion can be started. Explain why
+    you chose to design the API the way you did.
+  \item The measured time to run the periodic interrupt can be
+    measured directly by setting a bit high at the start of the ISR
+    and clearing that bit at the end of the ISR. It could also be
+    measured indirectly by measuring the time lost when running a
+    simple main program that toggles an outpt pin. How did you measure
+    it? Compare and contrast you rmethod to these two.
+  \item Divide the time to execute one instanc eof the ISr by the
+    total instructions in the ISr to get the average time to execute
+    an instruction. Compare this to the 12.5 nanosecond system clock
+    period (80MHz).
+  \item What are the range, resolution, and precision o the SysTick
+    timer? Answer this question relative to the
+    \verb|NVIC_ST_CURRENT_R| register in the Cortex M4 core peripherals.
 \end{enumerate}
 \end{document}
