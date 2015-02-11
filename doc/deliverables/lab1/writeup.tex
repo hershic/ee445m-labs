@@ -615,8 +615,13 @@ void ADC0Seq0_Handler(void) {
 \end{enumerate}
 \section{Measurement Data}
 \begin{enumerate}[1)]
-  \item Estimated time to run the periodic interrupt \\ \todo
-  \item Measured time to run the periodic timer interrupt \\ \todo
+  \item Estimated time to run the periodic interrupt \\
+    Each bus cycle takes around 720ns. Our ISR does six bus I/O
+    operations (toggling pins on and off) along with two jumps. We
+    expect our ISR to take under 10 $\mu$s to run.
+    We expect the periodic interrupt to take
+  \item Measured time to run the periodic timer interrupt \\
+    The periodic interrupt takes 5.84 $\mu$s to run.
   \end{enumerate}
 \section{Analysis and Discussion}
 \begin{enumerate}[1)]
