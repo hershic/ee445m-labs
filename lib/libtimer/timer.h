@@ -16,6 +16,8 @@
  * this context.
  */
 
+/* TODO: allow subscribers */
+
 typedef enum {TIMER0, TIMER1, TIMER2} utimer_t;
 
 int timer_add_periodic_thread(void(*task)(void),

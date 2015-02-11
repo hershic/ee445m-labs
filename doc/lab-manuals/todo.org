@@ -20,29 +20,29 @@
       int ADC_Collect(unsigned int channelNum, unsigned int fs,
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
-*** TODO interpreter [33%]
-- [ ] uart port
-- [ ] interrupts
+*** TODO [#B] interpreter [75%]
+- [X] uart port
+- [X] interrupts
 - OPTIONAL hardware fifo
 - [X] software fifo x2
-
-Use the stdio library and remap the serial stream to the UART. See the
-=retarget.c= file in the =Keil\ARM\Boards\Keil\MCBSTM32\Blinky= project
-included in the Keil installation. In particular, you need to create a
-fputc function like this:
-#+BEGIN_SRC c
-  int fputc(int ch, FILE *f){
-    UART0_OutChar(ch);
-    return (1);
-  }
-  int fgetc (FILE *f){
-    return (UART0_InChar());
-  }
-  int ferror(FILE *f){
-  /* Your implementation of ferror */
-    return EOF;
-  }
-#+END_SRC
+- [ ] the below mojo
+  Use the stdio library and remap the serial stream to the UART. See the
+  =retarget.c= file in the =Keil\ARM\Boards\Keil\MCBSTM32\Blinky= project
+  included in the Keil installation. In particular, you need to create a
+  fputc function like this:
+  #+BEGIN_SRC c
+    int fputc(int ch, FILE *f){
+      UART0_OutChar(ch);
+      return (1);
+    }
+    int fgetc (FILE *f){
+      return (UART0_InChar());
+    }
+    int ferror(FILE *f){
+    /* Your implementation of ferror */
+      return EOF;
+    }
+  #+END_SRC
 *** TODO Checkout
 DEADLINE: <2015-02-09 Mon 10:30>
 - demonstrate measuring of timer2 ISR overhead
