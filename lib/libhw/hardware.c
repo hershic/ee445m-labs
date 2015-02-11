@@ -16,6 +16,7 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
+#include "driverlib/timer.h"
 #include "driverlib/rom.h"
 
 #include "libhw/hardware.h"
@@ -61,6 +62,9 @@ void hw_channel_init(HW_DEVICES hw_group,
 	uart_set_active_channel(raw_channel);
 	uart_init();
 	break;
+    case HW_TIMER:
+        timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY, raw_channel);
+        break;
     default:
 	postpone_death();
 	break;
@@ -205,4 +209,25 @@ void UART0_Handler(void) {
 	/* TODO: schedule this thread instead of running it immediately */
 	hw_notify(HW_UART, UART0_BASE, notification, NOTIFY_CHAR);
     }
+}
+
+void Timer0A_Handler(void) {
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, 0, notification, NOTIFY_INT);
+}
+
+void Timer1A_Handler(void) {
+    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, 1, notification, NOTIFY_INT);
+}
+
+void Timer2A_Handler(void) {
+    TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, 2, notification, NOTIFY_INT);
 }

@@ -45,7 +45,7 @@ int main(void) {
     adc_init();
 
     adc_open(0);
-    adc_collect(0, 10, &adc_data_buffer[0], TIMER0);
+    adc_collect(0, 10, &adc_data_buffer[0], TIMER0_BASE);
 
     /* Trigger an initial ADC sequence. As far as I know this is
        required for proper init. */
