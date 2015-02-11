@@ -5,4 +5,3 @@ set (display-src ST7735.c)
 include_directories(../../)
 
 add_library (display STATIC ${display-src})
-target_link_libraries(systick)
