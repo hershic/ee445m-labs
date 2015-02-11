@@ -529,9 +529,9 @@ void ADC0Seq0_Handler(void) {
     #include "driverlib/sysctl.h"
 
     int timer_add_periodic_thread(void(*task)(void),
-    			      unsigned long frequency,
-    			      unsigned long priority,
-    			      utimer_t timer_peripheral) {
+                              unsigned long frequency,
+                              unsigned long priority,
+                              utimer_t timer_peripheral) {
 
         unsigned long timer_base, timer_periph, timer_int;
 
@@ -591,7 +591,7 @@ void ADC0Seq0_Handler(void) {
     int main(void) {
 
         SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-    		   SYSCTL_XTAL_16MHZ);
+                   SYSCTL_XTAL_16MHZ);
 
         /* Enable the GPIO port that is used for the on-board LED. */
         heart_init();
@@ -600,7 +600,7 @@ void ADC0Seq0_Handler(void) {
         SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
         hw_driver_init(HW_UART);
-        uart_init();		/* defaults to UART0_BASE (thanks hw_driver) */
+        uart_init();            /* defaults to UART0_BASE (thanks hw_driver) */
 
         shell_spawn();
         shell_register_command((const char*) "doctor", doctor);
