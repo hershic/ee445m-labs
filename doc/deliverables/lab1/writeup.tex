@@ -16,6 +16,7 @@
 \pagebreak[3]
 \newcommand{\Opentesthook}[2]{\Writetofile{#1}{\protect\section{#1: #2}}}
 \renewcommand{\Solnlabel}[1]{\textbf{Solution}\quad}
+\newcommand{\todo}{{\LARGE \emph{\color{red}TODO}}}
 
 \newcommand{\dd}[1]{\:\mathrm{d}{#1}}
 \newcommand{\ddt}[1]{\frac{\dd{}}{\dd{#1}}}
@@ -228,7 +229,7 @@
       \item \verb|NVIC_ST_RELOAD_R = NVIC_ST_RELOAD_M;|
       \item The system clock is established by the \verb|PLL_Init|
         function.
-        
+
         \begin{lstlisting}[language=C]
           void PLL_Init(void){
             // 0) configure the system to use RCC2 for advanced features
@@ -292,5 +293,52 @@
       \end{enumerate}
     \end{solution}
   \end{Ex}
+\end{enumerate}
+\section{Deliverables}
+\begin{enumerate}
+\item Drivers \\
+  Since only one interrupt handler may be invoked by the NVIC per
+  hardware interrupt, our RTOS (hereby viod) will have one driver per
+  peripheral to handle the interrupts associated with external
+  events. Drivers will allow threads to subscribe to each possible
+  interrupt event, and when an interrupt is triggered the driver
+  passes along the information contained in the interrupt to the task
+  in the form of a \emph{notification}.
+\item Timer \\
+  Timers are capable of firing according to a specified
+  frequency. With this feature we added a method
+  \verb|timer_add_periodic_thread|.
+\item ADC \\
+
+  \todo
+\item UART \\
+  The UART driver is capable of accepting susbcriptions from
+  tasks. When an interrupt is triggered by an incoming character, the
+  UART driver's ISR is invoked by the NVIC. This ISR acknowledges the
+  interrupt and schedules a periodic task to trigger (once) before
+  returning. This task will be responsible for calling the pseudo-ISR
+  of each subscribed task with information about the incoming
+  character.
+\item LCD \\
+  The LCD is capable of printing strings and characters. Two displays
+  may be registered (in which case a horizontal line will separate the
+  two) and text written to each independently.
+\end{enumerate}
+All specifications (objectives) above were met by the time of checkout
+on Monday February 9.
+\section{Hardware Design}
+No hardware design is required for this lab.
+\section{Software Design}
+\begin{enumerate}[1)]
+\item Low level LCD driver (\verb|ST7735_.c| and \verb|ST7735_.h|
+  files) \\ \todo
+\item Low level ADC driver (\verb|ADC.c| and \verb|ADC.h|) \\ \todo
+\item Low level timer driver (\verb|OS.c| and \verb|OS.h|) \\ \todo
+\item High level main program (the interpreter) \\ \todo
+\end{enumerate}
+\section{Measurement Data}
+\begin{enumerate}[1)]
+  \item Estimated time to run the periodic interrupt \\ \todo
+  \item Measured time to run the periodic timer interrupt \\ \todo
 \end{enumerate}
 \end{document}
