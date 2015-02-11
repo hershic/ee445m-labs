@@ -1,10 +1,17 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /*!
- * \brief Library to provide an interpreter
- * \details None as of yet
+ * \brief     Provides a shell interpreter
+ * \details   This interpreter invokes function pointers from the global
+              namespace.  This task is entirely interrupt-driven; that
+              is to say it does not consume any system resources while
+              idling.
  * \author    Eric Crosson
  * \version   0.1
  * \date      2014
  * \copyright GNU Public License.
  * \addtogroup Shell Command line interpreter
  */
+
+/* TODO: spawn jobs in new thread? */
+/* TODO: abstract PS1 */
+/* TODO: clean output, align PS1s */

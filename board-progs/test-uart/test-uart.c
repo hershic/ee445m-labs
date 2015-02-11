@@ -5,26 +5,19 @@
 /* Standard Libs */
 #include <stdint.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* TI Includes */
 #include "inc/hw_ints.h"
 #include "inc/hw_memmap.h"
 
 /* Driverlib Includes */
-#include "driverlib/debug.h"
-#include "driverlib/fpu.h"
 #include "driverlib/gpio.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
-#include "driverlib/rom.h"
 
 #include "libuart/uart.h"
 #include "libheart/heartbeat.h"
-
-#include <sys/stat.h>
 
 /*! Read the next character from the UART and write it back to the UART.
  *  \return void
@@ -57,7 +50,6 @@ void UART0_Handler(void) {
  */
 int main(void) {
 
-    FPUEnable();
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 

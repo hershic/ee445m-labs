@@ -2,7 +2,6 @@
 #include "shell.h"
 
 #include "libhw/hardware.h"
-#include "libstd/nexus.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -16,19 +15,16 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 
-unsigned short SHELL_BUFFER_POSITION;
-char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
-shell_command SHELL_COMMANDS[SHELL_MAX_COMMANDS];
+static unsigned short SHELL_BUFFER_POSITION;
+static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
+static shell_command SHELL_COMMANDS[SHELL_MAX_COMMANDS];
 
 void shell_spawn() {
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
-
-    /* clear current contents of SHELL_BUFFER */
-    memset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
-    SHELL_BUFFER_POSITION = 0;
+    shell_clear_shell_buffer();
+    shell_print_prompt();
 }
 
 char* shell_represent() {
@@ -48,15 +44,34 @@ void shell_uart0_handler(char recv) {
     /* TODO: test both re/dereg commands */
 
     switch(recv) {
-    case 13:			/* TODO: enter */
+    case '\r':
 	shell_execute_command();
+	uart_send_char('\n');
+	shell_clear_shell_buffer();
+	shell_print_prompt();
 	break;
-    case 8: 			/* TODO: backspace */
+    case 8:
+	/* TODO: backspace */
+	break;
     default:
 	if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
 	    SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
 	}
+	break;
     }
+}
+
+void shell_clear_shell_buffer() {
+
+    memset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
+    SHELL_BUFFER_POSITION = 0;
+}
+
+/* TODO: globalize prompt */
+/* TODO: make sure shell is explicit about its uart channel */
+void shell_print_prompt() {
+
+    uart_send_string("> ");
 }
 
 /* returns success (could be out of room) */
@@ -77,26 +92,26 @@ bool shell_register_command(const char* command_name, int(*command)()) {
 bool shell_deregister_command(const char* command_name) {
 
     shell_iterator i=0;
-    strcmp(SHELL_COMMANDS[i].name, command_name);
-    /* while(i<SHELL_MAX_COMMANDS && */
-    /* 	  0 != strcmp(SHELL_COMMANDS[i].name, command_name)) { */
-    /* 	++i; */
-    /* } */
+    while(i<SHELL_MAX_COMMANDS &&
+    	  0 != strcmp(SHELL_COMMANDS[i].name, command_name)) {
+    	++i;
+    }
     SHELL_COMMANDS[i].valid = false;
     return true;
 }
 
-/* OPTIONAL TODO: decouple from SHELL_BUFFER */
+/* TODO: decouple from SHELL_BUFFER: aka allow any command to
+ * be executed from a char* */
 /* TODO: allow for arguments */
 bool shell_execute_command() {
 
-    /* shell_iterator i=0; */
-    /* while(i<SHELL_MAX_COMMANDS) { */
-    /* 	if (SHELL_COMMANDS[i].valid && */
-    /* 	    0 == strcmp(SHELL_COMMANDS[i].name, SHELL_BUFFER)) { */
-    /* 	    SHELL_COMMANDS[i].command(/\*arguments*\/); */
-    /* 	    return true; */
-    /* 	} */
-    /* } */
+    shell_iterator i=0;
+    while(i<SHELL_MAX_COMMANDS) {
+    	if (SHELL_COMMANDS[i].valid &&
+    	    0 == strcmp(SHELL_COMMANDS[i].name, SHELL_BUFFER)) {
+    	    SHELL_COMMANDS[i].command(/*arguments*/);
+    	    return true;
+    	}
+    }
     return false;
 }
