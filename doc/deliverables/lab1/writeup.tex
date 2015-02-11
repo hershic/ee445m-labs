@@ -163,7 +163,7 @@
       \item The vector table exists in \verb|startup.s|. The system
         finds the named function and calls that function when the
         interrupt is received.
-      \item The acknowledgement occurs by setting a bit in a
+      \item The acknowledgment occurs by setting a bit in a
         memory-mapped hardware register. For this device, bit 6 is set
         to acknowledge the interrupt.
       \item The TM4C is like a PC. It has two 16-byte FIFOs (one for
@@ -298,12 +298,12 @@
 \begin{enumerate}
 \item Drivers \\
   Since only one interrupt handler may be invoked by the NVIC per
-  hardware interrupt, our RTOS (hereby viod) will have one driver per
-  peripheral to handle the interrupts associated with external
-  events. Drivers will allow threads to subscribe to each possible
-  interrupt event, and when an interrupt is triggered the driver
-  passes along the information contained in the interrupt to the task
-  in the form of a \emph{notification}.
+  hardware interrupt, our RTOS will have one driver per peripheral to
+  handle the interrupts associated with external events. Drivers will
+  allow threads to subscribe to each possible interrupt event, and
+  when an interrupt is triggered the driver passes along the
+  information contained in the interrupt to the task in the form of a
+  \emph{notification}.
 \item Timer \\
   Timers are capable of firing according to a specified
   frequency. With this feature we added a method
@@ -312,7 +312,7 @@
 
   \todo
 \item UART \\
-  The UART driver is capable of accepting susbcriptions from
+  The UART driver is capable of accepting subscriptions from
   tasks. When an interrupt is triggered by an incoming character, the
   UART driver's ISR is invoked by the NVIC. This ISR acknowledges the
   interrupt and schedules a periodic task to trigger (once) before
@@ -619,9 +619,9 @@ void ADC0Seq0_Handler(void) {
     measured directly by setting a bit high at the start of the ISR
     and clearing that bit at the end of the ISR. It could also be
     measured indirectly by measuring the time lost when running a
-    simple main program that toggles an outpt pin. How did you measure
-    it? Compare and contrast you rmethod to these two.
-  \item Divide the time to execute one instanc eof the ISr by the
+    simple main program that toggles an output pin. How did you measure
+    it? Compare and contrast your method to these two.
+  \item Divide the time to execute one instance of the ISr by the
     total instructions in the ISr to get the average time to execute
     an instruction. Compare this to the 12.5 nanosecond system clock
     period (80MHz).
