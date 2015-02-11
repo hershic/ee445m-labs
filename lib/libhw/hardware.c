@@ -36,6 +36,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
     /* Enable the peripherals this driver is responsible for */
     /* TODO: allow flexibility with channel */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    /* TODO: allow other devices (than uart) to use the HW_DRIVER API */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
     /* Initialize driver data structures */
