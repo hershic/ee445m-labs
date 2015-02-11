@@ -4,7 +4,7 @@
 
 #include <stdint.h>
 
-/*! Convert an intever to a string.
+/*! Convert an integer to a string.
  *  \brief Convert an integer to a string.
  *  \param i Int to convert into a string
  *  \param buffer Buffer for string contents
