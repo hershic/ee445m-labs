@@ -22,6 +22,7 @@
 #include "libstd/defines.h"
 #include "inc/hw_memmap.h"
 
+hw_driver HW_TIMER_DRIVER;
 hw_driver HW_UART_DRIVER;
 hw_notification HW_UART_NOTIFICATION;
 
@@ -30,8 +31,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
 
     hw_iterator i;
     hw_channel channel;
-    /* hw_driver driver = hw_driver_singleton(hw_group); */
-    hw_driver* driver = &HW_UART_DRIVER;
+    hw_driver* driver = hw_driver_singleton(hw_group);
 
     /* Enable the peripherals this driver is responsible for */
     /* TODO: allow flexibility with channel */
@@ -41,14 +41,16 @@ void hw_driver_init(HW_DEVICES hw_group) {
 
     /* Initialize driver data structures */
     for(i=0; i<HW_DRIVER_MAX_CHANNELS; ++i) {
-	hw_channel_init(driver->channels[i]);
+	_hw_channel_init(driver->channels[i]);
     }
 
     /* Set the active uart channel -- dev convenience */
     uart_set_active_channel(UART0_BASE);
 }
 
-void hw_channel_init(hw_channel channel) {
+/* TODO: consider returning false if the scoreboard (which is a todo)
+ * indicates in-use */
+void _hw_channel_init(hw_channel channel) {
 
     hw_iterator i;
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
@@ -59,9 +61,7 @@ void hw_channel_init(hw_channel channel) {
 bool hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
 
     hw_iterator i = 0;
-    long channel_index = _hw_channel_to_index(channel_id, hw_group);
-    /* hw_channel channel = hw_driver_singleton(hw_group).channels[channel_index]; */
-    hw_channel* channel = &HW_UART_DRIVER.channels[channel_index];
+    hw_channel* channel = hw_get_channel(hw_group, channel_id);
 
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
 	++i;
@@ -75,15 +75,38 @@ bool hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
     return true;
 }
 
+/* TODO: try to extract /something/ between this and hw_connect */
+bool hw_connect_single_shot(HW_DEVICES hw_group, long channel_id, const void* isr) {
+
+    hw_iterator i = 0;
+    hw_channel* channel = hw_get_channel(hw_group, channel_id);
+
+    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
+	++i;
+    }
+    if(channel->isr_subscriptions[i].valid) {
+	/* There are no empty slots for a new subscriber */
+	return false;
+    }
+    channel->isr_subscriptions[i].valid = true;
+    channel->isr_subscriptions[i].slot = isr;
+    return true;
+}
+
+/* TODO: should this be private? */
+hw_channel* hw_get_channel(HW_DEVICES group, long channel_id) {
+
+    long channel_index = _hw_channel_to_index(channel_id, group);
+    return &(hw_driver_singleton(group)->channels[channel_index]);
+}
+
 /* Note: there is no check to see if a signal is even connected before
  * a disconnect is attempted. This would be great to add but it's not
  * the time right now. Comment created Saturday February 7, 2015 15:46 */
 bool hw_disconnect(HW_DEVICES hw_group, long channel_id, const void* isr) {
 
     hw_iterator i;
-    long channel_index = _hw_channel_to_index(channel_id, hw_group);
-    /* hw_channel channel = hw_driver_singleton(hw_group).channels[channel_index]; */
-    hw_channel* channel = &HW_UART_DRIVER.channels[channel_index];
+    hw_channel* channel = hw_get_channel(hw_group, channel_id);
 
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].slot != isr) {
 	++i;
@@ -116,12 +139,11 @@ long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
     }
 }
 
-/* TODO: fix */
-/* hw_driver& hw_driver_singleton(HW_DEVICES hw_group) { */
+hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
 
-/*     /\* TODO: add drivers *\/ */
-/*     return &HW_UART_DRIVER; */
-/* } */
+    /* TODO: add drivers */
+    return &HW_UART_DRIVER;
+}
 
 void hw_notify(HW_DEVICES           hw_group,
 	       long                 channel_id,
@@ -129,14 +151,30 @@ void hw_notify(HW_DEVICES           hw_group,
 	       HW_NOTIFICATION_TYPE notification_type) {
 
     hw_iterator i=0;
-    long channel_index = _hw_channel_to_index(channel_id, hw_group);
-    /* hw_channel channel = hw_driver_singleton(hw_group).channels[channel_index]; */
-    hw_channel* channel = &HW_UART_DRIVER.channels[channel_index];
+    hw_channel* channel = hw_get_channel(hw_group, channel_id);
 
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
 	if (channel->isr_subscriptions[i].valid) {
-	    /* TODO: schedule */
-	    channel->isr_subscriptions[i].slot(notification, notification_type);
+	    /* TODO: schedule a task to enable quick return from this ISR */
+	    channel->isr_subscriptions[i].slot(notification);
 	}
+    }
+}
+
+/* TODO: document */
+void UART0_Handler(void) {
+
+    unsigned short i;
+
+    while(UARTCharsAvail(UART0_BASE)) {
+
+	/* Notify every subscribed task of each incoming character
+	 * (but schedule them for later so we can return from this ISR
+	 * asap). */
+	hw_notification notification;
+	notification._char = uart_get_char();
+
+	/* TODO: schedule this thread instead of running it immediately */
+	hw_notify(HW_UART, UART0_BASE, notification, NOTIFY_CHAR);
     }
 }

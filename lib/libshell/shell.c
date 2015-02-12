@@ -59,6 +59,8 @@ void shell_uart0_handler(char recv) {
 	}
 	break;
     }
+    /* Echo char to terminal for user */
+    uart_send_char(recv);
 }
 
 void shell_clear_shell_buffer() {
