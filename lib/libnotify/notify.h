@@ -8,6 +8,7 @@
 /* TODO: doxygenize */
 
 typedef enum  {
+
     NOTIFY_INT,
     NOTIFY_DOUBLE,
     NOTIFY_CHAR,
@@ -15,6 +16,7 @@ typedef enum  {
 } HW_NOTIFICATION_TYPE;
 
 typedef union  {
+
     int    _int;
     double _double;
     char   _char;

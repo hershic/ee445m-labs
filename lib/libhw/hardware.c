@@ -45,7 +45,9 @@ void hw_driver_init(HW_DEVICES hw_group) {
 
 /* TODO: consider returning false if the scoreboard (which is a todo)
  * indicates in-use */
-void hw_channel_init(HW_DEVICES hw_group, raw_hw_channel raw_channel) {
+void hw_channel_init(HW_DEVICES hw_group,
+		     raw_hw_channel raw_channel,
+		     hw_metadata metadata) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -88,7 +90,7 @@ bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, con
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
-    i = hw_first_available_subscription(channel);
+    i = _hw_first_available_subscription(channel);
 
     channel->isr_subscriptions[i].valid = true;
     channel->isr_subscriptions[i].single_shot_subscription = true;
@@ -96,7 +98,7 @@ bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, con
     return true;
 }
 
-hw_iterator hw_first_available_subscription(hw_channel* channel) {
+hw_iterator _hw_first_available_subscription(hw_channel* channel) {
 
     hw_iterator i = 0;
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
@@ -105,7 +107,7 @@ hw_iterator hw_first_available_subscription(hw_channel* channel) {
     if(channel->isr_subscriptions[i].valid) {
 	/* There are no empty slots for a new subscriber */
 	/* TODO: determine how serious this is.  */
-	/* plan a: thread level midnight (TLM) */
+	/* plan a: threat level midnight (TLM) */
 	postpone_death();
 	/* plan b: business as usual */
 	return false;
@@ -125,6 +127,7 @@ bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* 
 	++i;
     }
     channel->isr_subscriptions[i].valid = false;
+    channel->isr_subscriptions[i].single_shot_subscription = false;
     channel->isr_subscriptions[i].slot = NULL;
     return true;
 }
@@ -176,10 +179,16 @@ void hw_notify(HW_DEVICES           hw_group,
 	if (channel->isr_subscriptions[i].valid) {
 	    /* TODO: schedule a task to enable quick return from this ISR */
 	    channel->isr_subscriptions[i].slot(notification);
+	    if (channel->isr_subscriptions[i].single_shot_subscription) {
+		/* Cease fire! cease fire! */
+		channel->isr_subscriptions[i].single_shot_subscription = false;
+	    }
 	}
     }
 }
 
+/* TODO: put all uart handlers in here, pointing to the one
+ * redirection function */
 /* TODO: document */
 void UART0_Handler(void) {
 
