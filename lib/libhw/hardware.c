@@ -85,7 +85,6 @@ bool hw_connect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr
     return true;
 }
 
-/* TODO: try to extract /something/ between this and hw_connect */
 bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
 
     hw_iterator i;
@@ -96,23 +95,6 @@ bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, con
     channel->isr_subscriptions[i].single_shot_subscription = true;
     channel->isr_subscriptions[i].slot = isr;
     return true;
-}
-
-hw_iterator _hw_first_available_subscription(hw_channel* channel) {
-
-    hw_iterator i = 0;
-    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
-	++i;
-    }
-    if(channel->isr_subscriptions[i].valid) {
-	/* There are no empty slots for a new subscriber */
-	/* TODO: determine how serious this is.  */
-	/* plan a: threat level midnight (TLM) */
-	postpone_death();
-	/* plan b: business as usual */
-	return false;
-    }
-    return i;
 }
 
 /* Note: there is no check to see if a signal is even connected before
@@ -131,8 +113,6 @@ bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* 
     channel->isr_subscriptions[i].slot = NULL;
     return true;
 }
-
-
 
 /* immaculate hashing function, much fast */
 long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
@@ -186,6 +166,23 @@ hw_channel* _hw_get_channel(HW_DEVICES hw_group, raw_hw_channel raw_channel) {
 
     long channel_index = _hw_channel_to_index(raw_channel, hw_group);
     return &(hw_driver_singleton(hw_group)->channels[channel_index]);
+}
+
+hw_iterator _hw_first_available_subscription(hw_channel* channel) {
+
+    hw_iterator i = 0;
+    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
+	++i;
+    }
+    if(channel->isr_subscriptions[i].valid) {
+	/* There are no empty slots for a new subscriber */
+	/* TODO: determine how serious this is.  */
+	/* plan a: threat level midnight (TLM) */
+	postpone_death();
+	/* plan b: business as usual */
+	return false;
+    }
+    return i;
 }
 
 /* TODO: put all uart handlers in here, pointing to the one
