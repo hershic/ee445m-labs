@@ -19,7 +19,7 @@
 #include "driverlib/rom.h"
 
 #include "libhw/hardware.h"
-#include "libstd/defines.h"
+#include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
 
 hw_driver HW_TIMER_DRIVER;
@@ -39,29 +39,36 @@ void hw_driver_init(HW_DEVICES hw_group) {
     /* TODO: allow other devices (than uart) to use the HW_DRIVER API */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 
-    /* Initialize driver data structures */
-    for(i=0; i<HW_DRIVER_MAX_CHANNELS; ++i) {
-	_hw_channel_init(driver->channels[i]);
-    }
-
     /* Set the active uart channel -- dev convenience */
     uart_set_active_channel(UART0_BASE);
 }
 
 /* TODO: consider returning false if the scoreboard (which is a todo)
  * indicates in-use */
-void _hw_channel_init(hw_channel channel) {
+void hw_channel_init(HW_DEVICES hw_group, raw_hw_channel raw_channel) {
 
     hw_iterator i;
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
+
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
-	channel.isr_subscriptions[i].valid = false;
+	channel->isr_subscriptions[i].valid = false;
+    }
+
+    switch(hw_group) {
+    case HW_UART:
+	uart_set_active_channel(raw_channel);
+	uart_init();
+	break;
+    default:
+	postpone_death();
+	break;
     }
 }
 
-bool hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
+bool hw_connect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
 
     hw_iterator i = 0;
-    hw_channel* channel = hw_get_channel(hw_group, channel_id);
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
 	++i;
@@ -71,42 +78,48 @@ bool hw_connect(HW_DEVICES hw_group, long channel_id, const void* isr) {
 	return false;
     }
     channel->isr_subscriptions[i].valid = true;
+    channel->isr_subscriptions[i].single_shot_subscription = false;
     channel->isr_subscriptions[i].slot = isr;
     return true;
 }
 
 /* TODO: try to extract /something/ between this and hw_connect */
-bool hw_connect_single_shot(HW_DEVICES hw_group, long channel_id, const void* isr) {
+bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
+
+    hw_iterator i;
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
+    i = hw_first_available_subscription(channel);
+
+    channel->isr_subscriptions[i].valid = true;
+    channel->isr_subscriptions[i].single_shot_subscription = true;
+    channel->isr_subscriptions[i].slot = isr;
+    return true;
+}
+
+hw_iterator hw_first_available_subscription(hw_channel* channel) {
 
     hw_iterator i = 0;
-    hw_channel* channel = hw_get_channel(hw_group, channel_id);
-
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
 	++i;
     }
     if(channel->isr_subscriptions[i].valid) {
 	/* There are no empty slots for a new subscriber */
+	/* TODO: determine how serious this is.  */
+	/* plan a: thread level midnight (TLM) */
+	postpone_death();
+	/* plan b: business as usual */
 	return false;
     }
-    channel->isr_subscriptions[i].valid = true;
-    channel->isr_subscriptions[i].slot = isr;
-    return true;
-}
-
-/* TODO: should this be private? */
-hw_channel* hw_get_channel(HW_DEVICES group, long channel_id) {
-
-    long channel_index = _hw_channel_to_index(channel_id, group);
-    return &(hw_driver_singleton(group)->channels[channel_index]);
+    return i;
 }
 
 /* Note: there is no check to see if a signal is even connected before
  * a disconnect is attempted. This would be great to add but it's not
  * the time right now. Comment created Saturday February 7, 2015 15:46 */
-bool hw_disconnect(HW_DEVICES hw_group, long channel_id, const void* isr) {
+bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
 
     hw_iterator i;
-    hw_channel* channel = hw_get_channel(hw_group, channel_id);
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].slot != isr) {
 	++i;
@@ -114,6 +127,12 @@ bool hw_disconnect(HW_DEVICES hw_group, long channel_id, const void* isr) {
     channel->isr_subscriptions[i].valid = false;
     channel->isr_subscriptions[i].slot = NULL;
     return true;
+}
+
+hw_channel* _hw_get_channel(HW_DEVICES group, raw_hw_channel raw_channel) {
+
+    long channel_index = _hw_channel_to_index(raw_channel, group);
+    return &(hw_driver_singleton(group)->channels[channel_index]);
 }
 
 /* immaculate hashing function, much fast */
@@ -134,7 +153,7 @@ long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
     case HW_LCD:
 	break;
     default:
-	/* TODO: do something horrific here */
+	postpone_death();
 	break;
     }
 }
@@ -146,12 +165,12 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
 }
 
 void hw_notify(HW_DEVICES           hw_group,
-	       long                 channel_id,
+	       long                 raw_channel,
 	       hw_notification      notification,
 	       HW_NOTIFICATION_TYPE notification_type) {
 
     hw_iterator i=0;
-    hw_channel* channel = hw_get_channel(hw_group, channel_id);
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
 	if (channel->isr_subscriptions[i].valid) {

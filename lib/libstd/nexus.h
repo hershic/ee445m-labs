@@ -2,6 +2,7 @@
 #ifndef __NEXUS__
 #define __NEXUS__
 
+#include "defines.h"
 #include <stdint.h>
 
 /*! Convert an integer to a string.

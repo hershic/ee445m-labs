@@ -50,6 +50,7 @@ int main(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
     hw_driver_init(HW_UART);
+    hw_channel_init(HW_UART, UART0_BASE);
     uart_init();		/* defaults to UART0_BASE (thanks hw_driver) */
 
     shell_spawn();

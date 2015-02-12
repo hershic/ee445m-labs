@@ -24,6 +24,10 @@ typedef struct _isr_subscription {
     void (*slot)(hw_notification);
 } _isr_subscription;
 
+/** Used to represent #defines memory-mapped addresses before they are
+ * converted into hw_driver channel indices by libhw */
+typedef long raw_hw_channel;
+
 typedef struct hw_channel {
 
     _isr_subscription isr_subscriptions[HW_DRIVER_MAX_SUBSCRIPTIONS];
@@ -48,30 +52,34 @@ typedef enum  {
  */
 void hw_driver_init(HW_DEVICES);
 
-/** For internal use only. Initialize (aka reset) a hardware
- *  channel's internal data structures.
- * \param channel The hardware channel to initialize
+/** This function is responsible for enabling a specific channel on
+ * the specified hardware device. Internal libhw datastructures will
+ * also be reset.
  */
-void _hw_channel_init(hw_channel);
+void hw_channel_init(HW_DEVICES, raw_hw_channel);
 
-/* pass it device and channel, have it call respective uart_init for
- * channel or whatever */
-/* void hw_channel_init(); */
+/** Subscribe to a hardware interrupt. This is also called connecting
+ * a signal (the isr to be notified) to a slot (the hw-triggered
+ * driver isr).
+ * \param hw_group The hardware group in question
+ * \param raw_channel \hw_group's channel (memory-mapped address)
+ * \param isr The pseudo-isr to be notified by the hardware driver
+ */
+bool hw_connect(HW_DEVICES, raw_hw_channel, const void*);
+/** Unsubscribt from a hardware interrupt */
+bool hw_disconnect(HW_DEVICES, raw_hw_channel, const void*);
 
-/* TODO: add single-shot dis/connect functions */
-/* Connect a signal to a slot */
-bool hw_connect(HW_DEVICES, long, const void*);
-bool hw_disconnect(HW_DEVICES, long, const void*);
+bool hw_connect_single_shot(HW_DEVICES, raw_hw_channel, const void*);
+bool hw_connect_single_shot(HW_DEVICES, raw_hw_channel, const void*);
 
-bool hw_connect_single_shot(HW_DEVICES hw_group, long channel_id, const void* isr);
+hw_iterator hw_first_available_subscription(hw_channel*);
 
-
-long _hw_channel_to_index(long channel, HW_DEVICES hw_group);
+raw_hw_channel _hw_channel_to_index(raw_hw_channel channel, HW_DEVICES hw_group);
 hw_driver* hw_driver_singleton(HW_DEVICES hw_group);
-hw_channel* hw_get_channel(HW_DEVICES group, long channel_id);
+hw_channel* _hw_get_channel(HW_DEVICES group, raw_hw_channel channel_id);
 
 void hw_notify(HW_DEVICES hw_group,
-	       long channel,
+	       raw_hw_channel channel,
 	       hw_notification notification,
 	       HW_NOTIFICATION_TYPE notification_type);
 
