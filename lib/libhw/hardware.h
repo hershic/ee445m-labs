@@ -5,6 +5,26 @@
 #include <stdbool.h>
 #include "libnotify/notify.h"
 
+/* Note to developers:
+ *
+ * Why did the authors create structs that contain only an array?
+ * Wouldn't it be easier to simply refer to the array instead of
+ * unwrapping it from the context of the struct each time it is
+ * invoked? You could even use a typedef to further shorten each invocation!
+ *
+ * Wisdom, thrown down from the mountain:
+ * http://stackoverflow.com/a/4523537 [quoted below]
+ *
+ * [An unwrapped array with a typedef for convenience] is probably a
+ * very bad idea, because the resulting type is an array type, but
+ * users of it won't see that it's an array type. If used as a
+ * function argument, it will be passed by reference, not by value,
+ * and the sizeof for it will then be wrong.
+ */
+
+/* \bug TODO for extra cleanliness, determine hw_group automatically from
+ * channel's raw address! */
+
 /** An iterator ensured to be of an optimized size according to the
  * relevant #defines below it.  */
 typedef uint8_t hw_iterator;
@@ -17,6 +37,13 @@ typedef uint8_t hw_iterator;
  * responsible for responding to */
 #define HW_DRIVER_MAX_SUBSCRIPTIONS 8
 
+/** Used to represent #defines memory-mapped addresses before they are
+ * converted into hw_driver channel indices by libhw */
+typedef long raw_hw_channel;
+
+/** Each peripheral channel needs to be able to notify
+ * \HW_DRIVER_MAX_SUBSCRIPTIONS subscribers about incoming hardware
+ * events */
 typedef struct _isr_subscription {
 
     bool valid;
@@ -24,21 +51,19 @@ typedef struct _isr_subscription {
     void (*slot)(hw_notification);
 } _isr_subscription;
 
-/** Used to represent #defines memory-mapped addresses before they are
- * converted into hw_driver channel indices by libhw */
-typedef long raw_hw_channel;
-
+/** A hardware driver manages multiple peripheral channels */
 typedef struct hw_channel {
 
     _isr_subscription isr_subscriptions[HW_DRIVER_MAX_SUBSCRIPTIONS];
 } hw_channel;
 
-/* Why is this a struct? http://stackoverflow.com/a/4523537 */
+/** Top level container for hardware driver data */
 typedef struct hw_driver {
 
     hw_channel channels[HW_DRIVER_MAX_CHANNELS];
 } hw_driver;
 
+/** Represents each of the hardware groups supported by libhw */
 typedef enum  {
 
     HW_UART,
@@ -47,16 +72,20 @@ typedef enum  {
     HW_ADC,
 } HW_DEVICES;
 
+/* UART properties */
 typedef struct hw_uart_metadata {
 
     uint32_t UART_BAUD_RATE;
 } hw_uart_metadata;
 
+/** Timer properties */
 typedef struct hw_timer_metadata {
 
     uint32_t TIMER_FREQUENCY;
 } hw_timer_metadata;
 
+/** Initialization information comes in many shapes and sizes. Here is
+ * one convenient container. */
 typedef union {
 
     hw_uart_metadata uart;
@@ -72,9 +101,9 @@ void hw_driver_init(HW_DEVICES);
 /** This function is responsible for enabling a specific channel on
  * the specified hardware device. Internal libhw datastructures will
  * also be reset.
- * \param hw_group
- * \param raw_channel
- * \param metadata
+ * \param hw_group The hardware group in question
+ * \param raw_channel The memory-mapped address of the device channel to initialize
+ * \param metadata Information about how to initialize the device
  */
 void hw_channel_init(HW_DEVICES, raw_hw_channel, hw_metadata);
 
@@ -117,8 +146,6 @@ bool hw_connect_single_shot(HW_DEVICES, raw_hw_channel, const void*);
  */
 hw_iterator _hw_first_available_subscription(hw_channel*);
 
-/* TODO: for extra cleanliness, determine hw_group automatically from
- * channel's raw address! */
 /** For internal use only. Convert a memory-mapped address
  * (raw_hw_channel) into an index for hw_driver's internal data
  * structures.
@@ -135,15 +162,28 @@ raw_hw_channel _hw_channel_to_index(raw_hw_channel, HW_DEVICES);
  */
 hw_driver* hw_driver_singleton(HW_DEVICES hw_group);
 
-/**
+/** For internal use only. Take care of the conversion between a
+ * memory-mapped (raw) hw address and the index of said peripheral
+ * channel in the memory banks of libhw's device-specific data
+ * structures.
+ * \param hw_group The hardware group in question
+ * \param raw_hw_channel The specific channel of \hw_group
+ * \returns Index of \raw_channel'channel in \hw_group's data structures
  */
-hw_channel* _hw_get_channel(HW_DEVICES group, raw_hw_channel channel_id);
+hw_channel* _hw_get_channel(HW_DEVICES, raw_hw_channel);
 
-/**
+/** Notify threads subscribed to \channel about an incoming hardware
+ * event.
+ * \param hw_group The hardwawre group that received the incoming
+ * hardware event
+ * \param channel The channel of \hw_group that received the incoming
+ * hardware event
+ * \param notifications The notification (prepared by NVIC-invoked
+ * ISR) containing information regarding the recently-occurring
+ * hardware interrupt event
  */
 void hw_notify(HW_DEVICES hw_group,
 	       raw_hw_channel channel,
-	       hw_notification notification,
-	       HW_NOTIFICATION_TYPE notification_type);
+	       hw_notification notification);
 
 #endif

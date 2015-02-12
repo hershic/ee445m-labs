@@ -132,11 +132,7 @@ bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* 
     return true;
 }
 
-hw_channel* _hw_get_channel(HW_DEVICES group, raw_hw_channel raw_channel) {
 
-    long channel_index = _hw_channel_to_index(raw_channel, group);
-    return &(hw_driver_singleton(group)->channels[channel_index]);
-}
 
 /* immaculate hashing function, much fast */
 long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
@@ -169,8 +165,7 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
 
 void hw_notify(HW_DEVICES           hw_group,
 	       long                 raw_channel,
-	       hw_notification      notification,
-	       HW_NOTIFICATION_TYPE notification_type) {
+	       hw_notification      notification) {
 
     hw_iterator i=0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -185,6 +180,12 @@ void hw_notify(HW_DEVICES           hw_group,
 	    }
 	}
     }
+}
+
+hw_channel* _hw_get_channel(HW_DEVICES hw_group, raw_hw_channel raw_channel) {
+
+    long channel_index = _hw_channel_to_index(raw_channel, hw_group);
+    return &(hw_driver_singleton(hw_group)->channels[channel_index]);
 }
 
 /* TODO: put all uart handlers in here, pointing to the one
@@ -203,6 +204,6 @@ void UART0_Handler(void) {
 	notification._char = uart_get_char();
 
 	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART0_BASE, notification, NOTIFY_CHAR);
+	hw_notify(HW_UART, UART0_BASE, notification);
     }
 }

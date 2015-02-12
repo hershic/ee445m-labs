@@ -5,8 +5,6 @@
 /* Currently responsible for notification data structures, not the act
  * of notification. */
 
-/* TODO: doxygenize */
-
 typedef enum  {
 
     NOTIFY_INT,

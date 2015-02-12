@@ -65,20 +65,19 @@ void Timer0A_Handler(void) {
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, 0, notification, NOTIFY_INT);
+    hw_notify(HW_TIMER, 0, notification);
 }
 
 void Timer1A_Handler(void) {
     TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-   hw_notify(HW_TIMER, 1, notification, NOTIFY_INT);
+   hw_notify(HW_TIMER, 1, notification);
 }
 
 void Timer2A_Handler(void) {
     TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, 2, notification, NOTIFY_INT);
+    hw_notify(HW_TIMER, 2, notification);
 }
-
