@@ -2,9 +2,9 @@
 #ifndef __LIBNOTIFY__
 #define __LIBNOTIFY__
 
-/* Currently responsible for notification data structures, not the act
- * of notification. */
-
+/** Type of the relevant data inside of a NVIC-invoked
+ * hardware-triggered ISR. This is used to help unwrap the data from
+ * inside of a \hw_notification union. */
 typedef enum  {
 
     NOTIFY_INT,
@@ -13,6 +13,11 @@ typedef enum  {
     NOTIFY_STRING,
 } HW_NOTIFICATION_TYPE;
 
+/** Capable of wrapping any type of incoming external information
+ * (delivered in an interrupt) that libhw will notify running
+ * processes about. This allows the processes' pseudo-ISRs to have a
+ * consistent protytype, and a simplified notification-passing
+ * system. */
 typedef union  {
 
     int    _int;

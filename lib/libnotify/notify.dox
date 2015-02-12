@@ -1,8 +1,9 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /*!
- * \brief Library to provide an interpreter
- * \details This is the core of the interaction between the viod RTOS
- * and the user. Magnificent, isn't she?
+ * \brief Notices and notifications.
+ * \details This framework provides a common message
+ * structure. Messages are defined here but no inter-process
+ * notification system has been developed yet.
  * \author    Eric Crosson
  * \version   0.1
  * \date      2014
