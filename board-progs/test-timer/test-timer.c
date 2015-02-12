@@ -47,9 +47,6 @@ int main(void) {
     /* Enable the GPIO pins for the LED (PF2). */
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
 
-    /* Enable the peripherals used by this example. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
-
     /* Enable processor interrupts. */
     IntMasterEnable();
 
