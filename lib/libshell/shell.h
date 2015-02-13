@@ -5,20 +5,17 @@
 #include <stdbool.h>
 
 #include "libstd/nexus.h"
+#include "libos/system.h"
+#include "libio/kbd.h"
 
 /* TODO: doxygenize */
 
-typedef unsigned char shell_iterator;
 #define SHELL_BUFFER_LENGTH 64
-#define SHELL_MAX_COMMAND_NAME_LENGTH 16
-#define SHELL_MAX_COMMANDS            16
 
-typedef struct shell_command {
+/* PS1 properties */
+#define SHELL_MAX_PS1_LENGTH 4
 
-    bool valid;
-    char name[SHELL_MAX_COMMAND_NAME_LENGTH];
-    int(*command)();
-} shell_command;
+typedef uint8_t shell_iterator;
 
 /* Obey the `thread` interface */
 void shell_spawn();
@@ -28,11 +25,9 @@ void shell_kill();
 void shell_uart0_handler(char);
 
 void shell_clear_shell_buffer();
-void shell_print_prompt();
+void shell_print_ps1();
+void shell_set_ps1();
 
-bool shell_register_command(const char*, int(*)());
-bool shell_deregister_command(const char*);
-
-bool shell_execute_command();
+exit_status_t shell_execute_command();
 
 #endif

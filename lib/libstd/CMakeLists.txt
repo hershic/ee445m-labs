@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8.7)
 
-set (libstd nexus.c)
+set (std-src nexus.c)
 
 include_directories(../../)
 
-add_library (libstd STATIC ${libstd})
+add_library (std STATIC ${std-src})
 
-target_link_libraries(libstd driverlib)
+target_link_libraries(std driverlib)

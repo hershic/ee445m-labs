@@ -8,7 +8,6 @@
 #include "inc/hw_ints.h"
 
 #include <stdlib.h>
-#include <stdint.h>
 
 #include "driverlib/pin_map.h"
 #include "driverlib/timer.h"

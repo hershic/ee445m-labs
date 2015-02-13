@@ -7,7 +7,7 @@ include_directories(../../)
 
 add_library (timer STATIC ${timer-src})
 target_link_libraries(timer driverlib)
-target_link_libraries(timer libhw)
+target_link_libraries(timer hw)
 
 # TODO: REMOVE THIS!
 target_link_libraries(timer uart)
