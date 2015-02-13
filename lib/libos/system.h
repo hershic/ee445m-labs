@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #ifndef __SYSTEM__
 #define __SYSTEM__
 
@@ -23,6 +24,6 @@ bool system_register_command(const char*, int(*)());
 bool system_deregister_command(const char*);
 
 /* Conventionally named */
-exit_status_t system_exec(char*, char**);
+exit_status_t system_exec(const char*, const char**);
 
 #endif

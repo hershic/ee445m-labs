@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #include "system.h"
 #include "libstd/nexus.h"
 
@@ -31,7 +32,16 @@ bool system_deregister_command(const char* command_name) {
     return true;
 }
 
-exit_status_t system_exec(char* command, char** arguments) {
+/* TODO: allow for argument passing */
+exit_status_t system_exec(const char* command, const char** arguments) {
 
-
+    system_iterator i=0;
+    while(i<SYSTEM_MAX_COMMANDS) {
+	if (SYSTEM_COMMANDS[i].valid &&
+	    0 == strcmp(SYSTEM_COMMANDS[i].name, command)) {
+	    SYSTEM_COMMANDS[i].command(/*arguments*/);
+	    return true;
+	}
+    }
+    return false;
 }

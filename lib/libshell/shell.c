@@ -44,13 +44,17 @@ void shell_uart0_handler(char recv) {
 
     switch(recv) {
     case SC_CR:
-	shell_execute_command();
+        {   /* TODO: schedule? */
+	    shell_execute_command();
+	    shell_clear_shell_buffer();
+        }
+	/* TODO: represent better, with shell_represent */
 	uart_send_char('\n');
-	shell_clear_shell_buffer();
 	shell_print_ps1();
 	break;
     case SC_BACKSPACE:
-	/* TODO: backspace */
+	SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
+	/* TODO: represent at all, with shell_represent */
 	break;
     default:
 	if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
@@ -74,23 +78,14 @@ void shell_clear_shell_buffer() {
     SHELL_BUFFER_POSITION = 0;
 }
 
-/* TODO: make sure shell is explicit about its uart channel */
 void shell_print_ps1() {
 
     uart_send_string(SHELL_PS1);
 }
 
-/* TODO: decouple from SHELL_BUFFER: aka allow any command to
- * be executed from a char* */
-/* TODO: allow for arguments */
+/* TODO: implement */
 exit_status_t shell_execute_command() {
 
-    /* while(i<SHELL_MAX_COMMANDS) { */
-    /* 	if (SHELL_COMMANDS[i].valid && */
-    /* 	    0 == strcmp(SHELL_COMMANDS[i].name, SHELL_BUFFER)) { */
-    /* 	    SHELL_COMMANDS[i].command(/\*arguments*\/); */
-    /* 	    return true; */
-    /* 	} */
-    /* } */
-    /* return false; */
+    const char** arguments = NULL;
+    return system_exec(SHELL_BUFFER, arguments);
 }
