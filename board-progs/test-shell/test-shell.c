@@ -21,7 +21,6 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/rom.h"
 
-/* #include "libtimer/timer.h" */
 #include "libshell/shell.h"
 #include "libnotify/notify.h"
 #include "libhw/hardware.h"
