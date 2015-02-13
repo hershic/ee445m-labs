@@ -6,7 +6,7 @@
 
 static system_command SYSTEM_COMMANDS[SYSTEM_MAX_COMMANDS];
 
-/* returns success (could be out of room) */
+/* returns success (failure could be out of room) */
 bool system_register_command(const char* command_name, int(*command)()) {
 
     system_iterator i = 0;
