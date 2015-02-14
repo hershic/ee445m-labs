@@ -25,7 +25,18 @@
 
 /* TODO: Find out why we don't need to include libuart/uart.h */
 
-/* TODO: decouple SSI from DisplayDriver (hershal) */
+/******************************************************************************
+ * Ye Royale List of TODOs -- keep in mind the One Goal: speed
+ *
+ * TODO: Determine how much room to allocate for notifications
+ * TODO: integrate with libscoreboard (nonexistent)
+ * TODO: document ISRs (they aren't in the header)
+ * TODO: place all relevant ISRs in this document
+ * 
+ * Hershal's 
+ * TODO: decouple SSI from DisplayDriver (hershal)
+ *******************************************************************************/
+
 
 /* Each driver is statically allocated */
 hw_driver HW_UART_DRIVER;
@@ -34,10 +45,8 @@ hw_driver HW_TIMER_DRIVER;
 hw_driver HW_ADC_DRIVER;
 hw_driver HW_SSI_DRIVER;
 
-/* TODO: how much room to allocate for notifications? */
+/*  */
 hw_notification HW_UART_NOTIFICATION;
-
-/* TODO: this is not UART_DRIVER, get with the decoupling */
 
 void hw_driver_init(HW_DEVICES hw_group) {
 
@@ -61,8 +70,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
     }
 }
 
-/* TODO: consider returning false if the scoreboard (which is a todo)
- * indicates in-use */
+/* TODO: consider returning false if scoreboard indicates in-use */
 void hw_channel_init(HW_DEVICES     hw_group,
 		     raw_hw_channel raw_channel,
 		     hw_metadata    metadata) {
@@ -115,7 +123,9 @@ bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, con
 
 /* Note: there is no check to see if a signal is even connected before
  * a disconnect is attempted. This would be great to add but it's not
- * the time right now. Comment created Saturday February 7, 2015 15:46 */
+ * the time right now. Comment created Saturday February 7, 2015 15:46
+ * OPTIONAL TODO
+ */
 bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
 
     hw_iterator i;
@@ -233,14 +243,14 @@ hw_iterator _hw_first_available_subscription(hw_channel* channel) {
     return i;
 }
 
+/******************************************************************************/
+/************************* Interrupt Service Routines *************************/
+/******************************************************************************/
+
 /* man oh man, how cool would it be if these were automatically
  * generated... oh, to be using a higher-order language than C. */
 
-
-
-/* TODO: put all uart handlers in here, pointing to the one
- * redirection function */
-/* TODO: document */
+/************************* UART ISRs *************************/
 void UART0_Handler(void) {
 
     unsigned short i;
@@ -261,6 +271,7 @@ void UART0_Handler(void) {
     }
 }
 
+/************************* Timer ISRs *************************/
 void Timer0A_Handler(void) {
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
@@ -280,4 +291,4 @@ void Timer2A_Handler(void) {
     hw_notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, 2, notification);
-}
+/* } */
