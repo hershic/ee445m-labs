@@ -5,6 +5,8 @@
 #include "defines.h"
 #include <stdint.h>
 
+#define immutable
+
 /** A macro to make it clear what we're doing with this while loop. */
 inline static
 void postpone_death() {
@@ -22,13 +24,13 @@ int strcmp(const char* s1, const char* s2);
 int ustrncmp(const char *s1, const char *s2, uint32_t n);
 
 /*! Begin a non-interruptable critical section which preserves the
-    priority mask 
+    priority mask
     \returns the current priority mask
 */
 int32_t StartCritical();
 
 /*! End a non-interruptable critical section which restores the
-    priority mask 
+    priority mask
     \param primask the priority mask to restore
 */
 void EndCritical(int32_t primask);

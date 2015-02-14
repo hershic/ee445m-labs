@@ -1,8 +1,9 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 
+#include "libstd/nexus.h"
+
 #include <stdint.h>
 #include <stdbool.h>
-#include "libstd/nexus.h"
 
 /* TODO: Make this doxygen output match libtimer's */
 
@@ -51,7 +52,8 @@ typedef struct tcb {
     struct tcb *prev;
 
     /*! numerical identifier for the tcb */
-    int32_t id;
+    /*! THIS PROPERY IS IMMUTABLE */
+    immutable int32_t id;
 
     /*! state of this thread */
     tstate_t status;
@@ -60,14 +62,33 @@ typedef struct tcb {
     int32_t sleep_timer;
 
     /*! priority of the thread */
-    int8_t priority;
+    /* int8_t priority; */
 } tcb_t;
 
-/*! \brief resets the stack for a particular thread */
-/*! \param thread the thread whose stack is to be reset */
-void os_reset_thread_stack(tcb_t* thread);
+/*! Resets the thread stack for a given tcb to run a given task
+ *  \param thread the thread whose stack is to be reset
+ *  \param the task for which the thread should run
+ */
+void os_reset_thread_stack(tcb_t* tcb, task_t task);
 
 tcb_t* os_add_thread(void(*task)(void));
+
+/*! Returns the next dead thread in the dead thread circle.
+ *  If the length of the dead thread circle is greater than 1, then
+ *  the current dead thread is removed and the circle is relinked with
+ *  the next dead thread. If the circle contains only one dead thread,
+ *  then that thread is removed and the current dead thread is set to
+ *  null. If there is no thread in the dead thread circle, then it
+ *  retuns null.
+ *  \returns The first thread removed from the dead thread circle, or
+ *  null if the dead thread circle is empty.
+ */
+tcb_t* os_next_dead_thread();
+
+/*! Initialize the threading engine, setting all threads to dead. This
+    initializes the dead thread circle appropriately and sets the
+    running thread circle to null. */
+void os_threading_init();
 
 
 /*! \brief a do-nothing idle thread */
