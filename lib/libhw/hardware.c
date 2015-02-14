@@ -26,6 +26,8 @@ hw_driver HW_TIMER_DRIVER;
 hw_driver HW_UART_DRIVER;
 hw_notification HW_UART_NOTIFICATION;
 
+/* TODO: this is not UART_DRIVER, get with the decoupling */
+
 /* Note; this still requires dev to run uart_init() */
 void hw_driver_init(HW_DEVICES hw_group) {
 
