@@ -22,11 +22,19 @@
 #include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
 
+/* This hardware driver only manages peripherals that many tasks would
+ * theoritecally like to subscribe to at one time. */
+
+/* TODO: consider I2C, CAN, USB integration with this module */
+
+/* TODO: decouple SSI from DisplayDriver (hershal) */
+
 /* Each driver is statically allocated */
 hw_driver HW_UART_DRIVER;
 hw_driver HW_LCD_DRIVER;
 hw_driver HW_TIMER_DRIVER;
 hw_driver HW_ADC_DRIVER;
+hw_driver HW_SSI_DRIVER;
 
 /* TODO: how much room to allocate for notifications? */
 hw_notification HW_UART_NOTIFICATION;
@@ -50,6 +58,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER: /* TODO: handle  */
     case HW_ADC:   /* TODO: handle  */
+    case HW_SSI:   /* TODO: handle  */
     default: postpone_death();
     }
 }
@@ -69,13 +78,13 @@ void hw_channel_init(HW_DEVICES hw_group,
 
     switch(hw_group) {
     case HW_UART:
-	/* dev convenience */
 	uart_set_active_channel(raw_channel);
 	uart_init();
 	break;
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER: /* HERSHAL TODO: handle  */
     case HW_ADC:   /* TODO: handle  */
+    case HW_SSI:   /* TODO: handle  */
     default: postpone_death();
     }
 }
@@ -84,14 +93,8 @@ bool hw_connect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr
 
     hw_iterator i = 0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
+    i = _hw_first_available_subscription(channel);
 
-    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
-	++i;
-    }
-    if(channel->isr_subscriptions[i].valid) {
-	/* There are no empty slots for a new subscriber */
-	return false;
-    }
     channel->isr_subscriptions[i].valid = true;
     channel->isr_subscriptions[i].single_shot_subscription = false;
     channel->isr_subscriptions[i].slot = isr;
@@ -117,7 +120,7 @@ bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* 
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
-
+    
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].slot != isr) {
 	++i;
     }
@@ -157,6 +160,13 @@ long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
 	switch(channel) {
 	case ADC0_BASE: return 0;
 	case ADC1_BASE: return 1;
+	}
+    case HW_SSI:
+	switch(channel) {
+	case SSI0_BASE: return 0;
+	case SSI1_BASE: return 1;
+	case SSI2_BASE: return 2;
+	case SSI3_BASE: return 3;
 	}
     default: postpone_death();
     }
@@ -198,12 +208,14 @@ void hw_notify(HW_DEVICES           hw_group,
     }
 }
 
+/* OPTIMIZE: inline, this will be called unbelievably often */
 hw_channel* _hw_get_channel(HW_DEVICES hw_group, raw_hw_channel raw_channel) {
 
     long channel_index = _hw_channel_to_index(raw_channel, hw_group);
     return &(hw_driver_singleton(hw_group)->channels[channel_index]);
 }
 
+/* OPTIMIZE: inline, this will be called unbelievably often */
 hw_iterator _hw_first_available_subscription(hw_channel* channel) {
 
     hw_iterator i = 0;
