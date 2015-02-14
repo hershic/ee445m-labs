@@ -147,6 +147,7 @@ bool hw_disconnect(HW_DEVICES     hw_group,
 
 /* immaculate hashing function, much fast */
 long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
+    /* TODO: is masking with an offset faster? Might take up less space */
     switch(hw_group){
     case HW_UART:
 	switch(channel) {
