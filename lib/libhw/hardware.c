@@ -106,7 +106,9 @@ bool hw_connect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr
     return true;
 }
 
-bool hw_connect_single_shot(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
+bool hw_connect_single_shot(HW_DEVICES     hw_group,
+                            raw_hw_channel raw_channel,
+			    const void*    isr) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
