@@ -288,4 +288,4 @@ void Timer2A_Handler(void) {
     hw_notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, 2, notification);
-/* } */
+}
