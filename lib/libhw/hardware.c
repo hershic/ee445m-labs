@@ -23,12 +23,7 @@
 #include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
 
-/* This hardware driver only manages peripherals that many tasks would
- * theoritecally like to subscribe to at one time. */
-
 /* TODO: Find out why we don't need to include libuart/uart.h */
-
-/* TODO: consider I2C, CAN, USB integration with this module */
 
 /* TODO: decouple SSI from DisplayDriver (hershal) */
 
@@ -68,9 +63,9 @@ void hw_driver_init(HW_DEVICES hw_group) {
 
 /* TODO: consider returning false if the scoreboard (which is a todo)
  * indicates in-use */
-void hw_channel_init(HW_DEVICES hw_group,
+void hw_channel_init(HW_DEVICES     hw_group,
 		     raw_hw_channel raw_channel,
-		     hw_metadata metadata) {
+		     hw_metadata    metadata) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);

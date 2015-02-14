@@ -22,6 +22,13 @@
  * and the sizeof for it will then be wrong.
  */
 
+/* A note about this library:
+ * 
+ * This hardware driver only manages peripherals that many tasks would
+ * theoritecally like to subscribe to at one time. Hardware devices
+ * such as GPIO pins should be manipulated with TI's driverlib. */
+
+
 /* \bug TODO for extra cleanliness, determine hw_group automatically from
  * channel's raw address! */
 
@@ -72,6 +79,7 @@ typedef enum  {
     HW_ADC,
     HW_SSI,
 } HW_DEVICES;
+/* TODO: consider I2C, CAN, USB integration with this module */
 
 /* UART properties */
 typedef struct hw_uart_metadata {
