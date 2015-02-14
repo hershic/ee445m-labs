@@ -16,12 +16,13 @@
  * this context.
  */
 
-typedef enum {TIMER0, TIMER1, TIMER2} utimer_t;
+/* TODO: allow subscribers */
 
-int timer_add_periodic_thread(void(*task)(void),
-			      unsigned long frequency,
-			      unsigned long priority,
-			      utimer_t timer_peripheral);
-static void (*_task0)(void);
-static void (*_task1)(void);
-static void (*_task2)(void);
+#include <stdint.h>
+#include <stdbool.h>
+
+#define Hz 
+
+bool timer_add_periodic_interrupt(uint32_t frequency,
+                                  uint32_t timer_peripheral);
+

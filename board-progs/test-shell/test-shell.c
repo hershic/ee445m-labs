@@ -21,40 +21,25 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/rom.h"
 
-#include "libtimer/timer.h"
 #include "libshell/shell.h"
 #include "libnotify/notify.h"
 #include "libhw/hardware.h"
 #include "libuart/uart.h"
 #include "libheart/heartbeat.h"
+#include "libstd/nexus.h"
+#include "libos/system.h"
 
 #include <sys/stat.h>
 
-void UART0_Handler(void) {
-
-    unsigned short i;
-
-    while(UARTCharsAvail(UART0_BASE)) {
-
-	/* Notify every subscribed task of each incoming character
-	 * (but schedule them for later so we can return from this ISR
-	 * asap). */
-	hw_notification notification;
-	notification._char = uart_get_char();
-
-	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART0_BASE, notification, NOTIFY_CHAR);
-	uart_send_char(notification._char);
-    }
-}
-
 int doctor() {
 
-    uart_send_string("\nWell what did you expect would happen? You're dreaming!\n");
+    uart_send_string("Well what did you expect would happen? You're dreaming!\n");
     return EXIT_SUCCESS;
 }
 
 int main(void) {
+
+    hw_metadata uart_metadata;
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
 		   SYSCTL_XTAL_16MHZ);
@@ -62,20 +47,21 @@ int main(void) {
     /* Enable the GPIO port that is used for the on-board LED. */
     heart_init();
 
-    /* Enable the peripherals used by this example. */
+    /* Enable the peripherals used by this example */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
+    /* Initialize hardware devices */
     hw_driver_init(HW_UART);
+    uart_metadata.uart.UART_BAUD_RATE = 115200;
+    hw_channel_init(HW_UART, UART0_BASE, uart_metadata);
     uart_init();		/* defaults to UART0_BASE (thanks hw_driver) */
-    /* TODO: remove */
-    uart_send_string("Driver initialized!\n");
 
+    /* Initialize the shell and the system it interacts with */
     shell_spawn();
-    shell_register_command((const char*) "doctor", doctor);
+    system_register_command((const char*) "doctor", doctor);
 
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    /* Postpone death */
-    while(1) {};
+    postpone_death();
 }

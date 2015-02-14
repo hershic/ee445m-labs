@@ -16,6 +16,7 @@
 \pagebreak[3]
 \newcommand{\Opentesthook}[2]{\Writetofile{#1}{\protect\section{#1: #2}}}
 \renewcommand{\Solnlabel}[1]{\textbf{Solution}\quad}
+\newcommand{\todo}{{\LARGE \emph{\color{red}TODO}}}
 
 \newcommand{\dd}[1]{\:\mathrm{d}{#1}}
 \newcommand{\ddt}[1]{\frac{\dd{}}{\dd{#1}}}
@@ -162,7 +163,7 @@
       \item The vector table exists in \verb|startup.s|. The system
         finds the named function and calls that function when the
         interrupt is received.
-      \item The acknowledgement occurs by setting a bit in a
+      \item The acknowledgment occurs by setting a bit in a
         memory-mapped hardware register. For this device, bit 6 is set
         to acknowledge the interrupt.
       \item The TM4C is like a PC. It has two 16-byte FIFOs (one for
@@ -228,7 +229,7 @@
       \item \verb|NVIC_ST_RELOAD_R = NVIC_ST_RELOAD_M;|
       \item The system clock is established by the \verb|PLL_Init|
         function.
-        
+
         \begin{lstlisting}[language=C]
           void PLL_Init(void){
             // 0) configure the system to use RCC2 for advanced features
@@ -292,5 +293,409 @@
       \end{enumerate}
     \end{solution}
   \end{Ex}
+\end{enumerate}
+\section{Deliverables}
+\begin{enumerate}
+\item Drivers \\
+  Since only one interrupt handler may be invoked by the NVIC per
+  hardware interrupt, our RTOS will have one driver per peripheral to
+  handle the interrupts associated with external events. Drivers will
+  allow threads to subscribe to each possible interrupt event, and
+  when an interrupt is triggered the driver passes along the
+  information contained in the interrupt to the task in the form of a
+  \emph{notification}.
+\item Timer \\
+  Timers are capable of firing according to a specified
+  frequency. With this feature we added a method
+  \verb|timer_add_periodic_thread|.
+\item ADC \\
+  We envisioned that the ADC on our device would mainly be used for
+  periodic data acquisition, so the driver was designed primarily with
+  that use case in mind. We have designed the ADC driver to work in
+  conjunction with our timer interface for quick and easy consumption
+  of ADC data. When the user wishes to collect ADC data in a periodic
+  manner, all the user needs to do is supply the frequency with which
+  they would like to sample at, a buffer to be filled with analog
+  data, and the timer to bind the sampling process to. When the timer
+  is triggered, the ADC is immediately sampled and the supplied buffer
+  is filled with new data.
+\item UART \\
+  The UART driver is capable of accepting susbcriptions from
+  tasks. When an interrupt is triggered by an incoming character, the
+  UART driver's ISR is invoked by the NVIC. This ISR acknowledges the
+  interrupt and schedules a periodic task to trigger (once) before
+  returning. This task will be responsible for calling the pseudo-ISR
+  of each subscribed task with information about the incoming
+  character.
+\item LCD \\
+  The LCD is capable of printing strings and characters. Two displays
+  may be registered (in which case a horizontal line will separate the
+  two) and text written to each independently.
+\end{enumerate}
+All specifications (objectives) above were met by the time of checkout
+on Monday February 9.
+\section{Hardware Design}
+No hardware design is required for this lab.
+\section{Software Design}
+\begin{enumerate}[1)]
+\item Low level LCD driver (\verb|ST7735_.c| and \verb|ST7735_.h|
+  files) \\
+
+  \begin{lstlisting}[language=C]
+    /* unchanged code elided */
+
+    void ST7735_OutChar2(uint8_t ch){
+      if((ch == 10) || (ch == 13) || (ch == 27)){
+        StY2++; StX2=0;
+        if(StY2>15){
+          StY2 = 10;
+        }
+        ST7735_DrawString(0,StY2,"                     ",StTextColor);
+        return;
+      }
+      ST7735_DrawCharS(StX2*6,StY2*10,ch,ST7735_YELLOW,ST7735_BLACK, 1);
+      StX2++;
+      if(StX2>20){
+        StX2 = 20;
+        ST7735_DrawCharS(StX2*6,StY2*10,'*',ST7735_RED,ST7735_BLACK, 1);
+      }
+      return;
+    }
+
+    /* unchanged code elided */
+
+    void ST7735_OutString2(uint8_t *ptr){
+      while(*ptr){
+        ST7735_OutChar2(*ptr);
+        ptr = ptr + 1;
+      }
+    }
+
+    /* unchanged code elided */
+  \end{lstlisting}
+\item Low level ADC driver (\verb|ADC.c| and \verb|ADC.h|) \\
+  \begin{lstlisting}[language=C]
+    #include "adc.h"
+
+#include "inc/hw_memmap.h"
+#include "inc/hw_ints.h"
+
+#include <stdbool.h>
+#include <stdlib.h>
+
+#include "driverlib/pin_map.h"
+#include "driverlib/gpio.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/adc.h"
+
+#include "utils/ustdlib.h"
+
+#define MAX_NUM_SAMPLES 10
+#define NUM_ADC_CHANNELS 11
+
+/* global buffers */
+uint32_t adc_sample_buffer[NUM_ADC_CHANNELS];
+uint32_t adc_max_set_samples_per_channel[NUM_ADC_CHANNELS];
+uint32_t adc_current_samples_per_channel[NUM_ADC_CHANNELS];
+uint8_t adc_active_scoreboard[NUM_ADC_CHANNELS];
+
+/* Initialize the ADC inputs. This uses the ADC pins on Port E pins 1,
+   2, and 3(AIN0-2). */
+void adc_init(void) {
+    /* int32_t ui32Chan; */
+    uint8_t i;
+
+    /* Enable the GPIOs and the ADC used by this example. */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
+    SysCtlGPIOAHBEnable(SYSCTL_PERIPH_GPIOE);
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
+    SysCtlPeripheralReset(SYSCTL_PERIPH_ADC0);
+
+    /* Select the external reference for greatest accuracy. */
+    ADCReferenceSet(ADC0_BASE, ADC_REF_EXT_3V);
+
+    /* Configure the pins which are used as analog inputs. */
+    GPIOPinTypeADC(GPIO_PORTE_AHB_BASE, GPIO_PIN_3 | GPIO_PIN_2 | GPIO_PIN_1);
+
+    /* Configure the sequencer for 3 steps. */
+    for(i = 0; i < 2; ++i) {
+        /* Configure the sequence step */
+        ADCSequenceStepConfigure(ADC0_BASE, 0, i, i);
+    }
+
+    ADCSequenceStepConfigure(ADC0_BASE, 0, 2, ADC_CTL_CH2 | ADC_CTL_IE |
+                             ADC_CTL_END);
+    /* Enable the sequence but do not start it yet. */
+    ADCSequenceEnable(ADC0_BASE, 0);
+
+    for (i=0; i<NUM_ADC_CHANNELS; ++i) {
+        adc_active_scoreboard[i] = false;
+    }
+}
+
+uint32_t adc_open(uint32_t channel) {
+    uint32_t decoded_channel;
+    if (decode_adc_channel(channel, &decoded_channel)) {
+        ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
+        ADCSequenceStepConfigure(ADC0_BASE, 3, 0, decoded_channel | ADC_CTL_IE | ADC_CTL_END);
+        ADCSequenceEnable(ADC0_BASE, 3);
+        ADCIntClear(ADC0_BASE, 3);
+        return 1;
+    }
+    return 0;
+}
+
+uint32_t decode_adc_channel(uint32_t channel, uint32_t* decoded_channel) {
+    switch (channel) {
+    case 0:
+        *decoded_channel = ADC_CTL_CH0;
+        break;
+    case 1:
+        *decoded_channel = ADC_CTL_CH1;
+        break;
+    case 2:
+        *decoded_channel = ADC_CTL_CH2;
+        break;
+    case 3:
+        *decoded_channel = ADC_CTL_CH3;
+        break;
+    case 4:
+        *decoded_channel = ADC_CTL_CH4;
+        break;
+    case 5:
+        *decoded_channel = ADC_CTL_CH5;
+        break;
+    case 6:
+        *decoded_channel = ADC_CTL_CH6;
+        break;
+    case 7:
+        *decoded_channel = ADC_CTL_CH7;
+        break;
+    case 8:
+        *decoded_channel = ADC_CTL_CH8;
+        break;
+    case 9:
+        *decoded_channel = ADC_CTL_CH9;
+        break;
+    case 10:
+        *decoded_channel = ADC_CTL_CH10;
+        break;
+    case 11:
+        *decoded_channel = ADC_CTL_CH11;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
+
+uint32_t adc_collect(uint32_t channel, uint32_t frequency,
+                     unsigned long buffer[], uint32_t numsamples,
+                     utimer_t timer_peripheral) {
+    uint32_t decoded_channel;
+    if (decode_adc_channel(channel, &decoded_channel)) {
+
+        adc_sample_buffer[channel] = (int32_t)buffer;
+
+        /* low priority */
+        timer_add_periodic_thread(do_adc_func, frequency, 1, timer_peripheral);
+        return 1;
+    }
+    return 0;
+}
+
+void do_adc_func() {
+
+    uint32_t status = ADCIntStatus(ADC0_BASE, 0, false);
+    if (status != 0) {
+
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+        /* Clear the ADC interrupt. */
+        ADCIntClear(ADC0_BASE, 0);
+
+        /* Read the data and trigger a new sample request. */
+        /* ADCSequenceDataGet(ADC0_BASE, 0, &adc_channel_buffer[0]); */
+        ADCSequenceDataGet(ADC0_BASE, 0, &adc_sample_buffer[0]);
+        ADCProcessorTrigger(ADC0_BASE, 0);
+
+        /* TODO: Update our report of the data somehow (whatever
+           means we define are necessary). For now the data
+           resides in adc_data_buffer ready for copying and
+           interpretation. */
+    }
+}
+
+void ADC0Seq0_Handler(void) {
+
+    /* Clear the ADC interrupt. */
+    ADCIntClear(ADC0_BASE, 0);
+
+    /* Read the data and trigger a new sample request. */
+    /* first is channel, second is beginning of buffer length */
+    ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0]));
+    /* ADCProcessorTrigger(ADC0_BASE, 0); */
+
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+}
+  \end{lstlisting}
+\item Low level timer driver (\verb|OS.c| and \verb|OS.h|) \\
+  \begin{lstlisting}[language=C]
+    /* -*- mode: c; c-basic-offset: 4; -*- */
+
+    #include "timer.h"
+
+    #include "inc/hw_memmap.h"
+    #include "inc/hw_ints.h"
+
+    #include <stdint.h>
+    #include <stdbool.h>
+    #include <stdlib.h>
+
+    #include "driverlib/pin_map.h"
+    #include "driverlib/timer.h"
+    #include "driverlib/sysctl.h"
+
+    int timer_add_periodic_thread(void(*task)(void),
+                              unsigned long frequency,
+                              unsigned long priority,
+                              utimer_t timer_peripheral) {
+
+        unsigned long timer_base, timer_periph, timer_int;
+
+        switch (timer_peripheral) {
+        case TIMER0:
+            timer_base = TIMER0_BASE;
+            timer_periph = SYSCTL_PERIPH_TIMER0;
+            timer_int = INT_TIMER0A;
+            _task0 = task;
+            break;
+        case TIMER1:
+            timer_base = TIMER1_BASE;
+            timer_periph = SYSCTL_PERIPH_TIMER1;
+            timer_int = INT_TIMER1A;
+            _task1 = task;
+            break;
+        case TIMER2:
+            timer_base = TIMER2_BASE;
+            timer_periph = SYSCTL_PERIPH_TIMER2;
+            timer_int = INT_TIMER2A;
+            _task2 = task;
+            break;
+        default:
+            /* you broke the world */
+            return 1;
+        }
+
+        SysCtlPeripheralEnable(timer_periph);
+        TimerConfigure(timer_base, TIMER_CFG_PERIODIC);
+        TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / frequency);
+
+        TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
+        IntEnable(timer_int, priority);
+        TimerEnable(timer_base, TIMER_A);
+
+        /* Success */
+        return 0;
+    }
+
+    void Timer0A_Handler(void) {
+        TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+        _task0();
+    }
+
+    void Timer1A_Handler(void) {
+        TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+        _task1();
+    }
+
+    void Timer2A_Handler(void) {
+        TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
+        _task2();
+}
+  \end{lstlisting}
+\item High level main program (the interpreter) \\
+  \begin{lstlisting}[language=C]
+    int main(void) {
+
+        SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+                   SYSCTL_XTAL_16MHZ);
+
+        /* Enable the GPIO port that is used for the on-board LED. */
+        heart_init();
+
+        /* Enable the peripherals used by this example. */
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
+
+        hw_driver_init(HW_UART);
+        uart_init();            /* defaults to UART0_BASE (thanks hw_driver) */
+
+        shell_spawn();
+        shell_register_command((const char*) "doctor", doctor);
+
+        /* Enable processor interrupts. */
+        IntMasterEnable();
+
+        /* Postpone death */
+        while(1) {};
+    };
+  \end{lstlisting}
+\end{enumerate}
+\section{Measurement Data}
+\begin{enumerate}[1)]
+  \item Estimated time to run the periodic interrupt \\
+    Each bus cycle takes around 720ns. Our ISR does six bus I/O
+    operations (toggling pins on and off) along with two jumps. We
+    expect our ISR to take under 10 $\mu$s to run.
+    We expect the periodic interrupt to take
+  \item Measured time to run the periodic timer interrupt \\
+    The periodic interrupt takes 5.84 $\mu$s to run.
+  \end{enumerate}
+\section{Analysis and Discussion}
+\begin{enumerate}[1)]
+  \item What are the range, resolution, and precision of the ADC?
+
+    \begin{enumerate}
+    \item The range of the ADC is 0 to 4096 in machine integer value,
+      or 0 to 3.3V in analog form.
+    \item The resolution of the ADC is 12 bits.
+    \item The precision of the ADC is 0.8mV.
+    \end{enumerate}
+  \item List the ways the ADC conversion can be started. Explain why
+    you chose to design the API the way you did.
+
+    The ADC can be sampled either by interrupt or by spinlock. We
+    chose to have the ADC interrupt the processor for superior
+    performance.
+  \item The measured time to run the periodic interrupt can be
+    measured directly by setting a bit high at the start of the ISR
+    and clearing that bit at the end of the ISR. It could also be
+    measured indirectly by measuring the time lost when running a
+    simple main program that toggles an output pin. How did you measure
+    it? Compare and contrast your method to these two.
+
+    We measured the time it takes for the ISR to run by continuously
+    setting a bit and setting it low within the ISR. We chose to do
+    the measurement this way to get the most accurate time measurement
+    since the LED will stay on through the branch into the timer ISR.
+  \item Divide the time to execute one instance of the ISR by the
+    total instructions in the ISR to get the average time to execute
+    an instruction. Compare this to the 12.5 nanosecond system clock
+    period (80MHz).
+
+    We execute 70 instructions in the ISR. That means we get roughly
+    82ns per instruction. If the cycle time is 12.5ns, that means the
+    processor has to stall for some time. This behavior is probably
+    due to memory read/writes.
+  \item What are the range, resolution, and precision of the SysTick
+    timer? Answer this question relative to the
+    \verb|NVIC_ST_CURRENT_R| register in the Cortex M4 core
+    peripherals.
+    \begin{enumerate}
+    \item The range of the SysTick is 0 to 16777216 in machine integer
+      value, or 12.5ns in analog form.
+    \item The resolution of the SysTick is 24 bits.
+    \item The precision of the SysTick is 12.5ns.
+    \end{enumerate}
 \end{enumerate}
 \end{document}
