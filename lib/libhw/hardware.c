@@ -238,6 +238,11 @@ hw_iterator _hw_first_available_subscription(hw_channel* channel) {
     return i;
 }
 
+/* man oh man, how cool would it be if these were automatically
+ * generated... oh, to be using a higher-order language than C. */
+
+
+
 /* TODO: put all uart handlers in here, pointing to the one
  * redirection function */
 /* TODO: document */
@@ -245,6 +250,9 @@ void UART0_Handler(void) {
 
     unsigned short i;
     hw_notification notification;
+    /* TODO: determine which bit to clear:  */
+    unsigned long look_at_me = UARTIntStatus();
+    /* UARTIntClear(UART0_BASE, ); */
 
     while(UARTCharsAvail(UART0_BASE)) {
 

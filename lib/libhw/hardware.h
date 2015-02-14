@@ -70,6 +70,7 @@ typedef enum  {
     HW_LCD,
     HW_TIMER,
     HW_ADC,
+    HW_SSI,
 } HW_DEVICES;
 
 /* UART properties */
