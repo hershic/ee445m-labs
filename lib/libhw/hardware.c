@@ -86,7 +86,8 @@ void hw_channel_init(HW_DEVICES     hw_group,
 	break;
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER:
-        timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY, raw_channel);
+        timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY,
+				     raw_channel);
         break;
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
@@ -94,7 +95,9 @@ void hw_channel_init(HW_DEVICES     hw_group,
     }
 }
 
-bool hw_connect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
+bool hw_connect(HW_DEVICES     hw_group,
+		raw_hw_channel raw_channel,
+		const void*    isr) {
 
     hw_iterator i = 0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -125,12 +128,15 @@ bool hw_connect_single_shot(HW_DEVICES     hw_group,
  * the time right now. Comment created Saturday February 7, 2015 15:46
  * OPTIONAL TODO
  */
-bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void* isr) {
+bool hw_disconnect(HW_DEVICES     hw_group,
+		   raw_hw_channel raw_channel,
+		   const void*    isr) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
     
-    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].slot != isr) {
+    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS &&
+	  channel->isr_subscriptions[i].slot != isr) {
 	++i;
     }
     channel->isr_subscriptions[i].valid = false;
@@ -228,7 +234,8 @@ hw_channel* _hw_get_channel(HW_DEVICES hw_group, raw_hw_channel raw_channel) {
 hw_iterator _hw_first_available_subscription(hw_channel* channel) {
 
     hw_iterator i = 0;
-    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS && channel->isr_subscriptions[i].valid) {
+    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS &&
+	  channel->isr_subscriptions[i].valid) {
 	++i;
     }
     if(channel->isr_subscriptions[i].valid) {
