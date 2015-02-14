@@ -21,7 +21,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define Hz
+#define Hz 
 
 bool timer_add_periodic_interrupt(uint32_t frequency,
                                   uint32_t timer_peripheral);
