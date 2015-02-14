@@ -298,27 +298,17 @@
 \begin{enumerate}
 \item Drivers \\
   Since only one interrupt handler may be invoked by the NVIC per
-<<<<<<< variant A
   hardware interrupt, our RTOS will have one driver per peripheral to
   handle the interrupts associated with external events. Drivers will
   allow threads to subscribe to each possible interrupt event, and
   when an interrupt is triggered the driver passes along the
   information contained in the interrupt to the task in the form of a
   \emph{notification}.
->>>>>>> variant B
-  hardware interrupt, our RTOS (hereby viod) will have one driver per
-  peripheral to handle the interrupts associated with external
-  events. Drivers will allow threads to subscribe to each possible
-  interrupt event, and when an interrupt is triggered the driver
-  passes along the information contained in the interrupt to the task
-  in the form of a \emph{notification}.
-======= end
 \item Timer \\
   Timers are capable of firing according to a specified
   frequency. With this feature we added a method
   \verb|timer_add_periodic_thread|.
 \item ADC \\
-<<<<<<< variant A
   We envisioned that the ADC on our device would mainly be used for
   periodic data acquisition, so the driver was designed primarily with
   that use case in mind. We have designed the ADC driver to work in
@@ -329,16 +319,8 @@
   data, and the timer to bind the sampling process to. When the timer
   is triggered, the ADC is immediately sampled and the supplied buffer
   is filled with new data.
->>>>>>> variant B
-
-  \todo
-======= end
 \item UART \\
-<<<<<<< variant A
-  The UART driver is capable of accepting subscriptions from
->>>>>>> variant B
   The UART driver is capable of accepting susbcriptions from
-======= end
   tasks. When an interrupt is triggered by an incoming character, the
   UART driver's ISR is invoked by the NVIC. This ISR acknowledges the
   interrupt and schedules a periodic task to trigger (once) before
