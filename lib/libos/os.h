@@ -1,5 +1,5 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-#include "../libtimer/timer.h"
+#include "libtimer/timer.h"
 
 /* TODO: Make this doxygen output match libtimer's */
 

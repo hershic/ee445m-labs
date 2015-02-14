@@ -2,33 +2,32 @@
 #include "shell.h"
 
 #include "libhw/hardware.h"
-#include "libstd/nexus.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
 
 #include <stdint.h>
 #include <stdbool.h>
-/* #include <stdlib.h> */
 
 #include "driverlib/pin_map.h"
 #include "driverlib/timer.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 
-unsigned short SHELL_BUFFER_POSITION;
-char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
-shell_command SHELL_COMMANDS[SHELL_MAX_COMMANDS];
+static unsigned short SHELL_BUFFER_POSITION;
+static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
+
+static char* SHELL_PS1[SHELL_MAX_PS1_LENGTH];
+static char* SHELL_DEFAULT_PS1 = "> ";
+
 
 void shell_spawn() {
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
-
-    /* clear current contents of SHELL_BUFFER */
-    memset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
-    SHELL_BUFFER_POSITION = 0;
+    shell_clear_shell_buffer();
+    shell_set_ps1(SHELL_DEFAULT_PS1);
+    shell_print_ps1();
 }
 
 char* shell_represent() {
@@ -43,60 +42,50 @@ void shell_kill() {
 
 void shell_uart0_handler(char recv) {
 
-    /* TODO: handle enter */
-    /* TODO: handle deregestering commands */
-    /* TODO: test both re/dereg commands */
-
     switch(recv) {
-    case 13:			/* TODO: enter */
-	shell_execute_command();
+    case SC_CR:
+        {   /* TODO: schedule? */
+	    shell_execute_command();
+	    shell_clear_shell_buffer();
+        }
+	/* TODO: represent better, with shell_represent */
+	uart_send_char('\n');
+	shell_print_ps1();
 	break;
-    case 8: 			/* TODO: backspace */
+    case SC_BACKSPACE:
+	SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
+	/* TODO: represent at all, with shell_represent */
+	break;
     default:
 	if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
 	    SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
 	}
+	break;
     }
+    /* Echo char to terminal for user */
+    uart_send_char(recv);
 }
 
-/* returns success (could be out of room) */
-bool shell_register_command(const char* command_name, int(*command)()) {
+void shell_set_ps1(char* new_ps1) {
 
-    shell_iterator i = 0;
-    while(i<SHELL_MAX_COMMANDS && SHELL_COMMANDS[i].valid) {++i;}
-    if(SHELL_COMMANDS[i].valid) {
-    	/* There are no empty slots for a new shell command */
-    	return false;
-    }
-    SHELL_COMMANDS[i].valid = true;
-    memcpy(SHELL_COMMANDS[i].name, command_name, SHELL_MAX_COMMAND_NAME_LENGTH);
-    SHELL_COMMANDS[i].command = command;
-    return true;
+    memcpy(SHELL_PS1, new_ps1, ustrlen(new_ps1));
+    /* TODO: ensure this copies a null terminator */
 }
 
-bool shell_deregister_command(const char* command_name) {
+void shell_clear_shell_buffer() {
 
-    shell_iterator i=0;
-    strcmp(SHELL_COMMANDS[i].name, command_name);
-    /* while(i<SHELL_MAX_COMMANDS && */
-    /* 	  0 != strcmp(SHELL_COMMANDS[i].name, command_name)) { */
-    /* 	++i; */
-    /* } */
-    SHELL_COMMANDS[i].valid = false;
-    return true;
+    memset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
+    SHELL_BUFFER_POSITION = 0;
 }
 
-/* OPTIONAL TODO: decouple from SHELL_BUFFER */
-/* TODO: allow for arguments */
-bool shell_execute_command() {
+void shell_print_ps1() {
 
-    /* shell_iterator i=0; */
-    /* while(i<SHELL_MAX_COMMANDS) { */
-    /* 	if (SHELL_COMMANDS[i].valid && */
-    /* 	    0 == strcmp(SHELL_COMMANDS[i].name, SHELL_BUFFER)) { */
-    /* 	    SHELL_COMMANDS[i].command(/\*arguments*\/); */
-    /* 	    return true; */
-    /* 	} */
-    /* } */
-    return false;
+    uart_send_string(SHELL_PS1);
+}
+
+/* TODO: implement */
+exit_status_t shell_execute_command() {
+
+    const char** arguments = NULL;
+    return system_exec(SHELL_BUFFER, arguments);
 }

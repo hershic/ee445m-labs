@@ -22,15 +22,14 @@
 #include "driverlib/rom.h"
 
 #include "libtimer/timer.h"
+#include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
-/*! \brief Blink the onboard LED three times */
+/*! \brief Blink the onboard LED three times to show activity */
 void blink_onboard_led(void) {
-    /* Toggle the LED three times to show activity. */
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+    heart_beat();
+    heart_toggle();
 }
 
 /*! Accept input on UART 0, and parrot input back out to UART 0.
@@ -47,9 +46,6 @@ int main(void) {
 
     /* Enable the GPIO pins for the LED (PF2). */
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
-
-    /* Enable the peripherals used by this example. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
     /* Enable processor interrupts. */
     IntMasterEnable();
