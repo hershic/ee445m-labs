@@ -43,7 +43,6 @@ hw_driver HW_TIMER_DRIVER;
 hw_driver HW_ADC_DRIVER;
 hw_driver HW_SSI_DRIVER;
 
-/*  */
 hw_notification HW_UART_NOTIFICATION;
 
 void hw_driver_init(HW_DEVICES hw_group) {
