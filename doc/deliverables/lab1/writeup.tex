@@ -654,18 +654,35 @@ void ADC0Seq0_Handler(void) {
 \section{Analysis and Discussion}
 \begin{enumerate}[1)]
   \item What are the range, resolution, and precision of the ADC?
+
+    \begin{enumerate}
+    \item The range of the ADC is 0 to 4096 in machine integer value,
+      or 0 to 3.3V in analog form.
+    \item The resolution of the ADC is 12 bits.
+    \item The precision of the ADC is 0.8mV.
+    \end{enumerate}
   \item List the ways the ADC conversion can be started. Explain why
     you chose to design the API the way you did.
+
+    The ADC can be sampled either by interrupt or by spinlock. We
+    chose to have the ADC interrupt the processor for superior
+    performance.
   \item The measured time to run the periodic interrupt can be
     measured directly by setting a bit high at the start of the ISR
     and clearing that bit at the end of the ISR. It could also be
     measured indirectly by measuring the time lost when running a
     simple main program that toggles an output pin. How did you measure
     it? Compare and contrast your method to these two.
-  \item Divide the time to execute one instance of the ISr by the
-    total instructions in the ISr to get the average time to execute
+
+    We measured the time it takes for the ISR to run by continuously
+    setting a bit and setting it low within the ISR. We chose to do
+    the measurement this way to get the most accurate time measurement
+    since the LED will stay on through the branch into the timer ISR.
+  \item Divide the time to execute one instance of the ISR by the
+    total instructions in the ISR to get the average time to execute
     an instruction. Compare this to the 12.5 nanosecond system clock
     period (80MHz).
+
   \item What are the range, resolution, and precision o the SysTick
     timer? Answer this question relative to the
     \verb|NVIC_ST_CURRENT_R| register in the Cortex M4 core peripherals.
