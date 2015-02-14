@@ -22,13 +22,17 @@
 #include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
 
-hw_driver HW_TIMER_DRIVER;
+/* Each driver is statically allocated */
 hw_driver HW_UART_DRIVER;
+hw_driver HW_LCD_DRIVER;
+hw_driver HW_TIMER_DRIVER;
+hw_driver HW_ADC_DRIVER;
+
+/* TODO: how much room to allocate for notifications? */
 hw_notification HW_UART_NOTIFICATION;
 
 /* TODO: this is not UART_DRIVER, get with the decoupling */
 
-/* Note; this still requires dev to run uart_init() */
 void hw_driver_init(HW_DEVICES hw_group) {
 
     hw_iterator i;
@@ -36,13 +40,18 @@ void hw_driver_init(HW_DEVICES hw_group) {
     hw_driver* driver = hw_driver_singleton(hw_group);
 
     /* Enable the peripherals this driver is responsible for */
-    /* TODO: allow flexibility with channel */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    /* TODO: allow other devices (than uart) to use the HW_DRIVER API */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    switch(hw_group){
+    case HW_UART:
+	/* TODO: allow flexibility with channel */
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+	break;
 
-    /* Set the active uart channel -- dev convenience */
-    uart_set_active_channel(UART0_BASE);
+    case HW_LCD:   /* TODO: handle  */
+    case HW_TIMER: /* TODO: handle  */
+    case HW_ADC:   /* TODO: handle  */
+    default: postpone_death();
+    }
 }
 
 /* TODO: consider returning false if the scoreboard (which is a todo)
@@ -60,12 +69,14 @@ void hw_channel_init(HW_DEVICES hw_group,
 
     switch(hw_group) {
     case HW_UART:
+	/* dev convenience */
 	uart_set_active_channel(raw_channel);
 	uart_init();
 	break;
-    default:
-	postpone_death();
-	break;
+    case HW_LCD:   /* TODO: handle  */
+    case HW_TIMER: /* HERSHAL TODO: handle  */
+    case HW_ADC:   /* TODO: handle  */
+    default: postpone_death();
     }
 }
 
@@ -131,20 +142,43 @@ long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
 	case UART7_BASE: return 7;
 	}
 	break;
-    case HW_LCD:
-	break;
-    default:
-	postpone_death();
-	break;
+    case HW_LCD:   /* TODO: handle  */
+    case HW_TIMER: 
+	switch(channel) {
+	case TIMER0_BASE: return 0;
+	case TIMER1_BASE: return 1;
+	case TIMER2_BASE: return 2;
+	case TIMER3_BASE: return 3;
+	case TIMER4_BASE: return 4;
+	}
+    case HW_ADC:   /* TODO: handle channels having channels  */
+	/* spitball'd idea - rename our 'channel' to 'base' (matching
+	 * hw_memmap.h) */
+	switch(channel) {
+	case ADC0_BASE: return 0;
+	case ADC1_BASE: return 1;
+	}
+    default: postpone_death();
     }
+    /* TODO: ensure software doesn't try to access nonexistent hardware
+     * (mind the board model this is currently running on. current idea:
+     * compile flags limiting the furthest indices) */
 }
 
+/* OPTIMIZE: inline */
 hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
 
-    /* TODO: add drivers */
-    return &HW_UART_DRIVER;
+    switch(hw_group) {
+    case HW_UART:  return &HW_UART_DRIVER;
+    case HW_LCD:   return &HW_LCD_DRIVER;
+    case HW_TIMER: return &HW_TIMER_DRIVER;
+    case HW_ADC:   return &HW_ADC_DRIVER;
+    default:       postpone_death();
+    }
+    return NULL;
 }
 
+/* OPTIMIZE: optimize, this will be called a shit ton */
 void hw_notify(HW_DEVICES           hw_group,
 	       long                 raw_channel,
 	       hw_notification      notification) {
