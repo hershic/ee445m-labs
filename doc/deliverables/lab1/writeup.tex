@@ -683,8 +683,19 @@ void ADC0Seq0_Handler(void) {
     an instruction. Compare this to the 12.5 nanosecond system clock
     period (80MHz).
 
-  \item What are the range, resolution, and precision o the SysTick
+    We execute 70 instructions in the ISR. That means we get roughly
+    82ns per instruction. If the cycle time is 12.5ns, that means the
+    processor has to stall for some time. This behavior is probably
+    due to memory read/writes.
+  \item What are the range, resolution, and precision of the SysTick
     timer? Answer this question relative to the
-    \verb|NVIC_ST_CURRENT_R| register in the Cortex M4 core peripherals.
+    \verb|NVIC_ST_CURRENT_R| register in the Cortex M4 core
+    peripherals.
+    \begin{enumerate}
+    \item The range of the SysTick is 0 to 16777216 in machine integer
+      value, or 12.5ns in analog form.
+    \item The resolution of the SysTick is 24 bits.
+    \item The precision of the SysTick is 12.5ns.
+    \end{enumerate}
 \end{enumerate}
 \end{document}
