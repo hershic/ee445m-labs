@@ -17,14 +17,18 @@ void os_threading_init() {
 
     uint32_t i;
     os_current_dead_thread = &OS_THREADS[0];
+
     for (i=0; i<OS_MAX_THREADS; ++i) {
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
-        OS_THREADS[i].next = &OS_THREADS[(i+1) % OS_MAX_THREADS];
-        OS_THREADS[i].prev = &OS_THREADS[(i-1) % OS_MAX_THREADS];
+        OS_THREADS[i].next = &OS_THREADS[i+1];
+        OS_THREADS[i].prev = &OS_THREADS[i-1];
         OS_THREADS[i].id = i;
         OS_THREADS[i].status = THREAD_DEAD;
         OS_THREADS[i].sleep_timer = 0;
     }
+
+    OS_THREADS[0].prev = &OS_THREADS[OS_MAX_THREADS-1];
+    OS_THREADS[OS_MAX_THREADS-1].next = &OS_THREADS[0];
 
     os_current_running_thread = NULL;
 }
