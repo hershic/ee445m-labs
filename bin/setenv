@@ -90,10 +90,8 @@ while true; do
     shift
 done
 
-# TODO: make less kludgy
-readlink=greadlink
-[[ $(which readlink) ]] && readlink=readlink
-
 # Add this directory to the working PATH
 # TODO: use modpath
+readlink=greadlink
+[[ $(which readlink) ]] && readlink=readlink
 export PATH="$(${readlink} -e $(dirname $0)):$PATH"
