@@ -71,6 +71,10 @@ typedef struct tcb {
  */
 void os_reset_thread_stack(tcb_t* tcb, task_t task);
 
+/*! Adds a new thread with the specified task.
+ *  \returns the TCB of the newly added thread, null if the addition
+ *  was not possible for some reason.
+ */
 tcb_t* os_add_thread(void(*task)(void));
 
 /*! Returns the next dead thread in the dead thread circle.
@@ -86,8 +90,9 @@ tcb_t* os_add_thread(void(*task)(void));
 tcb_t* os_next_dead_thread();
 
 /*! Initialize the threading engine, setting all threads to dead. This
-    initializes the dead thread circle appropriately and sets the
-    running thread circle to null. */
+ *  initializes the dead thread circle appropriately and sets the
+ *  running thread circle to null.
+ */
 void os_threading_init();
 
 
