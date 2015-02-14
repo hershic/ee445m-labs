@@ -56,6 +56,9 @@ fi
 
 eval set -- "${ARGS}";
 
+# TODO: ensure this does nothing if the env is already set (and exits
+# in a sane manner)
+
 ## \var HELP_SETENV
 ## \brief Contains script invocation information
 ## \details Contains script invocation information and abstract.
@@ -87,6 +90,10 @@ while true; do
     shift
 done
 
+# TODO: make less kludgy
+readlink=greadlink
+[[ $(which readlink) ]] && readlink=readlink
+
 # Add this directory to the working PATH
 # TODO: use modpath
-export PATH="$(readlink -e $(dirname $0)):$PATH"
+export PATH="$(${readlink} -e $(dirname $0)):$PATH"
