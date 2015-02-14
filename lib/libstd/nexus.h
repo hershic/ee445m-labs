@@ -21,4 +21,16 @@ int strcmp(const char* s1, const char* s2);
 /** A duplicate of the c standard ustrncmp function. */
 int ustrncmp(const char *s1, const char *s2, uint32_t n);
 
+/*! Begin a non-interruptable critical section which preserves the
+    priority mask 
+    \returns the current priority mask
+*/
+int32_t StartCritical();
+
+/*! End a non-interruptable critical section which restores the
+    priority mask 
+    \param primask the priority mask to restore
+*/
+void EndCritical(int32_t primask);
+
 #endif

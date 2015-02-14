@@ -1,6 +1,6 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /*!
- *  \brief     Wrapper for libtimer
+ *  \brief     Thread switching
  *  \deatils   Just following professor's instructions. We'll see how this plays out.
  *  \author    Hershal Bhave
  *  \author    Eric Crosson
@@ -8,4 +8,14 @@
  *  \date      2014
  *  \pre       None
  *  \copyright GNU Public License.
+ */
+
+
+/*! \note There exists an array of threads in OS_THREADS, which we
+ *  categorize into two double-linked-lists; one LL is used to to
+ *  point to the circle of running threads, the other is used to point
+ *  to the circle of dead threads. We do this so we can O(1) lookup
+ *  for both the circle of dead and running threads. This makes it
+ *  easy to walk through both circles and perform operations on them
+ *  in reasonably quick time (i.e. faster than array looping).
  */

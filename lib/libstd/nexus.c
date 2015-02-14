@@ -59,3 +59,12 @@ int ustrncmp(const char *s1, const char *s2, uint32_t n) {
      * first n characters so return 0 to indicate this. */
     return 0;
 }
+
+int32_t StartCritical() {
+    asm("MRS    R0, PRIMASK  ;// save old status\n"
+        "CPSID  I            ;// mask all (except faults)\n");
+}
+
+void EndCritical(int32_t primask) {
+    asm("MSR    PRIMASK, R0\n");
+}

@@ -50,7 +50,6 @@ int main() {
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
 
-    os_threading_init();
     os_add_thread(turn_on_led);
     os_add_thread(turn_off_led);
 
@@ -59,7 +58,8 @@ int main() {
     SysTickEnable();
     SysTickIntEnable();
     IntMasterEnable();
-    os_begin();
+
+    os_launch(0);
 
     /* And we're done; this should never execute */
     while (1) {}
