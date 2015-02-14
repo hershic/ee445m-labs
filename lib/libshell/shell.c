@@ -20,13 +20,15 @@ static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
 static char* SHELL_PS1[SHELL_MAX_PS1_LENGTH];
 static char* SHELL_DEFAULT_PS1 = "> ";
 
-
 void shell_spawn() {
 
+    /* TODO: have this handled by hw_connect (look at the scoreboard,
+     * see what HAS been used (don't need to initialize), what IS
+     * being used (blocked)) */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
-    shell_clear_shell_buffer();
     shell_set_ps1(SHELL_DEFAULT_PS1);
+    shell_clear_shell_buffer();
     shell_print_ps1();
 }
 
@@ -44,7 +46,7 @@ void shell_uart0_handler(char recv) {
 
     switch(recv) {
     case SC_CR:
-        {   /* TODO: schedule? */
+        {   /* TODO: schedule */
 	    shell_execute_command();
 	    shell_clear_shell_buffer();
         }
@@ -68,8 +70,8 @@ void shell_uart0_handler(char recv) {
 
 void shell_set_ps1(char* new_ps1) {
 
-    memcpy(SHELL_PS1, new_ps1, ustrlen(new_ps1));
     /* TODO: ensure this copies a null terminator */
+    memcpy(SHELL_PS1, new_ps1, ustrlen(new_ps1));
 }
 
 void shell_clear_shell_buffer() {
@@ -83,7 +85,6 @@ void shell_print_ps1() {
     uart_send_string(SHELL_PS1);
 }
 
-/* TODO: implement */
 exit_status_t shell_execute_command() {
 
     const char** arguments = NULL;
