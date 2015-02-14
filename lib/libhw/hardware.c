@@ -244,13 +244,13 @@ hw_iterator _hw_first_available_subscription(hw_channel* channel) {
 void UART0_Handler(void) {
 
     unsigned short i;
+    hw_notification notification;
 
     while(UARTCharsAvail(UART0_BASE)) {
 
 	/* Notify every subscribed task of each incoming character
 	 * (but schedule them for later so we can return from this ISR
 	 * asap). */
-	hw_notification notification;
 	notification._char = uart_get_char();
 
 	/* TODO: schedule this thread instead of running it immediately */
