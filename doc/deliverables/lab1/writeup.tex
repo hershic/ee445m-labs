@@ -341,9 +341,37 @@ No hardware design is required for this lab.
 \item Low level LCD driver (\verb|ST7735_.c| and \verb|ST7735_.h|
   files) \\
 
-  \todo
   \begin{lstlisting}[language=C]
-    cocoon
+    /* unchanged code elided */
+
+    void ST7735_OutChar2(uint8_t ch){
+      if((ch == 10) || (ch == 13) || (ch == 27)){
+        StY2++; StX2=0;
+        if(StY2>15){
+          StY2 = 10;
+        }
+        ST7735_DrawString(0,StY2,"                     ",StTextColor);
+        return;
+      }
+      ST7735_DrawCharS(StX2*6,StY2*10,ch,ST7735_YELLOW,ST7735_BLACK, 1);
+      StX2++;
+      if(StX2>20){
+        StX2 = 20;
+        ST7735_DrawCharS(StX2*6,StY2*10,'*',ST7735_RED,ST7735_BLACK, 1);
+      }
+      return;
+    }
+
+    /* unchanged code elided */
+
+    void ST7735_OutString2(uint8_t *ptr){
+      while(*ptr){
+        ST7735_OutChar2(*ptr);
+        ptr = ptr + 1;
+      }
+    }
+
+    /* unchanged code elided */
   \end{lstlisting}
 \item Low level ADC driver (\verb|ADC.c| and \verb|ADC.h|) \\
   \begin{lstlisting}[language=C]
