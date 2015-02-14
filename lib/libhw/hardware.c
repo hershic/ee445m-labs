@@ -23,11 +23,10 @@
 #include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
 
-/* TODO: Find out why we don't need to include libuart/uart.h */
-
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
  *
+ * TODO: Determine why this builds without #include "libuart/uart.h"
  * TODO: Determine how much room to allocate for notifications
  * TODO: integrate with libscoreboard (nonexistent)
  * TODO: document ISRs (they aren't in the header)
@@ -36,7 +35,6 @@
  * Hershal's 
  * TODO: decouple SSI from DisplayDriver (hershal)
  *******************************************************************************/
-
 
 /* Each driver is statically allocated */
 hw_driver HW_UART_DRIVER;
