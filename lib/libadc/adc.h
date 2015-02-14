@@ -22,7 +22,7 @@ bool encode_adc_channel(uint32_t channel, uint32_t* encoded_channel);
  *  \param timer_peripheral the timer to use for this process
  */
 uint32_t adc_collect(uint32_t channel, uint32_t frequency,
-                     unsigned long buffer[], utimer_t timer_peripheral);
+                     unsigned long buffer[], uint32_t timer_peripheral);
 
 /*! The function the periodic timer calls to actually populate the ADC
  *  data. It operates on the array given in the adc_collect method
