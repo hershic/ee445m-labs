@@ -112,14 +112,14 @@ bool encode_adc_channel(uint32_t channel, uint32_t* encoded_channel) {
 }
 
 uint32_t adc_collect(uint32_t channel, uint32_t frequency,
-                     unsigned long buffer[], utimer_t timer_peripheral) {
+                     unsigned long buffer[], uint32_t timer_peripheral) {
     uint32_t encoded_channel;
     if (encode_adc_channel(channel, &encoded_channel)) {
 
         adc_sample_buffer[channel] = (int32_t)buffer;
 
         /* low priority */
-        timer_add_periodic_thread(do_adc_func, frequency, 1, timer_peripheral);
+        /* timer_add_periodic_thread(do_adc_func, frequency, timer_peripheral); */
         return 1;
     }
     return 0;

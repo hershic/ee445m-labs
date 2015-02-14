@@ -16,6 +16,7 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
+#include "driverlib/timer.h"
 #include "driverlib/rom.h"
 
 #include "libhw/hardware.h"
@@ -24,6 +25,8 @@
 
 /* This hardware driver only manages peripherals that many tasks would
  * theoritecally like to subscribe to at one time. */
+
+/* TODO: Find out why we don't need to include libuart/uart.h */
 
 /* TODO: consider I2C, CAN, USB integration with this module */
 
@@ -82,7 +85,9 @@ void hw_channel_init(HW_DEVICES hw_group,
 	uart_init();
 	break;
     case HW_LCD:   /* TODO: handle  */
-    case HW_TIMER: /* HERSHAL TODO: handle  */
+    case HW_TIMER:
+        timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY, raw_channel);
+        break;
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
     default: postpone_death();
@@ -251,4 +256,25 @@ void UART0_Handler(void) {
 	/* TODO: schedule this thread instead of running it immediately */
 	hw_notify(HW_UART, UART0_BASE, notification);
     }
+}
+
+void Timer0A_Handler(void) {
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, 0, notification);
+}
+
+void Timer1A_Handler(void) {
+    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, 1, notification);
+}
+
+void Timer2A_Handler(void) {
+    TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, 2, notification);
 }

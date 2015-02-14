@@ -21,9 +21,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-typedef enum {TIMER0, TIMER1, TIMER2} utimer_t;
+#define Hz 
 
-bool timer_add_periodic_thread(const void *task,
-                               uint32_t frequency,
-                               uint32_t priority,
-                               utimer_t timer_peripheral);
+bool timer_add_periodic_interrupt(uint32_t frequency,
+                                  uint32_t timer_peripheral);
+

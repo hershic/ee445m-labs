@@ -23,6 +23,7 @@
 
 #include "libtimer/timer.h"
 #include "libheart/heartbeat.h"
+#include "libhw/hardware.h"
 
 #include <sys/stat.h>
 
@@ -50,7 +51,10 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
-    timer_add_periodic_thread(blink_onboard_led, 1, 1, TIMER0);
+    hw_driver_init(HW_TIMER);
+    hw_metadata timer_metadata;
+    timer_metadata.timer.TIMER_FREQUENCY = 1 Hz;
+    hw_channel_init(HW_TIMER, TIMER0_BASE, timer_metadata);
 
     /* Postpone death */
     while (1) {
