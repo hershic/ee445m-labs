@@ -1,12 +1,16 @@
 #+startup: content
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [2/6] dev environment
+* [3/6] dev environment
 ** DONE create openocd wrapper
 ** DONE create dev environment setup script
 ** IN-PROGRESS script to update all doxygen files at once
 I have a hankering to refactor all Doxyfiles into a specific dir
-** TODO eldoc for our functions
 ** IN-PROGRESS disaster for arm
+** DONE eldoc for our functions
+#+BEGIN_SRC emacs-lisp :tangle no
+  (load "c-eldoc")
+  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+#+END_SRC
 ** TODO cmd to open screen on the M4
 * [4/8] Doxygen
 ** DONE publish Doxygen on an external website
