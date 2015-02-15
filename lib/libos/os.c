@@ -97,11 +97,39 @@ tcb_t* os_next_dead_thread() {
 }
 
 /*! Sets the data structures for the operating system launch */
-void os_launch(task_t thread) {
+void os_launch() {
 
-    if (!os_current_running_thread) {
-        os_add_thread(thread);
-    }
+    /* acquire the pointer to the stack pointer here */
+    asm volatile("LDR     R0, =os_current_running_thread");
+
+    /* acquire the current value of the stack pointer */
+    asm volatile("LDR R0, [R0]");
+    asm volatile("LDR R0, [R0]");
+
+    /* set the process stack value */
+    asm volatile("MSR PSP, R0");
+
+    /* change EXC_RETURN for return on PSP */
+    asm volatile("ORR LR, LR, #4");
+
+    /* change the active stack to use psp */
+    asm volatile("MRS R0, CONTROL");
+    asm volatile("ORR R0, R0, #2");
+    asm volatile("MSR CONTROL, R0");
+
+    asm volatile("POP     {R4-R11}");
+
+    /* asm volatile("POP     {R12}"); */
+    asm volatile("POP     {LR}");
+    asm volatile("POP     {R0-R3}");
+
+    asm volatile("pop {r12, lr}");
+    asm volatile("pop {pc}");
+
+    /* return from handler */
+    /* asm volatile("POP {R0, R1, R2, R3, R12, LR, PC, PSR} "); */
+
+    /* asm volatile("BX LR"); */
 }
 
 void os_reset_thread_stack(tcb_t* tcb, task_t task) {
@@ -118,5 +146,97 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     swcontext->lr = 0xfffffffd;
 
-    tcb->sp = (uint32_t*)(hwcontext) - sizeof(swcontext_t);
+    hwcontext->r0 = 0x00000000;
+    hwcontext->r1 = 0x01010101;
+    hwcontext->r2 = 0x02020202;
+    hwcontext->r3 = 0x03030303;
+
+    swcontext->r4 = 0x04040404;
+    swcontext->r5 = 0x05050505;
+    swcontext->r6 = 0x06060606;
+    swcontext->r7 = 0x07070707;
+    swcontext->r8 = 0x08080808;
+    swcontext->r9 = 0x09090909;
+    swcontext->r10 = 0x10101010;
+    swcontext->r11 = 0x11111111;
+
+    tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
+    asm volatile ("PUSH {R9, R10, R11, R12}");
+    asm volatile ( "mrs     r12, psp" );
+    asm volatile ( "mrs     r11, msp" );
+    asm volatile ( "mrs     r10, control" );
+
+    asm volatile ("POP {R9, R10, R11, R12}");
+}
+
+/* NOTE: Make sure you have something to run before letting the
+   SysTick run! */
+void SysTick_Handler() {
+
+    /* try 1 */
+    /* uint32_t status = StartCritical(); */
+    asm volatile("CPSID   I");
+    asm volatile("PUSH    {R4-R11}");
+    asm volatile("LDR     R0, =os_current_running_thread");
+    /* asm volatile("LDR     R1, [R0]"); */
+    /* asm volatile("STR     SP, [R1]"); */
+    /* asm volatile("LDR     R1, [R1,#4]"); */
+    /* asm volatile("STR     R1, [R0]"); */
+    /* asm volatile("LDR     SP, [R1]"); */
+    /* asm volatile("POP     {R4-R11}"); */
+    /* asm volatile("CPSIE   I"); */
+    /* asm volatile("BX      LR"); */
+
+
+    /* try 2 */
+    /* something wrong with psp/msp stuff */
+    /* asm volatile ( "mrs     r12, msp" ); */
+    /*  */
+    /* asm volatile("push    {r4 - r11}"); */
+    /* asm volatile("ldmia   r12!, {r4 - r11, lr}"); */
+    /* asm volatile("mrs     r12, psp"); */
+    /* asm volatile("stmdb   r12!, {r4 - r11, lr}"); */
+    /* asm volatile("pop     {r4 - r11}"); */
+    /*  */
+    /* asm volatile("LDR     R0, =os_current_running_thread"); */
+    /* asm volatile("LDR     R0, [R0]"); */
+    /* asm volatile("LDR     R1, [R0,#4]"); */
+    /* asm volatile("STR     R1, [R0]"); */
+    /*  */
+    /* asm volatile("str     r12, [r1, #0]"); */
+    /* asm volatile("ldr     r12, [r0, #0]"); */
+    /* asm volatile("msr     msp, r11"); */
+    /* asm volatile("ldmia   r12!, {r4 - r11, lr}"); */
+    /* asm volatile("msr     psp, r12"); */
+    /* asm volatile("bx      lr"); */
+
+    /* /\* r2 = os_current_running_thread *\/ */
+    /* asm volatile("LDR R2, [R0]");  */
+    /*  */
+    /* /\* r1 = os_current_running_thread->next *\/ */
+    /* asm volatile("LDR R1, [R2, #4]");  */
+    /*  */
+    /* /\* os_current_running_thread = r1 *\/ */
+    /* asm volatile("STR R1, [R0]"); */
+    /*  */
+    /* /\* load the pointers to the stack pointers and change the current */
+    /*    running thread to the next thread *\/ */
+    /* asm volatile("LDR R0, [R2]"); */
+    /* /\* asm volatile("LDR R1, [R1]"); *\/ */
+    /*  */
+    /* /\* update the stack pointers *\/ */
+    /* asm volatile("STR SP, [R0]"); */
+    /* asm volatile("LDR SP, [R1]"); */
+    /*  */
+    /* /\* finally, pop the remaining registers *\/ */
+    /* asm volatile("POP {R4-R11}"); */
+
+    /* asm volatile("POP {r0, r1, r2, r3, r12, lr, pc, psr} "); */
+
+    /* try 3 */
+    asm volatile ("PUSH {R11, R12}");
+    asm volatile ( "mrs     r12, psp" );
+    asm volatile ( "mrs     r11, msp" );
+    asm volatile ("POP {R11, R12}");
+
 }

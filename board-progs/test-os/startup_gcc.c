@@ -47,7 +47,7 @@ static void DebugMon_Handler(void);
 //
 //*****************************************************************************
 void __attribute__((weak)) PendSV_Handler(void);
-void __attribute__((weak)) SysTick_Handler(void);
+void __attribute__((weak, naked)) SysTick_Handler(void);
 void __attribute__((weak)) GPIOPortA_Handler(void);
 void __attribute__((weak)) GPIOPortB_Handler(void);
 void __attribute__((weak)) GPIOPortC_Handler(void);

@@ -48,7 +48,7 @@ int main() {
     /* Enable the GPIO pins for the LED (PF2). */
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
+    IntMasterDisable();
 
     os_threading_init();
     os_add_thread(turn_on_led);
@@ -58,7 +58,8 @@ int main() {
     SysTickPeriodSet(SysCtlClockGet() / 100);
     SysTickEnable();
     SysTickIntEnable();
-    IntMasterEnable();
+
+    os_launch();
 
     /* Don't get here yet, still testing if everything else works! */
     /* os_launch(0); */

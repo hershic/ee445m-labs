@@ -21,7 +21,7 @@
  * said function on the designated schedule. No true threads exist in
  * this context.
  */
-#define OS_MAX_THREADS  3        /* maximum number of threads */
+#define OS_MAX_THREADS  4        /* maximum number of threads */
 #define OS_STACK_SIZE   100      /* number of 32-bit words in stack */
 
 typedef enum {
@@ -119,6 +119,8 @@ tcb_t* os_next_dead_thread();
  *  running thread circle to null.
  */
 void os_threading_init();
+
+void os_launch();
 
 
 /*! \brief a do-nothing idle thread */
