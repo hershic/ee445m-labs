@@ -31,7 +31,8 @@ bool system_register_command(const char* command_name, int(*command)()) {
     CDL_PREPEND(registered_commands, sys_command);
 
     sys_command->valid = true;
-    memcpy(sys_command->name, command_name, SYSTEM_MAX_COMMAND_NAME_LENGTH);
+    memset(sys_command->name, 0, SYSTEM_MAX_COMMANDS);
+    ustrcpy(sys_command->name, command_name);
     sys_command->command = command;
     return true;
 }

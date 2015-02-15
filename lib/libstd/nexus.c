@@ -59,3 +59,11 @@ int ustrncmp(const char *s1, const char *s2, uint32_t n) {
      * first n characters so return 0 to indicate this. */
     return 0;
 }
+
+void ustrcpy(char* dest, const char* source) {
+    uint32_t i = 0;
+    while (1) {
+	dest[i] = source[i];
+	if (dest[i++] == '\0') { break; }
+    }
+}

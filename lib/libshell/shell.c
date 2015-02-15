@@ -18,14 +18,14 @@ static unsigned short SHELL_BUFFER_POSITION;
 static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
 
 static char* SHELL_PS1[SHELL_MAX_PS1_LENGTH];
-static char* SHELL_DEFAULT_PS1 = "> ";
+static char* SHELL_DEFAULT_PS1 = "\n> ";
 
 void shell_spawn() {
 
     /* TODO: have this handled by hw_connect (look at the scoreboard,
      * see what HAS been used (don't need to initialize), what IS
      * being used (blocked)) */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    /* SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0); */
     hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
     shell_set_ps1(SHELL_DEFAULT_PS1);
     shell_clear_shell_buffer();
@@ -50,23 +50,25 @@ void shell_uart0_handler(char recv) {
         {   /* TODO: schedule */
 	    shell_execute_command();
 	    shell_clear_shell_buffer();
+	    uart_send_string("\r\n");
+	    /* TODO: why doesn't PS1 print twice? */
+	    shell_print_ps1();
         }
-	/* TODO: represent better, with shell_represent */
-	uart_send_char('\n');
-	shell_print_ps1();
 	break;
+
     case SC_BACKSPACE:
 	SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
 	/* TODO: represent at all, with shell_represent */
 	break;
+
     default:
 	if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
 	    SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
+	    /* Echo char to terminal for user */
+	    uart_send_char(recv);
 	}
 	break;
     }
-    /* Echo char to terminal for user */
-    uart_send_char(recv);
 }
 
 void shell_set_ps1(char* new_ps1) {
