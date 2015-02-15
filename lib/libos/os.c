@@ -105,5 +105,18 @@ void os_launch(task_t thread) {
 }
 
 void os_reset_thread_stack(tcb_t* tcb, task_t task) {
-    /* TODO: set the stack vars here */
+
+    hwcontext_t* hwcontext = (hwcontext_t*)
+        (((uint32_t)OS_PROGRAM_STACKS[tcb->id]) +
+         sizeof(uint32_t)*OS_STACK_SIZE - sizeof(hwcontext_t));
+
+    swcontext_t* swcontext = (swcontext_t*)
+        (((uint32_t)hwcontext) - sizeof(swcontext_t));
+
+    hwcontext->pc = (uint32_t)(task);
+    hwcontext->psr = 0x010000000;
+
+    swcontext->lr = 0xfffffffd;
+
+    tcb->sp = (uint32_t*)(hwcontext) - sizeof(swcontext_t);
 }
