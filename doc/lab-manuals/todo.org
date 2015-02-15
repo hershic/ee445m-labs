@@ -1,6 +1,6 @@
 #+startup: sections
 #+options: H:1 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:nil LaTeX:t
-#+todo: TODO(t) VERIFY(v) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
 #+author: Hershal Bhave
 #+author: Eric Crosson
 * [1/1] Lab 1
@@ -47,22 +47,106 @@
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
-* [0/2] Lab 2
+* [0/5] Lab 2
 ** TODO Part 1
-   Run each of the following:
+Demonstrate each of the following
 *** TODO Testmain1
-    - needs cooperative thread scheduler without interrupts
-      
-      What the fuck does that mean?
-      
-      He means 'create a way to switch tasks without using
-      interrupts.' Create a method =OS_Suspend= that, when called,
-      transfers control from the current thread to the next waiting
-      thread.
-*** TODO Testmain2
-    - preemptive thread scheduler with SysTick interrupts
+- needs cooperative thread scheduler without interrupts
 
-      SysTick suspends the running thread and begins the next active
-      thread in the list with a round robin fashion.
-*** TODO Testmain7
+  Meaning: create method =OS_Suspend= that, when called, transfers
+  control from the current thread to the next waiting thread.
+
+  This will be the sole method of thread switching in this program.
+
+  #+NAME: Testmain1
+  #+CAPTION: Test system for cooperative thread switching
+  #+BEGIN_SRC c :tangle no
+    unsigned long Count1; // number of times thread1 loops
+    unsigned long Count2; // number of times thread2 loops
+    unsigned long Count3; // number of times thread3 loops
+    void Thread1(void){
+      Count1 = 0;
+      for(;;){
+        PE0 ^= 0x01;      // heartbeat
+        Count1++;
+        OS_Suspend();     // cooperative multitasking
+      }
+    }
+    void Thread2(void){
+      Count2 = 0;
+      for(;;){
+        PE1 ^= 0x02;      // heartbeat
+        Count2++;
+        OS_Suspend();     // cooperative multitasking
+      }
+    }
+    void Thread3(void){
+      Count3 = 0;
+      for(;;){
+        // PE2 ^= 0x04;      // heartbeat
+        PE3 ^= 0x08;      // heartbeat
+        Count3++;
+        OS_Suspend();     // cooperative multitasking
+      }
+    }
+    int main(void){
+      OS_Init();    // initialize, disable interrupts
+      PortE_Init(); // profile user threads
+      NumCreated = 0 ;
+      NumCreated += OS_AddThread(&Thread1,128,1);
+      NumCreated += OS_AddThread(&Thread2,128,2);
+      NumCreated += OS_AddThread(&Thread3,128,3);
+      // Count1 Count2 Count3 should be equal or off by one at all times
+      OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
+      return 0;            // this never executes
+    }
+ #+END_SRC
+*** TODO Testmain2
+- preemptive thread scheduler with SysTick interrupts
+
+  SysTick suspends the running thread and begins the next active
+  thread in the list with a round robin fashion.
+
+  #+NAME: Testmain2
+  #+CAPTION: Test system for preemptive thread switching
+  #+BEGIN_SRC c :tangle no
+    void Thread1b(void){
+      Count1 = 0;
+      for(;;){
+        PE0 ^= 0x01;    // heartbeat
+        Count1++;
+      }
+    }
+    void Thread2b(void){
+      Count2 = 0;
+      for(;;){
+        PE1 ^= 0x02;    // heartbeat
+        Count2++;
+      }
+    }
+    void Thread3b(void){
+      Count3 = 0;
+      for(;;){
+        PE2 ^= 0x04;    // heartbeat
+        Count3++;
+      }
+    }
+    int Testmain2(void){
+      OS_Init();    // initialize, disable interrupts
+      PortE_Init(); // profile user threads
+      NumCreated = 0 ;
+      NumCreated += OS_AddThread(&Thread1b,128,1);
+      NumCreated += OS_AddThread(&Thread2b,128,2);
+      NumCreated += OS_AddThread(&Thread3b,128,3);
+      // Count1 Count2 Count3 should be equal on average
+      // Notice: counts are larger than testmain1
+      OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
+      return 0;            // this never executes
+    }
+  #+END_SRC
+*** VERIFY Testmain7
+I don't think a description of this main program was included in
+the lab manual.
+
 ** TODO Checkout
+<2015-02-16 Mon 10:30>
