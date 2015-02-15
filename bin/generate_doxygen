@@ -57,9 +57,12 @@ Usage : [-n] [-p|-d]
 
   -h : print this help menu
   -n : dry-run -- don't execute anything
+  -p : push newly generated doxygen html to gh-pages branch [TODO]
 
 EOF
 )
+
+# TODO: allow -p to be functional
 
 ## @var execute_generate_doxygen
 ## @brief For internal use only.
