@@ -34,6 +34,7 @@ void shell_spawn() {
 
 char* shell_represent() {
 
+    /* TODO: improve */
     return SHELL_BUFFER;
 }
 

@@ -1,31 +1,30 @@
-#+startup: content
+#+startup: sections
 #+options: H:1 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:nil LaTeX:t
 #+todo: TODO(t) VERIFY(v) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
 #+author: Hershal Bhave
 #+author: Eric Crosson
-* Labs
-** [0/3] Lab 1
-*** TODO lcd driver [0%]
-  - [ ] contains logically separate displays
-    - horizontal split
-  - [ ] 4+ lines per display
-  - [ ] API to write to displays individually
-*** TODO adc driver [0%]
-  - [ ] samples from 100 - 10,000 Hz
-  - [ ] samples from ADC0 - ADC11
-  - [ ] have 1 to 1 abilities as this api
+* [1/1] Lab 1
+** lcd driver
+*** DONE contains logically separate displays
+     use a horizontal split
+*** DONE 4+ lines per display
+*** DONE API to write to displays individually
+** adc driver
+*** DONE samples from 100 - 10,000 Hz
+*** DONE samples from ADC0 - ADC11
+*** DONE have 1 to 1 abilities as this api
     #+BEGIN_SRC c
       unsigned short ADC_In(void);
       int ADC_Open(unsigned int channelNum);
       int ADC_Collect(unsigned int channelNum, unsigned int fs,
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
-*** TODO [#B] interpreter [75%]
-- [X] uart port
-- [X] interrupts
-- OPTIONAL hardware fifo
-- [X] software fifo x2
-- [ ] the below mojo
+** interpreter
+*** DONE uart port
+*** DONE interrupts
+*** OPTIONAL hardware fifo
+*** DONE software fifo x2
+*** DONE the below mojo
   Use the stdio library and remap the serial stream to the UART. See the
   =retarget.c= file in the =Keil\ARM\Boards\Keil\MCBSTM32\Blinky= project
   included in the Keil installation. In particular, you need to create a
@@ -43,9 +42,27 @@
       return EOF;
     }
   #+END_SRC
-*** TODO Checkout
-DEADLINE: <2015-02-09 Mon 10:30>
+** DONE Checkout
 - demonstrate measuring of timer2 ISR overhead
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
+* [0/2] Lab 2
+** TODO Part 1
+   Run each of the following:
+*** TODO Testmain1
+    - needs cooperative thread scheduler without interrupts
+      
+      What the fuck does that mean?
+      
+      He means 'create a way to switch tasks without using
+      interrupts.' Create a method =OS_Suspend= that, when called,
+      transfers control from the current thread to the next waiting
+      thread.
+*** TODO Testmain2
+    - preemptive thread scheduler with SysTick interrupts
+
+      SysTick suspends the running thread and begins the next active
+      thread in the list with a round robin fashion.
+*** TODO Testmain7
+** TODO Checkout
