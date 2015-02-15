@@ -1,6 +1,6 @@
 #+startup: content
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [3/6] dev environment
+* [4/6] dev environment
 ** DONE create openocd wrapper
 ** DONE create dev environment setup script
 ** DONE eldoc for our functions
@@ -8,7 +8,7 @@
   (load "c-eldoc")
   (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 #+END_SRC
-** IN-PROGRESS disaster for arm
+** DONE disaster for arm
 ** TODO cmd to open screen on the M4
 ** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]][[http://doxymacs.sourceforge.net/][see this]]

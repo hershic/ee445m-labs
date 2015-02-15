@@ -96,7 +96,7 @@ Demonstrate each of the following
       NumCreated += OS_AddThread(&Thread1,128,1);
       NumCreated += OS_AddThread(&Thread2,128,2);
       NumCreated += OS_AddThread(&Thread3,128,3);
-      // Count1 Count2 Count3 should be equal or off by one at all times
+      // Count1 = Count2 = Count3 (or off by one) at all times
       OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
       return 0;            // this never executes
     }
@@ -138,8 +138,8 @@ Demonstrate each of the following
       NumCreated += OS_AddThread(&Thread1b,128,1);
       NumCreated += OS_AddThread(&Thread2b,128,2);
       NumCreated += OS_AddThread(&Thread3b,128,3);
-      // Count1 Count2 Count3 should be equal on average
-      // Notice: counts are larger than testmain1
+      // Count1 = Count2 = Count3 on average
+      // Notice: counts are larger than testmain1. Why is this?
       OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
       return 0;            // this never executes
     }
