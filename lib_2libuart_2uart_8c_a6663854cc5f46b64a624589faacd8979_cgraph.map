@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="173,32,299,61"/>
-<area shape="rect" id="node5" href="$group__ustdlib__api.html#ga277a9ccba3eabd09f2214dd508ddae9e" title="ustrlen" alt="" coords="407,5,468,35"/>
-<area shape="rect" id="node7" href="$group__uart__api.html#ga11def359bb32c202a09db4591963706b" title="UARTCharPutNonBlocking" alt="" coords="347,59,528,88"/>
+<map id="uart_send_string" name="uart_send_string">
+<area shape="rect" id="node2" href="$lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="183,31,319,57"/>
+<area shape="rect" id="node3" href="$lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="386,5,453,32"/>
+<area shape="rect" id="node4" href="$group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="367,56,472,83"/>
 </map>

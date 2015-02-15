@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__emac__api.html#ga759015cbf031b85118cd20775e5b7746" title="EMACPHYRead" alt="" coords="197,5,317,35"/>
-<area shape="rect" id="node5" href="$group__emac__api.html#gaf5e2ab72bce5f10762100469dea4fd10" title="EMACPHYWrite" alt="" coords="197,59,317,88"/>
+<map id="EMACPHYPowerOff" name="EMACPHYPowerOff">
+<area shape="rect" id="node2" href="$group__emac__api.html#ga759015cbf031b85118cd20775e5b7746" title="EMACPHYRead" alt="" coords="193,5,308,32"/>
+<area shape="rect" id="node3" href="$group__emac__api.html#gaf5e2ab72bce5f10762100469dea4fd10" title="EMACPHYWrite" alt="" coords="193,56,308,83"/>
 </map>

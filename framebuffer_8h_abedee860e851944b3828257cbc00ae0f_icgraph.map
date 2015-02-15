@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$framebuffer_8h.html#ae357706e2284e3f6c5ce7d48a9248814" title="FBDrawMultipleShapes" alt="" coords="161,5,319,35"/>
-<area shape="rect" id="node5" href="$framebuffer_8h.html#a14fe52cd631beee3be0c83d5215d66c8" title="FBDrawShapeArr" alt="" coords="179,59,301,88"/>
-<area shape="rect" id="node7" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="389,32,517,61"/>
-<area shape="rect" id="node11" href="$console-fb_8c.html#a65f7392473e42f232198f0ecb3b425f4" title="demonstrateDrawShapes" alt="" coords="369,85,537,115"/>
-<area shape="rect" id="node9" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="587,32,637,61"/>
-</map>

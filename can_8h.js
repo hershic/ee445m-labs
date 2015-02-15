@@ -29,9 +29,23 @@ var can_8h =
     [ "MSG_OBJ_USE_DIR_FILTER", "group__can__api.html#gabd8bebbc78a6f49c3c3088c5c7d53ca9", null ],
     [ "MSG_OBJ_USE_EXT_FILTER", "group__can__api.html#gacead63b8e758f947f7aecf11d928e490", null ],
     [ "MSG_OBJ_USE_ID_FILTER", "group__can__api.html#gac8b622ceb867ab7de6f285ae630c534a", null ],
-    [ "tCANIntStsReg", "group__can__api.html#ga73584383f566e98bf822b371a03becfc", null ],
-    [ "tCANStsReg", "group__can__api.html#gad898b7c10eb4d9282bd4c25fc935b3d2", null ],
-    [ "tMsgObjType", "group__can__api.html#gad3fa840d5e84a9366ba2a8c958c069a2", null ],
+    [ "tCANIntStsReg", "group__can__api.html#ga73584383f566e98bf822b371a03becfc", [
+      [ "CAN_INT_STS_CAUSE", "group__can__api.html#gga73584383f566e98bf822b371a03becfcaaab739e796c1216de72acf16410795a5", null ],
+      [ "CAN_INT_STS_OBJECT", "group__can__api.html#gga73584383f566e98bf822b371a03becfca8cb85391f55d762fcff16bb285903304", null ]
+    ] ],
+    [ "tCANStsReg", "group__can__api.html#gad898b7c10eb4d9282bd4c25fc935b3d2", [
+      [ "CAN_STS_CONTROL", "group__can__api.html#ggad898b7c10eb4d9282bd4c25fc935b3d2aac2ece80a767774a99d1fb1e463aa932", null ],
+      [ "CAN_STS_TXREQUEST", "group__can__api.html#ggad898b7c10eb4d9282bd4c25fc935b3d2afffa0c96b01a03aff5a5dd32c5aa77c7", null ],
+      [ "CAN_STS_NEWDAT", "group__can__api.html#ggad898b7c10eb4d9282bd4c25fc935b3d2afa63f81ede60a5209bc32c6eb94e7512", null ],
+      [ "CAN_STS_MSGVAL", "group__can__api.html#ggad898b7c10eb4d9282bd4c25fc935b3d2a3fe016f4c8154bf2ef524621edfb293d", null ]
+    ] ],
+    [ "tMsgObjType", "group__can__api.html#gad3fa840d5e84a9366ba2a8c958c069a2", [
+      [ "MSG_OBJ_TYPE_TX", "group__can__api.html#ggad3fa840d5e84a9366ba2a8c958c069a2aa13483d5640bff99d693d271c2238230", null ],
+      [ "MSG_OBJ_TYPE_TX_REMOTE", "group__can__api.html#ggad3fa840d5e84a9366ba2a8c958c069a2a01289338e40c4573d4a78e6d40cab433", null ],
+      [ "MSG_OBJ_TYPE_RX", "group__can__api.html#ggad3fa840d5e84a9366ba2a8c958c069a2a19480934236e65a7090acd45caecb0a3", null ],
+      [ "MSG_OBJ_TYPE_RX_REMOTE", "group__can__api.html#ggad3fa840d5e84a9366ba2a8c958c069a2ae268696d7605c98094e4136eb646a251", null ],
+      [ "MSG_OBJ_TYPE_RXTX_REMOTE", "group__can__api.html#ggad3fa840d5e84a9366ba2a8c958c069a2a8aed86e235facdf4ab0ce8cb53de65c1", null ]
+    ] ],
     [ "CANBitRateSet", "group__can__api.html#ga700471831cd6155d8d6526a187bc9cf3", null ],
     [ "CANBitTimingGet", "group__can__api.html#ga6e3d8077b678c9b7a0c1377ab2b7251d", null ],
     [ "CANBitTimingSet", "group__can__api.html#ga743ff924c5de77fdcf3ab0366dac4aa2", null ],

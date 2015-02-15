@@ -1,0 +1,10 @@
+<map id="driverlib/timer.c" name="driverlib/timer.c">
+<area shape="rect" id="node4" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="205,80,308,107"/>
+<area shape="rect" id="node5" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="332,80,475,107"/>
+<area shape="rect" id="node6" href="$hw__timer_8h.html" title="inc/hw_timer.h" alt="" coords="499,80,612,107"/>
+<area shape="rect" id="node7" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="637,80,751,107"/>
+<area shape="rect" id="node8" href="$hw__sysctl_8h.html" title="inc/hw_sysctl.h" alt="" coords="776,80,892,107"/>
+<area shape="rect" id="node9" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="917,80,1045,107"/>
+<area shape="rect" id="node10" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1069,80,1212,107"/>
+<area shape="rect" id="node11" href="$driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1236,80,1357,107"/>
+</map>

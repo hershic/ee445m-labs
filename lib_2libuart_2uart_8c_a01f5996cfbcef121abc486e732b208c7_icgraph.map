@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="123,5,173,35"/>
+<map id="uart_init" name="uart_init">
+<area shape="rect" id="node2" href="$hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="128,5,251,32"/>
+<area shape="rect" id="node4" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="162,56,217,83"/>
+<area shape="rect" id="node3" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="299,5,353,32"/>
 </map>

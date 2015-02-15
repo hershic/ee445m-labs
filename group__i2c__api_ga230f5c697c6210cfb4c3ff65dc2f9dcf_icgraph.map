@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__i2c__api.html#ga0d2b0e0e18ba83c8307f8e1eeef05c0a" title="I2CIntRegister" alt="" coords="193,5,300,35"/>
-<area shape="rect" id="node5" href="$group__i2c__api.html#gaf09693552b5d757f37fe7ab54f191619" title="I2CIntUnregister" alt="" coords="188,59,305,88"/>
+<map id="_I2CIntNumberGet" name="_I2CIntNumberGet">
+<area shape="rect" id="node2" href="$group__i2c__api.html#ga0d2b0e0e18ba83c8307f8e1eeef05c0a" title="I2CIntRegister" alt="" coords="201,5,311,32"/>
+<area shape="rect" id="node3" href="$group__i2c__api.html#gaf09693552b5d757f37fe7ab54f191619" title="I2CIntUnregister" alt="" coords="193,56,319,83"/>
 </map>

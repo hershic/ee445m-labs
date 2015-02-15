@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$graph__framebuffer_8h.html#a2b78e955f04080df1984657aef576cbc" title="FBEraseFullscreenGraph" alt="" coords="163,5,331,35"/>
-<area shape="rect" id="node5" href="$console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="379,5,429,35"/>
+<map id="FBEraseGraph" name="FBEraseGraph">
+<area shape="rect" id="node2" href="$graph__framebuffer_8h.html#a2b78e955f04080df1984657aef576cbc" title="FBEraseFullscreenGraph" alt="" coords="167,5,343,32"/>
+<area shape="rect" id="node3" href="$console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="391,5,445,32"/>
 </map>

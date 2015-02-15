@@ -7,7 +7,11 @@ var flash_8h =
     [ "FLASH_INT_PROGRAM", "flash_8h.html#a504feae515d3b2d723c668b972a306e3", null ],
     [ "FLASH_INT_PROGRAM_ERR", "flash_8h.html#a1d8ac3f09d931fa7260b4e79443db1b4", null ],
     [ "FLASH_INT_VOLTAGE_ERR", "flash_8h.html#a4fae428130855edf769acb4969c02469", null ],
-    [ "tFlashProtection", "flash_8h.html#adc37523740e95a78e9c797cef3913d69", null ],
+    [ "tFlashProtection", "flash_8h.html#adc37523740e95a78e9c797cef3913d69", [
+      [ "FlashReadWrite", "flash_8h.html#adc37523740e95a78e9c797cef3913d69a5bf698d8f7f06bc2fba40bedee6267ac", null ],
+      [ "FlashReadOnly", "flash_8h.html#adc37523740e95a78e9c797cef3913d69ad97d8551ef6a697d415040f23547f879", null ],
+      [ "FlashExecuteOnly", "flash_8h.html#adc37523740e95a78e9c797cef3913d69a89688aa46f7fbe896237cd1ae93378d6", null ]
+    ] ],
     [ "FlashErase", "group__flash__api.html#ga7c07699981eca56d83bc5a7d11e13848", null ],
     [ "FlashIntClear", "group__flash__api.html#ga2dcee673e2dad8d5a8a2bbb4e3553be6", null ],
     [ "FlashIntDisable", "group__flash__api.html#gae6f4d44ace218739be6d9e94ba7543cf", null ],

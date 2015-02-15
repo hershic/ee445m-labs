@@ -1,9 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="901,195,1029,224"/>
-<area shape="rect" id="node7" href="$tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="772,116,823,145"/>
-<area shape="rect" id="node9" href="$timekit_8h.html#a0648bf2808c0bdaca69be00c10d00021" title="TKIncrementMinutes" alt="" coords="188,119,329,148"/>
-<area shape="rect" id="node5" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1077,195,1128,224"/>
-<area shape="rect" id="node11" href="$timekit_8h.html#afd0611daffa420c0aa7eb693d2cd61e6" title="TKIncrementSeconds" alt="" coords="380,144,527,173"/>
-<area shape="rect" id="node13" href="$timekit_8h.html#a79b0633e06d4dd083602517a13d6dd41" title="TKIncrementMS" alt="" coords="576,195,693,224"/>
-<area shape="rect" id="node15" href="$console-fb_8c.html#ac181a91a96c73e9849988a58b1f841b7" title="pseudointerrupt" alt="" coords="743,195,852,224"/>
+<map id="TKIncrementHours" name="TKIncrementHours">
+<area shape="rect" id="node2" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="941,195,1080,221"/>
+<area shape="rect" id="node4" href="$tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="804,119,859,145"/>
+<area shape="rect" id="node5" href="$timekit_8h.html#a0648bf2808c0bdaca69be00c10d00021" title="TKIncrementMinutes" alt="" coords="193,119,345,145"/>
+<area shape="rect" id="node3" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1128,195,1183,221"/>
+<area shape="rect" id="node6" href="$timekit_8h.html#afd0611daffa420c0aa7eb693d2cd61e6" title="TKIncrementSeconds" alt="" coords="393,144,551,171"/>
+<area shape="rect" id="node7" href="$timekit_8h.html#a79b0633e06d4dd083602517a13d6dd41" title="TKIncrementMS" alt="" coords="599,195,721,221"/>
+<area shape="rect" id="node8" href="$console-fb_8c.html#ac181a91a96c73e9849988a58b1f841b7" title="pseudointerrupt" alt="" coords="769,195,893,221"/>
 </map>

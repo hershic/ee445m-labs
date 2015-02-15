@@ -84,7 +84,7 @@ var emac_8c =
     [ "EMACVLANRxConfigSet", "group__emac__api.html#ga072e2967d87ec29d255e61f95ab4d8b0", null ],
     [ "EMACVLANTxConfigGet", "group__emac__api.html#gaaece59d6d129ea03ce46f7304b7841ef", null ],
     [ "EMACVLANTxConfigSet", "group__emac__api.html#ga2b6dc1c136744b5e83b018f94f831f38", null ],
-    [ "g_pi16MIIClockDiv", "group__emac__api.html#gae3394ac3ae3f1ea5983740a796f5d4da", null ],
+    [ "g_pi16MIIClockDiv", "group__emac__api.html#gae9ddf539ff3613c1ef3aa990814d1a16", null ],
     [ "ui32Divisor", "emac_8c.html#ababbd974e1de0119ff9e1c0b08700d8a", null ],
     [ "ui32SysClockMax", "emac_8c.html#a80d9155deb711f8b70465ff589bcc297", null ]
 ];

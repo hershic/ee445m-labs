@@ -1,0 +1,13 @@
+<map id="Output_On" name="Output_On">
+<area shape="rect" id="node2" href="$_s_t7735_8c.html#a8c197f8fb3fd2b2da459e71b44978d53" title="Output_Init" alt="" coords="144,202,236,229"/>
+<area shape="rect" id="node3" href="$_s_t7735_8c.html#a3a14506207ab49aee2c40700b5036271" title="ST7735_FillScreen" alt="" coords="438,265,575,291"/>
+<area shape="rect" id="node8" href="$_s_t7735_8c.html#a204a442207d7367ace616bd6bfd79348" title="ST7735_InitR" alt="" coords="284,163,388,190"/>
+<area shape="rect" id="node4" href="$_s_t7735_8c.html#ada283d88275b972d188afad1c8649829" title="ST7735_FillRect" alt="" coords="625,265,744,291"/>
+<area shape="rect" id="node5" href="$_s_t7735_8c.html#a1e4c9d5bbf2df16b1f9235bd24c8e231" title="setAddrWindow" alt="" coords="792,265,911,291"/>
+<area shape="rect" id="node7" href="$_s_t7735_8c.html#a639c227e5d11b704fbca94a8f2987189" title="writedata" alt="" coords="977,239,1058,266"/>
+<area shape="rect" id="node6" href="$_s_t7735_8c.html#a50ca774f7f1d1f633179a37d2312fb69" title="writecommand" alt="" coords="959,62,1076,89"/>
+<area shape="rect" id="node9" href="$_s_t7735_8c.html#a5d8cb3a07382ef518c144ac35bfd3ce1" title="commandList" alt="" coords="630,113,739,139"/>
+<area shape="rect" id="node11" href="$_s_t7735_8c.html#ac19991b9578283e8613af1dfe31187fe" title="commonInit" alt="" coords="457,163,556,190"/>
+<area shape="rect" id="node12" href="$_s_t7735_8c.html#a6edc4479f68eb34624157cc1dda2cbb3" title="ST7735_SetCursor" alt="" coords="436,62,577,89"/>
+<area shape="rect" id="node10" href="$_s_t7735_8c.html#a251efc57a6fa4ff630c2d74d66c9dcd3" title="Delay1ms" alt="" coords="808,163,895,190"/>
+</map>

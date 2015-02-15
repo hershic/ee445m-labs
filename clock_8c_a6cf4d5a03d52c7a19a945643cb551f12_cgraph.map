@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$shape_8c.html#a4b972838ad0f109608385b091c02324e" title="SHDuplicateShape" alt="" coords="216,5,349,35"/>
+<map id="CHDuplicateClockHand" name="CHDuplicateClockHand">
+<area shape="rect" id="node2" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="226,5,391,32"/>
+<area shape="rect" id="node4" href="$group___geometry.html#ga410ea1a4bcf0b568705a936203355783" title="shape_duplicate_shape" alt="" coords="223,56,395,83"/>
+<area shape="rect" id="node3" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="443,5,591,32"/>
 </map>

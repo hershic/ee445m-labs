@@ -1,7 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__aes__api.html#ga5fa37d394b281d2a4c1ee10e6cbb37a6" title="AESAuthLengthSet" alt="" coords="207,5,340,35"/>
-<area shape="rect" id="node5" href="$group__aes__api.html#gaedb4c7e08dd21ec321ebb1df2262f512" title="AESDataRead" alt="" coords="220,59,327,88"/>
-<area shape="rect" id="node7" href="$group__aes__api.html#gaece7b2668ed8e5e01353cd42d6cf30ad" title="AESDataWrite" alt="" coords="220,112,327,141"/>
-<area shape="rect" id="node9" href="$group__aes__api.html#ga884731d9239e9f5313d14b84721cf8f2" title="AESLengthSet" alt="" coords="220,165,327,195"/>
-<area shape="rect" id="node11" href="$group__aes__api.html#gae4d89be99ad0411c6bd99f893ebc40d3" title="AESTagRead" alt="" coords="223,219,324,248"/>
+<map id="AESDataProcessAuth" name="AESDataProcessAuth">
+<area shape="rect" id="node2" href="$group__aes__api.html#ga5fa37d394b281d2a4c1ee10e6cbb37a6" title="AESAuthLengthSet" alt="" coords="212,5,356,32"/>
+<area shape="rect" id="node3" href="$group__aes__api.html#gaedb4c7e08dd21ec321ebb1df2262f512" title="AESDataRead" alt="" coords="229,56,339,83"/>
+<area shape="rect" id="node4" href="$group__aes__api.html#gaece7b2668ed8e5e01353cd42d6cf30ad" title="AESDataWrite" alt="" coords="229,107,339,133"/>
+<area shape="rect" id="node5" href="$group__aes__api.html#ga884731d9239e9f5313d14b84721cf8f2" title="AESLengthSet" alt="" coords="227,157,341,184"/>
+<area shape="rect" id="node6" href="$group__aes__api.html#gae4d89be99ad0411c6bd99f893ebc40d3" title="AESTagRead" alt="" coords="234,208,334,235"/>
 </map>

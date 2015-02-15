@@ -1,14 +1,23 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__adc__api.html#ga207d2cf2a807efe846f15200462166b0" title="ADCIntClear" alt="" coords="144,5,240,35"/>
-<area shape="rect" id="node5" href="$group__adc__api.html#ga10cececc7f912630401a2f0f6f90446f" title="ADCIntStatus" alt="" coords="140,59,244,88"/>
-<area shape="rect" id="node7" href="$group__adc__api.html#ga440fa9e04a1f5ebb18233e317159652d" title="ADCProcessorTrigger" alt="" coords="117,112,267,141"/>
-<area shape="rect" id="node9" href="$group__adc__api.html#gab6fb9d66d42093d8cf3a9ab58419fa38" title="ADCSequenceDataGet" alt="" coords="113,165,271,195"/>
-<area shape="rect" id="node11" href="$group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6" title="FPUEnable" alt="" coords="148,219,236,248"/>
-<area shape="rect" id="node13" href="$group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="105,272,279,301"/>
-<area shape="rect" id="node19" href="$interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="133,325,251,355"/>
-<area shape="rect" id="node21" href="$group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="135,379,249,408"/>
-<area shape="rect" id="node25" href="$group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="112,432,272,461"/>
-<area shape="rect" id="node15" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="328,245,464,275"/>
-<area shape="rect" id="node17" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="335,299,457,328"/>
-<area shape="rect" id="node23" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="348,379,444,408"/>
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8c.html#a643156335942afa7ab62e0cee890fbd5" title="adc_collect" alt="" coords="139,31,232,57"/>
+<area shape="rect" id="node4" href="$lib_2libadc_2adc_8c.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="150,309,221,336"/>
+<area shape="rect" id="node5" href="$group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="329,259,498,285"/>
+<area shape="rect" id="node14" href="$lib_2libadc_2adc_8c.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="143,132,227,159"/>
+<area shape="rect" id="node17" href="$group__adc__api.html#ga440fa9e04a1f5ebb18233e317159652d" title="ADCProcessorTrigger" alt="" coords="108,411,263,437"/>
+<area shape="rect" id="node18" href="$group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6" title="FPUEnable" alt="" coords="140,461,231,488"/>
+<area shape="rect" id="node19" href="$group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="326,512,501,539"/>
+<area shape="rect" id="node20" href="$interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="123,512,248,539"/>
+<area shape="rect" id="node21" href="$group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="126,563,245,589"/>
+<area shape="rect" id="node3" href="$lib_2libadc_2adc_8c.html#a7f489e79e99d187601565b91433406e5" title="encode_adc_channel" alt="" coords="335,5,491,32"/>
+<area shape="rect" id="node6" href="$group__sysctl__api.html#gadf2447348f48b339b8e7a73ed5e80afd" title="SysCtlGPIOAHBEnable" alt="" coords="331,309,495,336"/>
+<area shape="rect" id="node7" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="333,360,494,387"/>
+<area shape="rect" id="node8" href="$group__adc__api.html#ga810a79075c912e3079a0eadfcffa9446" title="ADCReferenceSet" alt="" coords="346,411,481,437"/>
+<area shape="rect" id="node9" href="$group__gpio__api.html#ga98f6b21513d01c1f2f755c6ff94ebe84" title="GPIOPinTypeADC" alt="" coords="349,461,477,488"/>
+<area shape="rect" id="node12" href="$group__adc__api.html#ga1771f99a5228971b923b336d1bdbb4cd" title="ADCSequenceStepConfigure" alt="" coords="311,157,516,184"/>
+<area shape="rect" id="node13" href="$group__adc__api.html#ga3d9afeb0aeb2726e1713b936229bb412" title="ADCSequenceEnable" alt="" coords="335,208,492,235"/>
+<area shape="rect" id="node10" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="569,461,697,488"/>
+<area shape="rect" id="node11" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="564,512,703,539"/>
+<area shape="rect" id="node15" href="$group__adc__api.html#gad8ad8b940627697b2efddbf01f771d76" title="ADCSequenceConfigure" alt="" coords="326,56,501,83"/>
+<area shape="rect" id="node16" href="$group__adc__api.html#ga207d2cf2a807efe846f15200462166b0" title="ADCIntClear" alt="" coords="364,107,463,133"/>
+<area shape="rect" id="node22" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="364,563,463,589"/>
 </map>

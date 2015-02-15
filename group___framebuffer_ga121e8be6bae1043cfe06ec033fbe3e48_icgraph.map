@@ -1,0 +1,13 @@
+<map id="_fb_draw_line" name="_fb_draw_line">
+<area shape="rect" id="node2" href="$group___framebuffer.html#gac9bb47c15b05d6606e7bed2374d41c47" title="Draws a line connecting two points before destroying the two points. " alt="" coords="163,31,302,57"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#ga176c28a08fd2244ee50cab04d98327b7" title="Draw a line segment on &#160;from &#160;to &#160;of color .to of color .shade. " alt="" coords="183,81,283,108"/>
+<area shape="rect" id="node11" href="$group___framebuffer.html#gac280cc941c40c25cc14eb7a0e793efed" title="Erases a line connecting two points before destroys the two points. " alt="" coords="160,132,305,159"/>
+<area shape="rect" id="node12" href="$group___framebuffer.html#gad949d0e0f79148bd78b990bdd7606601" title="Remove a line segment on &#160;from &#160;to . " alt="" coords="179,183,286,209"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd" title="Draw a line segment on &#160;from &#160;to . " alt="" coords="353,81,513,108"/>
+<area shape="rect" id="node5" href="$group___framebuffer.html#ga8ed2dc9704139b51b040a9fb9f071d2a" title="For internal use only. " alt="" coords="561,81,685,108"/>
+<area shape="rect" id="node6" href="$group___framebuffer.html#gae4c4c9ce4d0bc630a333e591ff5acb9d" title="Using &#160;as a canvas, draw . " alt="" coords="736,56,853,83"/>
+<area shape="rect" id="node9" href="$group___framebuffer.html#ga18f737437df562819d959eb0ad270b09" title="Using &#160;as a canvas, draw . " alt="" coords="733,107,856,133"/>
+<area shape="rect" id="node7" href="$group___framebuffer.html#ga5d4895c2a6bd4b3c6e346f307cd98df1" title="fb_draw_shapes" alt="" coords="916,5,1040,32"/>
+<area shape="rect" id="node8" href="$group___framebuffer.html#ga7e1e19562a1db33dac859ea13678a221" title="fb_draw_shape_arr" alt="" coords="907,56,1049,83"/>
+<area shape="rect" id="node10" href="$group___framebuffer.html#ga9d2155cdc8d7df96d99040f51d777b82" title="fb_erase_shape_arr" alt="" coords="904,107,1052,133"/>
+</map>

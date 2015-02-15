@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__scheduler__api.html#ga6dd197b92caf0d488f474eb56b1e2458" title="SchedulerElapsedTicksGet" alt="" coords="241,5,420,35"/>
-<area shape="rect" id="node5" href="$group__scheduler__api.html#ga3f2a0376b6d8aaf4d7aa98924c4f3788" title="SchedulerRun" alt="" coords="469,5,573,35"/>
+<map id="SchedulerElapsedTicksCalc" name="SchedulerElapsedTicksCalc">
+<area shape="rect" id="node2" href="$group__scheduler__api.html#ga6dd197b92caf0d488f474eb56b1e2458" title="SchedulerElapsedTicksGet" alt="" coords="248,5,439,32"/>
+<area shape="rect" id="node3" href="$group__scheduler__api.html#ga3f2a0376b6d8aaf4d7aa98924c4f3788" title="SchedulerRun" alt="" coords="487,5,596,32"/>
 </map>

@@ -1,3 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="229,5,280,35"/>
+<map id="GPIOPinTypeGPIOOutput" name="GPIOPinTypeGPIOOutput">
+<area shape="rect" id="node2" href="$heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615" title="Initialize the heart for visible transformation. " alt="" coords="228,5,311,32"/>
+<area shape="rect" id="node4" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="242,56,297,83"/>
+<area shape="rect" id="node3" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="359,5,413,32"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="ST7735_DrawFastVLine" name="ST7735_DrawFastVLine">
+<area shape="rect" id="node2" href="$_s_t7735_8h.html#adff58b909cb89f694117603da4ab7a1b" title="ST7735_PlotBar" alt="" coords="246,5,369,32"/>
+<area shape="rect" id="node3" href="$_s_t7735_8h.html#a179ccebd4bfe4529903a02ce797e78ea" title="ST7735_PlotdBfs" alt="" coords="243,56,372,83"/>
+<area shape="rect" id="node4" href="$_s_t7735_8h.html#a3c7b330d12b052f9334781dba849aa0e" title="ST7735_PlotNextErase" alt="" coords="224,107,391,133"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="pushColor" name="pushColor">
+<area shape="rect" id="node2" href="$_s_t7735_8h.html#a343770585eeeabee4360207d19df1d65" title="ST7735_DrawChar" alt="" coords="140,100,279,127"/>
+<area shape="rect" id="node3" href="$_s_t7735_8h.html#aa2dc768f637489753a7b70eac676c4a5" title="ST7735_DrawPixel" alt="" coords="140,151,279,177"/>
+<area shape="rect" id="node4" href="$_s_t7735_8h.html#af2c6dc3b5834eff0d45e6e15ac340abf" title="ST7735_DrawCharS" alt="" coords="327,75,475,101"/>
+<area shape="rect" id="node13" href="$_s_t7735_8h.html#a1ae5c293f7cf004c66ca1c0f0d365fcd" title="ST7735_PlotPoint" alt="" coords="334,125,467,152"/>
+<area shape="rect" id="node14" href="$_s_t7735_8h.html#a3b19f449b1072070e3dd7f92ce8150fa" title="ST7735_PlotLine" alt="" coords="337,176,464,203"/>
+<area shape="rect" id="node15" href="$_s_t7735_8h.html#af8a878e2129edc09d38b3f3aadcad42f" title="ST7735_PlotPoints" alt="" coords="331,227,471,253"/>
+<area shape="rect" id="node5" href="$_s_t7735_8h.html#a04cac5a318b3e0515fad06fa00cdd3b9" title="ST7735_DrawString" alt="" coords="523,49,669,76"/>
+<area shape="rect" id="node6" href="$_s_t7735_8h.html#a072f5f963df6e48f5985977526d2466c" title="ST7735_OutUDec" alt="" coords="719,5,854,32"/>
+<area shape="rect" id="node7" href="$_s_t7735_8h.html#a5da33584211f118b7acfc1e5c0c7fee7" title="ST7735_OutChar" alt="" coords="721,139,852,165"/>
+<area shape="rect" id="node11" href="$_s_t7735_8c.html#a15f25be4c64c91057ac3cbb563574286" title="ST7735_OutChar2" alt="" coords="717,81,856,108"/>
+<area shape="rect" id="node8" href="$_s_t7735_8h.html#aea99df5526df38c772f90da2f1fa8655" title="ST7735_OutString" alt="" coords="908,183,1047,209"/>
+<area shape="rect" id="node10" href="$_s_t7735_8c.html#abac7707b6be5733e890091048fcb99a2" title="fputc" alt="" coords="950,132,1005,159"/>
+<area shape="rect" id="node9" href="$test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1099,132,1153,159"/>
+<area shape="rect" id="node12" href="$_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51" title="ST7735_OutString2" alt="" coords="904,81,1051,108"/>
+</map>

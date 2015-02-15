@@ -1,0 +1,7 @@
+<map id="fb_erase_char" name="fb_erase_char">
+<area shape="rect" id="node2" href="$group___framebuffer.html#gae90067f3fe45779572dc0f3b0ba91ef8" title="For internal use only. " alt="" coords="191,13,305,39"/>
+<area shape="rect" id="node5" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="165,63,331,90"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="404,13,501,39"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="575,5,712,47"/>
+<area shape="rect" id="node6" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="379,63,527,90"/>
+</map>

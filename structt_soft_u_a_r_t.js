@@ -1,6 +1,6 @@
 var structt_soft_u_a_r_t =
 [
-    [ "pfnIntCallback", "structt_soft_u_a_r_t.html#a527d90fa301618dd320435a6a329413c", null ],
+    [ "pfnIntCallback", "structt_soft_u_a_r_t.html#a4519b637a3a75ae6c1d889a4662bb4bb", null ],
     [ "pui16RxBuffer", "structt_soft_u_a_r_t.html#ac1471703be863e05fd876a7f5d4259f2", null ],
     [ "pui8TxBuffer", "structt_soft_u_a_r_t.html#a387388250b6a0a3583253a23389878a4", null ],
     [ "ui16Config", "structt_soft_u_a_r_t.html#a1023dcc75af50fad3fc2f3e661e5b42d", null ],

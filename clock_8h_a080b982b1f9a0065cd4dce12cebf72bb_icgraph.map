@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$clock_8h.html#aceb030c669e3d88474cb52cc30ee6f50" title="CFUpdateTime" alt="" coords="185,5,295,35"/>
-<area shape="rect" id="node5" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="344,5,472,35"/>
-<area shape="rect" id="node7" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="520,5,571,35"/>
+<map id="CHCalculateAngle" name="CHCalculateAngle">
+<area shape="rect" id="node2" href="$clock_8h.html#aceb030c669e3d88474cb52cc30ee6f50" title="CFUpdateTime" alt="" coords="189,5,305,32"/>
+<area shape="rect" id="node3" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="353,5,492,32"/>
+<area shape="rect" id="node4" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="540,5,595,32"/>
 </map>

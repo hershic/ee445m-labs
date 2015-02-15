@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$cpu_8c.html" title="driverlib/cpu.c" alt="" coords="5,83,107,112"/>
-<area shape="rect" id="node5" href="$interrupt_8c.html" title="driverlib/interrupt.c" alt="" coords="131,83,259,112"/>
-<area shape="rect" id="node7" href="$sysctl_8c.html" title="driverlib/sysctl.c" alt="" coords="283,83,400,112"/>
+<map id="driverlib/cpu.h" name="driverlib/cpu.h">
+<area shape="rect" id="node2" href="$cpu_8c.html" title="driverlib/cpu.c" alt="" coords="5,80,116,107"/>
+<area shape="rect" id="node3" href="$interrupt_8c.html" title="driverlib/interrupt.c" alt="" coords="140,80,283,107"/>
+<area shape="rect" id="node4" href="$sysctl_8c.html" title="driverlib/sysctl.c" alt="" coords="307,80,430,107"/>
 </map>

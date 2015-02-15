@@ -1,3 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="205,5,256,35"/>
+<map id="ADCProcessorTrigger" name="ADCProcessorTrigger">
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="208,5,311,32"/>
+<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="232,56,287,83"/>
 </map>

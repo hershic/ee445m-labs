@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__eeprom__api.html#ga4fe0aaa8423a193b9828185b5ac3588c" title="_EEPROMSectorMaskClear" alt="" coords="201,5,388,35"/>
-<area shape="rect" id="node5" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="437,32,533,61"/>
-<area shape="rect" id="node7" href="$group__eeprom__api.html#ga4f7e5ad7c68f5b4b4a09bcdd2badda6c" title="_EEPROMWaitForDone" alt="" coords="213,109,376,139"/>
-<area shape="rect" id="node10" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="217,163,372,192"/>
+<map id="EEPROMMassErase" name="EEPROMMassErase">
+<area shape="rect" id="node2" href="$group__eeprom__api.html#ga4fe0aaa8423a193b9828185b5ac3588c" title="_EEPROMSectorMaskClear" alt="" coords="197,5,388,32"/>
+<area shape="rect" id="node3" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="436,31,535,57"/>
+<area shape="rect" id="node4" href="$group__eeprom__api.html#ga4f7e5ad7c68f5b4b4a09bcdd2badda6c" title="_EEPROMWaitForDone" alt="" coords="211,107,374,133"/>
+<area shape="rect" id="node5" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="212,157,373,184"/>
 </map>

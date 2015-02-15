@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="161,5,279,35"/>
-<area shape="rect" id="node7" href="$lib_2libuart_2uart_8h.html#ac52beb7a5ff4686ca04cf9a1edf3b713" title="Read a char array from the active uart channel." alt="" coords="163,59,277,88"/>
-<area shape="rect" id="node5" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="335,5,431,35"/>
-<area shape="rect" id="node9" href="$lib_2libuart_2uart_8h.html#a780b7f7bacc02a2af95f84284c74e6e5" title="Read a char array from the active uart channel." alt="" coords="329,59,436,88"/>
+<map id="UARTIntClear" name="UARTIntClear">
+<area shape="rect" id="node2" href="$lib_2libuart_2uart_8h.html#a0ef7b9a5605bcb31bc764e1144bf2bc4" title="Read a char from the specified uart channel. " alt="" coords="161,5,280,32"/>
+<area shape="rect" id="node6" href="$lib_2libuart_2uart_8h.html#ac52beb7a5ff4686ca04cf9a1edf3b713" title="Read a char array from the active uart channel. " alt="" coords="157,56,284,83"/>
+<area shape="rect" id="node3" href="$lib_2libuart_2uart_8h.html#a36116526b4c84562aec19bca46a0827e" title="Read a char from the active uart channel. " alt="" coords="336,5,447,32"/>
+<area shape="rect" id="node4" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="499,5,619,32"/>
+<area shape="rect" id="node5" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="667,5,772,32"/>
+<area shape="rect" id="node7" href="$lib_2libuart_2uart_8h.html#a780b7f7bacc02a2af95f84284c74e6e5" title="Read a char array from the active uart channel. " alt="" coords="332,56,451,83"/>
 </map>

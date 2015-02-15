@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$udma_8c.html" title="driverlib/udma.c" alt="" coords="5,83,120,112"/>
-<area shape="rect" id="node5" href="$spi__flash_8c.html" title="utils/spi_flash.c" alt="" coords="144,83,256,112"/>
+<map id="inc/hw_udma.h" name="inc/hw_udma.h">
+<area shape="rect" id="node2" href="$udma_8c.html" title="driverlib/udma.c" alt="" coords="5,80,129,107"/>
+<area shape="rect" id="node3" href="$spi__flash_8c.html" title="utils/spi_flash.c" alt="" coords="153,80,272,107"/>
 </map>

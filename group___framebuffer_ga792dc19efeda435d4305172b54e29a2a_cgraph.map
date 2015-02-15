@@ -1,0 +1,9 @@
+<map id="fb_erase_string_anon" name="fb_erase_string_anon">
+<area shape="rect" id="node2" href="$group___framebuffer.html#ga74ea44c7be9c61d9241848387aa1b59c" title="Erase string on fb starting at top_left_corner. " alt="" coords="212,31,332,57"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gaa1b8fcc5d69ea30839947f996d38aa70" title="For internal use only. " alt="" coords="380,56,501,83"/>
+<area shape="rect" id="node4" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="549,5,715,32"/>
+<area shape="rect" id="node6" href="$group___framebuffer.html#gae90067f3fe45779572dc0f3b0ba91ef8" title="For internal use only. " alt="" coords="575,56,689,83"/>
+<area shape="rect" id="node5" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="763,5,911,32"/>
+<area shape="rect" id="node7" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="788,56,885,83"/>
+<area shape="rect" id="node8" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="959,49,1096,90"/>
+</map>

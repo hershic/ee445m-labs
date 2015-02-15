@@ -1,0 +1,11 @@
+<map id="fb_draw_shape_arr" name="fb_draw_shape_arr">
+<area shape="rect" id="node2" href="$group___framebuffer.html#gae4c4c9ce4d0bc630a333e591ff5acb9d" title="Using &#160;as a canvas, draw . " alt="" coords="196,42,313,69"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#ga8ed2dc9704139b51b040a9fb9f071d2a" title="For internal use only. " alt="" coords="361,42,485,69"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd" title="Draw a line segment on &#160;from &#160;to . " alt="" coords="533,42,693,69"/>
+<area shape="rect" id="node5" href="$group___framebuffer.html#ga176c28a08fd2244ee50cab04d98327b7" title="Draw a line segment on &#160;from &#160;to &#160;of color .to of color .shade. " alt="" coords="741,42,841,69"/>
+<area shape="rect" id="node6" href="$group___framebuffer.html#ga121e8be6bae1043cfe06ec033fbe3e48" title="The heavy&#45;lifter (pixel&#45;setter) in line&#45;segment&#45;drawing. " alt="" coords="889,42,996,69"/>
+<area shape="rect" id="node7" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="1078,15,1175,42"/>
+<area shape="rect" id="node9" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="1044,67,1209,94"/>
+<area shape="rect" id="node8" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="1263,5,1400,47"/>
+<area shape="rect" id="node10" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="1257,71,1405,98"/>
+</map>

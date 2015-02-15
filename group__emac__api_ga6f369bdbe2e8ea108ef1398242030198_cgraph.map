@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__emac__api.html#gac6bdbf26467dc58bbe45f19ba992d027" title="EMACReset" alt="" coords="232,5,328,35"/>
-<area shape="rect" id="node5" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="232,59,328,88"/>
-<area shape="rect" id="node7" href="$group__sysctl__api.html#ga7ddf1f06376894c31e5596f562c299ac" title="SysCtlPeripheralReady" alt="" coords="201,112,359,141"/>
-<area shape="rect" id="node9" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="203,165,357,195"/>
+<map id="EMACPHYConfigSet" name="EMACPHYConfigSet">
+<area shape="rect" id="node2" href="$group__emac__api.html#gac6bdbf26467dc58bbe45f19ba992d027" title="EMACReset" alt="" coords="233,5,328,32"/>
+<area shape="rect" id="node3" href="$sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="231,56,330,83"/>
+<area shape="rect" id="node4" href="$group__sysctl__api.html#ga7ddf1f06376894c31e5596f562c299ac" title="SysCtlPeripheralReady" alt="" coords="199,107,363,133"/>
+<area shape="rect" id="node5" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="200,157,361,184"/>
 </map>

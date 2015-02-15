@@ -1,0 +1,8 @@
+<map id="fb_draw_string_anon_pt" name="fb_draw_string_anon_pt">
+<area shape="rect" id="node2" href="$group___framebuffer.html#gaa1b8fcc5d69ea30839947f996d38aa70" title="For internal use only. " alt="" coords="227,38,348,65"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gae90067f3fe45779572dc0f3b0ba91ef8" title="For internal use only. " alt="" coords="422,13,535,39"/>
+<area shape="rect" id="node6" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="396,63,561,90"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="635,13,732,39"/>
+<area shape="rect" id="node5" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="805,5,943,47"/>
+<area shape="rect" id="node7" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="609,63,757,90"/>
+</map>

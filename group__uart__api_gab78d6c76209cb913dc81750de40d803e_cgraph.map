@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__uart__api.html#ga80d1c8f9214e463dfc130a10a11eba43" title="_UARTIntNumberGet" alt="" coords="191,5,337,35"/>
-<area shape="rect" id="node5" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="224,59,304,88"/>
-<area shape="rect" id="node7" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="216,112,312,141"/>
-<area shape="rect" id="node9" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="387,112,517,141"/>
+<map id="UARTIntUnregister" name="UARTIntUnregister">
+<area shape="rect" id="node2" href="$group__uart__api.html#ga80d1c8f9214e463dfc130a10a11eba43" title="_UARTIntNumberGet" alt="" coords="192,5,345,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="226,56,311,83"/>
+<area shape="rect" id="node4" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="216,107,321,133"/>
+<area shape="rect" id="node5" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="393,107,535,133"/>
 </map>

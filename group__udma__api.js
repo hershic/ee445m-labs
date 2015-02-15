@@ -1,0 +1,36 @@
+var group__udma__api =
+[
+    [ "tDMAControlTable", "structt_d_m_a_control_table.html", [
+      [ "pvDstEndAddr", "structt_d_m_a_control_table.html#a7346504231dcaa51e6da47bb82256c8f", null ],
+      [ "pvSrcEndAddr", "structt_d_m_a_control_table.html#a211c562f9f14e09e84cd8c215e69c7a5", null ],
+      [ "ui32Control", "structt_d_m_a_control_table.html#a408694668c5a110a70841dcdf90bed3b", null ],
+      [ "ui32Spare", "structt_d_m_a_control_table.html#a4f63f0ed18f20f7b81146ad194a259f9", null ]
+    ] ],
+    [ "uDMATaskStructEntry", "group__udma__api.html#ga6cd46a977652fd018368bb47d018f48e", null ],
+    [ "uDMAChannelAssign", "group__udma__api.html#gaa3c73411a7305843059d0984efaf7770", null ],
+    [ "uDMAChannelAttributeDisable", "group__udma__api.html#ga687745cb1ba10bcfbaac4bf0bbfd4132", null ],
+    [ "uDMAChannelAttributeEnable", "group__udma__api.html#gadcd88d930702b3773952214e27bba3f6", null ],
+    [ "uDMAChannelAttributeGet", "group__udma__api.html#ga741cac245ca559d1a1112077a7f46b8c", null ],
+    [ "uDMAChannelControlSet", "group__udma__api.html#ga6f73ab006ff6a593eeeb947130bbdf6f", null ],
+    [ "uDMAChannelDisable", "group__udma__api.html#ga28ded922b57dbc5772036ddcbb8f28d6", null ],
+    [ "uDMAChannelEnable", "group__udma__api.html#ga41e21189773539bbc5f302863cd5bf06", null ],
+    [ "uDMAChannelIsEnabled", "group__udma__api.html#ga71a15b561a538ff126aabac85ee311b2", null ],
+    [ "uDMAChannelModeGet", "group__udma__api.html#ga84a74cc2b06a6a59506dcdfabd0c7972", null ],
+    [ "uDMAChannelRequest", "group__udma__api.html#ga1020903cbcc5a03434c3f5c13f252a72", null ],
+    [ "uDMAChannelScatterGatherSet", "group__udma__api.html#gaac152bd620c5edc6d2d348ac7771c882", null ],
+    [ "uDMAChannelSelectDefault", "group__udma__api.html#ga1b9f47d58dca2859ce11cf9ffd8ab156", null ],
+    [ "uDMAChannelSelectSecondary", "group__udma__api.html#ga8e60984be50a27b696f4caa6628a4f80", null ],
+    [ "uDMAChannelSizeGet", "group__udma__api.html#ga52908962d5fdc8ad21d14a3ebb19c0b9", null ],
+    [ "uDMAChannelTransferSet", "group__udma__api.html#ga938c21dc70cb6e11e6eb826de0fa21c3", null ],
+    [ "uDMAControlAlternateBaseGet", "group__udma__api.html#ga3d755ac6e59821949a57d1ceca7082ae", null ],
+    [ "uDMAControlBaseGet", "group__udma__api.html#ga09c51018a10f41216497396e4ec5a6fd", null ],
+    [ "uDMAControlBaseSet", "group__udma__api.html#ga1bc352c5b9404649922a555873619498", null ],
+    [ "uDMADisable", "group__udma__api.html#ga850808381da300573a6101e5a27f4675", null ],
+    [ "uDMAEnable", "group__udma__api.html#ga9c2c43120f113a79cbabf894f5503f41", null ],
+    [ "uDMAErrorStatusClear", "group__udma__api.html#ga875220775201c33cd3c97ebcbca83ac2", null ],
+    [ "uDMAErrorStatusGet", "group__udma__api.html#gad01185c0d570c65da3642e6c60ea4973", null ],
+    [ "uDMAIntClear", "group__udma__api.html#gaf06b67b4b30df8188540cd06634c9bb9", null ],
+    [ "uDMAIntRegister", "group__udma__api.html#ga38e714509554e38d29563bf7832f7098", null ],
+    [ "uDMAIntStatus", "group__udma__api.html#gaf3ef981569462dff3ebcf00f327be60b", null ],
+    [ "uDMAIntUnregister", "group__udma__api.html#ga8728732286c8948fd715e58ca04dbd84", null ]
+];

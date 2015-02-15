@@ -1,9 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node7" href="$hw__flash_8h.html" title="inc/hw_flash.h" alt="" coords="192,83,299,112"/>
-<area shape="rect" id="node9" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="323,83,421,112"/>
-<area shape="rect" id="node11" href="$hw__sysctl_8h.html" title="inc/hw_sysctl.h" alt="" coords="445,83,557,112"/>
-<area shape="rect" id="node13" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="581,83,691,112"/>
-<area shape="rect" id="node15" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="715,83,832,112"/>
-<area shape="rect" id="node17" href="$flash_8h.html" title="driverlib/flash.h" alt="" coords="856,83,965,112"/>
-<area shape="rect" id="node19" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="989,83,1117,112"/>
+<map id="driverlib/flash.c" name="driverlib/flash.c">
+<area shape="rect" id="node4" href="$hw__flash_8h.html" title="inc/hw_flash.h" alt="" coords="205,80,316,107"/>
+<area shape="rect" id="node5" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="340,80,443,107"/>
+<area shape="rect" id="node6" href="$hw__sysctl_8h.html" title="inc/hw_sysctl.h" alt="" coords="467,80,583,107"/>
+<area shape="rect" id="node7" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="607,80,722,107"/>
+<area shape="rect" id="node8" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="746,80,874,107"/>
+<area shape="rect" id="node9" href="$flash_8h.html" title="driverlib/flash.h" alt="" coords="899,80,1017,107"/>
+<area shape="rect" id="node10" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1041,80,1184,107"/>
 </map>

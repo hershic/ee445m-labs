@@ -1,4 +1,4 @@
-var test-uart_2startup__gcc_8c =
+var test_uart_2startup__gcc_8c =
 [
     [ "__attribute__", "test-uart_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097", null ],
     [ "BusFault_Handler", "test-uart_2startup__gcc_8c.html#aa941f5b76935c38f23d3a071b1873f58", null ],

@@ -1,5 +1,6 @@
 var graphlib_8h =
 [
+    [ "graph", "structgraph.html", "structgraph" ],
     [ "GL_BLANK_STEPS_PRECEEDING_STALE_DATA", "graphlib_8h.html#ab3e9ed2e9b19468de8b498f74abbcd6c", null ],
     [ "graph", "graphlib_8h.html#af96318470a84fceb2e5bf7ac6a2e2cd6", null ],
     [ "GLCreateGraph", "graphlib_8h.html#ab918490054cec226a7db7de67362261d", null ],

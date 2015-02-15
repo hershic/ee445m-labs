@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="212,5,335,35"/>
-<area shape="rect" id="node5" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="205,59,341,88"/>
+<map id="GPIOPinTypePECIRx" name="GPIOPinTypePECIRx">
+<area shape="rect" id="node2" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="201,5,329,32"/>
+<area shape="rect" id="node3" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="196,56,335,83"/>
 </map>

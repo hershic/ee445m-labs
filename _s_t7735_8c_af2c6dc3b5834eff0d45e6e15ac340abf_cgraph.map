@@ -1,0 +1,8 @@
+<map id="ST7735_DrawCharS" name="ST7735_DrawCharS">
+<area shape="rect" id="node2" href="$_s_t7735_8c.html#aa2dc768f637489753a7b70eac676c4a5" title="ST7735_DrawPixel" alt="" coords="201,56,340,83"/>
+<area shape="rect" id="node7" href="$_s_t7735_8c.html#ada283d88275b972d188afad1c8649829" title="ST7735_FillRect" alt="" coords="211,5,330,32"/>
+<area shape="rect" id="node3" href="$_s_t7735_8c.html#a1e4c9d5bbf2df16b1f9235bd24c8e231" title="setAddrWindow" alt="" coords="388,31,507,57"/>
+<area shape="rect" id="node6" href="$_s_t7735_8c.html#aee458a33042c2dc08c16688ddd864e0c" title="pushColor" alt="" coords="404,81,491,108"/>
+<area shape="rect" id="node4" href="$_s_t7735_8c.html#a50ca774f7f1d1f633179a37d2312fb69" title="writecommand" alt="" coords="555,56,672,83"/>
+<area shape="rect" id="node5" href="$_s_t7735_8c.html#a639c227e5d11b704fbca94a8f2987189" title="writedata" alt="" coords="573,5,654,32"/>
+</map>

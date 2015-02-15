@@ -1,12 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$graph__framebuffer_8c.html#ae120d98ef41c59e3ab681a48c86574aa" title="FBEraseGraph" alt="" coords="223,131,329,160"/>
-<area shape="rect" id="node13" href="$shape_8c.html#a3a83d2082d27116cb1cc3f3a8952f584" title="SHCreatePoint" alt="" coords="611,157,720,187"/>
-<area shape="rect" id="node5" href="$graph__framebuffer_8c.html#aaf408691f23eef1966dc9dcb4923b129" title="_FBDrawGraphBounds" alt="" coords="389,157,544,187"/>
-<area shape="rect" id="node15" href="$graph__framebuffer_8c.html#af9f7c55047f74eb174b5fb74c48fdeb6" title="_FBDrawGraphData" alt="" coords="397,211,536,240"/>
-<area shape="rect" id="node19" href="$graph__framebuffer_8c.html#aaa7ef42b9c9793065ca7cf8955341394" title="_FBDrawGraphTitle" alt="" coords="399,51,535,80"/>
-<area shape="rect" id="node21" href="$graph__framebuffer_8c.html#a1281d64af9beae57fc7e0fd74eb88dc0" title="_FBDrawGraphAxesTitles" alt="" coords="380,104,553,133"/>
-<area shape="rect" id="node23" href="$graph__framebuffer_8c.html#aef176cf0f92917cd8da328920a75e5fd" title="_FBDrawGraphAxesScale" alt="" coords="380,264,553,293"/>
-<area shape="rect" id="node7" href="$framebuffer_8c.html#a965fe65ef18ae01da8dc8ddbbcbf0bd6" title="FBDrawAnonLine" alt="" coords="604,211,727,240"/>
-<area shape="rect" id="node9" href="$framebuffer_8c.html#ab8502320f03a46f5efc1b3d1ff9581b7" title="_FBDrawLine" alt="" coords="776,211,877,240"/>
-<area shape="rect" id="node11" href="$framebuffer_8c.html#affd9b8ca0dd10a77547346df9bd06496" title="FBSetPixel" alt="" coords="925,211,1013,240"/>
+<map id="FBEraseFullscreenGraph" name="FBEraseFullscreenGraph">
+<area shape="rect" id="node2" href="$graph__framebuffer_8c.html#ae120d98ef41c59e3ab681a48c86574aa" title="FBEraseGraph" alt="" coords="229,132,343,159"/>
+<area shape="rect" id="node4" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="621,56,769,83"/>
+<area shape="rect" id="node3" href="$graph__framebuffer_8c.html#aaf408691f23eef1966dc9dcb4923b129" title="_FBDrawGraphBounds" alt="" coords="400,5,564,32"/>
+<area shape="rect" id="node5" href="$graph__framebuffer_8c.html#af9f7c55047f74eb174b5fb74c48fdeb6" title="_FBDrawGraphData" alt="" coords="409,56,555,83"/>
+<area shape="rect" id="node6" href="$graph__framebuffer_8c.html#aaa7ef42b9c9793065ca7cf8955341394" title="_FBDrawGraphTitle" alt="" coords="411,107,553,133"/>
+<area shape="rect" id="node7" href="$graph__framebuffer_8c.html#a1281d64af9beae57fc7e0fd74eb88dc0" title="_FBDrawGraphAxesTitles" alt="" coords="392,157,572,184"/>
+<area shape="rect" id="node8" href="$graph__framebuffer_8c.html#aef176cf0f92917cd8da328920a75e5fd" title="_FBDrawGraphAxesScale" alt="" coords="391,208,573,235"/>
 </map>

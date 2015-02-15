@@ -1,4 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart/test&#45;uart.c" alt="" coords="5,83,211,112"/>
-<area shape="rect" id="node5" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="235,83,344,112"/>
+<map id="lib/libuart/uart.h" name="lib/libuart/uart.h">
+<area shape="rect" id="node2" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,80,168,121"/>
+<area shape="rect" id="node3" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="192,80,352,121"/>
+<area shape="rect" id="node4" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="377,87,498,114"/>
 </map>

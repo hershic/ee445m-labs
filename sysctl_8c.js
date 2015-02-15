@@ -69,10 +69,10 @@ var sysctl_8c =
     [ "SysCtlVoltageEventClear", "group__sysctl__api.html#gaf62659875c2673c4f6da90ed38e6e230", null ],
     [ "SysCtlVoltageEventConfig", "group__sysctl__api.html#ga5ab556872df7db77f97c62502f99ee30", null ],
     [ "SysCtlVoltageEventStatus", "group__sysctl__api.html#ga477377a31fd24fa238e9235392d69e68", null ],
-    [ "g_pppui32XTALtoVCO", "group__sysctl__api.html#gac23401a8baf013db8de53e8f2bc40425", null ],
-    [ "g_pui32VCOFrequencies", "group__sysctl__api.html#gab395c49428439a98393ff4e262b27082", null ],
+    [ "g_pppui32XTALtoVCO", "group__sysctl__api.html#ga2d78d2c5157af527e5d118a79895b3f9", null ],
+    [ "g_pui32VCOFrequencies", "group__sysctl__api.html#gaf8072d904eba55706653af35a3ada33b", null ],
     [ "g_pui32Xtals", "group__sysctl__api.html#ga286fd0282c7ed9baca324931b9318afd", null ],
-    [ "g_sXTALtoMEMTIM", "group__sysctl__api.html#ga8be0abda441c1468e90971e6d688c9a0", null ],
+    [ "g_sXTALtoMEMTIM", "group__sysctl__api.html#ga8c62abb973bfed7fca5d50fec148d2ea", null ],
     [ "ui32Frequency", "sysctl_8c.html#a6200ecba0e8920f130f2f238408f6b2a", null ],
     [ "ui32MemTiming", "sysctl_8c.html#a69f0c60ec67c7d2049e1fa89c765202d", null ]
 ];

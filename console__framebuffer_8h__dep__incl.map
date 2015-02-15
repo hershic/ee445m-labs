@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$console__framebuffer_8c.html" title="lib/libconsole/console_framebuffer.c" alt="" coords="5,83,235,112"/>
-<area shape="rect" id="node5" href="$console-grapher_8c.html" title="validation/console&#45;grapher/console&#45;grapher.c" alt="" coords="259,83,539,112"/>
+<map id="lib/libconsole/console_framebuffer.h" name="lib/libconsole/console_framebuffer.h">
+<area shape="rect" id="node2" href="$console__framebuffer_8c.html" title="lib/libconsole/console\l_framebuffer.c" alt="" coords="5,95,161,136"/>
+<area shape="rect" id="node3" href="$console-grapher_8c.html" title="validation/console\l&#45;grapher/console&#45;grapher.c" alt="" coords="186,95,381,136"/>
 </map>

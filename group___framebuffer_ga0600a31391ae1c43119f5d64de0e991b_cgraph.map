@@ -1,0 +1,4 @@
+<map id="fb_clear_pixel" name="fb_clear_pixel">
+<area shape="rect" id="node2" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="161,13,259,39"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="307,5,444,47"/>
+</map>

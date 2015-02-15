@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__epi__api.html#ga4b2d512849c4f92fc15196d62ff30bd2" title="EPIIntRegister" alt="" coords="193,5,300,35"/>
-<area shape="rect" id="node5" href="$group__epi__api.html#ga9375b854f9a595e2b0b0a712829cf8aa" title="EPIIntUnregister" alt="" coords="188,59,305,88"/>
+<map id="_EPIIntNumberGet" name="_EPIIntNumberGet">
+<area shape="rect" id="node2" href="$group__epi__api.html#ga4b2d512849c4f92fc15196d62ff30bd2" title="EPIIntRegister" alt="" coords="200,5,308,32"/>
+<area shape="rect" id="node3" href="$group__epi__api.html#ga9375b854f9a595e2b0b0a712829cf8aa" title="EPIIntUnregister" alt="" coords="192,56,316,83"/>
 </map>

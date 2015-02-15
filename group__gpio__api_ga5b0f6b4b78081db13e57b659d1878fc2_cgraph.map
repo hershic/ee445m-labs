@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="239,5,361,35"/>
-<area shape="rect" id="node5" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="232,59,368,88"/>
+<map id="GPIOPinTypeEthernetLED" name="GPIOPinTypeEthernetLED">
+<area shape="rect" id="node2" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="239,5,367,32"/>
+<area shape="rect" id="node3" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="233,56,372,83"/>
 </map>

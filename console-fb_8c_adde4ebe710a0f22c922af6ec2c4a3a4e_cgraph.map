@@ -1,10 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$framebuffer_8c.html#a12707896adbc1561778cea3666808e46" title="FBDestroy" alt="" coords="261,5,347,35"/>
-<area shape="rect" id="node5" href="$framebuffer_8c.html#a5e27130386fb9a571a976cb79fa240a6" title="FBDrawString" alt="" coords="252,59,356,88"/>
-<area shape="rect" id="node11" href="$framebuffer_8c.html#a3e67f85f114151f833dd4a8a8ec461d2" title="FBInit" alt="" coords="276,112,332,141"/>
-<area shape="rect" id="node13" href="$graphics2d_8c.html#a6a74f2b08ea64694a7cc663ba4a2677a" title="G2ConvertFBToRITFormat" alt="" coords="215,165,393,195"/>
-<area shape="rect" id="node15" href="$console__framebuffer_8c.html#a2a7520ad9704f94677e4e1a8d7ee1369" title="printFramebuffer" alt="" coords="245,219,363,248"/>
-<area shape="rect" id="node17" href="$shape_8c.html#a3a83d2082d27116cb1cc3f3a8952f584" title="SHCreatePoint" alt="" coords="249,272,359,301"/>
-<area shape="rect" id="node7" href="$framebuffer_8c.html#a8deadb83510e69bbcb44dbbca82844ac" title="_FBDrawString" alt="" coords="444,59,553,88"/>
-<area shape="rect" id="node9" href="$framebuffer_8c.html#affd9b8ca0dd10a77547346df9bd06496" title="FBSetPixel" alt="" coords="603,59,691,88"/>
+<map id="demonstrateDrawString" name="demonstrateDrawString">
+<area shape="rect" id="node2" href="$graphics2d_8c.html#a6a74f2b08ea64694a7cc663ba4a2677a" title="G2ConvertFBToRITFormat" alt="" coords="228,5,411,32"/>
+<area shape="rect" id="node3" href="$console-fb_8c.html#a2a7520ad9704f94677e4e1a8d7ee1369" title="printFramebuffer" alt="" coords="255,56,383,83"/>
 </map>

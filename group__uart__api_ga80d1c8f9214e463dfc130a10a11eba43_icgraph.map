@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__uart__api.html#ga29c627a9df14328949ba6db3e96af135" title="UARTIntRegister" alt="" coords="209,5,332,35"/>
-<area shape="rect" id="node5" href="$group__uart__api.html#gab78d6c76209cb913dc81750de40d803e" title="UARTIntUnregister" alt="" coords="204,59,337,88"/>
+<map id="_UARTIntNumberGet" name="_UARTIntNumberGet">
+<area shape="rect" id="node2" href="$group__uart__api.html#ga29c627a9df14328949ba6db3e96af135" title="UARTIntRegister" alt="" coords="215,5,337,32"/>
+<area shape="rect" id="node3" href="$group__uart__api.html#gab78d6c76209cb913dc81750de40d803e" title="UARTIntUnregister" alt="" coords="207,56,345,83"/>
 </map>

@@ -1,8 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$cpu__usage_8c.html" title="utils/cpu_usage.c" alt="" coords="5,83,128,112"/>
-<area shape="rect" id="node5" href="$flash__pb_8c.html" title="utils/flash_pb.c" alt="" coords="152,83,261,112"/>
-<area shape="rect" id="node7" href="$softssi_8c.html" title="utils/softssi.c" alt="" coords="285,83,384,112"/>
-<area shape="rect" id="node9" href="$softuart_8c.html" title="utils/softuart.c" alt="" coords="408,83,512,112"/>
-<area shape="rect" id="node11" href="$spi__flash_8c.html" title="utils/spi_flash.c" alt="" coords="536,83,648,112"/>
-<area shape="rect" id="node13" href="$uartstdio_8c.html" title="utils/uartstdio.c" alt="" coords="672,83,781,112"/>
+<map id="driverlib/rom_map.h" name="driverlib/rom_map.h">
+<area shape="rect" id="node2" href="$cpu__usage_8c.html" title="utils/cpu_usage.c" alt="" coords="5,80,137,107"/>
+<area shape="rect" id="node3" href="$flash__pb_8c.html" title="utils/flash_pb.c" alt="" coords="161,80,277,107"/>
+<area shape="rect" id="node4" href="$softssi_8c.html" title="utils/softssi.c" alt="" coords="302,80,406,107"/>
+<area shape="rect" id="node5" href="$softuart_8c.html" title="utils/softuart.c" alt="" coords="431,80,544,107"/>
+<area shape="rect" id="node6" href="$spi__flash_8c.html" title="utils/spi_flash.c" alt="" coords="568,80,687,107"/>
+<area shape="rect" id="node7" href="$uartstdio_8c.html" title="utils/uartstdio.c" alt="" coords="711,80,831,107"/>
 </map>

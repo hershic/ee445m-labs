@@ -1,0 +1,35 @@
+<map id="shape_create_point" name="shape_create_point">
+<area shape="rect" id="node2" href="$graph__framebuffer_8h.html#aee5d577204044b8e9af1e9cec1f86202" title="_FBDrawGraphBounds" alt="" coords="202,99,366,125"/>
+<area shape="rect" id="node4" href="$graph__framebuffer_8h.html#a68ea6bab8c3bda3ce5c7ee4e5d984951" title="FBDrawFullscreenGraph" alt="" coords="649,73,821,100"/>
+<area shape="rect" id="node7" href="$graph__framebuffer_8h.html#a2b78e955f04080df1984657aef576cbc" title="FBEraseFullscreenGraph" alt="" coords="647,23,823,49"/>
+<area shape="rect" id="node8" href="$graph__framebuffer_8h.html#a014fd5ea43e798f61692d4f68449bf05" title="_FBDrawGraphData" alt="" coords="211,149,357,176"/>
+<area shape="rect" id="node10" href="$graph__framebuffer_8h.html#a4acdd109c31ab920a368c31202e23b39" title="FBEraseFullscreenGraphData" alt="" coords="632,200,839,227"/>
+<area shape="rect" id="node11" href="$group___geometry.html#ga63983054234b5cc3a65da6905a06acbb" title="shape_create_quad" alt="" coords="210,276,358,303"/>
+<area shape="rect" id="node12" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="201,377,367,404"/>
+<area shape="rect" id="node3" href="$graph__framebuffer_8h.html#a659ad2ef6e8e5e173ca0b81dd98a02a8" title="FBDrawGraph" alt="" coords="445,124,554,151"/>
+<area shape="rect" id="node6" href="$graph__framebuffer_8h.html#ae120d98ef41c59e3ab681a48c86574aa" title="FBEraseGraph" alt="" coords="443,73,556,100"/>
+<area shape="rect" id="node5" href="$console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="939,48,994,75"/>
+<area shape="rect" id="node9" href="$graph__framebuffer_8h.html#a1b07bf3e42b3bddeebe422adce9e3d7e" title="FBEraseGraphData" alt="" coords="427,175,571,201"/>
+<area shape="rect" id="node13" href="$clock_8h.html#acb40bab7a366b9f925fd49e12f6ae54b" title="CHCreateClockHand" alt="" coords="423,276,575,303"/>
+<area shape="rect" id="node16" href="$clock_8c.html#a6cf4d5a03d52c7a19a945643cb551f12" title="CHDuplicateClockHand" alt="" coords="415,327,584,353"/>
+<area shape="rect" id="node17" href="$group___framebuffer.html#gab907ab6af808bfadcbe22f8f8768c4dc" title="Erase char on fb starting at top_left_corner. " alt="" coords="443,377,555,404"/>
+<area shape="rect" id="node18" href="$group___framebuffer.html#ga121e8be6bae1043cfe06ec033fbe3e48" title="The heavy&#45;lifter (pixel&#45;setter) in line&#45;segment&#45;drawing. " alt="" coords="446,428,553,455"/>
+<area shape="rect" id="node30" href="$group___framebuffer.html#ga74ea44c7be9c61d9241848387aa1b59c" title="Erase string on fb starting at top_left_corner. " alt="" coords="675,529,795,556"/>
+<area shape="rect" id="node32" href="$group___framebuffer.html#gaa1b8fcc5d69ea30839947f996d38aa70" title="For internal use only. " alt="" coords="439,555,560,581"/>
+<area shape="rect" id="node14" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="666,276,805,303"/>
+<area shape="rect" id="node15" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="939,276,994,303"/>
+<area shape="rect" id="node19" href="$group___framebuffer.html#gac9bb47c15b05d6606e7bed2374d41c47" title="Draws a line connecting two points before destroying the two points. " alt="" coords="666,377,805,404"/>
+<area shape="rect" id="node20" href="$group___framebuffer.html#ga176c28a08fd2244ee50cab04d98327b7" title="Draw a line segment on &#160;from &#160;to &#160;of color .to of color .shade. " alt="" coords="685,428,785,455"/>
+<area shape="rect" id="node28" href="$group___framebuffer.html#gac280cc941c40c25cc14eb7a0e793efed" title="Erases a line connecting two points before destroys the two points. " alt="" coords="663,479,808,505"/>
+<area shape="rect" id="node29" href="$group___framebuffer.html#gad949d0e0f79148bd78b990bdd7606601" title="Remove a line segment on &#160;from &#160;to . " alt="" coords="682,327,789,353"/>
+<area shape="rect" id="node21" href="$group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd" title="Draw a line segment on &#160;from &#160;to . " alt="" coords="887,428,1047,455"/>
+<area shape="rect" id="node22" href="$group___framebuffer.html#ga8ed2dc9704139b51b040a9fb9f071d2a" title="For internal use only. " alt="" coords="1095,428,1219,455"/>
+<area shape="rect" id="node23" href="$group___framebuffer.html#gae4c4c9ce4d0bc630a333e591ff5acb9d" title="Using &#160;as a canvas, draw . " alt="" coords="1269,403,1387,429"/>
+<area shape="rect" id="node26" href="$group___framebuffer.html#ga18f737437df562819d959eb0ad270b09" title="Using &#160;as a canvas, draw . " alt="" coords="1267,453,1389,480"/>
+<area shape="rect" id="node24" href="$group___framebuffer.html#ga7e1e19562a1db33dac859ea13678a221" title="fb_draw_shape_arr" alt="" coords="1440,403,1583,429"/>
+<area shape="rect" id="node25" href="$group___framebuffer.html#ga5d4895c2a6bd4b3c6e346f307cd98df1" title="fb_draw_shapes" alt="" coords="1449,352,1573,379"/>
+<area shape="rect" id="node27" href="$group___framebuffer.html#ga9d2155cdc8d7df96d99040f51d777b82" title="fb_erase_shape_arr" alt="" coords="1437,453,1585,480"/>
+<area shape="rect" id="node31" href="$group___framebuffer.html#ga792dc19efeda435d4305172b54e29a2a" title="Erase string on fb starting at top_left_corner and free top_left_corner. " alt="" coords="887,529,1046,556"/>
+<area shape="rect" id="node33" href="$group___framebuffer.html#ga939446516b50e0f1794c0e5306482116" title="Draw string on fb starting at top_left_corner. " alt="" coords="678,631,793,657"/>
+<area shape="rect" id="node34" href="$group___framebuffer.html#gae1638c1f446b9c088ccf9ba1490afe38" title="Call fb_draw_string and destroy top_left_corner. " alt="" coords="649,580,822,607"/>
+</map>

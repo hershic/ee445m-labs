@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$framebuffer_8h.html#a6971c006781336c2ec6a3e3e7d6d3d42" title="FBDrawEllipse" alt="" coords="224,5,333,35"/>
-<area shape="rect" id="node5" href="$framebuffer_8h.html#ac12497e62c51e47459305175e3f179e3" title="FBDrawCircle" alt="" coords="381,5,485,35"/>
-<area shape="rect" id="node7" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="533,5,661,35"/>
-<area shape="rect" id="node9" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="709,5,760,35"/>
-</map>

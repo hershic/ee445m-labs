@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__shamd5__api.html#ga99e443edfb8152a92e4c49bebb25a2d5" title="_SHAMD5DataWriteMultiple" alt="" coords="208,5,397,35"/>
-<area shape="rect" id="node7" href="$group__shamd5__api.html#ga9ece25929ddc57492309b20df0ef93f5" title="SHAMD5HashLengthSet" alt="" coords="219,59,387,88"/>
-<area shape="rect" id="node9" href="$group__shamd5__api.html#gac1c744936db18edf77c35d9783c5c238" title="SHAMD5ResultRead" alt="" coords="229,112,376,141"/>
-<area shape="rect" id="node5" href="$group__shamd5__api.html#ga14d4882c64226352247310d4920b4a41" title="SHAMD5DataWrite" alt="" coords="447,5,583,35"/>
+<map id="SHAMD5DataProcess" name="SHAMD5DataProcess">
+<area shape="rect" id="node2" href="$group__shamd5__api.html#ga99e443edfb8152a92e4c49bebb25a2d5" title="_SHAMD5DataWriteMultiple" alt="" coords="213,5,411,32"/>
+<area shape="rect" id="node4" href="$group__shamd5__api.html#ga9ece25929ddc57492309b20df0ef93f5" title="SHAMD5HashLengthSet" alt="" coords="223,56,401,83"/>
+<area shape="rect" id="node5" href="$group__shamd5__api.html#gac1c744936db18edf77c35d9783c5c238" title="SHAMD5ResultRead" alt="" coords="238,107,386,133"/>
+<area shape="rect" id="node3" href="$group__shamd5__api.html#ga14d4882c64226352247310d4920b4a41" title="SHAMD5DataWrite" alt="" coords="459,5,600,32"/>
 </map>

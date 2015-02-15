@@ -1,0 +1,5 @@
+<map id="ADCSequenceStepConfigure" name="ADCSequenceStepConfigure">
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="265,5,336,32"/>
+<area shape="rect" id="node4" href="$lib_2libadc_2adc_8h.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="259,56,343,83"/>
+<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="391,31,445,57"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="fb_draw_ellipse" name="fb_draw_ellipse">
+<area shape="rect" id="node2" href="$group___framebuffer.html#ga5ab35be5cf9af81c16a3fd7ed005efaa" title="Plot on fb the four symmetric points on an ellipse described by a center and x&#45; and y&#45;offsets..." alt="" coords="172,5,323,47"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="371,13,468,39"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="516,5,653,47"/>
+</map>

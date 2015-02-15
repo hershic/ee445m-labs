@@ -1,0 +1,5 @@
+<map id="encode_adc_channel" name="encode_adc_channel">
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#a643156335942afa7ab62e0cee890fbd5" title="adc_collect" alt="" coords="209,5,303,32"/>
+<area shape="rect" id="node4" href="$lib_2libadc_2adc_8h.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="214,56,298,83"/>
+<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="351,31,405,57"/>
+</map>

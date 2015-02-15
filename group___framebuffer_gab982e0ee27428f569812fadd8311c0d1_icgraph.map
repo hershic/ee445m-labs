@@ -1,0 +1,29 @@
+<map id="fb_console_println_coordinate" name="fb_console_println_coordinate">
+<area shape="rect" id="node2" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="191,309,288,336"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#ga121e8be6bae1043cfe06ec033fbe3e48" title="The heavy&#45;lifter (pixel&#45;setter) in line&#45;segment&#45;drawing. " alt="" coords="358,132,465,159"/>
+<area shape="rect" id="node15" href="$group___framebuffer.html#ga5ab35be5cf9af81c16a3fd7ed005efaa" title="Plot on fb the four symmetric points on an ellipse described by a center and x&#45; and y&#45;offsets..." alt="" coords="336,207,487,249"/>
+<area shape="rect" id="node18" href="$group___framebuffer.html#ga20639758c2332e5c6b6c3e684432a7c6" title="Fill an ellipse on fb. " alt="" coords="341,273,481,314"/>
+<area shape="rect" id="node19" href="$group___framebuffer.html#gac57ccea9bb7ea8c02a78e30ac47c8ea9" title="Draw on fb a shaded ellipse described by center, x&#45; and y&#45;radii. " alt="" coords="538,284,677,311"/>
+<area shape="rect" id="node20" href="$group___framebuffer.html#gae90067f3fe45779572dc0f3b0ba91ef8" title="For internal use only. " alt="" coords="355,389,468,416"/>
+<area shape="rect" id="node27" href="$group___framebuffer.html#ga0600a31391ae1c43119f5d64de0e991b" title="Clear pixel (x,y) in . " alt="" coords="357,440,465,467"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#gac9bb47c15b05d6606e7bed2374d41c47" title="Draws a line connecting two points before destroying the two points. " alt="" coords="538,31,677,57"/>
+<area shape="rect" id="node5" href="$group___framebuffer.html#ga176c28a08fd2244ee50cab04d98327b7" title="Draw a line segment on &#160;from &#160;to &#160;of color .to of color .shade. " alt="" coords="557,81,657,108"/>
+<area shape="rect" id="node13" href="$group___framebuffer.html#gac280cc941c40c25cc14eb7a0e793efed" title="Erases a line connecting two points before destroys the two points. " alt="" coords="535,132,680,159"/>
+<area shape="rect" id="node14" href="$group___framebuffer.html#gad949d0e0f79148bd78b990bdd7606601" title="Remove a line segment on &#160;from &#160;to . " alt="" coords="554,183,661,209"/>
+<area shape="rect" id="node6" href="$group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd" title="Draw a line segment on &#160;from &#160;to . " alt="" coords="735,81,895,108"/>
+<area shape="rect" id="node7" href="$group___framebuffer.html#ga8ed2dc9704139b51b040a9fb9f071d2a" title="For internal use only. " alt="" coords="967,81,1091,108"/>
+<area shape="rect" id="node8" href="$group___framebuffer.html#gae4c4c9ce4d0bc630a333e591ff5acb9d" title="Using &#160;as a canvas, draw . " alt="" coords="1159,56,1276,83"/>
+<area shape="rect" id="node11" href="$group___framebuffer.html#ga18f737437df562819d959eb0ad270b09" title="Using &#160;as a canvas, draw . " alt="" coords="1156,107,1279,133"/>
+<area shape="rect" id="node9" href="$group___framebuffer.html#ga5d4895c2a6bd4b3c6e346f307cd98df1" title="fb_draw_shapes" alt="" coords="1339,5,1463,32"/>
+<area shape="rect" id="node10" href="$group___framebuffer.html#ga7e1e19562a1db33dac859ea13678a221" title="fb_draw_shape_arr" alt="" coords="1329,56,1472,83"/>
+<area shape="rect" id="node12" href="$group___framebuffer.html#ga9d2155cdc8d7df96d99040f51d777b82" title="fb_erase_shape_arr" alt="" coords="1327,107,1475,133"/>
+<area shape="rect" id="node16" href="$group___framebuffer.html#ga867f44166e7fa9d6eed7c5913ed43e7e" title="Draw an ellipse in fb at center with specified x&#45; and y&#45;radii of color shade. " alt="" coords="548,233,667,260"/>
+<area shape="rect" id="node17" href="$group___framebuffer.html#ga9ecedd1b306388a8ad4fc12f558f8f2e" title="Draw a circle in &#160;at &#160;with radius of color . " alt="" coords="759,233,870,260"/>
+<area shape="rect" id="node21" href="$group___framebuffer.html#gaa1b8fcc5d69ea30839947f996d38aa70" title="For internal use only. " alt="" coords="547,339,668,365"/>
+<area shape="rect" id="node26" href="$group___framebuffer.html#gab907ab6af808bfadcbe22f8f8768c4dc" title="Erase char on fb starting at top_left_corner. " alt="" coords="551,389,663,416"/>
+<area shape="rect" id="node22" href="$group___framebuffer.html#ga939446516b50e0f1794c0e5306482116" title="Draw string on fb starting at top_left_corner. " alt="" coords="757,288,872,315"/>
+<area shape="rect" id="node23" href="$group___framebuffer.html#gae1638c1f446b9c088ccf9ba1490afe38" title="Call fb_draw_string and destroy top_left_corner. " alt="" coords="728,339,901,365"/>
+<area shape="rect" id="node24" href="$group___framebuffer.html#ga74ea44c7be9c61d9241848387aa1b59c" title="Erase string on fb starting at top_left_corner. " alt="" coords="755,389,875,416"/>
+<area shape="rect" id="node25" href="$group___framebuffer.html#ga792dc19efeda435d4305172b54e29a2a" title="Erase string on fb starting at top_left_corner and free top_left_corner. " alt="" coords="949,389,1108,416"/>
+<area shape="rect" id="node28" href="$group___framebuffer.html#gab83e77b20cb67d27d858d1012f54c125" title="Erase pixel (x,y) in . " alt="" coords="551,440,664,467"/>
+</map>

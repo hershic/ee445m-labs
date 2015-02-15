@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$clock_8h.html#a19b0971a9f8a0a52499f4a7da3579699" title="CHToShape" alt="" coords="188,5,281,35"/>
-<area shape="rect" id="node11" href="$shape_8h.html#a38f793e06e025bc31392cf5646a5eb49" title="SHCreateQuad" alt="" coords="180,59,289,88"/>
-<area shape="rect" id="node15" href="$shape_8h.html#ab0aa95a7e3e8965451eeb1a5d1029eed" title="SHCreateTriangle" alt="" coords="172,112,297,141"/>
-<area shape="rect" id="node5" href="$clock_8h.html#aeaf9d0be8dc802b7edacf73345fea084" title="CFToShapes" alt="" coords="383,5,481,35"/>
-<area shape="rect" id="node7" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="565,5,693,35"/>
-<area shape="rect" id="node9" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="741,5,792,35"/>
-<area shape="rect" id="node13" href="$console-fb_8c.html#a65f7392473e42f232198f0ecb3b425f4" title="demonstrateDrawShapes" alt="" coords="348,85,516,115"/>
-</map>

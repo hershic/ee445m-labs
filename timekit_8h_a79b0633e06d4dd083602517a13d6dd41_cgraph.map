@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$timekit_8c.html#afd0611daffa420c0aa7eb693d2cd61e6" title="TKIncrementSeconds" alt="" coords="172,5,319,35"/>
-<area shape="rect" id="node5" href="$timekit_8c.html#a0648bf2808c0bdaca69be00c10d00021" title="TKIncrementMinutes" alt="" coords="369,5,511,35"/>
-<area shape="rect" id="node7" href="$timekit_8c.html#a0bf7ac612277a46f706c05e5cc6ffa01" title="TKIncrementHours" alt="" coords="561,5,692,35"/>
+<map id="TKIncrementMS" name="TKIncrementMS">
+<area shape="rect" id="node2" href="$timekit_8c.html#afd0611daffa420c0aa7eb693d2cd61e6" title="TKIncrementSeconds" alt="" coords="176,5,333,32"/>
+<area shape="rect" id="node3" href="$timekit_8c.html#a0648bf2808c0bdaca69be00c10d00021" title="TKIncrementMinutes" alt="" coords="381,5,533,32"/>
+<area shape="rect" id="node4" href="$timekit_8c.html#a0bf7ac612277a46f706c05e5cc6ffa01" title="TKIncrementHours" alt="" coords="581,5,721,32"/>
 </map>

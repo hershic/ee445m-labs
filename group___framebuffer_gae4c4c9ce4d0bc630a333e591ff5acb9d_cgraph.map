@@ -1,0 +1,10 @@
+<map id="fb_draw_shape" name="fb_draw_shape">
+<area shape="rect" id="node2" href="$group___framebuffer.html#ga8ed2dc9704139b51b040a9fb9f071d2a" title="For internal use only. " alt="" coords="171,42,295,69"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd" title="Draw a line segment on &#160;from &#160;to . " alt="" coords="343,42,503,69"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#ga176c28a08fd2244ee50cab04d98327b7" title="Draw a line segment on &#160;from &#160;to &#160;of color .to of color .shade. " alt="" coords="551,42,651,69"/>
+<area shape="rect" id="node5" href="$group___framebuffer.html#ga121e8be6bae1043cfe06ec033fbe3e48" title="The heavy&#45;lifter (pixel&#45;setter) in line&#45;segment&#45;drawing. " alt="" coords="699,42,805,69"/>
+<area shape="rect" id="node6" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="887,15,985,42"/>
+<area shape="rect" id="node8" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="853,67,1019,94"/>
+<area shape="rect" id="node7" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="1072,5,1209,47"/>
+<area shape="rect" id="node9" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="1067,71,1215,98"/>
+</map>

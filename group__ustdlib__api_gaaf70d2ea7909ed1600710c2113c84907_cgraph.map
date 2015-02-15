@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__ustdlib__api.html#ga06ccdf7b6e513ef783d4ac92dee507c6" title="ucmptime" alt="" coords="128,5,205,35"/>
-<area shape="rect" id="node5" href="$group__ustdlib__api.html#ga3a5728f0b62a5c92bc34f0a41c33278c" title="ulocaltime" alt="" coords="127,59,207,88"/>
+<map id="umktime" name="umktime">
+<area shape="rect" id="node2" href="$group__ustdlib__api.html#ga06ccdf7b6e513ef783d4ac92dee507c6" title="ucmptime" alt="" coords="133,5,219,32"/>
+<area shape="rect" id="node3" href="$group__ustdlib__api.html#ga3a5728f0b62a5c92bc34f0a41c33278c" title="ulocaltime" alt="" coords="132,56,220,83"/>
 </map>

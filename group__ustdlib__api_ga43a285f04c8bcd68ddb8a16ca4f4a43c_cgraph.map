@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__ustdlib__api.html#ga4d2016620f37444cd039675cf8b25d70" title="uvsnprintf" alt="" coords="121,5,199,35"/>
-<area shape="rect" id="node5" href="$group__ustdlib__api.html#ga9c6b6efcdd76a057125b6e580d0b47fc" title="ustrncpy" alt="" coords="248,5,320,35"/>
+<map id="usprintf" name="usprintf">
+<area shape="rect" id="node2" href="$group__ustdlib__api.html#ga4d2016620f37444cd039675cf8b25d70" title="uvsnprintf" alt="" coords="124,5,209,32"/>
+<area shape="rect" id="node3" href="$group__ustdlib__api.html#ga9c6b6efcdd76a057125b6e580d0b47fc" title="ustrncpy" alt="" coords="257,5,335,32"/>
 </map>

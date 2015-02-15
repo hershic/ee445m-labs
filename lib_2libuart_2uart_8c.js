@@ -1,5 +1,6 @@
 var lib_2libuart_2uart_8c =
 [
+    [ "NDEBUG", "lib_2libuart_2uart_8c.html#a8de3ed741dadc9c979a4ff17c0a9116e", null ],
     [ "uart_clear_active_channel", "lib_2libuart_2uart_8c.html#a7e15c433cb1770aa074691a174a0d1de", null ],
     [ "uart_get_char", "lib_2libuart_2uart_8c.html#a36116526b4c84562aec19bca46a0827e", null ],
     [ "uart_get_char_", "lib_2libuart_2uart_8c.html#a0ef7b9a5605bcb31bc764e1144bf2bc4", null ],
@@ -13,5 +14,7 @@ var lib_2libuart_2uart_8c =
     [ "uart_send_string", "lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979", null ],
     [ "uart_send_string_", "lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07", null ],
     [ "uart_set_active_channel", "lib_2libuart_2uart_8c.html#ad880ffa037ecb14b4571aee5d6f53acd", null ],
-    [ "uart_active_channel", "lib_2libuart_2uart_8c.html#ab8459d8f15a47416a6234aeefa0237af", null ]
+    [ "ustrlen", "lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae", null ],
+    [ "uart_active_channel", "lib_2libuart_2uart_8c.html#ab8459d8f15a47416a6234aeefa0237af", null ],
+    [ "UART_BUFFER", "lib_2libuart_2uart_8c.html#a8d80ff30a035806180f1ffcf4f61f330", null ]
 ];

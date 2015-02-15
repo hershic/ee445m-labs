@@ -1,5 +1,7 @@
 var clock_8h =
 [
+    [ "clockhand", "structclockhand.html", "structclockhand" ],
+    [ "clockface", "structclockface.html", "structclockface" ],
     [ "CH_ANGLE_OFFSET", "clock_8h.html#a7e098763c79c53fbd6f4ff2ee76c908f", null ],
     [ "CH_HOURS", "clock_8h.html#a41a3287a59b3d6d723ebf78c706cd3c2", null ],
     [ "CH_MAX_DEGREES", "clock_8h.html#a8d7934cdc15281886c0350df5e1576f7", null ],

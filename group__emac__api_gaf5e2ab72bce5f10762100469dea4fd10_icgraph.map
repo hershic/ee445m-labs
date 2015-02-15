@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__emac__api.html#ga6b3428f8d47bf7d0c802283bda1909e2" title="EMACPHYExtendedRead" alt="" coords="175,5,348,35"/>
-<area shape="rect" id="node5" href="$group__emac__api.html#gae7c9b0907beeac02750a042f2317f5a1" title="EMACPHYExtendedWrite" alt="" coords="175,59,348,88"/>
-<area shape="rect" id="node7" href="$group__emac__api.html#ga0080e044c910d6b0ab48d22bc8a38846" title="EMACPHYPowerOff" alt="" coords="189,112,333,141"/>
-<area shape="rect" id="node9" href="$group__emac__api.html#gac0751c7cb2f7d7a3110c1df9fe365765" title="EMACPHYPowerOn" alt="" coords="191,165,332,195"/>
+<map id="EMACPHYWrite" name="EMACPHYWrite">
+<area shape="rect" id="node2" href="$group__emac__api.html#ga6b3428f8d47bf7d0c802283bda1909e2" title="EMACPHYExtendedRead" alt="" coords="168,5,343,32"/>
+<area shape="rect" id="node3" href="$group__emac__api.html#gae7c9b0907beeac02750a042f2317f5a1" title="EMACPHYExtendedWrite" alt="" coords="168,56,343,83"/>
+<area shape="rect" id="node4" href="$group__emac__api.html#ga0080e044c910d6b0ab48d22bc8a38846" title="EMACPHYPowerOff" alt="" coords="185,107,325,133"/>
+<area shape="rect" id="node5" href="$group__emac__api.html#gac0751c7cb2f7d7a3110c1df9fe365765" title="EMACPHYPowerOn" alt="" coords="185,157,325,184"/>
 </map>

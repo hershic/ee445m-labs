@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__can__api.html#ga922cb343caeba31e3fff78a0e4d19d9b" title="CANIntRegister" alt="" coords="201,5,316,35"/>
-<area shape="rect" id="node5" href="$group__can__api.html#ga1e71364bd82cea6019dce65f0d4e8ff4" title="CANIntUnregister" alt="" coords="196,59,321,88"/>
+<map id="_CANIntNumberGet" name="_CANIntNumberGet">
+<area shape="rect" id="node2" href="$group__can__api.html#ga922cb343caeba31e3fff78a0e4d19d9b" title="CANIntRegister" alt="" coords="209,5,327,32"/>
+<area shape="rect" id="node3" href="$group__can__api.html#ga1e71364bd82cea6019dce65f0d4e8ff4" title="CANIntUnregister" alt="" coords="201,56,335,83"/>
 </map>

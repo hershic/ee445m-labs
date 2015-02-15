@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__udma__api.html#ga6f73ab006ff6a593eeeb947130bbdf6f" title="uDMAChannelControlSet" alt="" coords="193,5,361,35"/>
-<area shape="rect" id="node5" href="$group__udma__api.html#ga41e21189773539bbc5f302863cd5bf06" title="uDMAChannelEnable" alt="" coords="204,59,351,88"/>
-<area shape="rect" id="node7" href="$group__udma__api.html#ga938c21dc70cb6e11e6eb826de0fa21c3" title="uDMAChannelTransferSet" alt="" coords="191,112,364,141"/>
+<map id="SPIFlashIntHandler" name="SPIFlashIntHandler">
+<area shape="rect" id="node2" href="$group__udma__api.html#ga6f73ab006ff6a593eeeb947130bbdf6f" title="uDMAChannelControlSet" alt="" coords="197,5,377,32"/>
+<area shape="rect" id="node3" href="$group__udma__api.html#ga41e21189773539bbc5f302863cd5bf06" title="uDMAChannelEnable" alt="" coords="209,56,364,83"/>
+<area shape="rect" id="node4" href="$group__udma__api.html#ga938c21dc70cb6e11e6eb826de0fa21c3" title="uDMAChannelTransferSet" alt="" coords="195,107,379,133"/>
 </map>

@@ -1,7 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8c.html#a0ef7b9a5605bcb31bc764e1144bf2bc4" title="Read a char from the specified uart channel." alt="" coords="176,5,283,35"/>
-<area shape="rect" id="node7" href="$group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="168,59,291,88"/>
-<area shape="rect" id="node9" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="177,112,281,141"/>
-<area shape="rect" id="node11" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="173,165,285,195"/>
-<area shape="rect" id="node5" href="$group__uart__api.html#gaad338221fc820412b005653855cedaf7" title="UARTCharGetNonBlocking" alt="" coords="340,5,521,35"/>
+<map id="uart_get_string_" name="uart_get_string_">
+<area shape="rect" id="node2" href="$group__uart__api.html#gaad338221fc820412b005653855cedaf7" title="UARTCharGetNonBlocking" alt="" coords="180,5,367,32"/>
+<area shape="rect" id="node3" href="$group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="213,56,333,83"/>
+<area shape="rect" id="node4" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="221,107,325,133"/>
+<area shape="rect" id="node5" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="217,157,330,184"/>
 </map>

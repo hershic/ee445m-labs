@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__softssi__api.html#ga491ac620fb2f59549f015e07daaca9f7" title="SoftSSIRxInt" alt="" coords="183,5,281,35"/>
-<area shape="rect" id="node5" href="$group__softssi__api.html#ga8543e94cedbf1335ee98ae77558ff0fa" title="SoftSSITxInt" alt="" coords="183,59,281,88"/>
+<map id="SoftSSITimerTick" name="SoftSSITimerTick">
+<area shape="rect" id="node2" href="$group__softssi__api.html#ga491ac620fb2f59549f015e07daaca9f7" title="SoftSSIRxInt" alt="" coords="183,5,283,32"/>
+<area shape="rect" id="node3" href="$group__softssi__api.html#ga8543e94cedbf1335ee98ae77558ff0fa" title="SoftSSITxInt" alt="" coords="183,56,282,83"/>
 </map>

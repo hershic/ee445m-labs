@@ -1,0 +1,9 @@
+<map id="timer_add_periodic_interrupt" name="timer_add_periodic_interrupt">
+<area shape="rect" id="node2" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="241,5,323,32"/>
+<area shape="rect" id="node3" href="$group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="223,56,341,83"/>
+<area shape="rect" id="node4" href="$group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="197,107,367,133"/>
+<area shape="rect" id="node5" href="$group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8" title="TimerConfigure" alt="" coords="223,157,341,184"/>
+<area shape="rect" id="node6" href="$group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c" title="TimerEnable" alt="" coords="231,208,333,235"/>
+<area shape="rect" id="node7" href="$group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf" title="TimerIntEnable" alt="" coords="223,259,341,285"/>
+<area shape="rect" id="node8" href="$group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613" title="TimerLoadSet" alt="" coords="227,309,337,336"/>
+</map>

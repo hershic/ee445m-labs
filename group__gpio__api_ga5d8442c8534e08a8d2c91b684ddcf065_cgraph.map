@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__gpio__api.html#ga047f30e7f41a0ab501891b73359c3c16" title="_GPIOIntNumberGet" alt="" coords="184,5,328,35"/>
-<area shape="rect" id="node5" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="216,59,296,88"/>
-<area shape="rect" id="node7" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="208,112,304,141"/>
-<area shape="rect" id="node9" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="376,112,507,141"/>
+<map id="GPIOIntUnregister" name="GPIOIntUnregister">
+<area shape="rect" id="node2" href="$group__gpio__api.html#ga047f30e7f41a0ab501891b73359c3c16" title="_GPIOIntNumberGet" alt="" coords="189,5,340,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="222,56,307,83"/>
+<area shape="rect" id="node4" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="212,107,317,133"/>
+<area shape="rect" id="node5" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="388,107,529,133"/>
 </map>

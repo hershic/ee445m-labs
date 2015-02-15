@@ -1,3 +1,3 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$structpoint.html" title="{point\n|+ x\l+ y\l+ shade\l|}" alt="" coords="19,5,88,125"/>
+<map id="shape" name="shape">
+<area shape="rect" id="node2" href="$structpoint.html" title="Representation of an ordered pair with a shade. " alt="" coords="23,5,99,112"/>
 </map>

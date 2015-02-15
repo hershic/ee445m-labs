@@ -1,0 +1,9 @@
+<map id="lib/libgraphics2d" name="lib/libgraphics2d">
+<area shape="rect" id="node1" href="dir_c50106e1cdbad0d575a00e777fce7f7b.html" title="libgraphics2d" alt="" coords="54,52,161,100"/>
+<area shape="rect" id="node2" href="dir_44079a06673171678185043b040a4b61.html" title="libframebuffer" alt="" coords="5,148,116,196"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000018_000017.html" title="1" alt="" coords="83,128,92,143"/>
+<area shape="rect" id="node3" href="dir_8abf0dd83f466419d031c235a073d3af.html" title="libstd" alt="" coords="71,244,143,292"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000018_000028.html" title="1" alt="" coords="125,222,135,236"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000017_000028.html" title="3" alt="" coords="91,217,100,231"/>
+<area shape="rect" id="clust1" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html" title="lib" alt="" coords="43,16,171,111"/>
+</map>

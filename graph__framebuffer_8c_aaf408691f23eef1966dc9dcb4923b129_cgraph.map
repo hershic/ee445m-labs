@@ -1,6 +1,3 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$framebuffer_8c.html#a965fe65ef18ae01da8dc8ddbbcbf0bd6" title="FBDrawAnonLine" alt="" coords="212,5,335,35"/>
-<area shape="rect" id="node9" href="$shape_8c.html#a3a83d2082d27116cb1cc3f3a8952f584" title="SHCreatePoint" alt="" coords="219,59,328,88"/>
-<area shape="rect" id="node5" href="$framebuffer_8c.html#ab8502320f03a46f5efc1b3d1ff9581b7" title="_FBDrawLine" alt="" coords="384,5,485,35"/>
-<area shape="rect" id="node7" href="$framebuffer_8c.html#affd9b8ca0dd10a77547346df9bd06496" title="FBSetPixel" alt="" coords="533,5,621,35"/>
+<map id="_FBDrawGraphBounds" name="_FBDrawGraphBounds">
+<area shape="rect" id="node2" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="217,5,365,32"/>
 </map>

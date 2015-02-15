@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__gpio__api.html#ga047f30e7f41a0ab501891b73359c3c16" title="_GPIOIntNumberGet" alt="" coords="173,5,317,35"/>
-<area shape="rect" id="node5" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="207,59,284,88"/>
-<area shape="rect" id="node7" href="$group__interrupt__api.html#ga0a32aafea7f4904d2a64ee18b45f96c9" title="IntRegister" alt="" coords="203,112,288,141"/>
+<map id="GPIOIntRegister" name="GPIOIntRegister">
+<area shape="rect" id="node2" href="$group__gpio__api.html#ga047f30e7f41a0ab501891b73359c3c16" title="_GPIOIntNumberGet" alt="" coords="173,5,324,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="208,56,289,83"/>
+<area shape="rect" id="node4" href="$group__interrupt__api.html#ga0a32aafea7f4904d2a64ee18b45f96c9" title="IntRegister" alt="" coords="204,107,293,133"/>
 </map>

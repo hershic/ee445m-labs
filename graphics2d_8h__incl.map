@@ -1,5 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$g2d__defines_8h.html" title="g2d_defines.h" alt="" coords="49,237,151,267"/>
-<area shape="rect" id="node5" href="$framebuffer_8h.html" title="framebuffer.h" alt="" coords="104,83,203,112"/>
-<area shape="rect" id="node10" href="$shape_8h.html" title="shape.h" alt="" coords="231,160,297,189"/>
+<map id="lib/libgraphics2d/graphics2d.h" name="lib/libgraphics2d/graphics2d.h">
+<area shape="rect" id="node2" href="$defines_8h.html" title="libstd/defines.h" alt="" coords="401,229,520,256"/>
+<area shape="rect" id="node4" href="$framebuffer_8h.html" title="libframebuffer/framebuffer.h" alt="" coords="315,80,516,107"/>
+<area shape="rect" id="node6" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="499,155,609,181"/>
+<area shape="rect" id="node8" href="$shape_8h.html" title="libmath/geometry/shape.h" alt="" coords="5,155,196,181"/>
+<area shape="rect" id="node10" href="$font_8h.html" title="libfont/font.h" alt="" coords="320,155,423,181"/>
 </map>

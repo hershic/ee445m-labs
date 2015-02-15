@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$ssi_8c.html" title="driverlib/ssi.c" alt="" coords="5,83,104,112"/>
-<area shape="rect" id="node5" href="$spi__flash_8c.html" title="utils/spi_flash.c" alt="" coords="128,83,240,112"/>
+<map id="driverlib/ssi.h" name="driverlib/ssi.h">
+<area shape="rect" id="node2" href="$ssi_8c.html" title="driverlib/ssi.c" alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node3" href="$spi__flash_8c.html" title="utils/spi_flash.c" alt="" coords="134,80,253,107"/>
 </map>

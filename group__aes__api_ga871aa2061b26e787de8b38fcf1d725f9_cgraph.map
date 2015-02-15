@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__aes__api.html#gaece7b2668ed8e5e01353cd42d6cf30ad" title="AESDataWrite" alt="" coords="159,5,265,35"/>
-<area shape="rect" id="node5" href="$group__aes__api.html#ga884731d9239e9f5313d14b84721cf8f2" title="AESLengthSet" alt="" coords="159,59,265,88"/>
-<area shape="rect" id="node7" href="$group__aes__api.html#gae4d89be99ad0411c6bd99f893ebc40d3" title="AESTagRead" alt="" coords="161,112,263,141"/>
+<map id="AESDataAuth" name="AESDataAuth">
+<area shape="rect" id="node2" href="$group__aes__api.html#gaece7b2668ed8e5e01353cd42d6cf30ad" title="AESDataWrite" alt="" coords="165,5,275,32"/>
+<area shape="rect" id="node3" href="$group__aes__api.html#ga884731d9239e9f5313d14b84721cf8f2" title="AESLengthSet" alt="" coords="163,56,277,83"/>
+<area shape="rect" id="node4" href="$group__aes__api.html#gae4d89be99ad0411c6bd99f893ebc40d3" title="AESTagRead" alt="" coords="170,107,270,133"/>
 </map>

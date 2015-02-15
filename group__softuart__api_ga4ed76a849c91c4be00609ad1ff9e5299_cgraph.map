@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__gpio__api.html#ga4d7113b768f5f06688b9900ede78f49b" title="GPIOIntClear" alt="" coords="200,5,301,35"/>
-<area shape="rect" id="node5" href="$group__gpio__api.html#gae868bfdb80cca669a3bf42d9be1a3853" title="GPIOIntEnable" alt="" coords="196,59,305,88"/>
+<map id="SoftUARTConfigSet" name="SoftUARTConfigSet">
+<area shape="rect" id="node2" href="$group__gpio__api.html#ga4d7113b768f5f06688b9900ede78f49b" title="GPIOIntClear" alt="" coords="201,5,303,32"/>
+<area shape="rect" id="node3" href="$group__gpio__api.html#gae868bfdb80cca669a3bf42d9be1a3853" title="GPIOIntEnable" alt="" coords="196,56,308,83"/>
 </map>

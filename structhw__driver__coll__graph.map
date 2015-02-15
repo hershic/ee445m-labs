@@ -1,0 +1,4 @@
+<map id="hw_driver" name="hw_driver">
+<area shape="rect" id="node2" href="$structhw__channel.html" title="{hw_channel\n||}" alt="" coords="54,175,150,252"/>
+<area shape="rect" id="node3" href="$struct__isr__subscription.html" title="{_isr_subscription\n|+ valid\l+ single_shot_subscription\l+ slot\l|}" alt="" coords="5,5,199,112"/>
+</map>

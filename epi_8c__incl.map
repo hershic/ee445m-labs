@@ -1,10 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node7" href="$hw__epi_8h.html" title="inc/hw_epi.h" alt="" coords="192,83,285,112"/>
-<area shape="rect" id="node9" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="309,83,408,112"/>
-<area shape="rect" id="node11" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="432,83,563,112"/>
-<area shape="rect" id="node13" href="$hw__sysctl_8h.html" title="inc/hw_sysctl.h" alt="" coords="587,83,699,112"/>
-<area shape="rect" id="node15" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="723,83,832,112"/>
-<area shape="rect" id="node17" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="856,83,973,112"/>
-<area shape="rect" id="node19" href="$epi_8h.html" title="driverlib/epi.h" alt="" coords="997,83,1096,112"/>
-<area shape="rect" id="node21" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1120,83,1248,112"/>
+<map id="driverlib/epi.c" name="driverlib/epi.c">
+<area shape="rect" id="node4" href="$hw__epi_8h.html" title="inc/hw_epi.h" alt="" coords="206,80,305,107"/>
+<area shape="rect" id="node5" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="329,80,432,107"/>
+<area shape="rect" id="node6" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="456,80,599,107"/>
+<area shape="rect" id="node7" href="$hw__sysctl_8h.html" title="inc/hw_sysctl.h" alt="" coords="623,80,739,107"/>
+<area shape="rect" id="node8" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="763,80,878,107"/>
+<area shape="rect" id="node9" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="902,80,1030,107"/>
+<area shape="rect" id="node10" href="$epi_8h.html" title="driverlib/epi.h" alt="" coords="1054,80,1161,107"/>
+<area shape="rect" id="node11" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1185,80,1328,107"/>
 </map>

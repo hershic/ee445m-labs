@@ -1,0 +1,13 @@
+<map id="UART0_Handler" name="UART0_Handler">
+<area shape="rect" id="node2" href="$hardware_8c.html#a5efe72b8b79e4660203f08ef6938dcf1" title="hw_notify" alt="" coords="193,81,274,108"/>
+<area shape="rect" id="node7" href="$lib_2libuart_2uart_8c.html#a36116526b4c84562aec19bca46a0827e" title="Read a char from the active uart channel. " alt="" coords="178,157,289,184"/>
+<area shape="rect" id="node11" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="557,208,670,235"/>
+<area shape="rect" id="node12" href="$group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="173,259,293,285"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#a4b839b7dc1f738e15ec7fbaf9e849ae9" title="_hw_get_channel" alt="" coords="341,56,472,83"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a880e43f5c05a25126e5f47136886bc39" title="_hw_channel_to_index" alt="" coords="531,5,695,32"/>
+<area shape="rect" id="node6" href="$hardware_8c.html#aa34d97b72da27a519047195c030c9775" title="hw_driver_singleton" alt="" coords="540,56,687,83"/>
+<area shape="rect" id="node5" href="$nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc" title="postpone_death" alt="" coords="755,31,881,57"/>
+<area shape="rect" id="node8" href="$lib_2libuart_2uart_8c.html#a0ef7b9a5605bcb31bc764e1144bf2bc4" title="Read a char from the specified uart channel. " alt="" coords="347,157,466,184"/>
+<area shape="rect" id="node9" href="$group__uart__api.html#gaad338221fc820412b005653855cedaf7" title="UARTCharGetNonBlocking" alt="" coords="520,107,707,133"/>
+<area shape="rect" id="node10" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="561,157,665,184"/>
+</map>

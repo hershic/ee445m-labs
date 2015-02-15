@@ -1,0 +1,16 @@
+<map id="lib/libtimer" name="lib/libtimer">
+<area shape="rect" id="node1" href="dir_f8c5a451f8cbfcc7ed1f49a8a4087dcf.html" title="libtimer" alt="" coords="115,52,187,100"/>
+<area shape="rect" id="node2" href="dir_cbe7e980b72bd910977dd6e551e38ac6.html" title="libhw" alt="" coords="79,148,151,196"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000010_000020.html" title="1" alt="" coords="133,127,143,141"/>
+<area shape="rect" id="node3" href="dir_ccfc45fba3c59d28434cf038780bfc66.html" title="driverlib" alt="" coords="5,244,77,292"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000010_000007.html" title="3" alt="" coords="47,219,56,234"/>
+<area shape="rect" id="node4" href="dir_bfccd401955b95cf8c75461437045ac0.html" title="inc" alt="" coords="79,340,151,388"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000010_000012.html" title="2" alt="" coords="166,347,176,361"/>
+<area shape="rect" id="node5" href="dir_c13a3a6fbb294df5f6cf46256f727fc9.html" title="libnotify" alt="" coords="152,244,224,292"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000010_000024.html" title="1" alt="" coords="184,217,193,232"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000020_000007.html" title="8" alt="" coords="72,227,82,242"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000020_000012.html" title="2" alt="" coords="118,314,128,329"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000020_000024.html" title="1" alt="" coords="161,217,170,232"/>
+<area shape="rect" id="edge8-headlabel" href="dir_000007_000012.html" title="126" alt="" coords="80,313,105,328"/>
+<area shape="rect" id="clust1" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html" title="lib" alt="" coords="104,16,197,111"/>
+</map>

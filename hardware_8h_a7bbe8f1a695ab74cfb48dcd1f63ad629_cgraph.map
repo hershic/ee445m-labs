@@ -1,0 +1,7 @@
+<map id="hw_connect_single_shot" name="hw_connect_single_shot">
+<area shape="rect" id="node2" href="$hardware_8c.html#aeeaefdcaa85795637f0da08d497ec740" title="_hw_first_available\l_subscription" alt="" coords="229,5,369,47"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a4b839b7dc1f738e15ec7fbaf9e849ae9" title="_hw_get_channel" alt="" coords="234,71,365,98"/>
+<area shape="rect" id="node3" href="$nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc" title="postpone_death" alt="" coords="629,63,756,90"/>
+<area shape="rect" id="node5" href="$hardware_8c.html#a880e43f5c05a25126e5f47136886bc39" title="_hw_channel_to_index" alt="" coords="417,63,581,90"/>
+<area shape="rect" id="node6" href="$hardware_8c.html#aa34d97b72da27a519047195c030c9775" title="hw_driver_singleton" alt="" coords="426,114,573,141"/>
+</map>

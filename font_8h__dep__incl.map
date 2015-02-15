@@ -1,0 +1,10 @@
+<map id="lib/libfont/font.h" name="lib/libfont/font.h">
+<area shape="rect" id="node2" href="$framebuffer_8h.html" title="lib/libframebuffer\l/framebuffer.h" alt="" coords="251,80,380,121"/>
+<area shape="rect" id="node3" href="$framebuffer_8c.html" title="lib/libframebuffer\l/framebuffer.c" alt="" coords="5,169,135,211"/>
+<area shape="rect" id="node4" href="$graphics2d_8h.html" title="lib/libgraphics2d/graphics2d.h" alt="" coords="210,177,421,203"/>
+<area shape="rect" id="node6" href="$console-fb_8c.html" title="validation/console\l&#45;clock/console&#45;fb.c" alt="" coords="47,259,187,300"/>
+<area shape="rect" id="node7" href="$console-grapher_8c.html" title="validation/console\l&#45;grapher/console&#45;grapher.c" alt="" coords="445,259,639,300"/>
+<area shape="rect" id="node8" href="$graph__framebuffer_8h.html" title="lib/liboscope&#45;grapher\l/graph_framebuffer.h" alt="" coords="496,169,652,211"/>
+<area shape="rect" id="node5" href="$graphics2d_8c.html" title="lib/libgraphics2d/graphics2d.c" alt="" coords="211,266,420,293"/>
+<area shape="rect" id="node9" href="$graph__framebuffer_8c.html" title="lib/liboscope&#45;grapher\l/graph_framebuffer.c" alt="" coords="663,259,818,300"/>
+</map>

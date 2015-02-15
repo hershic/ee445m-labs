@@ -1,7 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$graph__framebuffer_8h.html#a659ad2ef6e8e5e173ca0b81dd98a02a8" title="FBDrawGraph" alt="" coords="232,5,336,35"/>
-<area shape="rect" id="node9" href="$graph__framebuffer_8h.html#ae120d98ef41c59e3ab681a48c86574aa" title="FBEraseGraph" alt="" coords="231,59,337,88"/>
-<area shape="rect" id="node5" href="$graph__framebuffer_8h.html#a68ea6bab8c3bda3ce5c7ee4e5d984951" title="FBDrawFullscreenGraph" alt="" coords="388,5,553,35"/>
-<area shape="rect" id="node7" href="$console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="603,32,653,61"/>
-<area shape="rect" id="node11" href="$graph__framebuffer_8h.html#a2b78e955f04080df1984657aef576cbc" title="FBEraseFullscreenGraph" alt="" coords="387,59,555,88"/>
+<map id="_FBDrawGraphAxesScale" name="_FBDrawGraphAxesScale">
+<area shape="rect" id="node2" href="$graph__framebuffer_8h.html#a659ad2ef6e8e5e173ca0b81dd98a02a8" title="FBDrawGraph" alt="" coords="238,5,347,32"/>
+<area shape="rect" id="node5" href="$graph__framebuffer_8h.html#ae120d98ef41c59e3ab681a48c86574aa" title="FBEraseGraph" alt="" coords="236,56,349,83"/>
+<area shape="rect" id="node3" href="$graph__framebuffer_8h.html#a68ea6bab8c3bda3ce5c7ee4e5d984951" title="FBDrawFullscreenGraph" alt="" coords="399,5,571,32"/>
+<area shape="rect" id="node4" href="$console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="621,31,676,57"/>
+<area shape="rect" id="node6" href="$graph__framebuffer_8h.html#a2b78e955f04080df1984657aef576cbc" title="FBEraseFullscreenGraph" alt="" coords="397,56,573,83"/>
 </map>

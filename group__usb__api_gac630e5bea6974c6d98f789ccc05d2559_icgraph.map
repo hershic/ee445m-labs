@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__usb__api.html#gaa8a3b5d7dd0c767873b1d42a5b40aa67" title="USBIntRegister" alt="" coords="197,5,312,35"/>
-<area shape="rect" id="node5" href="$group__usb__api.html#ga52446b27aa21e19ab5e81b552f50eb92" title="USBIntUnregister" alt="" coords="192,59,317,88"/>
+<map id="_USBIntNumberGet" name="_USBIntNumberGet">
+<area shape="rect" id="node2" href="$group__usb__api.html#gaa8a3b5d7dd0c767873b1d42a5b40aa67" title="USBIntRegister" alt="" coords="209,5,327,32"/>
+<area shape="rect" id="node3" href="$group__usb__api.html#ga52446b27aa21e19ab5e81b552f50eb92" title="USBIntUnregister" alt="" coords="201,56,335,83"/>
 </map>

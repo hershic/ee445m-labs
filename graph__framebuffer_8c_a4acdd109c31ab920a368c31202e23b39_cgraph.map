@@ -1,8 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$graph__framebuffer_8c.html#a1b07bf3e42b3bddeebe422adce9e3d7e" title="FBEraseGraphData" alt="" coords="251,7,387,36"/>
-<area shape="rect" id="node13" href="$shape_8c.html#a3a83d2082d27116cb1cc3f3a8952f584" title="SHCreatePoint" alt="" coords="632,59,741,88"/>
-<area shape="rect" id="node5" href="$graph__framebuffer_8c.html#af9f7c55047f74eb174b5fb74c48fdeb6" title="_FBDrawGraphData" alt="" coords="436,7,575,36"/>
-<area shape="rect" id="node7" href="$framebuffer_8c.html#a965fe65ef18ae01da8dc8ddbbcbf0bd6" title="FBDrawAnonLine" alt="" coords="625,5,748,35"/>
-<area shape="rect" id="node9" href="$framebuffer_8c.html#ab8502320f03a46f5efc1b3d1ff9581b7" title="_FBDrawLine" alt="" coords="797,5,899,35"/>
-<area shape="rect" id="node11" href="$framebuffer_8c.html#affd9b8ca0dd10a77547346df9bd06496" title="FBSetPixel" alt="" coords="947,5,1035,35"/>
+<map id="FBEraseFullscreenGraphData" name="FBEraseFullscreenGraphData">
+<area shape="rect" id="node2" href="$graph__framebuffer_8c.html#a1b07bf3e42b3bddeebe422adce9e3d7e" title="FBEraseGraphData" alt="" coords="260,5,404,32"/>
+<area shape="rect" id="node4" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="647,31,795,57"/>
+<area shape="rect" id="node3" href="$graph__framebuffer_8c.html#af9f7c55047f74eb174b5fb74c48fdeb6" title="_FBDrawGraphData" alt="" coords="452,5,599,32"/>
 </map>

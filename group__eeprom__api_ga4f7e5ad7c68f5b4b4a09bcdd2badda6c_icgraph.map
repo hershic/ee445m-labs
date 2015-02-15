@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__eeprom__api.html#ga1f1d0bb65a54f1febbb8bb71ddff2b22" title="EEPROMInit" alt="" coords="243,5,341,35"/>
-<area shape="rect" id="node5" href="$group__eeprom__api.html#ga98a7be211398870f47277ba82db14a5d" title="EEPROMMassErase" alt="" coords="219,59,365,88"/>
+<map id="_EEPROMWaitForDone" name="_EEPROMWaitForDone">
+<area shape="rect" id="node2" href="$group__eeprom__api.html#ga1f1d0bb65a54f1febbb8bb71ddff2b22" title="EEPROMInit" alt="" coords="241,5,335,32"/>
+<area shape="rect" id="node3" href="$group__eeprom__api.html#ga98a7be211398870f47277ba82db14a5d" title="EEPROMMassErase" alt="" coords="216,56,360,83"/>
 </map>

@@ -1,0 +1,7 @@
+<map id="fb_draw_anon_line" name="fb_draw_anon_line">
+<area shape="rect" id="node2" href="$group___framebuffer.html#ga121e8be6bae1043cfe06ec033fbe3e48" title="The heavy&#45;lifter (pixel&#45;setter) in line&#45;segment&#45;drawing. " alt="" coords="192,42,299,69"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gaed40ebba9c92db179058b06b047124f4" title="In fb, set pixel (x,y) to . " alt="" coords="381,15,478,42"/>
+<area shape="rect" id="node5" href="$group___geometry.html#ga456fc029bd0c4391e2df34cfeab0d815" title="shape_duplicate_point" alt="" coords="347,67,512,94"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#gab982e0ee27428f569812fadd8311c0d1" title="Print a coordinate (ordered pair) to the console followed by a newline. " alt="" coords="565,5,703,47"/>
+<area shape="rect" id="node6" href="$group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7" title="shape_create_point" alt="" coords="560,71,708,98"/>
+</map>

@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__i2c__api.html#ga230f5c697c6210cfb4c3ff65dc2f9dcf" title="_I2CIntNumberGet" alt="" coords="175,5,305,35"/>
-<area shape="rect" id="node5" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="200,59,280,88"/>
-<area shape="rect" id="node7" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="192,112,288,141"/>
-<area shape="rect" id="node9" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="355,112,485,141"/>
+<map id="I2CIntUnregister" name="I2CIntUnregister">
+<area shape="rect" id="node2" href="$group__i2c__api.html#ga230f5c697c6210cfb4c3ff65dc2f9dcf" title="_I2CIntNumberGet" alt="" coords="179,5,319,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="206,56,291,83"/>
+<area shape="rect" id="node4" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="196,107,301,133"/>
+<area shape="rect" id="node5" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="367,107,508,133"/>
 </map>

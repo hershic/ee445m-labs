@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$clock_8h.html#aeaf9d0be8dc802b7edacf73345fea084" title="CFToShapes" alt="" coords="149,5,248,35"/>
-<area shape="rect" id="node5" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="296,5,424,35"/>
-<area shape="rect" id="node7" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="472,5,523,35"/>
+<map id="CHToShape" name="CHToShape">
+<area shape="rect" id="node2" href="$clock_8h.html#aeaf9d0be8dc802b7edacf73345fea084" title="CFToShapes" alt="" coords="148,5,247,32"/>
+<area shape="rect" id="node3" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="295,5,433,32"/>
+<area shape="rect" id="node4" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="481,5,536,32"/>
 </map>

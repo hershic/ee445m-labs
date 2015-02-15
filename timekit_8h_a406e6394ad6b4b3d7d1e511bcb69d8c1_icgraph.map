@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="201,5,252,35"/>
-<area shape="rect" id="node5" href="$timekit_8h.html#a60dc21e27ab7ed5bca5a05c3370b4244" title="TKCleanupTime" alt="" coords="169,59,284,88"/>
+<map id="TKValidateTime" name="TKValidateTime">
+<area shape="rect" id="node2" href="$tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="204,5,259,32"/>
+<area shape="rect" id="node3" href="$timekit_8h.html#a60dc21e27ab7ed5bca5a05c3370b4244" title="TKCleanupTime" alt="" coords="172,56,291,83"/>
 </map>

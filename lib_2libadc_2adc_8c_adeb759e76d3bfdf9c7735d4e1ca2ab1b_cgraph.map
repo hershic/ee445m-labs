@@ -1,0 +1,6 @@
+<map id="ADC0Seq0_Handler" name="ADC0Seq0_Handler">
+<area shape="rect" id="node2" href="$group__adc__api.html#ga207d2cf2a807efe846f15200462166b0" title="ADCIntClear" alt="" coords="236,5,335,32"/>
+<area shape="rect" id="node3" href="$group__adc__api.html#gab6fb9d66d42093d8cf3a9ab58419fa38" title="ADCSequenceDataGet" alt="" coords="201,56,369,83"/>
+<area shape="rect" id="node4" href="$group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="234,107,337,133"/>
+<area shape="rect" id="node5" href="$group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="234,157,337,184"/>
+</map>

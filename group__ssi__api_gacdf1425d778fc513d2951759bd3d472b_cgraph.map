@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__ssi__api.html#ga3e485da691a8db1abe3daaa51bbf17bb" title="_SSIIntNumberGet" alt="" coords="163,5,296,35"/>
-<area shape="rect" id="node5" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="191,59,268,88"/>
-<area shape="rect" id="node7" href="$group__interrupt__api.html#ga0a32aafea7f4904d2a64ee18b45f96c9" title="IntRegister" alt="" coords="187,112,272,141"/>
+<map id="SSIIntRegister" name="SSIIntRegister">
+<area shape="rect" id="node2" href="$group__ssi__api.html#ga3e485da691a8db1abe3daaa51bbf17bb" title="_SSIIntNumberGet" alt="" coords="164,5,305,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="194,56,275,83"/>
+<area shape="rect" id="node4" href="$group__interrupt__api.html#ga0a32aafea7f4904d2a64ee18b45f96c9" title="IntRegister" alt="" coords="190,107,279,133"/>
 </map>

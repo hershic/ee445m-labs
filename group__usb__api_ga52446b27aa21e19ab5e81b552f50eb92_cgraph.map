@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__usb__api.html#gac630e5bea6974c6d98f789ccc05d2559" title="_USBIntNumberGet" alt="" coords="179,5,317,35"/>
-<area shape="rect" id="node5" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="208,59,288,88"/>
-<area shape="rect" id="node7" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="200,112,296,141"/>
-<area shape="rect" id="node9" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="365,112,496,141"/>
+<map id="USBIntUnregister" name="USBIntUnregister">
+<area shape="rect" id="node2" href="$group__usb__api.html#gac630e5bea6974c6d98f789ccc05d2559" title="_USBIntNumberGet" alt="" coords="187,5,335,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="218,56,303,83"/>
+<area shape="rect" id="node4" href="$group__interrupt__api.html#ga5dffc81c27c005f83e9bfc30f775982a" title="IntUnregister" alt="" coords="208,107,313,133"/>
+<area shape="rect" id="node5" href="$group__interrupt__api.html#gaef37c406caeeb884ba343265b953120d" title="_IntDefaultHandler" alt="" coords="383,107,524,133"/>
 </map>

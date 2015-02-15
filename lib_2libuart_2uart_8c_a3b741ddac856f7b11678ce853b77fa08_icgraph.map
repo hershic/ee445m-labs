@@ -1,5 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8h.html#ae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="175,5,284,35"/>
-<area shape="rect" id="node5" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="335,5,452,35"/>
-<area shape="rect" id="node7" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="503,5,599,35"/>
+<map id="uart_send_char_" name="uart_send_char_">
+<area shape="rect" id="node2" href="$lib_2libuart_2uart_8h.html#ae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="181,31,303,57"/>
+<area shape="rect" id="node3" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="364,5,484,32"/>
+<area shape="rect" id="node5" href="$shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="351,56,497,83"/>
+<area shape="rect" id="node4" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="545,5,651,32"/>
+<area shape="rect" id="node6" href="$shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="549,56,647,83"/>
+<area shape="rect" id="node8" href="$shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="561,107,635,133"/>
+<area shape="rect" id="node7" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="699,56,753,83"/>
 </map>

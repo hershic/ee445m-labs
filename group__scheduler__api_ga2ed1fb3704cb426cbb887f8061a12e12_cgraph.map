@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="157,5,275,35"/>
-<area shape="rect" id="node5" href="$group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="161,59,271,88"/>
-<area shape="rect" id="node7" href="$group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="153,112,279,141"/>
-<area shape="rect" id="node9" href="$group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="153,165,279,195"/>
+<map id="SchedulerInit" name="SchedulerInit">
+<area shape="rect" id="node2" href="$group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="165,5,283,32"/>
+<area shape="rect" id="node3" href="$group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="168,56,280,83"/>
+<area shape="rect" id="node4" href="$group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="160,107,288,133"/>
+<area shape="rect" id="node5" href="$group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="159,157,289,184"/>
 </map>

@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$shape_8h.html" title="shape.h" alt="" coords="57,83,124,112"/>
-<area shape="rect" id="node9" href="$timekit_8h.html" title="timekit.h" alt="" coords="148,83,220,112"/>
-<area shape="rect" id="node7" href="$g2d__defines_8h.html" title="g2d_defines.h" alt="" coords="93,160,195,189"/>
+<map id="lib/libclock/clock.h" name="lib/libclock/clock.h">
+<area shape="rect" id="node2" href="$shape_8h.html" title="libmath/geometry/shape.h" alt="" coords="5,80,196,107"/>
+<area shape="rect" id="node6" href="$timekit_8h.html" title="timekit.h" alt="" coords="220,80,299,107"/>
+<area shape="rect" id="node4" href="$defines_8h.html" title="libstd/defines.h" alt="" coords="100,155,219,181"/>
 </map>

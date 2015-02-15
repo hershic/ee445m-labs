@@ -1,11 +1,10 @@
 var shape_8c =
 [
-    [ "SHCreateCircle", "shape_8c.html#afb0fd582abe42c84247559740fb9b652", null ],
-    [ "SHCreatePoint", "shape_8c.html#a3a83d2082d27116cb1cc3f3a8952f584", null ],
-    [ "SHCreateQuad", "shape_8c.html#a38f793e06e025bc31392cf5646a5eb49", null ],
-    [ "SHCreateShape", "shape_8c.html#a27efd0db1c3ed11c474b5fab2c56e395", null ],
-    [ "SHCreateTriangle", "shape_8c.html#ab0aa95a7e3e8965451eeb1a5d1029eed", null ],
-    [ "SHDestroyCircle", "shape_8c.html#a4bc0756f337b586d2c0f69ef20a65000", null ],
-    [ "SHDestroyShape", "shape_8c.html#af9f139caa782c4be927c326aaef2fc87", null ],
-    [ "SHDuplicateShape", "shape_8c.html#a4b972838ad0f109608385b091c02324e", null ]
+    [ "shape_create", "group___geometry.html#gab6fa5b878e06385b182828113580b3f2", null ],
+    [ "shape_create_circle", "group___geometry.html#ga4ad3d8eafe6d5d8335609a156e4b5dae", null ],
+    [ "shape_create_point", "group___geometry.html#ga0f63ca2e3a9f4ab3594261b2a13107a7", null ],
+    [ "shape_create_quad", "group___geometry.html#ga63983054234b5cc3a65da6905a06acbb", null ],
+    [ "shape_create_triangle", "group___geometry.html#gafdb38fcfd90a0ef571ab5c8eb5865e8e", null ],
+    [ "shape_destroy_shape", "group___geometry.html#gae77a834dedc6c360d810494e3e8353de", null ],
+    [ "shape_duplicate_shape", "group___geometry.html#ga410ea1a4bcf0b568705a936203355783", null ]
 ];

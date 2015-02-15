@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$graphics2d_8c.html" title="lib/libgraphics2d/graphics2d.c" alt="" coords="5,83,197,112"/>
-<area shape="rect" id="node5" href="$console-fb_8c.html" title="validation/console&#45;clock/console&#45;fb.c" alt="" coords="221,83,456,112"/>
-<area shape="rect" id="node7" href="$console-grapher_8c.html" title="validation/console&#45;grapher/console&#45;grapher.c" alt="" coords="480,83,760,112"/>
+<map id="lib/libgraphics2d/graphics2d.h" name="lib/libgraphics2d/graphics2d.h">
+<area shape="rect" id="node2" href="$graphics2d_8c.html" title="lib/libgraphics2d/graphics2d.c" alt="" coords="5,87,215,114"/>
+<area shape="rect" id="node3" href="$console-fb_8c.html" title="validation/console\l&#45;clock/console&#45;fb.c" alt="" coords="239,80,379,121"/>
+<area shape="rect" id="node4" href="$console-grapher_8c.html" title="validation/console\l&#45;grapher/console&#45;grapher.c" alt="" coords="403,80,598,121"/>
 </map>

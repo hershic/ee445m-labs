@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__emac__api.html#gaaefd8278587fdb5bd194914536a5f755" title="EMACHashFilterBitCalculate" alt="" coords="129,5,321,35"/>
-<area shape="rect" id="node5" href="$group__emac__api.html#ga863edfd09a55c78f52a3f4f3815939fb" title="EMACVLANHashFilterBitCalculate" alt="" coords="112,59,339,88"/>
+<map id="Crc32" name="Crc32">
+<area shape="rect" id="node2" href="$group__emac__api.html#gaaefd8278587fdb5bd194914536a5f755" title="EMACHashFilterBitCalculate" alt="" coords="129,5,328,32"/>
+<area shape="rect" id="node3" href="$group__emac__api.html#ga863edfd09a55c78f52a3f4f3815939fb" title="EMACVLANHashFilterBitCalculate" alt="" coords="112,56,345,83"/>
 </map>

@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="201,5,252,35"/>
-<area shape="rect" id="node5" href="$console-fb_8c.html#ac181a91a96c73e9849988a58b1f841b7" title="pseudointerrupt" alt="" coords="172,59,281,88"/>
-<area shape="rect" id="node7" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="331,59,459,88"/>
-<area shape="rect" id="node9" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="507,59,557,88"/>
+<map id="TKIncrementMS" name="TKIncrementMS">
+<area shape="rect" id="node2" href="$tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="211,5,265,32"/>
+<area shape="rect" id="node3" href="$console-fb_8c.html#ac181a91a96c73e9849988a58b1f841b7" title="pseudointerrupt" alt="" coords="176,56,300,83"/>
+<area shape="rect" id="node4" href="$console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf" title="demonstrateClock" alt="" coords="348,56,487,83"/>
+<area shape="rect" id="node5" href="$console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="535,56,589,83"/>
 </map>

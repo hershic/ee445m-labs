@@ -1,0 +1,10 @@
+<map id="ST7735_DrawCharS" name="ST7735_DrawCharS">
+<area shape="rect" id="node2" href="$_s_t7735_8h.html#a04cac5a318b3e0515fad06fa00cdd3b9" title="ST7735_DrawString" alt="" coords="201,49,348,76"/>
+<area shape="rect" id="node3" href="$_s_t7735_8h.html#a072f5f963df6e48f5985977526d2466c" title="ST7735_OutUDec" alt="" coords="398,5,533,32"/>
+<area shape="rect" id="node4" href="$_s_t7735_8h.html#a5da33584211f118b7acfc1e5c0c7fee7" title="ST7735_OutChar" alt="" coords="400,139,531,165"/>
+<area shape="rect" id="node8" href="$_s_t7735_8c.html#a15f25be4c64c91057ac3cbb563574286" title="ST7735_OutChar2" alt="" coords="396,81,535,108"/>
+<area shape="rect" id="node5" href="$_s_t7735_8h.html#aea99df5526df38c772f90da2f1fa8655" title="ST7735_OutString" alt="" coords="587,183,725,209"/>
+<area shape="rect" id="node7" href="$_s_t7735_8c.html#abac7707b6be5733e890091048fcb99a2" title="fputc" alt="" coords="629,132,683,159"/>
+<area shape="rect" id="node6" href="$test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="777,132,832,159"/>
+<area shape="rect" id="node9" href="$_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51" title="ST7735_OutString2" alt="" coords="583,81,729,108"/>
+</map>

@@ -1,9 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node7" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="192,83,291,112"/>
-<area shape="rect" id="node9" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="315,83,445,112"/>
-<area shape="rect" id="node11" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="469,83,579,112"/>
-<area shape="rect" id="node13" href="$hw__watchdog_8h.html" title="inc/hw_watchdog.h" alt="" coords="603,83,736,112"/>
-<area shape="rect" id="node15" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="760,83,877,112"/>
-<area shape="rect" id="node17" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="901,83,1029,112"/>
-<area shape="rect" id="node19" href="$watchdog_8h.html" title="driverlib/watchdog.h" alt="" coords="1053,83,1192,112"/>
+<map id="driverlib/watchdog.c" name="driverlib/watchdog.c">
+<area shape="rect" id="node4" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="205,80,308,107"/>
+<area shape="rect" id="node5" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="332,80,475,107"/>
+<area shape="rect" id="node6" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="499,80,614,107"/>
+<area shape="rect" id="node7" href="$hw__watchdog_8h.html" title="inc/hw_watchdog.h" alt="" coords="638,80,779,107"/>
+<area shape="rect" id="node8" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="803,80,931,107"/>
+<area shape="rect" id="node9" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="956,80,1099,107"/>
+<area shape="rect" id="node10" href="$watchdog_8h.html" title="driverlib/watchdog.h" alt="" coords="1122,80,1271,107"/>
 </map>

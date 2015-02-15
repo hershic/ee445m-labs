@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__pwm__api.html#ga1bd27374e6dce2e1a2689166b79be9f6" title="PWMGenIntRegister" alt="" coords="228,5,369,35"/>
-<area shape="rect" id="node5" href="$group__pwm__api.html#ga93c72c556d0febbd7d641df12f30d7b1" title="PWMGenIntUnregister" alt="" coords="221,59,376,88"/>
+<map id="_PWMGenIntNumberGet" name="_PWMGenIntNumberGet">
+<area shape="rect" id="node2" href="$group__pwm__api.html#ga1bd27374e6dce2e1a2689166b79be9f6" title="PWMGenIntRegister" alt="" coords="237,5,383,32"/>
+<area shape="rect" id="node3" href="$group__pwm__api.html#ga93c72c556d0febbd7d641df12f30d7b1" title="PWMGenIntUnregister" alt="" coords="229,56,391,83"/>
 </map>

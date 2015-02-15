@@ -1,0 +1,6 @@
+<map id="_fb_draw_string" name="_fb_draw_string">
+<area shape="rect" id="node2" href="$group___framebuffer.html#ga939446516b50e0f1794c0e5306482116" title="Draw string on fb starting at top_left_corner. " alt="" coords="204,5,319,32"/>
+<area shape="rect" id="node3" href="$group___framebuffer.html#gae1638c1f446b9c088ccf9ba1490afe38" title="Call fb_draw_string and destroy top_left_corner. " alt="" coords="175,56,348,83"/>
+<area shape="rect" id="node4" href="$group___framebuffer.html#ga74ea44c7be9c61d9241848387aa1b59c" title="Erase string on fb starting at top_left_corner. " alt="" coords="201,107,321,133"/>
+<area shape="rect" id="node5" href="$group___framebuffer.html#ga792dc19efeda435d4305172b54e29a2a" title="Erase string on fb starting at top_left_corner and free top_left_corner. " alt="" coords="396,107,555,133"/>
+</map>

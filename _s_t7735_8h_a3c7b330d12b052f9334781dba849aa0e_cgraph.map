@@ -1,0 +1,7 @@
+<map id="ST7735_PlotNextErase" name="ST7735_PlotNextErase">
+<area shape="rect" id="node2" href="$_s_t7735_8c.html#a29294596f660f05ad8738db73ee07cfa" title="ST7735_Color565" alt="" coords="238,5,373,32"/>
+<area shape="rect" id="node3" href="$_s_t7735_8c.html#a2c091bb2f7905e4464a6152015a49989" title="ST7735_DrawFastVLine" alt="" coords="220,56,391,83"/>
+<area shape="rect" id="node4" href="$_s_t7735_8c.html#a1e4c9d5bbf2df16b1f9235bd24c8e231" title="setAddrWindow" alt="" coords="439,31,557,57"/>
+<area shape="rect" id="node6" href="$_s_t7735_8c.html#a639c227e5d11b704fbca94a8f2987189" title="writedata" alt="" coords="623,81,705,108"/>
+<area shape="rect" id="node5" href="$_s_t7735_8c.html#a50ca774f7f1d1f633179a37d2312fb69" title="writecommand" alt="" coords="605,31,723,57"/>
+</map>

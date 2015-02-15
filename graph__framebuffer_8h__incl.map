@@ -1,6 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$graphlib_8h.html" title="graphlib.h" alt="" coords="21,83,99,112"/>
-<area shape="rect" id="node5" href="$g2d__defines_8h.html" title="g2d_defines.h" alt="" coords="111,237,212,267"/>
-<area shape="rect" id="node8" href="$framebuffer_8h.html" title="framebuffer.h" alt="" coords="191,83,289,112"/>
-<area shape="rect" id="node13" href="$shape_8h.html" title="shape.h" alt="" coords="317,160,384,189"/>
+<map id="lib/liboscope&#45;grapher/graph_framebuffer.h" name="lib/liboscope&#45;grapher/graph_framebuffer.h">
+<area shape="rect" id="node2" href="$graphlib_8h.html" title="graphlib.h" alt="" coords="5,95,91,121"/>
+<area shape="rect" id="node3" href="$defines_8h.html" title="libstd/defines.h" alt="" coords="218,244,337,271"/>
+<area shape="rect" id="node5" href="$framebuffer_8h.html" title="framebuffer.h" alt="" coords="290,95,398,121"/>
+<area shape="rect" id="node7" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="657,169,767,196"/>
+<area shape="rect" id="node9" href="$shape_8h.html" title="libmath/geometry/shape.h" alt="" coords="315,169,506,196"/>
+<area shape="rect" id="node11" href="$font_8h.html" title="libfont/font.h" alt="" coords="530,169,633,196"/>
 </map>

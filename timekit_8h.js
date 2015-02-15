@@ -1,5 +1,6 @@
 var timekit_8h =
 [
+    [ "clocktime", "structclocktime.html", "structclocktime" ],
     [ "TK_MAX_PRINTBUFFER_LEN", "timekit_8h.html#aee30733b094abacf4162d0e58e7be345", null ],
     [ "TK_NUM_HOURS", "timekit_8h.html#a7c45b093890ac786027a3c1c1d212162", null ],
     [ "TK_NUM_MINUTES", "timekit_8h.html#a243de551ec920949a1add3e3a5fa5a6a", null ],

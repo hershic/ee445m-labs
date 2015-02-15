@@ -1,0 +1,13 @@
+<map id="lib/liboscope&#45;grapher" name="lib/liboscope&#45;grapher">
+<area shape="rect" id="node1" href="dir_725eb19c83d435c59b33da55720120fe.html" title="liboscope&#45;grapher" alt="" coords="85,52,223,100"/>
+<area shape="rect" id="node2" href="dir_44079a06673171678185043b040a4b61.html" title="libframebuffer" alt="" coords="5,148,116,196"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000026_000017.html" title="1" alt="" coords="98,134,107,148"/>
+<area shape="rect" id="node3" href="dir_8abf0dd83f466419d031c235a073d3af.html" title="libstd" alt="" coords="97,340,169,388"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000026_000028.html" title="2" alt="" coords="166,323,176,338"/>
+<area shape="rect" id="node4" href="dir_8f56784927cff3b6d9e6f4bc2552973a.html" title="libmath" alt="" coords="97,244,169,292"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000026_000022.html" title="1" alt="" coords="141,219,150,234"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000017_000028.html" title="3" alt="" coords="105,313,115,328"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000017_000022.html" title="1" alt="" coords="106,217,115,232"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000022_000028.html" title="1" alt="" coords="136,314,146,329"/>
+<area shape="rect" id="clust1" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html" title="lib" alt="" coords="74,16,234,111"/>
+</map>

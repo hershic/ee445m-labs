@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__sysexc__api.html#ga8414d9d87050c988e37172dd37fcd512" title="SysExcIntRegister" alt="" coords="217,5,348,35"/>
-<area shape="rect" id="node5" href="$group__sysexc__api.html#ga9056e3e6f0b657a74f7f8920ea5bc05c" title="SysExcIntUnregister" alt="" coords="212,59,353,88"/>
+<map id="_SysExcIntNumberGet" name="_SysExcIntNumberGet">
+<area shape="rect" id="node2" href="$group__sysexc__api.html#ga8414d9d87050c988e37172dd37fcd512" title="SysExcIntRegister" alt="" coords="227,5,361,32"/>
+<area shape="rect" id="node3" href="$group__sysexc__api.html#ga9056e3e6f0b657a74f7f8920ea5bc05c" title="SysExcIntUnregister" alt="" coords="219,56,369,83"/>
 </map>

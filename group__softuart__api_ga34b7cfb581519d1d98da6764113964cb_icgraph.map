@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__softuart__api.html#gace12aefcb593f70961205236fdccf829" title="SoftUARTFIFOLevelSet" alt="" coords="204,5,367,35"/>
-<area shape="rect" id="node5" href="$group__softuart__api.html#gae244fd6f795332edacd21ef651bf3a29" title="SoftUARTTxBufferSet" alt="" coords="209,59,361,88"/>
+<map id="SoftUARTTxLevelSet" name="SoftUARTTxLevelSet">
+<area shape="rect" id="node2" href="$group__softuart__api.html#gace12aefcb593f70961205236fdccf829" title="SoftUARTFIFOLevelSet" alt="" coords="204,5,367,32"/>
+<area shape="rect" id="node3" href="$group__softuart__api.html#gae244fd6f795332edacd21ef651bf3a29" title="SoftUARTTxBufferSet" alt="" coords="208,56,363,83"/>
 </map>

@@ -1,12 +1,21 @@
 var annotated =
 [
+    [ "_isr_subscription", "struct__isr__subscription.html", "struct__isr__subscription" ],
     [ "circle", "structcircle.html", "structcircle" ],
     [ "clockface", "structclockface.html", "structclockface" ],
     [ "clockhand", "structclockhand.html", "structclockhand" ],
     [ "clocktime", "structclocktime.html", "structclocktime" ],
     [ "graph", "structgraph.html", "structgraph" ],
+    [ "hw_channel", "structhw__channel.html", "structhw__channel" ],
+    [ "hw_driver", "structhw__driver.html", "structhw__driver" ],
+    [ "hw_metadata", "unionhw__metadata.html", "unionhw__metadata" ],
+    [ "hw_notification", "unionhw__notification.html", "unionhw__notification" ],
+    [ "hw_timer_metadata", "structhw__timer__metadata.html", "structhw__timer__metadata" ],
+    [ "hw_uart_metadata", "structhw__uart__metadata.html", "structhw__uart__metadata" ],
+    [ "os_tcb", "structos__tcb.html", "structos__tcb" ],
     [ "point", "structpoint.html", "structpoint" ],
     [ "shape", "structshape.html", "structshape" ],
+    [ "system_command", "structsystem__command.html", "structsystem__command" ],
     [ "tCANBitClkParms", "structt_c_a_n_bit_clk_parms.html", "structt_c_a_n_bit_clk_parms" ],
     [ "tCANMsgObject", "structt_c_a_n_msg_object.html", "structt_c_a_n_msg_object" ],
     [ "tCmdLineEntry", "structt_cmd_line_entry.html", "structt_cmd_line_entry" ],
@@ -19,5 +28,11 @@ var annotated =
     [ "tSchedulerTask", "structt_scheduler_task.html", "structt_scheduler_task" ],
     [ "tSoftSSI", "structt_soft_s_s_i.html", "structt_soft_s_s_i" ],
     [ "tSoftUART", "structt_soft_u_a_r_t.html", "structt_soft_u_a_r_t" ],
-    [ "tSPIFlashState", "structt_s_p_i_flash_state.html", "structt_s_p_i_flash_state" ]
+    [ "tSPIFlashState", "structt_s_p_i_flash_state.html", "structt_s_p_i_flash_state" ],
+    [ "UT_array", "struct_u_t__array.html", "struct_u_t__array" ],
+    [ "UT_hash_bucket", "struct_u_t__hash__bucket.html", "struct_u_t__hash__bucket" ],
+    [ "UT_hash_handle", "struct_u_t__hash__handle.html", "struct_u_t__hash__handle" ],
+    [ "UT_hash_table", "struct_u_t__hash__table.html", "struct_u_t__hash__table" ],
+    [ "UT_icd", "struct_u_t__icd.html", "struct_u_t__icd" ],
+    [ "UT_string", "struct_u_t__string.html", "struct_u_t__string" ]
 ];

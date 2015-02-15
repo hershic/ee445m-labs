@@ -1,4 +1,4 @@
-var console-fb_8c =
+var console_fb_8c =
 [
     [ "demonstrateClock", "console-fb_8c.html#ac7b6a7b1b5fb3bae9a63a8d1860c3ebf", null ],
     [ "demonstrateClockMenu", "console-fb_8c.html#a09ea4922b596a519dab38f4258d7bb33", null ],

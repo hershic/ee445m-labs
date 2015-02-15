@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$hw__nvic_8h.html" title="inc/hw_nvic.h" alt="" coords="93,83,195,112"/>
-<area shape="rect" id="node7" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="219,83,328,112"/>
+<map id="board&#45;progs/test&#45;uart/startup_gcc.c" name="board&#45;progs/test&#45;uart/startup_gcc.c">
+<area shape="rect" id="node3" href="$hw__nvic_8h.html" title="inc/hw_nvic.h" alt="" coords="100,95,205,121"/>
+<area shape="rect" id="node4" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="230,95,345,121"/>
 </map>

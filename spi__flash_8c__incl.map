@@ -1,10 +1,10 @@
-<map id="G" name="G">
-<area shape="rect" id="node7" href="$hw__ssi_8h.html" title="inc/hw_ssi.h" alt="" coords="192,83,285,112"/>
-<area shape="rect" id="node9" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="309,83,419,112"/>
-<area shape="rect" id="node11" href="$hw__udma_8h.html" title="inc/hw_udma.h" alt="" coords="443,83,552,112"/>
-<area shape="rect" id="node13" href="$rom_8h.html" title="driverlib/rom.h" alt="" coords="576,83,680,112"/>
-<area shape="rect" id="node15" href="$rom__map_8h.html" title="driverlib/rom_map.h" alt="" coords="704,83,840,112"/>
-<area shape="rect" id="node17" href="$ssi_8h.html" title="driverlib/ssi.h" alt="" coords="864,83,963,112"/>
-<area shape="rect" id="node19" href="$udma_8h.html" title="driverlib/udma.h" alt="" coords="987,83,1101,112"/>
-<area shape="rect" id="node21" href="$spi__flash_8h.html" title="utils/spi_flash.h" alt="" coords="1125,83,1237,112"/>
+<map id="utils/spi_flash.c" name="utils/spi_flash.c">
+<area shape="rect" id="node4" href="$hw__ssi_8h.html" title="inc/hw_ssi.h" alt="" coords="205,80,303,107"/>
+<area shape="rect" id="node5" href="$hw__types_8h.html" title="inc/hw_types.h" alt="" coords="327,80,442,107"/>
+<area shape="rect" id="node6" href="$hw__udma_8h.html" title="inc/hw_udma.h" alt="" coords="466,80,583,107"/>
+<area shape="rect" id="node7" href="$rom_8h.html" title="driverlib/rom.h" alt="" coords="607,80,722,107"/>
+<area shape="rect" id="node8" href="$rom__map_8h.html" title="driverlib/rom_map.h" alt="" coords="747,80,897,107"/>
+<area shape="rect" id="node9" href="$ssi_8h.html" title="driverlib/ssi.h" alt="" coords="921,80,1027,107"/>
+<area shape="rect" id="node10" href="$udma_8h.html" title="driverlib/udma.h" alt="" coords="1051,80,1177,107"/>
+<area shape="rect" id="node11" href="$spi__flash_8h.html" title="utils/spi_flash.h" alt="" coords="1201,80,1320,107"/>
 </map>

@@ -1,0 +1,36 @@
+<map id="writecommand" name="writecommand">
+<area shape="rect" id="node2" href="$_s_t7735_8c.html#a5d8cb3a07382ef518c144ac35bfd3ce1" title="commandList" alt="" coords="408,563,517,589"/>
+<area shape="rect" id="node5" href="$_s_t7735_8h.html#a204a442207d7367ace616bd6bfd79348" title="ST7735_InitR" alt="" coords="844,563,948,589"/>
+<area shape="rect" id="node9" href="$_s_t7735_8c.html#a1e4c9d5bbf2df16b1f9235bd24c8e231" title="setAddrWindow" alt="" coords="191,259,309,285"/>
+<area shape="rect" id="node34" href="$_s_t7735_8h.html#a2138bd237e97da48ad87137fb616be37" title="ST7735_InvertDisplay" alt="" coords="171,613,329,640"/>
+<area shape="rect" id="node35" href="$_s_t7735_8h.html#ac07019a4990ece959dd04dd58339f839" title="ST7735_SetRotation" alt="" coords="175,664,325,691"/>
+<area shape="rect" id="node3" href="$_s_t7735_8c.html#ac19991b9578283e8613af1dfe31187fe" title="commonInit" alt="" coords="630,563,729,589"/>
+<area shape="rect" id="node4" href="$_s_t7735_8h.html#aec8e637c759ad0adde0758c0935f383a" title="ST7735_InitB" alt="" coords="843,512,949,539"/>
+<area shape="rect" id="node6" href="$test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1411,284,1465,311"/>
+<area shape="rect" id="node7" href="$_s_t7735_8h.html#a8c197f8fb3fd2b2da459e71b44978d53" title="Output_Init" alt="" coords="1053,473,1145,500"/>
+<area shape="rect" id="node8" href="$_s_t7735_8h.html#a7e57930cfb2d70ead5a1686d9f36a734" title="Output_On" alt="" coords="1244,473,1335,500"/>
+<area shape="rect" id="node10" href="$_s_t7735_8h.html#aaf5af072e5213fcc3d6b852a2553e048" title="ST7735_DrawBitmap" alt="" coords="385,309,540,336"/>
+<area shape="rect" id="node11" href="$_s_t7735_8h.html#a343770585eeeabee4360207d19df1d65" title="ST7735_DrawChar" alt="" coords="393,56,532,83"/>
+<area shape="rect" id="node12" href="$_s_t7735_8h.html#a05c18aa8dd363fe991d5bc73a02e7abc" title="ST7735_DrawFastHLine" alt="" coords="811,157,981,184"/>
+<area shape="rect" id="node13" href="$_s_t7735_8h.html#a2c091bb2f7905e4464a6152015a49989" title="ST7735_DrawFastVLine" alt="" coords="377,107,548,133"/>
+<area shape="rect" id="node17" href="$_s_t7735_8h.html#aa2dc768f637489753a7b70eac676c4a5" title="ST7735_DrawPixel" alt="" coords="393,259,532,285"/>
+<area shape="rect" id="node29" href="$_s_t7735_8h.html#ada283d88275b972d188afad1c8649829" title="ST7735_FillRect" alt="" coords="403,385,522,412"/>
+<area shape="rect" id="node14" href="$_s_t7735_8h.html#adff58b909cb89f694117603da4ab7a1b" title="ST7735_PlotBar" alt="" coords="618,107,741,133"/>
+<area shape="rect" id="node15" href="$_s_t7735_8h.html#a179ccebd4bfe4529903a02ce797e78ea" title="ST7735_PlotdBfs" alt="" coords="615,5,744,32"/>
+<area shape="rect" id="node16" href="$_s_t7735_8h.html#a3c7b330d12b052f9334781dba849aa0e" title="ST7735_PlotNextErase" alt="" coords="596,56,763,83"/>
+<area shape="rect" id="node18" href="$_s_t7735_8h.html#af2c6dc3b5834eff0d45e6e15ac340abf" title="ST7735_DrawCharS" alt="" coords="605,360,753,387"/>
+<area shape="rect" id="node26" href="$_s_t7735_8h.html#a1ae5c293f7cf004c66ca1c0f0d365fcd" title="ST7735_PlotPoint" alt="" coords="613,208,746,235"/>
+<area shape="rect" id="node27" href="$_s_t7735_8h.html#a3b19f449b1072070e3dd7f92ce8150fa" title="ST7735_PlotLine" alt="" coords="616,259,743,285"/>
+<area shape="rect" id="node28" href="$_s_t7735_8h.html#af8a878e2129edc09d38b3f3aadcad42f" title="ST7735_PlotPoints" alt="" coords="609,309,749,336"/>
+<area shape="rect" id="node19" href="$_s_t7735_8h.html#a04cac5a318b3e0515fad06fa00cdd3b9" title="ST7735_DrawString" alt="" coords="823,259,969,285"/>
+<area shape="rect" id="node20" href="$_s_t7735_8h.html#a072f5f963df6e48f5985977526d2466c" title="ST7735_OutUDec" alt="" coords="1031,284,1166,311"/>
+<area shape="rect" id="node21" href="$_s_t7735_8h.html#a5da33584211f118b7acfc1e5c0c7fee7" title="ST7735_OutChar" alt="" coords="1033,233,1164,260"/>
+<area shape="rect" id="node24" href="$_s_t7735_8c.html#a15f25be4c64c91057ac3cbb563574286" title="ST7735_OutChar2" alt="" coords="1029,335,1168,361"/>
+<area shape="rect" id="node22" href="$_s_t7735_8h.html#aea99df5526df38c772f90da2f1fa8655" title="ST7735_OutString" alt="" coords="1220,233,1359,260"/>
+<area shape="rect" id="node23" href="$_s_t7735_8c.html#abac7707b6be5733e890091048fcb99a2" title="fputc" alt="" coords="1262,284,1317,311"/>
+<area shape="rect" id="node25" href="$_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51" title="ST7735_OutString2" alt="" coords="1216,335,1363,361"/>
+<area shape="rect" id="node30" href="$_s_t7735_8h.html#a3a14506207ab49aee2c40700b5036271" title="ST7735_FillScreen" alt="" coords="611,461,748,488"/>
+<area shape="rect" id="node33" href="$_s_t7735_8h.html#affbb292ebbf7082c331ab6195da3385c" title="ST7735_PlotClear" alt="" coords="612,411,747,437"/>
+<area shape="rect" id="node31" href="$_s_t7735_8h.html#a991e9f71a35a1f6ec9d857ca0e01868a" title="Output_Clear" alt="" coords="843,411,949,437"/>
+<area shape="rect" id="node32" href="$_s_t7735_8h.html#a4ff293d693c5298110cf8a170e9b9165" title="Output_Off" alt="" coords="1053,411,1144,437"/>
+</map>

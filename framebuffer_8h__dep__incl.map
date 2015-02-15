@@ -1,9 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$framebuffer_8c.html" title="lib/libgraphics2d/framebuffer.c" alt="" coords="5,83,200,112"/>
-<area shape="rect" id="node5" href="$graphics2d_8h.html" title="lib/libgraphics2d/graphics2d.h" alt="" coords="275,83,467,112"/>
-<area shape="rect" id="node9" href="$console-fb_8c.html" title="validation/console&#45;clock/console&#45;fb.c" alt="" coords="16,160,251,189"/>
-<area shape="rect" id="node11" href="$console-grapher_8c.html" title="validation/console&#45;grapher/console&#45;grapher.c" alt="" coords="491,160,771,189"/>
-<area shape="rect" id="node13" href="$graph__framebuffer_8h.html" title="lib/liboscope&#45;grapher/graph_framebuffer.h" alt="" coords="541,83,803,112"/>
-<area shape="rect" id="node7" href="$graphics2d_8c.html" title="lib/libgraphics2d/graphics2d.c" alt="" coords="275,160,467,189"/>
-<area shape="rect" id="node15" href="$graph__framebuffer_8c.html" title="lib/liboscope&#45;grapher/graph_framebuffer.c" alt="" coords="795,160,1056,189"/>
+<map id="lib/libframebuffer/framebuffer.h" name="lib/libframebuffer/framebuffer.h">
+<area shape="rect" id="node2" href="$framebuffer_8c.html" title="lib/libframebuffer\l/framebuffer.c" alt="" coords="5,95,135,136"/>
+<area shape="rect" id="node3" href="$graphics2d_8h.html" title="lib/libgraphics2d/graphics2d.h" alt="" coords="210,102,421,129"/>
+<area shape="rect" id="node5" href="$console-fb_8c.html" title="validation/console\l&#45;clock/console&#45;fb.c" alt="" coords="47,184,187,225"/>
+<area shape="rect" id="node6" href="$console-grapher_8c.html" title="validation/console\l&#45;grapher/console&#45;grapher.c" alt="" coords="445,184,639,225"/>
+<area shape="rect" id="node7" href="$graph__framebuffer_8h.html" title="lib/liboscope&#45;grapher\l/graph_framebuffer.h" alt="" coords="496,95,652,136"/>
+<area shape="rect" id="node4" href="$graphics2d_8c.html" title="lib/libgraphics2d/graphics2d.c" alt="" coords="211,191,420,218"/>
+<area shape="rect" id="node8" href="$graph__framebuffer_8c.html" title="lib/liboscope&#45;grapher\l/graph_framebuffer.c" alt="" coords="663,184,818,225"/>
 </map>

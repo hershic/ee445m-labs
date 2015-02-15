@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$group__ssi__api.html#gacdf1425d778fc513d2951759bd3d472b" title="SSIIntRegister" alt="" coords="193,5,300,35"/>
-<area shape="rect" id="node5" href="$group__ssi__api.html#gae682d0e169a70b235a92b11dbeb5daef" title="SSIIntUnregister" alt="" coords="188,59,305,88"/>
+<map id="_SSIIntNumberGet" name="_SSIIntNumberGet">
+<area shape="rect" id="node2" href="$group__ssi__api.html#gacdf1425d778fc513d2951759bd3d472b" title="SSIIntRegister" alt="" coords="203,5,313,32"/>
+<area shape="rect" id="node3" href="$group__ssi__api.html#gae682d0e169a70b235a92b11dbeb5daef" title="SSIIntUnregister" alt="" coords="195,56,321,83"/>
 </map>
