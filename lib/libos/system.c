@@ -1,14 +1,17 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "system.h"
-#include "libstd/nexus.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 
 #include "libut/utlist.h"
+#include "libstd/nexus.h"
 
+/** Statically allocated space for all system commands to reside. */
 static system_command SYSTEM_COMMANDS[SYSTEM_MAX_COMMANDS];
+/** Circular doubly-linked list containing all registered commands. */
 system_command* registered_commands = NULL;
+/** Circular doubly-linked list containing all unregistered commands. */
 system_command* unregistered_commands = NULL;
 
 void system_init() {
@@ -68,7 +71,7 @@ exit_status_t system_exec(const char* command, const char** arguments) {
 	return sys_command->command(/*arguments*/);
     } else {
 	/* TODO: determine what to do here */
-	postpone_death();
-	return EXIT_FAILURE;
+	postpone_death();    	/* plan a */
+	return EXIT_FAILURE;	/* plan b */
     }
 }
