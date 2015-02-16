@@ -114,7 +114,7 @@ void os_launch() {
     
     /* change the active stack to use psp */
     asm volatile("MRS R0, CONTROL");
-    asm volatile("ORR R0, R0, #3");
+    asm volatile("ORR R0, R0, #2");
     asm volatile("MSR CONTROL, R0");
     
     asm volatile("POP     {R4-R11}");
@@ -266,7 +266,7 @@ void PendSV_Handler() {
     asm volatile ("POP {R9, R10, R11, R12}");
     /* END DEBUGGING */
 
-    /* asm volatile("CPSIE   I"); */
+    asm volatile("CPSIE   I");
 
     asm volatile ("bx lr");
 }
