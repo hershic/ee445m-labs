@@ -25,6 +25,7 @@
 
 #include <sys/stat.h>
 
+#define NVIC_SYS_PRI3_R         (*((volatile uint32_t *)0xE000ED20))
 void turn_on_led() {
     while (1) {
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
@@ -54,10 +55,15 @@ int main() {
     os_add_thread(turn_on_led);
     os_add_thread(turn_off_led);
 
+    NVIC_SYS_PRI3_R =(NVIC_SYS_PRI3_R&0x00FFFFFF)|0xE0000000; // priority 7
+    NVIC_SYS_PRI3_R =(NVIC_SYS_PRI3_R&0xff1FFFFF)|0x00e00000; // priority 7
+
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 100);
     SysTickEnable();
     SysTickIntEnable();
+
+    IntMasterEnable();
 
     os_launch();
 

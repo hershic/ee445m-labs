@@ -1,6 +1,8 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "os.h"
 
+/* #include "inc/tm4c123fe6pm.h" */
+
 /*! An array of statically allocated threads. */
 tcb_t OS_THREADS[OS_MAX_THREADS];
 
@@ -146,9 +148,9 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
         (((uint32_t)hwcontext) - sizeof(swcontext_t));
 
     hwcontext->pc = (uint32_t)(task);
-    hwcontext->psr = 0x010000000;
+    hwcontext->psr = 0x000000000;
 
-    swcontext->lr = 0xfffffffd;
+    swcontext->lr = 0xfffffff9;
 
     hwcontext->r0 = 0x00000000;
     hwcontext->r1 = 0x01010101;
@@ -208,11 +210,11 @@ void PendSV_Handler() {
     /* DEBUGGING */
     asm volatile("CPSID  I            ;// mask all (except faults)\n");
 
-    asm volatile ("PUSH {R9, R10, R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
-    asm volatile ( "mrs     r11, msp" );
-    asm volatile ( "mrs     r10, control" );
-    asm volatile ("POP {R9, R10, R11, R12}");
+    /* asm volatile ("PUSH {R9, R10, R11, R12}"); */
+    /* asm volatile ( "mrs     r12, psp" ); */
+    /* asm volatile ( "mrs     r11, msp" ); */
+    /* asm volatile ( "mrs     r10, control" ); */
+    /* asm volatile ("POP {R9, R10, R11, R12}"); */
     /* END DEBUGGING */
 
     /* -------------------------------------------------- */
@@ -265,11 +267,11 @@ void PendSV_Handler() {
     asm volatile("CPSIE   I");
 
     /* DEBUGGING */
-    asm volatile ("PUSH {R9, R10, R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
-    asm volatile ( "mrs     r11, msp" );
-    asm volatile ( "mrs     r10, control" );
-    asm volatile ("POP {R9, R10, R11, R12}");
+    /* asm volatile ("PUSH {R9, R10, R11, R12}"); */
+    /* asm volatile ( "mrs     r12, psp" ); */
+    /* asm volatile ( "mrs     r11, msp" ); */
+    /* asm volatile ( "mrs     r10, control" ); */
+    /* asm volatile ("POP {R9, R10, R11, R12}"); */
     /* END DEBUGGING */
 
     asm volatile("CPSIE   I");
