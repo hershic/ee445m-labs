@@ -13,9 +13,6 @@ typedef struct muscle_t {
     memory_address_t pin;
 } muscle_t;
 
-/*! A skeletal muscle that likes to pretend it's smooth. This */
-muscle_t HEART_ANCILLARY_MUSCLE;
-
 /*! The on-board LED colloquially referred to as the 'heart.' Does
  *  every computer have one? */
 #define HEART_MUSCLE GPIO_PIN_2
