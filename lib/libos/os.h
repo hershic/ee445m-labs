@@ -110,9 +110,10 @@ tcb_t* os_next_dead_thread();
  */
 void os_threading_init();
 
-/*! Launches the operating system. Note that this function drastically
- *  changes the execution paradigm of the machine, so do not expect to
- *  call it and be able to return to the previous context.
+/*! Launches the operating system.
+ *  \note This function drastically changes the execution paradigm of
+ *  the machine; do not expect to call it and be able to return to
+ *  the previous context.
  */
 void os_launch();
 
