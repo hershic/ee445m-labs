@@ -1,6 +1,6 @@
 #+startup: content
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [5/6] dev environment
+* [5/7] dev environment
 ** DONE create openocd wrapper
 ** DONE create dev environment setup script
 ** DONE eldoc for our functions
@@ -12,6 +12,9 @@
 ** DONE cmd to open screen on the M4
 ** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
+** [0/1] setenv
+*** TODO Clean exit when invoked twice
+currently prints help and exits (seemingly ambiguously)
 * [4/7] Doxygen
 ** DONE publish Doxygen on an external website
       http://hershic.github.io/ee445m-labs/
