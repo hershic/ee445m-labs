@@ -107,16 +107,18 @@ void os_launch() {
     asm volatile("LDR R0, [R0]");
 
     /* set the process stack value */
-    asm volatile("MSR PSP, R0");
+    /* asm volatile("MSR PSP, R0"); */
 
     /* change EXC_RETURN for return on PSP */
     /* asm volatile("ORR LR, LR, #4"); */
     
     /* change the active stack to use psp */
-    asm volatile("MRS R0, CONTROL");
-    asm volatile("ORR R0, R0, #2");
-    asm volatile("MSR CONTROL, R0");
+    /* asm volatile("MRS R0, CONTROL"); */
+    /* asm volatile("ORR R0, R0, #2"); */
+    /* asm volatile("MSR CONTROL, R0"); */
+    asm volatile("MOV SP, R0");
     
+
     asm volatile("POP     {R4-R11}");
     
     /* asm volatile("POP     {R12}"); */
@@ -198,6 +200,7 @@ void SysTick_Handler() {
     asm volatile("bx      lr");
 }
 
+void __attribute__((isr, naked)) PendSV_Handler(void);
 void PendSV_Handler() {
     /* asm volatile ("MRS    R0, PRIMASK  ;// save old status\n" */
     /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
@@ -217,10 +220,11 @@ void PendSV_Handler() {
     /* -------------------------------------------------- */
 
     /* load the psp of thread A into r12 */
-    asm volatile("mrs     r12, psp" );
+    /* asm volatile("mrs     r12, psp" ); */
 
     /* save thread A's registers into the psp */
-    asm volatile("stmdb   r12!, {r4 - r11, lr}");
+    /* asm volatile("stmdb   r12!, {r4 - r11, lr}"); */
+    asm volatile("PUSH {r4 - r11, lr}");
 
     /* -------------------------------------------------- */
     /* phase 2: os_current_running_thread manipulation    */
@@ -244,16 +248,18 @@ void PendSV_Handler() {
     /* -------------------------------------------------- */
 
     /* store the psp from thread A  */
-    asm volatile("str     r12, [r0, #0]");
+    /* asm volatile("str     r12, [r0, #0]"); */
 
     /* load thread B's psp */
-    asm volatile("ldr     r12, [r1, #0]");
+    /* asm volatile("ldr     r12, [r1, #0]"); */
+    asm volatile("LDR SP, [R1]");
 
     /* load thread B's context */
-    asm volatile("ldmia   r12!, {r4 - r11, lr}");
+    /* asm volatile("ldmia   r12!, {r4 - r11, lr}"); */
+    asm volatile("POP {r4 - r11, lr}");
 
     /* put thread B's psp into the arch psp register */
-    asm volatile("msr     psp, r12");
+    /* asm volatile("msr     psp, r12"); */
 
     /* asm volatile("MSR    PRIMASK, R0\n"); */
     asm volatile("CPSIE   I");
