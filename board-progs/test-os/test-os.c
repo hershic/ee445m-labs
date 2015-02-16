@@ -22,6 +22,7 @@
 #include "driverlib/rom.h"
 
 #include "libos/os.h"
+#include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
@@ -47,6 +48,8 @@ int main() {
 
     /* Enable the GPIO pins for the LED (PF2). */
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+
+    heart_off();
 
     IntMasterDisable();
 

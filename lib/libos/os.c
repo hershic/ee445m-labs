@@ -176,8 +176,8 @@ void SysTick_Handler() {
     /* try 1 */
     /* uint32_t status = StartCritical(); */
     asm volatile("CPSID   I");
-    asm volatile("PUSH    {R4-R11}");
-    asm volatile("LDR     R0, =os_current_running_thread");
+    asm volatile("PUSH    {R4-R11}"); /* r0-11 now saved in 'old' stack */
+    asm volatile("LDR     R0, =os_current_running_thread"); /* this is a tcb */
     /* asm volatile("LDR     R1, [R0]"); */
     /* asm volatile("STR     SP, [R1]"); */
     /* asm volatile("LDR     R1, [R1,#4]"); */
@@ -235,8 +235,9 @@ void SysTick_Handler() {
 
     /* try 3 */
     asm volatile ("PUSH {R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
-    asm volatile ( "mrs     r11, msp" );
-    asm volatile ("POP {R11, R12}");
+    asm volatile ("mrs   r12, psp");
+    asm volatile ("mrs   r11, msp");
+    asm volatile ("POP  {R11, R12}");
+    asm volatile("CPSIE I"); 	/* re-enable interrupts */
 
 }
