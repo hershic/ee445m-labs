@@ -114,7 +114,7 @@ void os_launch() {
 
     /* change the active stack to use psp */
     asm volatile("MRS R0, CONTROL");
-    asm volatile("ORR R0, R0, #3");
+    asm volatile("ORR R0, R0, #2");
     asm volatile("MSR CONTROL, R0");
 
     asm volatile("POP     {R4-R11}");
@@ -203,7 +203,7 @@ void PendSV_Handler() {
     /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
 
     /* DEBUGGING */
-    asm volatile("CPSID  I            ;// mask all (except faults)\n");
+    /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
 
     asm volatile ("PUSH {R9, R10, R11, R12}");
     asm volatile ( "mrs     r12, psp" );
@@ -244,10 +244,10 @@ void PendSV_Handler() {
     /* -------------------------------------------------- */
 
     /* store the psp from thread A  */
-    asm volatile("str     r12, [r0, #0]");
+    asm volatile("str     r12, [r3]");
 
     /* load thread B's psp */
-    asm volatile("ldr     r12, [r1, #0]");
+    asm volatile("ldr     r12, [r1]");
 
     /* load thread B's context */
     asm volatile("ldmia   r12!, {r4 - r11, lr}");
@@ -267,6 +267,12 @@ void PendSV_Handler() {
     /* END DEBUGGING */
 
     /* asm volatile("CPSIE   I"); */
+
+    /* This never would have worked- can't change CONTROL in this
+     * context */
+    /* asm volatile("MRS R0, CONTROL"); */
+    /* asm volatile("ORR R0, R0, #3"); */
+    /* asm volatile("MSR CONTROL, R0"); */
 
     asm volatile ("bx lr");
 }
