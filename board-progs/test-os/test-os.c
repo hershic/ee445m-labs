@@ -58,7 +58,7 @@ int main() {
     os_add_thread(turn_off_led);
 
     /* Load and enable the systick timer */
-    SysTickPeriodSet(SysCtlClockGet() / 100);
+    SysTickPeriodSet(SysCtlClockGet() / 10);
     SysTickEnable();
     SysTickIntEnable();
 

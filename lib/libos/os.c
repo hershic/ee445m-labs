@@ -144,7 +144,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
         (((uint32_t)hwcontext) - sizeof(swcontext_t));
 
     hwcontext->pc = (uint32_t)(task);
-    hwcontext->psr = 0x010000000;
+    hwcontext->psr = 0x01000000;
 
     swcontext->lr = 0xfffffffd;
 
@@ -175,9 +175,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
    SysTick run! */
 void SysTick_Handler() {
 
-
     IntPendSet(FAULT_PENDSV);
-
     return;
 
     /* try 1 */
@@ -202,9 +200,11 @@ void PendSV_Handler() {
     /* asm volatile ("MRS    R0, PRIMASK  ;// save old status\n" */
     /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
 
-    /* DEBUGGING */
-    /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
+    /* IntPendClear(FAULT_PENDSV); */
 
+    asm volatile("CPSID  I            ;// mask all (except faults)\n");
+
+    /* DEBUGGING */
     asm volatile ("PUSH {R9, R10, R11, R12}");
     asm volatile ( "mrs     r12, psp" );
     asm volatile ( "mrs     r11, msp" );
@@ -226,11 +226,10 @@ void PendSV_Handler() {
     /* phase 2: os_current_running_thread manipulation    */
     /* -------------------------------------------------- */
 
-    /* load the value contained in the os_current_running_thread
-       variable */
+    /* load the value of os_current_running_thread */
     asm volatile("LDR     R2, =os_current_running_thread");
 
-    /* find out where that variable points to */
+    /* r3 = *os_current_running_thread, of thread A */
     asm volatile("LDR     R3, [R2]");
 
     /* load the value of os_current_running_thread->next into r1 */
@@ -243,8 +242,8 @@ void PendSV_Handler() {
     /* phase 3: load context                              */
     /* -------------------------------------------------- */
 
-    /* store the psp from thread A  */
-    asm volatile("str     r12, [r3]");
+    /* store the psp from thread A */
+    asm volatile("str     r12, [r3, #0]");
 
     /* load thread B's psp */
     asm volatile("ldr     r12, [r1]");
@@ -255,9 +254,6 @@ void PendSV_Handler() {
     /* put thread B's psp into the arch psp register */
     asm volatile("msr     psp, r12");
 
-    /* asm volatile("MSR    PRIMASK, R0\n"); */
-    asm volatile("CPSIE   I");
-
     /* DEBUGGING */
     asm volatile ("PUSH {R9, R10, R11, R12}");
     asm volatile ( "mrs     r12, psp" );
@@ -266,7 +262,7 @@ void PendSV_Handler() {
     asm volatile ("POP {R9, R10, R11, R12}");
     /* END DEBUGGING */
 
-    /* asm volatile("CPSIE   I"); */
+    asm volatile("CPSIE   I");
 
     /* This never would have worked- can't change CONTROL in this
      * context */
