@@ -15,14 +15,14 @@
 ** [0/1] setenv
 *** TODO Clean exit when invoked twice
 currently prints help and exits (seemingly ambiguously)
-* [4/7] Doxygen
+* [3/6] Doxygen
 ** DONE publish Doxygen on an external website
       http://hershic.github.io/ee445m-labs/
 ** DONE link all doxygen projects together to show on one page
-** DONE write main project information in doxygen
 ** DONE link github to the online documentation
 ** IN-PROGRESS script to update all doxygen files at once
-I have a hankering to refactor all Doxyfiles into a specific dir
+- I have a hankering to refactor all Doxyfiles into a specific dir
+- bash doxygenizing broke!
 ** TODO Allow here docs in declare -r statements
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
