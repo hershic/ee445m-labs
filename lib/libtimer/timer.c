@@ -61,6 +61,7 @@ bool timer_add_periodic_interrupt(uint32_t frequency,
 }
 
 bool timer_remove_periodic_thread(const void* task,
-                              uint32_t timer_peripheral) {
+				  uint32_t    timer_peripheral) {
+
     hw_disconnect(HW_TIMER, timer_peripheral, task);
 }
