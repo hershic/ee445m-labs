@@ -202,6 +202,7 @@ void PendSV_Handler() {
     /* asm volatile ("MRS    R0, PRIMASK  ;// save old status\n" */
     /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
 
+    IntPendClear(FAULT_PENDSV);
     /* DEBUGGING */
     asm volatile("CPSID  I            ;// mask all (except faults)\n");
 
