@@ -4,6 +4,8 @@
 
 #include "os.h"
 
+/* TODO: convert to libut/utlist */
+
 /*! An array of statically allocated threads. */
 tcb_t OS_THREADS[OS_MAX_THREADS];
 
