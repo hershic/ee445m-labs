@@ -10,10 +10,10 @@ tcb_t OS_THREADS[OS_MAX_THREADS];
 /*! A block of memory for each thread's local stack. */
 int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
 
-/*! A doubly linked list of currently running threads. */
+/*! A circular doubly linked list of currently running threads. */
 tcb_t* os_current_running_thread = NULL;
 
-/*! A doubly linked list of currently dead threads. */
+/*! A circular doubly linked list of currently dead threads. */
 tcb_t* os_current_dead_thread = NULL;
 
 void os_threading_init() {
@@ -115,12 +115,12 @@ void os_launch() {
     asm volatile("MRS R0, CONTROL");
     asm volatile("ORR R0, R0, #2");
     asm volatile("MSR CONTROL, R0");
-    
+
     asm volatile("POP     {R4-R11}");
-    
+
     asm volatile("POP     {LR}");
     asm volatile("POP     {R0-R3}");
-    
+
     asm volatile("pop {r12, lr}");
     asm volatile("pop {pc}");
     /* can't do anything about the PSR */
