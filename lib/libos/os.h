@@ -1,6 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 
 #include "libstd/nexus.h"
+#include "inc/hw_ints.h"
 
 #include <stdint.h>
 #include <stdbool.h>
