@@ -31,3 +31,8 @@ I have a hankering to refactor all Doxyfiles into a specific dir
 ** TODO Allow here docs in declare -r statements
 I found a link! It's in one of my compter's stack (bookmarks dir- chrome)
 ** TODO make doxygen html output a consistent format
+** special words
+like immutable
+define in doxygen and also highlight in emacs
+make a mode for our dev environment - source disaster-arm, assign
+keybinding, c-eldoc, and turn on pseudo-reserved word highlighting
