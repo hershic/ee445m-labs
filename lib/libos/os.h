@@ -116,6 +116,3 @@ void os_threading_init();
  *  the previous context.
  */
 void os_launch();
-
-/*! A do-nothing idle thread */
-void idle();
