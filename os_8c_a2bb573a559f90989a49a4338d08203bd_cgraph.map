@@ -1,0 +1,6 @@
+<map id="os_add_thread" name="os_add_thread">
+<area shape="rect" id="node2" href="$nexus_8c.html#acac2b8577facf88812937428e6ab9bf8" title="EndCritical" alt="" coords="209,5,299,32"/>
+<area shape="rect" id="node3" href="$os_8c.html#a911e62c4d8226477d0274c2416e47f9c" title="os_next_dead_thread" alt="" coords="174,56,334,83"/>
+<area shape="rect" id="node4" href="$os_8c.html#aaa82962ea069b6011927f9e2ef893128" title="os_reset_thread_stack" alt="" coords="171,107,337,133"/>
+<area shape="rect" id="node5" href="$nexus_8c.html#a025505fff239e04c19c67f2ff72e9a73" title="StartCritical" alt="" coords="205,157,303,184"/>
+</map>

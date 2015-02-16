@@ -52,7 +52,7 @@ var NAVTREEINDEX2 =
 "dir_21da84ec182d29878c8a9aacee25d4fb.html":[4,0,3,16],
 "dir_22229ce87ab1c5fcafbc39e4aef8e25e.html":[4,0,3,10,0],
 "dir_27c93d2eacffb4012df2fcea4dc699e6.html":[4,0,3,19],
-"dir_28f616c10d3da36310c4ccf5eea3b480.html":[4,0,0,4],
+"dir_28f616c10d3da36310c4ccf5eea3b480.html":[4,0,0,5],
 "dir_35d4998c072ab5682caeba3956a174cc.html":[4,0,3,7],
 "dir_3d27ec02128c0e3cf0247ad224753f23.html":[4,0,0,2],
 "dir_41c591045f1a87da6484e28b04fa7ec4.html":[4,0,3,14],
@@ -64,9 +64,9 @@ var NAVTREEINDEX2 =
 "dir_656d281fff66007aeb332503b52f3c8e.html":[4,0,3,17],
 "dir_6b1e7173f22a3fe184eb2520c47edeec.html":[4,0,5,0],
 "dir_725eb19c83d435c59b33da55720120fe.html":[4,0,3,13],
-"dir_7ef2121786ed840aee5994886009dd1a.html":[4,0,0,5],
+"dir_7ef2121786ed840aee5994886009dd1a.html":[4,0,0,6],
 "dir_8460ad94f0aca93ac527f29ff11ab3b2.html":[4,0,3,0],
-"dir_894a436fa185dbe6e5b0aabbc6e44392.html":[4,0,0,3],
+"dir_894a436fa185dbe6e5b0aabbc6e44392.html":[4,0,0,4],
 "dir_8abf0dd83f466419d031c235a073d3af.html":[4,0,3,15],
 "dir_8f4eebbc5be43a6e6baf1c6b1e65cd8a.html":[4,0,0],
 "dir_8f56784927cff3b6d9e6f4bc2552973a.html":[4,0,3,10],
@@ -74,6 +74,7 @@ var NAVTREEINDEX2 =
 "dir_9e7e095887a2dd3b6af8e37d880530c8.html":[4,0,3,12],
 "dir_a6bc0e56db72ecb2518a04a5d394a96a.html":[4,0,5,2],
 "dir_b050cae0f8a8d00fbdea960a0dd86871.html":[4,0,3,20],
+"dir_bdfaaf4074136889213f10274b402646.html":[4,0,0,3],
 "dir_bfccd401955b95cf8c75461437045ac0.html":[4,0,2],
 "dir_c13a3a6fbb294df5f6cf46256f727fc9.html":[4,0,3,11],
 "dir_c50106e1cdbad0d575a00e777fce7f7b.html":[4,0,3,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "driverlib_2timer_8h.html#a3fb7c858dbbf22cae8bb18b606d1b41d":[4,0,1,58,58],
 "driverlib_2timer_8h.html#a4373ebb286dc7e4378c77e97983ffb93":[4,0,1,58,11],
 "driverlib_2timer_8h.html#a45ae59daf06f63aa18016c02243826ca":[4,0,1,58,56],
-"driverlib_2timer_8h.html#a45cb9d062773e82f7931d654e3a2514f":[4,0,1,58,38],
-"driverlib_2timer_8h.html#a45e95f37200fd54de456cce2b0d246db":[4,0,1,58,104]
+"driverlib_2timer_8h.html#a45cb9d062773e82f7931d654e3a2514f":[4,0,1,58,38]
 };

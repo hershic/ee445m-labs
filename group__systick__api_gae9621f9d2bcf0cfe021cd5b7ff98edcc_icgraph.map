@@ -1,3 +1,4 @@
 <map id="SysTickIntEnable" name="SysTickIntEnable">
-<area shape="rect" id="node2" href="$group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="181,5,287,32"/>
+<area shape="rect" id="node2" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="207,5,261,32"/>
+<area shape="rect" id="node3" href="$group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="181,56,287,83"/>
 </map>

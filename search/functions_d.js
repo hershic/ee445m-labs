@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['os_5faddperiodicthread',['OS_AddPeriodicThread',['../os_8h.html#a3a00d60b873633ca10b91cfa41d44e7d',1,'os.h']]],
-  ['os_5fclearperiodictime',['OS_ClearPeriodicTime',['../os_8h.html#a4fa82d8c1cee537196459fd980fcc0c7',1,'os.h']]],
-  ['os_5freadperiodictime',['OS_ReadPeriodicTime',['../os_8h.html#a390821c75cafd56f6de1f670bc310cd6',1,'os.h']]],
+  ['os_5fadd_5fthread',['os_add_thread',['../os_8c.html#a2bb573a559f90989a49a4338d08203bd',1,'os_add_thread(task_t task):&#160;os.c'],['../os_8h.html#af1d10faa6e058db5fcc41780ead8a063',1,'os_add_thread(void(*task)(void)):&#160;os.h']]],
+  ['os_5flaunch',['os_launch',['../os_8c.html#afde304ef5313ffa073cea003547b33eb',1,'os_launch():&#160;os.c'],['../os_8h.html#afde304ef5313ffa073cea003547b33eb',1,'os_launch():&#160;os.c']]],
+  ['os_5fnext_5fdead_5fthread',['os_next_dead_thread',['../os_8c.html#a911e62c4d8226477d0274c2416e47f9c',1,'os_next_dead_thread():&#160;os.c'],['../os_8h.html#a911e62c4d8226477d0274c2416e47f9c',1,'os_next_dead_thread():&#160;os.c']]],
+  ['os_5freset_5fthread_5fstack',['os_reset_thread_stack',['../os_8c.html#aaa82962ea069b6011927f9e2ef893128',1,'os_reset_thread_stack(tcb_t *tcb, task_t task):&#160;os.c'],['../os_8h.html#aaa82962ea069b6011927f9e2ef893128',1,'os_reset_thread_stack(tcb_t *tcb, task_t task):&#160;os.c']]],
+  ['os_5fthreading_5finit',['os_threading_init',['../os_8c.html#a21e9322255bb20b29229f675078d42b4',1,'os_threading_init():&#160;os.c'],['../os_8h.html#a21e9322255bb20b29229f675078d42b4',1,'os_threading_init():&#160;os.c']]],
   ['output_5fclear',['Output_Clear',['../_s_t7735_8c.html#a991e9f71a35a1f6ec9d857ca0e01868a',1,'Output_Clear(void):&#160;ST7735.c'],['../_s_t7735_8h.html#a991e9f71a35a1f6ec9d857ca0e01868a',1,'Output_Clear(void):&#160;ST7735.c']]],
   ['output_5fcolor',['Output_Color',['../_s_t7735_8c.html#a1719f525285902712d14efeab76cedcd',1,'Output_Color(uint32_t newColor):&#160;ST7735.c'],['../_s_t7735_8h.html#a1719f525285902712d14efeab76cedcd',1,'Output_Color(uint32_t newColor):&#160;ST7735.c']]],
   ['output_5finit',['Output_Init',['../_s_t7735_8c.html#a8c197f8fb3fd2b2da459e71b44978d53',1,'Output_Init(void):&#160;ST7735.c'],['../_s_t7735_8h.html#a8c197f8fb3fd2b2da459e71b44978d53',1,'Output_Init(void):&#160;ST7735.c']]],

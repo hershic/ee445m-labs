@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['generate_5fdoxygen',['generate_doxygen',['.././bin/html/generate__doxygen.html',1,'']]],
   ['gpio_2ec',['gpio.c',['../gpio_8c.html',1,'']]],
   ['gpio_2eh',['gpio.h',['../gpio_8h.html',1,'']]],
   ['graph_5fframebuffer_2ec',['graph_framebuffer.c',['../graph__framebuffer_8c.html',1,'']]],

@@ -134,8 +134,50 @@ Functions</h2></td></tr>
 <tr class="separator:a40a26471038e995e0f16f3d4d9ae02eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a869cbd940970e2864d1181640b665445"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a869cbd940970e2864d1181640b665445">ustrcpy</a> (char *dest, const char *source)</td></tr>
 <tr class="separator:a869cbd940970e2864d1181640b665445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a025505fff239e04c19c67f2ff72e9a73"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a025505fff239e04c19c67f2ff72e9a73">StartCritical</a> ()</td></tr>
+<tr class="separator:a025505fff239e04c19c67f2ff72e9a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac2b8577facf88812937428e6ab9bf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#acac2b8577facf88812937428e6ab9bf8">EndCritical</a> (int32_t primask)</td></tr>
+<tr class="separator:acac2b8577facf88812937428e6ab9bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="acac2b8577facf88812937428e6ab9bf8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EndCritical </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>primask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>End a non-interruptable critical section which restores the priority mask </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">primask</td><td>the priority mask to restore </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00076">76</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00041">os_add_thread()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                  {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">asm</span>(<span class="stringliteral">&quot;MSR    PRIMASK, R0\n&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph.png" border="0" usemap="#nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph" alt=""/></div>
+<map name="nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph" id="nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph">
+<area shape="rect" id="node2" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd" title="os_add_thread" alt="" coords="143,5,260,32"/><area shape="rect" id="node3" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="308,5,363,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="ac13fcce69aa4b6f7aa32c9081a69c75d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -244,6 +286,39 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph.png" border="0" usemap="#nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph" alt=""/></div>
 <map name="nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph" id="nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph">
 <area shape="rect" id="node2" href="shell_8h.html#a2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="129,5,299,32"/><area shape="rect" id="node7" href="group__softuart__api.html#ga67de09a828f666bfcf91942a1caca842" title="SoftUARTInit" alt="" coords="164,56,264,83"/><area shape="rect" id="node8" href="system_8h.html#af7853b2b79407221baa96df8374fbd5b" title="system_register_command" alt="" coords="347,107,544,133"/><area shape="rect" id="node3" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="592,5,691,32"/><area shape="rect" id="node5" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="372,56,519,83"/><area shape="rect" id="node4" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="739,56,793,83"/><area shape="rect" id="node6" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="604,56,679,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a025505fff239e04c19c67f2ff72e9a73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t StartCritical </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Begin a non-interruptable critical section which preserves the priority mask </p><dl class="section return"><dt>Returns</dt><dd>the current priority mask </dd></dl>
+
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00071">71</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00041">os_add_thread()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">asm</span>(<span class="stringliteral">&quot;MRS    R0, PRIMASK  ;// save old status\n&quot;</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="stringliteral">&quot;CPSID  I            ;// mask all (except faults)\n&quot;</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph.png" border="0" usemap="#nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph" alt=""/></div>
+<map name="nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph" id="nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph">
+<area shape="rect" id="node2" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd" title="os_add_thread" alt="" coords="151,5,268,32"/><area shape="rect" id="node3" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="316,5,371,32"/></map>
 </div>
 </p>
 
@@ -432,7 +507,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_8abf0dd83f466419d031c235a073d3af.html">libstd</a></li><li class="navelem"><a class="el" href="nexus_8c.html">nexus.c</a></li>
-    <li class="footer">Generated on Sat Feb 14 2015 21:58:13 for EE445M RTOS by
+    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

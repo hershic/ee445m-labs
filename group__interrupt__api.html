@@ -623,6 +623,8 @@ function was called or \b false if they were initially enabled.  </pre>
 <p>Definition at line <a class="el" href="interrupt_8c_source.html#l00249">249</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 
 <p>References <a class="el" href="cpu_8h.html#a491d851c4f7fff1f9f66aa778b0671b0">CPUcpsid()</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00040">main()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;{</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment">// Disable processor interrupts.</span></div>
@@ -637,6 +639,15 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_cgraph.png" border="0" usemap="#group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_cgraph" alt=""/></div>
 <map name="group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_cgraph" id="group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_cgraph">
 <area shape="rect" id="node2" href="cpu_8h.html#a491d851c4f7fff1f9f66aa778b0671b0" title="CPUcpsid" alt="" coords="183,5,265,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_icgraph.png" border="0" usemap="#group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_icgraph" alt=""/></div>
+<map name="group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_icgraph" id="group__interrupt__api_gae3724c6b65b8461cf0441f09b13fadf5_icgraph">
+<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="183,5,237,32"/></map>
 </div>
 </p>
 
@@ -746,6 +757,8 @@ Here is the call graph for this function:</div>
 <p>Definition at line <a class="el" href="interrupt_8c_source.html#l00844">844</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 
 <p>References <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, <a class="el" href="hw__ints_8h_source.html#l00049">FAULT_NMI</a>, <a class="el" href="hw__ints_8h_source.html#l00056">FAULT_PENDSV</a>, <a class="el" href="hw__ints_8h_source.html#l00057">FAULT_SYSTICK</a>, <a class="el" href="interrupt_8c_source.html#l00116">g_pui32PendRegs</a>, <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>, <a class="el" href="interrupt_8c_source.html#l00172">NUM_INTERRUPTS</a>, <a class="el" href="hw__nvic_8h_source.html#l00114">NVIC_INT_CTRL</a>, <a class="el" href="hw__nvic_8h_source.html#l00885">NVIC_INT_CTRL_NMI_SET</a>, <a class="el" href="hw__nvic_8h_source.html#l00886">NVIC_INT_CTRL_PEND_SV</a>, and <a class="el" href="hw__nvic_8h_source.html#l00888">NVIC_INT_CTRL_PENDSTSET</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00171">SysTick_Handler()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;{</div>
 <div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -797,6 +810,15 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="group__interrupt__api_html_ga8b9ae71d2ea53a231841b41414acf1ec"><div class="ttname"><a href="group__interrupt__api.html#ga8b9ae71d2ea53a231841b41414acf1ec">NUM_INTERRUPTS</a></div><div class="ttdeci">#define NUM_INTERRUPTS</div><div class="ttdef"><b>Definition:</b> <a href="interrupt_8c_source.html#l00172">interrupt.c:172</a></div></div>
 <div class="ttc" id="hw__ints_8h_html_ae25ed9ac134da15fc8622911d0ac1905"><div class="ttname"><a href="hw__ints_8h.html#ae25ed9ac134da15fc8622911d0ac1905">FAULT_PENDSV</a></div><div class="ttdeci">#define FAULT_PENDSV</div><div class="ttdef"><b>Definition:</b> <a href="hw__ints_8h_source.html#l00056">hw_ints.h:56</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__interrupt__api_gafe17b56764bff1bcb95bd53acde4ac98_icgraph.png" border="0" usemap="#group__interrupt__api_gafe17b56764bff1bcb95bd53acde4ac98_icgraph" alt=""/></div>
+<map name="group__interrupt__api_gafe17b56764bff1bcb95bd53acde4ac98_icgraph" id="group__interrupt__api_gafe17b56764bff1bcb95bd53acde4ac98_icgraph">
+<area shape="rect" id="node2" href="os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="145,5,272,32"/><area shape="rect" id="node3" href="test-os_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="320,5,425,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="gac6a7849e23f4a84c1bcaad2e9bcc27b2"></a>
@@ -1601,7 +1623,7 @@ Here is the caller graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Feb 14 2015 21:58:14 for EE445M RTOS by
+    <li class="footer">Generated on Mon Feb 16 2015 10:10:12 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

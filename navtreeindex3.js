@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"driverlib_2timer_8h.html#a45e95f37200fd54de456cce2b0d246db":[4,0,1,58,104],
 "driverlib_2timer_8h.html#a4699e154ac72dbbc567e2e4e74db3ff2":[4,0,1,58,54],
 "driverlib_2timer_8h.html#a4781516697a8db1af0722d25cf053fc4":[4,0,1,58,60],
 "driverlib_2timer_8h.html#a479f1a382844a60ff0c2a41f24906907":[4,0,1,58,48],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "epi_8h.html#a9d813d99b63e8851111afd46adb4a35d":[4,0,1,20,129],
 "epi_8h.html#a9dea8918e33edb616dda9e53b5e9a354":[4,0,1,20,4],
 "epi_8h.html#a9f1a4583aa762f744e225e0e971f3f05":[4,0,1,20,14],
-"epi_8h.html#aa0249ceabc3e195fe8fca803136394bb":[4,0,1,20,128],
-"epi_8h.html#aa058d79c5da00550bb805193d615402d":[4,0,1,20,134]
+"epi_8h.html#aa0249ceabc3e195fe8fca803136394bb":[4,0,1,20,128]
 };

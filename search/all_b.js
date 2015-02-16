@@ -335,5 +335,6 @@ var searchData=
   ['ll_5fsort',['LL_SORT',['../utlist_8h.html#a0b2137d4a0c157cb7a1a30d9340ece31',1,'utlist.h']]],
   ['ll_5fsort2',['LL_SORT2',['../utlist_8h.html#ab073dee297f8614db97aa576832a3af1',1,'utlist.h']]],
   ['log2_5fnum_5fbuckets',['log2_num_buckets',['../struct_u_t__hash__table.html#ae376a7f3fac525f3a9d03b6beec8d12f',1,'UT_hash_table']]],
-  ['loop_5fcycles',['LOOP_CYCLES',['../group__hibernate__api.html#ga3a15b9e4cfa1f6668b3bc5e324af42c0',1,'hibernate.c']]]
+  ['loop_5fcycles',['LOOP_CYCLES',['../group__hibernate__api.html#ga3a15b9e4cfa1f6668b3bc5e324af42c0',1,'hibernate.c']]],
+  ['lr',['lr',['../structhwcontext.html#a160c4e4ca1e204596d297e24c2b123ae',1,'hwcontext::lr()'],['../structswcontext.html#aff003065cbe0c593e3d29631a47d7695',1,'swcontext::lr()']]]
 ];

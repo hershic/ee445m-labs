@@ -2,6 +2,7 @@ var searchData=
 [
   ['test_2dadc_2ec',['test-adc.c',['../test-adc_8c.html',1,'']]],
   ['test_2ddisplay_2ec',['test-display.c',['../test-display_8c.html',1,'']]],
+  ['test_2dos_2ec',['test-os.c',['../test-os_8c.html',1,'']]],
   ['test_2dshell_2ec',['test-shell.c',['../test-shell_8c.html',1,'']]],
   ['test_2dtimer_2ec',['test-timer.c',['../test-timer_8c.html',1,'']]],
   ['test_2duart_2ec',['test-uart.c',['../test-uart_8c.html',1,'']]],
@@ -12,8 +13,8 @@ var searchData=
   ['timer_2ec',['timer.c',['../lib_2libtimer_2timer_8c.html',1,'']]],
   ['timer_2ec',['timer.c',['../driverlib_2timer_8c.html',1,'']]],
   ['timer_2edox',['timer.dox',['../timer_8dox.html',1,'']]],
-  ['timer_2eh',['timer.h',['../lib_2libtimer_2timer_8h.html',1,'']]],
   ['timer_2eh',['timer.h',['../driverlib_2timer_8h.html',1,'']]],
+  ['timer_2eh',['timer.h',['../lib_2libtimer_2timer_8h.html',1,'']]],
   ['tk_5ftb_2ec',['tk_tb.c',['../tk__tb_8c.html',1,'']]],
   ['tm4c123fe6pm_2eh',['tm4c123fe6pm.h',['../tm4c123fe6pm_8h.html',1,'']]],
   ['tm4c123gh6pm_2eh',['tm4c123gh6pm.h',['../tm4c123gh6pm_8h.html',1,'']]]

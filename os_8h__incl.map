@@ -1,3 +1,5 @@
 <map id="lib/libos/os.h" name="lib/libos/os.h">
-<area shape="rect" id="node2" href="$lib_2libtimer_2timer_8h.html" title="libtimer/timer.h" alt="" coords="31,80,149,107"/>
+<area shape="rect" id="node2" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="19,80,130,107"/>
+<area shape="rect" id="node6" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="257,80,359,107"/>
+<area shape="rect" id="node3" href="$defines_8h.html" title="defines.h" alt="" coords="5,155,85,181"/>
 </map>

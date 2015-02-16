@@ -456,6 +456,7 @@ var searchData=
   ['i2c_5fsris_5fstopris',['I2C_SRIS_STOPRIS',['../hw__i2c_8h.html#ac240d9a73d4216817c1599acd7a83af9',1,'I2C_SRIS_STOPRIS():&#160;hw_i2c.h'],['../tm4c123fe6pm_8h.html#ac240d9a73d4216817c1599acd7a83af9',1,'I2C_SRIS_STOPRIS():&#160;tm4c123fe6pm.h'],['../tm4c123gh6pm_8h.html#ac240d9a73d4216817c1599acd7a83af9',1,'I2C_SRIS_STOPRIS():&#160;tm4c123gh6pm.h']]],
   ['i2c_5fsris_5ftxferis',['I2C_SRIS_TXFERIS',['../hw__i2c_8h.html#ab99f0b3b90c15a5eb5009de25010a0bb',1,'hw_i2c.h']]],
   ['i2c_5fsris_5ftxris',['I2C_SRIS_TXRIS',['../hw__i2c_8h.html#ad61a1aabadc028298e98da6d64ca970d',1,'hw_i2c.h']]],
+  ['immutable',['immutable',['../nexus_8h.html#ad5115fcc4c7f94ae68699ed62ab84452',1,'nexus.h']]],
   ['indextousbep',['IndexToUSBEP',['../usb_8h.html#adc2152c0042517fba5f98f9a77a56e33',1,'usb.h']]],
   ['int_5fadc0ss0',['INT_ADC0SS0',['../hw__ints_8h.html#a75ef080cd9c5cbd5cfb1b74b6984fb53',1,'INT_ADC0SS0():&#160;hw_ints.h'],['../tm4c123fe6pm_8h.html#a75ef080cd9c5cbd5cfb1b74b6984fb53',1,'INT_ADC0SS0():&#160;tm4c123fe6pm.h'],['../tm4c123gh6pm_8h.html#a75ef080cd9c5cbd5cfb1b74b6984fb53',1,'INT_ADC0SS0():&#160;tm4c123gh6pm.h']]],
   ['int_5fadc0ss0_5ftm4c123',['INT_ADC0SS0_TM4C123',['../hw__ints_8h.html#a93e643433db5bde8d017f8dcc59123ae',1,'hw_ints.h']]],

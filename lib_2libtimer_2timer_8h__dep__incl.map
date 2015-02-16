@@ -1,8 +1,7 @@
 <map id="lib/libtimer/timer.h" name="lib/libtimer/timer.h">
 <area shape="rect" id="node2" href="$test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="5,80,173,121"/>
 <area shape="rect" id="node3" href="$lib_2libadc_2adc_8h.html" title="lib/libadc/adc.h" alt="" coords="198,87,314,114"/>
-<area shape="rect" id="node6" href="$os_8h.html" title="lib/libos/os.h" alt="" coords="338,87,438,114"/>
-<area shape="rect" id="node7" href="$lib_2libtimer_2timer_8c.html" title="lib/libtimer/timer.c" alt="" coords="461,87,597,114"/>
+<area shape="rect" id="node6" href="$lib_2libtimer_2timer_8c.html" title="lib/libtimer/timer.c" alt="" coords="339,87,475,114"/>
 <area shape="rect" id="node4" href="$test-adc_8c.html" title="board&#45;progs/test&#45;adc\l/test&#45;adc.c" alt="" coords="97,169,255,211"/>
 <area shape="rect" id="node5" href="$lib_2libadc_2adc_8c.html" title="lib/libadc/adc.c" alt="" coords="279,177,393,203"/>
 </map>

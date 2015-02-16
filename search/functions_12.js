@@ -52,5 +52,7 @@ var searchData=
   ['tkincrementms',['TKIncrementMS',['../timekit_8c.html#a79b0633e06d4dd083602517a13d6dd41',1,'TKIncrementMS(clocktime *tm, short ms):&#160;timekit.c'],['../timekit_8h.html#a79b0633e06d4dd083602517a13d6dd41',1,'TKIncrementMS(clocktime *tm, short ms):&#160;timekit.c']]],
   ['tkincrementseconds',['TKIncrementSeconds',['../timekit_8c.html#afd0611daffa420c0aa7eb693d2cd61e6',1,'TKIncrementSeconds(clocktime *tm, short seconds):&#160;timekit.c'],['../timekit_8h.html#afd0611daffa420c0aa7eb693d2cd61e6',1,'TKIncrementSeconds(clocktime *tm, short seconds):&#160;timekit.c']]],
   ['tktostring',['TKToString',['../timekit_8c.html#a67cecf45b96e615dd32707cf944a5735',1,'TKToString(clocktime *tm):&#160;timekit.c'],['../timekit_8h.html#a67cecf45b96e615dd32707cf944a5735',1,'TKToString(clocktime *tm):&#160;timekit.c']]],
-  ['tkvalidatetime',['TKValidateTime',['../timekit_8c.html#a406e6394ad6b4b3d7d1e511bcb69d8c1',1,'TKValidateTime(clocktime *tm):&#160;timekit.c'],['../timekit_8h.html#a406e6394ad6b4b3d7d1e511bcb69d8c1',1,'TKValidateTime(clocktime *tm):&#160;timekit.c']]]
+  ['tkvalidatetime',['TKValidateTime',['../timekit_8c.html#a406e6394ad6b4b3d7d1e511bcb69d8c1',1,'TKValidateTime(clocktime *tm):&#160;timekit.c'],['../timekit_8h.html#a406e6394ad6b4b3d7d1e511bcb69d8c1',1,'TKValidateTime(clocktime *tm):&#160;timekit.c']]],
+  ['turn_5foff_5fled',['turn_off_led',['../test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33',1,'test-os.c']]],
+  ['turn_5fon_5fled',['turn_on_led',['../test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c',1,'test-os.c']]]
 ];

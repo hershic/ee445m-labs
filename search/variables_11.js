@@ -1,11 +1,23 @@
 var searchData=
 [
-  ['tabcolor',['TabColor',['../_s_t7735_8c.html#a706a81990d141f6740c3c22028f80808',1,'ST7735.c']]],
-  ['tail',['tail',['../struct_u_t__hash__table.html#a00a889a5e1ebaeec0a83ec2701df1992',1,'UT_hash_table']]],
-  ['tbl',['tbl',['../struct_u_t__hash__handle.html#ad2035ee3b2aa55b22e352341372a5e73',1,'UT_hash_handle']]],
-  ['timehandle',['timehandle',['../structclockface.html#a81a5fbcf65e6038b52c566785900eb6f',1,'clockface']]],
-  ['timer',['timer',['../unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984',1,'hw_metadata']]],
-  ['timer_5ffrequency',['TIMER_FREQUENCY',['../structhw__timer__metadata.html#a6703d3d00637ccbbffaaf79cdcced0d2',1,'hw_timer_metadata']]],
-  ['title',['title',['../structgraph.html#ae31eca1c844556fd7514a46832bfef2b',1,'graph']]],
-  ['type',['type',['../structclockhand.html#a2e3757a9b845d58fe10cd9358117d5da',1,'clockhand']]]
+  ['seconds',['seconds',['../structclocktime.html#a1c37159d28c6a098f51285f31319a5d8',1,'clocktime']]],
+  ['shade',['shade',['../structpoint.html#a82bf95a73b4c6933132396e5a07bb67c',1,'point']]],
+  ['shapebuffer',['shapeBuffer',['../structclockhand.html#a84f5ee537b244ab0346d14ea2ab8a312',1,'clockhand::shapeBuffer()'],['../structclockface.html#a91b2d62c93f7b387de3edffcd633fa25',1,'clockface::shapeBuffer()']]],
+  ['shell_5fbuffer',['SHELL_BUFFER',['../shell_8c.html#ad4eb0fba0625f09ba35622195831cd70',1,'shell.c']]],
+  ['shell_5fbuffer_5fposition',['SHELL_BUFFER_POSITION',['../shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454',1,'shell.c']]],
+  ['shell_5fdefault_5fps1',['SHELL_DEFAULT_PS1',['../shell_8c.html#ad5de3e629c7b8307edcf5e66a554f440',1,'shell.c']]],
+  ['shell_5fps1',['SHELL_PS1',['../shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a',1,'shell.c']]],
+  ['signature',['signature',['../struct_u_t__hash__table.html#a87d1ab3f3ede1809c6a485972d20b25f',1,'UT_hash_table']]],
+  ['single_5fshot_5fsubscription',['single_shot_subscription',['../struct__isr__subscription.html#ab70ebbe180ca38327c121f36c6a4c7f8',1,'_isr_subscription']]],
+  ['sleep_5ftimer',['sleep_timer',['../structtcb.html#aeea97619a9957dd9773ad75d3cb242ea',1,'tcb']]],
+  ['slot',['slot',['../struct__isr__subscription.html#a2d3c20adf98cf7920f8f52366166e961',1,'_isr_subscription']]],
+  ['sp',['sp',['../structtcb.html#a1b635a6f6a5f7f3c80665eb17b561b74',1,'tcb']]],
+  ['status',['status',['../structtcb.html#a5d36bab13f7b5105e639165a67e6b943',1,'tcb']]],
+  ['sttextcolor',['StTextColor',['../_s_t7735_8c.html#ab8aedd4ea66842865fe41bc05d4b5f4b',1,'ST7735.c']]],
+  ['stx',['StX',['../_s_t7735_8c.html#a7fac78e460a4b41905ea64f143ecbee7',1,'ST7735.c']]],
+  ['stx2',['StX2',['../_s_t7735_8c.html#ac4f8d0a529ad2653e9986100ed519011',1,'ST7735.c']]],
+  ['sty',['StY',['../_s_t7735_8c.html#abc206509eff4ac0559c5cd676537093b',1,'ST7735.c']]],
+  ['sty2',['StY2',['../_s_t7735_8c.html#aa59ea643682eec33cd5a56c63c43576a',1,'ST7735.c']]],
+  ['system_5fcommands',['SYSTEM_COMMANDS',['../system_8c.html#a27881fc9bdf0fe8767ebcf76809b18e3',1,'system.c']]],
+  ['sz',['sz',['../struct_u_t__icd.html#a7021fa86e4197995817c9682140c2c82',1,'UT_icd']]]
 ];

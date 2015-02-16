@@ -116,33 +116,41 @@ $(document).ready(function(){initNavTree('nexus_8h_source.html','');});
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="defines_8h.html">defines.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc">   10</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc">postpone_death</a>() {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">while</span>(1) {};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="nexus_8h.html#a6850f0750b366cba67ec227cd1b418a2">memset</a>(<span class="keywordtype">void</span>*, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="nexus_8h.html#a24d653f7e815fdbe4bdf6f154021b1f5">memcpy</a>(<span class="keywordtype">void</span>*, <span class="keyword">const</span> <span class="keywordtype">void</span>*, <span class="keywordtype">long</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> <a class="code" href="nexus_8h.html#a21e4788b4a0ae39b11aa32e9a1079f98">strcmp</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">int</span> <a class="code" href="nexus_8h.html#a170c31b398ddb64f7a8c30511bbddeed">ustrncmp</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*, uint32_t);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="nexus_8h.html#ab0507090ea29ee9b2edd4b23ae5f5c68">ustrcpy</a>(<span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="nexus_8h.html#ad5115fcc4c7f94ae68699ed62ab84452">    8</a></span>&#160;<span class="preprocessor">#define immutable</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc">   12</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc">postpone_death</a>() {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">while</span>(1) {};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="nexus_8h.html#a6850f0750b366cba67ec227cd1b418a2">memset</a>(<span class="keywordtype">void</span>*, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="nexus_8h.html#a24d653f7e815fdbe4bdf6f154021b1f5">memcpy</a>(<span class="keywordtype">void</span>*, <span class="keyword">const</span> <span class="keywordtype">void</span>*, <span class="keywordtype">long</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">int</span> <a class="code" href="nexus_8h.html#a21e4788b4a0ae39b11aa32e9a1079f98">strcmp</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> <a class="code" href="nexus_8h.html#a170c31b398ddb64f7a8c30511bbddeed">ustrncmp</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*, uint32_t);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="nexus_8h.html#ab0507090ea29ee9b2edd4b23ae5f5c68">ustrcpy</a>(<span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;int32_t <a class="code" href="nexus_8h.html#a025505fff239e04c19c67f2ff72e9a73">StartCritical</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="nexus_8h.html#acac2b8577facf88812937428e6ab9bf8">EndCritical</a>(int32_t primask);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="nexus_8h_html_ab0507090ea29ee9b2edd4b23ae5f5c68"><div class="ttname"><a href="nexus_8h.html#ab0507090ea29ee9b2edd4b23ae5f5c68">ustrcpy</a></div><div class="ttdeci">void ustrcpy(char *, const char *)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00063">nexus.c:63</a></div></div>
+<div class="ttc" id="nexus_8h_html_a025505fff239e04c19c67f2ff72e9a73"><div class="ttname"><a href="nexus_8h.html#a025505fff239e04c19c67f2ff72e9a73">StartCritical</a></div><div class="ttdeci">int32_t StartCritical()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00071">nexus.c:71</a></div></div>
 <div class="ttc" id="nexus_8h_html_a170c31b398ddb64f7a8c30511bbddeed"><div class="ttname"><a href="nexus_8h.html#a170c31b398ddb64f7a8c30511bbddeed">ustrncmp</a></div><div class="ttdeci">int ustrncmp(const char *, const char *, uint32_t)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00034">nexus.c:34</a></div></div>
 <div class="ttc" id="nexus_8h_html_a24d653f7e815fdbe4bdf6f154021b1f5"><div class="ttname"><a href="nexus_8h.html#a24d653f7e815fdbe4bdf6f154021b1f5">memcpy</a></div><div class="ttdeci">void * memcpy(void *, const void *, long)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00019">nexus.c:19</a></div></div>
 <div class="ttc" id="defines_8h_html"><div class="ttname"><a href="defines_8h.html">defines.h</a></div></div>
 <div class="ttc" id="nexus_8h_html_a21e4788b4a0ae39b11aa32e9a1079f98"><div class="ttname"><a href="nexus_8h.html#a21e4788b4a0ae39b11aa32e9a1079f98">strcmp</a></div><div class="ttdeci">int strcmp(const char *, const char *)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00029">nexus.c:29</a></div></div>
 <div class="ttc" id="nexus_8h_html_a6850f0750b366cba67ec227cd1b418a2"><div class="ttname"><a href="nexus_8h.html#a6850f0750b366cba67ec227cd1b418a2">memset</a></div><div class="ttdeci">void * memset(void *, int, int)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00004">nexus.c:4</a></div></div>
-<div class="ttc" id="nexus_8h_html_a282f1b8afad5a4e29b16def076fd68dc"><div class="ttname"><a href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc">postpone_death</a></div><div class="ttdeci">static void postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00010">nexus.h:10</a></div></div>
+<div class="ttc" id="nexus_8h_html_acac2b8577facf88812937428e6ab9bf8"><div class="ttname"><a href="nexus_8h.html#acac2b8577facf88812937428e6ab9bf8">EndCritical</a></div><div class="ttdeci">void EndCritical(int32_t primask)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00076">nexus.c:76</a></div></div>
+<div class="ttc" id="nexus_8h_html_a282f1b8afad5a4e29b16def076fd68dc"><div class="ttname"><a href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc">postpone_death</a></div><div class="ttdeci">static void postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00012">nexus.h:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_8abf0dd83f466419d031c235a073d3af.html">libstd</a></li><li class="navelem"><a class="el" href="nexus_8h.html">nexus.h</a></li>
-    <li class="footer">Generated on Sat Feb 14 2015 21:58:09 for EE445M RTOS by
+    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

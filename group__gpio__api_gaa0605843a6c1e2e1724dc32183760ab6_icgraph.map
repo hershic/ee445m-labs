@@ -1,11 +1,14 @@
 <map id="GPIOPinWrite" name="GPIOPinWrite">
-<area shape="rect" id="node2" href="$lib_2libadc_2adc_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="307,9,455,36"/>
-<area shape="rect" id="node4" href="$lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="156,35,259,61"/>
-<area shape="rect" id="node5" href="$heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle the heart twice. " alt="" coords="161,136,253,163"/>
-<area shape="rect" id="node8" href="$heartbeat_8h.html#ac4e09294b286f9c177f810f1d9257b71" title="Turn the heart off. " alt="" coords="168,85,247,112"/>
-<area shape="rect" id="node9" href="$heartbeat_8h.html#a9dac0247d04d756de0ead8adeeea16e8" title="Turn the heart on. " alt="" coords="168,187,247,213"/>
-<area shape="rect" id="node10" href="$heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle the heart once. " alt="" coords="156,237,259,264"/>
-<area shape="rect" id="node3" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="503,48,608,75"/>
-<area shape="rect" id="node6" href="$test-timer_8c.html#a08e9ca8d337b256ff66bf838eb68ecd4" title="Blink the onboard LED three times to show activity. " alt="" coords="312,187,449,213"/>
-<area shape="rect" id="node7" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="321,85,441,112"/>
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="307,13,455,40"/>
+<area shape="rect" id="node4" href="$lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="156,39,259,65"/>
+<area shape="rect" id="node5" href="$heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle the heart twice. " alt="" coords="161,140,253,167"/>
+<area shape="rect" id="node8" href="$heartbeat_8h.html#ac4e09294b286f9c177f810f1d9257b71" title="Turn the heart off. " alt="" coords="168,89,247,116"/>
+<area shape="rect" id="node9" href="$heartbeat_8h.html#a9dac0247d04d756de0ead8adeeea16e8" title="Turn the heart on. " alt="" coords="168,191,247,217"/>
+<area shape="rect" id="node10" href="$heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle the heart once. " alt="" coords="156,241,259,268"/>
+<area shape="rect" id="node11" href="$test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33" title="turn_off_led" alt="" coords="159,292,256,319"/>
+<area shape="rect" id="node13" href="$test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c" title="turn_on_led" alt="" coords="159,343,256,369"/>
+<area shape="rect" id="node3" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="503,52,608,79"/>
+<area shape="rect" id="node6" href="$test-timer_8c.html#a08e9ca8d337b256ff66bf838eb68ecd4" title="Blink the onboard LED three times to show activity. " alt="" coords="312,229,449,256"/>
+<area shape="rect" id="node7" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="321,89,441,116"/>
+<area shape="rect" id="node12" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="353,305,408,332"/>
 </map>

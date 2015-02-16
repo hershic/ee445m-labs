@@ -1,7 +1,7 @@
 var searchData=
 [
   ['ndebug',['NDEBUG',['../framebuffer_8c.html#a8de3ed741dadc9c979a4ff17c0a9116e',1,'NDEBUG():&#160;framebuffer.c'],['../graphics2d_8c.html#a8de3ed741dadc9c979a4ff17c0a9116e',1,'NDEBUG():&#160;graphics2d.c'],['../lib_2libuart_2uart_8c.html#a8de3ed741dadc9c979a4ff17c0a9116e',1,'NDEBUG():&#160;uart.c']]],
-  ['null',['NULL',['../defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4',1,'NULL():&#160;defines.h'],['../defines_8h.html#ac97b8ee753e4405397a42ad5799b0f9e',1,'null():&#160;defines.h']]],
+  ['null',['null',['../defines_8h.html#ac97b8ee753e4405397a42ad5799b0f9e',1,'null():&#160;defines.h'],['../defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4',1,'NULL():&#160;defines.h']]],
   ['num_5fadc_5fchannels',['NUM_ADC_CHANNELS',['../lib_2libadc_2adc_8c.html#a7b64795f5efe5ed8d52ac8c430c1ac7f',1,'adc.c']]],
   ['num_5finterrupts',['NUM_INTERRUPTS',['../hw__ints_8h.html#a8b9ae71d2ea53a231841b41414acf1ec',1,'hw_ints.h']]],
   ['num_5finterrupts_5ftm4c123',['NUM_INTERRUPTS_TM4C123',['../hw__ints_8h.html#ad689e4f29b32565da70288f25efb8045',1,'hw_ints.h']]],
