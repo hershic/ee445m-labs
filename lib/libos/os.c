@@ -78,6 +78,7 @@ tcb_t* os_add_thread(task_t task) {
 
     /* 5. Return. */
     EndCritical(status);
+    /* TODO: return value */
 }
 
 tcb_t* os_next_dead_thread() {
