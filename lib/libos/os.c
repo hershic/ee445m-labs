@@ -110,11 +110,11 @@ void os_launch() {
     asm volatile("MSR PSP, R0");
 
     /* change EXC_RETURN for return on PSP */
-    asm volatile("ORR LR, LR, #4");
+    /* asm volatile("ORR LR, LR, #4"); */
 
     /* change the active stack to use psp */
     asm volatile("MRS R0, CONTROL");
-    asm volatile("ORR R0, R0, #2");
+    asm volatile("ORR R0, R0, #3");
     asm volatile("MSR CONTROL, R0");
 
     asm volatile("POP     {R4-R11}");
@@ -125,6 +125,8 @@ void os_launch() {
 
     asm volatile("pop {r12, lr}");
     asm volatile("pop {pc}");
+
+    asm volatile ("BX LR");
 
     /* return from handler */
     /* asm volatile("POP {R0, R1, R2, R3, R12, LR, PC, PSR} "); */
@@ -173,71 +175,98 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
    SysTick run! */
 void SysTick_Handler() {
 
+
+    IntPendSet(FAULT_PENDSV);
+
+    return;
+
     /* try 1 */
-    /* uint32_t status = StartCritical(); */
-    asm volatile("CPSID   I");
-    asm volatile("PUSH    {R4-R11}"); /* r0-11 now saved in 'old' stack */
-    asm volatile("LDR     R0, =os_current_running_thread"); /* this is a tcb */
-    /* asm volatile("LDR     R1, [R0]"); */
-    /* asm volatile("STR     SP, [R1]"); */
-    /* asm volatile("LDR     R1, [R1,#4]"); */
-    /* asm volatile("STR     R1, [R0]"); */
-    /* asm volatile("LDR     SP, [R1]"); */
-    /* asm volatile("POP     {R4-R11}"); */
+
+    /* HACK */
+    /* asm volatile("ldmia   r12!, {lr}"); */
+    /* asm volatile("ldmia   r12!, {r0-r3}"); */
+    /* asm volatile("ldmia   r12!, {r12, lr}"); */
+    /* asm volatile("ldmia   r12!, {pc}"); */
+    /*  */
+    /* asm volatile("POP     {LR}"); */
+    /* asm volatile("POP     {R0-R3}"); */
+    /*  */
+    /* asm volatile("pop {r12, lr}"); */
+    /* asm volatile("pop {pc}"); */
+    /* END HACK */
+
+    asm volatile("bx      lr");
+}
+
+void PendSV_Handler() {
+    /* asm volatile ("MRS    R0, PRIMASK  ;// save old status\n" */
+    /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
+
+    /* DEBUGGING */
+    asm volatile("CPSID  I            ;// mask all (except faults)\n");
+
+    asm volatile ("PUSH {R9, R10, R11, R12}");
+    asm volatile ( "mrs     r12, psp" );
+    asm volatile ( "mrs     r11, msp" );
+    asm volatile ( "mrs     r10, control" );
+    asm volatile ("POP {R9, R10, R11, R12}");
+    /* END DEBUGGING */
+
+    /* -------------------------------------------------- */
+    /* phase 1: store context                             */
+    /* -------------------------------------------------- */
+
+    /* load the psp of thread A into r12 */
+    asm volatile("mrs     r12, psp" );
+
+    /* save thread A's registers into the psp */
+    asm volatile("stmdb   r12!, {r4 - r11, lr}");
+
+    /* -------------------------------------------------- */
+    /* phase 2: os_current_running_thread manipulation    */
+    /* -------------------------------------------------- */
+
+    /* load the value contained in the os_current_running_thread
+       variable */
+    asm volatile("LDR     R2, =os_current_running_thread");
+
+    /* find out where that variable points to */
+    asm volatile("LDR     R3, [R2]");
+
+    /* load the value of os_current_running_thread->next into r1 */
+    asm volatile("LDR     R1, [R3,#4]");
+
+    /* os_current_running_thread = os_current_running_thread->next */
+    asm volatile("STR     R1, [R2]");
+
+    /* -------------------------------------------------- */
+    /* phase 3: load context                              */
+    /* -------------------------------------------------- */
+
+    /* store the psp from thread A  */
+    asm volatile("str     r12, [r0, #0]");
+
+    /* load thread B's psp */
+    asm volatile("ldr     r12, [r1, #0]");
+
+    /* load thread B's context */
+    asm volatile("ldmia   r12!, {r4 - r11, lr}");
+
+    /* put thread B's psp into the arch psp register */
+    asm volatile("msr     psp, r12");
+
+    /* asm volatile("MSR    PRIMASK, R0\n"); */
+    asm volatile("CPSIE   I");
+
+    /* DEBUGGING */
+    asm volatile ("PUSH {R9, R10, R11, R12}");
+    asm volatile ( "mrs     r12, psp" );
+    asm volatile ( "mrs     r11, msp" );
+    asm volatile ( "mrs     r10, control" );
+    asm volatile ("POP {R9, R10, R11, R12}");
+    /* END DEBUGGING */
+
     /* asm volatile("CPSIE   I"); */
-    /* asm volatile("BX      LR"); */
 
-
-    /* try 2 */
-    /* something wrong with psp/msp stuff */
-    /* asm volatile ( "mrs     r12, msp" ); */
-    /*  */
-    /* asm volatile("push    {r4 - r11}"); */
-    /* asm volatile("ldmia   r12!, {r4 - r11, lr}"); */
-    /* asm volatile("mrs     r12, psp"); */
-    /* asm volatile("stmdb   r12!, {r4 - r11, lr}"); */
-    /* asm volatile("pop     {r4 - r11}"); */
-    /*  */
-    /* asm volatile("LDR     R0, =os_current_running_thread"); */
-    /* asm volatile("LDR     R0, [R0]"); */
-    /* asm volatile("LDR     R1, [R0,#4]"); */
-    /* asm volatile("STR     R1, [R0]"); */
-    /*  */
-    /* asm volatile("str     r12, [r1, #0]"); */
-    /* asm volatile("ldr     r12, [r0, #0]"); */
-    /* asm volatile("msr     msp, r11"); */
-    /* asm volatile("ldmia   r12!, {r4 - r11, lr}"); */
-    /* asm volatile("msr     psp, r12"); */
-    /* asm volatile("bx      lr"); */
-
-    /* /\* r2 = os_current_running_thread *\/ */
-    /* asm volatile("LDR R2, [R0]");  */
-    /*  */
-    /* /\* r1 = os_current_running_thread->next *\/ */
-    /* asm volatile("LDR R1, [R2, #4]");  */
-    /*  */
-    /* /\* os_current_running_thread = r1 *\/ */
-    /* asm volatile("STR R1, [R0]"); */
-    /*  */
-    /* /\* load the pointers to the stack pointers and change the current */
-    /*    running thread to the next thread *\/ */
-    /* asm volatile("LDR R0, [R2]"); */
-    /* /\* asm volatile("LDR R1, [R1]"); *\/ */
-    /*  */
-    /* /\* update the stack pointers *\/ */
-    /* asm volatile("STR SP, [R0]"); */
-    /* asm volatile("LDR SP, [R1]"); */
-    /*  */
-    /* /\* finally, pop the remaining registers *\/ */
-    /* asm volatile("POP {R4-R11}"); */
-
-    /* asm volatile("POP {r0, r1, r2, r3, r12, lr, pc, psr} "); */
-
-    /* try 3 */
-    asm volatile ("PUSH {R11, R12}");
-    asm volatile ("mrs   r12, psp");
-    asm volatile ("mrs   r11, msp");
-    asm volatile ("POP  {R11, R12}");
-    asm volatile("CPSIE I"); 	/* re-enable interrupts */
-
+    asm volatile ("bx lr");
 }
