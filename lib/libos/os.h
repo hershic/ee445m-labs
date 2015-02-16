@@ -80,7 +80,7 @@ typedef struct swcontext {
     uint32_t lr;
 } swcontext_t;
 
-/*! Resets the thread stack for a given tcb to run a given task
+/*! Resets the thread stack for a given tcb to run a given task.
  *  \param thread the thread whose stack is to be reset
  *  \param the task for which the thread should run
  */
