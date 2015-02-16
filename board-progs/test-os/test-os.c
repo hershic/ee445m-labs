@@ -42,21 +42,24 @@ uint32_t Count1, Count2, Count3;
 void Thread1b(void){
     Count1 = 0;
     for(;;){
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4));
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4 | GPIO_PIN_3 | GPIO_PIN_2, 0);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_PIN_4);
         Count1++;
     }
 }
 void Thread2b(void){
     Count2 = 0;
     for(;;){
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4 | GPIO_PIN_3 | GPIO_PIN_2, 0);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         Count2++;
     }
 }
 void Thread3b(void){
     Count3 = 0;
     for(;;){
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_4 | GPIO_PIN_3 | GPIO_PIN_2, 0);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
         Count3++;
     }
 }
@@ -92,5 +95,5 @@ int main() {
     os_launch();
 
     /* And we're done; this should never execute */
-    while (1) {}
+    while (1) {};
 }
