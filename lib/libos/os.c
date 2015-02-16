@@ -1,4 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
+/* Created by Hershal Bhave 2015-02-08 */
+/* Revision History: Look in Git FGT */
+
 #include "os.h"
 
 /*! An array of statically allocated threads. */
@@ -96,7 +99,6 @@ tcb_t* os_next_dead_thread() {
     return return_tcb;
 }
 
-/*! Sets the data structures for the operating system launch */
 void os_launch() {
 
     /* acquire the pointer to the stack pointer here */
@@ -109,9 +111,6 @@ void os_launch() {
     /* set the process stack value */
     asm volatile("MSR PSP, R0");
 
-    /* change EXC_RETURN for return on PSP */
-    /* asm volatile("ORR LR, LR, #4"); */
-    
     /* change the active stack to use psp */
     asm volatile("MRS R0, CONTROL");
     asm volatile("ORR R0, R0, #2");
@@ -119,19 +118,12 @@ void os_launch() {
     
     asm volatile("POP     {R4-R11}");
     
-    /* asm volatile("POP     {R12}"); */
     asm volatile("POP     {LR}");
     asm volatile("POP     {R0-R3}");
     
     asm volatile("pop {r12, lr}");
     asm volatile("pop {pc}");
-    
-    asm volatile ("BX LR");
-
-    /* return from handler */
-    /* asm volatile("POP {R0, R1, R2, R3, R12, LR, PC, PSR} "); */
-
-    /* asm volatile("BX LR"); */
+    /* can't do anything about the PSR */
 }
 
 void os_reset_thread_stack(tcb_t* tcb, task_t task) {
@@ -171,46 +163,17 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
     asm volatile ("POP {R9, R10, R11, R12}");
 }
 
-/* NOTE: Make sure you have something to run before letting the
+/* NOTE: Make sure you have a thread to run before letting the
    SysTick run! */
 void SysTick_Handler() {
 
     IntPendSet(FAULT_PENDSV);
     return;
-
-    /* try 1 */
-
-    /* HACK */
-    /* asm volatile("ldmia   r12!, {lr}"); */
-    /* asm volatile("ldmia   r12!, {r0-r3}"); */
-    /* asm volatile("ldmia   r12!, {r12, lr}"); */
-    /* asm volatile("ldmia   r12!, {pc}"); */
-    /*  */
-    /* asm volatile("POP     {LR}"); */
-    /* asm volatile("POP     {R0-R3}"); */
-    /*  */
-    /* asm volatile("pop {r12, lr}"); */
-    /* asm volatile("pop {pc}"); */
-    /* END HACK */
-
-    asm volatile("bx      lr");
 }
 
 void PendSV_Handler() {
-    /* asm volatile ("MRS    R0, PRIMASK  ;// save old status\n" */
-    /* asm volatile("CPSID  I            ;// mask all (except faults)\n"); */
-
-    /* IntPendClear(FAULT_PENDSV); */
 
     asm volatile("CPSID  I            ;// mask all (except faults)\n");
-
-    /* DEBUGGING */
-    asm volatile ("PUSH {R9, R10, R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
-    asm volatile ( "mrs     r11, msp" );
-    asm volatile ( "mrs     r10, control" );
-    asm volatile ("POP {R9, R10, R11, R12}");
-    /* END DEBUGGING */
 
     /* -------------------------------------------------- */
     /* phase 1: store context                             */
@@ -254,15 +217,9 @@ void PendSV_Handler() {
     /* put thread B's psp into the arch psp register */
     asm volatile("msr     psp, r12");
 
-    /* DEBUGGING */
-    asm volatile ("PUSH {R9, R10, R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
-    asm volatile ( "mrs     r11, msp" );
-    asm volatile ( "mrs     r10, control" );
-    asm volatile ("POP {R9, R10, R11, R12}");
-    /* END DEBUGGING */
-
+    /* reenable interrupts */
     asm volatile("CPSIE   I");
 
+    /* complete the thread switch */
     asm volatile ("bx lr");
 }
