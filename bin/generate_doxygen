@@ -53,7 +53,7 @@ declare HELP_GENERATE_DOXYGEN
 HELP_GENERATE_DOXYGEN=$(cat <<'EOF'
 $0 : Generate doxygen documentation for the entire RToS project.
 
-Usage : [-n] [-p|-d]
+Usage : [-h] [-n] [-p]
 
   -h : print this help menu
   -n : dry-run -- don't execute anything
