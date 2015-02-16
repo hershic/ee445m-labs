@@ -26,15 +26,35 @@
 
 #include <sys/stat.h>
 
-void turn_on_led() {
-    while (1) {
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+unsigned long CountPF2Toggle; // number of times thread1 loops
+unsigned long CountPF3Toggle; // number of times thread2 loops
+unsigned long CountPF4Toggle; // number of times thread3 loops
+
+muscle_t PF2;
+muscle_t PF3;
+muscle_t PF4;
+
+void Thread1(void){
+    CountPF2Toggle = 0;
+    while(1){
+	heart_toggle_(&PF2);
+        CountPF2Toggle++;
     }
 }
 
-void turn_off_led() {
-    while (1) {
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+void Thread2(void){
+    CountPF3Toggle = 0;
+    while(1){
+	heart_toggle_(&PF3);
+        CountPF3Toggle++;
+    }
+}
+
+void Thread3(void){
+    CountPF4Toggle = 0;
+    while(1){
+	heart_toggle_(&PF4);
+        CountPF4Toggle++;
     }
 }
 
@@ -47,15 +67,24 @@ int main() {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
 
-    heart_off();
+    PF2.base = GPIO_PORTF_BASE;
+    PF3.base = GPIO_PORTF_BASE;
+    PF4.base = GPIO_PORTF_BASE;
+    PF2.pin = GPIO_PIN_2;
+    PF3.pin = GPIO_PIN_3;
+    PF4.pin = GPIO_PIN_4;
+    heart_init_(&PF2);
+    heart_init_(&PF3);
+    heart_init_(&PF4);
 
     IntMasterDisable();
 
     os_threading_init();
-    os_add_thread(turn_on_led);
-    os_add_thread(turn_off_led);
+    os_add_thread(Thread1);
+    os_add_thread(Thread2);
+    os_add_thread(Thread3);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 10);
@@ -63,10 +92,9 @@ int main() {
     SysTickIntEnable();
 
     os_launch();
-
-    /* Don't get here yet, still testing if everything else works! */
-    /* os_launch(0); */
+    /* PONDER: why do interrupts fire without this? */
+    IntMasterEnable();
 
     /* And we're done; this should never execute */
-    while (1) {}
+    postpone_death();
 }
