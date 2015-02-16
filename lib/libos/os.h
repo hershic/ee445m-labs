@@ -1,4 +1,6 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
+/* Created by Hershal Bhave 2015-02-08 */
+/* Revision History: Look in Git FGT */
 
 #include "libstd/nexus.h"
 #include "inc/hw_ints.h"
@@ -6,24 +8,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-/* TODO: Make this doxygen output match libtimer's */
+/*! Maximum number of concurrent threads */
+#define OS_MAX_THREADS  4
 
-/*!
- * \brief Schedule a task (function) to be invoked periodically.
- * \param task A pointer to the function to execute every \period milliseconds
- * \param period Number of milliseconds to wait before invoking \task repeatedly
- * \param priority The value to be specified in the NVIC for this thread (task).
- * \returns TODO
- * \note Note that this function name was chosen by the class
- * administrators. This name has been the source of some confusion;
- * namely the fact that the function name refers to a thread and the
- * function argument refers to a task. This function actually takes a
- * task (a function pointer, not a fully-fledged thread) and invokes
- * said function on the designated schedule. No true threads exist in
- * this context.
- */
-#define OS_MAX_THREADS  4        /* maximum number of threads */
-#define OS_STACK_SIZE   100      /* number of 32-bit words in stack */
+/*! Maximum number of 32-bit values allowed in each thread's stack */
+#define OS_STACK_SIZE   100
 
 typedef enum {
     /* thread is not running and will not run */
@@ -121,8 +110,11 @@ tcb_t* os_next_dead_thread();
  */
 void os_threading_init();
 
+/*! Launches the operating system. Note that this function drastically
+ *  changes the execution paradigm of the machine, so do not expect to
+ *  call it and be able to return to the previous context.
+ */
 void os_launch();
 
-
-/*! \brief a do-nothing idle thread */
+/*! A do-nothing idle thread */
 void idle();
