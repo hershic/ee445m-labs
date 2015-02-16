@@ -3,6 +3,7 @@
 #include "timer.h"
 #include "libhw/hardware.h"
 #include "libnotify/notify.h"
+#include "libstd/nexus.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -21,16 +22,19 @@ bool timer_add_periodic_interrupt(uint32_t frequency,
     /* can give it a raw timer address (TIMERx_BASE) or an int with
        the timer number (0, 1, 2) for convenience */
     switch (timer_peripheral) {
+    case 0:
     case TIMER0_BASE:
         timer_base = TIMER0_BASE;
         timer_periph = SYSCTL_PERIPH_TIMER0;
         timer_int = INT_TIMER0A;
         break;
+    case 1:
     case TIMER1_BASE:
         timer_base = TIMER1_BASE;
         timer_periph = SYSCTL_PERIPH_TIMER1;
         timer_int = INT_TIMER1A;
         break;
+    case 2:
     case TIMER2_BASE:
         timer_base = TIMER2_BASE;
         timer_periph = SYSCTL_PERIPH_TIMER2;
@@ -38,6 +42,7 @@ bool timer_add_periodic_interrupt(uint32_t frequency,
         break;
     default:
         /* you broke the world */
+	postpone_death();	/* for debugging only */
         return false;
     }
 

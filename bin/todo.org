@@ -27,3 +27,5 @@ currently prints help and exits (seemingly ambiguously)
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
 ** TODO make doxygen html output a consistent format
+* [0/1] lib
+** TODO first sync with master and take stock
