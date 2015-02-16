@@ -2,6 +2,11 @@
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
+/* TODO block
+ * - allow other ports to act as a 'heart' (logic analyzer style)
+ *   should this library then become modal?
+ */
+
 /*!
  *  \brief Initialize the heart for visible transformation
  *  \returns void
