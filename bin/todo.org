@@ -1,15 +1,26 @@
 #+startup: content
-* [0/1] dev environment
-- [ ] eldoc for our functions!
-- [ ] disaster for arm!
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+* [4/6] dev environment
+** DONE create openocd wrapper
+** DONE create dev environment setup script
+** DONE eldoc for our functions
+#+BEGIN_SRC emacs-lisp :tangle no
+  (load "c-eldoc")
+  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+#+END_SRC
+** DONE disaster for arm
+** TODO cmd to open screen on the M4
+** TODO Doxymacs
+[[http://doxymacs.sourceforge.net/]][[http://doxymacs.sourceforge.net/][see this]]
 * [4/8] Doxygen
-- [X] publish Doxygen on an external website
+** DONE publish Doxygen on an external website
       http://hershic.github.io/ee445m-labs/
-- [X] link all doxygen projects together to show on one page
-- [X] write main project information in doxygen
-- [ ] Allow here docs in declare -r statements
-- [ ] re-generate Doxygen on push (and update)
-- [ ] make doxygen html output a consistent format
-- [X] link github to the online documentation
-      via the README
-- [ ] Refactor the doxygen modules
+** DONE link all doxygen projects together to show on one page
+** DONE write main project information in doxygen
+** DONE link github to the online documentation
+** IN-PROGRESS script to update all doxygen files at once
+I have a hankering to refactor all Doxyfiles into a specific dir
+** TODO Allow here docs in declare -r statements
+I found a link! It's in one of my compter's stack (bookmarks dir- chrome)
+** TODO make doxygen html output a consistent format
+** TODO Refactor the doxygen modules
