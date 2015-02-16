@@ -33,6 +33,7 @@
 
 int doctor() {
 
+    /* uart_set_active_channel(UART0_BASE); */
     uart_send_string("Well what did you expect would happen? You're dreaming!\n");
     return EXIT_SUCCESS;
 }
@@ -50,15 +51,16 @@ int main(void) {
     /* Enable the peripherals used by this example */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
 
+    system_init();
+    system_register_command((const char*) "doctor", doctor);
+
     /* Initialize hardware devices */
     hw_driver_init(HW_UART);
     uart_metadata.uart.UART_BAUD_RATE = 115200;
     hw_channel_init(HW_UART, UART0_BASE, uart_metadata);
-    uart_init();		/* defaults to UART0_BASE (thanks hw_driver) */
 
     /* Initialize the shell and the system it interacts with */
     shell_spawn();
-    system_register_command((const char*) "doctor", doctor);
 
     /* Enable processor interrupts. */
     IntMasterEnable();

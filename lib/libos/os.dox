@@ -1,13 +1,13 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /*!
- *  \brief     Thread switching
- *  \deatils   Just following professor's instructions. We'll see how this plays out.
- *  \author    Hershal Bhave
- *  \author    Eric Crosson
- *  \version   0.1
- *  \date      2014
- *  \pre       None
- *  \copyright GNU Public License.
+ * \brief     Operating system routines.
+ * \author    Hershal Bhave
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2014
+ * \pre       None
+ * \copyright GNU Public License.
+ * \addtogroup OS Operating system routines
  */
 
 

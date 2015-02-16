@@ -60,6 +60,14 @@ int ustrncmp(const char *s1, const char *s2, uint32_t n) {
     return 0;
 }
 
+void ustrcpy(char* dest, const char* source) {
+    uint32_t i = 0;
+    while (1) {
+	dest[i] = source[i];
+	if (dest[i++] == '\0') { break; }
+    }
+}
+
 int32_t StartCritical() {
     asm("MRS    R0, PRIMASK  ;// save old status\n"
         "CPSID  I            ;// mask all (except faults)\n");

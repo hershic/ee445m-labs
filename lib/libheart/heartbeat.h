@@ -61,8 +61,11 @@ void heart_toggle() {
 inline
 void heart_beat() {
 
-    heart_toggle();
-    heart_toggle();
+    /* This is unrolled -- ensure it matches \heart_toggle() */
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+		 GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+		 GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
 }
 
 /* TOOD: use bind (or equivalent function) to wrap a fn pointer with

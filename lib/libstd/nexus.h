@@ -19,9 +19,11 @@ void* memset(void*, int, int);
 /** A duplicate of the c standard memcpy function. */
 void* memcpy(void*, const void*, long);
 /** A duplicate of the c standard strcmp function. */
-int strcmp(const char* s1, const char* s2);
-/** A duplicate of the c standard ustrncmp function. */
-int ustrncmp(const char *s1, const char *s2, uint32_t n);
+int strcmp(const char*, const char*);
+/** A duplicate of the c standard strncmp function. */
+int ustrncmp(const char*, const char*, uint32_t);
+/** A duplicate of the c standard strcpy function.  */
+void ustrcpy(char*, const char*);
 
 /*! Begin a non-interruptable critical section which preserves the
     priority mask

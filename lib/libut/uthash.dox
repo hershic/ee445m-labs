@@ -1,0 +1,11 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ * \brief     UTHash library
+ * \deatils   Available at http://troydhanson.github.io/uthash/
+ * \author    Troy D Hanson
+ * \version   1.9.9
+ * \date      November 2014
+ * \pre       None
+ * \copyright Revised BSD License
+ * \addtogroup UTHash C structures for hash tables, linked lists, strings, and arrays
+ */

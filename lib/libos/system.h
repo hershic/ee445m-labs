@@ -18,14 +18,22 @@ typedef uint8_t  system_iterator;
 /** Type definition of an exit code. */
 typedef uint8_t exit_status_t;
 
-/* TODO: document members of the struct */
 /** Struct containing properties of a system command. */
+struct system_command;
 typedef struct system_command {
 
+    /* TODO: document members of the struct */
     bool valid;
     char name[SYSTEM_MAX_COMMAND_NAME_LENGTH];
     int(*command)();
+
+    struct system_command* next;
+    struct system_command* prev;
 } system_command;
+
+/** Initialize internal data structures.
+ * \note Ensure this method is called before any commands are registered. */
+void system_init();
 
 /** Register a command for later execution.
  * \returns True if command was successfully registered.
@@ -42,5 +50,9 @@ bool system_deregister_command(const char*);
  * \bug Currently argument passing is not supported.
  */
 exit_status_t system_exec(const char*, const char**);
+
+/** For internal use only. This function returns a pointer to the
+ * \system_command registered to the command name \command_name. */
+system_command* _system_command_from_name(const char* command_name);
 
 #endif

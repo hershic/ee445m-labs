@@ -1,31 +1,30 @@
-#+startup: content
+#+startup: sections
 #+options: H:1 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:nil LaTeX:t
-#+todo: TODO(t) VERIFY(v) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
 #+author: Hershal Bhave
 #+author: Eric Crosson
-* Labs
-** [0/3] Lab 1
-*** TODO lcd driver [0%]
-  - [ ] contains logically separate displays
-    - horizontal split
-  - [ ] 4+ lines per display
-  - [ ] API to write to displays individually
-*** TODO adc driver [0%]
-  - [ ] samples from 100 - 10,000 Hz
-  - [ ] samples from ADC0 - ADC11
-  - [ ] have 1 to 1 abilities as this api
+* [1/1] Lab 1
+** lcd driver
+*** DONE contains logically separate displays
+     use a horizontal split
+*** DONE 4+ lines per display
+*** DONE API to write to displays individually
+** adc driver
+*** DONE samples from 100 - 10,000 Hz
+*** DONE samples from ADC0 - ADC11
+*** DONE have 1 to 1 abilities as this api
     #+BEGIN_SRC c
       unsigned short ADC_In(void);
       int ADC_Open(unsigned int channelNum);
       int ADC_Collect(unsigned int channelNum, unsigned int fs,
                       unsigned short buffer[], unsigned int numberOfSamples);
     #+END_SRC
-*** TODO [#B] interpreter [75%]
-- [X] uart port
-- [X] interrupts
-- OPTIONAL hardware fifo
-- [X] software fifo x2
-- [ ] the below mojo
+** interpreter
+*** DONE uart port
+*** DONE interrupts
+*** OPTIONAL hardware fifo
+*** DONE software fifo x2
+*** DONE the below mojo
   Use the stdio library and remap the serial stream to the UART. See the
   =retarget.c= file in the =Keil\ARM\Boards\Keil\MCBSTM32\Blinky= project
   included in the Keil installation. In particular, you need to create a
@@ -43,9 +42,173 @@
       return EOF;
     }
   #+END_SRC
-*** TODO Checkout
-DEADLINE: <2015-02-09 Mon 10:30>
+** DONE Checkout
 - demonstrate measuring of timer2 ISR overhead
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
+* [0/7] Lab 2
+** TODO Part 1
+Demonstrate each of the following
+*** TODO Testmain1
+- needs cooperative thread scheduler without interrupts
+
+  Meaning: create method =OS_Suspend= that, when called, transfers
+  control from the current thread to the next waiting thread.
+
+  This will be the sole method of thread switching in this program.
+
+  #+NAME: Testmain1
+  #+CAPTION: Test system for cooperative thread switching
+  #+BEGIN_SRC c :tangle no
+    unsigned long Count1; // number of times thread1 loops
+    unsigned long Count2; // number of times thread2 loops
+    unsigned long Count3; // number of times thread3 loops
+    void Thread1(void){
+      Count1 = 0;
+      for(;;){
+        PE0 ^= 0x01;      // heartbeat
+        Count1++;
+        OS_Suspend();     // cooperative multitasking
+      }
+    }
+    void Thread2(void){
+      Count2 = 0;
+      for(;;){
+        PE1 ^= 0x02;      // heartbeat
+        Count2++;
+        OS_Suspend();     // cooperative multitasking
+      }
+    }
+    void Thread3(void){
+      Count3 = 0;
+      for(;;){
+        // PE2 ^= 0x04;      // heartbeat
+        PE3 ^= 0x08;      // heartbeat
+        Count3++;
+        OS_Suspend();     // cooperative multitasking
+      }
+    }
+    int main(void){
+      OS_Init();    // initialize, disable interrupts
+      PortE_Init(); // profile user threads
+      NumCreated = 0 ;
+      NumCreated += OS_AddThread(&Thread1,128,1);
+      NumCreated += OS_AddThread(&Thread2,128,2);
+      NumCreated += OS_AddThread(&Thread3,128,3);
+      // Count1 = Count2 = Count3 (or off by one) at all times
+      OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
+      return 0;            // this never executes
+    }
+ #+END_SRC
+*** TODO Testmain2
+- preemptive thread scheduler with SysTick interrupts
+
+  SysTick suspends the running thread and begins the next active
+  thread in the list with a round robin fashion.
+
+  #+NAME: Testmain2
+  #+CAPTION: Test system for preemptive thread switching
+  #+BEGIN_SRC c :tangle no
+    void Thread1b(void){
+      Count1 = 0;
+      for(;;){
+        PE0 ^= 0x01;    // heartbeat
+        Count1++;
+      }
+    }
+    void Thread2b(void){
+      Count2 = 0;
+      for(;;){
+        PE1 ^= 0x02;    // heartbeat
+        Count2++;
+      }
+    }
+    void Thread3b(void){
+      Count3 = 0;
+      for(;;){
+        PE2 ^= 0x04;    // heartbeat
+        Count3++;
+      }
+    }
+    int Testmain2(void){
+      OS_Init();    // initialize, disable interrupts
+      PortE_Init(); // profile user threads
+      NumCreated = 0 ;
+      NumCreated += OS_AddThread(&Thread1b,128,1);
+      NumCreated += OS_AddThread(&Thread2b,128,2);
+      NumCreated += OS_AddThread(&Thread3b,128,3);
+      // Count1 = Count2 = Count3 on average
+      // Notice: counts are larger than testmain1. Why is this?
+      OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
+      return 0;            // this never executes
+    }
+  #+END_SRC
+*** VERIFY Testmain7
+I don't think a description of this main program was included in
+the lab manual.
+
+*** VERIFY OS_Launch
+*** VERIFY Context switching
+**** init
+1. Give =PendSV= handler lowest priority
+**** action
+1. SysTick interrupt fires
+   1. prepare for context switching
+   2. pend the =PendSV= exception
+      [[./img/pendsv_context_switch.png]]
+2. Enter =PendSV=
+   1. do context switch
+      The exception sequence (that landed you in the =PendSV= handler)
+      has saved R0-R3, R12, LR, PC, xPSR. Thus, =PendSV= is only
+      responsible for storing R4-R11 to the process stack.
+*** TODO Checkout
+<2015-02-16 Mon 10:30>
+** TODO Part 2
+Your job is to design, implement and test operating system commands
+that implement a multiple thread environment.
+
+Note: The word task in this lab is not a formal term, rather a general
+description of an overall function implemented with a combination of
+hardware, background threads (ISR), and foreground threads (main
+programs).
+
+Tasks should behave as outlined below
+
+TODO: do we have to calculate jitter on these suckas?
+
+*** Task 1 : Software triggered data acquisition and filtering
+What's the AR? I have no idea.
+**** notes
+For the data acquisition system DAS, the software must start the
+analog-to-digital converter (ADC) and read the result at precise time
+intervals.
+
+In Labs 2 and 3, f_s is 2 kHz.
+
+I don't know what the fuck this page is asking me to do.
+*** Task 2 : Aperiodic task triggered by the select switch
+A background thread =ButtonPush= should be run whenever the user touches
+the select button. This task will create a foreground thread that:
+
+1. outputs to the LCD,
+2. sleeps for 50ms,
+3. outputs again to the LCD, then
+4. kills itself
+
+Note: if the user pushes the button faster than once every two
+seconds, multiple foreground threads will exist simultaneously.
+*** Task 3 : Hardware triggered data acquisition and FFT
+This task will sample the ADC every 400 Hz (2.5 ms) via a
+hardware-triggered timer.
+
+1. start collecting data (takes 64 ms)
+2. fft on the block, when done trigger interrupt
+3. ADC ISR (=producer=) pushes with =OS_Fifo_Put= into global mem space
+4. =Consumer= foreground thread calculates the FFT
+   question: so the fft is calculated twice? once by us once by
+   hardware?
+
+*Note*: you *must* use 16-bit mode for timer-triggered adc sampling.
+*** Task 4 : CPU Bound task
+*** Task 5
