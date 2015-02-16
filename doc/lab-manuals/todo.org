@@ -47,7 +47,7 @@
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
-* [0/5] Lab 2
+* [0/7] Lab 2
 ** TODO Part 1
 Demonstrate each of the following
 *** TODO Testmain1
@@ -148,5 +148,67 @@ Demonstrate each of the following
 I don't think a description of this main program was included in
 the lab manual.
 
-** TODO Checkout
+*** VERIFY OS_Launch
+*** VERIFY Context switching
+**** init
+1. Give =PendSV= handler lowest priority
+**** action
+1. SysTick interrupt fires
+   1. prepare for context switching
+   2. pend the =PendSV= exception
+      [[./img/pendsv_context_switch.png]]
+2. Enter =PendSV=
+   1. do context switch
+      The exception sequence (that landed you in the =PendSV= handler)
+      has saved R0-R3, R12, LR, PC, xPSR. Thus, =PendSV= is only
+      responsible for storing R4-R11 to the process stack.
+*** TODO Checkout
 <2015-02-16 Mon 10:30>
+** TODO Part 2
+Your job is to design, implement and test operating system commands
+that implement a multiple thread environment.
+
+Note: The word task in this lab is not a formal term, rather a general
+description of an overall function implemented with a combination of
+hardware, background threads (ISR), and foreground threads (main
+programs).
+
+Tasks should behave as outlined below
+
+TODO: do we have to calculate jitter on these suckas?
+
+*** Task 1 : Software triggered data acquisition and filtering
+What's the AR? I have no idea.
+**** notes
+For the data acquisition system DAS, the software must start the
+analog-to-digital converter (ADC) and read the result at precise time
+intervals.
+
+In Labs 2 and 3, f_s is 2 kHz.
+
+I don't know what the fuck this page is asking me to do.
+*** Task 2 : Aperiodic task triggered by the select switch
+A background thread =ButtonPush= should be run whenever the user touches
+the select button. This task will create a foreground thread that:
+
+1. outputs to the LCD,
+2. sleeps for 50ms,
+3. outputs again to the LCD, then
+4. kills itself
+
+Note: if the user pushes the button faster than once every two
+seconds, multiple foreground threads will exist simultaneously.
+*** Task 3 : Hardware triggered data acquisition and FFT
+This task will sample the ADC every 400 Hz (2.5 ms) via a
+hardware-triggered timer.
+
+1. start collecting data (takes 64 ms)
+2. fft on the block, when done trigger interrupt
+3. ADC ISR (=producer=) pushes with =OS_Fifo_Put= into global mem space
+4. =Consumer= foreground thread calculates the FFT
+   question: so the fft is calculated twice? once by us once by
+   hardware?
+
+*Note*: you *must* use 16-bit mode for timer-triggered adc sampling.
+*** Task 4 : CPU Bound task
+*** Task 5
