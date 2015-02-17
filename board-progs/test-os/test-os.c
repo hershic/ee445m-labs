@@ -26,36 +26,26 @@
 
 #include <sys/stat.h>
 
-unsigned long CountPF1Toggle; // number of times thread1 loops
-unsigned long CountPF2Toggle; // number of times thread2 loops
-unsigned long CountPF3Toggle; // number of times thread3 loops
+uint32_t CountPF1 = 0; // number of times thread1 has looped
+uint32_t CountPF2 = 0; // number of times thread2 has looped
+uint32_t CountPF3 = 0; // number of times thread3 has looped
 
-muscle_t muscle_pf1;
-muscle_t muscle_pf2;
-muscle_t muscle_pf3;
-
+/*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
-    CountPF1Toggle = 0;
-    while(1){
-	heart_toggle_(&muscle_pf1);
-        CountPF1Toggle++;
-    }
+    heart_hew_muscle(muscle_pf1, GPIO_PORTF_BASE, GPIO_PIN_1);
+    while(++CountPF1>0) { heart_toggle_(&muscle_pf1); }
 }
 
+/*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
 void Thread2(void){
-    CountPF2Toggle = 0;
-    while(1){
-	heart_toggle_(&muscle_pf2);
-        CountPF2Toggle++;
-    }
+    heart_hew_muscle(muscle_pf2, GPIO_PIN_2, GPIO_PORTF_BASE);
+    while(++CountPF2>0) { heart_toggle_(&muscle_pf2); }
 }
 
+/*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
 void Thread3(void){
-    CountPF3Toggle = 0;
-    while(1){
-	heart_toggle_(&muscle_pf3);
-        CountPF3Toggle++;
-    }
+    heart_hew_muscle(muscle_pf3, GPIO_PIN_3, GPIO_PORTF_BASE);
+    while(++CountPF3>0) { heart_toggle_(&muscle_pf3); }
 }
 
 int main() {
@@ -65,22 +55,6 @@ int main() {
 
     /* Enable the GPIO port that is used for the on-board LED. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-
-    /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
-
-    /* Initialize GPIO */
-    muscle_pf1.base = GPIO_PORTF_BASE;
-    muscle_pf2.base = GPIO_PORTF_BASE;
-    muscle_pf3.base = GPIO_PORTF_BASE;
-    muscle_pf1.pin = GPIO_PIN_1;
-    muscle_pf2.pin = GPIO_PIN_2;
-    muscle_pf3.pin = GPIO_PIN_3;
-
-    heart_init_(&muscle_pf1);
-    heart_init_(&muscle_pf2);
-    heart_init_(&muscle_pf3);
-    /* End GPIO Init */
 
     IntMasterDisable();
 
@@ -95,6 +69,7 @@ int main() {
     SysTickIntEnable();
 
     os_launch();
+
     /* PONDER: why do interrupts fire without this? */
     IntMasterEnable();
 
