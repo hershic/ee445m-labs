@@ -109,7 +109,7 @@ tcb_t* os_add_thread(void(*task)(void));
 
 /* TODO implement. returns ptr to free'd tcb.
  * be sure to set tcb_t->entry_point to NULL! */
-tcb_t* os_remove_thread
+tcb_t* os_remove_thread();
 
 /*! Returns the next dead thread in the dead thread circle.
  *  If the length of the dead thread circle is greater than 1, then
