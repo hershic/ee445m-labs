@@ -18,10 +18,11 @@
  * portEpin3.base = GPIO_PORTE_BASE;
  * portEpin3.pin = GPIO_PIN_3;
  *
- * heart_pump_(&portEpin3);                               // initialize pin and port base
- * int32_t porte_pin3_status = heart_status_(&portEpin3); // read the status of pin 3 of port E
- * heart_beat_(&portEpin3);                               // toggle pin 3 of port E twice
- * heart_toggle();                                        // refers to \HEART_MUSCLE
+ * heart_pump_(&portEpin3);            // initialize pin and port base
+ * int32_t porte_pin3_status = \
+ *          heart_status_(&portEpin3); // read the status of pin 3 of port E
+ * heart_beat_(&portEpin3);            // toggle pin 3 of port E twice
+ * heart_toggle();                     // refers to \HEART_MUSCLE
  * \endcode
  *
  * etc

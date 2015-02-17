@@ -2,7 +2,6 @@
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
-/* Is there a way to clean this up? I feel like I'm re-inventing the wheel. */
 /*! A pointer to a memory location on the ARM Cortex M4. */
 typedef int32_t memory_address_t;
 
