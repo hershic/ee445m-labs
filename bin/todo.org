@@ -1,20 +1,23 @@
 #+startup: content
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [5/7] dev environment
-** DONE create openocd wrapper
-** DONE create dev environment setup script
-** DONE eldoc for our functions
+* [4/6] dev environment
+** DONE openocd
+** [0/1] setenv
+*** TODO Clean exit when invoked twice
+currently prints help and exits (seemingly ambiguously)
+
+** [2/3] emacs
+*** DONE eldoc for our functions
 #+BEGIN_SRC emacs-lisp :tangle no
   (load "c-eldoc")
   (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 #+END_SRC
-** DONE disaster for arm
-** DONE cmd to open screen on the M4
-** TODO Doxymacs
+*** DONE disaster for arm
+*** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
-** [0/1] setenv
-*** TODO Clean exit when invoked twice
-currently prints help and exits (seemingly ambiguously)
+*** [0/1] gdb helper
+- [ ] flash and reload
+** DONE cmd to open screen on the M4
 * [3/7] Doxygen
 ** TODO special words
 like immutable
@@ -32,5 +35,3 @@ keybinding, c-eldoc, and turn on pseudo-reserved word highlighting
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
 ** TODO make doxygen html output a consistent format
-* [0/1] lib
-** TODO first sync with master and take stock
