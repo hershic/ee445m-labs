@@ -52,9 +52,13 @@ typedef struct tcb {
     /*! linked-list pointer to prev tcb */
     struct tcb *prev;
 
-    /*! numerical identifier for the tcb */
-    /*! THIS PROPERY IS IMMUTABLE */
+    /*! Unique numeric identifier for the tcb. THIS PROPERY IS IMMUTABLE */
     immutable int32_t id;
+
+    /*! The function used as this thread's entry point. This is
+     *  recorded for developer convenience, i.e. the developer may get
+     *  a handle to a tcb from his task pointer. */
+    task_t entry_point;
 
     /*! state of this thread */
     tstate_t status;
@@ -102,6 +106,10 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task);
  *  was not possible for some reason.
  */
 tcb_t* os_add_thread(void(*task)(void));
+
+/* TODO implement. returns ptr to free'd tcb.
+ * be sure to set tcb_t->entry_point to NULL! */
+tcb_t* os_remove_thread
 
 /*! Returns the next dead thread in the dead thread circle.
  *  If the length of the dead thread circle is greater than 1, then

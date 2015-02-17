@@ -42,39 +42,38 @@ tcb_t* os_add_thread(task_t task) {
     status = StartCritical();
 
     /* 2. Add the task to the linked list of running threads. */
-    /* 2a. If there is no more room for running threads, then return
-       immediately. */
-    if (!(thread_to_add = os_next_dead_thread())) {
-        EndCritical(status);
-        return NULL;
-    }
-    /* 2b. If no thread is running, then create the initial running
-       thread. */
-    if (!os_current_running_thread) {
-        os_current_running_thread = thread_to_add;
-        os_current_running_thread->next = os_current_running_thread;
-        os_current_running_thread->prev = os_current_running_thread;
-    }
-    /* 2c. If we don't have any problems with either thread circles,
-       then remove a thread from the dead thread pool and add it to
-       the running thread pool, relinking the linked list
-       appropriately. This thread will run next. */
-    else {
-        os_current_running_thread->next->prev = thread_to_add;
-        thread_to_add->next = os_current_running_thread->next;
-        os_current_running_thread->next = thread_to_add;
-        thread_to_add->prev = os_current_running_thread;
-    }
+    /* 2a. If there is no more room for running threads, take no action. */
+    if ((thread_to_add = os_next_dead_thread())) {
+	/* 2b. If no thread is running, then create the initial running
+	   thread. */
+	if (!os_current_running_thread) {
+	    os_current_running_thread = thread_to_add;
+	    os_current_running_thread->next = os_current_running_thread;
+	    os_current_running_thread->prev = os_current_running_thread;
+	}
+	/* 2c. If we don't have any problems with either thread circles,
+	   then remove a thread from the dead thread pool and add it to
+	   the running thread pool, relinking the linked list
+	   appropriately. This thread will run next. */
+	else {
+	    os_current_running_thread->next->prev = thread_to_add;
+	    thread_to_add->next = os_current_running_thread->next;
+	    os_current_running_thread->next = thread_to_add;
+	    thread_to_add->prev = os_current_running_thread;
+	}
 
-    /* 3. Set the initial stack contents for the new thread. */
-    os_reset_thread_stack(thread_to_add, task);
+	/* 3. Set the initial stack contents for the new thread. */
+	os_reset_thread_stack(thread_to_add, task);
 
-    /* 4. Set other metadata for this thread's TCB. */
-    thread_to_add->status = THREAD_RUNNING;
-    thread_to_add->sleep_timer = 0;
+	/* 4. Set other metadata for this thread's TCB. */
+	thread_to_add->status = THREAD_RUNNING;
+	thread_to_add->sleep_timer = 0;
+	thread_to_add->entry_point = task;
+    }
 
     /* 5. Return. */
     EndCritical(status);
+    return thread_to_add;
 }
 
 tcb_t* os_next_dead_thread() {
