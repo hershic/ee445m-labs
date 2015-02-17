@@ -21,3 +21,8 @@ called separately (comment created <2015-02-17 Tue>).
   os_add_thread(Thread2);
   os_add_thread(Thread3);
 #+END_SRC
+* [0/1] Nexus
+** TODO interruptless-blocks
+a lisp/ruby-style object to accept a block and ensure no interrupts
+fire while it is executing (makes it atomic, wraps with Critical
+sections, something of the sort)
