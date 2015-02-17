@@ -9,7 +9,7 @@ immediately tell to what frequency/period the SysTick will interrupt.
   SysTickEnable();
   SysTickIntEnable();
 #+END_SRC
-* [0/3] OS
+* [0/4] OS
 ** TODO Thread addition macro
 Create a macro to map over supplied threads and do this sort of
 initialization. The only next step is os_launch, which should still be
@@ -28,6 +28,7 @@ called separately (comment created <2015-02-17 Tue>).
   os_add_thread(idle);
   os_get_tcb(idle); // returns the tcb containing idle
 #+END_SRC
+** TODO define os_surrender_execution
 * [0/1] Nexus
 ** TODO interruptless-blocks
 a lisp/ruby-style object to accept a block and ensure no interrupts
