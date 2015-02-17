@@ -26,15 +26,23 @@
 
 #include <sys/stat.h>
 
-unsigned long CountPF2Toggle; // number of times thread1 loops
-unsigned long CountPF3Toggle; // number of times thread2 loops
-unsigned long CountPF4Toggle; // number of times thread3 loops
+unsigned long CountPF1Toggle; // number of times thread1 loops
+unsigned long CountPF2Toggle; // number of times thread2 loops
+unsigned long CountPF3Toggle; // number of times thread3 loops
 
+muscle_t muscle_pf1;
 muscle_t muscle_pf2;
 muscle_t muscle_pf3;
-muscle_t muscle_pf4;
 
 void Thread1(void){
+    CountPF1Toggle = 0;
+    while(1){
+	heart_toggle_(&muscle_pf1);
+        CountPF1Toggle++;
+    }
+}
+
+void Thread2(void){
     CountPF2Toggle = 0;
     while(1){
 	heart_toggle_(&muscle_pf2);
@@ -42,19 +50,11 @@ void Thread1(void){
     }
 }
 
-void Thread2(void){
+void Thread3(void){
     CountPF3Toggle = 0;
     while(1){
 	heart_toggle_(&muscle_pf3);
         CountPF3Toggle++;
-    }
-}
-
-void Thread3(void){
-    CountPF4Toggle = 0;
-    while(1){
-	heart_toggle_(&muscle_pf4);
-        CountPF4Toggle++;
     }
 }
 
@@ -67,19 +67,19 @@ int main() {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
 
     /* Initialize GPIO */
+    muscle_pf1.base = GPIO_PORTF_BASE;
     muscle_pf2.base = GPIO_PORTF_BASE;
     muscle_pf3.base = GPIO_PORTF_BASE;
-    muscle_pf4.base = GPIO_PORTF_BASE;
+    muscle_pf1.pin = GPIO_PIN_1;
     muscle_pf2.pin = GPIO_PIN_2;
     muscle_pf3.pin = GPIO_PIN_3;
-    muscle_pf4.pin = GPIO_PIN_4;
 
+    heart_init_(&muscle_pf1);
     heart_init_(&muscle_pf2);
     heart_init_(&muscle_pf3);
-    heart_init_(&muscle_pf4);
     /* End GPIO Init */
 
     IntMasterDisable();
