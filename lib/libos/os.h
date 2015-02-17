@@ -111,6 +111,12 @@ tcb_t* os_add_thread(void(*task)(void));
  * be sure to set tcb_t->entry_point to NULL! */
 tcb_t* os_remove_thread();
 
+/*! Return the tcb_t used to control the specified task_t.
+ * \param The task to lookup the tcb_t of
+ * \returns The tcb_t of the specified task_t
+ */
+tcb_t* os_tcb_of(task_t);
+
 /*! Returns the next dead thread in the dead thread circle.
  *  If the length of the dead thread circle is greater than 1, then
  *  the current dead thread is removed and the circle is relinked with
@@ -129,6 +135,7 @@ tcb_t* os_next_dead_thread();
  */
 void os_threading_init();
 
+/*! Sets the data structures for the operating system launch */
 void os_launch();
 
 

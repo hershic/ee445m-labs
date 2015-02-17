@@ -76,6 +76,11 @@ tcb_t* os_add_thread(task_t task) {
     return thread_to_add;
 }
 
+/* TODO: implement once utlist is merged in */
+tcb_t* os_tcb_of(task_t task) {
+
+}
+
 tcb_t* os_next_dead_thread() {
 
     tcb_t* return_tcb = os_current_dead_thread;
@@ -95,7 +100,6 @@ tcb_t* os_next_dead_thread() {
     return return_tcb;
 }
 
-/*! Sets the data structures for the operating system launch */
 void os_launch() {
 
     /* acquire the pointer to the stack pointer here */
@@ -170,8 +174,8 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
     asm volatile ("POP {R9, R10, R11, R12}");
 }
 
-/* NOTE: Make sure you have something to run before letting the
-   SysTick run! */
+/*! \warning Ensure you have something to run before enabling
+ *  SysTick */
 void SysTick_Handler() {
 
     IntPendSet(FAULT_PENDSV);
