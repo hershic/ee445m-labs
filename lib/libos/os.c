@@ -47,40 +47,43 @@ tcb_t* os_add_thread(task_t task) {
     status = StartCritical();
 
     /* 2. Add the task to the linked list of running threads. */
-    /* 2a. If there is no more room for running threads, then return
-       immediately. */
-    if (!(thread_to_add = os_next_dead_thread())) {
-        EndCritical(status);
-        return NULL;
-    }
-    /* 2b. If no thread is running, then create the initial running
-       thread. */
-    if (!os_current_running_thread) {
-        os_current_running_thread = thread_to_add;
-        os_current_running_thread->next = os_current_running_thread;
-        os_current_running_thread->prev = os_current_running_thread;
-    }
-    /* 2c. If we don't have any problems with either thread circles,
-       then remove a thread from the dead thread pool and add it to
-       the running thread pool, relinking the linked list
-       appropriately. This thread will run next. */
-    else {
-        os_current_running_thread->next->prev = thread_to_add;
-        thread_to_add->next = os_current_running_thread->next;
-        os_current_running_thread->next = thread_to_add;
-        thread_to_add->prev = os_current_running_thread;
-    }
+    /* 2a. If there is no more room for running threads, take no action. */
+    if ((thread_to_add = os_next_dead_thread())) {
+	/* 2b. If no thread is running, then create the initial running
+	   thread. */
+	if (!os_current_running_thread) {
+	    os_current_running_thread = thread_to_add;
+	    os_current_running_thread->next = os_current_running_thread;
+	    os_current_running_thread->prev = os_current_running_thread;
+	}
+	/* 2c. If we don't have any problems with either thread circles,
+	   then remove a thread from the dead thread pool and add it to
+	   the running thread pool, relinking the linked list
+	   appropriately. This thread will run next. */
+	else {
+	    os_current_running_thread->next->prev = thread_to_add;
+	    thread_to_add->next = os_current_running_thread->next;
+	    os_current_running_thread->next = thread_to_add;
+	    thread_to_add->prev = os_current_running_thread;
+	}
 
-    /* 3. Set the initial stack contents for the new thread. */
-    os_reset_thread_stack(thread_to_add, task);
+	/* 3. Set the initial stack contents for the new thread. */
+	os_reset_thread_stack(thread_to_add, task);
 
-    /* 4. Set other metadata for this thread's TCB. */
-    thread_to_add->status = THREAD_RUNNING;
-    thread_to_add->sleep_timer = 0;
+	/* 4. Set other metadata for this thread's TCB. */
+	thread_to_add->status = THREAD_RUNNING;
+	thread_to_add->sleep_timer = 0;
+	thread_to_add->entry_point = task;
+    }
 
     /* 5. Return. */
     EndCritical(status);
     return thread_to_add;
+}
+
+/* TODO: implement once utlist is merged in */
+tcb_t* os_tcb_of(task_t task) {
+
 }
 
 tcb_t* os_next_dead_thread() {
@@ -114,6 +117,9 @@ void os_launch() {
     /* set the process stack value */
     asm volatile("MSR PSP, R0");
 
+    /* change EXC_RETURN for return on PSP */
+    /* asm volatile("ORR LR, LR, #4"); */
+
     /* change the active stack to use psp */
     asm volatile("MRS R0, CONTROL");
     asm volatile("ORR R0, R0, #2");
@@ -126,7 +132,13 @@ void os_launch() {
 
     asm volatile("pop {r12, lr}");
     asm volatile("pop {pc}");
-    /* can't do anything about the PSR */
+
+    asm volatile ("BX LR");
+
+    /* return from handler */
+    /* asm volatile("POP {R0, R1, R2, R3, R12, LR, PC, PSR} "); */
+
+    /* asm volatile("BX LR"); */
 }
 
 void os_reset_thread_stack(tcb_t* tcb, task_t task) {
@@ -166,8 +178,8 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
     asm volatile ("POP {R9, R10, R11, R12}");
 }
 
-/* NOTE: Make sure you have a thread to run before letting the
-   SysTick run! */
+/*! \warning Ensure you have something to run before enabling
+ *  SysTick */
 void SysTick_Handler() {
 
     IntPendSet(FAULT_PENDSV);
@@ -212,7 +224,7 @@ void PendSV_Handler() {
     asm volatile("str     r12, [r3, #0]");
 
     /* load thread B's psp */
-    asm volatile("ldr     r12, [r1, #0]");
+    asm volatile("ldr     r12, [r1]");
 
     /* load thread B's context */
     asm volatile("ldmia   r12!, {r4 - r11, lr}");
@@ -223,6 +235,11 @@ void PendSV_Handler() {
     /* reenable interrupts */
     asm volatile("CPSIE   I");
 
-    /* complete the thread switch */
+    /* This never would have worked- can't change CONTROL in this
+     * context */
+    /* asm volatile("MRS R0, CONTROL"); */
+    /* asm volatile("ORR R0, R0, #3"); */
+    /* asm volatile("MSR CONTROL, R0"); */
+
     asm volatile ("bx lr");
 }

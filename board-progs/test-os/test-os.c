@@ -22,19 +22,30 @@
 #include "driverlib/rom.h"
 
 #include "libos/os.h"
+#include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
-void turn_on_led() {
-    while (1) {
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
-    }
+uint32_t CountPF1 = 0; // number of times thread1 has looped
+uint32_t CountPF2 = 0; // number of times thread2 has looped
+uint32_t CountPF3 = 0; // number of times thread3 has looped
+
+/*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
+void Thread1(void){
+    heart_hew_muscle(muscle_pf1, GPIO_PORTF_BASE, GPIO_PIN_1);
+    while(++CountPF1>0) { heart_toggle_(&muscle_pf1); }
 }
 
-void turn_off_led() {
-    while (1) {
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
-    }
+/*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
+void Thread2(void){
+    heart_hew_muscle(muscle_pf2, GPIO_PIN_2, GPIO_PORTF_BASE);
+    while(++CountPF2>0) { heart_toggle_(&muscle_pf2); }
+}
+
+/*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
+void Thread3(void){
+    heart_hew_muscle(muscle_pf3, GPIO_PIN_3, GPIO_PORTF_BASE);
+    while(++CountPF3>0) { heart_toggle_(&muscle_pf3); }
 }
 
 int main() {
@@ -42,17 +53,12 @@ int main() {
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
-    /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-
-    /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
-
     IntMasterDisable();
 
     os_threading_init();
-    os_add_thread(turn_on_led);
-    os_add_thread(turn_off_led);
+    os_add_thread(Thread1);
+    os_add_thread(Thread2);
+    os_add_thread(Thread3);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 10);
@@ -61,9 +67,7 @@ int main() {
 
     os_launch();
 
-    /* Don't get here yet, still testing if everything else works! */
-    /* os_launch(0); */
-
-    /* And we're done; this should never execute */
-    while (1) {}
+    /* PONDER: why do interrupts fire without this? */
+    IntMasterEnable();
+    postpone_death();
 }

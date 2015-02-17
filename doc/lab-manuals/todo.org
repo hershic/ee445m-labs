@@ -91,7 +91,7 @@ Demonstrate each of the following
     }
     int main(void){
       OS_Init();    // initialize, disable interrupts
-      PortE_Init(2); // profile user threads
+      PortE_Init(); // profile user threads
       NumCreated = 0 ;
       NumCreated += OS_AddThread(&Thread1,128,1);
       NumCreated += OS_AddThread(&Thread2,128,2);

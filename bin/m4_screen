@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+#
+## \file
+## \author Eric Crosson <eric.s.crosson@utexas.edu>
+## \brief Connect to UART on a usb-connected Cortex M4 via GNU Screen.
+## \copyright WTFPLv2
+## \version 1.0
+#
+#########
+# License:
+#
+#             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+#
+# Copyright (C) 2015 Eric Crosson
+#
+# Everyone is permitted to copy and distribute verbatim or modified
+# copies of this license document, and changing it is allowed as long
+# as the name is changed.
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+#
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+#
+#########
+#
+## \details
+## \par Script abstract
+##
+## This script opens a GNU Screen session containing a usb-connected
+## Cortex M4's UART channel.
+##
+## \par Usage
+## Only the invocation of this script matters; all arguments are
+## ignored save -h|--help.
+#
+## \addtogroup Environment Development environment setup
+
+# _zero="${BASH_SOURCE[0]}"
+# _zero="$(basename ${_zero%.sh})"
+# _zero=$(echo "${_zero}" | tr [a-z] [A-Z] | sed -e 's/[.-]/_/g')
+# [[ -n "${!_zero}" ]] && return
+# printf -v ${_zero} "Loaded"
+
+# Execute getopt
+ARGS=$(getopt -o h -l "help" -n "$0" -- "$@");
+
+# Fail on bad arguments
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+eval set -- "${ARGS}";
+
+## \var HELP_M4_SCREEN
+## \brief Contains script invocation information
+## \details Contains script invocation information and abstract.
+## \ingroup Environment
+declare HELP_M4_SCREEN
+HELP_M4_SCREEN=$(cat <<"EOF"
+m4_screen : Connect via GNU Screen to the UART channel on your usb-
+              connected Cortex M4
+
+Usage : source $0 [-h]
+
+  -h : print this help menu
+
+EOF
+)
+
+# Obey command line arguments
+while true; do
+    case "$1" in
+
+	-h|--help)
+	    echo -e "${HELP_M4_SCREEN}"
+	    exit
+	    ;;
+
+	--)
+	    shift
+	    break ;;
+    esac
+    shift
+done
+
+## \var m4_tty
+## \brief The tty that the Cortex M4 is mounted as
+## \ingroup Environment
+declare -r m4_tty="/dev/ttyACM0"
+
+## \var m4_baud_rate
+## \brief Baud rate used to communicate over UART with the Cortex M4
+## \ingroup Environment
+declare -ri m4_baud_rate=115200
+
+## \var m4_context
+## \brief Context in which this program executes: sudo, or echo
+## \ingroup Environment
+declare m4_context=sudo # or echo
+
+${m4_context} screen ${m4_tty} ${m4_baud_rate}

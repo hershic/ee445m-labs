@@ -1,0 +1,35 @@
+#+startup: all
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+* [0/1] SysTick
+** TODO Initialization macro
+convert this code into a single call that is readable, i.e. you can
+immediately tell to what frequency/period the SysTick will interrupt.
+#+BEGIN_SRC c :tangle no
+  SysTickPeriodSet(SysCtlClockGet() / 10);
+  SysTickEnable();
+  SysTickIntEnable();
+#+END_SRC
+* [0/3] OS
+** TODO Thread addition macro
+Create a macro to map over supplied threads and do this sort of
+initialization. The only next step is os_launch, which should still be
+called separately (comment created <2015-02-17 Tue>).
+#+BEGIN_SRC c :tangle no
+  IntMasterDisable();
+  os_threading_init();
+  os_add_thread(Thread1);
+  os_add_thread(Thread2);
+  os_add_thread(Thread3);
+#+END_SRC
+** TODO Convert to libut/utlist
+** TODO fn to get tcb from thread's starting point
+#+BEGIN_SRC c :tangle no
+  void idle();
+  os_add_thread(idle);
+  os_get_tcb(idle); // returns the tcb containing idle
+#+END_SRC
+* [0/1] Nexus
+** TODO interruptless-blocks
+a lisp/ruby-style object to accept a block and ensure no interrupts
+fire while it is executing (makes it atomic, wraps with Critical
+sections, something of the sort)

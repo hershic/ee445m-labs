@@ -31,8 +31,8 @@
  * TODO: integrate with libscoreboard (nonexistent)
  * TODO: document ISRs (they aren't in the header)
  * TODO: place all relevant ISRs in this document
- * 
- * Hershal's 
+ *
+ * Hershal's
  * TODO: decouple SSI from DisplayDriver (hershal)
  *******************************************************************************/
 
@@ -134,7 +134,7 @@ bool hw_disconnect(HW_DEVICES     hw_group,
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
-    
+
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS &&
 	  channel->isr_subscriptions[i].slot != isr) {
 	++i;
@@ -151,44 +151,48 @@ long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
     switch(hw_group){
     case HW_UART:
 	switch(channel) {
-	case UART0_BASE: return 0;
-	case UART1_BASE: return 1;
-	case UART2_BASE: return 2;
-	case UART3_BASE: return 3;
-	case UART4_BASE: return 4;
-	case UART5_BASE: return 5;
-	case UART6_BASE: return 6;
-	case UART7_BASE: return 7;
+	case 0: case UART0_BASE: return 0;
+	case 1: case UART1_BASE: return 1;
+	case 2: case UART2_BASE: return 2;
+	case 3: case UART3_BASE: return 3;
+	case 4: case UART4_BASE: return 4;
+	case 5: case UART5_BASE: return 5;
+	case 6: case UART6_BASE: return 6;
+	case 7: case UART7_BASE: return 7;
 	}
 	break;
     case HW_LCD:   /* TODO: handle  */
-    case HW_TIMER: 
+    case HW_TIMER:
 	switch(channel) {
-	case TIMER0_BASE: return 0;
-	case TIMER1_BASE: return 1;
-	case TIMER2_BASE: return 2;
-	case TIMER3_BASE: return 3;
-	case TIMER4_BASE: return 4;
+	case 0: case TIMER0_BASE: return 0;
+	case 1: case TIMER1_BASE: return 1;
+	case 2: case TIMER2_BASE: return 2;
+	case 3: case TIMER3_BASE: return 3;
+	case 4: case TIMER4_BASE: return 4;
 	}
+	break;
     case HW_ADC:   /* TODO: handle channels having channels  */
 	/* spitball'd idea - rename our 'channel' to 'base' (matching
 	 * hw_memmap.h) */
 	switch(channel) {
-	case ADC0_BASE: return 0;
-	case ADC1_BASE: return 1;
+	case 0: case ADC0_BASE: return 0;
+	case 1: case ADC1_BASE: return 1;
 	}
+	break;
     case HW_SSI:
 	switch(channel) {
-	case SSI0_BASE: return 0;
-	case SSI1_BASE: return 1;
-	case SSI2_BASE: return 2;
-	case SSI3_BASE: return 3;
+	case 0: case SSI0_BASE: return 0;
+	case 1: case SSI1_BASE: return 1;
+	case 2: case SSI2_BASE: return 2;
+	case 3: case SSI3_BASE: return 3;
 	}
+	break;
     default: postpone_death();
     }
     /* TODO: ensure software doesn't try to access nonexistent hardware
      * (mind the board model this is currently running on. current idea:
      * compile flags limiting the furthest indices) */
+    postpone_death();
 }
 
 /* OPTIMIZE: inline */

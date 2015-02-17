@@ -1,38 +1,36 @@
 #+startup: content
-#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [5/6] scripts
-** DONE openocd wrapper
-[[./ocd]]
-** DONE setenv script
-[[./setenv]]
-** DONE eldoc
-From the [[http://www.emacswiki.org/emacs/c-eldoc.el][EmacsWiki]].
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+* [5/7] dev environment
+** DONE create openocd wrapper
+** DONE create dev environment setup script
+** DONE eldoc for our functions
 #+BEGIN_SRC emacs-lisp :tangle no
-  ;; Having problems loading? Ensure "c-eldoc" is in
-  ;; your load path and try the following line
-  ;; (load "c-eldoc") ;; or autload the below function
+  (load "c-eldoc")
   (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 #+END_SRC
 ** DONE disaster for arm
-[[./lisp/disaster-arm.el]]
-** DONE wrapper for screen on m4
-[[./m4_screen]]
+** DONE cmd to open screen on the M4
 ** TODO Doxymacs
-[[http://doxymacs.sourceforge.net/][Help]]
-* [4/8] Doxygen
-** DONE publish Doxygen on an external website
-http://hershic.github.io/ee445m-labs/
-** DONE link all doxygen projects together to show on one page
-** DONE write main project information in doxygen
-** DONE link github to the online documentation
-** VERIFY bash-doxygen
-** IN-PROGRESS script to update all doxygen files at once
-I have a hankering to refactor all Doxyfiles into a specific dir
-** TODO Allow here docs in declare -r statements
-I found a link! It's in one of my compter's stack (bookmarks dir- chrome)
-** TODO make doxygen html output a consistent format
-** special words
+[[http://doxymacs.sourceforge.net/]]
+** [0/1] setenv
+*** TODO Clean exit when invoked twice
+currently prints help and exits (seemingly ambiguously)
+* [3/7] Doxygen
+** TODO special words
 like immutable
 define in doxygen and also highlight in emacs
 make a mode for our dev environment - source disaster-arm, assign
 keybinding, c-eldoc, and turn on pseudo-reserved word highlighting
+** DONE publish Doxygen on an external website
+      http://hershic.github.io/ee445m-labs/
+** DONE link all doxygen projects together to show on one page
+** DONE link github to the online documentation
+** IN-PROGRESS script to update all doxygen files at once
+- I have a hankering to refactor all Doxyfiles into a specific dir
+- bash doxygenizing broke!
+** TODO Allow here docs in declare -r statements
+I found a link with possibile insight. It's in one of my compter's
+stack (bookmarks dir- chrome)
+** TODO make doxygen html output a consistent format
+* [0/1] lib
+** TODO first sync with master and take stock
