@@ -67,7 +67,7 @@ int main() {
 
     os_threading_init();
     os_add_thread(Thread1);
-    /* os_add_thread(Thread2); */
+    os_add_thread(Thread2);
     os_add_thread(Thread3);
 
     /* Load and enable the systick timer */
