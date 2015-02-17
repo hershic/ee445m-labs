@@ -72,7 +72,5 @@ int main() {
 
     /* PONDER: why do interrupts fire without this? */
     IntMasterEnable();
-
-    /* And we're done; this should never execute */
     postpone_death();
 }
