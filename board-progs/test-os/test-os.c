@@ -48,7 +48,6 @@ void Thread2(void){
     }
 }
 
-/* TODO: determine why this doesn't toggle */
 /*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
 void Thread3(void){
     heart_hew_muscle(muscle_pf3, GPIO_PORTF_BASE, GPIO_PIN_3);
