@@ -21,9 +21,9 @@ typedef struct muscle_t {
  *  heart. */
 #define THORACIC_CAVITY GPIO_PORTF_BASE
 
-/*
+/****************************************************************
  * Begin non-modal API -- implicit subject is \HEART_MUSCLE.
- */
+ ****************************************************************/
 
 /*!
  *  \brief Initialize \HEART_MUSCLE for visible transformation.
@@ -89,10 +89,10 @@ void heart_beat() {
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
 }
 
-/*
+/****************************************************************
  * Begin GPIO API -- concentrate on a muscle and pump it baby
  *   One day, this section desires to be fully modal
- */
+ ****************************************************************/
 
 /*! \brief An alias for \heart_init_. I like the imagery. */
 #define heart_pump_(a, b) heart_init_(a, b)
@@ -185,9 +185,9 @@ void heart_beat_(muscle_t* ancillary_muscle) {
 		 heart_status_(ancillary_muscle) ^ ancillary_muscle->pin);
 }
 
-/*
+/****************************************************************
  * End GPIO API
- */
+ ****************************************************************/
 
 /*!
  * \brief Allocate and initialize a muscle_t for control via libheart.
