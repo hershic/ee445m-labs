@@ -3,8 +3,7 @@
 /* Revision History: Look in Git FGT */
 
 #include "os.h"
-
-/* TODO: convert to libut/utlist */
+#include "libut/utlist.h"
 
 /*! An array of statically allocated threads. */
 tcb_t OS_THREADS[OS_MAX_THREADS];
@@ -47,7 +46,8 @@ tcb_t* os_add_thread(task_t task) {
     status = StartCritical();
 
     /* 2. Add the task to the linked list of running threads. */
-    /* 2a. If there is no more room for running threads, take no action. */
+    /* 2a. If there is no more room for running threads, take no
+     * action. */
     if ((thread_to_add = os_next_dead_thread())) {
 	/* 2b. If no thread is running, then create the initial running
 	   thread. */
