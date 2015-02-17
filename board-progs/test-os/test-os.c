@@ -33,19 +33,26 @@ uint32_t CountPF3 = 0; // number of times thread3 has looped
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
     heart_hew_muscle(muscle_pf1, GPIO_PORTF_BASE, GPIO_PIN_1);
-    while(++CountPF1>0) { heart_toggle_(&muscle_pf1); }
+    while(++CountPF1) {
+	heart_toggle_(&muscle_pf1);
+    }
 }
 
 /*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
 void Thread2(void){
-    heart_hew_muscle(muscle_pf2, GPIO_PIN_2, GPIO_PORTF_BASE);
-    while(++CountPF2>0) { heart_toggle_(&muscle_pf2); }
+    heart_hew_muscle(muscle_pf2, GPIO_PORTF_BASE, GPIO_PIN_2);
+    while(++CountPF2) {
+	heart_toggle_(&muscle_pf2);
+    }
 }
 
+/* TODO: determine why this doesn't toggle */
 /*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
 void Thread3(void){
-    heart_hew_muscle(muscle_pf3, GPIO_PIN_3, GPIO_PORTF_BASE);
-    while(++CountPF3>0) { heart_toggle_(&muscle_pf3); }
+    heart_hew_muscle(muscle_pf3, GPIO_PORTF_BASE, GPIO_PIN_3);
+    while(++CountPF3) {
+	heart_toggle_(&muscle_pf3);
+    }
 }
 
 int main() {
@@ -56,8 +63,8 @@ int main() {
     IntMasterDisable();
 
     os_threading_init();
-    os_add_thread(Thread1);
-    os_add_thread(Thread2);
+    /* os_add_thread(Thread1); */
+    /* os_add_thread(Thread2); */
     os_add_thread(Thread3);
 
     /* Load and enable the systick timer */
