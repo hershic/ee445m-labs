@@ -9,8 +9,10 @@
 
 /** Statically allocated space for all system commands to reside. */
 static system_command SYSTEM_COMMANDS[SYSTEM_MAX_COMMANDS];
+
 /** Circular doubly-linked list containing all registered commands. */
 system_command* registered_commands = NULL;
+
 /** Circular doubly-linked list containing all unregistered commands. */
 system_command* unregistered_commands = NULL;
 
@@ -30,7 +32,7 @@ bool system_register_command(const char* command_name, int(*command)()) {
      * registered pile, and populate it with this function's
      * arguments */
     system_command* sys_command = unregistered_commands;
-    CDL_DELETE(unregistered_commands, unregistered_commands);
+    CDL_DELETE(unregistered_commands, sys_command);
     CDL_PREPEND(registered_commands, sys_command);
 
     sys_command->valid = true;
