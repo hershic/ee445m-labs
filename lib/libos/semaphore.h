@@ -6,8 +6,7 @@
 #include <stdint.h>
 
 /*! Implements a simple spinlock-based locking mechanism. 
- *  \param blocker the spinlock will wait until this value is set to
- *  nonzero.
+ *  \param blocker the spinlock will wait until this value is nonzero.
  */
 void spinlock_until(int32_t* blocker);
 
