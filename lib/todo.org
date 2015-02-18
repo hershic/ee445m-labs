@@ -1,5 +1,7 @@
 #+startup: all
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+"In a real time system there is no point in finishing your task before
+the deadline." -- Gerstlauer
 * [0/1] SysTick
 ** TODO Initialization macro
 convert this code into a single call that is readable, i.e. you can
@@ -29,8 +31,35 @@ called separately (comment created <2015-02-17 Tue>).
   os_get_tcb(idle); // returns the tcb containing idle
 #+END_SRC
 ** TODO define os_surrender_execution
+** [0/2] define schedulers
+See Rate Monotonic Scheduling for inspiration
+- [ ] round-robin
+- [ ] at least one other
 * [0/1] Nexus
 ** TODO interruptless-blocks
 a lisp/ruby-style object to accept a block and ensure no interrupts
 fire while it is executing (makes it atomic, wraps with Critical
 sections, something of the sort)
+* [0/1] Jitter
+** TODO create library
+* [0/5] Debugging and total authoritarianism enforcement
+** TODO Check on changed immutables?
+** TODO create automated testing framework
+urged by lecture <2015-02-17 Tue>
+- place a magic packet in memory at the end of your stack, check for
+  changed contents
+** TODO create stack watcher
+die on attempted overflow
+** TODO reposition the memory
+don't shoot yourself in the foot with a lodaed stac
+(insert picture here)
+** TODO path expressions
+urged by lecture <2015-02-17 Tue>
+[[http://en.wikipedia.org/wiki/Eiffel_(programming_language)][Eiffel (programming language)]]
+[[./img/path_expressions_lec04.png]]
+- specify and enforce correct calling order
+- represented as a graph
+  choose one of the following representations based on sparseness of
+  the data structures:
+  - adjacency list
+  - adjacency matrix
