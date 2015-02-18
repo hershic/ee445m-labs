@@ -32,6 +32,7 @@ typedef void (*task_t)();
 
 /*! \brief Thread Control Block */
 typedef struct tcb {
+
     /*! pointer to stack (valid for threads not running */
     int32_t *sp;
 
@@ -41,7 +42,8 @@ typedef struct tcb {
     /*! linked-list pointer to prev tcb */
     struct tcb *prev;
 
-    /*! Unique numeric identifier for the tcb. THIS PROPERY IS IMMUTABLE */
+    /*! Unique numeric identifier for the tcb.
+     *  THIS PROPERY IS IMMUTABLE */
     immutable int32_t id;
 
     /*! The function used as this thread's entry point. This is
@@ -90,19 +92,27 @@ typedef struct swcontext {
  */
 void os_reset_thread_stack(tcb_t* tcb, task_t task);
 
+/*! An alias to \os_add_thread. Feels like home sweet home. */
+#define os_spawn_thread(a) os_add_thread(a)
+
+/*! An alias to \os_remove_thread. Feels like home sweet home.*/
+#define os_kill_thread(a) os_remove_thread(a)
+
 /*! Adds a new thread with the specified task.
  *  \returns the TCB of the newly added thread, null if the addition
  *  was not possible for some reason.
  */
-tcb_t* os_add_thread(void(*task)(void));
+tcb_t* os_add_thread(task_t);
 
-/* TODO implement. returns ptr to free'd tcb.
- * be sure to set tcb_t->entry_point to NULL! */
-tcb_t* os_remove_thread();
+/*! Remove a thread from the queue the schedule will choose from.
+ * \param The task to kill. This should be the task that was used to start the thread to remove via \os_add_thread.
+ * \returns The newly released tcb
+ */
+tcb_t* os_remove_thread(task_t);
 
-/*! Return the tcb_t used to control the specified task_t.
- * \param The task to lookup the tcb_t of
- * \returns The tcb_t of the specified task_t
+/*! Return the tcb used to control the specified task_t.
+ * \param The task to lookup the tcb of
+ * \returns The tcb of the specified task_t
  */
 tcb_t* os_tcb_of(task_t);
 

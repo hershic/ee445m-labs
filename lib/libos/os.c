@@ -11,30 +11,27 @@ tcb_t OS_THREADS[OS_MAX_THREADS];
 /*! A block of memory for each thread's local stack. */
 int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
 
-/*! A circular doubly linked list of currently running threads. */
-tcb_t* os_current_running_thread = NULL;
+/*! A circular doubly linked list of currently running threads.
+ * \note The head of this list is 'os_current_running_thread'
+ */
+tcb_t* os_running_threads = NULL;
 
 /*! A circular doubly linked list of currently dead threads. */
-tcb_t* os_current_dead_thread = NULL;
+tcb_t* os_dead_threads = NULL;
 
 void os_threading_init() {
 
     uint32_t i;
-    os_current_dead_thread = &OS_THREADS[0];
+    os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
+	CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
-        OS_THREADS[i].next = &OS_THREADS[i+1];
-        OS_THREADS[i].prev = &OS_THREADS[i-1];
         OS_THREADS[i].id = i;
+	OS_THREADS[i].entry_point = NULL;
         OS_THREADS[i].status = THREAD_DEAD;
         OS_THREADS[i].sleep_timer = 0;
     }
-
-    OS_THREADS[0].prev = &OS_THREADS[OS_MAX_THREADS-1];
-    OS_THREADS[OS_MAX_THREADS-1].next = &OS_THREADS[0];
-
-    os_current_running_thread = NULL;
 }
 
 tcb_t* os_add_thread(task_t task) {
@@ -45,70 +42,73 @@ tcb_t* os_add_thread(task_t task) {
     /* 1. Disable interrupts and save the priority mask */
     status = StartCritical();
 
-    /* 2. Add the task to the linked list of running threads. */
-    /* 2a. If there is no more room for running threads, take no
-     * action. */
-    if ((thread_to_add = os_next_dead_thread())) {
-	/* 2b. If no thread is running, then create the initial running
-	   thread. */
-	if (!os_current_running_thread) {
-	    os_current_running_thread = thread_to_add;
-	    os_current_running_thread->next = os_current_running_thread;
-	    os_current_running_thread->prev = os_current_running_thread;
-	}
-	/* 2c. If we don't have any problems with either thread circles,
-	   then remove a thread from the dead thread pool and add it to
-	   the running thread pool, relinking the linked list
-	   appropriately. This thread will run next. */
-	else {
-	    os_current_running_thread->next->prev = thread_to_add;
-	    thread_to_add->next = os_current_running_thread->next;
-	    os_current_running_thread->next = thread_to_add;
-	    thread_to_add->prev = os_current_running_thread;
-	}
+    /* 2. Pop the task from the dead_thread pile and add it to the
+     * list of running threads. */
+    thread_to_add = os_dead_threads;
+    CDL_DELETE(os_dead_threads, thread_to_add);
+    CDL_PREPEND(os_running_threads, thread_to_add);
 
-	/* 3. Set the initial stack contents for the new thread. */
-	os_reset_thread_stack(thread_to_add, task);
+    /* 3. Set the initial stack contents for the new thread. */
+    os_reset_thread_stack(thread_to_add, task);
 
-	/* 4. Set other metadata for this thread's TCB. */
-	thread_to_add->status = THREAD_RUNNING;
-	thread_to_add->sleep_timer = 0;
-	thread_to_add->entry_point = task;
-    }
+    /* 4. Set metadata for this thread's TCB. */
+    thread_to_add->status = THREAD_RUNNING;
+    thread_to_add->sleep_timer = 0;
+    thread_to_add->entry_point = task;
 
     /* 5. Return. */
     EndCritical(status);
     return thread_to_add;
 }
 
-/* TODO: implement once utlist is merged in */
-tcb_t* os_tcb_of(task_t task) {
+tcb_t* os_remove_thread(task_t task) {
 
+    int32_t status ;
+    tcb_t* thread_to_remove;
+
+    /* 1. Disable interrupts and save the priority mask */
+    status = StartCritical();
+
+    /* 2. Pop the task from the running_thread pile and add it to the
+     * list of dead threads. */
+    thread_to_remove = os_tcb_of(task);
+    CDL_DELETE(os_running_threads, thread_to_remove);
+    /* Means high tcb_t memory reusability */
+    CDL_PREPEND(os_dead_threads, thread_to_remove);
+
+    /* OPTIONAL TODO: do the check for overwritten stacks as long as
+     * we kill every thread in our testing we'll get valuable yet
+     * unobtrusive debugging data. also consider a check on the
+     * immutable fields, using the offset from the array base as
+     * verification. */
+
+    /* 3. Reset metadata for this thread's TCB. */
+    thread_to_remove->status = THREAD_DEAD;
+    thread_to_remove->entry_point = NULL;
+
+    /* 4. Return. */
+    EndCritical(status);
+    return thread_to_remove;
 }
 
-tcb_t* os_next_dead_thread() {
+tcb_t* os_tcb_of(const task_t task) {
 
-    tcb_t* return_tcb = os_current_dead_thread;
-
-    if (!return_tcb) { return return_tcb; }
-
-    if ((os_current_dead_thread->next == os_current_dead_thread) &&
-        (os_current_dead_thread->prev == os_current_dead_thread)) {
-        return_tcb = os_current_dead_thread;
-        os_current_dead_thread = NULL;
-        return return_tcb;
+    int32_t i;
+    for(i=0; i<OS_MAX_THREADS; ++i) {
+	if (task == OS_THREADS[i].entry_point) {
+	    return &OS_THREADS[i];
+	}
     }
-
-    os_current_dead_thread->next->prev = os_current_dead_thread->prev;
-    os_current_dead_thread->prev->next = os_current_dead_thread->next;
-    os_current_dead_thread = os_current_dead_thread->next;
-    return return_tcb;
+    /* TODO: create a compile-time flag to catch all scary
+     * situations, or let them go. #DANGER_ZONE */
+    postpone_death();
+    return NULL;
 }
 
 void os_launch() {
 
     /* acquire the pointer to the stack pointer here */
-    asm volatile("LDR     R0, =os_current_running_thread");
+    asm volatile("LDR     R0, =os_running_threads");
 
     /* acquire the current value of the stack pointer */
     asm volatile("LDR R0, [R0]");
@@ -201,19 +201,19 @@ void PendSV_Handler() {
     asm volatile("stmdb   r12!, {r4 - r11, lr}");
 
     /* -------------------------------------------------- */
-    /* phase 2: os_current_running_thread manipulation    */
+    /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
-    /* load the value of os_current_running_thread */
-    asm volatile("LDR     R2, =os_current_running_thread");
+    /* load the value of os_running_threads */
+    asm volatile("LDR     R2, =os_running_threads");
 
-    /* r3 = *os_current_running_thread, of thread A */
+    /* r3 = *os_running_threads, of thread A */
     asm volatile("LDR     R3, [R2]");
 
-    /* load the value of os_current_running_thread->next into r1 */
+    /* load the value of os_running_threads->next into r1 */
     asm volatile("LDR     R1, [R3,#4]");
 
-    /* os_current_running_thread = os_current_running_thread->next */
+    /* os_running_threads = os_running_threads->next */
     asm volatile("STR     R1, [R2]");
 
     /* -------------------------------------------------- */
