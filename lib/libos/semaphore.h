@@ -27,7 +27,7 @@ void sem_init(sem_t* sem, int32_t initial_value);
 void sem_post(sem_t* sem);
 
 /*! Wait on (block) a semaphore. This waits until the value of the
- *  semaphore is larger than zero to * unblock the current thread. The
+ *  semaphore is larger than zero to unblock the current thread. The
  *  value of the semaphore is then decremented to consume the resource.
  *  \param sem the semaphore to wait on (block).
  */
