@@ -11,7 +11,7 @@ immediately tell to what frequency/period the SysTick will interrupt.
   SysTickEnable();
   SysTickIntEnable();
 #+END_SRC
-* [0/4] OS
+* [0/5] OS
 ** TODO Thread addition macro
 Create a macro to map over supplied threads and do this sort of
 initialization. The only next step is os_launch, which should still be
@@ -31,6 +31,7 @@ called separately (comment created <2015-02-17 Tue>).
   os_get_tcb(idle); // returns the tcb containing idle
 #+END_SRC
 ** TODO define os_surrender_execution
+** TODO Create semaphore.dox
 ** [0/2] define schedulers
 See Rate Monotonic Scheduling for inspiration
 - [ ] round-robin
