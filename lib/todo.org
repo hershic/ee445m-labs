@@ -64,3 +64,5 @@ urged by lecture <2015-02-17 Tue>
   the data structures:
   - adjacency list
   - adjacency matrix
+* [0/1] Doxygen
+** TODO add everythig to a group! it's all we have sans c++ inheritance.
