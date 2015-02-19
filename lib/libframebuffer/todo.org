@@ -1,4 +1,0 @@
-* Framebuffer todos
-- [ ] create compile-time options to enable/disable per-pixel
-  manipulation
-  thus freeing framebuffer, less memory overhead
