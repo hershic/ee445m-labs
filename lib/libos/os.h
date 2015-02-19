@@ -140,3 +140,6 @@ void os_threading_init();
  *  the previous context.
  */
 void os_launch();
+
+/* TODO: doxygenize */
+tcb_t* os_suspend();

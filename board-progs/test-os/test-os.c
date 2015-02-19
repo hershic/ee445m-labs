@@ -74,6 +74,7 @@ int main() {
     SysTickEnable();
     SysTickIntEnable();
 
+    /* os_trap_ */
     os_launch();
 
     /* PONDER: why do interrupts fire without this? */

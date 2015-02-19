@@ -243,3 +243,9 @@ void PendSV_Handler() {
 
     asm volatile ("bx lr");
 }
+
+/* returns the os_dead_threads */
+tcb_t* os_suspend() {
+
+    return NULL;
+}
