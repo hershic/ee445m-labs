@@ -5,4 +5,5 @@ include_directories(../../)
 include_directories(../../lib)
 
 add_library (heartbeat STATIC ${heartbeat-src})
+
 target_link_libraries(heartbeat os)

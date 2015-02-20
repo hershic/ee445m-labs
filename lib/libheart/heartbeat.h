@@ -3,7 +3,19 @@
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
-#include "../libos/os.h"
+/* Standard Libs */
+#include <stdint.h>
+#include <stdbool.h>
+
+/* TI Includes */
+#include "inc/hw_memmap.h"
+
+/* Driverlib Includes */
+#include "driverlib/gpio.h"
+#include "driverlib/pin_map.h"
+#include "driverlib/sysctl.h"
+
+#include "libos/os.h"
 
 /*! A pointer to a memory location on the ARM Cortex M4. */
 typedef int32_t memory_address_t;
@@ -36,14 +48,7 @@ static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
  *  \ingroup Heart
  */
 inline
-void heart_init() {
-
-    /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-
-    /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(THORACIC_CAVITY, HEART_MUSCLE);
-}
+void heart_init();
 
 /*!
  * \brief Return the status of \HEART_MUSCLE.
@@ -51,7 +56,7 @@ void heart_init() {
  * \ingroup Heart
  */
 inline
-int32_t heart_status() {GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);}
+int32_t heart_status();
 
 /*!
  *  \brief Turn \HEART_MUSCLE off.
@@ -59,7 +64,7 @@ int32_t heart_status() {GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);}
  *  \ingroup Heart
  */
 inline
-void heart_off() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);}
+void heart_off();
 
 /*!
  *  \brief Turn \HEART_MUSCLE on.
@@ -67,7 +72,7 @@ void heart_off() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);}
  *  \ingroup Heart
  */
 inline
-void heart_on() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);}
+void heart_on();
 
 /*!
  *  \brief Toggle \HEART_MUSCLE once.
@@ -76,10 +81,7 @@ void heart_on() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);}
  *  \ingroup Heart
  */
 inline
-void heart_toggle() {
-
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
-}
+void heart_toggle();
 
 /*!
  *  \brief Toggle \HEART_MUSCLE twice.
@@ -88,11 +90,7 @@ void heart_toggle() {
  *  \ingroup Heart
  */
 inline
-void heart_beat() {
-
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
-}
+void heart_beat();
 
 /*--------------------------------------------------------------*
  * Begin GPIO API -- concentrate on a muscle and pump it baby   *
@@ -114,35 +112,11 @@ void heart_beat() {
  *  smart enough to do it yet.
  */
 inline
-void heart_init_(memory_address_t base, memory_address_t pin) {
-
-    /* Enable the GPIO port that is used for \HEART_ANCILLARY_MUSCLE. */
-    switch(base) {
-    case GPIO_PORTA_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); break;
-    case GPIO_PORTB_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB); break;
-    case GPIO_PORTC_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC); break;
-    case GPIO_PORTD_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD); break;
-    case GPIO_PORTE_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE); break;
-    case GPIO_PORTF_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); break;
-    case GPIO_PORTG_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOG); break;
-    case GPIO_PORTH_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOH); break;
-    case GPIO_PORTJ_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ); break;
-    }
-
-    /* Enable the GPIO pins for \HEART_ANCILLARY_MUSCLE. */
-    GPIOPinTypeGPIOOutput(base, pin);
-
-    /* Save metadata allowing for modal use of this library */
-    HEART_MODAL_METADATA[os_running_thread_id()].base = base;
-    HEART_MODAL_METADATA[os_running_thread_id()].pin = pin;
-}
+void heart_init_(memory_address_t base, memory_address_t pin);
 
 /*! TODO; doxygenize */
 inline
-int32_t heart_status_modal(muscle_t* ancillary_muscle) {
-
-    GPIOPinRead(ancillary_muscle->base, ancillary_muscle->pin);
-}
+int32_t heart_status_modal(muscle_t* ancillary_muscle);
 
 /*!
  * \brief Return the status of \HEART_ANCILLARY_MUSCLE.
@@ -151,17 +125,11 @@ int32_t heart_status_modal(muscle_t* ancillary_muscle) {
  * \ingroup Heart
  */
 inline
-int32_t heart_status_() {
-
-    heart_status_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
-}
+int32_t heart_status_();
 
 /*! TODO; doxygenize */
 inline
-void heart_off_modal(muscle_t* ancillary_muscle) {
-
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 0);
-}
+void heart_off_modal(muscle_t* ancillary_muscle);
 
 /*!
  *  \brief Turn \ancillary_muscle off.
@@ -170,17 +138,11 @@ void heart_off_modal(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_off_() {
-
-    heart_off_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
-}
+void heart_off_();
 
 /*! TODO; doxygenize */
 inline
-void heart_on_modal(muscle_t* ancillary_muscle) {
-
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 1);
-}
+void heart_on_modal(muscle_t* ancillary_muscle);
 
 /*!
  *  \brief Turn \ancillary_muscle on.
@@ -189,19 +151,11 @@ void heart_on_modal(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_on_() {
-
-    heart_on_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
-}
+void heart_on_();
 
 /*! TODO; doxygenize */
 inline
-void heart_toggle_modal(muscle_t* ancillary_muscle) {
-
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
-}
+void heart_toggle_modal(muscle_t* ancillary_muscle);
 
 /*!
  *  \brief Toggle \ancillary_muscle once.
@@ -211,22 +165,11 @@ void heart_toggle_modal(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_toggle_() {
-
-    heart_toggle_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
-}
+void heart_toggle_();
 
 /*! TODO; doxygenize */
 inline
-void heart_beat_modal(muscle_t* ancillary_muscle) {
-
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
-}
+void heart_beat_modal(muscle_t* ancillary_muscle);
 
 /*!
  *  \brief Toggle \ancillary_muscle twice.
@@ -236,10 +179,7 @@ void heart_beat_modal(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_beat_() {
-
-    heart_beat_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
-}
+void heart_beat_();
 
 /*--------------------------------------------------------------*
  * End GPIO API                                                 *
@@ -273,17 +213,8 @@ void heart_beat_() {
  */
 inline
 muscle_t* heart_hew_muscle_(muscle_t*        muscle,
-			    memory_address_t base,
-			    memory_address_t pin) {
-
-    /* Initialize the muscle_t data structure */
-    muscle->base = base;
-    muscle->pin  = pin;
-    /* Ensure this peripheral is initialized properly */
-    heart_init_(base, pin);
-    /* A convenience for the client developer */
-    return muscle;
-}
+                            memory_address_t base,
+                            memory_address_t pin);
 
 /* FEATURE TODO: use bind (or equivalent function) to wrap a fn pointer with
  * beat(), ptr(), toggle() and return prt()'s ret value */
