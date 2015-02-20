@@ -5,13 +5,14 @@
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL Continuous Integration
 jenkins, travis
-* [2/16] lib
+* [1/16] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
-** [1/1] heart
-*** DONE modalize
-- determine the thread_id from os_running_threads' tcb
-- lookup in your memory structures what muscle he is using
+** [0/1] heart
+*** IN-PROGRESS modalize
+- [X] determine the thread_id from os_running_threads' tcb
+- [X] lookup in your memory structures what muscle he is using
+- [ ] determine how to change modes without re-initting
 ** [0/1] SysTick
 *** TODO Initialization macro
 convert this code into a single call that is readable, i.e. you can
