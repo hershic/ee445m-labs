@@ -7,8 +7,6 @@ include_directories(../../lib)
 
 add_library (os STATIC ${os-src})
 
-find_library(libcarm thumb/libc.a)
-
 target_link_libraries(os driverlib)
 target_link_libraries(os utils)
 target_link_libraries(os std)
