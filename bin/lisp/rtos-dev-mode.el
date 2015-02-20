@@ -122,9 +122,9 @@ of a `gud-mode' buffer."
 
 ;; associated mode: c-eldoc
 (require 'c-eldoc)
-(defun rtos/c-mode-hook()
+(defun rtos/eldoc-hook()
   (when (equal major-mode 'c-mode) 'c-turn-on-eldoc-mode))
-(add-hook 'rtos-dev-mode-hook 'rtos/c-mode-hook)
+(add-hook 'rtos-dev-mode-hook 'rtos/eldoc-hook)
 
 ;; associated mode: disaster-arm
 (require 'disaster-arm)
