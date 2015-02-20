@@ -99,7 +99,6 @@ stack (bookmarks dir- chrome)
 ** [0/1] setenv
 *** TODO Clean exit when invoked twice
 currently prints help and exits (seemingly ambiguously)
-
 ** [3/4] emacs
 *** DONE eldoc for our functions
 #+BEGIN_SRC emacs-lisp :tangle no
@@ -109,7 +108,7 @@ currently prints help and exits (seemingly ambiguously)
 *** DONE disaster for arm
 *** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
-*** HIATUS rtos-dev-mode.el
+*** OPTIONAL rtos-dev-mode.el
 **** [5/5] gdb helper
 within emacs, an O(1) way to
 - [X] flash
