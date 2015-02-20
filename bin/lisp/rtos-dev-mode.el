@@ -55,11 +55,10 @@ https://github.com/hershic/ee445m-labs."
 		   " is running " (rtos/ocd-debug-command))))
 
 (defmacro rtos/generate-gdb-command (command)
-  `(progn
-     (if (not (equal major-mode 'gud-mode))
-	 (message "You must be in a gdb buffer first.")
-       (insert ,command)
-       (comint-send-input))))
+  (if (not (equal major-mode 'gud-mode))
+      (message "You must be in a gdb buffer first.")
+    (insert ,command)
+    (comint-send-input)))
 
 (defun rtos/gdb-target-remote ()
   (interactive)
@@ -72,6 +71,10 @@ https://github.com/hershic/ee445m-labs."
 (defun rtos/gdb-load ()
   (interactive)
   (rtos/generate-gdb-command "load"))
+
+(defun rtos/gdb-continue ()
+  (interactive)
+  (rtos/generate-gdb-command "continue"))
 
 ;; todo: determine why lv isn't working. probably an esc-system thing
 (setq hydra-lv nil)
