@@ -1,10 +1,8 @@
 ;;; rtos-mode.el --- A minor mode to augment the development of ee445m-labs
 
-;; dependencies: https://github.com/abo-abo/hydra
-
-
-;;; Commentary:
+;;; Commentary: TODO
 ;;
+;; dependencies: https://github.com/abo-abo/hydra
 
 ;;; Code:
 
@@ -130,10 +128,6 @@ of a `gud-mode' buffer."
 ;; rtos-dev-mode: associated with c-mode and gud-mode
 (add-hook 'c-mode-hook 'rtos-dev-mode)
 (add-hook 'gud-mode-hook 'rtos-dev-mode)
-
-(provide 'rtos-dev-mode)
-
-;;; rtos-mode.el ends here
 
 (provide 'rtos-dev-mode)
 
