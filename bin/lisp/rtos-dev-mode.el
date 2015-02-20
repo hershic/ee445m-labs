@@ -103,9 +103,11 @@ of a `gud-mode' buffer."
   "gdb"
   ("o" rtos/ocd-debugger      "ocd -d")
   ("g" gdb                    "gdb")
-  ("t" rtos/gdb-target-remote "target")
-  ("r" rtos/gdb-reset         "reset")
   ("l" rtos/gdb-load          "load")
+  ("r" rtos/gdb-reset         "reset")
+  ("t" rtos/gdb-target-remote "target")
+  ("s" rtos/gdb-step          "step")
+  ("n" rtos/gdb-next          "next")
   ("c" rtos/gdb-continue      "continue"))
 
 ;; font-lock
