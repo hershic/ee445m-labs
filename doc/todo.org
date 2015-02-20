@@ -5,11 +5,11 @@
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL Continuous Integration
 jenkins, travis
-* [1/16] lib
+* [2/16] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
-** [0/1] heart
-*** TODO modalize
+** [1/1] heart
+*** DONE modalize
 - determine the thread_id from os_running_threads' tcb
 - lookup in your memory structures what muscle he is using
 ** [0/1] SysTick
@@ -94,8 +94,9 @@ http://hershic.github.io/ee445m-labs/
 *** TODO Allow here docs in declare -r statements
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
-* [5/7] dev environment
-** DONE openocd
+* [4/7] dev environment
+** TODO openocd
+*** kill process on output "Info : dropped 'gdb' connection"
 ** [0/1] setenv
 *** TODO Clean exit when invoked twice
 currently prints help and exits (seemingly ambiguously)
