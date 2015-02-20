@@ -2,6 +2,9 @@
 /* Created by Hershal Bhave 2015-02-08 */
 /* Revision History: Look in Git FGT */
 
+#ifndef __OS__
+#define __OS__
+
 #include "libstd/nexus.h"
 #include "inc/hw_ints.h"
 
@@ -60,6 +63,15 @@ typedef struct tcb {
     /*! priority of the thread */
     /* int8_t priority; */
 } tcb_t;
+
+/*! A circular doubly linked list of currently running threads.
+ * \note The head of this list is 'os_current_running_thread'
+ */
+static tcb_t* os_running_threads = NULL;
+
+/*! A circular doubly linked list of currently dead threads. */
+static tcb_t* os_dead_threads = NULL;
+
 
 /*! The contents of the stack immediately after a function call. */
 typedef struct hwcontext {
@@ -143,3 +155,5 @@ void os_launch();
 
 /* TODO: doxygenize */
 tcb_t* os_suspend();
+
+#endif
