@@ -78,28 +78,27 @@ of a `gud-mode' buffer."
 	   (switch-to-buffer gud)))
      (rtos/exec-comint-command ,command)))
 
-(defun rtos/gdb-target-remote ()
-  "Force gdb to target the remote Cortex M4 openocd debugging session."
-  (interactive)
-  (rtos/exec-gdb-command "target remote localhost:3333"))
+(defmacro rtos/define-gdb-command (function)
+  (let ((gdb-command   (cdr function))
+	(funsymbol (intern (format "rtos/gdb-%s" (car function)))))
+    `(defun ,funsymbol () (interactive) (rtos/exec-gdb-command ,gdb-command))))
 
-(defun rtos/gdb-reset ()
-  "Tell openocd to reset halt."
-  (interactive)
-  (rtos/exec-gdb-command "monitor reset halt"))
+(mapcar* (lambda (function)
+	   (eval `(rtos/define-gdb-command ,function)))
+	 '(;; openocd functions
+	   (load  . "load")
+	   (reset . "monitor reset halt")
 
-(defun rtos/gdb-load ()
-  "Re-flash the Cortex M4."
-  (interactive)
-  (rtos/exec-gdb-command "load"))
-
-(defun rtos/gdb-continue ()
-  "Continue executing in gdb."
-  (interactive)
-  (rtos/exec-gdb-command "continue"))
+	   ;; gdb functions
+	   (target   . "target remote localhost:3333")
+	   (step     . "step")
+	   (next     . "next")
+	   (continue . "continue")))
 
 ;; todo: determine why lv isn't working. probably an esc-system thing
 (setq hydra-lv nil)
+
+;;;###autoload
 (defhydra rtos/hydra-gdb (rtos-dev-mode-map "M-e" :color red)
   "gdb"
   ("o" rtos/ocd-debugger      "ocd -d")
