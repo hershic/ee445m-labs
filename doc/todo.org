@@ -106,12 +106,13 @@ currently prints help and exits (seemingly ambiguously)
 *** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
 *** HIATUS rtos-dev-mode.el
-**** [4/4] gdb helper
+**** [5/5] gdb helper
 within emacs, an O(1) way to
 - [X] flash
 - [X] reload
 - [X] target
 - [X] continue
+- [X] ocd -d
 **** [3/4] rtos dev environment mode
 - [X] disaster-arm
 - [X] gdb helper
