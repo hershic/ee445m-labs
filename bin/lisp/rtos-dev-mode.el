@@ -9,6 +9,7 @@
 (defvar rtos-dev-mode-map (make-keymap)
   "The keymap for `rtos-dev-mode'.")
 
+;;;###autoload
 (define-minor-mode rtos-dev-mode
   "A minor mode to augment the development of
 https://github.com/hershic/ee445m-labs."
