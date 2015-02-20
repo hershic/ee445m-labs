@@ -90,13 +90,13 @@ http://hershic.github.io/ee445m-labs/
 *** TODO Allow here docs in declare -r statements
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
-* [4/7] dev environment
+* [5/7] dev environment
 ** DONE openocd
 ** [0/1] setenv
 *** TODO Clean exit when invoked twice
 currently prints help and exits (seemingly ambiguously)
 
-** [2/4] emacs
+** [3/4] emacs
 *** DONE eldoc for our functions
 #+BEGIN_SRC emacs-lisp :tangle no
   (load "c-eldoc")
@@ -105,16 +105,16 @@ currently prints help and exits (seemingly ambiguously)
 *** DONE disaster for arm
 *** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
-*** TODO rtos-mode.el
+*** HIATUS rtos-mode.el
 **** [4/4] gdb helper
 within emacs, an O(1) way to
 - [X] flash
 - [X] reload
 - [X] target
 - [X] continue
-**** [0/4] rtos dev environment mode
-- [ ] disaster-arm
-- [ ] gdb helper
-- [ ] c-eldoc
+**** [3/4] rtos dev environment mode
+- [X] disaster-arm
+- [X] gdb helper
+- [X] c-eldoc
 - [ ] pseudo-reserved word highlighting
 ** DONE cmd to open screen on the M4
