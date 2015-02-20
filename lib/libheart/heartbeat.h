@@ -3,6 +3,8 @@
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
+#include "../libos/os.h"
+
 /*! A pointer to a memory location on the ARM Cortex M4. */
 typedef int32_t memory_address_t;
 
@@ -12,6 +14,8 @@ typedef struct muscle_t {
     memory_address_t base;
     memory_address_t pin;
 } muscle_t;
+
+static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
 
 /*! The on-board LED colloquially referred to as the 'heart.' Does
  *  every computer have one? */
@@ -110,10 +114,10 @@ void heart_beat() {
  *  smart enough to do it yet.
  */
 inline
-void heart_init_(muscle_t* ancillary_muscle) {
+void heart_init_(memory_address_t base, memory_address_t pin) {
 
     /* Enable the GPIO port that is used for \HEART_ANCILLARY_MUSCLE. */
-    switch(ancillary_muscle->base) {
+    switch(base) {
     case GPIO_PORTA_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); break;
     case GPIO_PORTB_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB); break;
     case GPIO_PORTC_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC); break;
@@ -126,7 +130,18 @@ void heart_init_(muscle_t* ancillary_muscle) {
     }
 
     /* Enable the GPIO pins for \HEART_ANCILLARY_MUSCLE. */
-    GPIOPinTypeGPIOOutput(ancillary_muscle->base, ancillary_muscle->pin);
+    GPIOPinTypeGPIOOutput(base, pin);
+
+    /* Save metadata allowing for modal use of this library */
+    HEART_MODAL_METADATA[os_running_thread_id()].base = base;
+    HEART_MODAL_METADATA[os_running_thread_id()].pin = pin;
+}
+
+/*! TODO; doxygenize */
+inline
+int32_t heart_status_modal(muscle_t* ancillary_muscle) {
+
+    GPIOPinRead(ancillary_muscle->base, ancillary_muscle->pin);
 }
 
 /*!
@@ -136,9 +151,16 @@ void heart_init_(muscle_t* ancillary_muscle) {
  * \ingroup Heart
  */
 inline
-int32_t heart_status_(muscle_t* ancillary_muscle) {
+int32_t heart_status_() {
 
-    GPIOPinRead(ancillary_muscle->base, ancillary_muscle->pin);
+    heart_status_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+}
+
+/*! TODO; doxygenize */
+inline
+void heart_off_modal(muscle_t* ancillary_muscle) {
+
+    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 0);
 }
 
 /*!
@@ -148,9 +170,16 @@ int32_t heart_status_(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_off_(muscle_t* ancillary_muscle) {
+void heart_off_() {
 
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 0);
+    heart_off_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+}
+
+/*! TODO; doxygenize */
+inline
+void heart_on_modal(muscle_t* ancillary_muscle) {
+
+    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 1);
 }
 
 /*!
@@ -160,9 +189,18 @@ void heart_off_(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_on_(muscle_t* ancillary_muscle) {
+void heart_on_() {
 
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 1);
+    heart_on_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+}
+
+/*! TODO; doxygenize */
+inline
+void heart_toggle_modal(muscle_t* ancillary_muscle) {
+
+    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
+		 heart_status_(ancillary_muscle->base,
+			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
 }
 
 /*!
@@ -173,10 +211,21 @@ void heart_on_(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_toggle_(muscle_t* ancillary_muscle) {
+void heart_toggle_() {
+
+    heart_toggle_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+}
+
+/*! TODO; doxygenize */
+inline
+void heart_beat_modal(muscle_t* ancillary_muscle) {
 
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle) ^ ancillary_muscle->pin);
+		 heart_status_(ancillary_muscle->base,
+			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
+		 heart_status_(ancillary_muscle->base,
+			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
 }
 
 /*!
@@ -187,12 +236,9 @@ void heart_toggle_(muscle_t* ancillary_muscle) {
  *  \ingroup Heart
  */
 inline
-void heart_beat_(muscle_t* ancillary_muscle) {
+void heart_beat_() {
 
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle) ^ ancillary_muscle->pin);
-    GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle) ^ ancillary_muscle->pin);
+    heart_beat_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
 }
 
 /*--------------------------------------------------------------*
@@ -234,7 +280,7 @@ muscle_t* heart_hew_muscle_(muscle_t*        muscle,
     muscle->base = base;
     muscle->pin  = pin;
     /* Ensure this peripheral is initialized properly */
-    heart_init_(muscle);
+    heart_init_(base, pin);
     /* A convenience for the client developer */
     return muscle;
 }

@@ -32,27 +32,27 @@ uint32_t CountPF3 = 0; // number of times thread3 has looped
 
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
-    heart_hew_muscle(muscle_pf1, GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     while(1) {
-	heart_toggle_(&muscle_pf1);
+	heart_toggle_();
 	++CountPF1;
     }
 }
 
 /*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
 void Thread2(void){
-    heart_hew_muscle(muscle_pf2, GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     while(1) {
-	heart_toggle_(&muscle_pf2);
+	heart_toggle_();
 	++CountPF2;
     }
 }
 
 /*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
 void Thread3(void){
-    heart_hew_muscle(muscle_pf3, GPIO_PORTF_BASE, GPIO_PIN_3);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
     while(1) {
-	heart_toggle_(&muscle_pf3);
+	heart_toggle_();
 	++CountPF3;
     }
 }

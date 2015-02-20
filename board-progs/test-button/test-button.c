@@ -22,7 +22,6 @@
 #include "driverlib/rom.h"
 
 #include "libos/os.h"
-#include "libheart/heartbeat.h"
 #include "libio/button.h"
 
 uint32_t count = 0;

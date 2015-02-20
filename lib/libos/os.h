@@ -146,6 +146,9 @@ tcb_t* os_next_dead_thread();
  */
 void os_threading_init();
 
+/* TODO: doxygenize */
+int32_t os_running_thread_id();
+
 /*! Launches the operating system.
  *  \note This function drastically changes the execution paradigm of
  *  the machine; do not expect to call it and be able to return to
