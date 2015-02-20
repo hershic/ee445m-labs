@@ -22,39 +22,14 @@
 #include "driverlib/rom.h"
 
 #include "libos/os.h"
-#include "libheart/heartbeat.h"
+#include "libio/button.h"
 
-#include <sys/stat.h>
+uint32_t count = 0;
 
-uint32_t CountPF1 = 0; // number of times thread1 has looped
-uint32_t CountPF2 = 0; // number of times thread2 has looped
-uint32_t CountPF3 = 0; // number of times thread3 has looped
+void GPIO_PortF_Handler(void) {
 
-/*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
-void Thread1(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
-    while(1) {
-	heart_toggle_();
-	++CountPF1;
-    }
-}
-
-/*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
-void Thread2(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
-    while(1) {
-	heart_toggle_();
-	++CountPF2;
-    }
-}
-
-/*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
-void Thread3(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
-    while(1) {
-	heart_toggle_();
-	++CountPF3;
-    }
+    GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_4);
+    count++;
 }
 
 int main() {
@@ -64,18 +39,16 @@ int main() {
 
     IntMasterDisable();
 
-    os_threading_init();
-    os_add_thread(Thread1);
-    os_add_thread(Thread2);
-    os_add_thread(Thread3);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    GPIOPinTypeGPIOInput(GPIO_PORTF_BASE, GPIO_PIN_4);
+    GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_DIR_MODE_IN);
+    GPIOIntTypeSet(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_FALLING_EDGE);
+    GPIOIntEnable(GPIO_PORTF_BASE, GPIO_PIN_4);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 10);
     SysTickEnable();
     SysTickIntEnable();
-
-    /* os_trap_ */
-    os_launch();
 
     /* PONDER: why do interrupts fire without this? */
     IntMasterEnable();

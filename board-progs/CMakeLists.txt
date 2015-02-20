@@ -11,4 +11,4 @@ add_subdirectory(test-timer)
 add_subdirectory(test-shell)
 add_subdirectory(test-display)
 add_subdirectory(test-os)
-
+add_subdirectory(test-button)

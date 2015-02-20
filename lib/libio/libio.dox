@@ -1,0 +1,10 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
+/*!
+ * \brief     Button comprehension library
+ * \author    Eric Crosson
+ * \version   0.1
+ * \date      2015
+ * \pre       None
+ * \copyright GNU Public License.
+ * \addtogroup IO Input/output libraries
+ */

@@ -6,18 +6,10 @@
 #include "libut/utlist.h"
 
 /*! An array of statically allocated threads. */
-tcb_t OS_THREADS[OS_MAX_THREADS];
+static tcb_t OS_THREADS[OS_MAX_THREADS];
 
 /*! A block of memory for each thread's local stack. */
-int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
-
-/*! A circular doubly linked list of currently running threads.
- * \note The head of this list is 'os_current_running_thread'
- */
-tcb_t* os_running_threads = NULL;
-
-/*! A circular doubly linked list of currently dead threads. */
-tcb_t* os_dead_threads = NULL;
+static int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
 
 void os_threading_init() {
 
@@ -89,6 +81,11 @@ tcb_t* os_remove_thread(task_t task) {
     /* 4. Return. */
     EndCritical(status);
     return thread_to_remove;
+}
+
+int32_t os_running_thread_id() {
+
+    return os_running_threads->id;
 }
 
 tcb_t* os_tcb_of(const task_t task) {
@@ -242,4 +239,10 @@ void PendSV_Handler() {
     /* asm volatile("MSR CONTROL, R0"); */
 
     asm volatile ("bx lr");
+}
+
+/* returns the os_dead_threads */
+tcb_t* os_suspend() {
+
+    return NULL;
 }

@@ -84,7 +84,7 @@
   :group 'disaster-arm
   :type 'string)
 
-(defcustom disaster-arm-objdump "arm-none-eabi-objdump -D -Sl -M att"
+(defcustom disaster-arm-objdump "arm-none-eabi-objdump -D -Sl"
   "The command name and flags for running objdump."
   :group 'disaster-arm
   :type 'string)
@@ -151,7 +151,7 @@
 
 (defun disaster-arm-project-root-build-directory ()
   "Return either esc's or hershal's root dir to the ee445m-labs repo."
-  (if (string-eq (user-login-name) "eric")
+  (if (string-equal (user-login-name) "eric")
       "~/workspace/ee445m-labs/build"
     "/ee445m-labs/build"))
 

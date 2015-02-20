@@ -1,6 +1,8 @@
 #ifndef __KBD__
 #define __KBD__
 
+/*! Contains key scan codes corresponding to a standard US
+ *  keyboard. */
 typedef enum {
 
   SC_BACKSPACE = 8,
