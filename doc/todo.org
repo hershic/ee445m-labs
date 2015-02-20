@@ -105,7 +105,7 @@ currently prints help and exits (seemingly ambiguously)
 *** DONE disaster for arm
 *** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
-*** HIATUS rtos-mode.el
+*** HIATUS rtos-dev-mode.el
 **** [4/4] gdb helper
 within emacs, an O(1) way to
 - [X] flash
