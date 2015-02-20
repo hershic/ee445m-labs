@@ -4,6 +4,7 @@
 ** OPTIONAL Code review
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL Continuous Integration
+jenkins, travis
 * [1/15] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
@@ -74,39 +75,46 @@ urged by lecture <2015-02-17 Tue>
 ** [1/1] framebuffer
 *** OPTIONAL create flag to enable per-pixel-manipulation
 compile time flag?
-* [7/13] bin
-** [4/6] dev environment
-*** DONE openocd
-*** [0/1] setenv
-**** TODO Clean exit when invoked twice
-currently prints help and exits (seemingly ambiguously)
-
-*** [2/3] emacs
-**** DONE eldoc for our functions
-#+BEGIN_SRC emacs-lisp :tangle no
-  (load "c-eldoc")
-  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-#+END_SRC
-**** DONE disaster for arm
-**** TODO Doxymacs
-[[http://doxymacs.sourceforge.net/]]
-**** [0/1] gdb helper
-- [ ] flash and reload
-*** DONE cmd to open screen on the M4
-** [3/7] Doxygen
-*** TODO special words
-like immutable
-define in doxygen and also highlight in emacs
-make a mode for our dev environment - source disaster-arm, assign
-keybinding, c-eldoc, and turn on pseudo-reserved word highlighting
-*** DONE publish Doxygen on an external website
-      http://hershic.github.io/ee445m-labs/
+* [1/3] bin
+** [1/3] Doxygen
+*** [0/1] highlight special words
+- [ ] immutable
+*** [2/2] publish
+- [X] visible on external host
+http://hershic.github.io/ee445m-labs/
+- [X] link github to the online documentation
 *** DONE link all doxygen projects together to show on one page
-*** DONE link github to the online documentation
 *** IN-PROGRESS script to update all doxygen files at once
 - I have a hankering to refactor all Doxyfiles into a specific dir
 - bash doxygenizing broke!
 *** TODO Allow here docs in declare -r statements
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
-*** TODO make doxygen html output a consistent format
+* [4/7] dev environment
+** DONE openocd
+** [0/1] setenv
+*** TODO Clean exit when invoked twice
+currently prints help and exits (seemingly ambiguously)
+
+** [2/4] emacs
+*** DONE eldoc for our functions
+#+BEGIN_SRC emacs-lisp :tangle no
+  (load "c-eldoc")
+  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+#+END_SRC
+*** DONE disaster for arm
+*** TODO Doxymacs
+[[http://doxymacs.sourceforge.net/]]
+*** TODO rtos-mode.el
+**** [4/4] gdb helper
+within emacs, an O(1) way to
+- [X] flash
+- [X] reload
+- [X] target
+- [X] continue
+**** [0/4] rtos dev environment mode
+- [ ] disaster-arm
+- [ ] gdb helper
+- [ ] c-eldoc
+- [ ] pseudo-reserved word highlighting
+** DONE cmd to open screen on the M4
