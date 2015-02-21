@@ -97,8 +97,8 @@ and iterating over them.
  | =LL_PREPEND(head,add);=               | =DL_PREPEND(head,add);=               | =CDL_PREPEND(head,add);=                   |
  | =LL_PREPEND_ELEM(head,elt,add)=       | =DL_PREPEND_ELEM(head,elt,add)=       | =CDL_PREPEND_ELEM(head,elt,add)=           |
  | =LL_REPLACE_ELEM(head,elt,add)=       | =DL_REPLACE_ELEM(head,elt,add)=       | =CDL_REPLACE_ELEM(head,elt,add)=           |
- | =LL_APPEND(head,add);=                | =DL_APPEND(head,add);=                | =--=                                     |
- | =LL_CONCAT(head1,head2);=             | =DL_CONCAT(head1,head2);=             | =--=                                     |
+ | =LL_APPEND(head,add);=                | =DL_APPEND(head,add);=                | =--=                                       |
+ | =LL_CONCAT(head1,head2);=             | =DL_CONCAT(head1,head2);=             | =--=                                       |
  | =LL_DELETE(head,del);=                | =DL_DELETE(head,del);=                | =CDL_DELETE(head,del);=                    |
  | =LL_SORT(head,cmp);=                  | =DL_SORT(head,cmp);=                  | =CDL_SORT(head,cmp);=                      |
  | =LL_FOREACH(head,elt) {…}=            | =DL_FOREACH(head,elt) {…}=            | =CDL_FOREACH(head,elt) {…}=                |
