@@ -5,7 +5,18 @@
 #include "defines.h"
 #include <stdint.h>
 
+/*! A keyword to signify that a value should never be reassigned. */
 #define immutable
+
+/*! Wrap a block of code and ensure it is executed without
+ * interruption.
+ * \warning Assumes that an int32t named atom exists in local
+ * scope. */
+#define atomic(x) {				\
+    atom = StartCritical();			\
+    x						\
+    EndCritical(atom);				\
+}
 
 /** A macro to make it clear what we're doing with this while loop. */
 inline static
