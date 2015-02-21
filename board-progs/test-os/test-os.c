@@ -21,6 +21,8 @@
 #include "driverlib/systick.h"
 #include "driverlib/rom.h"
 
+#define HEARTBEAT_MODAL
+
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
 
