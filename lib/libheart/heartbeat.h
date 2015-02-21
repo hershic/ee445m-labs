@@ -314,7 +314,4 @@ muscle_t* heart_hew_muscle_(muscle_t*        muscle,
 }
 #endif /* HEARTBEAT_MODAL */
 
-/* FEATURE TODO: use bind (or equivalent function) to wrap a fn pointer with
- * beat(), ptr(), toggle() and return prt()'s ret value */
-
 #endif

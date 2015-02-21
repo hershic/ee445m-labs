@@ -5,14 +5,22 @@
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL Continuous Integration
 jenkins, travis
-* [1/16] lib
+* [2/17] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
-** [0/1] heart
-*** IN-PROGRESS modalize
+** [1/2] heart
+*** DONE modalize
 - [X] determine the thread_id from os_running_threads' tcb
 - [X] lookup in your memory structures what muscle he is using
 - [ ] determine how to change modes without re-initting
+*** TODO implement bind to wrap a fn pointer
+call sequence:
+- beat()
+- ptr()
+- toggle()
+- return prt()'s ret value
+
+
 ** [0/1] SysTick
 *** TODO Initialization macro
 convert this code into a single call that is readable, i.e. you can
