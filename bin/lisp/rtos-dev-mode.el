@@ -101,19 +101,19 @@ of a `gud-mode' buffer."
 ;;;###autoload
 (defhydra rtos/hydra-gdb (rtos-dev-mode-map "M-e" :color red)
   "gdb"
-  ("o" rtos/ocd-debugger      "ocd -d")
-  ("g" gdb                    "gdb")
-  ("l" rtos/gdb-load          "load")
-  ("r" rtos/gdb-reset         "reset")
-  ("t" rtos/gdb-target-remote "target")
-  ("s" rtos/gdb-step          "step")
-  ("n" rtos/gdb-next          "next")
-  ("c" rtos/gdb-continue      "continue"))
+  ("o" rtos/ocd-debugger  "ocd -d")
+  ("g" gdb                "gdb")
+  ("l" rtos/gdb-load      "load")
+  ("r" rtos/gdb-reset     "reset")
+  ("t" rtos/gdb-target    "target")
+  ("s" rtos/gdb-step      "step")
+  ("n" rtos/gdb-next      "next")
+  ("c" rtos/gdb-continue  "continue"))
 
 ;; font-lock
 (font-lock-add-keywords
  'rtos-dev-mode
- '(("\\<\\(<immutable\\)\\>" . font-lock-keyword-face)))
+ '(("\\<\\(<immutable\\|atomic\\)\\>" . font-lock-keyword-face)))
 
 ;; add /bin/lisp to load path
 (let ((default-directory (concat (rtos/git-root) "/bin/lisp")))
