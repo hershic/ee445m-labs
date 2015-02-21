@@ -92,6 +92,4 @@ done
 
 # Add this directory to the working PATH
 # TODO: use modpath
-readlink=readlink
-[[ $(which greadlink) ]] && readlink=greadlink
-export PATH="$(${readlink} -e $(dirname $0)):$PATH"
+export PATH="$(greadlink -e $(dirname $0)):$PATH"
