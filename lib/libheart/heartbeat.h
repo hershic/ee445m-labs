@@ -27,23 +27,6 @@
 #include "../libos/os.h"
 #endif
 
-/* todo: determine how to document the HEARTBEAT_MODAL switch in
- * Doxygen. */
-
-#ifdef HEARTBEAT_MODAL
-/*! A pointer to a memory location on the ARM Cortex M4. */
-typedef int32_t memory_address_t;
-
-/*! Contains information to identify a GPIO pin. This includes the
- *  port base and the specific pin. */
-typedef struct muscle_t {
-    memory_address_t base;
-    memory_address_t pin;
-} muscle_t;
-
-static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
-#endif
-
 /*! The on-board LED colloquially referred to as the 'heart.' Does
  *  every computer have one? */
 #define HEART_MUSCLE GPIO_PIN_2
@@ -121,14 +104,48 @@ void heart_beat() {
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
 }
 
+/*! Surround the execution of a code block with two hooks.
+ * - pre_hook: heart_beat();
+ * - post_hook: heart_toggle();
+ */
+#define heart_wrap(x) \
+    heart_beat();     \
+    x		      \
+    heart_toggle();   \
+
 /*--------------------------------------------------------------*
  * Begin GPIO API -- concentrate on a muscle and pump it baby   *
  *   One day, this section desires to be fully modal            *
  *--------------------------------------------------------------*/
+
+/* todo: determine how to document the HEARTBEAT_MODAL switch in
+ * Doxygen. */
 #ifdef HEARTBEAT_MODAL
+
+
+/*! Surround the execution of a code block with two hooks.
+ * - pre_hook: heart_beat_();
+ * - post_hook: heart_toggle_();
+ */
+#define heart_wrap_(x) \
+    heart_beat_();     \
+    x		      \
+    heart_toggle_();   \
 
 /*! \brief An alias for \heart_init_. I like the imagery. */
 #define heart_pump_(a, b) heart_init_(a, b)
+
+/*! A pointer to a memory location on the ARM Cortex M4. */
+typedef int32_t memory_address_t;
+
+/*! Contains information to identify a GPIO pin. This includes the
+ *  port base and the specific pin. */
+typedef struct muscle_t {
+    memory_address_t base;
+    memory_address_t pin;
+} muscle_t;
+
+static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
 
 /*!
  *  \brief Initialize \HEART_ANCILLARY_MUSCLE for visible

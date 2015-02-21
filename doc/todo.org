@@ -1,9 +1,9 @@
 #+startup: all
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [2/2] Global
-** OPTIONAL Code review
+* [2/2] global
+** OPTIONAL code review
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
-** OPTIONAL Continuous Integration
+** OPTIONAL continuous integration
 jenkins, travis
 * [2/17] lib
 "In a real time system there is no point in finishing your task before
@@ -13,12 +13,13 @@ the deadline." -- Gerstlauer
 - [X] determine the thread_id from os_running_threads' tcb
 - [X] lookup in your memory structures what muscle he is using
 - [ ] determine how to change modes without re-initting
-*** TODO implement bind to wrap a fn pointer
+*** [0/1] implement bind to wrap a fn pointer
 call sequence:
-- beat()
-- ptr()
-- toggle()
-- return prt()'s ret value
+- [X[ beat()
+- [X[ ptr()
+- [X[ toggle()
+**** TODO return prt()'s ret value
+  ooh, this one's tricky
 
 ** [0/1] SysTick
 *** TODO Initialization macro
