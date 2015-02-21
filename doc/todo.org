@@ -20,7 +20,6 @@ call sequence:
 - toggle()
 - return prt()'s ret value
 
-
 ** [0/1] SysTick
 *** TODO Initialization macro
 convert this code into a single call that is readable, i.e. you can
