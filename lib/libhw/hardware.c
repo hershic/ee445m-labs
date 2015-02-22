@@ -254,14 +254,13 @@ hw_iterator _hw_first_available_subscription(hw_channel* channel) {
     return i;
 }
 
-/******************************************************************************/
-/************************* Interrupt Service Routines *************************/
-/******************************************************************************/
+/*----------------------------------------------------------------------------*
+ *                        Interrupt Service Routines                          *
+ *----------------------------------------------------------------------------*/
 
-/* man oh man, how cool would it be if these were automatically
- * generated... oh, to be using a higher-order language than C. */
+/* These ISRs were generated programatically -- see
+ * /bin/lisp/rtos-interrupt-generator.el */
 
-/************************* UART ISRs *************************/
 void UART0_Handler(void) {
 
     unsigned short i;
@@ -282,24 +281,66 @@ void UART0_Handler(void) {
     }
 }
 
-/************************* Timer ISRs *************************/
-void Timer0A_Handler(void) {
-    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+void UART1_Handler(void) {
+
+    unsigned short i;
     hw_notification notification;
-    notification._int = 1;
-    hw_notify(HW_TIMER, 0, notification);
+    /* TODO: determine which bit to clear:  */
+    unsigned long look_at_me = UARTIntStatus();
+    /* UARTIntClear(UART1_BASE, ); */
+
+    while(UARTCharsAvail(UART1_BASE)) {
+
+	/* Notify every subscribed task of each incoming character
+	 * (but schedule them for later so we can return from this ISR
+	 * asap). */
+	notification._char = uart_get_char();
+
+	/* TODO: schedule this thread instead of running it immediately */
+	hw_notify(HW_UART, UART1_BASE, notification);
+    }
 }
 
-void Timer1A_Handler(void) {
-    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+void UART2_Handler(void) {
+
+    unsigned short i;
     hw_notification notification;
-    notification._int = 1;
-    hw_notify(HW_TIMER, 1, notification);
+    /* TODO: determine which bit to clear:  */
+    unsigned long look_at_me = UARTIntStatus();
+    /* UARTIntClear(UART2_BASE, ); */
+
+    while(UARTCharsAvail(UART2_BASE)) {
+
+	/* Notify every subscribed task of each incoming character
+	 * (but schedule them for later so we can return from this ISR
+	 * asap). */
+	notification._char = uart_get_char();
+
+	/* TODO: schedule this thread instead of running it immediately */
+	hw_notify(HW_UART, UART2_BASE, notification);
+    }
 }
 
-void Timer2A_Handler(void) {
-    TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
+void TIMER0A_Handler(void) {
+
+    TimerIntClear(TIMER0A_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, 2, notification);
+    hw_notify(HW_TIMER, TIMER0A_BASE, notification);
+}
+
+void TIMER1A_Handler(void) {
+
+    TimerIntClear(TIMER1A_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, TIMER1A_BASE, notification);
+}
+
+void TIMER2A_Handler(void) {
+
+    TimerIntClear(TIMER2A_BASE, TIMER_TIMA_TIMEOUT);
+    hw_notification notification;
+    notification._int = 1;
+    hw_notify(HW_TIMER, TIMER2A_BASE, notification);
 }
