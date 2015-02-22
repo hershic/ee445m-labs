@@ -139,10 +139,9 @@ void heart_beat() {
  *   One day, this section desires to be fully modal            *
  *--------------------------------------------------------------*/
 
-/* todo: determine how to document the HEARTBEAT_MODAL switch in
+/* TODO: determine how to document the HEARTBEAT_MODAL switch in
  * Doxygen. */
 #ifdef HEARTBEAT_MODAL
-
 
 /*! Surround the execution of a code block with two hooks.
  * - pre_hook: heart_beat_();
@@ -182,6 +181,7 @@ static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
 inline
 void heart_init_(memory_address_t base, memory_address_t pin) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     /* Enable the GPIO port that is used for \HEART_ANCILLARY_MUSCLE. */
     switch(base) {
     case GPIO_PORTA_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); break;
@@ -201,13 +201,16 @@ void heart_init_(memory_address_t base, memory_address_t pin) {
     /* Save metadata allowing for modal use of this library */
     HEART_MODAL_METADATA[os_running_thread_id()].base = base;
     HEART_MODAL_METADATA[os_running_thread_id()].pin = pin;
+#endif
 }
 
 /*! TODO; doxygenize */
 inline
 int32_t heart_status_modal(muscle_t* ancillary_muscle) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinRead(ancillary_muscle->base, ancillary_muscle->pin);
+#endif
 }
 
 /*!
@@ -219,14 +222,18 @@ int32_t heart_status_modal(muscle_t* ancillary_muscle) {
 inline
 int32_t heart_status_() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     heart_status_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+#endif
 }
 
 /*! TODO; doxygenize */
 inline
 void heart_off_modal(muscle_t* ancillary_muscle) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 0);
+#endif
 }
 
 /*!
@@ -238,14 +245,18 @@ void heart_off_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_off_() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     heart_off_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+#endif
 }
 
 /*! TODO; doxygenize */
 inline
 void heart_on_modal(muscle_t* ancillary_muscle) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 1);
+#endif
 }
 
 /*!
@@ -257,16 +268,20 @@ void heart_on_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_on_() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     heart_on_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+#endif
 }
 
 /*! TODO; doxygenize */
 inline
 void heart_toggle_modal(muscle_t* ancillary_muscle) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
 		 heart_status_(ancillary_muscle->base,
 			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+#endif
 }
 
 /*!
@@ -279,19 +294,23 @@ void heart_toggle_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_toggle_() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     heart_toggle_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+#endif
 }
 
 /*! TODO; doxygenize */
 inline
 void heart_beat_modal(muscle_t* ancillary_muscle) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
 		 heart_status_(ancillary_muscle->base,
 			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
 		 heart_status_(ancillary_muscle->base,
 			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+#endif
 }
 
 /*!
@@ -304,7 +323,9 @@ void heart_beat_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_beat_() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     heart_beat_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
+#endif
 }
 
 /*--------------------------------------------------------------*
@@ -342,6 +363,7 @@ muscle_t* heart_hew_muscle_(muscle_t*        muscle,
 			    memory_address_t base,
 			    memory_address_t pin) {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     /* Initialize the muscle_t data structure */
     muscle->base = base;
     muscle->pin  = pin;
@@ -349,6 +371,7 @@ muscle_t* heart_hew_muscle_(muscle_t*        muscle,
     heart_init_(base, pin);
     /* A convenience for the client developer */
     return muscle;
+#endif
 }
 #endif /* HEARTBEAT_MODAL */
 

@@ -85,6 +85,11 @@ urged by lecture <2015-02-17 Tue>
   - adjacency matrix
 ** [0/1] Doxygen
 *** TODO add everythig to a group! it's all we have sans c++ inheritance.
+*** [0/3] document preprocessor directives
+[[http://www.stack.nl/~dimitri/doxygen/manual/preprocessing.html][Doxygen Manual: Preprocessing]]
+- [ ] PROFILING_DISABLE
+- [ ] HEARTBEAT_OBEY_PROFILING
+- [ ] HEARTBEAT_MODAL
 ** [1/1] framebuffer
 *** OPTIONAL create flag to enable per-pixel-manipulation
 compile time flag?
