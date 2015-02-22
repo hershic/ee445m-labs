@@ -18,7 +18,7 @@
   TM4C123G Cortex M4.")
 (setq rtos/interrupt-channels '(0 1 2))
 
-
+;; todo: pull from yaml or a file to avoid this nonsense
 (defvar rtos/interrupt-template-alist nil
   "Contains (DEVICE . TEMPLATE) of interrupt handlers.")
 (setq rtos/interrupt-template-alist
