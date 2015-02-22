@@ -21,11 +21,14 @@
 /*! A pointer to a memory location on the ARM Cortex M4. */
 typedef int32_t memory_address_t;
 
-/** A macro to make it clear what we're doing with this while loop. */
-inline static
-void postpone_death() {
-
-    while(1) {};
+/*! A macro to make it clear what we're doing with this while
+ *  loop. Note that this macro accepts a body; that is to say you can
+ *  pass a code block as an argument that will be executed
+ *  infinitely. */
+#define postpone_death(x) \
+    while(1) {            \
+        x                 \
+    };                    \
 }
 
 /** A duplicate of the c standard memset function. */

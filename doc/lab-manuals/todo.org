@@ -223,7 +223,7 @@ hardware-triggered timer.
 - try to maximize high water mark of PIDWork
 *** TODO Task 5 : User interface with a command line interpreter
 - use libshell developed in Lab 1
-**** TODO answer esc's questions
+**** IN-PROGRESS answer esc's questions
 [[../../lib/libshell/shell.c]]
 All invocations to uart_send are through uart.h. Should this be to
 libhw, who then queues it? Is this thread-save? is libuart?
