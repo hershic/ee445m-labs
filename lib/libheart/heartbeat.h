@@ -175,8 +175,6 @@ static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
  *  \param The muscle to use as an ancillary heart.
  *  \returns void
  *  \ingroup Heart
- *  \bug Ensure your SYSCTL_PERIPH_GPIOx is enabled, this fn isn't
- *  smart enough to do it yet.
  */
 inline
 void heart_init_(memory_address_t base, memory_address_t pin) {
