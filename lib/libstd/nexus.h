@@ -18,6 +18,9 @@
     EndCritical(atom);				\
 }
 
+/*! A pointer to a memory location on the ARM Cortex M4. */
+typedef int32_t memory_address_t;
+
 /** A macro to make it clear what we're doing with this while loop. */
 inline static
 void postpone_death() {

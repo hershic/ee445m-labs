@@ -36,12 +36,12 @@
 	notification._char = uart_get_char();
 
 	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, %s_BASE, notification);
+	hw_notify_subscriber(HW_UART, %s_BASE, notification);
     }")
 	(timer . "TimerIntClear(%s_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, %s_BASE, notification);")
+    hw_notify_subscriber(HW_TIMER, %s_BASE, notification);")
 	))
 
 (defun combinations (&rest lists)

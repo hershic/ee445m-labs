@@ -5,7 +5,7 @@
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL continuous integration
 jenkins, travis
-* [2/17] lib
+* [2/18] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
 ** [1/2] heart
@@ -13,13 +13,16 @@ the deadline." -- Gerstlauer
 - [X] determine the thread_id from os_running_threads' tcb
 - [X] lookup in your memory structures what muscle he is using
 - [ ] determine how to change modes without re-initting
-*** [0/1] implement bind to wrap a fn pointer
+*** IN-PROGRESS implement bind to wrap a fn pointer
 call sequence:
-- [X[ beat()
-- [X[ ptr()
-- [X[ toggle()
-**** TODO return prt()'s ret value
+- [X] beat()
+- [X] ptr()
+- [X] toggle()
+- [ ] return prt()'s ret value
   ooh, this one's tricky
+
+** [0/1] hardware
+*** IN-PROGRESS bi directional notifications
 
 ** [0/1] SysTick
 *** TODO Initialization macro
