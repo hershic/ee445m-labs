@@ -52,6 +52,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
     hw_driver* driver = hw_driver_singleton(hw_group);
 
     /* Enable the peripherals this driver is responsible for */
+    /* TODO: Standardize */
     switch(hw_group){
     case HW_UART:
 	/* TODO: allow flexibility with channel */
