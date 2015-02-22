@@ -71,12 +71,14 @@ buffer."
 (defmacro rtos/exec-gdb-command (command)
   "Macro to ensure COMMAND will only be executed in the contents
 of a `gud-mode' buffer."
-  `(if (not (equal major-mode 'gud-mode))
-       (let ((gud (car (rtos/buffers-matching-regexp "^\*gud-"))))
-	 (if (not (buffer-live-p gud))
-	     (message "You must be in a gdb buffer first.")
-	   (switch-to-buffer gud)))
-     (rtos/exec-comint-command ,command)))
+  `(if (equal major-mode 'gud-mode)
+       (rtos/exec-comint-command ,command)
+     (let ((gud (car (rtos/buffers-matching-regexp "^\*gud-"))))
+       (if (not (buffer-live-p gud))
+	   (message "You must be in a gdb buffer first.")
+	 (switch-to-buffer gud)
+	 (rtos/exec-comint-command ,command)
+	 (bury-buffer)))))
 
 (defmacro rtos/define-gdb-command (function)
   (let ((gdb-command   (cdr function))
@@ -90,7 +92,7 @@ of a `gud-mode' buffer."
 	   (reset . "monitor reset halt")
 
 (defun rtos/gdb-reset-load-continue ()
-  ""
+  ""x
   ;; TODO: Document this bitch
   (interactive)
   (rtos/gdb-reset)
