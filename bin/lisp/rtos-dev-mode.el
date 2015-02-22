@@ -71,33 +71,31 @@ buffer."
 (defmacro rtos/exec-gdb-command (command)
   "Macro to ensure COMMAND will only be executed in the contents
 of a `gud-mode' buffer."
-  `(if (equal major-mode 'gud-mode)
-       (rtos/exec-comint-command ,command)
-     (let ((gud (car (rtos/buffers-matching-regexp "^\*gud-"))))
-       (if (not (buffer-live-p gud))
-	   (message "You must be in a gdb buffer first.")
-	 (switch-to-buffer gud)
-	 (rtos/exec-comint-command ,command)
-	 (bury-buffer)))))
+  `(if (not (equal major-mode 'gud-mode))
+       (let ((gud (car (rtos/buffers-matching-regexp "^\*gud-"))))
+	 (if (not (buffer-live-p gud))
+	     (message "You must be in a gdb buffer first.")
+	   (switch-to-buffer gud)))
+     (rtos/exec-comint-command ,command)))
 
 (defmacro rtos/define-gdb-command (function)
   (let ((gdb-command   (cdr function))
 	(funsymbol (intern (format "rtos/gdb-%s" (car function)))))
     `(defun ,funsymbol () (interactive) (rtos/exec-gdb-command ,gdb-command))))
 
-(mapcar* (lambda (function)
-	   (eval `(rtos/define-gdb-command ,function)))
-	 '(;; openocd functions
-	   (load  . "load")
-	   (reset . "monitor reset halt")
-
 (defun rtos/gdb-reset-load-continue ()
-  ""x
+  ""
   ;; TODO: Document this bitch
   (interactive)
   (rtos/gdb-reset)
   (rtos/gdb-load)
   (rtos/gdb-continue))
+
+(mapcar* (lambda (function)
+	   (eval `(rtos/define-gdb-command ,function)))
+	 '(;; openocd functions
+	   (load  . "load")
+	   (reset . "monitor reset halt")
 
 	   ;; gdb functions
 	   (target   . "target remote localhost:3333")
