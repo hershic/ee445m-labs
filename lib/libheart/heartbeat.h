@@ -48,11 +48,13 @@
 inline
 void heart_init() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     /* Enable the GPIO port that is used for the on-board LED. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     /* Enable the GPIO pins for the LED (PF2). */
     GPIOPinTypeGPIOOutput(THORACIC_CAVITY, HEART_MUSCLE);
+#endif
 }
 
 /*!
@@ -61,7 +63,12 @@ void heart_init() {
  * \ingroup Heart
  */
 inline
-int32_t heart_status() {GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);}
+int32_t heart_status() {
+
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+    GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);
+#endif
+}
 
 /*!
  *  \brief Turn \HEART_MUSCLE off.
@@ -69,7 +76,12 @@ int32_t heart_status() {GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);}
  *  \ingroup Heart
  */
 inline
-void heart_off() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);}
+void heart_off() {
+
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);
+#endif
+}
 
 /*!
  *  \brief Turn \HEART_MUSCLE on.
@@ -77,7 +89,12 @@ void heart_off() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);}
  *  \ingroup Heart
  */
 inline
-void heart_on() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);}
+void heart_on() {
+
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);
+#endif
+}
 
 /*!
  *  \brief Toggle \HEART_MUSCLE once.
@@ -88,7 +105,9 @@ void heart_on() {GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);}
 inline
 void heart_toggle() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
+#endif
 }
 
 /*!
@@ -100,8 +119,10 @@ void heart_toggle() {
 inline
 void heart_beat() {
 
+#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
+#endif
 }
 
 /*! Surround the execution of a code block with two hooks.
@@ -110,7 +131,7 @@ void heart_beat() {
  */
 #define heart_wrap(x) \
     heart_beat();     \
-    x		      \
+    x		  \
     heart_toggle();   \
 
 /*--------------------------------------------------------------*

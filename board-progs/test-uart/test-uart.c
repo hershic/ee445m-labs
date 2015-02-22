@@ -76,5 +76,5 @@ int main(void) {
     uart_send_string("Enter text:");
 
    /* Postpone death */
-    while (1) {}
+    while(1) {}
 }

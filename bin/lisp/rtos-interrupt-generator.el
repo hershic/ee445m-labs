@@ -11,7 +11,7 @@
 (defvar rtos/interrupt-devices nil
   "Templates of interruptable device names on the TM4C123G Cortex
   M4.")
-(setq rtos/interrupt-devices '("UART%s" "TIMER%sA"))
+(setq rtos/interrupt-devices '("UART%s" "TIMER%s"))
 
 (defvar rtos/interrupt-channels nil
   "Templates of interruptable device channel numbers on the

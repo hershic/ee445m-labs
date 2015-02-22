@@ -33,9 +33,6 @@ void main(void) {
   IntMasterDisable();
 
   os_threading_init();
-  os_add_thread(Thread1);
-  os_add_thread(Thread2);
-  os_add_thread(Thread3);
 
   /* Load and enable the systick timer */
   SysTickPeriodSet(SysCtlClockGet() / 10);
@@ -51,6 +48,6 @@ void main(void) {
   int32_t sem;
   sem_init(&sem, 1);
   while(1) {
-    sem_wait
+    /* sem_wait */
   }
 }

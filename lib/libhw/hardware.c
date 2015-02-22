@@ -321,26 +321,26 @@ void UART2_Handler(void) {
     }
 }
 
-void TIMER0A_Handler(void) {
+void TIMER0_Handler(void) {
 
-    TimerIntClear(TIMER0A_BASE, TIMER_TIMA_TIMEOUT);
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, TIMER0A_BASE, notification);
+    hw_notify(HW_TIMER, TIMER0_BASE, notification);
 }
 
-void TIMER1A_Handler(void) {
+void TIMER1_Handler(void) {
 
-    TimerIntClear(TIMER1A_BASE, TIMER_TIMA_TIMEOUT);
+    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, TIMER1A_BASE, notification);
+    hw_notify(HW_TIMER, TIMER1_BASE, notification);
 }
 
-void TIMER2A_Handler(void) {
+void TIMER2_Handler(void) {
 
-    TimerIntClear(TIMER2A_BASE, TIMER_TIMA_TIMEOUT);
+    TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, TIMER2A_BASE, notification);
+    hw_notify(HW_TIMER, TIMER2_BASE, notification);
 }
