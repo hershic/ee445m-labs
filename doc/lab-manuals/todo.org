@@ -173,8 +173,8 @@ description of an overall function implemented with a combination of
 hardware, background threads (ISR), and foreground threads (main
 programs).
 *** TODO test libsemaphore
-call =os_signal= from a periodic interrupt. place =os_wait= in the loop of
-a main program and watch the loop execute after =os_signal= is called.
+- call =os_signal= from a periodic interrupt
+- call =os_wait= in the main loop and watch the loop step after =os_signal=
 *** TODO profiling compile-time flag
 - compiles minimally intrusive pin-toggling code to
 identify when and what tcb is running
@@ -259,7 +259,8 @@ libhw, who then queues it? Is this thread-save? is libuart?
       like Table 2.1
    6. table showing performance measurements with/without debugging instruments
 5. analysis and discussion (2 page maximum)
-   1. Why did the time jitter in my solution jump from 4 to 6 μs when interpreter I/O occurred?
+   1. Why did the time jitter in my solution jump from 4 to 6 μs when
+      interpreter I/O occurred?
    2. Justify why Task 3 has no time jitter on its ADC sampling.
    3. There are four (or more) interrupts in this system DAS, ADC,
       Select, and SysTick (thread switch).
