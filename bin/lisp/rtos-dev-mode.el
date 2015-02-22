@@ -106,7 +106,6 @@ of a `gud-mode' buffer."
 ;; todo: determine why lv isn't working. probably an esc-system thing
 (setq hydra-lv nil)
 
-;;;###autoload
 (defhydra rtos/hydra-gdb (rtos-dev-mode-map "M-e" :color red)
   "gdb"
   ("o" rtos/ocd-debugger             "ocd -d")
