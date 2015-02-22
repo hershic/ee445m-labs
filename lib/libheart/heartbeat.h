@@ -1,5 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/* Created by Eric Crosson 2015-02-10 */
+/* Created by Eric Crosson 2015-02-10
+ * Note that this function looks gnarly with the #defines so the
+ * client code doesn't. */
 #ifndef __HEARTBEAT__
 #define __HEARTBEAT__
 
@@ -127,7 +129,7 @@ void heart_beat() {
  */
 #define heart_wrap(x) \
     heart_beat();     \
-    x		  \
+    x		      \
     heart_toggle();   \
 
 /*--------------------------------------------------------------*
@@ -147,7 +149,7 @@ void heart_beat() {
  */
 #define heart_wrap_(x) \
     heart_beat_();     \
-    x		      \
+    x		       \
     heart_toggle_();   \
 
 /*! \brief An alias for \heart_init_. I like the imagery. */
