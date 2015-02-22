@@ -23,10 +23,6 @@
 #include "driverlib/timer.h"
 #include "driverlib/rom.h"
 
-#ifdef HEARTBEAT_MODAL
-#include "../libos/os.h"
-#endif
-
 /*! The on-board LED colloquially referred to as the 'heart.' Does
  *  every computer have one? */
 #define HEART_MUSCLE GPIO_PIN_2
@@ -142,6 +138,8 @@ void heart_beat() {
 /* TODO: determine how to document the HEARTBEAT_MODAL switch in
  * Doxygen. */
 #ifdef HEARTBEAT_MODAL
+
+#include "../libos/os.h"
 
 /*! Surround the execution of a code block with two hooks.
  * - pre_hook: heart_beat_();
