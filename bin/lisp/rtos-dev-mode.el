@@ -23,7 +23,7 @@ https://github.com/hershic/ee445m-labs."
   "Root dir of ee445m-labs.git."
   (if (string-equal (user-login-name) "eric")
       "~/workspace/ee445m-labs/"
-    "/ee445m-labs/"))
+    "~/ee445m-labs/"))
 
 (defun rtos/ocd-buffer ()
   "Name of the buffer running openocd in debug mode."
