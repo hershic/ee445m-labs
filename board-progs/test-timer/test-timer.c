@@ -38,7 +38,6 @@ void blink_onboard_led(void) {
  */
 int main(void) {
 
-    FPUEnable();
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
@@ -55,6 +54,8 @@ int main(void) {
     hw_metadata timer_metadata;
     timer_metadata.timer.TIMER_FREQUENCY = 1 Hz;
     hw_channel_init(HW_TIMER, TIMER0_BASE, timer_metadata);
+
+    hw_connect(HW_TIMER, TIMER0_BASE, blink_onboard_led);
 
     /* Postpone death */
     while (1) {
