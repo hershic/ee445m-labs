@@ -23,7 +23,7 @@ https://github.com/hershic/ee445m-labs."
   "Root dir of ee445m-labs.git."
   (if (string-equal (user-login-name) "eric")
       "~/workspace/ee445m-labs/"
-    "/ee445m-labs/"))
+    "~/ee445m-labs/"))
 
 (defun rtos/ocd-buffer ()
   "Name of the buffer running openocd in debug mode."
@@ -89,6 +89,14 @@ of a `gud-mode' buffer."
 	   (load  . "load")
 	   (reset . "monitor reset halt")
 
+(defun rtos/gdb-reset-load-continue ()
+  ""
+  ;; TODO: Document this bitch
+  (interactive)
+  (rtos/gdb-reset)
+  (rtos/gdb-load)
+  (rtos/gdb-continue))
+
 	   ;; gdb functions
 	   (target   . "target remote localhost:3333")
 	   (step     . "step")
@@ -100,14 +108,15 @@ of a `gud-mode' buffer."
 
 (defhydra rtos/hydra-gdb (rtos-dev-mode-map "M-e" :color red)
   "gdb"
-  ("o" rtos/ocd-debugger  "ocd -d")
-  ("g" gdb                "gdb")
-  ("l" rtos/gdb-load      "load")
-  ("r" rtos/gdb-reset     "reset")
-  ("t" rtos/gdb-target    "target")
-  ("s" rtos/gdb-step      "step")
-  ("n" rtos/gdb-next      "next")
-  ("c" rtos/gdb-continue  "continue"))
+  ("o" rtos/ocd-debugger             "ocd -d")
+  ("g" gdb                           "gdb")
+  ("l" rtos/gdb-load                 "load")
+  ("r" rtos/gdb-reset                "reset")
+  ("t" rtos/gdb-target               "target")
+  ("s" rtos/gdb-step                 "step")
+  ("n" rtos/gdb-next                 "next")
+  ("c" rtos/gdb-continue             "continue")
+  ("a" rtos/gdb-reset-load-continue  "refresh"))
 
 ;; font-lock
 (font-lock-add-keywords
