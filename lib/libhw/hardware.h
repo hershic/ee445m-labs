@@ -23,7 +23,7 @@
  */
 
 /* A note about this library:
- * 
+ *
  * This hardware driver only manages peripherals that many tasks would
  * theoritecally like to subscribe to at one time. Hardware devices
  * such as GPIO pins should be manipulated with TI's driverlib. */
@@ -79,7 +79,7 @@ typedef enum  {
     HW_ADC,
     HW_SSI,
 } HW_DEVICES;
-/* TODO: consider I2C, CAN, USB integration with this module */
+/* OPTIONAL: consider I2C, CAN, USB integration with this module */
 
 /* UART properties */
 typedef struct hw_uart_metadata {
@@ -100,6 +100,11 @@ typedef union {
     hw_uart_metadata uart;
     hw_timer_metadata timer;
 } hw_metadata;
+
+
+/*--------------------------------------------------------------*
+ * Begin producer API -- libhw notifies subscribers             *
+ *--------------------------------------------------------------*/
 
 /** This function is responsible for enabling the peripherals and
  * internal data strutures used by the specified \hw_group.
@@ -181,6 +186,14 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group);
  */
 hw_channel* _hw_get_channel(HW_DEVICES, raw_hw_channel);
 
+/* hershal's idealistic notify TODO:
+ *
+ * hershal envisions a system where notifications in both directions
+ * occur through one \hw_notify function instead of two functions
+ * \hw_notify_subscriber and \hw_notify_driver. Sounds hefty, do it in
+ * a branch.
+ */
+
 /** Notify threads subscribed to \channel about an incoming hardware
  * event.
  * \param hw_group The hardwawre group that received the incoming
@@ -191,8 +204,16 @@ hw_channel* _hw_get_channel(HW_DEVICES, raw_hw_channel);
  * ISR) containing information regarding the recently-occurring
  * hardware interrupt event
  */
-void hw_notify(HW_DEVICES hw_group,
-	       raw_hw_channel channel,
-	       hw_notification notification);
+/* TODO: rename hw_notify_subscriber */
+void hw_notify_subscriber(HW_DEVICES hw_group,
+			  raw_hw_channel channel,
+			  hw_notification notification);
+
+/*--------------------------------------------------------------*
+ * Begin consumer API -- libhw notifies hw for threads          *
+ *--------------------------------------------------------------*/
+
+/* TODO: doxygenize */
+void hw_notify_driver(hw_notification_metadata, hw_notification);
 
 #endif

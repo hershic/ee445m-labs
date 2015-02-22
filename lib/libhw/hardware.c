@@ -208,10 +208,11 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
     return NULL;
 }
 
-/* OPTIMIZE: optimize, this will be called a shit ton */
-void hw_notify(HW_DEVICES           hw_group,
-	       long                 raw_channel,
-	       hw_notification      notification) {
+/* TODO: integrate with hw_notify_driver to become just hw_notify */
+/* OPTIMIZE: any way you can, this will be called a shit ton */
+void hw_notify_subscriber(HW_DEVICES      hw_group,
+			  long            raw_channel,
+			  hw_notification notification) {
 
     hw_iterator i=0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -226,6 +227,13 @@ void hw_notify(HW_DEVICES           hw_group,
 	    }
 	}
     }
+}
+
+void hw_notify_driver(hw_notification_metadata metadata,
+		      hw_notification notification) {
+
+    hw_iterator i=0;
+    hw_channel* channel = _hw_get_channel();
 }
 
 /* OPTIMIZE: inline, this will be called unbelievably often */
@@ -277,7 +285,7 @@ void UART0_Handler(void) {
 	notification._char = uart_get_char();
 
 	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART0_BASE, notification);
+	hw_notify_subscriber(HW_UART, UART0_BASE, notification);
     }
 }
 
@@ -297,7 +305,7 @@ void UART1_Handler(void) {
 	notification._char = uart_get_char();
 
 	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART1_BASE, notification);
+	hw_notify_subscriber(HW_UART, UART1_BASE, notification);
     }
 }
 
@@ -317,7 +325,7 @@ void UART2_Handler(void) {
 	notification._char = uart_get_char();
 
 	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART2_BASE, notification);
+	hw_notify_subscriber(HW_UART, UART2_BASE, notification);
     }
 }
 
@@ -326,7 +334,7 @@ void TIMER0_Handler(void) {
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, TIMER0_BASE, notification);
+    hw_notify_subscriber(HW_TIMER, TIMER0_BASE, notification);
 }
 
 void TIMER1_Handler(void) {
@@ -334,7 +342,7 @@ void TIMER1_Handler(void) {
     TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, TIMER1_BASE, notification);
+    hw_notify_subscriber(HW_TIMER, TIMER1_BASE, notification);
 }
 
 void TIMER2_Handler(void) {
@@ -342,5 +350,5 @@ void TIMER2_Handler(void) {
     TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
     notification._int = 1;
-    hw_notify(HW_TIMER, TIMER2_BASE, notification);
+    hw_notify_subscriber(HW_TIMER, TIMER2_BASE, notification);
 }

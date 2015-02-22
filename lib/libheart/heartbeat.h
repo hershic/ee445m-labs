@@ -25,6 +25,8 @@
 #include "driverlib/timer.h"
 #include "driverlib/rom.h"
 
+#include "libstd/nexus.h"
+
 /*! The on-board LED colloquially referred to as the 'heart.' Does
  *  every computer have one? */
 #define HEART_MUSCLE GPIO_PIN_2
@@ -154,9 +156,6 @@ void heart_beat() {
 
 /*! \brief An alias for \heart_init_. I like the imagery. */
 #define heart_pump_(a, b) heart_init_(a, b)
-
-/*! A pointer to a memory location on the ARM Cortex M4. */
-typedef int32_t memory_address_t;
 
 /*! Contains information to identify a GPIO pin. This includes the
  *  port base and the specific pin. */
