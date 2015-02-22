@@ -175,10 +175,10 @@ programs).
 *** TODO test libsemaphore
 - call =os_signal= from a periodic interrupt
 - call =os_wait= in the main loop and watch the loop step after =os_signal=
-*** TODO profiling compile-time flag
-- compiles minimally intrusive pin-toggling code to
+*** [1/2] profiling compile-time flag
+- [X] compiles minimally intrusive pin-toggling code to
 identify when and what tcb is running
-- measure PIDWork with and without the profiling code
+- [ ] measure PIDWork with and without the profiling code
 *** TODO guarantee UART fifo never loses data
 - hammer it and increase the size until you stop dropping chars
 - test the system with operator input to the Interpreter too

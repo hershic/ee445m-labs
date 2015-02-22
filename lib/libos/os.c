@@ -179,6 +179,21 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
 void SysTick_Handler() {
 
     IntPendSet(FAULT_PENDSV);
+    /* todo: allow for swappable schedulers.
+     * esc's plan:
+     * here call a method, something like os_reschedule_tasks
+
+     * - build a new list with CDL_PREPEND, prepending tasks in order
+         of lowest priority to highest. this will reassign all *next,
+         *prev pointers and when we do the unmodified PendSV_Handler
+         it'll grab not the round-robin *next ptr but the
+         just-calculated next thread to grant foreground.
+
+     * notes: still seems a little sub-optimal to me so we'll put a
+     * pin in it, let our subconsciousness do the designing, continue
+     * looking for examples and confer in person later.
+     */
+
     return;
 }
 
