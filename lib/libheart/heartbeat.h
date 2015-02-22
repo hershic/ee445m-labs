@@ -48,7 +48,7 @@
 inline
 void heart_init() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     /* Enable the GPIO port that is used for the on-board LED. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
@@ -65,7 +65,7 @@ void heart_init() {
 inline
 int32_t heart_status() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);
 #endif
 }
@@ -78,7 +78,7 @@ int32_t heart_status() {
 inline
 void heart_off() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);
 #endif
 }
@@ -91,7 +91,7 @@ void heart_off() {
 inline
 void heart_on() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);
 #endif
 }
@@ -105,7 +105,7 @@ void heart_on() {
 inline
 void heart_toggle() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
 #endif
 }
@@ -119,7 +119,7 @@ void heart_toggle() {
 inline
 void heart_beat() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
     GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
 #endif
@@ -181,7 +181,7 @@ static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
 inline
 void heart_init_(memory_address_t base, memory_address_t pin) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     /* Enable the GPIO port that is used for \HEART_ANCILLARY_MUSCLE. */
     switch(base) {
     case GPIO_PORTA_BASE: SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); break;
@@ -208,7 +208,7 @@ void heart_init_(memory_address_t base, memory_address_t pin) {
 inline
 int32_t heart_status_modal(muscle_t* ancillary_muscle) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinRead(ancillary_muscle->base, ancillary_muscle->pin);
 #endif
 }
@@ -222,7 +222,7 @@ int32_t heart_status_modal(muscle_t* ancillary_muscle) {
 inline
 int32_t heart_status_() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     heart_status_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
 #endif
 }
@@ -231,7 +231,7 @@ int32_t heart_status_() {
 inline
 void heart_off_modal(muscle_t* ancillary_muscle) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 0);
 #endif
 }
@@ -245,7 +245,7 @@ void heart_off_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_off_() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     heart_off_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
 #endif
 }
@@ -254,7 +254,7 @@ void heart_off_() {
 inline
 void heart_on_modal(muscle_t* ancillary_muscle) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin, 1);
 #endif
 }
@@ -268,7 +268,7 @@ void heart_on_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_on_() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     heart_on_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
 #endif
 }
@@ -277,7 +277,7 @@ void heart_on_() {
 inline
 void heart_toggle_modal(muscle_t* ancillary_muscle) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
 		 heart_status_(ancillary_muscle->base,
 			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
@@ -294,7 +294,7 @@ void heart_toggle_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_toggle_() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     heart_toggle_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
 #endif
 }
@@ -303,7 +303,7 @@ void heart_toggle_() {
 inline
 void heart_beat_modal(muscle_t* ancillary_muscle) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
 		 heart_status_(ancillary_muscle->base,
 			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
@@ -323,7 +323,7 @@ void heart_beat_modal(muscle_t* ancillary_muscle) {
 inline
 void heart_beat_() {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     heart_beat_modal(&HEART_MODAL_METADATA[os_running_thread_id()]);
 #endif
 }
@@ -363,7 +363,7 @@ muscle_t* heart_hew_muscle_(muscle_t*        muscle,
 			    memory_address_t base,
 			    memory_address_t pin) {
 
-#if defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE)
+#if !(defined(HEARTBEAT_OBEY_PROFILING) && defined(PROFILING_DISABLE))
     /* Initialize the muscle_t data structure */
     muscle->base = base;
     muscle->pin  = pin;
