@@ -60,7 +60,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
 	break;
 
     case HW_LCD:   /* TODO: handle  */
-    case HW_TIMER: /* TODO: handle  */
+    case HW_TIMER: break;       /* this is handled in timer's init procedure */
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
     default: postpone_death();
@@ -321,7 +321,7 @@ void UART2_Handler(void) {
     }
 }
 
-void TIMER0_Handler(void) {
+void Timer0A_Handler(void) {
 
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
@@ -329,7 +329,7 @@ void TIMER0_Handler(void) {
     hw_notify(HW_TIMER, TIMER0_BASE, notification);
 }
 
-void TIMER1_Handler(void) {
+void Timer1A_Handler(void) {
 
     TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
@@ -337,7 +337,7 @@ void TIMER1_Handler(void) {
     hw_notify(HW_TIMER, TIMER1_BASE, notification);
 }
 
-void TIMER2_Handler(void) {
+void Timer2A_Handler(void) {
 
     TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
     hw_notification notification;
