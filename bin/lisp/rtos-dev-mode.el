@@ -84,8 +84,10 @@ of a `gud-mode' buffer."
     `(defun ,funsymbol () (interactive) (rtos/exec-gdb-command ,gdb-command))))
 
 (defun rtos/gdb-reset-load-continue ()
-  ""
-  ;; TODO: Document this bitch
+  "Alias to
+- `rtos/gdb-reset'
+- `rtos/gdb-load'
+- `rtos/gdb-continue'"
   (interactive)
   (rtos/gdb-reset)
   (rtos/gdb-load)
