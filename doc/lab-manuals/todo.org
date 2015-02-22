@@ -47,7 +47,7 @@
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
-* [6/17] Lab 2
+* [6/14] Lab 2
 ** [6/6] Part 1
 Demonstrate each of the following
 *** DONE Testmain1
@@ -164,7 +164,7 @@ the lab manual.
       responsible for storing R4-R11 to the process stack.
 *** DONE Checkout
 <2015-02-16 Mon 10:30>
-** [0/11] Part 2
+** [0/8] Part 2
 Your job is to design, implement and test operating system commands
 that implement a multiple thread environment.
 
@@ -179,15 +179,10 @@ programs).
 - [X] compiles minimally intrusive pin-toggling code to
 identify when and what tcb is running
 - [ ] measure PIDWork with and without the profiling code
-*** TODO guarantee UART fifo never loses data
-- hammer it and increase the size until you stop dropping chars
-- test the system with operator input to the Interpreter too
-- take measurements for three OS_Fifo sizes and three time slices (5
-  runs) when no input occurs in tamper or the Interpreter
-  - Make a table showing the three performance parameters
-    (time-jitter, number of data points lost, number of PIDWork
-    calculations performed) versus the TIMESLICE and the FIFOSIZE
-  - Table 2.1 shows an example of the 5 runs required for this part
+*** [0/2] guarantee UART never loses data
+- [ ] stress test :: Hammer it and increase the capacity until no chars
+                 are dropped from libuart or libshell
+- [ ] profile ::  Create a table like Table 2.1 in [[./Lab02.pdf]]
 *** IN-PROGRESS make callback to task scheduler explicit
 *** TODO Task 1 : Software triggered data acquisition and filtering
 What's the AR? I have no idea.
@@ -224,10 +219,10 @@ hardware-triggered timer.
 *Note*: you *must* use 16-bit mode for timer-triggered adc sampling.
 *** TODO Task 4 : CPU Bound task
 - increment PIDWork (global var) continually
-- reset each time you are granted foreground
+- reset it to 0 each time you are granted foreground
 - try to maximize high water mark of PIDWork
 *** TODO Task 5 : User interface with a command line interpreter
-- shell developed in Lab 1
+- use libshell developed in Lab 1
 **** TODO answer esc's questions
 [[../../lib/libshell/shell.c]]
 All invocations to uart_send are through uart.h. Should this be to
@@ -235,46 +230,46 @@ libhw, who then queues it? Is this thread-save? is libuart?
 - I guess so, uart sends chars with an interrupt, doesn't it? pendsv
   won't interrupt it IF WE SENT PENDSV CORRECTLY. The way we're
   heading, we'll need a TxFIFO won't we?
-*** TODO Checkout
-1. Run the software system and explain the profiling data to the TA
-2. Discuss the sketches you created as part of prep & procedure
-3. Discuss the TCB before and after a thread switch
-4. Identify inefficiencies in your implementation
-*** TODO Deliverables
+*** [0/4] Checkout
+- [ ] Run the software system and explain the profiling data to the TA
+- [ ] Discuss the sketches you created as part of prep & procedure
+- [ ] Discuss the TCB before and after a thread switch
+- [ ] Identify inefficiencies in your implementation
+*** [0/16] Deliverables
 - 20 points :: report
 - 10 points :: software quality
 
-1. objectives (1/2 page max)
-2. hardware design (none)
-3. software design (spinlock/round-robin switching)
-4. measurement data
-   1. plots of the logic analyzer
+- [ ] objectives :: 1/2 page max
+- [ ] hardware design :: none
+- [ ] software design :: spinlock/round-robin switching source
+- [0/6] measurement data :: graphs and tables of data
+   - [ ] plots of the logic analyzer
       see Figures 2.1, 2.2, 2.3, 2.4, and 2.8
-   2. measurement of the thread-switch time
-   3. plot of the logic analyzer running spinlock/round-robin
-   4. the four sketches with measured data collected during testing
+   - [ ] measurement of the thread-switch time
+   - [ ] plot of the logic analyzer running spinlock/round-robin
+   - [ ] the four sketches with measured data collected during testing
       from first preparation parts 3 and 5
-   5. a table each showing performance measurements versus sizes of
+   - [ ] a table each showing performance measurements versus sizes of
       OS_Fifo and timeslices
       like Table 2.1
-   6. table showing performance measurements with/without debugging instruments
-5. analysis and discussion (2 page maximum)
-   1. Why did the time jitter in my solution jump from 4 to 6 μs when
+   - [ ] table showing performance measurements with/without debugging instruments
+- [0/7] analysis and discussion :: 2 page maximum
+   - [ ] Why did the time jitter in my solution jump from 4 to 6 μs when
       interpreter I/O occurred?
-   2. Justify why Task 3 has no time jitter on its ADC sampling.
-   3. There are four (or more) interrupts in this system DAS, ADC,
+   - [ ] Justify why Task 3 has no time jitter on its ADC sampling.
+   - [ ] There are four (or more) interrupts in this system DAS, ADC,
       Select, and SysTick (thread switch).
       Justify your choice of hardware priorities in the NVIC?
-   4. Explain what happens if your stack size is too small.
+   - [ ] Explain what happens if your stack size is too small.
       How could you detect stack overflow? How could you prevent stack overflow from crashing the OS?
-   5. Both Consumer and Display have an OS_Kill() at the end. Do these
+   - [ ] Both Consumer and Display have an OS_Kill() at the end. Do these
       OS_Kills always execute, sometime execute, or never execute?
       Explain.
-   6. The interaction between the producer and consumer is
+   - [ ] The interaction between the producer and consumer is
       deterministic. What does deterministic mean?
       - Assume for this question that if the OS_Fifo has 5 elements data
       is lost, but if it has 6 elements no data is lost.
       - What does this tell you about the timing of the consumer plus display?
-   7. Without going back and actually measuring it, do you think the
+   - [ ] Without going back and actually measuring it, do you think the
       Consumer ever waits when it calls OS_MailBox_Send?
       Explain.
