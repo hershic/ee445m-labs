@@ -47,7 +47,7 @@
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
-* [6/18] Lab 2
+* [6/17] Lab 2
 ** [6/6] Part 1
 Demonstrate each of the following
 *** DONE Testmain1
@@ -164,7 +164,7 @@ the lab manual.
       responsible for storing R4-R11 to the process stack.
 *** DONE Checkout
 <2015-02-16 Mon 10:30>
-** [0/12] Part 2
+** [0/11] Part 2
 Your job is to design, implement and test operating system commands
 that implement a multiple thread environment.
 
@@ -188,7 +188,7 @@ identify when and what tcb is running
     (time-jitter, number of data points lost, number of PIDWork
     calculations performed) versus the TIMESLICE and the FIFOSIZE
   - Table 2.1 shows an example of the 5 runs required for this part
-*** TODO make callback to task scheduler explicit
+*** IN-PROGRESS make callback to task scheduler explicit
 *** TODO Task 1 : Software triggered data acquisition and filtering
 What's the AR? I have no idea.
 **** notes
