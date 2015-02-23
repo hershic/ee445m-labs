@@ -32,15 +32,15 @@
 (defun rtos/isr-template (file sub)
   "Return a list of lines of a file at FILE (symbol) with format
 strings %s substituted with (concat FILE SUB)."
-  (let ((c-tab "    ")
-	(interface (symbol-name file)))
+  (let* ((interface (symbol-name file))
+	 (template-dir (if (string-equal user-login-name "eric")
+			   "~/workspace"
+			 "~")))
     (with-temp-buffer
-      (insert-file-contents (format "templates/%s.c" interface))
-      (format "%s%s"
-	      c-tab
-	      (mapconcat 'identity
-			 (split-string (buffer-string) "\n" t)
-		 (format "\n%s" c-tab))))))
+      (insert-file-contents
+       (format
+	"%s/ee445m-labs/bin/lisp/templates/%s.c" template-dir interface))
+      (buffer-string))))
 
 ;;;###autoload
 (defun rtos/generate-interrupts()
@@ -58,16 +58,9 @@ device and channel number in `rtos/interrupt-devices' and
 		(insert
 		 (replace-regexp-in-string
 		  "%s"
-		  (format "%s%d%s" isr-handler id (if (eq device 'timer) "A" ""))
-		  (format "%s%s"
-			 "\nvoid %s_Handler(void) {\n\n"
-			 (replace-regexp-in-string
-			  "%s"
-			  (format "%s%d" isr-handler id)
-			  (format "%s}\n" fn-body)))))))
-	    (rtos/combinations rtos/interrupt-channels rtos/interrupt-devices)))
-  (kill-line))
-
+		  (format "%s%d" isr-handler id) fn-body))))
+	    (rtos/combinations rtos/interrupt-channels rtos/interrupt-devices))
+    (kill-line)))
 
 (provide 'rtos-interrupt-generator)
 
