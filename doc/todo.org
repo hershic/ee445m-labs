@@ -1,10 +1,35 @@
 #+startup: all
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
-* [2/2] global
+* [2/3] global
 ** OPTIONAL code review
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL continuous integration
 jenkins, travis
+** TODO gcc flags
+- covered by -Wall
+  - pedantic-error
+  - Wformat-security
+  - Wformat-nonliteral
+  - Wmissing-include-dirs
+  - Wreturn-type
+  - Wparenthesis
+  - Wswitch
+  - Wswitch-default
+  - Wswitch-enum
+  - Wunused_parameter
+  - Wuninitialized
+  - Wunknown_pragmas
+- Werror
+- Wfloat-equal
+- Wdeclaration-after-statement
+- Wundef
+- Wno-endif-labels
+- Wshadow
+- Wcast-qual
+- Wsign-compare
+- Wpacked
+- Winline
+
 * [2/18] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
@@ -23,7 +48,16 @@ call sequence:
 
 ** [0/1] hardware
 *** IN-PROGRESS bi directional notifications
-
+look at ASSERT (ti libs)
+** [0/7] button
+- [ ] refactor
+- [ ] create .dox file
+- [ ] button ISR in rtos/generate-interrupts
+- [0/4] create API
+  - [ ] init
+  - [ ] interrupt control
+  - [ ] read value
+  - [ ] debounce
 ** [0/1] SysTick
 *** TODO Initialization macro
 convert this code into a single call that is readable, i.e. you can
@@ -88,6 +122,7 @@ urged by lecture <2015-02-17 Tue>
   - adjacency matrix
 ** [0/1] Doxygen
 *** TODO add everythig to a group! it's all we have sans c++ inheritance.
+- doxygen groups like TIs libs
 *** [0/3] document preprocessor directives
 [[http://www.stack.nl/~dimitri/doxygen/manual/preprocessing.html][Doxygen Manual: Preprocessing]]
 - [ ] PROFILING_DISABLE
