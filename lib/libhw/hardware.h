@@ -84,7 +84,7 @@ typedef enum  {
 /* UART properties */
 typedef struct hw_uart_metadata {
 
-    uint32_t UART_BAUD_RATE;
+    uint32_t baud_rate;
 } hw_uart_metadata;
 
 /** Timer properties */
