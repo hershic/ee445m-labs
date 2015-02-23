@@ -112,7 +112,7 @@ http://hershic.github.io/ee445m-labs/
 *** TODO Allow here docs in declare -r statements
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
-* [4/7] dev environment
+* [1/3] dev environment
 ** TODO openocd
 *** kill process on output "Info : dropped 'gdb' connection"
 ** [0/1] setenv
@@ -141,3 +141,6 @@ within emacs, an O(1) way to
 - [X] c-eldoc
 - [ ] pseudo-reserved word highlighting
 ** DONE cmd to open screen on the M4
+** TODO Add -Wpedantic
+There have been multiple issues where gcc doesn't check my code,
+instilling false confidence in what is actually running.
