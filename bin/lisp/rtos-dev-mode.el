@@ -103,6 +103,7 @@ of a `gud-mode' buffer."
 	   (target   . "target remote localhost:3333")
 	   (step     . "step")
 	   (next     . "next")
+	   (finish     . "finish")
 	   (continue . "continue")))
 
 ;; todo: determine why lv isn't working. probably an esc-system thing
@@ -117,6 +118,7 @@ of a `gud-mode' buffer."
   ("t" rtos/gdb-target               "target")
   ("s" rtos/gdb-step                 "step")
   ("n" rtos/gdb-next                 "next")
+  ("f" rtos/gdb-finish               "finish")
   ("c" rtos/gdb-continue             "continue")
   ("a" rtos/gdb-reset-load-continue  "refresh"))
 
