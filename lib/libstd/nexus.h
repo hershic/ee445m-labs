@@ -28,8 +28,7 @@ typedef int32_t memory_address_t;
 #define postpone_death(x) \
     while(1) {            \
         x                 \
-    };                    \
-}
+    }                     \
 
 /** A duplicate of the c standard memset function. */
 void* memset(void*, int, int);
