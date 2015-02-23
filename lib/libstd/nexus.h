@@ -40,6 +40,9 @@ int strcmp(const char*, const char*);
 int ustrncmp(const char*, const char*, uint32_t);
 /** A duplicate of the c standard strcpy function.  */
 void ustrcpy(char*, const char*);
+/*! A duplicate of the c standard strlen function. */
+uint32_t ustrlen(const char *s);
+
 
 /*! Begin a non-interruptable critical section which preserves the
     priority mask

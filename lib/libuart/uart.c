@@ -10,6 +10,8 @@
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
 
+#include "libstd/nexus.h"
+
 #define NDEBUG
 
 #ifndef NDEBUG
@@ -23,12 +25,6 @@ static char UART_BUFFER[128];
  * \brief Allows for modal interaction with uart channels.
  */
 long uart_active_channel = UART_UNUSED;
-
-uint32_t ustrlen(const char *s) {
-    uint32_t len = 0;
-    while(s[len]) { ++len; }
-    return(len);
-}
 
 void uart_set_active_channel(const long channel) {
 
@@ -45,6 +41,7 @@ bool uart_has_active_channel() {
     return uart_active_channel == UART_UNUSED;
 }
 
+/* Initializing has the side effect of setting the active channel. */
 void uart_init() {
 
     uart_init_(uart_active_channel);
@@ -65,7 +62,6 @@ void uart_init_(const long channel) {
     IntEnable(INT_UART0);
     UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
 #ifndef NDEBUG
-    /* TODO: uncomment when uart0_base has been updated with channel */
     printf("%s channel %d initialized\n", __FUNCTION__, channel);
 #endif
 }

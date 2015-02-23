@@ -14,6 +14,12 @@ void* memset(void* b, int c, int len) {
     return b;
 }
 
+uint32_t ustrlen(const char* s) {
+    uint32_t len = 0;
+    while(s[len]) { ++len; }
+    return(len);
+}
+
 /* TODO: sanitize long to a type of specific length */
 /* TODO: use a duff device (speed is the name of the game, remember?) */
 void *memcpy(void *str1, const void *str2, long n) {
