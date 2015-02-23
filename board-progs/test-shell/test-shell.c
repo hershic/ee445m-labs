@@ -56,7 +56,7 @@ int main(void) {
 
     /* Initialize hardware devices */
     hw_driver_init(HW_UART);
-    uart_metadata.uart.UART_BAUD_RATE = 115200;
+    uart_metadata.uart.baud_rate = 115200;
     hw_channel_init(HW_UART, UART0_BASE, uart_metadata);
 
     /* Initialize the shell and the system it interacts with */

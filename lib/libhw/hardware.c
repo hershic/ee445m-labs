@@ -22,6 +22,7 @@
 #include "libhw/hardware.h"
 #include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
+#include "libbutton/button.h"
 
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
@@ -42,63 +43,70 @@ hw_driver HW_LCD_DRIVER;
 hw_driver HW_TIMER_DRIVER;
 hw_driver HW_ADC_DRIVER;
 hw_driver HW_SSI_DRIVER;
+hw_driver HW_BUTTON_DRIVER;
 
 notification HW_UART_NOTIFICATION;
 
+/* TODO: Accept which periph to enable here */
 void hw_driver_init(HW_DEVICES hw_group) {
 
     hw_iterator i;
     hw_channel channel;
-    hw_driver* driver = hw_driver_singleton(hw_group);
 
     /* Enable the peripherals this driver is responsible for */
     /* TODO: Standardize */
-    switch(hw_group){
+    switch(hw_group) {
     case HW_UART:
-	/* TODO: allow flexibility with channel */
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-	break;
+        /* TODO: allow flexibility with channel */
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+        break;
 
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER: break;       /* this is handled in timer's init procedure */
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
+    case HW_BUTTON:
+        button_init(BUTTONS_ALL);
+        break;
     default: postpone_death();
     }
 }
 
 /* TODO: consider returning false if scoreboard indicates in-use */
+/* TODO: remove raw_channel, put all metadata in metadata */
 void hw_channel_init(HW_DEVICES     hw_group,
-		     raw_hw_channel raw_channel,
-		     hw_metadata    metadata) {
+                     raw_hw_channel raw_channel,
+                     hw_metadata    metadata) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
-	channel->isr_subscriptions[i].valid = false;
+        channel->isr_subscriptions[i].valid = false;
     }
 
     switch(hw_group) {
     case HW_UART:
-	uart_set_active_channel(raw_channel);
-	uart_init();
-	break;
+        uart_set_active_channel(raw_channel);
+        uart_init();
+        break;
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER:
-        timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY,
-				     raw_channel);
+        timer_add_periodic_interrupt(metadata);
         break;
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
+    case HW_BUTTON:
+        button_enable_interrupt(metadata);
+        break;
     default: postpone_death();
     }
 }
 
 bool hw_connect(HW_DEVICES     hw_group,
-		raw_hw_channel raw_channel,
-		const void*    isr) {
+                raw_hw_channel raw_channel,
+                const void*    isr) {
 
     hw_iterator i = 0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -112,7 +120,7 @@ bool hw_connect(HW_DEVICES     hw_group,
 
 bool hw_connect_single_shot(HW_DEVICES     hw_group,
                             raw_hw_channel raw_channel,
-			    const void*    isr) {
+                            const void*    isr) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -130,15 +138,15 @@ bool hw_connect_single_shot(HW_DEVICES     hw_group,
  * OPTIONAL TODO
  */
 bool hw_disconnect(HW_DEVICES     hw_group,
-		   raw_hw_channel raw_channel,
-		   const void*    isr) {
+                   raw_hw_channel raw_channel,
+                   const void*    isr) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS &&
-	  channel->isr_subscriptions[i].slot != isr) {
-	++i;
+          channel->isr_subscriptions[i].slot != isr) {
+        ++i;
     }
     channel->isr_subscriptions[i].valid = false;
     channel->isr_subscriptions[i].single_shot_subscription = false;
@@ -146,48 +154,66 @@ bool hw_disconnect(HW_DEVICES     hw_group,
     return true;
 }
 
+uint32_t hw_get_num_subscriptions(HW_DEVICES     hw_group,
+                                  raw_hw_channel raw_channel) {
+
+    hw_iterator i;
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
+
+    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS) {
+        if (channel->isr_subscriptions[i].valid) {
+            ++i;
+        }
+    }
+    return i;
+}
+
 /* immaculate hashing function, much fast */
 long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
     /* TODO: is masking with an offset faster? Might take up less space */
     switch(hw_group){
     case HW_UART:
-	switch(channel) {
-	case 0: case UART0_BASE: return 0;
-	case 1: case UART1_BASE: return 1;
-	case 2: case UART2_BASE: return 2;
-	case 3: case UART3_BASE: return 3;
-	case 4: case UART4_BASE: return 4;
-	case 5: case UART5_BASE: return 5;
-	case 6: case UART6_BASE: return 6;
-	case 7: case UART7_BASE: return 7;
-	}
-	break;
+        switch(channel) {
+        case 0: case UART0_BASE: return 0;
+        case 1: case UART1_BASE: return 1;
+        case 2: case UART2_BASE: return 2;
+        case 3: case UART3_BASE: return 3;
+        case 4: case UART4_BASE: return 4;
+        case 5: case UART5_BASE: return 5;
+        case 6: case UART6_BASE: return 6;
+        case 7: case UART7_BASE: return 7;
+        }
+        break;
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER:
-	switch(channel) {
-	case 0: case TIMER0_BASE: return 0;
-	case 1: case TIMER1_BASE: return 1;
-	case 2: case TIMER2_BASE: return 2;
-	case 3: case TIMER3_BASE: return 3;
-	case 4: case TIMER4_BASE: return 4;
-	}
-	break;
+        switch(channel) {
+        case 0: case TIMER0_BASE: return 0;
+        case 1: case TIMER1_BASE: return 1;
+        case 2: case TIMER2_BASE: return 2;
+        case 3: case TIMER3_BASE: return 3;
+        case 4: case TIMER4_BASE: return 4;
+        }
+        break;
     case HW_ADC:   /* TODO: handle channels having channels  */
-	/* spitball'd idea - rename our 'channel' to 'base' (matching
-	 * hw_memmap.h) */
-	switch(channel) {
-	case 0: case ADC0_BASE: return 0;
-	case 1: case ADC1_BASE: return 1;
-	}
-	break;
+        /* spitball'd idea - rename our 'channel' to 'base' (matching
+         * hw_memmap.h) */
+        switch(channel) {
+        case 0: case ADC0_BASE: return 0;
+        case 1: case ADC1_BASE: return 1;
+        }
+        break;
     case HW_SSI:
-	switch(channel) {
-	case 0: case SSI0_BASE: return 0;
-	case 1: case SSI1_BASE: return 1;
-	case 2: case SSI2_BASE: return 2;
-	case 3: case SSI3_BASE: return 3;
-	}
-	break;
+        switch(channel) {
+        case 0: case SSI0_BASE: return 0;
+        case 1: case SSI1_BASE: return 1;
+        case 2: case SSI2_BASE: return 2;
+        case 3: case SSI3_BASE: return 3;
+        }
+        break;
+    case HW_BUTTON:
+        switch(channel) {
+        case 0: case GPIO_PORTF_BASE: return 0;
+        }
     default: postpone_death();
     }
     /* TODO: ensure software doesn't try to access nonexistent hardware
@@ -204,6 +230,7 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
     case HW_LCD:   return &HW_LCD_DRIVER;
     case HW_TIMER: return &HW_TIMER_DRIVER;
     case HW_ADC:   return &HW_ADC_DRIVER;
+    case HW_BUTTON:   return &HW_BUTTON_DRIVER;
     default:       postpone_death();
     }
     return NULL;
@@ -218,14 +245,14 @@ void hw_notify(HW_DEVICES           hw_group,
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
-	if (channel->isr_subscriptions[i].valid) {
-	    /* TODO: schedule a task to enable quick return from this ISR */
-	    channel->isr_subscriptions[i].slot(notification);
-	    if (channel->isr_subscriptions[i].single_shot_subscription) {
-		/* Cease fire! cease fire! */
-		channel->isr_subscriptions[i].single_shot_subscription = false;
-	    }
-	}
+        if (channel->isr_subscriptions[i].valid) {
+            /* TODO: schedule a task to enable quick return from this ISR */
+            channel->isr_subscriptions[i].slot(notification);
+            if (channel->isr_subscriptions[i].single_shot_subscription) {
+                /* Cease fire! cease fire! */
+                channel->isr_subscriptions[i].single_shot_subscription = false;
+            }
+        }
     }
 }
 
@@ -241,16 +268,16 @@ hw_iterator _hw_first_available_subscription(hw_channel* channel) {
 
     hw_iterator i = 0;
     while(i<HW_DRIVER_MAX_SUBSCRIPTIONS &&
-	  channel->isr_subscriptions[i].valid) {
-	++i;
+          channel->isr_subscriptions[i].valid) {
+        ++i;
     }
     if(channel->isr_subscriptions[i].valid) {
-	/* There are no empty slots for a new subscriber */
-	/* TODO: determine how serious this is.  */
-	/* plan a: threat level midnight (TLM) */
-	postpone_death();
-	/* plan b: business as usual */
-	return false;
+        /* There are no empty slots for a new subscriber */
+        /* TODO: determine how serious this is.  */
+        /* plan a: threat level midnight (TLM) */
+        postpone_death();
+        /* plan b: business as usual */
+        return false;
     }
     return i;
 }
@@ -272,13 +299,13 @@ void UART0_Handler(void) {
 
     while(UARTCharsAvail(UART0_BASE)) {
 
-	/* Notify every subscribed task of each incoming character
-	 * (but schedule them for later so we can return from this ISR
-	 * asap). */
-	notification._char = uart_get_char();
+        /* Notify every subscribed task of each incoming character
+         * (but schedule them for later so we can return from this ISR
+         * asap). */
+        notification._char = uart_get_char();
 
-	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART0_BASE, notification);
+        /* TODO: schedule this thread instead of running it immediately */
+        hw_notify(HW_UART, UART0_BASE, notification);
     }
 }
 
@@ -292,13 +319,13 @@ void UART1_Handler(void) {
 
     while(UARTCharsAvail(UART1_BASE)) {
 
-	/* Notify every subscribed task of each incoming character
-	 * (but schedule them for later so we can return from this ISR
-	 * asap). */
-	notification._char = uart_get_char();
+        /* Notify every subscribed task of each incoming character
+         * (but schedule them for later so we can return from this ISR
+         * asap). */
+        notification._char = uart_get_char();
 
-	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART1_BASE, notification);
+        /* TODO: schedule this thread instead of running it immediately */
+        hw_notify(HW_UART, UART1_BASE, notification);
     }
 }
 
@@ -312,13 +339,13 @@ void UART2_Handler(void) {
 
     while(UARTCharsAvail(UART2_BASE)) {
 
-	/* Notify every subscribed task of each incoming character
-	 * (but schedule them for later so we can return from this ISR
-	 * asap). */
-	notification._char = uart_get_char();
+        /* Notify every subscribed task of each incoming character
+         * (but schedule them for later so we can return from this ISR
+         * asap). */
+        notification._char = uart_get_char();
 
-	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify(HW_UART, UART2_BASE, notification);
+        /* TODO: schedule this thread instead of running it immediately */
+        hw_notify(HW_UART, UART2_BASE, notification);
     }
 }
 
@@ -344,4 +371,12 @@ void Timer2A_Handler(void) {
     notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, TIMER2_BASE, notification);
+}
+
+void GPIOPortF_Handler(void) {
+
+    notification notification;
+    GPIOIntClear(GPIO_PORTF_BASE, BUTTONS_ALL);
+    notification._int = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_ALL);
+    hw_notify(HW_BUTTON, GPIO_PORTF_BASE, notification);
 }

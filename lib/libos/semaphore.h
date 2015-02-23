@@ -2,6 +2,9 @@
 /* Created by Hershal Bhave 2015-02-17 */
 /* Revision History: Look in Git FGT */
 
+#ifndef __SEMAPHORE__
+#define __SEMAPHORE__
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -32,3 +35,5 @@ void sem_post(sem_t*);
  *  \param The semaphore to wait on (block).
  */
 void sem_wait(sem_t*);
+
+#endif  /* __SEMAPHORE__ */
