@@ -46,12 +46,7 @@ int main() {
     IntMasterDisable();
 
     hw_driver_init(HW_BUTTON);
-
-    hw_metadata button_metadata;
-    button_metadata.button.base = GPIO_PORTF_BASE;
-    button_metadata.button.pin = BUTTONS_ALL;
-    button_metadata.button.int_type = GPIO_BOTH_EDGES;
-
+    button_metadata_init(button_metadata, GPIO_PORTF_BASE, BUTTONS_ALL, GPIO_BOTH_EDGES);
     hw_channel_init(HW_BUTTON, GPIO_PORTF_BASE, button_metadata);
     hw_connect(HW_BUTTON, GPIO_PORTF_BASE, update_pid);
 
