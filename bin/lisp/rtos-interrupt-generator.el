@@ -8,6 +8,20 @@
 
 ;;; Code:
 
+(defun read-lines (file)
+  "Return FILE's file content."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-string)))
+
+;; todo: pull from a file to avoid this nonsense, use a macro to make it clean
+(defvar rtos/interrupt-template-alist nil
+  "Contains (DEVICE . TEMPLATE) of interrupt handlers.")
+(setq rtos/interrupt-template-alist
+      ;; TODO: insert '    ' after new lines
+      `((uart . ,(read-lines "templates/uart.c"))
+	(timer . ,(read-lines "templates/timer.c"))))
+
 (defvar rtos/interrupt-devices nil
   "Templates of interruptable device names on the TM4C123G Cortex
   M4.")
@@ -17,32 +31,6 @@
   "Templates of interruptable device channel numbers on the
   TM4C123G Cortex M4.")
 (setq rtos/interrupt-channels '(0 1 2))
-
-;; todo: pull from yaml or a file to avoid this nonsense
-(defvar rtos/interrupt-template-alist nil
-  "Contains (DEVICE . TEMPLATE) of interrupt handlers.")
-(setq rtos/interrupt-template-alist
-      '((uart . "unsigned short i;
-    hw_notification notification;
-    /* TODO: determine which bit to clear:  */
-    unsigned long look_at_me = UARTIntStatus();
-    /* UARTIntClear(%s_BASE, ); */
-
-    while(UARTCharsAvail(%s_BASE)) {
-
-	/* Notify every subscribed task of each incoming character
-	 * (but schedule them for later so we can return from this ISR
-	 * asap). */
-	notification._char = uart_get_char();
-
-	/* TODO: schedule this thread instead of running it immediately */
-	hw_notify_subscriber(HW_UART, %s_BASE, notification);
-    }")
-	(timer . "TimerIntClear(%s_BASE, TIMER_TIMA_TIMEOUT);
-    hw_notification notification;
-    notification._int = 1;
-    hw_notify_subscriber(HW_TIMER, %s_BASE, notification);")
-	))
 
 (defun combinations (&rest lists)
   "Return a list of all possible combinations of the elements of LISTS."
