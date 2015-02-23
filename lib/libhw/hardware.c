@@ -45,20 +45,20 @@ hw_driver HW_SSI_DRIVER;
 
 hw_notification HW_UART_NOTIFICATION;
 
+/* TODO: Accept which periph to enable here */
 void hw_driver_init(HW_DEVICES hw_group) {
 
     hw_iterator i;
     hw_channel channel;
-    hw_driver* driver = hw_driver_singleton(hw_group);
 
     /* Enable the peripherals this driver is responsible for */
     /* TODO: Standardize */
     switch(hw_group){
     case HW_UART:
-	/* TODO: allow flexibility with channel */
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-	break;
+        /* TODO: allow flexibility with channel */
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+        break;
 
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER: break;       /* this is handled in timer's init procedure */
@@ -70,21 +70,21 @@ void hw_driver_init(HW_DEVICES hw_group) {
 
 /* TODO: consider returning false if scoreboard indicates in-use */
 void hw_channel_init(HW_DEVICES     hw_group,
-		     raw_hw_channel raw_channel,
-		     hw_metadata    metadata) {
+                     raw_hw_channel raw_channel,
+                     hw_metadata    metadata) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
 
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
-	channel->isr_subscriptions[i].valid = false;
+        channel->isr_subscriptions[i].valid = false;
     }
 
     switch(hw_group) {
     case HW_UART:
-	uart_set_active_channel(raw_channel);
-	uart_init();
-	break;
+        uart_set_active_channel(raw_channel);
+        uart_init();
+        break;
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER:
         timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY,
@@ -97,8 +97,8 @@ void hw_channel_init(HW_DEVICES     hw_group,
 }
 
 bool hw_connect(HW_DEVICES     hw_group,
-		raw_hw_channel raw_channel,
-		const void*    isr) {
+                raw_hw_channel raw_channel,
+                const void*    isr) {
 
     hw_iterator i = 0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
