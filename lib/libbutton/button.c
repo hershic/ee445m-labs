@@ -50,7 +50,7 @@ void button_enable_interrupt(hw_metadata metadata) {
     int32_t interrupt_type = metadata.button.int_type;
     bool enable;
 
-    if (enable) { 
+    if (enable) {
         GPIOIntTypeSet(button_port_base, buttons, interrupt_type);
         IntEnable(INT_GPIOF_TM4C123);
     } else {
