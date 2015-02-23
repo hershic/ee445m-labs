@@ -3,7 +3,6 @@
 #include "timer.h"
 #include "libhw/hardware.h"
 #include "libnotify/notify.h"
-#include "libstd/nexus.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -14,14 +13,17 @@
 #include "driverlib/timer.h"
 #include "driverlib/sysctl.h"
 
-bool timer_add_periodic_interrupt(uint32_t frequency,
-                                  uint32_t timer_peripheral) {
+bool timer_add_periodic_interrupt(hw_metadata metadata) {
 
     uint32_t timer_base, timer_periph, timer_int;
+    uint32_t meta_frequency, meta_peripheral;
+
+    meta_frequency = metadata.timer.frequency;
+    meta_peripheral = metadata.timer.base;
 
     /* can give it a raw timer address (TIMERx_BASE) or an int with
        the timer number (0, 1, 2) for convenience */
-    switch (timer_peripheral) {
+    switch (meta_peripheral) {
     case 0:
     case TIMER0_BASE:
         timer_base = TIMER0_BASE;
@@ -48,7 +50,7 @@ bool timer_add_periodic_interrupt(uint32_t frequency,
 
     SysCtlPeripheralEnable(timer_periph);
     TimerConfigure(timer_base, TIMER_CFG_PERIODIC);
-    TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / frequency);
+    TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / meta_frequency);
 
     TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
 
@@ -58,10 +60,4 @@ bool timer_add_periodic_interrupt(uint32_t frequency,
 
     /* Success */
     return true;
-}
-
-bool timer_remove_periodic_thread(const void* task,
-				  uint32_t    timer_peripheral) {
-
-    hw_disconnect(HW_TIMER, timer_peripheral, task);
 }

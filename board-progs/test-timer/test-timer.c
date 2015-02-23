@@ -51,8 +51,10 @@ int main(void) {
     IntMasterEnable();
 
     hw_driver_init(HW_TIMER);
+
     hw_metadata timer_metadata;
-    timer_metadata.timer.TIMER_FREQUENCY = 1 Hz;
+    timer_metadata.timer.frequency = 1 Hz;
+    timer_metadata.timer.base = TIMER0_BASE;
     hw_channel_init(HW_TIMER, TIMER0_BASE, timer_metadata);
 
     hw_connect(HW_TIMER, TIMER0_BASE, blink_onboard_led);

@@ -87,10 +87,12 @@ typedef struct hw_uart_metadata {
     uint32_t baud_rate;
 } hw_uart_metadata;
 
-/** Timer properties */
+/** timer properties */
+/* todo: add union for timer_frequency or timer_period */
 typedef struct hw_timer_metadata {
 
-    uint32_t TIMER_FREQUENCY;
+    uint32_t frequency;
+    uint32_t base;
 } hw_timer_metadata;
 
 /** Initialization information comes in many shapes and sizes. Here is

@@ -24,11 +24,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "libhw/hardware.h"
+
 #define Hz 
 
-bool timer_add_periodic_interrupt(uint32_t frequency,
-                                  uint32_t timer_peripheral);
-bool timer_remove_periodic_thread(const void* task,
-				  uint32_t    timer_peripheral);
+bool timer_add_periodic_interrupt(hw_metadata metadata);
 
 #endif  /* __TIMER__ */

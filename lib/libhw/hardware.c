@@ -69,6 +69,7 @@ void hw_driver_init(HW_DEVICES hw_group) {
 }
 
 /* TODO: consider returning false if scoreboard indicates in-use */
+/* TODO: remove raw_channel, put all metadata in metadata */
 void hw_channel_init(HW_DEVICES     hw_group,
                      raw_hw_channel raw_channel,
                      hw_metadata    metadata) {
@@ -87,8 +88,7 @@ void hw_channel_init(HW_DEVICES     hw_group,
         break;
     case HW_LCD:   /* TODO: handle  */
     case HW_TIMER:
-        timer_add_periodic_interrupt(metadata.timer.TIMER_FREQUENCY,
-				     raw_channel);
+        timer_add_periodic_interrupt(metadata);
         break;
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
