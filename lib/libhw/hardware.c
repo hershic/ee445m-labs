@@ -22,6 +22,7 @@
 #include "libhw/hardware.h"
 #include "libstd/nexus.h"
 #include "inc/hw_memmap.h"
+#include "libbutton/button.h"
 
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
@@ -42,6 +43,7 @@ hw_driver HW_LCD_DRIVER;
 hw_driver HW_TIMER_DRIVER;
 hw_driver HW_ADC_DRIVER;
 hw_driver HW_SSI_DRIVER;
+hw_driver HW_BUTTON_DRIVER;
 
 hw_notification HW_UART_NOTIFICATION;
 
@@ -64,6 +66,9 @@ void hw_driver_init(HW_DEVICES hw_group) {
     case HW_TIMER: break;       /* this is handled in timer's init procedure */
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
+    case HW_BUTTON:
+        button_init(BUTTONS_ALL);
+        break;
     default: postpone_death();
     }
 }
@@ -92,6 +97,9 @@ void hw_channel_init(HW_DEVICES     hw_group,
         break;
     case HW_ADC:   /* TODO: handle  */
     case HW_SSI:   /* TODO: handle  */
+    case HW_BUTTON:
+        button_enable_interrupt(metadata);
+        break;
     default: postpone_death();
     }
 }
@@ -146,6 +154,20 @@ bool hw_disconnect(HW_DEVICES     hw_group,
     return true;
 }
 
+uint32_t hw_get_num_subscriptions(HW_DEVICES     hw_group,
+                                  raw_hw_channel raw_channel) {
+
+    hw_iterator i;
+    hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
+
+    while(i<HW_DRIVER_MAX_SUBSCRIPTIONS) {
+        if (channel->isr_subscriptions[i].valid) {
+            ++i;
+        }
+    }
+    return i;
+}
+
 /* immaculate hashing function, much fast */
 long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
     /* TODO: is masking with an offset faster? Might take up less space */
@@ -188,6 +210,10 @@ long _hw_channel_to_index(long channel, HW_DEVICES hw_group) {
         case 3: case SSI3_BASE: return 3;
         }
         break;
+    case HW_BUTTON:
+        switch(channel) {
+        case 0: case GPIO_PORTF_BASE: return 0;
+        }
     default: postpone_death();
     }
     /* TODO: ensure software doesn't try to access nonexistent hardware
@@ -204,6 +230,7 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
     case HW_LCD:   return &HW_LCD_DRIVER;
     case HW_TIMER: return &HW_TIMER_DRIVER;
     case HW_ADC:   return &HW_ADC_DRIVER;
+    case HW_BUTTON:   return &HW_BUTTON_DRIVER;
     default:       postpone_death();
     }
     return NULL;
@@ -344,4 +371,12 @@ void Timer2A_Handler(void) {
     hw_notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, TIMER2_BASE, notification);
+}
+
+void GPIOPortF_Handler(void) {
+
+    hw_notification notification;
+    GPIOIntClear(GPIO_PORTF_BASE, BUTTONS_ALL);
+    notification._int = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_ALL);
+    hw_notify(HW_BUTTON, GPIO_PORTF_BASE, notification);
 }

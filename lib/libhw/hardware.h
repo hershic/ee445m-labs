@@ -78,6 +78,7 @@ typedef enum  {
     HW_TIMER,
     HW_ADC,
     HW_SSI,
+    HW_BUTTON,
 } HW_DEVICES;
 /* TODO: consider I2C, CAN, USB integration with this module */
 
@@ -95,12 +96,23 @@ typedef struct hw_timer_metadata {
     uint32_t base;
 } hw_timer_metadata;
 
+/** button properties */
+typedef struct hw_button_metadata {
+
+    /* NOTE: base will be used in the future when we have buttons on
+       different ports */
+    memory_address_t base;
+    memory_address_t pin;
+    uint32_t int_type;
+} hw_button_metadata;
+
 /** Initialization information comes in many shapes and sizes. Here is
  * one convenient container. */
 typedef union {
 
     hw_uart_metadata uart;
     hw_timer_metadata timer;
+    hw_button_metadata button;
 } hw_metadata;
 
 /** This function is responsible for enabling the peripherals and
@@ -172,6 +184,16 @@ raw_hw_channel _hw_channel_to_index(raw_hw_channel, HW_DEVICES);
  * \returns Pointer to the hw_driver data structure managing \hw_group
  */
 hw_driver* hw_driver_singleton(HW_DEVICES hw_group);
+
+/** Get the number of subscribers subscribed to a particular hardware
+ *  group's raw_channel.
+ *  \param hw_group The hardware group to query for subscribers
+ *  \param raw_channel The raw channel to query for subscribers
+ *  \returns An integer with the number of subscribes to that
+ *  particular \hw_group and \raw_channel.
+ */
+uint32_t hw_get_num_subscriptions(HW_DEVICES     hw_group,
+                                  raw_hw_channel raw_channel);
 
 /** For internal use only. Take care of the conversion between a
  * memory-mapped (raw) hw address and the index of said peripheral

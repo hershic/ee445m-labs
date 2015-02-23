@@ -10,6 +10,7 @@
 
 /* TI Includes */
 #include "inc/hw_ints.h"
+#include "inc/hw_gpio.h"
 #include "inc/hw_memmap.h"
 
 /* Driverlib Includes */
@@ -22,14 +23,19 @@
 #include "driverlib/rom.h"
 
 #include "libos/os.h"
-#include "libio/button.h"
+#include "libbutton/button.h"
+#include "libhw/hardware.h"
 
-uint32_t count = 0;
+uint32_t button_left_pressed = 0;
+uint32_t button_right_pressed = 0;
 
-void GPIO_PortF_Handler(void) {
-
-    GPIOIntClear(GPIO_PORTF_BASE, GPIO_PIN_4);
-    count++;
+void update_pid(int32_t button_bitmask) {
+    if (button_bitmask & BUTTON_LEFT) {
+        button_left_pressed++;
+    }
+    if (button_bitmask & BUTTON_RIGHT) {
+        button_right_pressed++;
+    }
 }
 
 int main() {
@@ -39,18 +45,17 @@ int main() {
 
     IntMasterDisable();
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    GPIOPinTypeGPIOInput(GPIO_PORTF_BASE, GPIO_PIN_4);
-    GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_DIR_MODE_IN);
-    GPIOIntTypeSet(GPIO_PORTF_BASE, GPIO_PIN_4, GPIO_FALLING_EDGE);
-    GPIOIntEnable(GPIO_PORTF_BASE, GPIO_PIN_4);
+    hw_driver_init(HW_BUTTON);
 
-    /* Load and enable the systick timer */
-    SysTickPeriodSet(SysCtlClockGet() / 10);
-    SysTickEnable();
-    SysTickIntEnable();
+    hw_metadata button_metadata;
+    button_metadata.button.base = GPIO_PORTF_BASE;
+    button_metadata.button.pin = BUTTONS_ALL;
+    button_metadata.button.int_type = GPIO_BOTH_EDGES;
 
-    /* PONDER: why do interrupts fire without this? */
+    hw_channel_init(HW_BUTTON, GPIO_PORTF_BASE, button_metadata);
+    hw_connect(HW_BUTTON, GPIO_PORTF_BASE, update_pid);
+
     IntMasterEnable();
+
     postpone_death();
 }
