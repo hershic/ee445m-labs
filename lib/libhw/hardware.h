@@ -23,10 +23,10 @@
  */
 
 /* A note about this library:
- * 
- * This hardware driver only manages peripherals that many tasks would
- * theoritecally like to subscribe to at one time. Hardware devices
- * such as GPIO pins should be manipulated with TI's driverlib. */
+ *
+ * This hardware driver interfaces between userspace programs and
+ * peripheral drivers. Users should never touch drivers directly but
+ * instead rely on libhw's notification system. */
 
 
 /* \bug TODO for extra cleanliness, determine hw_group automatically from
@@ -55,7 +55,7 @@ typedef struct _isr_subscription {
 
     bool valid;
     bool single_shot_subscription;
-    void (*slot)(hw_notification);
+    void (*slot)(notification);
 } _isr_subscription;
 
 /** A hardware driver manages multiple peripheral channels */
@@ -193,6 +193,6 @@ hw_channel* _hw_get_channel(HW_DEVICES, raw_hw_channel);
  */
 void hw_notify(HW_DEVICES hw_group,
 	       raw_hw_channel channel,
-	       hw_notification notification);
+	       notification notification);
 
 #endif

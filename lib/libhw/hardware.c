@@ -43,7 +43,7 @@ hw_driver HW_TIMER_DRIVER;
 hw_driver HW_ADC_DRIVER;
 hw_driver HW_SSI_DRIVER;
 
-hw_notification HW_UART_NOTIFICATION;
+notification HW_UART_NOTIFICATION;
 
 void hw_driver_init(HW_DEVICES hw_group) {
 
@@ -212,7 +212,7 @@ hw_driver* hw_driver_singleton(HW_DEVICES hw_group) {
 /* OPTIMIZE: optimize, this will be called a shit ton */
 void hw_notify(HW_DEVICES           hw_group,
 	       long                 raw_channel,
-	       hw_notification      notification) {
+	       notification      notification) {
 
     hw_iterator i=0;
     hw_channel* channel = _hw_get_channel(hw_group, raw_channel);
@@ -265,7 +265,7 @@ hw_iterator _hw_first_available_subscription(hw_channel* channel) {
 void UART0_Handler(void) {
 
     unsigned short i;
-    hw_notification notification;
+    notification notification;
     /* TODO: determine which bit to clear:  */
     unsigned long look_at_me = UARTIntStatus();
     /* UARTIntClear(UART0_BASE, ); */
@@ -285,7 +285,7 @@ void UART0_Handler(void) {
 void UART1_Handler(void) {
 
     unsigned short i;
-    hw_notification notification;
+    notification notification;
     /* TODO: determine which bit to clear:  */
     unsigned long look_at_me = UARTIntStatus();
     /* UARTIntClear(UART1_BASE, ); */
@@ -305,7 +305,7 @@ void UART1_Handler(void) {
 void UART2_Handler(void) {
 
     unsigned short i;
-    hw_notification notification;
+    notification notification;
     /* TODO: determine which bit to clear:  */
     unsigned long look_at_me = UARTIntStatus();
     /* UARTIntClear(UART2_BASE, ); */
@@ -325,7 +325,7 @@ void UART2_Handler(void) {
 void Timer0A_Handler(void) {
 
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-    hw_notification notification;
+    notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, TIMER0_BASE, notification);
 }
@@ -333,7 +333,7 @@ void Timer0A_Handler(void) {
 void Timer1A_Handler(void) {
 
     TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-    hw_notification notification;
+    notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, TIMER1_BASE, notification);
 }
@@ -341,7 +341,7 @@ void Timer1A_Handler(void) {
 void Timer2A_Handler(void) {
 
     TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-    hw_notification notification;
+    notification notification;
     notification._int = 1;
     hw_notify(HW_TIMER, TIMER2_BASE, notification);
 }
