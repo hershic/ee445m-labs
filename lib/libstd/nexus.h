@@ -25,10 +25,10 @@ typedef int32_t memory_address_t;
  *  loop. Note that this macro accepts a body; that is to say you can
  *  pass a code block as an argument that will be executed
  *  infinitely. */
-#define postpone_death(x) \
-    while(1) {            \
-        x                 \
-    };                    \
+#define postpone_death(x) { \
+    while(1) {              \
+        x                   \
+    }                       \
 }
 
 /** A duplicate of the c standard memset function. */
