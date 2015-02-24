@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #ifndef __BUTTON__
 #define __BUTTON__
 
@@ -5,15 +6,18 @@
 #include "libhw/hardware.h"
 
 /*! Create a \hw_metadata struct named \_name. */
-#define button_metadata_init_(_name, _base, _pin, _interrupt) \
-  hw_metadata _name;                                          \
-  _name.button.base = (memory_address_t) _base;		      \
-  _name.button.pin = (memory_address_t) _pin;		      \
-  _name.button.int_type = (uint32_t) _interrupt
+#define button_metadata_init_(_name, _base, _pin, _interrupt)	\
+    hw_metadata _name;						\
+    _name.button = (hw_button_metadata) {			\
+	.base     = (memory_address_t) _base,			\
+	.pin      = (memory_address_t) _pin,			\
+	.int_type = (uint32_t) _interrupt			\
+    }
+
 
 /*! Create a hardware_metadata struct named `button_metadata' */
-#define button_metadata_init(_base, _pin, _interrupt)	  \
-  button_metadata_init_(button_metadata, _base, _pin, _interrupt)
+#define button_metadata_init(_base, _pin, _interrupt) \
+    button_metadata_init_(button_metadata, _base, _pin, _interrupt)
 
 #define BUTTON_LEFT          GPIO_PIN_4
 #define BUTTON_RIGHT         GPIO_PIN_0
