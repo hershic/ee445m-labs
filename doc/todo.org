@@ -162,7 +162,7 @@ urged by lecture <2015-02-17 Tue>
 ** [1/1] framebuffer
 *** OPTIONAL create flag to enable per-pixel-manipulation
 compile time flag?
-* [1/5] bin
+* [2/6] bin
 ** [1/3] Doxygen
 *** [0/2] highlight special words
 - [ ] immutable
@@ -181,6 +181,9 @@ stack (bookmarks dir- chrome)
 ** [0/2] interrupt generator
 *** TODO move templates into a c src dir
 *** TODO integrate template population/insertion to build process
+** [1/1] rtos-dev-mode
+*** DONE auto-insert template for c
+and hook auto-insert-mode from rtos-dev-mode-hook
 * [1/3] dev environment
 ** TODO openocd
 *** kill process on output "Info : dropped 'gdb' connection"
