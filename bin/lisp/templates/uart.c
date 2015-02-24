@@ -1,3 +1,9 @@
+/*! %s isr responsible for notifying all subscriptions with information
+ * describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void %s_Handler(void) {
 
   unsigned short i;
