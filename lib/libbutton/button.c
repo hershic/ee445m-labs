@@ -31,27 +31,17 @@
    can lock the debugger out of the processor and make it permanently
    unable to be debugged or re-programmed. */
 /* [[http://users.ece.utexas.edu/~valvano/arm/InputOutput_4C123.zip]] */
-void button_init(int32_t buttons) {
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    GPIODirModeSet(GPIO_PORTF_BASE, buttons, GPIO_DIR_MODE_IN);
+/* TODO: convert into a modal library */
+/* TODO: doxygenize */
+void button_set_interrupt(hw_metadata metadata, memory_address_t buttons) {
 
-    GPIOPadConfigSet(GPIO_PORTF_BASE, buttons,
-                     GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
-
-    GPIOIntEnable(GPIO_PORTF_BASE, buttons);
-}
-
-/* TODO: parametrize */
-void button_enable_interrupt(hw_metadata metadata) {
-
-    int32_t button_port_base = metadata.button.base;
-    int32_t buttons = metadata.button.pin;
+    memory_address_t base = metadata.button.base;
     int32_t interrupt_type = metadata.button.int_type;
-    bool enable;
 
-    if (enable) {
-        GPIOIntTypeSet(button_port_base, buttons, interrupt_type);
+    /* TODO: parametrize (INT_GPIOF_TM4C123) */
+    if (metadata.button.int_type) {
+        GPIOIntTypeSet(base, buttons, interrupt_type);
         IntEnable(INT_GPIOF_TM4C123);
     } else {
         IntDisable(INT_GPIOF_TM4C123);
