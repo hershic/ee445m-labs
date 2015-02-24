@@ -24,6 +24,7 @@
 #include "inc/hw_memmap.h"
 #include "libbutton/button.h"
 #include "libut/utlist.h"
+#include "libtimer/timer.h"
 
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
@@ -232,7 +233,6 @@ hw_driver* hw_driver_singleton(HW_TYPE type) {
  *                        Interrupt Service Routines                          *
  *----------------------------------------------------------------------------*/
 
-
 void GPIOPortF_Handler(void) {
 
     notification note;
@@ -249,6 +249,12 @@ void GPIOPortF_Handler(void) {
 /* These ISRs were generated programatically -- see
  * /bin/lisp/rtos-interrupt-generator.el */
 
+/*! UART0 isr responsible for notifying all subscriptions with information
+ * describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void UART0_Handler(void) {
 
   unsigned short i;
@@ -273,6 +279,12 @@ void UART0_Handler(void) {
   }
 }
 
+/*! UART1 isr responsible for notifying all subscriptions with information
+ * describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void UART1_Handler(void) {
 
   unsigned short i;
@@ -297,6 +309,12 @@ void UART1_Handler(void) {
   }
 }
 
+/*! UART2 isr responsible for notifying all subscriptions with information
+ * describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void UART2_Handler(void) {
 
   unsigned short i;
@@ -321,35 +339,44 @@ void UART2_Handler(void) {
   }
 }
 
+/*! TIMER0A isr responsible for notifying all subscriptions with
+ * information describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void TIMER0A_Handler(void) {
 
   TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-  notification note;
-  note._int = 1;
-
-  hw_metadata metadata;
-  metadata.timer.base = TIMER0_BASE;
-  hw_notify(HW_TIMER, metadata, note);
+  notification_init(int, 1);
+  timer_metadata_init(TIMER0_BASE, NULL, NULL, NULL);
+  hw_notify(HW_TIMER, timer_metadata, note);
 }
 
+/*! TIMER1A isr responsible for notifying all subscriptions with
+ * information describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void TIMER1A_Handler(void) {
 
   TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-  notification note;
-  note._int = 1;
-
-  hw_metadata metadata;
-  metadata.timer.base = TIMER1_BASE;
-  hw_notify(HW_TIMER, metadata, note);
+  notification_init(int, 1);
+  timer_metadata_init(TIMER1_BASE, NULL, NULL, NULL);
+  hw_notify(HW_TIMER, timer_metadata, note);
 }
 
+/*! TIMER2A isr responsible for notifying all subscriptions with
+ * information describing the interrupt.
+ *
+ * This isr was generated
+ * automatically by bin/lisp/rtos-interrupt-generator.el
+ */
 void TIMER2A_Handler(void) {
 
   TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-  notification note;
-  note._int = 1;
-
-  hw_metadata metadata;
-  metadata.timer.base = TIMER2_BASE;
-  hw_notify(HW_TIMER, metadata, note);
+  notification_init(int, 1);
+  timer_metadata_init(TIMER2_BASE, NULL, NULL, NULL);
+  hw_notify(HW_TIMER, timer_metadata, note);
 }
