@@ -51,8 +51,9 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
 
     switch(type) {
     case HW_UART:
-        SysCtlPeripheralEnable(metadata.uart.channel); /* such as SYSCTL_PERIPH_UART0 */
-        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); /* todo: parametrize - are they all on A? */
+        SysCtlPeripheralEnable(metadata.uart.channel);
+	/* todo: parametrize - are they all on A? */
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
         break;
 
     case HW_TIMER:
