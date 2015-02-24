@@ -11,6 +11,7 @@
 #include "driverlib/uart.h"
 
 #include "libstd/nexus.h"
+#include "libnotify/notify.h"
 
 #define NDEBUG
 
