@@ -19,10 +19,15 @@
 #define BUTTON_RIGHT         GPIO_PIN_0
 #define BUTTONS_BOTH         (BUTTON_LEFT | BUTTON_RIGHT)
 
-/*! TODO: doxygenize */
+/*! Initialize buttons for use as input.
+ * \note Currently only supports on-board peripherals.
+ */
 void button_init(hw_metadata);
 
-/*! TODO: doxygenize */
+/*! Subscribe to a hardware interrupt.
+ * \param Hardware target to subscribe to and isr to invoke upon
+ * interrupt
+ */
 void button_set_interrupt(hw_metadata, memory_address_t);
 
 #endif  /* __BUTTON__ */

@@ -40,6 +40,7 @@ void button_init(hw_metadata metadata) {
     GPIOIntEnable(GPIO_PORTF_BASE, metadata.button.pin);
 }
 
+/* TODO: ditch the \buttons, use information from \metadata. */
 void button_set_interrupt(hw_metadata metadata, memory_address_t buttons) {
 
     memory_address_t base = metadata.button.base;
