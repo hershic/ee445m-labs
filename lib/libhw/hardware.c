@@ -25,8 +25,13 @@
 
 /* Supported devices */
 /* #include "libuart/uart.h" */
-#include "libbutton/button.h"
 #include "libtimer/timer.h"
+#include "libbutton/button.h"
+
+/* Each driver is statically allocated */
+hw_driver HW_UART_DRIVER;
+hw_driver HW_TIMER_DRIVER;
+hw_driver HW_BUTTON_DRIVER;
 
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
@@ -37,13 +42,6 @@
  * Hershal's
  * TODO: decouple SSI from DisplayDriver (hershal)
  *******************************************************************************/
-
-/* Each driver is statically allocated */
-hw_driver HW_UART_DRIVER;
-hw_driver HW_LCD_DRIVER;
-hw_driver HW_TIMER_DRIVER;
-hw_driver HW_ADC_DRIVER;
-hw_driver HW_BUTTON_DRIVER;
 
 /* To satisfy our need for speed, we must avoid the branches and
  * memory ready necessary for lazy initialization; that is to say the
