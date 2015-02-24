@@ -26,7 +26,7 @@
 
 #include "libhw/hardware.h"
 
-#define Hz 
+#define Hz
 
 bool timer_add_periodic_interrupt(hw_metadata metadata);
 /*! Create a \hw_metadata struct named \_name. */
