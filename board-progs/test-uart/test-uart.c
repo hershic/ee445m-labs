@@ -18,31 +18,18 @@
 
 #include "libuart/uart.h"
 #include "libheart/heartbeat.h"
+#include "libhw/hardware.h"
 
 /*! Read the next character from the UART and write it back to the UART.
  *  \return void
  */
-void UART0_Handler(void) {
+void uart_handler(notification note) {
 
-    uint32_t ui32Status;
+    char recv = note._char;
 
-    /* Loop while there are characters in the receive FIFO. */
-    while(UARTCharsAvail(UART0_BASE)) {
-        /* Read the next character from the UART and write it back to the UART. */
-        uart_send_char(uart_get_char());
-        /* char* received_string = uart_get_string(1); */
-        /* uart_send_char(received_string[0]); */
-        /* free(received_string); */
-
-        /* Blink the LED to show a character transfer is occuring. */
-	heart_beat();
-
-        /* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */
-        SysCtlDelay(SysCtlClockGet() / (1000 * 3));
-
-        /* Turn off the LED */
-        heart_off();
-    }
+    heart_wrap (
+	uart_send_char(recv);
+    );
 }
 
 /*! Accept input on UART 0, and parrot input back out to UART 0.
@@ -53,28 +40,18 @@ int main(void) {
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
-    /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    IntMasterDisable();
 
-    /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init();
 
-    /* Enable the peripherals used by this example. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    hw_init(HW_UART, uart_metadata);
+    hw_subscribe(HW_UART, uart_metadata, uart_handler);
 
-    /* Enable processor interrupts. */
     IntMasterEnable();
-
-    /* Set the active uart channel */
-    uart_set_active_channel(UART0_BASE);
-
-    /* Set GPIO A0 and A1 as UART pins. */
-    uart_init();
 
     /* Prompt for text to be entered. */
     uart_send_string("Enter text:");
 
-   /* Postpone death */
-    while(1) {}
+    postpone_death();
 }
