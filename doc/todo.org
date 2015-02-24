@@ -1,11 +1,14 @@
 #+startup: all
 #+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+* [1/2] design
+** CANCELED Virtual memory
+** TODO Display entities
 * [2/3] global
 ** OPTIONAL code review
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
 ** OPTIONAL continuous integration
 jenkins, travis
-** TODO gcc flags
+** TODO solve the mystery of the lenient gcc flags
 - covered by -Wall
   - pedantic-error
   - Wformat-security
