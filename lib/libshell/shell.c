@@ -44,7 +44,7 @@ char* shell_represent() {
 void shell_kill() {
 
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
-    hw_unsubscribe(HW_UART, metadata, shell_uart0_handler);
+    hw_unsubscribe(HW_UART, uart_metadata, shell_uart0_handler);
 }
 
 void shell_uart0_handler(notification note) {
