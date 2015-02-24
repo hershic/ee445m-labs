@@ -28,7 +28,6 @@
 
 #define Hz
 
-bool timer_add_periodic_interrupt(hw_metadata metadata);
 /*! Create a \hw_metadata struct named \_name. */
 #define timer_metadata_init_(_name, _base, _frequency, _interrupt, _periodic) \
     hw_metadata _name;                                                        \
@@ -44,5 +43,7 @@ bool timer_add_periodic_interrupt(hw_metadata metadata);
     timer_metadata.timer.frequency = _frequency;                      \
     timer_metadata.timer.interrupt = _interrupt;                      \
     timer_metadata.timer.periodic = _periodic
+
+bool timer_add_interrupt(hw_metadata metadata);
 
 #endif  /* __TIMER__ */

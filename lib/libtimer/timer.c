@@ -13,50 +13,15 @@
 #include "driverlib/timer.h"
 #include "driverlib/sysctl.h"
 
-bool timer_add_periodic_interrupt(hw_metadata metadata) {
+#define TIMER_DEFAULT_PRIORITY 0
 
-    uint32_t timer_base, timer_periph, timer_int;
-    uint32_t meta_frequency, meta_peripheral;
+bool timer_add_interrupt(hw_metadata metadata) {
 
-    meta_frequency = metadata.timer.frequency;
-    meta_peripheral = metadata.timer.base;
-
-    /* can give it a raw timer address (TIMERx_BASE) or an int with
-       the timer number (0, 1, 2) for convenience */
-    switch (meta_peripheral) {
-    case 0:
-    case TIMER0_BASE:
-        timer_base = TIMER0_BASE;
-        timer_periph = SYSCTL_PERIPH_TIMER0;
-        timer_int = INT_TIMER0A;
-        break;
-    case 1:
-    case TIMER1_BASE:
-        timer_base = TIMER1_BASE;
-        timer_periph = SYSCTL_PERIPH_TIMER1;
-        timer_int = INT_TIMER1A;
-        break;
-    case 2:
-    case TIMER2_BASE:
-        timer_base = TIMER2_BASE;
-        timer_periph = SYSCTL_PERIPH_TIMER2;
-        timer_int = INT_TIMER2A;
-        break;
-    default:
-        /* you broke the world */
-	postpone_death();	/* for debugging only */
-        return false;
-    }
-
-    SysCtlPeripheralEnable(timer_periph);
-    TimerConfigure(timer_base, TIMER_CFG_PERIODIC);
-    TimerLoadSet(timer_base, TIMER_A, SysCtlClockGet() / meta_frequency);
-
-    TimerIntEnable(timer_base, TIMER_TIMA_TIMEOUT);
-
-    /* TODO: Fill in priority */
-    IntEnable(timer_int, 0);
-    TimerEnable(timer_base, TIMER_A);
+    TimerConfigure(metadata.timer.base, metadata.timer.periodic);
+    TimerLoadSet(metadata.timer.base, TIMER_A, SysCtlClockGet() / metadata.timer.frequency);
+    TimerIntEnable(metadata.timer.base, TIMER_TIMA_TIMEOUT);
+    IntEnable(metadata.timer.interrupt, TIMER_DEFAULT_PRIORITY);
+    TimerEnable(metadata.timer.base, TIMER_A);
 
     /* Success */
     return true;
