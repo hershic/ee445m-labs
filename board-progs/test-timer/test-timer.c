@@ -29,6 +29,7 @@
 
 /*! \brief Blink the onboard LED three times to show activity */
 void blink_onboard_led(notification note) {
+
     heart_beat();
     heart_toggle();
 }
