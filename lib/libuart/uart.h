@@ -5,6 +5,15 @@
 #include <stdbool.h>
 
 #define UART_UNUSED -1
+#define uart_metadata_init(_baud_rate, _channel) \
+    hw_metadata uart_metadata;			 \
+    uart_metadata.uart.baud_rate = _baud_rate;	 \
+    uart_metadata.uart.channel = _channel
+
+#define uart_metadata_init_(_name, _baud_rate, _channel) \
+    hw_metadata _name;					 \
+    _name.uart.baud_rate = _baud_rate;			 \
+    _name.uart.channel = _channel
 
 /*! Modally set the active uart channel.
  *  \return void
