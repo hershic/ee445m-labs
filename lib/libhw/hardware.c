@@ -146,18 +146,20 @@ void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
     hw_iterator i=0;
     hw_channel* channel = _hw_get_channel(type, metadata);
     _isr_subscription* subscrip = &channel->full_slots[0];
-    _isr_subscription* tmp = NULL;
+    _isr_subscription* new_subscrip = NULL;
 
-    while(subscrip && subscrip != tmp) {
+    /* TODO: make this a doubly linked list, not circular */
+    /* consider similar changes to os lib also */
+    while(subscrip && subscrip != new_subscrip) {
 	subscrip->slot(note);
-	tmp = subscrip->next;
+	new_subscrip = subscrip->next;
 	if (subscrip->single_shot_subscription) {
 	    /* Cease fire! cease fire! */
 	    subscrip->single_shot_subscription = false;
 	    CDL_DELETE(channel->full_slots, subscrip);
 	    CDL_PREPEND(channel->free_slots, subscrip);
 	}
-	subscrip = tmp;
+	subscrip = new_subscrip;
     }
 }
 
