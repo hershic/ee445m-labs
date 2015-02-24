@@ -16,7 +16,7 @@
     }
 
 /*! Create a hardware_metadata struct named `uart_metadata' */
-#define uart_metadata_init(_baud_rate, _channel)		\
+#define uart_metadata_init(_baud_rate, _channel) \
     uart_metadata_init_(uart_metadata, _baud_rate, _channel)
 
 /*! Modally set the active uart channel.
