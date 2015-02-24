@@ -19,21 +19,20 @@
 #include "driverlib/timer.h"
 #include "driverlib/rom.h"
 
-#include "libhw/hardware.h"
-#include "libstd/nexus.h"
-#include "inc/hw_memmap.h"
-#include "libbutton/button.h"
 #include "libut/utlist.h"
+#include "libstd/nexus.h"
+#include "libhw/hardware.h"
+
+/* Supported devices */
+/* #include "libuart/uart.h" */
+#include "libbutton/button.h"
 #include "libtimer/timer.h"
 
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
  *
  * TODO: Determine why this builds without #include "libuart/uart.h"
- * TODO: Determine how much room to allocate for notifications
  * TODO: integrate with libscoreboard (nonexistent)
- * TODO: document ISRs (they aren't in the header)
- * TODO: place all relevant ISRs in this document
  *
  * Hershal's
  * TODO: decouple SSI from DisplayDriver (hershal)
