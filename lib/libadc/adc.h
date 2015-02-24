@@ -1,4 +1,5 @@
-#include "libtimer/timer.h"
+#ifndef __ADC__
+#define __ADC__
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -28,10 +29,12 @@ uint32_t adc_collect(uint32_t channel, uint32_t frequency,
  *  data. It operates on the array given in the adc_collect method
  *  \returns void
  */
-void do_adc_func();
+uint32_t do_adc_func();
 
 /*! KLUDGE: Opens the specified channel on ADC0
  *  \param channel the channel on ADC0 to open
  *  \returns void
  */
 uint32_t adc_open(uint32_t channel);
+
+#endif  /* __ADC__ */

@@ -31,9 +31,6 @@ int main(void) {
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
-    /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-
     heart_init();
 
     /* Enable TIMER2 (we are using) */
@@ -46,13 +43,13 @@ int main(void) {
     adc_init();
 
     adc_open(0);
-    adc_collect(0, 10, adc_data_buffer, TIMER0_BASE);
 
-    heart_wrap (
-      /* Trigger an initial ADC sequence. As far as I know this is
-	 required for proper init. */
-      ADCProcessorTrigger(ADC0_BASE, 0);
-      )
-
-    postpone_death();
+    /* Trigger an initial ADC sequence. As far as I know this is
+       required for proper init. */
+    postpone_death(
+      heart_wrap (
+	/* ADCProcessorTrigger(ADC0_BASE, 0); */
+	adc_collect(0, 10, adc_data_buffer, TIMER0_BASE);
+	);
+      );
 }

@@ -149,7 +149,7 @@ of a `gud-mode' buffer."
   '(""
     "/* -*- mode: c; c-basic-offset: 4; -*- */" \n
     "/* Created by Hershal Bhave and Eric Crosson "
-    (insert (format-time-string "%Y-%m-%d" (current-time))) "*/" \n
+    (insert (format-time-string "%Y-%m-%d" (current-time))) " */" \n
     "/* Revision history: Look in Git FGT */" \n
     "#include \"" (file-name-sans-extension
 		  (file-name-nondirectory (buffer-file-name))) ".h\"" \n
@@ -159,7 +159,7 @@ of a `gud-mode' buffer."
   '(""
     "/* -*- mode: c; c-basic-offset: 4; -*- */" \n
     "/* Created by Hershal Bhave and Eric Crosson "
-    (insert (format-time-string "%Y-%m-%d" (current-time))) "*/" \n
+    (insert (format-time-string "%Y-%m-%d" (current-time))) " */" \n
     "/* Revision history: Look in Git FGT */" \n
     "#ifndef __" (file-name-sans-extension
 		  (file-name-nondirectory (buffer-file-name))) "__" \n
