@@ -30,7 +30,7 @@ jenkins, travis
 - Wpacked
 - Winline
 
-* [5/18] lib
+* [5/19] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
 ** [1/2] heart
@@ -46,9 +46,16 @@ call sequence:
 - [ ] return prt()'s ret value
   ooh, this one's tricky
 
-** [0/1] hardware
+** [0/2] hardware
 *** IN-PROGRESS bi directional notifications
 look at ASSERT (ti libs)
+*** TODO prevent nonexistent hardware access
+[[file:~/workspace/ee445m-labs/lib/libhw/hardware.c::hw_channel*%20_hw_get_channel(HW_TYPE%20type,%20hw_metadata%20metadata)%20{][for example]], hardware.c treats all peripherals as devices containing
+the same number of channels. We should have some sort of bounds
+checking, even in debug-mode (compile and run the robot through the
+maze with extra checks to look for failures, then switch a compile
+time flag and run in release mode with minimal checks (due to the
+veritability of the code) and mucho speed)
 ** [4/8] button
 - [ ] modalize
 - [X] refactor

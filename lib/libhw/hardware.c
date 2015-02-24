@@ -60,7 +60,7 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
 
     case HW_TIMER:
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0 +
-			       (metadata.timer.base - 0x40030000) / 0x1000);
+			       (metadata.timer.base - TIMER0_BASE) / 0x1000);
 	break;
 
     case HW_BUTTON:
@@ -141,7 +141,6 @@ void hw_unsubscribe(HW_TYPE type,
     CDL_PREPEND(channel->free_slots, remove);
 }
 
-/* OPTIMIZE: optimize, this will be called a shit ton */
 void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
 
     hw_iterator i=0;
@@ -165,55 +164,19 @@ void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
 }
 
 /* immaculate hashing function, much fast */
-/* OPTIMIZE: inline, this will be called unbelievably often */
+inline
 hw_channel* _hw_get_channel(HW_TYPE type, hw_metadata metadata) {
 
     memory_address_t idx;
-    switch(type) {
-    case HW_UART:   idx = metadata.uart.channel; break;
-    case HW_TIMER:  idx = metadata.timer.base;   break;
-    case HW_BUTTON: idx = metadata.button.pin;   break;
-    default: postpone_death();
-    }
-
-    /* TODO: is masking with an offset faster? Might take up less space */
     switch(type){
-    case HW_UART:
-        switch(idx) {
-        case UART0_BASE: idx = 0; break;
-        case UART1_BASE: idx = 1; break;
-        case UART2_BASE: idx = 2; break;
-        case UART3_BASE: idx = 3; break;
-        case UART4_BASE: idx = 4; break;
-        case UART5_BASE: idx = 5; break;
-        case UART6_BASE: idx = 6; break;
-        case UART7_BASE: idx = 7; break;
-	default: postpone_death();
-        }
-        break;
-
-    case HW_TIMER:
-        switch(idx) {
-        case TIMER0_BASE: idx = 0; break;
-        case TIMER1_BASE: idx = 1; break;
-        case TIMER2_BASE: idx = 2; break;
-        case TIMER3_BASE: idx = 3; break;
-        case TIMER4_BASE: idx = 4; break;
-	default: postpone_death();
-        }
-        break;
-
-    case HW_BUTTON:
-        switch(idx) {
-        case GPIO_PORTF_BASE: idx = 0; break;
-	default: postpone_death();
-        }
+    case HW_UART:   idx = (metadata.uart.channel - UART0_BASE)     / 0x1000; break;
+    case HW_TIMER:  idx = (metadata.timer.base   - TIMER0_BASE)    / 0x1000; break;
+    case HW_BUTTON: idx = (metadata.button.base  - GPIO_PORTE_BASE)/ 0x1000; break;
+	/* Note: libhw won't allow for the use of ports higher than
+	 * GPIO_PORTE without modification of the above indexing
+	 * algorithm */
     default: postpone_death();
     }
-
-    /* TODO: ensure software doesn't try to access nonexistent hardware
-     * (mind the board model this is currently running on. current idea:
-     * compile flags limiting the furthest indices) */
     return &(hw_driver_singleton(type)->channels[idx]);
 }
 
