@@ -22,6 +22,10 @@
 #define BUTTON_RIGHT         GPIO_PIN_0
 #define BUTTONS_BOTH         (BUTTON_LEFT | BUTTON_RIGHT)
 
+/*! TODO: doxygenize */
+void button_init(hw_metadata);
+
+/*! TODO: doxygenize */
 void button_set_interrupt(hw_metadata, memory_address_t);
 
 #endif  /* __BUTTON__ */

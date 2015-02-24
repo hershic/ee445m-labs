@@ -54,7 +54,7 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
     switch(type) {
     case HW_UART:
         SysCtlPeripheralEnable(metadata.uart.channel); /* such as SYSCTL_PERIPH_UART0 */
-        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); /* todo: are they all on A? */
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA); /* todo: parametrize - are they all on A? */
         break;
 
     case HW_TIMER:
@@ -64,12 +64,12 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
 
     case HW_BUTTON:
 	/* TODO: parametrize to allow other buttons to be driven */
-	/* Buttons on the board are only used for input */
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-	GPIODirModeSet(GPIO_PORTF_BASE, metadata.button.pin, GPIO_DIR_MODE_IN);
-	GPIOPadConfigSet(GPIO_PORTF_BASE, metadata.button.pin,
-			 GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
-	GPIOIntEnable(GPIO_PORTF_BASE, metadata.button.pin);
+	/* #need4speed: Buttons on the board are only used for input,
+	 * we know how they're going to be used. Break the libhw
+	 * convention and initialize these buttons so this code never
+	 * has to be run again */
+	button_init(metadata);
         break;
 
     default: postpone_death();

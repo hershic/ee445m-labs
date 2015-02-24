@@ -33,6 +33,15 @@
 /* [[http://users.ece.utexas.edu/~valvano/arm/InputOutput_4C123.zip]] */
 
 /* TODO: convert into a modal library */
+
+void button_init(hw_metadata metadata) {
+
+    GPIODirModeSet(GPIO_PORTF_BASE, metadata.button.pin, GPIO_DIR_MODE_IN);
+    GPIOPadConfigSet(GPIO_PORTF_BASE, metadata.button.pin,
+		     GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+    GPIOIntEnable(GPIO_PORTF_BASE, metadata.button.pin);
+}
+
 /* TODO: doxygenize */
 void button_set_interrupt(hw_metadata metadata, memory_address_t buttons) {
 
