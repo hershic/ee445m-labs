@@ -59,7 +59,6 @@ typedef struct {
        different ports */
     memory_address_t base;
     memory_address_t pin;
-    bool int_enable;
     uint32_t int_type;
 } hw_button_metadata;
 
@@ -136,28 +135,43 @@ void hw_driver_init(HW_TYPE, hw_metadata);
  */
 void hw_channel_init(HW_TYPE, hw_metadata);
 
-/* TODO: doxygenize */
+/*! Subscribe to a hardware interrupt. This is also called connecting
+ *  a signal (the isr to be notified) to a slot (the hw-triggered
+ *  driver isr).
+ * \param The hardware type in question
+ * \param Metadata about the device
+ * \param The pseudo-isr to be notified by the hardware driver
+ */
 #define hw_subscribe(type, metadata, isr) \
     _hw_subscribe(type, metadata, isr, false)
 
+/*! Subscribe to a single-shot hardware interrupt. This is also called
+ *  connecting a signal (the isr to be notified) to a slot (the
+ *  hw-triggered driver isr). Note that a single-shot subscription
+ *  differs from a normal subscription in that after the first
+ *  notification, the subscription will unsubscribe itself.
+ * \param The hardware type in question
+ * \param Metadata about the device
+ * \param The pseudo-isr to be notified by the hardware driver
+ */
 #define hw_subscribe_single_shot(type, metadata, isr) \
     _hw_subscribe(type, metadata, isr, true)
 
 /*! Subscribe to a hardware interrupt. This is also called connecting
  * a signal (the isr to be notified) to a slot (the hw-triggered
  * driver isr).
- * \param hw_group The hardware group in question
- * \param raw_channel \hw_group's channel (memory-mapped address)
- * \param isr The pseudo-isr to be notified by the hardware driver
+ * \param The hardware type in question
+ * \param Metadata about the device
+ * \param The pseudo-isr to be notified by the hardware driver
  */
 void _hw_subscribe(HW_TYPE, hw_metadata, void (*isr)(notification note), bool);
 
 /*! Unsubscribe from a hardware interrupt. This is also called
  * disconnecting a signal (the isr in question) from a slot (the
  * hw-triggered driver isr).
- * \param hw_group The hardware group in question
- * \param raw_channel \hw_group's channel (memory-mapped address)
- * \param isr The pseudo-isr to be not notified anymore by the hardware driver
+ * \param The hardware type in question
+ * \param Metadata about the device
+ * \param The pseudo-isr to be notified by the hardware driver
  */
 void hw_unsubscribe(HW_TYPE, hw_metadata, void (*isr)(notification note));
 
