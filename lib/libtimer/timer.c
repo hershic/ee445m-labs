@@ -15,14 +15,11 @@
 
 #define TIMER_DEFAULT_PRIORITY 0
 
-bool timer_add_interrupt(hw_metadata metadata) {
+void timer_add_interrupt(hw_metadata metadata) {
 
     TimerConfigure(metadata.timer.base, metadata.timer.periodic);
     TimerLoadSet(metadata.timer.base, TIMER_A, SysCtlClockGet() / metadata.timer.frequency);
     TimerIntEnable(metadata.timer.base, TIMER_TIMA_TIMEOUT);
     IntEnable(metadata.timer.interrupt, TIMER_DEFAULT_PRIORITY);
     TimerEnable(metadata.timer.base, TIMER_A);
-
-    /* Success */
-    return true;
 }
