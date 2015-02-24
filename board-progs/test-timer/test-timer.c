@@ -28,7 +28,7 @@
 #include <sys/stat.h>
 
 /*! \brief Blink the onboard LED three times to show activity */
-void blink_onboard_led(void) {
+void blink_onboard_led(notification note) {
     heart_beat();
     heart_toggle();
 }
@@ -41,25 +41,16 @@ int main(void) {
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
-    /* Enable the GPIO port that is used for the on-board LED. */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-
-    /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
-
     /* Enable processor interrupts. */
+    IntMasterDisable();
+
+    heart_init();
+
+    timer_metadata_init(TIMER0_BASE, 1 Hz, INT_TIMER0A, TIMER_CFG_PERIODIC);
+    hw_init(HW_TIMER, timer_metadata);
+    hw_subscribe(HW_TIMER, timer_metadata, blink_onboard_led);
+
     IntMasterEnable();
 
-    hw_driver_init(HW_TIMER);
-
-    hw_metadata timer_metadata;
-    timer_metadata.timer.frequency = 1 Hz;
-    timer_metadata.timer.base = TIMER0_BASE;
-    hw_channel_init(HW_TIMER, TIMER0_BASE, timer_metadata);
-
-    hw_connect(HW_TIMER, TIMER0_BASE, blink_onboard_led);
-
-    /* Postpone death */
-    while (1) {
-    }
+    postpone_death();
 }

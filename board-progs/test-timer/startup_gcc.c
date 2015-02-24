@@ -4,20 +4,20 @@
 //
 // Copyright (c) 2012-2013 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
-// 
+//
 // Texas Instruments (TI) is supplying this software for use solely and
 // exclusively on TI's microcontroller products. The software is owned by
 // TI and/or its suppliers, and is protected under applicable copyright
 // laws. You may not combine this software with "viral" open-source
 // software in order to form a larger program.
-// 
+//
 // THIS SOFTWARE IS PROVIDED "AS IS" AND WITH ALL FAULTS.
 // NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT
 // NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
 // A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. TI SHALL NOT, UNDER ANY
 // CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
 // DAMAGES, FOR ANY REASON WHATSOEVER.
-// 
+//
 // This is part of revision 1.0 of the EK-TM4C123GXL Firmware Package.
 //
 //*****************************************************************************
@@ -66,12 +66,12 @@ void __attribute__((weak)) ADC0Seq1_Handler(void);
 void __attribute__((weak)) ADC0Seq2_Handler(void);
 void __attribute__((weak)) ADC0Seq3_Handler(void);
 void __attribute__((weak)) WDT_Handler(void);
-void __attribute__((weak)) Timer0A_Handler(void);
-void __attribute__((weak)) Timer0B_Handler(void);
-void __attribute__((weak)) Timer1A_Handler(void);
-void __attribute__((weak)) Timer1B_Handler(void);
-void __attribute__((weak)) Timer2A_Handler(void);
-void __attribute__((weak)) Timer2B_Handler(void);
+void __attribute__((weak)) TIMER0A_Handler(void);
+void __attribute__((weak)) TIMER0B_Handler(void);
+void __attribute__((weak)) TIMER1A_Handler(void);
+void __attribute__((weak)) TIMER1B_Handler(void);
+void __attribute__((weak)) TIMER2A_Handler(void);
+void __attribute__((weak)) TIMER2B_Handler(void);
 void __attribute__((weak)) Comp0_Handler(void);
 void __attribute__((weak)) Comp1_Handler(void);
 void __attribute__((weak)) Comp2_Handler(void);
@@ -222,12 +222,12 @@ void (* const g_pfnVectors[])(void) =
     ADC0Seq2_Handler,                           // ADC Sequence 2
     ADC0Seq3_Handler,                           // ADC Sequence 3
     WDT_Handler,                                // Watchdog timer
-    Timer0A_Handler,                            // Timer 0 subtimer A
-    Timer0B_Handler,                            // Timer 0 subtimer B
-    Timer1A_Handler,                            // Timer 1 subtimer A
-    Timer1B_Handler,                            // Timer 1 subtimer B
-    Timer2A_Handler,                            // Timer 2 subtimer A
-    Timer2B_Handler,                            // Timer 2 subtimer B
+    TIMER0A_Handler,                            // Timer 0 subtimer A
+    TIMER0B_Handler,                            // Timer 0 subtimer B
+    TIMER1A_Handler,                            // Timer 1 subtimer A
+    TIMER1B_Handler,                            // Timer 1 subtimer B
+    TIMER2A_Handler,                            // Timer 2 subtimer A
+    TIMER2B_Handler,                            // Timer 2 subtimer B
     Comp0_Handler,                              // Analog Comparator 0
     Comp1_Handler,                              // Analog Comparator 1
     Comp2_Handler,                              // Analog Comparator 2
@@ -547,12 +547,12 @@ static void Default_Handler(void);
 #pragma weak ADC0Seq2_Handler = Default_Handler
 #pragma weak ADC0Seq3_Handler = Default_Handler
 #pragma weak WDT_Handler = Default_Handler
-#pragma weak Timer0A_Handler = Default_Handler
-#pragma weak Timer0B_Handler = Default_Handler
-#pragma weak Timer1A_Handler = Default_Handler
-#pragma weak Timer1B_Handler = Default_Handler
-#pragma weak Timer2A_Handler = Default_Handler
-#pragma weak Timer2B_Handler = Default_Handler
+#pragma weak TIMER0A_Handler = Default_Handler
+#pragma weak TIMER0B_Handler = Default_Handler
+#pragma weak TIMER1A_Handler = Default_Handler
+#pragma weak TIMER1B_Handler = Default_Handler
+#pragma weak TIMER2A_Handler = Default_Handler
+#pragma weak TIMER2B_Handler = Default_Handler
 #pragma weak Comp0_Handler = Default_Handler
 #pragma weak Comp1_Handler = Default_Handler
 #pragma weak Comp2_Handler = Default_Handler
@@ -563,8 +563,8 @@ static void Default_Handler(void);
 #pragma weak GPIOPortH_Handler = Default_Handler
 #pragma weak UART2_Handler = Default_Handler
 #pragma weak SSI1_Handler = Default_Handler
-#pragma weak Timer3A_Handler = Default_Handler
-#pragma weak Timer3B_Handler = Default_Handler
+#pragma weak TIMER3A_Handler = Default_Handler
+#pragma weak TIMER3B_Handler = Default_Handler
 #pragma weak I2C1_Handler = Default_Handler
 #pragma weak Quadrature1_Handler = Default_Handler
 #pragma weak CAN0_Handler = Default_Handler
@@ -594,22 +594,22 @@ static void Default_Handler(void);
 #pragma weak UART7_Handler = Default_Handler
 #pragma weak I2C2_Handler = Default_Handler
 #pragma weak I2C3_Handler = Default_Handler
-#pragma weak Timer4A_Handler = Default_Handler
-#pragma weak Timer4B_Handler = Default_Handler
-#pragma weak Timer5A_Handler = Default_Handler
-#pragma weak Timer5B_Handler = Default_Handler
-#pragma weak WideTimer0A_Handler = Default_Handler
-#pragma weak WideTimer0B_Handler = Default_Handler
-#pragma weak WideTimer1A_Handler = Default_Handler
-#pragma weak WideTimer1B_Handler = Default_Handler
-#pragma weak WideTimer2A_Handler = Default_Handler
-#pragma weak WideTimer2B_Handler = Default_Handler
-#pragma weak WideTimer3A_Handler = Default_Handler
-#pragma weak WideTimer3B_Handler = Default_Handler
-#pragma weak WideTimer4A_Handler = Default_Handler
-#pragma weak WideTimer4B_Handler = Default_Handler
-#pragma weak WideTimer5A_Handler = Default_Handler
-#pragma weak WideTimer5B_Handler = Default_Handler
+#pragma weak TIMER4A_Handler = Default_Handler
+#pragma weak TIMER4B_Handler = Default_Handler
+#pragma weak TIMER5A_Handler = Default_Handler
+#pragma weak TIMER5B_Handler = Default_Handler
+#pragma weak WideTIMER0A_Handler = Default_Handler
+#pragma weak WideTIMER0B_Handler = Default_Handler
+#pragma weak WideTIMER1A_Handler = Default_Handler
+#pragma weak WideTIMER1B_Handler = Default_Handler
+#pragma weak WideTIMER2A_Handler = Default_Handler
+#pragma weak WideTIMER2B_Handler = Default_Handler
+#pragma weak WideTIMER3A_Handler = Default_Handler
+#pragma weak WideTIMER3B_Handler = Default_Handler
+#pragma weak WideTIMER4A_Handler = Default_Handler
+#pragma weak WideTIMER4B_Handler = Default_Handler
+#pragma weak WideTIMER5A_Handler = Default_Handler
+#pragma weak WideTIMER5B_Handler = Default_Handler
 #pragma weak FPU_Handler = Default_Handler
 #pragma weak PECI0_Handler = Default_Handler
 #pragma weak LPC0_Handler = Default_Handler
