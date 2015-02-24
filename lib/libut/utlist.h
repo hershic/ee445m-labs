@@ -662,6 +662,23 @@ do {                                                                            
 (head)=(add);                                                                                  \
 } while (0)
 
+#define CDL_APPEND(head,add)                                                                  \
+    CDL_APPEND2(head,add,prev,next)
+
+#define CDL_APPEND2(head,add,prev,next)                                                       \
+do {                                                                                           \
+ if (head) {                                                                                   \
+   (add)->prev = (head)->prev;                                                                 \
+   (add)->next = (head);                                                                       \
+   (head)->prev = (add);                                                                       \
+   (add)->prev->next = (add);                                                                  \
+ } else {                                                                                      \
+   (add)->prev = (add);                                                                        \
+   (add)->next = (add);                                                                        \
+   (head)=(add);                                                        \
+ }                                                                                             \
+} while (0)
+
 #define CDL_DELETE(head,del)                                                                   \
     CDL_DELETE2(head,del,prev,next)
 

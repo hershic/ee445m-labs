@@ -18,10 +18,10 @@ void os_threading_init() {
     os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
-	CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
+        CDL_APPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
-	OS_THREADS[i].entry_point = NULL;
+        OS_THREADS[i].entry_point = NULL;
         OS_THREADS[i].status = THREAD_DEAD;
         OS_THREADS[i].sleep_timer = 0;
     }
@@ -34,19 +34,19 @@ tcb_t* os_add_thread(task_t task) {
 
     /* 1. Disable interrupts and save the priority mask */
     atomic (
-	/* 2. Pop the task from the dead_thread pile and add it to the
-	 * list of running threads. */
-	thread_to_add = os_dead_threads;
-	CDL_DELETE(os_dead_threads, thread_to_add);
-	CDL_PREPEND(os_running_threads, thread_to_add);
+        /* 2. Pop the task from the dead_thread pile and add it to the
+         * list of running threads. */
+        thread_to_add = os_dead_threads;
+        CDL_DELETE(os_dead_threads, thread_to_add);
+        CDL_APPEND(os_running_threads, thread_to_add);
 
-	/* 3. Set the initial stack contents for the new thread. */
-	os_reset_thread_stack(thread_to_add, task);
+        /* 3. Set the initial stack contents for the new thread. */
+        os_reset_thread_stack(thread_to_add, task);
 
-	/* 4. Set metadata for this thread's TCB. */
-	thread_to_add->status = THREAD_RUNNING;
-	thread_to_add->sleep_timer = 0;
-	thread_to_add->entry_point = task;
+        /* 4. Set metadata for this thread's TCB. */
+        thread_to_add->status = THREAD_RUNNING;
+        thread_to_add->sleep_timer = 0;
+        thread_to_add->entry_point = task;
     )
     /* 5. Return. */
     return thread_to_add;
@@ -65,7 +65,7 @@ tcb_t* os_remove_thread(task_t task) {
     thread_to_remove = os_tcb_of(task);
     CDL_DELETE(os_running_threads, thread_to_remove);
     /* Means high tcb_t memory reusability */
-    CDL_PREPEND(os_dead_threads, thread_to_remove);
+    CDL_APPEND(os_dead_threads, thread_to_remove);
 
     /* OPTIONAL TODO: do the check for overwritten stacks as long as
      * we kill every thread in our testing we'll get valuable yet
@@ -91,9 +91,9 @@ tcb_t* os_tcb_of(const task_t task) {
 
     int32_t i;
     for(i=0; i<OS_MAX_THREADS; ++i) {
-	if (task == OS_THREADS[i].entry_point) {
-	    return &OS_THREADS[i];
-	}
+        if (task == OS_THREADS[i].entry_point) {
+            return &OS_THREADS[i];
+        }
     }
     /* TODO: create a compile-time flag to catch all scary
      * situations, or let them go. #DANGER_ZONE */
@@ -183,7 +183,7 @@ void SysTick_Handler() {
      * esc's plan:
      * here call a method, something like os_reschedule_tasks
 
-     * - build a new list with CDL_PREPEND, prepending tasks in order
+     * - build a new list with CDL_APPEND, appending tasks in order
          of lowest priority to highest. this will reassign all *next,
          *prev pointers and when we do the unmodified PendSV_Handler
          it'll grab not the round-robin *next ptr but the
