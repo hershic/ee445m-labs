@@ -35,4 +35,15 @@ typedef struct {
     notification** data;
 } notification_metadata;
 
+/*! Create a notification with specified name, type and value. */
+#define notification_init_(_name, _type, _value) \
+    notification _name;				 \
+    _name._##_type = _value
+
+/*! Create a notification with specified type and value of name
+ *  `note'. */
+#define notification_init(_type, _value)	\
+    notification note;				\
+    note._##_type = _value
+
 #endif
