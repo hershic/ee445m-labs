@@ -194,14 +194,11 @@ hw_driver* hw_driver_singleton(HW_TYPE type) {
  *  interrupt. */
 void GPIOPortF_Handler(void) {
 
-    notification note;
-    hw_metadata metadata;
-    metadata.button.base = GPIO_PORTF_BASE;
-    metadata.button.pin = BUTTONS_BOTH;
-
     GPIOIntClear(GPIO_PORTF_BASE, BUTTONS_BOTH);
-    note._int = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
-    hw_notify(HW_BUTTON, metadata, note);
+
+    notification_init(int, GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH));
+    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, NULL);
+    hw_notify(HW_BUTTON, button_metadata, note);
 }
 
 
