@@ -164,7 +164,7 @@ of a `gud-mode' buffer."
 		  (file-name-nondirectory (buffer-file-name))) "__" \n
     "#define __" (file-name-sans-extension
 		  (file-name-nondirectory (buffer-file-name))) "__" \n
-    \n > _ > \n))
+    \n > _ > \n \n "#endif"))
 
 ;; rtos-dev-mode: associated with c-mode and gud-mode
 (defun rtos/patch-dev-mode-hooks ()
