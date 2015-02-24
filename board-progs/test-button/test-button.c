@@ -29,11 +29,11 @@
 uint32_t button_left_pressed = 0;
 uint32_t button_right_pressed = 0;
 
-void update_pid(int32_t button_bitmask) {
-    if (button_bitmask & BUTTON_LEFT) {
+void update_pid(notification button_bitmask) {
+    if (button_bitmask._int & BUTTON_LEFT) {
         button_left_pressed++;
     }
-    if (button_bitmask & BUTTON_RIGHT) {
+    if (button_bitmask._int & BUTTON_RIGHT) {
         button_right_pressed++;
     }
 }
@@ -45,10 +45,9 @@ int main() {
 
     IntMasterDisable();
 
-    hw_driver_init(HW_BUTTON);
-    button_metadata_init(button_metadata, GPIO_PORTF_BASE, BUTTONS_ALL, GPIO_BOTH_EDGES);
-    hw_channel_init(HW_BUTTON, GPIO_PORTF_BASE, button_metadata);
-    hw_connect(HW_BUTTON, GPIO_PORTF_BASE, update_pid);
+    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
+    hw_init(HW_BUTTON, button_metadata);
+    hw_subscribe(HW_BUTTON, button_metadata, update_pid);
 
     IntMasterEnable();
 
