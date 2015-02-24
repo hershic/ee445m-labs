@@ -4,6 +4,7 @@
 
 #include <stdbool.h>
 #include "libnotify/notify.h"
+#include "libstd/nexus.h"
 
 /* Note to developers:
  *
@@ -29,173 +30,147 @@
  * instead rely on libhw's notification system. */
 
 
-/* \bug TODO for extra cleanliness, determine hw_group automatically from
- * channel's raw address! */
+/* TODO: integrate ADC lib */
 
-/** An iterator ensured to be of an optimized size according to the
- * relevant #defines below it.  */
-typedef uint8_t hw_iterator;
-
-/* TODO: device-specific metadata like this */
-/** Maximum number of channels supported by each hardware peripheral  */
-#define HW_DRIVER_MAX_CHANNELS 8
-
-/** Maximum number of subscribed threads each hardware driver is
- * responsible for responding to */
-#define HW_DRIVER_MAX_SUBSCRIPTIONS 8
-
-/** Used to represent #defines memory-mapped addresses before they are
- * converted into hw_driver channel indices by libhw */
-typedef long raw_hw_channel;
-
-/** Each peripheral channel needs to be able to notify
- * \HW_DRIVER_MAX_SUBSCRIPTIONS subscribers about incoming hardware
- * events */
-typedef struct _isr_subscription {
-
-    bool valid;
-    bool single_shot_subscription;
-    void (*slot)(notification);
-} _isr_subscription;
-
-/** A hardware driver manages multiple peripheral channels */
-typedef struct hw_channel {
-
-    _isr_subscription isr_subscriptions[HW_DRIVER_MAX_SUBSCRIPTIONS];
-} hw_channel;
-
-/** Top level container for hardware driver data */
-typedef struct hw_driver {
-
-    hw_channel channels[HW_DRIVER_MAX_CHANNELS];
-} hw_driver;
-
-/** Represents each of the hardware groups supported by libhw */
-typedef enum  {
-
+typedef enum {
     HW_UART,
-    HW_LCD,
     HW_TIMER,
-    HW_ADC,
-    HW_SSI,
-    HW_BUTTON,
-} HW_DEVICES;
-/* TODO: consider I2C, CAN, USB integration with this module */
+    HW_BUTTON
+} HW_TYPE;
 
-/* UART properties */
-typedef struct hw_uart_metadata {
-
+/*! UART properties */
+typedef struct {
     uint32_t baud_rate;
+    memory_address_t channel;
 } hw_uart_metadata;
 
-/** timer properties */
 /* todo: add union for timer_frequency or timer_period */
-typedef struct hw_timer_metadata {
-
+/*! timer properties */
+typedef struct {
+    memory_address_t base;
     uint32_t frequency;
-    uint32_t base;
+    uint32_t interrupt;
+    uint32_t periodic; /* TIMER_CFG_PERIODIC or TIMER_CFG_ONE_SHOT */
 } hw_timer_metadata;
 
-/** button properties */
-typedef struct hw_button_metadata {
-
+/*! button properties */
+typedef struct {
     /* NOTE: base will be used in the future when we have buttons on
        different ports */
     memory_address_t base;
     memory_address_t pin;
+    bool int_enable;
     uint32_t int_type;
 } hw_button_metadata;
 
-/** Initialization information comes in many shapes and sizes. Here is
+/*! Initialization information comes in many shapes and sizes. Here is
  * one convenient container. */
 typedef union {
-
     hw_uart_metadata uart;
     hw_timer_metadata timer;
     hw_button_metadata button;
 } hw_metadata;
 
-/** This function is responsible for enabling the peripherals and
+/*! An iterator ensured to be of an optimized size according to the
+ * relevant #defines below it.  */
+typedef uint8_t hw_iterator;
+
+/*! Typedef for an interrupt service routine, which can never accept
+ *  arguments or return a value. */
+/* typedef void (*isr_t)(notification note); */
+
+/* TODO: device-specific metadata like this */
+/*! Maximum number of channels supported by each hardware peripheral  */
+#define HW_DRIVER_MAX_CHANNELS 8
+
+/*! Maximum number of subscribed threads each hardware driver is
+ * responsible for responding to */
+#define HW_DRIVER_MAX_SUBSCRIPTIONS 8
+
+/*! Each peripheral channel needs to be able to notify
+ * \HW_DRIVER_MAX_SUBSCRIPTIONS subscribers about incoming hardware
+ * events */
+typedef struct _isr_subscription _isr_subscription;
+struct _isr_subscription {
+    bool single_shot_subscription;
+    void (*slot)(notification);
+    _isr_subscription* next;
+    _isr_subscription* prev;
+};
+
+/*! A hardware driver manages multiple peripheral channels */
+typedef struct {
+    _isr_subscription isr_subscriptions[HW_DRIVER_MAX_SUBSCRIPTIONS];
+    _isr_subscription* free_slots;
+    _isr_subscription* full_slots;
+} hw_channel;
+
+/*! Top level container for hardware driver data */
+typedef struct {
+    hw_channel channels[HW_DRIVER_MAX_CHANNELS];
+} hw_driver;
+
+#define hw_init(type, metadata)	    \
+    hw_driver_init(type, metadata); \
+    hw_channel_init(type, metadata)
+
+/*! Return the one hw_driver per hardware device group in use by the
+ * TM4C.
+ * \param The hardware type to grab a pointer of
+ * \returns Pointer to the hw_driver data structure managing \type
+ */
+hw_driver* hw_driver_singleton(HW_TYPE);
+
+/*! This function is responsible for enabling the peripherals and
  * internal data strutures used by the specified \hw_group.
  * \param hw_group The hardware group driver to initialize
  */
-void hw_driver_init(HW_DEVICES);
+void hw_driver_init(HW_TYPE, hw_metadata);
 
-/** This function is responsible for enabling a specific channel on
+/*! This function is responsible for enabling a specific channel on
  * the specified hardware device. Internal libhw datastructures will
  * also be reset.
  * \param hw_group The hardware group in question
  * \param raw_channel The memory-mapped address of the device channel to initialize
  * \param metadata Information about how to initialize the device
  */
-void hw_channel_init(HW_DEVICES, raw_hw_channel, hw_metadata);
+void hw_channel_init(HW_TYPE, hw_metadata);
 
-/** Subscribe to a hardware interrupt. This is also called connecting
+/* TODO: doxygenize */
+#define hw_subscribe(type, metadata, isr) \
+    _hw_subscribe(type, metadata, isr, false)
+
+#define hw_subscribe_single_shot(type, metadata, isr) \
+    _hw_subscribe(type, metadata, isr, true)
+
+/*! Subscribe to a hardware interrupt. This is also called connecting
  * a signal (the isr to be notified) to a slot (the hw-triggered
  * driver isr).
  * \param hw_group The hardware group in question
  * \param raw_channel \hw_group's channel (memory-mapped address)
  * \param isr The pseudo-isr to be notified by the hardware driver
  */
-bool hw_connect(HW_DEVICES, raw_hw_channel, const void*);
-/** Unsubscribe from a hardware interrupt. This is also called
+void _hw_subscribe(HW_TYPE, hw_metadata, void (*isr)(notification note), bool);
+
+/*! Unsubscribe from a hardware interrupt. This is also called
  * disconnecting a signal (the isr in question) from a slot (the
  * hw-triggered driver isr).
  * \param hw_group The hardware group in question
  * \param raw_channel \hw_group's channel (memory-mapped address)
  * \param isr The pseudo-isr to be not notified anymore by the hardware driver
  */
-bool hw_disconnect(HW_DEVICES, raw_hw_channel, const void*);
+void hw_unsubscribe(HW_TYPE, hw_metadata, void (*isr)(notification note));
 
-/** Subscribe to a one-time notification from a hardware
- * interrupt. This is analagous to connecting to a hardware signal and
- * disconnecting from said signal in the slot that is called. Note
- * however that the hardware driver will do the disconnecting for you.
- * \param hw_group The hardware group in question
- * \param raw_channel \hw_group's channel (memory-mapped address)
- * \param isr The pseudo-isr to be not notified anymore by the hardware driver
- * \note When the hardware driver fires off a signal to a single-shot
- * slot, the hardware driver will disconnect said slot from future
- * notifications. In other words, the developer doesn't need to
- * disconnect an isr manually if the one-shot slot is called.
- * \note To disconnect from a one-shot timer, simply use \hw_disconnect.
- */
-bool hw_connect_single_shot(HW_DEVICES, raw_hw_channel, const void*);
-
-/** For internal use only. This function returns the index of the
- * first \_isr_subscription in \channel's internal data structures.
- * \param channel The channel to query for an open subscription slot
- * \returns The index of the first available subscription bucket of \channel
- */
-hw_iterator _hw_first_available_subscription(hw_channel*);
-
-/** For internal use only. Convert a memory-mapped address
+/*! For internal use only. Convert a memory-mapped address
  * (raw_hw_channel) into an index for hw_driver's internal data
  * structures.
  * \param hw_group The hardware group in question
  * \param channel The specified channel of \hw_group
  * \returns Internal index of channel's first open subscription bucket
  */
-raw_hw_channel _hw_channel_to_index(raw_hw_channel, HW_DEVICES);
+int32_t _hw_channel_to_index();
 
-/** Return the one hw_driver per hardware device group in use by the
- * TM4C.
- * \param hw_group The hardware group to grab a pointer of
- * \returns Pointer to the hw_driver data structure managing \hw_group
- */
-hw_driver* hw_driver_singleton(HW_DEVICES hw_group);
-
-/** Get the number of subscribers subscribed to a particular hardware
- *  group's raw_channel.
- *  \param hw_group The hardware group to query for subscribers
- *  \param raw_channel The raw channel to query for subscribers
- *  \returns An integer with the number of subscribes to that
- *  particular \hw_group and \raw_channel.
- */
-uint32_t hw_get_num_subscriptions(HW_DEVICES     hw_group,
-                                  raw_hw_channel raw_channel);
-
-/** For internal use only. Take care of the conversion between a
+/*! For internal use only. Take care of the conversion between a
  * memory-mapped (raw) hw address and the index of said peripheral
  * channel in the memory banks of libhw's device-specific data
  * structures.
@@ -203,9 +178,9 @@ uint32_t hw_get_num_subscriptions(HW_DEVICES     hw_group,
  * \param raw_hw_channel The specific channel of \hw_group
  * \returns Index of \raw_channel'channel in \hw_group's data structures
  */
-hw_channel* _hw_get_channel(HW_DEVICES, raw_hw_channel);
+hw_channel* _hw_get_channel(HW_TYPE, hw_metadata);
 
-/** Notify threads subscribed to \channel about an incoming hardware
+/*! Notify threads subscribed to \channel about an incoming hardware
  * event.
  * \param hw_group The hardwawre group that received the incoming
  * hardware event
@@ -215,8 +190,6 @@ hw_channel* _hw_get_channel(HW_DEVICES, raw_hw_channel);
  * ISR) containing information regarding the recently-occurring
  * hardware interrupt event
  */
-void hw_notify(HW_DEVICES hw_group,
-	       raw_hw_channel channel,
-	       notification notification);
+void hw_notify(HW_TYPE, hw_metadata, notification);
 
 #endif
