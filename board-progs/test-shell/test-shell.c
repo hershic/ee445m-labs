@@ -40,24 +40,19 @@ int doctor() {
 
 int main(void) {
 
-    hw_metadata uart_metadata;
-
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
 		   SYSCTL_XTAL_16MHZ);
 
-    /* Enable the GPIO port that is used for the on-board LED. */
-    heart_init();
+    IntMasterDisable();
 
-    /* Enable the peripherals used by this example */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
+    heart_init();
 
     system_init();
     system_register_command((const char*) "doctor", doctor);
 
     /* Initialize hardware devices */
-    hw_driver_init(HW_UART);
-    uart_metadata.uart.baud_rate = 115200;
-    hw_channel_init(HW_UART, UART0_BASE, uart_metadata);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    hw_init(HW_UART, uart_metadata);
 
     /* Initialize the shell and the system it interacts with */
     shell_spawn();
