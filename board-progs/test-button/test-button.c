@@ -30,6 +30,8 @@ uint32_t button_left_pressed = 0;
 uint32_t button_right_pressed = 0;
 
 void update_pid(notification button_bitmask) {
+    /* What was that technique we learned in 460n to avoid a bunch of
+     branches? cond && action*/
     if (button_bitmask._int & BUTTON_LEFT) {
         button_left_pressed++;
     }
