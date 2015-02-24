@@ -141,9 +141,42 @@ of a `gud-mode' buffer."
 ;; associated mode: disaster-arm
 (require 'disaster-arm)
 
+;; associated mode: auto-insert-mode
+(setq auto-insert-alist '())
+(define-auto-insert
+  '("\\.\\(c\\)\\'" . "C RTOS skeleton")
+  '(""
+    "/* -*- mode: c; c-basic-offset: 4; -*- */" \n
+    "/* Created by Hershal Bhave and Eric Crosson "
+    (insert (format-time-string "%Y-%m-%d" (current-time))) "*/" \n
+    "/* Revision history: Look in Git FGT */" \n
+    "#include \"" (file-name-sans-extension
+		  (file-name-nondirectory (buffer-file-name))) ".h\"" \n
+    \n > _ > \n))
+(define-auto-insert
+  '("\\.\\(h\\)\\'" . "C header RTOS skeleton")
+  '(""
+    "/* -*- mode: c; c-basic-offset: 4; -*- */" \n
+    "/* Created by Hershal Bhave and Eric Crosson "
+    (insert (format-time-string "%Y-%m-%d" (current-time))) "*/" \n
+    "/* Revision history: Look in Git FGT */" \n
+    "#ifndef __" (file-name-sans-extension
+		  (file-name-nondirectory (buffer-file-name))) "__" \n
+    "#define __" (file-name-sans-extension
+		  (file-name-nondirectory (buffer-file-name))) "__" \n
+    \n > _ > \n))
+
 ;; rtos-dev-mode: associated with c-mode and gud-mode
-(add-hook 'c-mode-hook 'rtos-dev-mode)
-(add-hook 'gud-mode-hook 'rtos-dev-mode)
+(defun rtos/patch-dev-mode-hooks ()
+  (if rtos-dev-mode
+      (progn
+	(add-hook 'c-mode-hook 'rtos-dev-mode)
+	(add-hook 'gud-mode-hook 'rtos-dev-mode)
+	(auto-insert-mode 1))
+    (remove-hook 'c-mode-hook 'rtos-dev-mode)
+    (remove-hook 'gud-mode-hook 'rtos-dev-mode)
+    (auto-insert-mode -1)))
+(add-hook 'rtos-dev-mode-hook 'rtos/patch-dev-mode-hooks)
 
 (provide 'rtos-dev-mode)
 
