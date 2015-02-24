@@ -7,6 +7,7 @@
 #include "libstd/nexus.h"
 #include "libos/system.h"
 #include "libio/kbd.h"
+#include "libnotify/notify.h"
 
 /* PS1 properties */
 #define SHELL_MAX_PS1_LENGTH 4
@@ -42,7 +43,7 @@ void shell_kill();
 /** Pseudo-ISR used to handle incoming chars from a user over UART.
  * \bug Ambiguity on which uart channel is used for terminal communication.
  */
-void shell_uart0_handler(char);
+void shell_uart0_handler(notification note);
 
 /** Clear \SHELL_BUFFER and reset \SHELL_BUFFER_POSITION */
 void shell_clear_shell_buffer();

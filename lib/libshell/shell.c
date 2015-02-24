@@ -1,6 +1,7 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "shell.h"
 
+#include "libuart/uart.h"
 #include "libhw/hardware.h"
 
 #include "inc/hw_memmap.h"
@@ -26,7 +27,8 @@ void shell_spawn() {
      * see what HAS been used (don't need to initialize), what IS
      * being used (blocked)) */
     /* SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0); */
-    hw_connect(HW_UART, UART0_BASE, shell_uart0_handler);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    hw_subscribe(HW_UART, uart_metadata, shell_uart0_handler);
     shell_set_ps1(SHELL_DEFAULT_PS1);
     shell_clear_shell_buffer();
     shell_print_ps1();
@@ -38,13 +40,16 @@ char* shell_represent() {
     return SHELL_BUFFER;
 }
 
+/* TODO: abstract boilerplate, re: metadata */
 void shell_kill() {
 
-    hw_disconnect(HW_UART, UART0_BASE, shell_uart0_handler);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    hw_unsubscribe(HW_UART, metadata, shell_uart0_handler);
 }
 
-void shell_uart0_handler(char recv) {
+void shell_uart0_handler(notification note) {
 
+    char recv = note._char;
     switch(recv) {
     case SC_CR:
         {   /* TODO: schedule */
@@ -85,7 +90,7 @@ void shell_clear_shell_buffer() {
 
 void shell_print_ps1() {
 
-    uart_send_string(SHELL_PS1);
+    uart_send_string((const char*) SHELL_PS1);
 }
 
 exit_status_t shell_execute_command() {
