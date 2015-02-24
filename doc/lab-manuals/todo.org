@@ -249,7 +249,7 @@ hardware-triggered timer.
 - increment PIDWork (global var) continually
 - reset it to 0 each time you are granted foreground
 - try to maximize high water mark of PIDWork
-*** TODO Task 5 : User interface with a command line interpreter
+*** VERIFY Task 5 : User interface with a command line interpreter
 - use libshell developed in Lab 1
 **** IN-PROGRESS answer esc's questions
 [[../../lib/libshell/shell.c]]
