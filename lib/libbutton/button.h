@@ -13,10 +13,7 @@
 
 /*! Create a hardware_metadata struct named `button_metadata' */
 #define button_metadata_init(_base, _pin, _interrupt)	  \
-  hw_metadata button_metadata;				  \
-  button_metadata.button.base = (memory_address_t) _base; \
-  button_metadata.button.pin = (memory_address_t) _pin;	  \
-  button_metadata.button.int_type = (uint32_t) _interrupt
+  button_metadata_init_(button_metadata, _base, _pin, _interrupt)
 
 #define BUTTON_LEFT          GPIO_PIN_4
 #define BUTTON_RIGHT         GPIO_PIN_0

@@ -38,11 +38,7 @@
 
 /*! Create a \hw_metadata struct named `timer_metadata'. */
 #define timer_metadata_init(_base, _frequency, _interrupt, _periodic) \
-    hw_metadata timer_metadata;                                       \
-    timer_metadata.timer.base = (memory_address_t) _base;	      \
-    timer_metadata.timer.frequency = (uint32_t) _frequency;	      \
-    timer_metadata.timer.interrupt = (uint32_t) _interrupt;	      \
-    timer_metadata.timer.periodic = (uint32_t) _periodic
+    timer_metadata_init_(timer_metadata, _base, _frequency, _interrupt, _periodic)
 
 bool timer_add_interrupt(hw_metadata metadata);
 

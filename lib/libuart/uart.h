@@ -7,15 +7,15 @@
 #define UART_UNUSED            -1
 #define UART_DEFAULT_BAUD_RATE 115200
 
-#define uart_metadata_init(_baud_rate, _channel)		\
-    hw_metadata uart_metadata;					\
-    uart_metadata.uart.baud_rate = (uint32_t) _baud_rate;	\
-    uart_metadata.uart.channel = (memory_address_t) _channel
-
+/*! Create a hardware_metadata struct named _name */
 #define uart_metadata_init_(_name, _baud_rate, _channel) \
     hw_metadata _name;					 \
     _name.uart.baud_rate = (uint32_t) _baud_rate;	 \
     _name.uart.channel = (memory_address_t) _channel
+
+/*! Create a hardware_metadata struct named `uart_metadata' */
+#define uart_metadata_init(_baud_rate, _channel)		\
+    uart_metadata_init_(uart_metadata, _baud_rate, _channel)
 
 /*! Modally set the active uart channel.
  *  \return void

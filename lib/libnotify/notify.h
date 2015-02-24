@@ -43,7 +43,6 @@ typedef struct {
 /*! Create a notification with specified type and value of name
  *  `note'. */
 #define notification_init(_type, _value)	\
-    notification note;				\
-    note._##_type = _value
+    notification_init_(note, _type, _value)
 
 #endif
