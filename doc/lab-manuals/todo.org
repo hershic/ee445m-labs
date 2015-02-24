@@ -217,7 +217,35 @@ hardware-triggered timer.
    hardware?
 
 *Note*: you *must* use 16-bit mode for timer-triggered adc sampling.
-*** TODO Task 4 : CPU Bound task
+*** IN-PROGRESS Task 4 : CPU Bound task
+#+BEGIN_SRC c
+  /* NOTE: this is a rough draft, never compiled, never spell checked */
+  uint32_t PID_RECORD = 0;
+  uint32_t PID_WORK = 0;
+
+  void pid_slave_thread(void) {
+
+    ++PID_WORK;
+  }
+
+  void pid_record_arbiter(void) {
+
+    if(PID_RECORD < PID_WORK) {
+      PID_RECORD = PID_WORK;
+    }
+    /* Sorry Sisyphus */
+    PID_WORK = 0;
+
+    /* os_surrender_context(); */
+  }
+
+  void main(void) {
+
+    os_threading_init();
+    os_add_thread()
+    postpone_death();
+  }
+#+END_SRC
 - increment PIDWork (global var) continually
 - reset it to 0 each time you are granted foreground
 - try to maximize high water mark of PIDWork
