@@ -32,8 +32,6 @@
    unable to be debugged or re-programmed. */
 /* [[http://users.ece.utexas.edu/~valvano/arm/InputOutput_4C123.zip]] */
 
-/* TODO: convert into a modal library */
-
 void button_init(hw_metadata metadata) {
 
     GPIODirModeSet(GPIO_PORTF_BASE, metadata.button.pin, GPIO_DIR_MODE_IN);
@@ -42,7 +40,6 @@ void button_init(hw_metadata metadata) {
     GPIOIntEnable(GPIO_PORTF_BASE, metadata.button.pin);
 }
 
-/* TODO: doxygenize */
 void button_set_interrupt(hw_metadata metadata, memory_address_t buttons) {
 
     memory_address_t base = metadata.button.base;
