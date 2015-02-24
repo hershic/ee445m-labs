@@ -233,6 +233,9 @@ hw_driver* hw_driver_singleton(HW_TYPE type) {
  *                        Interrupt Service Routines                          *
  *----------------------------------------------------------------------------*/
 
+/*! GPIO PortF (includes on-board buttons) isr responsible for
+ *  notifying all subscriptions with information describing the
+ *  interrupt. */
 void GPIOPortF_Handler(void) {
 
     notification note;
