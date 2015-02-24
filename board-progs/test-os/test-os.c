@@ -19,43 +19,75 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/systick.h"
-#include "driverlib/rom.h"
 
 #define HEARTBEAT_MODAL
 
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
-
-#include <sys/stat.h>
+#include "libbutton/button.h"
 
 uint32_t CountPF1 = 0; // number of times thread1 has looped
 uint32_t CountPF2 = 0; // number of times thread2 has looped
 uint32_t CountPF3 = 0; // number of times thread3 has looped
 
+uint32_t which_led = 0;
+
+muscle_t pf1;
+muscle_t pf2;
+muscle_t pf3;
+
+int32_t atom;
+
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
-    while(1) {
-	heart_toggle_();
-	++CountPF1;
-    }
+    heart_toggle_modal(&pf1);
+    ++CountPF1;
+
+    os_remove_thread_and_switch(Thread1);
 }
 
 /*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
 void Thread2(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
-    while(1) {
-	heart_toggle_();
-	++CountPF2;
-    }
+    heart_toggle_modal(&pf2);
+    ++CountPF2;
+
+    os_remove_thread_and_switch(Thread2);
 }
 
 /*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
 void Thread3(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
+    heart_toggle_modal(&pf3);
+    ++CountPF3;
+
+    os_remove_thread_and_switch(Thread3);
+}
+
+void flash_some_led(notification button_bitmask) {
+    void* task;
+
+    switch(which_led) {
+    case 0:
+        task = Thread1;
+        break;
+    case 1:
+        task = Thread2;
+        break;
+    case 2:
+        task = Thread3;
+        break;
+    default:
+        task = Thread1;
+        break;
+    }
+
+    which_led = which_led+1 % 3;
+    atom = StartCritical();
+    os_add_thread(task);
+    EndCritical(atom);
+}
+
+void postpone_death_() {
     while(1) {
-	heart_toggle_();
-	++CountPF3;
     }
 }
 
@@ -66,20 +98,30 @@ int main() {
 
     IntMasterDisable();
 
-    os_threading_init();
-    os_add_thread(Thread1);
-    os_add_thread(Thread2);
-    os_add_thread(Thread3);
-
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 10);
     SysTickEnable();
     SysTickIntEnable();
 
+    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
+    hw_init(HW_BUTTON, button_metadata);
+    hw_subscribe(HW_BUTTON, button_metadata, flash_some_led);
+
+    heart_hew_muscle_(&pf1, GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_hew_muscle_(&pf2, GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_hew_muscle_(&pf3, GPIO_PORTF_BASE, GPIO_PIN_3);
+
+    os_threading_init();
+
+    atom = StartCritical();
+    os_add_thread(postpone_death_);
+    EndCritical(atom);
+
     /* os_trap_ */
+    IntMasterEnable();
     os_launch();
 
     /* PONDER: why do interrupts fire without this? */
-    IntMasterEnable();
     postpone_death();
 }
+

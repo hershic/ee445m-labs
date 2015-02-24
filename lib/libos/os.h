@@ -117,10 +117,14 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task);
 tcb_t* os_add_thread(task_t);
 
 /*! Remove a thread from the queue the schedule will choose from.
- * \param The task to kill. This should be the task that was used to start the thread to remove via \os_add_thread.
+ * \param The task to kill. This should be the task that was used to
+ * start the thread to remove via \os_add_thread.
  * \returns The newly released tcb
  */
 tcb_t* os_remove_thread(task_t);
+
+/*! Remove a thread and trigger the PendSV Handler.  */
+void os_remove_thread_and_switch(task_t task);
 
 /*! Return the tcb used to control the specified task_t.
  * \param The task to lookup the tcb of

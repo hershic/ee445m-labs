@@ -12,10 +12,10 @@
  * interruption.
  * \warning Assumes that an int32t named atom exists in local
  * scope. */
-#define atomic(x) {				\
-    atom = StartCritical();			\
-    x						\
-    EndCritical(atom);				\
+#define atomic(x) {                             \
+    atom = StartCritical();                     \
+    x                                           \
+    EndCritical(atom);                          \
 }
 
 /*! A pointer to a memory location on the ARM Cortex M4. */
