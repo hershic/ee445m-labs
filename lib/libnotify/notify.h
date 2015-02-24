@@ -29,8 +29,8 @@ typedef union {
 /*! Metadata associated with a notification from a general thread to
  *  libhw for transmission to a libhw-managed hardware device. */
 typedef struct {
-    memory_address_t recipient_base;
-    memory_address_t recipient_pin;
+    memory_address_t base;
+    memory_address_t pin;
     NOTIFICATION_TYPE type;
     notification** data;
 } notification_metadata;
