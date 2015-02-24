@@ -29,7 +29,6 @@
  * peripheral drivers. Users should never touch drivers directly but
  * instead rely on libhw's notification system. */
 
-
 /* TODO: integrate ADC lib */
 
 typedef enum {
@@ -78,7 +77,6 @@ typedef uint8_t hw_iterator;
  *  arguments or return a value. */
 /* typedef void (*isr_t)(notification note); */
 
-/* TODO: device-specific metadata like this */
 /*! Maximum number of channels supported by each hardware peripheral  */
 #define HW_DRIVER_MAX_CHANNELS 8
 
@@ -113,12 +111,6 @@ typedef struct {
     hw_driver_init(type, metadata); \
     hw_channel_init(type, metadata)
 
-/*! Return the one hw_driver per hardware device group in use by the
- * TM4C.
- * \param The hardware type to grab a pointer of
- * \returns Pointer to the hw_driver data structure managing \type
- */
-hw_driver* hw_driver_singleton(HW_TYPE);
 
 /*! This function is responsible for enabling the peripherals and
  * internal data strutures used by the specified \hw_group.
@@ -184,6 +176,13 @@ void hw_unsubscribe(HW_TYPE, hw_metadata, void (*isr)(notification note));
  * \returns Index of \raw_channel'channel in \hw_group's data structures
  */
 hw_channel* _hw_get_channel(HW_TYPE, hw_metadata);
+
+/*! Return the one hw_driver per hardware device group in use by the
+ * TM4C.
+ * \param The hardware type to grab a pointer of
+ * \returns Pointer to the hw_driver data structure managing \type
+ */
+hw_driver* hw_driver_singleton(HW_TYPE);
 
 /*! Notify threads subscribed to \channel about an incoming hardware
  * event.
