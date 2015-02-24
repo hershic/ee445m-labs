@@ -22,8 +22,7 @@
 #define timer_metadata_init(_base, _frequency, _interrupt, _periodic) \
     timer_metadata_init_(timer_metadata, _base, _frequency, _interrupt, _periodic)
 
-/*!
- * \brief Schedule a task (function) to be invoked periodically.
+/*! Schedule a task (function) to be invoked periodically.
  * \param Metadata regarding the timer peripheral and isr to use.
  */
 void timer_add_interrupt(hw_metadata);
