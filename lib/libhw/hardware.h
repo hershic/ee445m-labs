@@ -175,15 +175,6 @@ void _hw_subscribe(HW_TYPE, hw_metadata, void (*isr)(notification note), bool);
  */
 void hw_unsubscribe(HW_TYPE, hw_metadata, void (*isr)(notification note));
 
-/*! For internal use only. Convert a memory-mapped address
- * (raw_hw_channel) into an index for hw_driver's internal data
- * structures.
- * \param hw_group The hardware group in question
- * \param channel The specified channel of \hw_group
- * \returns Internal index of channel's first open subscription bucket
- */
-int32_t _hw_channel_to_index();
-
 /*! For internal use only. Take care of the conversion between a
  * memory-mapped (raw) hw address and the index of said peripheral
  * channel in the memory banks of libhw's device-specific data
