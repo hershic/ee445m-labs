@@ -12,7 +12,7 @@
     hw_metadata _name;					 \
     _name.uart = (hw_uart_metadata) {			 \
         .baud_rate = (uint32_t) _baud_rate,		 \
-        .channel = (memory_address_t) _channel		 \
+        .channel   = (memory_address_t) _channel	 \
     }
 
 /*! Create a hardware_metadata struct named `uart_metadata' */
