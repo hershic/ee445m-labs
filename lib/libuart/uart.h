@@ -4,7 +4,9 @@
 
 #include <stdbool.h>
 
-#define UART_UNUSED -1
+#define UART_UNUSED            -1
+#define UART_DEFAULT_BAUD_RATE 115200
+
 #define uart_metadata_init(_baud_rate, _channel) \
     hw_metadata uart_metadata;			 \
     uart_metadata.uart.baud_rate = _baud_rate;	 \
