@@ -28,16 +28,15 @@
 
 #include <sys/stat.h>
 
-uint32_t CountPF1 = 0; // number of times thread1 has looped
-uint32_t CountPF2 = 0; // number of times thread2 has looped
-uint32_t CountPF3 = 0; // number of times thread3 has looped
+uint32_t PIDWork = 0; // number of times thread1 has looped
 
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     while(1) {
-	heart_toggle_();
-	++CountPF1;
+        heart_toggle_();
+        ++PIDWork;
+        heart_toggle_();
     }
 }
 
@@ -45,20 +44,12 @@ void Thread1(void){
 void Thread2(void){
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     while(1) {
-	heart_toggle_();
-	++CountPF2;
+        heart_toggle_();
+        PIDWork = 0;
     }
 }
 
 /*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
-void Thread3(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
-    while(1) {
-	heart_toggle_();
-	++CountPF3;
-    }
-}
-
 int main() {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
@@ -69,7 +60,6 @@ int main() {
     os_threading_init();
     os_add_thread(Thread1);
     os_add_thread(Thread2);
-    os_add_thread(Thread3);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 10);
