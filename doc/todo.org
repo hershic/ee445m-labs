@@ -150,7 +150,7 @@ http://hershic.github.io/ee445m-labs/
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
 * [6/14] dev environment
-** [2/4] rtos-dev-mode
+** [2/5] rtos-dev-mode
 *** TODO Doxymacs
 [[http://doxymacs.sourceforge.net/]]
 
