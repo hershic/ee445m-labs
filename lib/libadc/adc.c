@@ -9,6 +9,8 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/adc.h"
 
+#include "libstd/nexus.h"
+
 #define MAX_NUM_SAMPLES 10
 #define NUM_ADC_CHANNELS 11
 
@@ -60,44 +62,19 @@ uint32_t adc_open(uint32_t channel) {
 
 bool encode_adc_channel(uint32_t channel, uint32_t* encoded_channel) {
     switch (channel) {
-    case 0:
-        *encoded_channel = ADC_CTL_CH0;
-        break;
-    case 1:
-        *encoded_channel = ADC_CTL_CH1;
-        break;
-    case 2:
-        *encoded_channel = ADC_CTL_CH2;
-        break;
-    case 3:
-        *encoded_channel = ADC_CTL_CH3;
-        break;
-    case 4:
-        *encoded_channel = ADC_CTL_CH4;
-        break;
-    case 5:
-        *encoded_channel = ADC_CTL_CH5;
-        break;
-    case 6:
-        *encoded_channel = ADC_CTL_CH6;
-        break;
-    case 7:
-        *encoded_channel = ADC_CTL_CH7;
-        break;
-    case 8:
-        *encoded_channel = ADC_CTL_CH8;
-        break;
-    case 9:
-        *encoded_channel = ADC_CTL_CH9;
-        break;
-    case 10:
-        *encoded_channel = ADC_CTL_CH10;
-        break;
-    case 11:
-        *encoded_channel = ADC_CTL_CH11;
-        break;
-    default:
-        return false;
+    case 0: *encoded_channel = ADC_CTL_CH0; break;
+    case 1: *encoded_channel = ADC_CTL_CH1; break;
+    case 2: *encoded_channel = ADC_CTL_CH2; break;
+    case 3: *encoded_channel = ADC_CTL_CH3; break;
+    case 4: *encoded_channel = ADC_CTL_CH4; break;
+    case 5: *encoded_channel = ADC_CTL_CH5; break;
+    case 6: *encoded_channel = ADC_CTL_CH6; break;
+    case 7: *encoded_channel = ADC_CTL_CH7; break;
+    case 8: *encoded_channel = ADC_CTL_CH8; break;
+    case 9: *encoded_channel = ADC_CTL_CH9; break;
+    case 10: *encoded_channel = ADC_CTL_CH10; break;
+    case 11: *encoded_channel = ADC_CTL_CH11; break;
+    default: postpone_death();
     }
     return true;
 }
@@ -111,7 +88,7 @@ uint32_t adc_collect(uint32_t channel, uint32_t frequency,
 
         /* low priority */
         /* timer_add_periodic_thread(do_adc_func, frequency, timer_peripheral); */
-	while (!do_adc_func()) {}
+        while (!do_adc_func()) {}
         return 1;
     }
     return 0;

@@ -9,6 +9,7 @@
  * inside of a \notification union. */
 typedef enum {
     NOTIFY_INT,
+    NOTIFY_UINT,
     NOTIFY_DOUBLE,
     NOTIFY_CHAR,
     NOTIFY_STRING,
@@ -20,10 +21,10 @@ typedef enum {
  * consistent protytype, and a simplified notification-passing
  * system. */
 typedef union {
-    int    _int;
-    double _double;
-    char   _char;
-    char   _string[16];
+    int32_t  _int;
+    uint32_t _uint;
+    char     _char;
+    char     _string[16];
 } notification;
 
 /*! Metadata associated with a notification from a general thread to
@@ -37,12 +38,12 @@ typedef struct {
 
 /*! Create a notification with specified name, type and value. */
 #define notification_init_(_name, _type, _value) \
-    notification _name;				 \
+    notification _name;                          \
     _name._##_type = _value
 
 /*! Create a notification with specified type and value of name
  *  `note'. */
-#define notification_init(_type, _value)	\
+#define notification_init(_type, _value)        \
     notification_init_(note, _type, _value)
 
 #endif
