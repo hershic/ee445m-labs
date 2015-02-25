@@ -18,10 +18,10 @@ void os_threading_init() {
     os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
-	CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
+        CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
-	OS_THREADS[i].entry_point = NULL;
+        OS_THREADS[i].entry_point = NULL;
         OS_THREADS[i].status = THREAD_DEAD;
         OS_THREADS[i].sleep_timer = 0;
     }
@@ -34,19 +34,19 @@ tcb_t* os_add_thread(task_t task) {
 
     /* 1. Disable interrupts and save the priority mask */
     atomic (
-	/* 2. Pop the task from the dead_thread pile and add it to the
-	 * list of running threads. */
-	thread_to_add = os_dead_threads;
-	CDL_DELETE(os_dead_threads, thread_to_add);
-	CDL_PREPEND(os_running_threads, thread_to_add);
+        /* 2. Pop the task from the dead_thread pile and add it to the
+         * list of running threads. */
+        thread_to_add = os_dead_threads;
+        CDL_DELETE(os_dead_threads, thread_to_add);
+        CDL_PREPEND(os_running_threads, thread_to_add);
 
-	/* 3. Set the initial stack contents for the new thread. */
-	os_reset_thread_stack(thread_to_add, task);
+        /* 3. Set the initial stack contents for the new thread. */
+        os_reset_thread_stack(thread_to_add, task);
 
-	/* 4. Set metadata for this thread's TCB. */
-	thread_to_add->status = THREAD_RUNNING;
-	thread_to_add->sleep_timer = 0;
-	thread_to_add->entry_point = task;
+        /* 4. Set metadata for this thread's TCB. */
+        thread_to_add->status = THREAD_RUNNING;
+        thread_to_add->sleep_timer = 0;
+        thread_to_add->entry_point = task;
     )
     /* 5. Return. */
     return thread_to_add;
@@ -91,9 +91,9 @@ tcb_t* os_tcb_of(const task_t task) {
 
     int32_t i;
     for(i=0; i<OS_MAX_THREADS; ++i) {
-	if (task == OS_THREADS[i].entry_point) {
-	    return &OS_THREADS[i];
-	}
+        if (task == OS_THREADS[i].entry_point) {
+            return &OS_THREADS[i];
+        }
     }
     /* TODO: create a compile-time flag to catch all scary
      * situations, or let them go. #DANGER_ZONE */
@@ -120,6 +120,12 @@ void os_launch() {
     asm volatile("MRS R0, CONTROL");
     asm volatile("ORR R0, R0, #2");
     asm volatile("MSR CONTROL, R0");
+
+    /* Instruction Synchronization Barrier: recommended by ARM after
+       setting the CONTROL register. It makes sure all subsequent
+       instructions use the new stack pointer value by flushing the
+       pipe. */
+    asm volatile("ISB")
 
     asm volatile("POP     {R4-R11}");
 
