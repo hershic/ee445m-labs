@@ -24,6 +24,7 @@
 #define HEARTBEAT_MODAL
 
 #include "libos/os.h"
+#include "libbutton/button.h"
 #include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
@@ -33,29 +34,20 @@ uint32_t CountPF2 = 0; // number of times thread2 has looped
 uint32_t CountPF3 = 0; // number of times thread3 has looped
 
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
-void Thread1(void){
+void Thread1(){
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
-    while(1) {
-	heart_toggle_();
-	++CountPF1;
-    }
+    heart_toggle_();
+    ++CountPF1;
+    os_remove_thread(Thread1);
+    while (1) {}
 }
 
 /*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
-void Thread2(void){
+void postpone_suicide(void){
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
-    while(1) {
-	heart_toggle_();
-	++CountPF2;
-    }
-}
-
-/*! A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. */
-void Thread3(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
-    while(1) {
-	heart_toggle_();
-	++CountPF3;
+    while (1) {
+        heart_toggle_();
+        ++CountPF2;
     }
 }
 
@@ -67,9 +59,15 @@ int main() {
     IntMasterDisable();
 
     os_threading_init();
-    os_add_thread(Thread1);
-    os_add_thread(Thread2);
-    os_add_thread(Thread3);
+    /* os_add_thread(Thread1); */
+    /* os_add_thread(Thread2); */
+    /* os_add_thread(Thread3); */
+
+    os_add_thread(postpone_suicide);
+
+    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
+    hw_init(HW_BUTTON, button_metadata);
+    hw_subscribe(HW_BUTTON, button_metadata, Thread1);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 10);
