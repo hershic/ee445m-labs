@@ -36,14 +36,15 @@ void button_init(hw_metadata metadata) {
 
     GPIODirModeSet(GPIO_PORTF_BASE, metadata.button.pin, GPIO_DIR_MODE_IN);
     GPIOPadConfigSet(GPIO_PORTF_BASE, metadata.button.pin,
-		     GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+                     GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
     GPIOIntEnable(GPIO_PORTF_BASE, metadata.button.pin);
 }
 
 /* TODO: ditch the \buttons, use information from \metadata. */
-void button_set_interrupt(hw_metadata metadata, memory_address_t buttons) {
+void button_set_interrupt(hw_metadata metadata) {
 
     memory_address_t base = metadata.button.base;
+    memory_address_t buttons = metadata.button.pin;
     int32_t interrupt_type = metadata.button.int_type;
 
     /* TODO: parametrize (INT_GPIOF_TM4C123) */

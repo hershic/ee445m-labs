@@ -27,8 +27,8 @@
 #include "libtimer/timer.h"
 #include "libhw/hardware.h"
 
-static uint32_t button_left_pressed = 0;
-static uint32_t button_right_pressed = 0;
+static uint32_t button_left_pressed;
+static uint32_t button_right_pressed;
 
 void update_pid(notification button_bitmask) {
     /* What was that technique we learned in 460n to avoid a bunch of
@@ -41,25 +41,21 @@ void update_pid(notification button_bitmask) {
     }
 }
 
-void button_debounce_end(notification bitmask) {
-
-    if (bitmask._int & BUTTON_LEFT) {
-        button_left_pressed++;
-    }
-    if (bitmask._int & BUTTON_RIGHT) {
-        button_right_pressed++;
-    }
-   /* receiving end; populates some buffer or releases some semaphore */
-}
-
 /* what the btn handler calls */
 void button_debounce_start() {
     timer_metadata_init(TIMER0_BASE, 1 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
     hw_init(HW_TIMER, timer_metadata);
-    hw_subscribe(HW_TIMER, timer_metadata, button_debounce_end);
+    hw_subscribe(HW_TIMER, timer_metadata, update_pid);
+}
+
+void postpone_suicide() {
+    while (1) {}
 }
 
 int main() {
+
+    button_left_pressed = 0;
+    button_right_pressed = 0;
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
@@ -74,5 +70,5 @@ int main() {
 
     IntMasterEnable();
 
-    postpone_death();
+    postpone_suicide();
 }
