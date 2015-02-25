@@ -205,7 +205,7 @@ the select button. This task will create a foreground thread that:
 
 Note: if the user pushes the button faster than once every two
 seconds, multiple foreground threads will exist simultaneously.
-*** TODO Task 3 : Hardware triggered data acquisition and FFT
+*** IN-PROGRESS Task 3 : Hardware triggered data acquisition and FFT
 This task will sample the ADC every 400 Hz (2.5 ms) via a
 hardware-triggered timer.
 
@@ -217,11 +217,11 @@ hardware-triggered timer.
    hardware?
 
 *Note*: you *must* use 16-bit mode for timer-triggered adc sampling.
-*** TODO Task 4 : CPU Bound task
+*** IN-PROGRESS Task 4 : CPU Bound task
 - increment PIDWork (global var) continually
 - reset it to 0 each time you are granted foreground
 - try to maximize high water mark of PIDWork
-*** TODO Task 5 : User interface with a command line interpreter
+*** IN-PROGRESS Task 5 : User interface with a command line interpreter
 - use libshell developed in Lab 1
 **** IN-PROGRESS answer esc's questions
 [[../../lib/libshell/shell.c]]
