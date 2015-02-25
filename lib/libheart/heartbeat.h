@@ -27,19 +27,21 @@
 
 /*! The on-board LED colloquially referred to as the 'heart.' Does
  *  every computer have one? */
-#define HEART_MUSCLE GPIO_PIN_2
+#define HEART_RED GPIO_PIN_1
+#define HEART_BLUE GPIO_PIN_2
+#define HEART_GREEN GPIO_PIN_3
 
-/*! The GPIO base where the \HEART_MUSCLE may be found. Otherwise
+/*! The GPIO base where the \HEART_BLUE may be found. Otherwise
  *  knows as a subdivision of the ventral body cavity which houses the
  *  heart. */
 #define THORACIC_CAVITY GPIO_PORTF_BASE
 
 /*--------------------------------------------------------------*
- * Begin non-modal API -- implicit subject is \HEART_MUSCLE.    *
+ * Begin non-modal API -- implicit subject is \HEART_BLUE.    *
  *--------------------------------------------------------------*/
 
 /*!
- *  \brief Initialize \HEART_MUSCLE for visible transformation.
+ *  \brief Initialize \HEART_BLUE for visible transformation.
  *  \returns void
  *  \ingroup Heart
  */
@@ -51,25 +53,25 @@ void heart_init() {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(THORACIC_CAVITY, HEART_MUSCLE);
+    GPIOPinTypeGPIOOutput(THORACIC_CAVITY, HEART_BLUE);
 #endif
 }
 
 /*!
- * \brief Return the status of \HEART_MUSCLE.
- * \returns The current status of \HEART_MUSCLE.
+ * \brief Return the status of \HEART_BLUE.
+ * \returns The current status of \HEART_BLUE.
  * \ingroup Heart
  */
 inline
 int32_t heart_status() {
 
 #if !(defined(PROFILING_DISABLE))
-    GPIOPinRead(THORACIC_CAVITY, HEART_MUSCLE);
+    GPIOPinRead(THORACIC_CAVITY, HEART_BLUE);
 #endif
 }
 
 /*!
- *  \brief Turn \HEART_MUSCLE off.
+ *  \brief Turn \HEART_BLUE off.
  *  \returns void
  *  \ingroup Heart
  */
@@ -77,12 +79,12 @@ inline
 void heart_off() {
 
 #if !(defined(PROFILING_DISABLE))
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 0);
+    GPIOPinWrite(THORACIC_CAVITY, HEART_BLUE, 0);
 #endif
 }
 
 /*!
- *  \brief Turn \HEART_MUSCLE on.
+ *  \brief Turn \HEART_BLUE on.
  *  \returns void
  *  \ingroup Heart
  */
@@ -90,12 +92,12 @@ inline
 void heart_on() {
 
 #if !(defined(PROFILING_DISABLE))
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, 1);
+    GPIOPinWrite(THORACIC_CAVITY, HEART_BLUE, 1);
 #endif
 }
 
 /*!
- *  \brief Toggle \HEART_MUSCLE once.
+ *  \brief Toggle \HEART_BLUE once.
  *  \details end_state = ~starting_state
  *  \returns void
  *  \ingroup Heart
@@ -104,12 +106,12 @@ inline
 void heart_toggle() {
 
 #if !(defined(PROFILING_DISABLE))
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
+    GPIOPinWrite(THORACIC_CAVITY, HEART_BLUE, heart_status() ^ HEART_BLUE);
 #endif
 }
 
 /*!
- *  \brief Toggle \HEART_MUSCLE twice.
+ *  \brief Toggle \HEART_BLUE twice.
  *  \details end_state = starting_state
  *  \returns void
  *  \ingroup Heart
@@ -118,8 +120,8 @@ inline
 void heart_beat() {
 
 #if !(defined(PROFILING_DISABLE))
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
-    GPIOPinWrite(THORACIC_CAVITY, HEART_MUSCLE, heart_status() ^ HEART_MUSCLE);
+    GPIOPinWrite(THORACIC_CAVITY, HEART_BLUE, heart_status() ^ HEART_BLUE);
+    GPIOPinWrite(THORACIC_CAVITY, HEART_BLUE, heart_status() ^ HEART_BLUE);
 #endif
 }
 
@@ -129,7 +131,7 @@ void heart_beat() {
  */
 #define heart_wrap(x) \
     heart_beat();     \
-    x		      \
+    x                 \
     heart_toggle();   \
 
 /*--------------------------------------------------------------*
@@ -149,7 +151,7 @@ void heart_beat() {
  */
 #define heart_wrap_(x) \
     heart_beat_();     \
-    x		       \
+    x                  \
     heart_toggle_();   \
 
 /*! \brief An alias for \heart_init_. I like the imagery. */
@@ -277,8 +279,8 @@ void heart_toggle_modal(muscle_t* ancillary_muscle) {
 
 #if !(defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+                 heart_status_(ancillary_muscle->base,
+                               ancillary_muscle->pin) ^ ancillary_muscle->pin);
 #endif
 }
 
@@ -303,11 +305,11 @@ void heart_beat_modal(muscle_t* ancillary_muscle) {
 
 #if !(defined(PROFILING_DISABLE))
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+                 heart_status_(ancillary_muscle->base,
+                               ancillary_muscle->pin) ^ ancillary_muscle->pin);
     GPIOPinWrite(ancillary_muscle->base, ancillary_muscle->pin,
-		 heart_status_(ancillary_muscle->base,
-			       ancillary_muscle->pin) ^ ancillary_muscle->pin);
+                 heart_status_(ancillary_muscle->base,
+                               ancillary_muscle->pin) ^ ancillary_muscle->pin);
 #endif
 }
 
@@ -358,8 +360,8 @@ void heart_beat_() {
  */
 inline
 muscle_t* heart_hew_muscle_(muscle_t*        muscle,
-			    memory_address_t base,
-			    memory_address_t pin) {
+                            memory_address_t base,
+                            memory_address_t pin) {
 
 #if !(defined(PROFILING_DISABLE))
     /* Initialize the muscle_t data structure */
