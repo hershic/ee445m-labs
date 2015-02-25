@@ -21,9 +21,10 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/rom.h"
 
-#include "libdisplay/ST7735.h"
-
 #include <sys/stat.h>
+
+#include "libdisplay/ST7735.h"
+#include "libstd/nexus.h"
 
 /*! Accept input on UART 0, and parrot input back out to UART 0.
  * \return Exit status
@@ -57,6 +58,5 @@ int main(void) {
     ST7735_OutString2("test on screen 1\n");
     ST7735_OutString2("test on screen 1\n");
 
-    /* Postpone death */
-    while (1) {}
+    postpone_death();
 }

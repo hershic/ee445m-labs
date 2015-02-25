@@ -19,6 +19,8 @@
 #include "driverlib/rom.h"
 
 #include "libadc/adc.h"
+#include "libstd/nexus.h"
+#include "libheart/heartbeat.h"
 
 #define ADC_DATA_BUFFER_LEN 3
 static uint32_t adc_data_buffer[ADC_DATA_BUFFER_LEN];
@@ -32,8 +34,7 @@ int main(void) {
     /* Enable the GPIO port that is used for the on-board LED. */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
-    /* Enable the GPIO pins for the LED (PF2). */
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init();
 
     /* Enable TIMER2 (we are using) */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
@@ -45,13 +46,13 @@ int main(void) {
     adc_init();
 
     adc_open(0);
-    adc_collect(0, 10, &adc_data_buffer[0], TIMER0_BASE);
+    adc_collect(0, 10, adc_data_buffer, TIMER0_BASE);
 
-    /* Trigger an initial ADC sequence. As far as I know this is
-       required for proper init. */
-    ADCProcessorTrigger(ADC0_BASE, 0);
+    heart_wrap (
+      /* Trigger an initial ADC sequence. As far as I know this is
+	 required for proper init. */
+      ADCProcessorTrigger(ADC0_BASE, 0);
+      )
 
-    /* Do nothing */
-    while (1) {}
-
+    postpone_death();
 }

@@ -194,7 +194,7 @@ intervals.
 In Labs 2 and 3, f_s is 2 kHz.
 
 I don't know what the fuck this page is asking me to do.
-*** TODO Task 2 : Aperiodic task triggered by the select switch
+*** IN-PROGRESS Task 2 : Aperiodic task triggered by the select switch
 A background thread =ButtonPush= should be run whenever the user touches
 the select button. This task will create a foreground thread that:
 
