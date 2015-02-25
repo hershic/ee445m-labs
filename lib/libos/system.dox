@@ -1,12 +1,12 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /*!
  * \brief     Invoke system calls
- * \deatils  Every language offers a 'system' call -- pass it a string
+ * \details   Every language offers a 'system' call -- pass it a string
  * and the system interprets it. This is that library for this RTOS.
  * \author    Eric Crosson
  * \version   0.1
  * \date      2014
  * \pre       None
- * \copyright GNU Public License.
+ * \copyright GNU Public License
  * \addtogroup System System-interaction calls
  */
