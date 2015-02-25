@@ -8,6 +8,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/*! \addtogroup Mutex
+ *  @{
+ */
+
+
 /*! Implements a simple spinlock-based locking mechanism.
  *  \param Block until this value is nonzero.
  */
@@ -35,5 +40,9 @@ void sem_post(sem_t*);
  *  \param The semaphore to wait on (block).
  */
 void sem_wait(sem_t*);
+
+/*! Close doxygen group
+ * @}
+ */
 
 #endif  /* __SEMAPHORE__ */

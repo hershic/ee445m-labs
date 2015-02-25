@@ -6,6 +6,10 @@
 #include <stdbool.h>
 #include "libstd/nexus.h"
 
+/*! \addtogroup System
+ * @{
+ */
+
 /** Maximum length of a callable command. */
 #define SYSTEM_MAX_COMMAND_NAME_LENGTH 16
 
@@ -55,5 +59,9 @@ exit_status_t system_exec(const char*, const char**);
 /** For internal use only. This function returns a pointer to the
  * \system_command registered to the command name \command_name. */
 system_command* _system_command_from_name(const char* command_name);
+
+/*! Close doxygen group
+ * @}
+ */
 
 #endif

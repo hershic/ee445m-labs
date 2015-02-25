@@ -11,6 +11,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/*! \addtogroup OS
+ * @{
+ */
+
 /*! Maximum number of concurrent threads */
 #define OS_MAX_THREADS  4
 
@@ -153,7 +157,7 @@ tcb_t* os_next_dead_thread();
  */
 void os_threading_init();
 
-/* TODO: doxygenize */
+/*! Get the thread id of the current running thread. */
 int32_t os_running_thread_id();
 
 /*! Launches the operating system.
@@ -163,7 +167,15 @@ int32_t os_running_thread_id();
  */
 void os_launch();
 
-/* TODO: doxygenize */
+/*! Alias to \os_suspend, a name chosen by the class administrators. */
+#define os_surrender_context()
+
+/*! Surrender context of the currently executing thread and allow the
+ *  OS to switch context to the next running thread. */
 tcb_t* os_suspend();
+
+/*! Close doxygen group
+ * @}
+ */
 
 #endif
