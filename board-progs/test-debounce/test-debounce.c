@@ -36,10 +36,8 @@ static uint32_t button_debounced_mailbox;
 static sem_t button_debounced_sem;
 
 void button_debounce_end(notification button_notification) {
-    /* What was that technique we learned in 460n to avoid a bunch of
-     branches? cond && action*/
 
-    button_debounced_mailbox = *(button_notification.raw_data);
+    button_debounced_mailbox = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
     sem_post(&button_debounced_sem);
 }
 
@@ -61,12 +59,10 @@ void postpone_suicide() {
 
         /* blocks */
         sem_wait(&button_debounced_sem);
-        /* if (*button_debounced_data & BUTTONS_BOTH) { */
+        if (*button_debounced_data & BUTTON_LEFT) {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1 ^
                          GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-        /* } */
-
-
+        }
     }
 }
 
