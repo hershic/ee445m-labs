@@ -30,9 +30,11 @@ jenkins, travis
 - Wpacked
 - Winline
 
-* [5/19] lib
+* [6/20] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
+** [0/1] adc
+- [ ] fix all the shit, hopper is exploding in her grave
 ** [1/2] heart
 *** DONE modalize
 - [X] determine the thread_id from os_running_threads' tcb
@@ -81,8 +83,11 @@ performance is demanded.
   - [X] interrupt control
   - [ ] read value
   - [ ] debounce
-** [0/1] SysTick
-*** TODO Initialization macro
+** [1/1] SysTick
+Systick is currently used to schedule =PendSV_Handler= context switches,
+so it cannot be used for anything else. It should not be exposed via
+an interface
+*** CANCELED Initialization macro
 convert this code into a single call that is readable, i.e. you can
 immediately tell to what frequency/period the SysTick will interrupt.
 #+BEGIN_SRC c :tangle no

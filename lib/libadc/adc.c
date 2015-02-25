@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #include "adc.h"
 
 #include "inc/hw_memmap.h"
@@ -12,10 +13,7 @@
 #define NUM_ADC_CHANNELS 11
 
 /* global buffers */
-uint32_t adc_sample_buffer[NUM_ADC_CHANNELS];
-uint32_t adc_max_set_samples_per_channel[NUM_ADC_CHANNELS];
-uint32_t adc_current_samples_per_channel[NUM_ADC_CHANNELS];
-uint8_t adc_active_scoreboard[NUM_ADC_CHANNELS];
+uint32_t* adc_sample_buffer;
 
 /* TODO: Need to be able to init the adc for any combination of ports and pins */
 void adc_init(void) {
@@ -43,12 +41,9 @@ void adc_init(void) {
 
     ADCSequenceStepConfigure(ADC0_BASE, 0, 2, ADC_CTL_CH2 | ADC_CTL_IE |
                              ADC_CTL_END);
+
     /* Enable the sequence but do not start it yet. */
     ADCSequenceEnable(ADC0_BASE, 0);
-
-    for (i=0; i<NUM_ADC_CHANNELS; ++i) {
-        adc_active_scoreboard[i] = false;
-    }
 }
 
 uint32_t adc_open(uint32_t channel) {
@@ -108,32 +103,33 @@ bool encode_adc_channel(uint32_t channel, uint32_t* encoded_channel) {
 }
 
 uint32_t adc_collect(uint32_t channel, uint32_t frequency,
-                     unsigned long buffer[], uint32_t timer_peripheral) {
+                     uint32_t buffer[], uint32_t timer_peripheral) {
     uint32_t encoded_channel;
     if (encode_adc_channel(channel, &encoded_channel)) {
 
-        adc_sample_buffer[channel] = (int32_t)buffer;
+        adc_sample_buffer = buffer;
 
         /* low priority */
         /* timer_add_periodic_thread(do_adc_func, frequency, timer_peripheral); */
+	while (!do_adc_func()) {}
         return 1;
     }
     return 0;
 }
 
 /* TODO: Need to be able to populate many subscribers' data into their respective arrays */
-void do_adc_func() {
+uint32_t do_adc_func() {
 
+    ADCProcessorTrigger(ADC0_BASE, 0);
     uint32_t status = ADCIntStatus(ADC0_BASE, 0, false);
     if (status != 0) {
 
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
         /* Clear the ADC interrupt. */
         ADCIntClear(ADC0_BASE, 0);
 
         /* Read the data and trigger a new sample request. */
         /* ADCSequenceDataGet(ADC0_BASE, 0, &adc_channel_buffer[0]); */
-        ADCSequenceDataGet(ADC0_BASE, 0, &adc_sample_buffer[0]);
+        ADCSequenceDataGet (ADC0_BASE, 0, adc_sample_buffer);
         ADCProcessorTrigger(ADC0_BASE, 0);
 
         /* TODO: Update our report of the data somehow (whatever
@@ -141,6 +137,7 @@ void do_adc_func() {
            resides in adc_data_buffer ready for copying and
            interpretation. */
     }
+    return status;
 }
 
 void ADC0Seq0_Handler(void) {
