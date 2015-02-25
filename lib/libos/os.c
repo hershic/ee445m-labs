@@ -121,12 +121,6 @@ void os_launch() {
     asm volatile("ORR R0, R0, #2");
     asm volatile("MSR CONTROL, R0");
 
-    /* Instruction Synchronization Barrier: recommended by ARM after
-       setting the CONTROL register. It makes sure all subsequent
-       instructions use the new stack pointer value by flushing the
-       pipe. */
-    asm volatile("ISB")
-
     asm volatile("POP     {R4-R11}");
 
     asm volatile("POP     {LR}");

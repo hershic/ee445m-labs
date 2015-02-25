@@ -22,21 +22,22 @@
 #include "driverlib/rom.h"
 
 #define HEARTBEAT_MODAL
+#define PROFILING_DISABLE
 
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
-uint32_t PIDWork = 0; // number of times thread1 has looped
+static uint32_t pidwork = 0; // number of times thread1 has looped
+static uint32_t highest_pidwork = 0;
 
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     while(1) {
-        heart_toggle_();
-        ++PIDWork;
-        heart_toggle_();
+        ++pidwork;
+        heart_beat_();
     }
 }
 
@@ -45,7 +46,10 @@ void Thread2(void){
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     while(1) {
         heart_toggle_();
-        PIDWork = 0;
+        if (highest_pidwork < pidwork) {
+            highest_pidwork = pidwork;
+        }
+        pidwork = 0;
     }
 }
 
