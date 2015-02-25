@@ -32,9 +32,9 @@ uint32_t CountPF3 = 0; // number of times thread3 has looped
 
 uint32_t which_led = 0;
 
-muscle_t pf1;
-muscle_t pf2;
-muscle_t pf3;
+static muscle_t pf1;
+static muscle_t pf2;
+static muscle_t pf3;
 
 int32_t atom;
 
@@ -86,6 +86,9 @@ void flash_some_led(notification button_bitmask) {
 
 void postpone_death_() {
     while(1) {
+        heart_toggle_modal(&pf1);
+        heart_toggle_modal(&pf2);
+        heart_toggle_modal(&pf3);
     }
 }
 

@@ -90,7 +90,7 @@ immediately tell to what frequency/period the SysTick will interrupt.
   SysTickEnable();
   SysTickIntEnable();
 #+END_SRC
-** [2/5] OS
+** [3/6] OS
 *** TODO Thread addition macro
 Create a macro to map over supplied threads and do this sort of
 initialization. The only next step is os_launch, which should still be
@@ -111,6 +111,8 @@ called separately (comment created <2015-02-17 Tue>).
 #+END_SRC
 *** TODO define os_surrender_execution
 *** TODO Create semaphore.dox
+*** DONE add utlist APPEND
+    do not change the current linked list pointer on utlist PREPEND
 *** [0/2] define schedulers
 See Rate Monotonic Scheduling for inspiration
 - [ ] round-robin

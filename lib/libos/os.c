@@ -20,7 +20,7 @@ void os_threading_init() {
     os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
-        CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
+        CDL_APPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
         OS_THREADS[i].entry_point = NULL;
@@ -41,7 +41,7 @@ tcb_t* os_add_task(task_t task) {
      * list of running threads. */
     thread_to_add = os_dead_threads;
     CDL_DELETE(os_dead_threads, thread_to_add);
-    CDL_PREPEND(os_running_threads, thread_to_add);
+    CDL_APPEND(os_running_threads, thread_to_add);
 
     /* 3. Set the initial stack contents for the new thread. */
     os_reset_thread_stack(thread_to_add, task);
@@ -69,7 +69,7 @@ tcb_t* os_remove_task(task_t task) {
     thread_to_remove = os_tcb_of(task);
     CDL_DELETE(os_running_threads, thread_to_remove);
     /* Means high tcb_t memory reusability */
-    CDL_PREPEND(os_dead_threads, thread_to_remove);
+    CDL_APPEND(os_dead_threads, thread_to_remove);
 
     /* OPTIONAL TODO: do the check for overwritten stacks as long as
      * we kill every thread in our testing we'll get valuable yet
@@ -97,7 +97,7 @@ void os_remove_thread(tcb_t* thread_to_remove) {
      * list of dead threads. */
     CDL_DELETE(os_running_threads, thread_to_remove);
     /* Means high tcb_t memory reusability */
-    CDL_PREPEND(os_dead_threads, thread_to_remove);
+    CDL_APPEND(os_dead_threads, thread_to_remove);
 
     /* OPTIONAL TODO: do the check for overwritten stacks as long as
      * we kill every thread in our testing we'll get valuable yet
@@ -217,7 +217,7 @@ void SysTick_Handler() {
      * esc's plan:
      * here call a method, something like os_reschedule_tasks
 
-     * - build a new list with CDL_PREPEND, prepending tasks in order
+     * - build a new list with CDL_APPEND, appending tasks in order
      of lowest priority to highest. this will reassign all *next,
      *prev pointers and when we do the unmodified PendSV_Handler
      it'll grab not the round-robin *next ptr but the
@@ -253,22 +253,25 @@ void PendSV_Handler() {
     if (os_remove_this_thread) {
         os_remove_this_thread = false;
         os_remove_thread(os_running_threads);
+        asm volatile("ldr     r2, =os_running_threads");
+        asm volatile("ldr     r1, [r2]");
+    } else {
+
+        /* load the value of os_running_threads */
+        asm volatile("ldr     r2, =os_running_threads");
+
+        /* r3 = *os_running_threads, of thread a */
+        asm volatile("ldr     r3, [r2]");
+
+        /* load the value of os_running_threads->next into r1 */
+        asm volatile("ldr     r1, [r3,#4]");
+
+        /* os_running_threads = os_running_threads->next */
+        asm volatile("str     r1, [r2]");
+
+        /* store the psp from thread a */
+        asm volatile("str     r12, [r3, #0]");
     }
-
-    /* load the value of os_running_threads */
-    asm volatile("ldr     r2, =os_running_threads");
-
-    /* r3 = *os_running_threads, of thread a */
-    asm volatile("ldr     r3, [r2]");
-
-    /* load the value of os_running_threads->next into r1 */
-    asm volatile("ldr     r1, [r3,#4]");
-
-    /* os_running_threads = os_running_threads->next */
-    asm volatile("str     r1, [r2]");
-
-    /* store the psp from thread a */
-    asm volatile("str     r12, [r3, #0]");
 
     /* -------------------------------------------------- */
     /* phase 3: load context                              */
@@ -285,12 +288,6 @@ void PendSV_Handler() {
 
     /* reenable interrupts */
     asm volatile("CPSIE   I");
-
-    /* This never would have worked- can't change CONTROL in this
-     * context */
-    /* asm volatile("MRS R0, CONTROL"); */
-    /* asm volatile("ORR R0, R0, #3"); */
-    /* asm volatile("MSR CONTROL, R0"); */
 
     asm volatile ("bx lr");
 }
