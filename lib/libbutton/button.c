@@ -16,7 +16,6 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 
-
 /* TODO: Currently, only left works (PF4). From Valvano: */
 /* NOTE: The NMI (non-maskable interrupt) is on PF0.  That means that
    the Alternate Function Select, Pull-Up Resistor, Pull-Down

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.7)
 
-set (hw-src hardware.c)
+set (hw-src hardware.c  semaphore.c)
 include_directories(../)
 include_directories(../../)
 include_directories(../../inc)

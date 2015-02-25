@@ -28,19 +28,18 @@
 #include "libtimer/timer.h"
 #include "libbutton/button.h"
 
+#include "semaphore.h"
+
 /* Each driver is statically allocated */
-hw_driver HW_UART_DRIVER;
-hw_driver HW_TIMER_DRIVER;
-hw_driver HW_BUTTON_DRIVER;
+static hw_driver HW_UART_DRIVER;
+static hw_driver HW_TIMER_DRIVER;
+static hw_driver HW_BUTTON_DRIVER;
 
 /******************************************************************************
  * Ye Royale List of TODOs -- keep in mind the One Goal: speed
  *
  * TODO: Determine why this builds without #include "libuart/uart.h"
  * TODO: integrate with libscoreboard (nonexistent)
- *
- * Hershal's
- * TODO: decouple SSI from DisplayDriver (hershal)
  *******************************************************************************/
 
 /* To satisfy our need for speed, we must avoid the branches and
@@ -69,6 +68,7 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
          * convention and initialize these buttons so this code never
          * has to be run again */
         button_init(metadata);
+
         break;
 
     default: postpone_death();
@@ -99,7 +99,7 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
 
     case HW_BUTTON:
         /* TODO: parametrize */
-        button_set_interrupt(metadata, BUTTONS_BOTH);
+        button_set_interrupt(metadata);
         break;
 
     default: postpone_death();
@@ -109,11 +109,13 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
 void _hw_subscribe(HW_TYPE     type,
                    hw_metadata metadata,
                    void (*isr)(notification note),
+                   int32_t*    raw_data,
                    bool        single_shot) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(type, metadata);
     _isr_subscription* new_subscrip = &channel->free_slots[0];
+    new_subscrip->raw_data = raw_data;
 
     CDL_DELETE(channel->free_slots, new_subscrip);
     CDL_PREPEND(channel->full_slots, new_subscrip);
@@ -196,8 +198,15 @@ void GPIOPortF_Handler(void) {
 
     GPIOIntClear(GPIO_PORTF_BASE, BUTTONS_BOTH);
 
-    notification_init(int, GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH));
-    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, NULL);
+    gpio_portf_mailbox =
+        GPIOPinRead(GPIO_PORTF_BASE,
+                    GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 |
+                    GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+
+    notification_init(GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH),
+                      &gpio_portf_mailbox);
+
+    button_metadata_init(GPIO_PORTF_BASE, gpio_portf_mailbox, NULL);
     hw_notify(HW_BUTTON, button_metadata, note);
 }
 
@@ -228,7 +237,8 @@ void UART0_Handler(void) {
     /* Notify every subscribed task of each incoming character
      * (but schedule them for later so we can return from this ISR
      * asap). */
-    note._char = uart_get_char();
+    note.message = uart_get_char();
+    note.raw_data = &uart_uart0_mailbox;
 
     /* TODO: schedule this thread instead of running it immediately */
     hw_notify(HW_UART, metadata, note);
@@ -258,7 +268,8 @@ void UART1_Handler(void) {
     /* Notify every subscribed task of each incoming character
      * (but schedule them for later so we can return from this ISR
      * asap). */
-    note._char = uart_get_char();
+    note.message = uart_get_char();
+    note.raw_data = &uart_uart1_mailbox;
 
     /* TODO: schedule this thread instead of running it immediately */
     hw_notify(HW_UART, metadata, note);
@@ -288,7 +299,8 @@ void UART2_Handler(void) {
     /* Notify every subscribed task of each incoming character
      * (but schedule them for later so we can return from this ISR
      * asap). */
-    note._char = uart_get_char();
+    note.message = uart_get_char();
+    note.raw_data = &uart_uart2_mailbox;
 
     /* TODO: schedule this thread instead of running it immediately */
     hw_notify(HW_UART, metadata, note);
@@ -304,7 +316,7 @@ void UART2_Handler(void) {
 void TIMER0A_Handler(void) {
 
   TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
+  notification_init(1, &binary_notification);
   timer_metadata_init(TIMER0_BASE, NULL, NULL, NULL);
   hw_notify(HW_TIMER, timer_metadata, note);
 }
@@ -318,7 +330,7 @@ void TIMER0A_Handler(void) {
 void TIMER1A_Handler(void) {
 
   TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
+  notification_init(1, &binary_notification);
   timer_metadata_init(TIMER1_BASE, NULL, NULL, NULL);
   hw_notify(HW_TIMER, timer_metadata, note);
 }
@@ -332,7 +344,7 @@ void TIMER1A_Handler(void) {
 void TIMER2A_Handler(void) {
 
   TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
+  notification_init(1, &binary_notification);
   timer_metadata_init(TIMER2_BASE, NULL, NULL, NULL);
   hw_notify(HW_TIMER, timer_metadata, note);
 }

@@ -14,14 +14,14 @@
 void spinlock_until(int32_t*);
 
 /*! Semaphore typedef */
-typedef int32_t sem_t;
+typedef bool sem_t;
 
 /*! Initializes a blocking semaphore
  *  \param The semaphore to initialize.
  *  \param The maximum number of concurrent consumers of
  *  the resource guarded by the semaphore.
  */
-void sem_init(sem_t*, int32_t);
+void sem_init(sem_t*, bool);
 
 /*! Post (release) a semaphore lock. This increments the value of the
  *  semaphore so that additional resources may be consumed.

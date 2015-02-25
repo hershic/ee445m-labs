@@ -90,6 +90,7 @@ typedef uint8_t hw_iterator;
 typedef struct _isr_subscription _isr_subscription;
 struct _isr_subscription {
     bool single_shot_subscription;
+    int32_t* raw_data;
     void (*slot)(notification);
     _isr_subscription* next;
     _isr_subscription* prev;
@@ -107,7 +108,7 @@ typedef struct {
     hw_channel channels[HW_DRIVER_MAX_CHANNELS];
 } hw_driver;
 
-#define hw_init(type, metadata)	    \
+#define hw_init(type, metadata)     \
     hw_driver_init(type, metadata); \
     hw_channel_init(type, metadata)
 
@@ -134,8 +135,8 @@ void hw_channel_init(HW_TYPE, hw_metadata);
  * \param Metadata about the device
  * \param The pseudo-isr to be notified by the hardware driver
  */
-#define hw_subscribe(type, metadata, isr) \
-    _hw_subscribe(type, metadata, isr, false)
+#define hw_subscribe(type, metadata, isr, data)      \
+    _hw_subscribe(type, metadata, isr, data, false)
 
 /*! Subscribe to a single-shot hardware interrupt. This is also called
  *  connecting a signal (the isr to be notified) to a slot (the
@@ -146,8 +147,8 @@ void hw_channel_init(HW_TYPE, hw_metadata);
  * \param Metadata about the device
  * \param The pseudo-isr to be notified by the hardware driver
  */
-#define hw_subscribe_single_shot(type, metadata, isr) \
-    _hw_subscribe(type, metadata, isr, true)
+#define hw_subscribe_single_shot(type, metadata, isr, data)  \
+    _hw_subscribe(type, metadata, isr, data, true)
 
 /*! Subscribe to a hardware interrupt. This is also called connecting
  * a signal (the isr to be notified) to a slot (the hw-triggered
@@ -156,7 +157,8 @@ void hw_channel_init(HW_TYPE, hw_metadata);
  * \param Metadata about the device
  * \param The pseudo-isr to be notified by the hardware driver
  */
-void _hw_subscribe(HW_TYPE, hw_metadata, void (*isr)(notification note), bool);
+void _hw_subscribe(HW_TYPE, hw_metadata, void (*isr)(notification note),
+                   int32_t* raw_data, bool);
 
 /*! Unsubscribe from a hardware interrupt. This is also called
  * disconnecting a signal (the isr in question) from a slot (the
@@ -195,5 +197,14 @@ hw_driver* hw_driver_singleton(HW_TYPE);
  * hardware interrupt event
  */
 void hw_notify(HW_TYPE, hw_metadata, notification);
+
+/*! The mailbox used for timers and "zero-bit" interrupts */
+static uint32_t binary_notification;
+
+static uint32_t gpio_portf_mailbox;
+
+static uint32_t uart_uart0_mailbox;
+static uint32_t uart_uart1_mailbox;
+static uint32_t uart_uart2_mailbox;
 
 #endif

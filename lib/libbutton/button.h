@@ -6,12 +6,12 @@
 #include "libhw/hardware.h"
 
 /*! Create a \hw_metadata struct named \_name. */
-#define button_metadata_init_(_name, _base, _pin, _interrupt)	\
-    hw_metadata _name;						\
-    _name.button = (hw_button_metadata) {			\
-	.base     = (memory_address_t) _base,			\
-	.pin      = (memory_address_t) _pin,			\
-	.int_type = (uint32_t) _interrupt			\
+#define button_metadata_init_(_name, _base, _pin, _interrupt)   \
+    hw_metadata _name;                                          \
+    _name.button = (hw_button_metadata) {                       \
+        .base     = (memory_address_t) _base,                   \
+        .pin      = (memory_address_t) _pin,                    \
+        .int_type = (uint32_t) _interrupt                       \
     }
 
 
@@ -32,6 +32,6 @@ void button_init(hw_metadata);
  * \param Hardware target to subscribe to and isr to invoke upon
  * interrupt
  */
-void button_set_interrupt(hw_metadata, memory_address_t);
+void button_set_interrupt(hw_metadata);
 
 #endif  /* __BUTTON__ */
