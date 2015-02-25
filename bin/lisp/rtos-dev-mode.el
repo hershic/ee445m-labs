@@ -142,6 +142,7 @@ of a `gud-mode' buffer."
 (require 'disaster-arm)
 
 ;; associated mode: auto-insert-mode
+;; TODO; clear other .c, .h, .dox expansions in a less nuclear manner
 (setq auto-insert-alist '())
 (define-auto-insert
   '("\\.\\(c\\)\\'" . "C RTOS skeleton")
@@ -164,7 +165,20 @@ of a `gud-mode' buffer."
 		  (file-name-nondirectory (buffer-file-name))) "__" \n
     "#define __" (file-name-sans-extension
 		  (file-name-nondirectory (buffer-file-name))) "__" \n
-    \n > _ > \n \n "#endif"))
+		  \n > _ > \n \n "#endif"))
+;; (define-auto-insert
+;;   '("\\.\\(dox\\)\\'" . "Doxygen module descriptor file")
+;;   '("Module name: "
+;;     "/* -*- mode: c; c-basic-offset: 4; -*- */" \n
+;;     "/*!"
+;;     " *  \\author     Hershal Bhave" \n
+;;     " *  \\author     Eric Crosson" \n
+;;     " *  \\version    0.1" \n
+;;     " *  \\date       2015" \n
+;;     " *  \\pre        None" \n
+;;     " *  \\copyright  GNU Public License" \n
+;;     " *  \\addtogroup " str > _ > \n
+;;     " */" \n))
 
 ;; rtos-dev-mode: associated with c-mode and gud-mode
 (defun rtos/patch-dev-mode-hooks ()
