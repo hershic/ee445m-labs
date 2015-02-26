@@ -30,7 +30,7 @@ jenkins, travis
 - Wpacked
 - Winline
 
-* [6/20] lib
+* [8/19] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
 ** [0/1] adc
@@ -72,17 +72,17 @@ performance is demanded.
    ,* OPTIONAL because: consider the need 4 speed
    */
 #+END_SRC
-** [4/8] button
+** [5/8] button
 - [ ] modalize
 - [X] refactor
 - [ ] create .dox file
 - [X] button ISR in rtos/generate-interrupts
   doesn't apply since it's a single isr for now
-- [2/4] create API
+- [3/4] create API
   - [X] init
   - [X] interrupt control
   - [ ] read value
-  - [ ] debounce
+  - [X] debounce
 ** [1/1] SysTick
 Systick is currently used to schedule =PendSV_Handler= context switches,
 so it cannot be used for anything else. It should not be exposed via
@@ -95,8 +95,8 @@ immediately tell to what frequency/period the SysTick will interrupt.
   SysTickEnable();
   SysTickIntEnable();
 #+END_SRC
-** [2/5] OS
-*** TODO Thread addition macro
+** [4/5] OS
+*** OPTIONAL Thread addition macro
 Create a macro to map over supplied threads and do this sort of
 initialization. The only next step is os_launch, which should still be
 called separately (comment created <2015-02-17 Tue>).
@@ -115,7 +115,7 @@ called separately (comment created <2015-02-17 Tue>).
   os_get_tcb(idle); // returns the tcb containing idle
 #+END_SRC
 *** TODO define os_surrender_execution
-*** TODO Create semaphore.dox
+*** OPTIONAL Create semaphore.dox
 *** [0/2] define schedulers
 See Rate Monotonic Scheduling for inspiration
 - [ ] round-robin
@@ -126,7 +126,7 @@ a lisp/ruby-style object to accept a block and ensure no interrupts
 fire while it is executing (makes it atomic, wraps with Critical
 sections, something of the sort)
 ** [0/1] Jitter
-*** TODO create library
+*** VERIFY create library
 ** [0/5] Debugging and total authoritarianism enforcement
 *** TODO Check on changed immutables?
 *** TODO create automated testing framework
@@ -156,19 +156,15 @@ urged by lecture <2015-02-17 Tue>
   the data structures:
   - adjacency list
   - adjacency matrix
-** [0/1] Doxygen
-*** TODO add everythig to a group! it's all we have sans c++ inheritance.
-- doxygen groups like TIs libs
-*** [0/3] document preprocessor directives
-[[http://www.stack.nl/~dimitri/doxygen/manual/preprocessing.html][Doxygen Manual: Preprocessing]]
-- [ ] PROFILING_DISABLE
-- [ ] HEARTBEAT_OBEY_PROFILING
-- [ ] HEARTBEAT_MODAL
 ** [1/1] framebuffer
 *** OPTIONAL create flag to enable per-pixel-manipulation
 compile time flag?
-* [2/6] bin
+* [7/14] bin
 ** [1/3] Doxygen
+*** [0/3] document preprocessor directives
+[[http://www.stack.nl/~dimitri/doxygen/manual/preprocessing.html][Doxygen Manual: Preprocessing]]
+- [ ] PROFILING_DISABLE
+- [ ] HEARTBEAT_MODAL
 *** [0/2] highlight special words
 - [ ] immutable
 - [ ] atomic
@@ -183,40 +179,28 @@ http://hershic.github.io/ee445m-labs/
 *** TODO Allow here docs in declare -r statements
 I found a link with possibile insight. It's in one of my compter's
 stack (bookmarks dir- chrome)
-** [0/2] interrupt generator
-*** TODO move templates into a c src dir
+** [1/2] interrupt generator
+*** DONE move templates into a c src dir
 *** TODO integrate template population/insertion to build process
-** [1/1] rtos-dev-mode
-*** DONE auto-insert template for c
-and hook auto-insert-mode from rtos-dev-mode-hook
-* [1/3] dev environment
-** TODO openocd
-*** kill process on output "Info : dropped 'gdb' connection"
-** [0/1] setenv
-*** TODO Clean exit when invoked twice
-currently prints help and exits (seemingly ambiguously)
-** [3/4] emacs
-*** DONE eldoc for our functions
-#+BEGIN_SRC emacs-lisp :tangle no
-  (load "c-eldoc")
-  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-#+END_SRC
-*** DONE disaster for arm
-*** TODO Doxymacs
-[[http://doxymacs.sourceforge.net/]]
-*** OPTIONAL rtos-dev-mode.el
-**** [5/5] gdb helper
-within emacs, an O(1) way to
+** [4/5] rtos-dev-mode
+*** [5/5] gdb helper
+within emacs, a =hydra= to
 - [X] flash
 - [X] reload
 - [X] target
 - [X] continue
 - [X] ocd -d
-**** [3/4] rtos dev environment mode
-- [X] disaster-arm
-- [X] gdb helper
-- [X] c-eldoc
-- [ ] pseudo-reserved word highlighting
+*** DONE disaster-arm
+*** DONE gdb helper
+*** DONE c-eldoc
+*** TODO pseudo-reserved word highlighting
+*** DONE auto-insert template for c
+and hook auto-insert-mode from rtos-dev-mode-hook
+** TODO openocd
+*** kill process on output "Info : dropped 'gdb' connection"
+** [0/1] setenv
+*** TODO Clean exit when invoked twice
+currently prints help and exits (seemingly ambiguously)
 ** DONE cmd to open screen on the M4
 ** TODO Add -Wpedantic
 There have been multiple issues where gcc doesn't check my code,
