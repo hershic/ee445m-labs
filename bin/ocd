@@ -101,13 +101,13 @@ declare -r ocd_openocd="openocd"
 ## @details Users paths to OpenOCD interfaces.
 ## @ingroup OpenOCD
 declare -A ocd_interface_prefixes
-ocd_interface_prefixes=([eric]=/usr/share [hershal]=/opt/local/share)
+ocd_interface_prefixes=([Linux]=/usr/share [Darwni]=/opt/local/share)
 
 ## @var ocd_interface
 ## @brief For internal use only.
 ## @details Path to OpenOCD interface for use on this system.
 ## @ingroup OpenOCD
-declare ocd_interface=${ocd_interface_prefixes[$(whoami)]}/openocd/scripts/board/ek-lm4f120xl.cfg
+declare ocd_interface=${ocd_interface_prefixes[$(uname)]}/openocd/scripts/board/ek-lm4f120xl.cfg
 
 ## @var openocd_target_binary
 ## @brief For internal use only.
@@ -149,8 +149,8 @@ retry() {
 
     until [[ $n -ge $try ]]; do
         "$@" && break || {
-		((n++))
-	    }
+                ((n++))
+            }
     done
 }
 
@@ -176,39 +176,39 @@ openocd_debug() {
 while true; do
     case "$1" in
 
-	-p|--program)
-	    shift
-	    openocd_target_binary="$1"
-	    openocd_args_program="program ${openocd_target_binary} verify reset"
-	    openocd_program
-	    ;;
+        -p|--program)
+            shift
+            openocd_target_binary="$1"
+            openocd_args_program="program ${openocd_target_binary} verify reset"
+            openocd_program
+            ;;
 
-	-d|--debug)
-	    openocd_debug
-	    ;;
+        -d|--debug)
+            openocd_debug
+            ;;
 
-	-t|--timeout)
+        -t|--timeout)
             case "$2" in
                 "") openocd_timeout="" ;;
                 *)  openocd_timeout="timeout $2"
-		    shift
-		    ;;
+                    shift
+                    ;;
             esac
-	    ;;
+            ;;
 
-	-n|--dry_run)
-	    # Transform the context in which openocd is invoked
-	    ocd_execute=echo
-	    ;;
+        -n|--dry_run)
+            # Transform the context in which openocd is invoked
+            ocd_execute=echo
+            ;;
 
-	-h|--help)
-	    echo -e "${HELP_OCD}"
-	    exit
-	    ;;
+        -h|--help)
+            echo -e "${HELP_OCD}"
+            exit
+            ;;
 
-	--)
-	    shift
-	    break ;;
+        --)
+            shift
+            break ;;
     esac
     shift
 done
