@@ -6,7 +6,8 @@ OS Context Switch Speed vs. UART Buffer Size
 | 1000 |  6 |  3 | 0 GOOD! | 0 BAD! |
 
 OS Context Switch Speed vs PIDWork
-|  500 | 925 |
-| 1000 | 461 |
+| 1000 | 1224 |
 
-
+Lowest PIDWork = 1098
+Highest PIDWork = 1224
+Both without gpio pin outputting
