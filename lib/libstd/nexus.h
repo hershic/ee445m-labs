@@ -13,6 +13,7 @@
  * \warning Assumes that an int32t named atom exists in local
  * scope. */
 #define atomic(x) {				\
+    int32_t atom;				\
     atom = StartCritical();			\
     x						\
     EndCritical(atom);				\

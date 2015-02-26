@@ -29,7 +29,6 @@ void os_threading_init() {
 
 tcb_t* os_add_thread(task_t task) {
 
-    int32_t atom;
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
