@@ -1,0 +1,12 @@
+
+OS Context Switch Speed vs. UART Buffer Size
+|      | 32 | 64 | 128     | 256    |
+|------+----+----+---------+--------|
+|  500 |  8 |  4 | 2 BAD!  | 0 BAD! |
+| 1000 |  6 |  3 | 0 GOOD! | 0 BAD! |
+
+OS Context Switch Speed vs PIDWork
+|  500 | 925 |
+| 1000 | 461 |
+
+
