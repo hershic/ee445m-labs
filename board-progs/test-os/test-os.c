@@ -22,30 +22,29 @@
 #include "driverlib/rom.h"
 
 #define HEARTBEAT_MODAL
-#define PROFILING_DISABLE
 
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
 
 #include <sys/stat.h>
 
-static uint32_t pidwork = 0; // number of times thread1 has looped
-static uint32_t highest_pidwork = 0;
+volatile uint32_t pidwork = 0; // number of times thread1 has looped
+volatile uint32_t highest_pidwork = 0;
 
 /*! A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. */
 void Thread1(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     while(1) {
         ++pidwork;
-        heart_beat_();
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
     }
 }
 
 /*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
 void Thread2(void){
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     while(1) {
-        heart_toggle_();
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
         if (highest_pidwork < pidwork) {
             highest_pidwork = pidwork;
         }
@@ -69,6 +68,10 @@ int main() {
     SysTickPeriodSet(SysCtlClockGet() / 10);
     SysTickEnable();
     SysTickIntEnable();
+
+    heart_init();
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
 
     /* os_trap_ */
     os_launch();
