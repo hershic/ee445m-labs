@@ -11,6 +11,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/*! \addtogroup OS
+ * @{
+ */
+
 /*! Maximum number of concurrent threads */
 #define OS_MAX_THREADS  4
 
@@ -160,3 +164,7 @@ void os_launch();
 tcb_t* os_suspend();
 
 #endif
+
+/*! End doxygen group
+ * @}
+ */
