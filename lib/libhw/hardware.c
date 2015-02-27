@@ -112,7 +112,7 @@ void _hw_subscribe(HW_TYPE     type,
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(type, metadata);
-    _isr_subscription* new_subscrip = &channel->free_slots[0];
+    _isr_subscription* new_subscrip = channel->free_slots;
 
     CDL_DELETE(channel->free_slots, new_subscrip);
     CDL_PREPEND(channel->full_slots, new_subscrip);
@@ -126,7 +126,7 @@ void hw_unsubscribe(HW_TYPE type,
 		    void (*isr)(notification note)) {
 
     hw_channel* channel = _hw_get_channel(type, metadata);
-    _isr_subscription* remove = &channel->full_slots[0];
+    _isr_subscription* remove = channel->full_slots;
 
     while(remove->slot != isr) {++remove;}
     CDL_DELETE(channel->full_slots, remove);
@@ -137,7 +137,7 @@ void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
 
     hw_iterator i=0;
     hw_channel* channel = _hw_get_channel(type, metadata);
-    _isr_subscription* subscrip = &channel->full_slots[0];
+    _isr_subscription* subscrip = channel->full_slots;
     _isr_subscription* new_subscrip = NULL;
 
     /* TODO: make this a doubly linked list, not circular */
