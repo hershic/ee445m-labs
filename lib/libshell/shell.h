@@ -9,7 +9,11 @@
 #include "libio/kbd.h"
 #include "libnotify/notify.h"
 
-/* PS1 properties */
+/*! \addtogroup Shell
+ * @{
+ */
+
+/*! PS1 maximum length */
 #define SHELL_MAX_PS1_LENGTH 4
 
 /** Maximum length of shell input per command */
@@ -65,3 +69,7 @@ void shell_set_ps1();
 exit_status_t shell_execute_command();
 
 #endif
+
+/*! End doxygen group
+ * @}
+ */
