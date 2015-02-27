@@ -52,7 +52,7 @@ typedef struct {
 } hw_uart_metadata;
 
 /* todo: add union for timer_frequency or timer_period */
-/*! timer properties */
+/*! Timer properties */
 typedef struct {
     memory_address_t base;
     uint32_t frequency;
@@ -60,7 +60,7 @@ typedef struct {
     uint32_t periodic; /* TIMER_CFG_PERIODIC or TIMER_CFG_ONE_SHOT */
 } hw_timer_metadata;
 
-/*! button properties */
+/*! Button properties */
 typedef struct {
     /* NOTE: base will be used in the future when we have buttons on
        different ports */

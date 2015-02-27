@@ -58,6 +58,7 @@ void uart_send_char(const char text) {
     uart_send_char_(uart_active_metadata, text);
 }
 
+inline
 void uart_send_char_(hw_metadata metadata, const char text) {
 
     UARTCharPut(metadata.uart.channel, text);

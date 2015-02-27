@@ -5,6 +5,10 @@
 #include "libstd/nexus.h"
 #include "libhw/hardware.h"
 
+/*! \addtogroup Button Button I/O library
+ * @{
+ */
+
 /*! Create a \hw_metadata struct named \_name. */
 #define button_metadata_init_(_name, _base, _pin, _interrupt)	\
     hw_metadata _name;						\
@@ -35,3 +39,7 @@ void button_init(hw_metadata);
 void button_set_interrupt(hw_metadata);
 
 #endif  /* __BUTTON__ */
+
+/*! End doxygen group
+ * @}
+ */

@@ -26,6 +26,6 @@
 /*! Schedule a task (function) to be invoked periodically.
  * \param Metadata regarding the timer peripheral and isr to use.
  */
-void timer_add_interrupt(hw_metadata);
+void timer_add_interrupt(hw_metadata metadata);
 
 #endif  /* __TIMER__ */

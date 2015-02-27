@@ -45,8 +45,7 @@ int main(void) {
     heart_init();
 
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    hw_init(HW_UART, uart_metadata);
-    hw_subscribe(HW_UART, uart_metadata, uart_handler);
+    hw_init_and_subscribe(HW_UART, uart_metadata, uart_handler);
 
     IntMasterEnable();
 

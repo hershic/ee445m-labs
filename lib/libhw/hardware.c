@@ -20,7 +20,6 @@
 #include "driverlib/rom.h"
 
 #include "libut/utlist.h"
-#include "libstd/nexus.h"
 #include "libhw/hardware.h"
 
 /* Supported devices */
@@ -51,7 +50,8 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
 
     switch(type) {
     case HW_UART:
-        SysCtlPeripheralEnable(metadata.uart.channel);
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0 +
+	    (metadata.uart.channel - UART0_BASE) / 0x1000);
 	/* todo: parametrize - are they all on A? */
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
         break;
