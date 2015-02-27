@@ -71,14 +71,55 @@
 No hardware design required for this lab.
 
 \section{Software Design}
-{\huge \color{red} TODO}
+Reference \cref{lst:os-implementation,lst:os-header,lst:test-os}. We
+built a hardware abstraction layer (libhw/hardware.c), which we
+determined is fatally flawed when used in an os threading context. For
+example, we had built a generic notification system which notifies a
+given thread about new data. Reference
+\cref{fig:hw-notify-callee,fig:hw-notify-call} for callee and call
+graphs of \verb|hw_notify|. A method interested in a specific hardware
+device's data would call \verb|hw_connect|. Reference
+\cref{fig:hw-connect-call} for a call graph for \verb|hw_connect|. We
+also designed a generic way to initialize a specific output. Reference
+\cref{fig:hw-channel-init-call,fig:hw-driver-init-call} for
+\verb|hw_channel_init| and \verb|hw_driver_init|.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{hw_notify_callee_graph}
+  \caption{\texttt{hw\_notify} callee graph}
+  \label{fig:hw-notify-callee}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{hw_notify_call_graph}
+  \caption{\texttt{hw\_notify} call graph}
+  \label{fig:hw-notify-call}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{hw_connect_call_graph}
+  \caption{\texttt{hw\_connect} call graph}
+  \label{fig:hw-connect-call}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{hw_channel_init_call_graph}
+  \caption{\texttt{hw\_channel\_init} call graph}
+  \label{fig:hw-channel-init-call}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{hw_driver_init_call_graph}
+  \caption{\texttt{hw\_driver\_init} call graph}
+  \label{fig:hw-driver-init-call}
+\end{figure}
 
 \section{Measurement Data}
 \begin{enumerate}
 \item Reference \cref{fig:context-switch,fig:uart-consumer}.
 
-  \graphicspath{../images}
   \begin{figure}
+    \graphicspath{./img}
     \includegraphics{TEK00001}
     \caption{A context switch}
     \label{fig:context-switch}
@@ -245,5 +286,10 @@ $12 = {
   lcd that the Producer will populate the Fifo before the Consumer
   invokes \verb|OS_MailBox_Send|.
 \end{enumerate}
+
+\section{Code}
+\lstinputlisting[language=C,label=lst:os-implementation,caption=\texttt{os.c}]{@doc-staging-area@/os.c}
+\lstinputlisting[language=C,label=lst:os-header,caption=\texttt{os.h}]{@doc-staging-area@/os.h}
+\lstinputlisting[language=C,label=lst:test-os,caption=\texttt{test-os.c}]{@doc-staging-area@/test-os.c}
 
 \end{document}
