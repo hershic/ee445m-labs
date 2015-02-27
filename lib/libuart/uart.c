@@ -1,10 +1,10 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
+#include <stdint.h>
+
 #include "uart.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
-
-#include <stdint.h>
 
 #include "driverlib/pin_map.h"
 #include "driverlib/gpio.h"
@@ -13,36 +13,29 @@
 #include "libstd/nexus.h"
 #include "libnotify/notify.h"
 
+/*! \addtogroup UART
+ * @{
+ */
+
+/*! Buffer for reading and returning chars from hardware uart fifo. */
 static char UART_BUFFER[128];
 
-/*
- * \var long uart_active_channel
- * \brief Allows for modal interaction with uart channels.
- */
-long uart_active_channel = UART_UNUSED;
+/*! Allows for modal interaction with uart channels. */
+hw_metadata uart_active_metadata;
 
+/*! \warning If you set the active uart channel yourself, ensure
+ *  \metadata is already initialized or you're gonna have a bad
+ *  time. */
 inline
-void uart_set_active_channel(const long channel) {
+void uart_set_active_metadata(hw_metadata metadata) {
 
-    uart_active_channel = channel;
-}
-
-inline
-void uart_clear_active_channel() {
-
-    uart_active_channel = UART_UNUSED;
-}
-
-inline
-bool uart_has_active_channel() {
-
-    return uart_active_channel == UART_UNUSED;
+    uart_active_metadata = metadata;
 }
 
 /* Initializing has the side effect of setting the active channel. */
 void uart_init(hw_metadata metadata) {
 
-    uart_set_active_channel(metadata.uart.channel);
+    uart_set_active_metadata(metadata);
     GPIOPinConfigure(GPIO_PA0_U0RX);
     GPIOPinConfigure(GPIO_PA1_U0TX);
     /* todo: parametrize */
@@ -62,60 +55,56 @@ void uart_init(hw_metadata metadata) {
 inline
 void uart_send_char(const char text) {
 
-    uart_send_char_(uart_active_channel, text);
+    uart_send_char_(uart_active_metadata, text);
 }
 
-/* TODO: parametrize */
-void uart_send_char_(const long channel, const char text) {
+void uart_send_char_(hw_metadata metadata, const char text) {
 
-    UARTCharPut(UART0_BASE, text);
+    UARTCharPut(metadata.uart.channel, text);
 }
 
 inline
 void uart_send_string(const char* text) {
 
-    uart_send_string_(uart_active_channel, text);
+    uart_send_string_(uart_active_metadata, text);
 }
 
-/* TODO: parametrize */
-void uart_send_string_(const long channel, const char* text) {
+void uart_send_string_(hw_metadata metadata, const char* text) {
 
     uint32_t cnt = ustrlen(text);
     char* ptr = (char*)text;
 
     while(cnt--) {
-        UARTCharPut(channel, *(ptr++));
+        UARTCharPut(metadata.uart.channel, *(ptr++));
     }
 }
 
 inline
 char uart_get_char() {
 
-    return uart_get_char_(uart_active_channel);
+    return uart_get_char_(uart_active_metadata);
 }
 
-/* TODO: parametrize */
-char uart_get_char_(const long channel) {
+char uart_get_char_(hw_metadata metadata) {
 
     uint32_t ui32Status;
     /* Get the interrrupt status. */
-    ui32Status = UARTIntStatus(UART0_BASE, true);
+    ui32Status = UARTIntStatus(metadata.uart.channel, true);
 
     /* Clear the asserted interrupts. */
-    UARTIntClear(UART0_BASE, ui32Status);
+    UARTIntClear(metadata.uart.channel, ui32Status);
 
-    char ret = UARTCharGetNonBlocking(UART0_BASE);
+    char ret = UARTCharGetNonBlocking(metadata.uart.channel);
     return ret;
 }
 
 inline
 char* uart_get_string(const long string_length) {
 
-    return uart_get_string_(uart_active_channel, string_length);
+    return uart_get_string_(uart_active_metadata, string_length);
 }
 
-/* TODO: replace uart0_base with channel */
-char* uart_get_string_(const long channel,
+char* uart_get_string_(hw_metadata metadata,
                        const long string_length) {
 
     uint32_t ui32Status;
@@ -125,14 +114,19 @@ char* uart_get_string_(const long channel,
     UART_BUFFER[string_length] = 0;
 
     /* Get the interrrupt status. */
-    ui32Status = UARTIntStatus(UART0_BASE, true);
+    ui32Status = UARTIntStatus(metadata.uart.channel, true);
 
     /* Clear the asserted interrupts. */
-    UARTIntClear(UART0_BASE, ui32Status);
+    UARTIntClear(metadata.uart.channel, ui32Status);
 
-    while(UARTCharsAvail(UART0_BASE) && remaining_chars > 0) {
-        UART_BUFFER[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
+    while(UARTCharsAvail(metadata.uart.channel) && remaining_chars > 0) {
+        UART_BUFFER[remaining_chars - string_length] =
+	    UARTCharGetNonBlocking(metadata.uart.channel);
         remaining_chars--;
     }
     return UART_BUFFER;
 }
+
+/*! End doxygen group
+ * @}
+ */

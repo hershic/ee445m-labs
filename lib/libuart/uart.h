@@ -6,7 +6,11 @@
 
 #include "libhw/hardware.h"
 
-#define UART_UNUSED            -1
+/*! \addtogroup UART
+ * @{
+ */
+
+/*! Default uart baud rate in today's modern world. */
 #define UART_DEFAULT_BAUD_RATE 115200
 
 /*! Create a hardware_metadata struct named _name */
@@ -25,17 +29,7 @@
 /*! Modally set the active uart channel.
  *  \return void
  */
-void uart_set_active_channel(const long channel);
-
-/*! Modally clear the active uart channel.
- *  \return void
- */
-void uart_clear_active_channel();
-
-/*! Test whether or not an active uart channel exists.
- *  \return boolean indicating uart active channel is modally set.
- */
-bool uart_has_active_channel();
+void uart_set_active_channel(hw_metadata);
 
 /*! Initialize the specified uart channel.
  *  \param channel The uart channel to initialize.
@@ -47,27 +41,27 @@ void uart_init(hw_metadata);
  *  \param text The null-terminated array of chars to send via uart.
  *  \return void
  */
-void uart_send_char(const char text);
+void uart_send_char(const char);
 
 /*! Send a char array over the specified uart channel.
  *  \param channel The uart channel to send \text over.
  *  \param text The null-terminated array of chars to send via uart.
  *  \return void
  */
-void uart_send_char_(const long channel, const char text);
+void uart_send_char_(hw_metadata, const char);
 
 /*! Send a char array over the active uart channel.
  *  \param text The null-terminated array of chars to send via uart.
  *  \return void
  */
-void uart_send_string(const char* text);
+void uart_send_string(const char*);
 
 /*! Send a char array over the specified uart channel.
  *  \param channel The uart channel to send \text over.
  *  \param text The null-terminated array of chars to send via uart.
  *  \return void
  */
-void uart_send_string_(const long channel, const char* text);
+void uart_send_string_(hw_metadata, const char*);
 
 /*! Read a char from the active uart channel.
  *  \brief Read a char from the active uart channel.
@@ -82,7 +76,7 @@ char uart_get_char();
  *  \param channel The uart channel to read.
  *  \returns char read from uart
  */
-char uart_get_char_(const long channel);
+char uart_get_char_(hw_metadata);
 
 /*! Read a char array from the active uart channel.
  *  \brief Read a char array from the active uart channel.
@@ -90,7 +84,7 @@ char uart_get_char_(const long channel);
  *  \param string_length The maximum number of characters to read.
  *  \returns char array read from uart
  */
-char* uart_get_string(const long string_length);
+char* uart_get_string(const long);
 
 /*! Read a char array from the specified uart channel.
  *  \brief Read a char array from the active uart channel.
@@ -99,6 +93,10 @@ char* uart_get_string(const long string_length);
  *  \param string_length The maximum number of characters to read.
  *  \returns char array read from uart
  */
-char* uart_get_string_(const long channel, const long string_length);
+char* uart_get_string_(hw_metadata, const long);
 
 #endif
+
+/*! End doxygen group
+ * @}
+ */
