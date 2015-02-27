@@ -40,7 +40,7 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
     switch(type) {
     case HW_UART:
         SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0 +
-	    (metadata.uart.channel - UART0_BASE) / 0x1000);
+			       (metadata.uart.channel - UART0_BASE) / 0x1000);
 	/* todo: parametrize - are they all on A? */
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
         break;
