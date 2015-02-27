@@ -27,16 +27,19 @@ static char UART_BUFFER[128];
  */
 long uart_active_channel = UART_UNUSED;
 
+inline
 void uart_set_active_channel(const long channel) {
 
     uart_active_channel = channel;
 }
 
+inline
 void uart_clear_active_channel() {
 
     uart_active_channel = UART_UNUSED;
 }
 
+inline
 bool uart_has_active_channel() {
 
     return uart_active_channel == UART_UNUSED;
@@ -65,21 +68,25 @@ void uart_init(hw_metadata metadata) {
 #endif
 }
 
+inline
 void uart_send_char(const char text) {
 
     uart_send_char_(uart_active_channel, text);
 }
 
+/* TODO: parametrize */
 void uart_send_char_(const long channel, const char text) {
 
     UARTCharPut(UART0_BASE, text);
 }
 
+inline
 void uart_send_string(const char* text) {
 
     uart_send_string_(uart_active_channel, text);
 }
 
+/* TODO: parametrize */
 void uart_send_string_(const long channel, const char* text) {
 
     uint32_t cnt = ustrlen(text);
@@ -90,12 +97,13 @@ void uart_send_string_(const long channel, const char* text) {
     }
 }
 
+inline
 char uart_get_char() {
 
     return uart_get_char_(uart_active_channel);
 }
 
-/* TODO: update uart0_base with channel */
+/* TODO: parametrize */
 char uart_get_char_(const long channel) {
 
     uint32_t ui32Status;
@@ -115,6 +123,7 @@ char uart_get_char_(const long channel) {
     return ret;
 }
 
+inline
 char* uart_get_string(const long string_length) {
 
     return uart_get_string_(uart_active_channel, string_length);
