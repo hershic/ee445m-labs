@@ -6,6 +6,10 @@
 #include "libnotify/notify.h"
 #include "libstd/nexus.h"
 
+/*! \addtogroup Drivers
+ * {@
+ */
+
 /* Note to developers:
  *
  * Why did the authors create structs that contain only an array?
@@ -27,9 +31,10 @@
  *
  * This hardware driver interfaces between userspace programs and
  * peripheral drivers. Users should never touch drivers directly but
- * instead rely on libhw's notification system. */
-
-/* TODO: integrate ADC lib */
+ * instead rely on libhw's notification system.
+ *
+ * todo for developers: update this after the impending redesign
+ */
 
 typedef enum {
     HW_UART,
@@ -205,3 +210,7 @@ hw_driver* hw_driver_singleton(HW_TYPE);
 void hw_notify(HW_TYPE, hw_metadata, notification);
 
 #endif
+
+/*! End doxygen group
+ * @}
+ */
