@@ -121,7 +121,7 @@ char* uart_get_string_(hw_metadata metadata,
 
     while(UARTCharsAvail(metadata.uart.channel) && remaining_chars > 0) {
         UART_BUFFER[remaining_chars - string_length] =
-	    UARTCharGetNonBlocking(metadata.uart.channel);
+	    UARTCharGet(metadata.uart.channel);
         remaining_chars--;
     }
     return UART_BUFFER;
