@@ -32,20 +32,9 @@ hw_driver HW_UART_DRIVER;
 hw_driver HW_TIMER_DRIVER;
 hw_driver HW_BUTTON_DRIVER;
 
-/******************************************************************************
- * Ye Royale List of TODOs -- keep in mind the One Goal: speed
- *
- * TODO: Determine why this builds without #include "libuart/uart.h"
- * TODO: integrate with libscoreboard (nonexistent)
- *
- * Hershal's
- * TODO: decouple SSI from DisplayDriver (hershal)
- *******************************************************************************/
-
 /* To satisfy our need for speed, we must avoid the branches and
  * memory ready necessary for lazy initialization; that is to say the
  * \hw_driver_init also executing \hw_channel_init or vice versa. */
-/* TODO: Accept which periph to enable here */
 void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
 
     switch(type) {
