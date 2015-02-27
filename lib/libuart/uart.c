@@ -43,25 +43,23 @@ bool uart_has_active_channel() {
 }
 
 /* Initializing has the side effect of setting the active channel. */
-void uart_init() {
+void uart_init(hw_metadata metadata) {
 
-    uart_init_(uart_active_channel);
-}
-
-/* TODO: update uart0_base with channel */
-void uart_init_(const long channel) {
-
+    uart_set_active_channel(metadata.uart.channel);
     GPIOPinConfigure(GPIO_PA0_U0RX);
     GPIOPinConfigure(GPIO_PA1_U0TX);
+    /* todo: parametrize */
     GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
-    UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 115200,
+    /* This is the HF aculprit Thursday February 26, 2015 */
+    UARTConfigSetExpClk(metadata.uart.channel, SysCtlClockGet(),
+			metadata.uart.baud_rate,
                         (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                          UART_CONFIG_PAR_NONE));
 
     /* Enable the UART interrupt. */
-    IntEnable(INT_UART0);
-    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
+    IntEnable(metadata.uart.interrupt);
+    UARTIntEnable(metadata.uart.channel, UART_INT_RX | UART_INT_RT);
 #ifndef NDEBUG
     printf("%s channel %d initialized\n", __FUNCTION__, channel);
 #endif
@@ -72,7 +70,6 @@ void uart_send_char(const char text) {
     uart_send_char_(uart_active_channel, text);
 }
 
-/* TODO: update uart0_base with channel */
 void uart_send_char_(const long channel, const char text) {
 
     UARTCharPut(UART0_BASE, text);

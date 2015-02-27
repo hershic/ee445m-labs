@@ -42,10 +42,10 @@ void button_init(hw_metadata metadata) {
 
 void button_set_interrupt(hw_metadata metadata) {
 
-    if (metadata.button.int_type) {
+    if (metadata.button.interrupt) {
         GPIOIntTypeSet(metadata.button.base,
 		       metadata.button.pin,
-		       metadata.button.int_type);
+		       metadata.button.interrupt);
         IntEnable(INT_GPIOF_TM4C123);
     } else {
         IntDisable(INT_GPIOF_TM4C123);

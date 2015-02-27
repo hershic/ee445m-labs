@@ -4,20 +4,23 @@
 
 #include <stdbool.h>
 
+#include "libhw/hardware.h"
+
 #define UART_UNUSED            -1
 #define UART_DEFAULT_BAUD_RATE 115200
 
 /*! Create a hardware_metadata struct named _name */
-#define uart_metadata_init_(_name, _baud_rate, _channel) \
-    hw_metadata _name;					 \
-    _name.uart = (hw_uart_metadata) {			 \
-        .baud_rate = (uint32_t) _baud_rate,		 \
-        .channel   = (memory_address_t) _channel	 \
+#define uart_metadata_init_(_name, _baud_rate, _channel, _interrupt)	\
+    hw_metadata _name;							\
+    _name.uart = (hw_uart_metadata) {					\
+        .baud_rate = (uint32_t) _baud_rate,				\
+        .channel   = (memory_address_t) _channel,			\
+        .interrupt = (memory_address_t) _interrupt			\
     }
 
 /*! Create a hardware_metadata struct named `uart_metadata' */
-#define uart_metadata_init(_baud_rate, _channel) \
-    uart_metadata_init_(uart_metadata, _baud_rate, _channel)
+#define uart_metadata_init(_baud_rate, _channel, _interrupt) \
+    uart_metadata_init_(uart_metadata, _baud_rate, _channel, _interrupt)
 
 /*! Modally set the active uart channel.
  *  \return void
@@ -34,16 +37,11 @@ void uart_clear_active_channel();
  */
 bool uart_has_active_channel();
 
-/*! Initialize the active uart channel.
- *  \return void
- */
-void uart_init();
-
 /*! Initialize the specified uart channel.
  *  \param channel The uart channel to initialize.
  *  \return void
  */
-void uart_init_(const long channel);
+void uart_init(hw_metadata);
 
 /*! Send a char array over the active uart channel.
  *  \param text The null-terminated array of chars to send via uart.

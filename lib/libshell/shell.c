@@ -27,7 +27,7 @@ void shell_spawn() {
      * see what HAS been used (don't need to initialize), what IS
      * being used (blocked)) */
     /* SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0); */
-    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     hw_subscribe(HW_UART, uart_metadata, shell_uart0_handler);
     shell_set_ps1(SHELL_DEFAULT_PS1);
     shell_clear_shell_buffer();
@@ -43,7 +43,7 @@ char* shell_represent() {
 /* TODO: abstract boilerplate, re: metadata */
 void shell_kill() {
 
-    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     hw_unsubscribe(HW_UART, uart_metadata, shell_uart0_handler);
 }
 

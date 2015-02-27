@@ -89,8 +89,7 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
 
     switch(type) {
     case HW_UART:
-        uart_set_active_channel(metadata.uart.channel);
-        uart_init();
+        uart_init(metadata);
         break;
 
     case HW_TIMER:

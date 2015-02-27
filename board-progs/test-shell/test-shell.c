@@ -51,7 +51,7 @@ int main(void) {
     system_register_command((const char*) "doctor", doctor);
 
     /* Initialize hardware devices */
-    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE);
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     hw_init(HW_UART, uart_metadata);
 
     /* Initialize the shell and the system it interacts with */

@@ -11,7 +11,7 @@
     _name.button = (hw_button_metadata) {			\
 	.base     = (memory_address_t) _base,			\
 	.pin      = (memory_address_t) _pin,			\
-	.int_type = (uint32_t) _interrupt			\
+	.interrupt = (uint32_t) _interrupt			\
     }
 
 

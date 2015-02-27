@@ -41,6 +41,7 @@ typedef enum {
 typedef struct {
     uint32_t baud_rate;
     memory_address_t channel;
+    uint32_t interrupt;
 } hw_uart_metadata;
 
 /* todo: add union for timer_frequency or timer_period */
@@ -58,7 +59,7 @@ typedef struct {
        different ports */
     memory_address_t base;
     memory_address_t pin;
-    uint32_t int_type;
+    uint32_t interrupt;
 } hw_button_metadata;
 
 /*! Initialization information comes in many shapes and sizes. Here is
