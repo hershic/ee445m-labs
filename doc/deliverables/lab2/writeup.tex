@@ -59,7 +59,7 @@
 \maketitle
 
 \section{Objectives}
-\begin{enumerate}}
+\begin{enumerate}
 \item Develop OS facilities for real-time applications,
 \item Coordinate multiple foreground and background threads,
 \item Design a round robin multi-thread scheduler,
@@ -184,11 +184,12 @@ $12 = {
 \item There are four (or more) interrupts in this system DAS, ADC,
   Select, and SysTick (thread switch). Justify your choice of hardware
   priorities in the NVIC? \\
-  All of the tasks besides PendSV_Handler are the same priority. This
-  is because the queueing of interrupts was not detrimental to our
-  program execution during testing. PendSV_Handler is the lowest
-  interrupt priority so that it will only execute a context switch
-  after all queued interrupts have completed.
+  All of the tasks besides \verb|PendSV_Handler| are the same
+  priority. This is because the queueing of interrupts was not
+  detrimental to our program execution during
+  testing. \verb|PendSV_Handler| is the lowest interrupt priority so
+  that it will only execute a context switch after all queued
+  interrupts have completed.
 \item Explain what happens if your stack size is too small. How could
   you detect stack overflow? How could you prevent stack overflow from
   crashing the OS? \\
@@ -198,9 +199,9 @@ $12 = {
   regions. Since the stack grows down on the Cortex M4, the only
   region in danger during a stack overflow is the region directly
   below the stack. If you have arranged your system like this !!TODO
-  unsafe_stack.jpg!! you can expect your data to be overwritten with
+  unsafe\_stack.jpg!! you can expect your data to be overwritten with
   stack contents. If instead you arrange your stack like this !!ToDO
-  safe_stack.jpg!! pointing your loaded stack at a somewhat safer
+  safe\_stack.jpg!! pointing your loaded stack at a somewhat safer
   region of memory such as memory-mapped I/O, you will only lose the
   ability to read back what you pushed that was beyond the
   capacity of the stack. \\
@@ -218,17 +219,17 @@ $12 = {
   not as thorough as static analysis, which calculates all possibly
   execution paths of your program, unless the cookie analysis occurs
   after the most rigorous testing your program will ever endure.
-\item Both Consumer and Display have an OS_Kill() at the end. Do these
-  OS_Kills always execute, sometime execute, or never execute?
+\item Both Consumer and Display have an \verb|OS_Kill()| at the end. Do these
+  \verb|OS_Kill|s always execute, sometime execute, or never execute?
   Explain. \\
   I have no idea what you're referencing or what you're talking
   about. Please refer to a specific procedure within the
   document. Neither the Consumer nor the Display threads you mentioned
-  contain OS_Kill(). I cannot answer this question otherwise. Please
+  contain \verb|OS_Kill()|. I cannot answer this question otherwise. Please
   be more clear in the future!
 \item The interaction between the producer and consumer is
   deterministic. What does deterministic mean? Assume for this
-  question that the OS_Fifo loses data when it has 5 elements, but
+  question that the \verb|OS_Fifo| loses data when it has 5 elements, but
   loses no data when it has 6 elements. What does this tell you about
   the timing of the consumer plus display? \\
   Deterministic means ``causally determined and not subject to random
@@ -239,10 +240,10 @@ $12 = {
   consumer and its display takes at least as long as it takes for 6
   chars to enter the Fifo.
 \item Without going back and actually measuring it, do you think the
-  Consumer ever waits when it calls OS_MailBox_Send? \\
+  Consumer ever waits when it calls \verb|OS_MailBox_Send|? \\
   No, the Consumer takes enough time during its communication with the
   lcd that the Producer will populate the Fifo before the Consumer
-  invokes OS_MailBox_Send.
+  invokes \verb|OS_MailBox_Send|.
 \end{enumerate}
 
 \end{document}
