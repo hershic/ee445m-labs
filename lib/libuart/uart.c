@@ -13,12 +13,6 @@
 #include "libstd/nexus.h"
 #include "libnotify/notify.h"
 
-#define NDEBUG
-
-#ifndef NDEBUG
-#include <stdio.h>
-#endif
-
 static char UART_BUFFER[128];
 
 /*
@@ -63,9 +57,6 @@ void uart_init(hw_metadata metadata) {
     /* Enable the UART interrupt. */
     IntEnable(metadata.uart.interrupt);
     UARTIntEnable(metadata.uart.channel, UART_INT_RX | UART_INT_RT);
-#ifndef NDEBUG
-    printf("%s channel %d initialized\n", __FUNCTION__, channel);
-#endif
 }
 
 inline
@@ -107,7 +98,6 @@ char uart_get_char() {
 char uart_get_char_(const long channel) {
 
     uint32_t ui32Status;
-
     /* Get the interrrupt status. */
     ui32Status = UARTIntStatus(UART0_BASE, true);
 
@@ -115,11 +105,6 @@ char uart_get_char_(const long channel) {
     UARTIntClear(UART0_BASE, ui32Status);
 
     char ret = UARTCharGetNonBlocking(UART0_BASE);
-
-#ifndef NDEBUG
-    printf("%s got char: %c", ret);
-#endif
-
     return ret;
 }
 
@@ -133,13 +118,10 @@ char* uart_get_string(const long string_length) {
 char* uart_get_string_(const long channel,
                        const long string_length) {
 
-    /* char* buffer; */
     uint32_t ui32Status;
-
     long remaining_chars = string_length;
 
-    /* \buffer is a null-terminated string */
-    /* buffer = malloc(string_length*sizeof(char) + 1); */
+    /* \UART_BUFFER is a null-terminated string */
     UART_BUFFER[string_length] = 0;
 
     /* Get the interrrupt status. */
@@ -152,9 +134,5 @@ char* uart_get_string_(const long channel,
         UART_BUFFER[remaining_chars - string_length] = UARTCharGetNonBlocking(channel);
         remaining_chars--;
     }
-
-#ifndef NDEBUG
-    printf("%s Got string: %s\n", __FUNCTION__, UART_BUFFER);
-#endif
     return UART_BUFFER;
 }
