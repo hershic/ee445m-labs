@@ -161,11 +161,20 @@ of a `gud-mode' buffer."
     "/* Created by Hershal Bhave and Eric Crosson "
     (insert (format-time-string "%Y-%m-%d" (current-time))) " */" \n
     "/* Revision history: Look in Git FGT */" \n
-    "#ifndef __" (file-name-sans-extension
-		  (file-name-nondirectory (buffer-file-name))) "__" \n
-    "#define __" (file-name-sans-extension
-		  (file-name-nondirectory (buffer-file-name))) "__" \n
-		  \n > _ > \n \n "#endif"))
+    "#ifndef __" (replace-regexp-in-string "-" "_"
+		  (file-name-sans-extension
+		  (file-name-nondirectory (buffer-file-name)))) "__" \n
+    "#define __" (replace-regexp-in-string "-" "_"
+		  (file-name-sans-extension
+		  (file-name-nondirectory (buffer-file-name)))) "__" \n \n
+		  "/*! \\addtogroup " > _ > \n
+		  " * @{" \n
+		  " */" \n \n \n
+		  "#endif" \n \n
+		  "/* End Doxygen group" \n
+		  " * @}" \n
+		  " */" \n))
+
 ;; (define-auto-insert
 ;;   '("\\.\\(dox\\)\\'" . "Doxygen module descriptor file")
 ;;   '("Module name: "
