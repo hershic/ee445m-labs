@@ -8,6 +8,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/*! \addtogroup Semaphore OS semaphore library
+ * @{
+ */
+
 /*! Implements a simple spinlock-based locking mechanism.
  *  \param Block until this value is nonzero.
  */
@@ -37,3 +41,7 @@ void sem_post(sem_t*);
 void sem_wait(sem_t*);
 
 #endif  /* __SEMAPHORE__ */
+
+/*! End doxygen group
+ * @}
+ */
