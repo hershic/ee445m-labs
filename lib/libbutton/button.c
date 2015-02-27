@@ -40,15 +40,12 @@ void button_init(hw_metadata metadata) {
     GPIOIntEnable(GPIO_PORTF_BASE, metadata.button.pin);
 }
 
-/* TODO: ditch the \buttons, use information from \metadata. */
-void button_set_interrupt(hw_metadata metadata, memory_address_t buttons) {
+void button_set_interrupt(hw_metadata metadata) {
 
-    memory_address_t base = metadata.button.base;
-    int32_t interrupt_type = metadata.button.int_type;
-
-    /* TODO: parametrize (INT_GPIOF_TM4C123) */
     if (metadata.button.int_type) {
-        GPIOIntTypeSet(base, buttons, interrupt_type);
+        GPIOIntTypeSet(metadata.button.base,
+		       metadata.button.pin,
+		       metadata.button.int_type);
         IntEnable(INT_GPIOF_TM4C123);
     } else {
         IntDisable(INT_GPIOF_TM4C123);

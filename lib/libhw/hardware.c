@@ -99,7 +99,7 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
 
     case HW_BUTTON:
 	/* TODO: parametrize */
-        button_set_interrupt(metadata, BUTTONS_BOTH);
+        button_set_interrupt(metadata);
         break;
 
     default: postpone_death();

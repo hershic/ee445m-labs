@@ -32,6 +32,6 @@ void button_init(hw_metadata);
  * \param Hardware target to subscribe to and isr to invoke upon
  * interrupt
  */
-void button_set_interrupt(hw_metadata, memory_address_t);
+void button_set_interrupt(hw_metadata);
 
 #endif  /* __BUTTON__ */
