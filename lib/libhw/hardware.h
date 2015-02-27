@@ -108,10 +108,17 @@ typedef struct {
     hw_channel channels[HW_DRIVER_MAX_CHANNELS];
 } hw_driver;
 
+/*! Initialize hw driver and channel. Simply a convenience to reduce
+ *  boilerplate. */
 #define hw_init(type, metadata)	    \
     hw_driver_init(type, metadata); \
     hw_channel_init(type, metadata)
 
+/*! Initialize hw driver, channel and subscribe to
+ *  notifications. Simply a convenience to reduce boilerplate. */
+#define hw_init_and_subscribe(type, metadata, pseudo_isr) \
+    hw_init(type, metadata);				  \
+    hw_subscribe(type, metadata, pseudo_isr)
 
 /*! This function is responsible for enabling the peripherals and
  * internal data strutures used by the specified \hw_group.
