@@ -17,8 +17,11 @@
  * @{
  */
 
+/*! \UART_BUFFER max length */
+#define UART_BUFFER_LEN               128
+
 /*! Buffer for reading and returning chars from hardware uart fifo. */
-static char UART_BUFFER[128];
+static char UART_BUFFER[UART_BUFFER_LEN];
 
 /*! Allows for modal interaction with uart channels. */
 hw_metadata uart_active_metadata;
