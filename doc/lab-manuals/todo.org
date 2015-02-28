@@ -289,7 +289,7 @@ new expanded periodic thread feature.
 **** Decrypted
 We already have a way to start periodic threads, this just means we
 need to rebuild libhw as a threading daemon.
-*** TODO Add libjitter
+*** BLOCKED Add libjitter
 **** TODO Add profiling functionality to os
 PendSV needs to record the SysTick before and after thread switch to
 determine the amount of thread-time jitter. Maybe have each thread
