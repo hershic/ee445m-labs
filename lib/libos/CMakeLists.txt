@@ -8,6 +8,5 @@ include_directories(../../lib)
 add_library (os STATIC ${os-src})
 
 target_link_libraries(os driverlib)
-target_link_libraries(os utils)
 target_link_libraries(os std)
 target_link_libraries(os timer)

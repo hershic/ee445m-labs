@@ -5,8 +5,6 @@
 /* Standard Libs */
 #include <stdint.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* TI Includes */
 #include "inc/hw_ints.h"
@@ -25,6 +23,8 @@
 
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
+#include "libhw/hardware.h"
+#include "libstd/nexus.h"
 
 #include <sys/stat.h>
 
