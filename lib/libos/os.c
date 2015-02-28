@@ -18,7 +18,7 @@ void os_threading_init() {
     os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
-        CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
+        CDL_APPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
         OS_THREADS[i].entry_point = NULL;
@@ -37,7 +37,7 @@ tcb_t* os_add_thread(task_t task) {
          * list of running threads. */
         thread_to_add = os_dead_threads;
         CDL_DELETE(os_dead_threads, thread_to_add);
-        CDL_PREPEND(os_running_threads, thread_to_add);
+        CDL_APPEND(os_running_threads, thread_to_add);
 
         /* 3. Set the initial stack contents for the new thread. */
         os_reset_thread_stack(thread_to_add, task);
@@ -64,7 +64,7 @@ tcb_t* os_remove_thread(task_t task) {
     thread_to_remove = os_tcb_of(task);
     CDL_DELETE(os_running_threads, thread_to_remove);
     /* Means high tcb_t memory reusability */
-    CDL_PREPEND(os_dead_threads, thread_to_remove);
+    CDL_APPEND(os_dead_threads, thread_to_remove);
 
     /* OPTIONAL TODO: do the check for overwritten stacks as long as
      * we kill every thread in our testing we'll get valuable yet
@@ -182,7 +182,7 @@ void SysTick_Handler() {
      * esc's plan:
      * here call a method, something like os_reschedule_tasks
 
-     * - build a new list with CDL_PREPEND, prepending tasks in order
+     * - build a new list with CDL_APPEND, appending tasks in order
          of lowest priority to highest. this will reassign all *next,
          *prev pointers and when we do the unmodified PendSV_Handler
          it'll grab not the round-robin *next ptr but the
