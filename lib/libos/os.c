@@ -245,12 +245,6 @@ void PendSV_Handler() {
     /* reenable interrupts */
     asm volatile("CPSIE   I");
 
-    /* This never would have worked- can't change CONTROL in this
-     * context */
-    /* asm volatile("MRS R0, CONTROL"); */
-    /* asm volatile("ORR R0, R0, #3"); */
-    /* asm volatile("MSR CONTROL, R0"); */
-
     asm volatile ("bx lr");
 }
 
