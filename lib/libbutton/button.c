@@ -18,22 +18,6 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 
-
-/* TODO: Currently, only left works (PF4). From Valvano: */
-/* NOTE: The NMI (non-maskable interrupt) is on PF0.  That means that
-   the Alternate Function Select, Pull-Up Resistor, Pull-Down
-   Resistor, and Digital Enable are all locked for PF0 until a value
-   of 0x4C4F434B is written to the Port F GPIO Lock Register.  After
-   Port F is unlocked, bit 0 of the Port F GPIO Commit Register must
-   be set to allow access to PF0's control registers.  On the LM4F120,
-   the other bits of the Port F GPIO Commit Register are hard-wired to
-   1, meaning that the rest of Port F can always be freely
-   re-configured at any time.  Requiring this procedure makes it
-   unlikely to accidentally re-configure the JTAG pins as GPIO, which
-   can lock the debugger out of the processor and make it permanently
-   unable to be debugged or re-programmed. */
-/* [[http://users.ece.utexas.edu/~valvano/arm/InputOutput_4C123.zip]] */
-
 void button_init(hw_metadata metadata) {
 
     GPIODirModeSet(GPIO_PORTF_BASE, metadata.button.pin, GPIO_DIR_MODE_IN);
