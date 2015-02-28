@@ -148,7 +148,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
     hwcontext->pc = (uint32_t)(task);
     hwcontext->psr = 0x01000000;
 
-    swcontext->lr = 0xfffffffd;
+    swcontext->lr = 0xfffffff9;
 
     /* hwcontext->r0 = 0x00000000; */
     /* hwcontext->r1 = 0x01010101; */
