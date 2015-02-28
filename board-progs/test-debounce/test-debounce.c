@@ -25,6 +25,7 @@
 #define HEARTBEAT_MODAL
 
 #include "libos/os.h"
+#include "libos/jitter.h"
 #include "libheart/heartbeat.h"
 #include "libbutton/button.h"
 #include "libtimer/timer.h"
@@ -38,10 +39,6 @@ volatile uint32_t button_debounced_mailbox;
 volatile uint32_t button_debounced_wtf;
 
 volatile sem_t button_debounced_new_data;
-
-volatile uint32_t pidwork;
-volatile uint32_t lowest_pidwork;
-volatile uint32_t highest_pidwork;
 
 void button_debounce_end(notification button_notification) {
 
@@ -57,33 +54,6 @@ void button_debounce_start(notification button_notification) {
     hw_init(HW_TIMER, timer_metadata);
     hw_subscribe_single_shot(HW_TIMER, timer_metadata,
                              button_debounce_end);
-}
-
-void Thread1(void){
-
-    while(1) {
-        asm volatile("CPSID  I");
-        ++pidwork;
-        asm volatile("CPSIE  I");
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-    }
-}
-
-/*! A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. */
-void Thread2(void){
-
-    while(1) {
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
-        if (pidwork != 0) {
-            if (highest_pidwork < pidwork) {
-                highest_pidwork = pidwork;
-            }
-            if (lowest_pidwork > pidwork) {
-                lowest_pidwork = pidwork;
-            }
-        }
-        pidwork = 0;
-    }
 }
 
 void postpone_suicide() {
@@ -117,14 +87,12 @@ int main() {
     hw_init(HW_BUTTON, button_metadata);
     hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
 
-    pidwork = 0;
-    highest_pidwork = 0;
-    lowest_pidwork = (uint32_t)(-1);
+    pidwork_init();
 
     os_threading_init();
     os_add_thread(postpone_suicide);
-    os_add_thread(Thread1);
-    os_add_thread(Thread2);
+    os_add_thread(pidwork_record);
+    os_add_thread(pidwork_increment);
 
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
