@@ -17,6 +17,9 @@ typedef bool sem_t;
     sem_t sem;                                  \
     sem = initial_value
 
+#define sem_check(sem)                          \
+    if (sem)
+
 #define sem_post(sem)                           \
     sem = 1
 
