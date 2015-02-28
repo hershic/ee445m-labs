@@ -1,6 +1,6 @@
 #+startup: sections
 #+options: H:1 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:nil LaTeX:t
-#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) BLOCKED(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
 #+author: Hershal Bhave
 #+author: Eric Crosson
 * [12/12] Lab 1
@@ -299,7 +299,11 @@ user code in Lab2.c so they are compatible with your RTOS.
 **** Decrypted
 Add libjitter, which just keeps a running average and/or buffer of
 pidwork values. Research SV (System Service Call).
-*** TODO Aperiodic background thread triggered on button press
+*** BLOCKED [2/4] Aperiodic background thread triggered on button press
+**** TODO Create priority threads
+**** TODO Create single-shot threads
+**** DONE Button Detection
+**** DONE Button Debouncing
 **** Valvano
 Write C code to implement the second aperiodic background thread,
 triggered by a falling edge on PF0. In hardware this is implemented
@@ -344,4 +348,4 @@ think about how would your implementation be different if there were
 100 foreground threads? Write C code to implement the priority
 scheduler.
 **** Decrypted
-Think about how to implement a priority scheduler.
+Think about how to implement a priority scheduler. Then implement it.
