@@ -2,8 +2,6 @@
 /* Standard Libs */
 #include <stdint.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* TI Includes */
 #include "inc/hw_ints.h"
@@ -33,31 +31,31 @@ hw_driver HW_TIMER_DRIVER;
 hw_driver HW_BUTTON_DRIVER;
 
 /* To satisfy our need for speed, we must avoid the branches and
- * memory ready necessary for lazy initialization; that is to say the
- * \hw_driver_init also executing \hw_channel_init or vice versa. */
+* memory ready necessary for lazy initialization; that is to say the
+* \hw_driver_init also executing \hw_channel_init or vice versa. */
 void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
 
     switch(type) {
     case HW_UART:
         SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0 +
-			       (metadata.uart.channel - UART0_BASE) / 0x1000);
-	/* todo: parametrize - are they all on A? */
+                               (metadata.uart.channel - UART0_BASE) / 0x1000);
+        /* todo: parametrize - are they all on A? */
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
         break;
 
     case HW_TIMER:
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0 +
-			       (metadata.timer.base - TIMER0_BASE) / 0x1000);
-	break;
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0 +
+                               (metadata.timer.base - TIMER0_BASE) / 0x1000);
+        break;
 
     case HW_BUTTON:
-	/* TODO: parametrize to allow other buttons to be driven */
+        /* TODO: parametrize to allow other buttons to be driven */
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-	/* #need4speed: Buttons on the board are only used for input,
-	 * we know how they're going to be used. Break the libhw
-	 * convention and initialize these buttons so this code never
-	 * has to be run again */
-	button_init(metadata);
+        /* #need4speed: Buttons on the board are only used for input,
+         * we know how they're going to be used. Break the libhw
+         * convention and initialize these buttons so this code never
+         * has to be run again */
+        button_init(metadata);
         break;
 
     default: postpone_death();
@@ -73,7 +71,7 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
     hw_channel* channel = _hw_get_channel(type, metadata);
     channel->full_slots = NULL;
     for(i=0; i<HW_DRIVER_MAX_SUBSCRIPTIONS; ++i) {
-	CDL_PREPEND(channel->free_slots, &channel->isr_subscriptions[i]);
+        CDL_PREPEND(channel->free_slots, &channel->isr_subscriptions[i]);
     }
 
     switch(type) {
@@ -82,11 +80,11 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
         break;
 
     case HW_TIMER:
-	timer_add_interrupt(metadata);
+        timer_add_interrupt(metadata);
         break;
 
     case HW_BUTTON:
-	/* TODO: parametrize */
+        /* TODO: parametrize */
         button_set_interrupt(metadata);
         break;
 
@@ -95,9 +93,9 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
 }
 
 void _hw_subscribe(HW_TYPE     type,
-		   hw_metadata metadata,
-		   void (*isr)(notification note),
-		   bool        single_shot) {
+                   hw_metadata metadata,
+                   void (*isr)(notification note),
+                   bool        single_shot) {
 
     hw_iterator i;
     hw_channel* channel = _hw_get_channel(type, metadata);
@@ -111,8 +109,8 @@ void _hw_subscribe(HW_TYPE     type,
 }
 
 void hw_unsubscribe(HW_TYPE type,
-		    hw_metadata metadata,
-		    void (*isr)(notification note)) {
+                    hw_metadata metadata,
+                    void (*isr)(notification note)) {
 
     hw_channel* channel = _hw_get_channel(type, metadata);
     _isr_subscription* remove = channel->full_slots;
@@ -132,15 +130,17 @@ void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
     /* TODO: make this a doubly linked list, not circular */
     /* consider similar changes to os lib also */
     while(subscrip && subscrip != new_subscrip) {
-	subscrip->slot(note);
-	new_subscrip = subscrip->next;
-	if (subscrip->single_shot_subscription) {
-	    /* Cease fire! cease fire! */
-	    subscrip->single_shot_subscription = false;
-	    CDL_DELETE(channel->full_slots, subscrip);
-	    CDL_PREPEND(channel->free_slots, subscrip);
-	}
-	subscrip = new_subscrip;
+        subscrip->slot(note);
+        new_subscrip = subscrip->next;
+        if (subscrip->single_shot_subscription) {
+            /* Cease fire! cease fire! */
+            subscrip->single_shot_subscription = false;
+            CDL_DELETE(channel->full_slots, subscrip);
+            CDL_PREPEND(channel->free_slots, subscrip);
+        }
+        subscrip = new_subscrip;
+    }
+}
     }
 }
 
@@ -153,9 +153,9 @@ hw_channel* _hw_get_channel(HW_TYPE type, hw_metadata metadata) {
     case HW_UART:   idx = (metadata.uart.channel - UART0_BASE)     / 0x1000; break;
     case HW_TIMER:  idx = (metadata.timer.base   - TIMER0_BASE)    / 0x1000; break;
     case HW_BUTTON: idx = (metadata.button.base  - GPIO_PORTE_BASE)/ 0x1000; break;
-	/* Note: libhw won't allow for the use of ports higher than
-	 * GPIO_PORTE without modification of the above indexing
-	 * algorithm */
+        /* Note: libhw won't allow for the use of ports higher than
+         * GPIO_PORTE without modification of the above indexing
+         * algorithm */
     default: postpone_death();
     }
     return &(hw_driver_singleton(type)->channels[idx]);
