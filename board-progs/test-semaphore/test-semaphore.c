@@ -28,7 +28,7 @@
 void main(void) {
 
   SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-		 SYSCTL_XTAL_16MHZ);
+                 SYSCTL_XTAL_16MHZ);
 
   IntMasterDisable();
 
@@ -45,9 +45,8 @@ void main(void) {
   /* PONDER: why do interrupts fire without this? */
   IntMasterEnable();
 
-  int32_t sem;
-  sem_init(&sem, 1);
-  while(1) {
+  /* int32_t sem; */
+  /* sem_init(&sem, 1); */
+  /* while(1) { */
     /* sem_wait */
-  }
 }
