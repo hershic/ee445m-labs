@@ -9,3 +9,4 @@ add_library (uart STATIC ${uart-src})
 
 target_link_libraries(uart std)
 target_link_libraries(uart driverlib)
+target_link_libraries(uart os)
