@@ -14,12 +14,12 @@
 #define UART_DEFAULT_BAUD_RATE 115200
 
 /*! Create a hardware_metadata struct named _name */
-#define uart_metadata_init_(_name, _baud_rate, _channel, _interrupt)	\
-    hw_metadata _name;							\
-    _name.uart = (hw_uart_metadata) {					\
-        .baud_rate = (uint32_t) _baud_rate,				\
-        .channel   = (memory_address_t) _channel,			\
-        .interrupt = (memory_address_t) _interrupt			\
+#define uart_metadata_init_(_name, _baud_rate, _channel, _interrupt)    \
+    hw_metadata _name;                                                  \
+    _name.uart = (hw_uart_metadata) {                                   \
+        .baud_rate = (uint32_t) _baud_rate,                             \
+        .channel   = (memory_address_t) _channel,                       \
+        .interrupt = (memory_address_t) _interrupt                      \
     }
 
 /*! Create a hardware_metadata struct named `uart_metadata' */

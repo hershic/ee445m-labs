@@ -46,7 +46,7 @@ void uart_init(hw_metadata metadata) {
 
     /* This is the HF aculprit Thursday February 26, 2015 */
     UARTConfigSetExpClk(metadata.uart.channel, SysCtlClockGet(),
-			metadata.uart.baud_rate,
+                        metadata.uart.baud_rate,
                         (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                          UART_CONFIG_PAR_NONE));
 
@@ -125,7 +125,7 @@ char* uart_get_string_(hw_metadata metadata,
 
     while(UARTCharsAvail(metadata.uart.channel) && remaining_chars > 0) {
         UART_BUFFER[remaining_chars - string_length] =
-	    UARTCharGet(metadata.uart.channel);
+            UARTCharGet(metadata.uart.channel);
         remaining_chars--;
     }
     return UART_BUFFER;
