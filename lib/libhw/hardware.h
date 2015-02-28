@@ -5,6 +5,10 @@
 #include <stdbool.h>
 #include "libnotify/notify.h"
 #include "libstd/nexus.h"
+#include "libos/semaphore.h"
+
+/* TODO: Expand this for all devices */
+static volatile sem_t uart_binary_semaphore;
 
 /* Note to developers:
  *
@@ -117,14 +121,14 @@ typedef struct {
 
 /*! Initialize hw driver and channel. Simply a convenience to reduce
  *  boilerplate. */
-#define hw_init(type, metadata)	    \
+#define hw_init(type, metadata)     \
     hw_driver_init(type, metadata); \
     hw_channel_init(type, metadata)
 
 /*! Initialize hw driver, channel and subscribe to
  *  notifications. Simply a convenience to reduce boilerplate. */
 #define hw_init_and_subscribe(type, metadata, pseudo_isr) \
-    hw_init(type, metadata);				  \
+    hw_init(type, metadata);                              \
     hw_subscribe(type, metadata, pseudo_isr)
 
 /*! This function is responsible for enabling the peripherals and
@@ -210,6 +214,9 @@ hw_driver* hw_driver_singleton(HW_TYPE);
  * hardware interrupt event
  */
 void hw_notify(HW_TYPE, hw_metadata, notification);
+
+/* TODO: Doxygenize */
+void hw_daemon(void);
 
 #endif
 

@@ -126,7 +126,7 @@ int main() {
     os_threading_init();
     os_add_thread(Thread1);
     os_add_thread(Thread2);
-    os_add_thread(uart_consumer);
+    os_add_thread(hw_daemon);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 1000);
@@ -146,18 +146,3 @@ int main() {
     postpone_death();
 }
 
-void UART0_Handler(void) {
-
-    unsigned long look_at_me = UARTIntStatus(UART0_BASE, false);
-    UARTIntClear(UART0_BASE, look_at_me);
-
-    while(UARTCharsAvail(UART0_BASE)) {
-
-        uart_fifo[uart_producer_idx] = UARTCharGet(UART0_BASE);
-        uart_producer_idx = (uart_producer_idx+1) & UART_FIFO_SIZE;
-        if (uart_producer_idx == uart_consumer_idx) {
-            ++uart_dropped_chars;
-        }
-
-    }
-}

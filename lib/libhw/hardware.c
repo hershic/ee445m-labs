@@ -141,6 +141,13 @@ void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
         subscrip = new_subscrip;
     }
 }
+
+void hw_daemon(void) {
+    while (1) {
+        sem_wait(uart_binary_semaphore);
+        /* TODO: Do something interesting */
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
     }
 }
 
@@ -200,27 +207,7 @@ void GPIOPortF_Handler(void) {
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
 void UART0_Handler(void) {
-
-  unsigned short i;
-  notification note;
-  hw_metadata metadata;
-
-  /* TODO: determine which bit to clear:  */
-  unsigned long look_at_me = UARTIntStatus();
-  /* UARTIntClear(UART0_BASE, ); */
-
-  metadata.uart.channel = UART0_BASE;
-
-  while(UARTCharsAvail(UART0_BASE)) {
-
-    /* Notify every subscribed task of each incoming character
-     * (but schedule them for later so we can return from this ISR
-     * asap). */
-    note._char = uart_get_char();
-
-    /* TODO: schedule this thread instead of running it immediately */
-    hw_notify(HW_UART, metadata, note);
-  }
+    sem_post(uart_binary_semaphore);
 }
 
 /*! UART1 isr responsible for notifying all subscriptions with information
