@@ -274,7 +274,7 @@ libhw, who then queues it? Is this thread-save? is libuart?
      Consumer ever waits when it calls OS_MailBox_Send?
      Explain.
 * [0/1] Lab 3
-** [/] Preparation
+** [0/5] Preparation
 *** TODO Add a priority field to =OS_AddPeriodicThread=
 **** Valvano
 Consider at least two ways to implement the second periodic background
