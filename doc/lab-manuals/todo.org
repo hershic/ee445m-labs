@@ -164,7 +164,7 @@ the lab manual.
       responsible for storing R4-R11 to the process stack.
 *** DONE Checkout
 <2015-02-16 Mon 10:30>
-** [0/8] Part 2
+** [0/7] Part 2
 Your job is to design, implement and test operating system commands
 that implement a multiple thread environment.
 
@@ -235,41 +235,41 @@ libhw, who then queues it? Is this thread-save? is libuart?
 - [ ] Discuss the sketches you created as part of prep & procedure
 - [ ] Discuss the TCB before and after a thread switch
 - [ ] Identify inefficiencies in your implementation
-*** [0/16] Deliverables
+*** [3/3] Deliverables
 - 20 points :: report
 - 10 points :: software quality
 
-- [ ] objectives :: 1/2 page max
-- [ ] hardware design :: none
-- [ ] software design :: spinlock/round-robin switching source
-- [0/6] measurement data :: graphs and tables of data
-   - [ ] plots of the logic analyzer
-      see Figures 2.1, 2.2, 2.3, 2.4, and 2.8
-   - [ ] measurement of the thread-switch time
-   - [ ] plot of the logic analyzer running spinlock/round-robin
-   - [ ] the four sketches with measured data collected during testing
-      from first preparation parts 3 and 5
-   - [ ] a table each showing performance measurements versus sizes of
-      OS_Fifo and timeslices
-      like Table 2.1
-   - [ ] table showing performance measurements with/without debugging instruments
-- [0/7] analysis and discussion :: 2 page maximum
-   - [ ] Why did the time jitter in my solution jump from 4 to 6 μs when
-      interpreter I/O occurred?
-   - [ ] Justify why Task 3 has no time jitter on its ADC sampling.
-   - [ ] There are four (or more) interrupts in this system DAS, ADC,
-      Select, and SysTick (thread switch).
-      Justify your choice of hardware priorities in the NVIC?
-   - [ ] Explain what happens if your stack size is too small.
-      How could you detect stack overflow? How could you prevent stack overflow from crashing the OS?
-   - [ ] Both Consumer and Display have an OS_Kill() at the end. Do these
-      OS_Kills always execute, sometime execute, or never execute?
-      Explain.
-   - [ ] The interaction between the producer and consumer is
-      deterministic. What does deterministic mean?
-      - Assume for this question that if the OS_Fifo has 5 elements data
-      is lost, but if it has 6 elements no data is lost.
-      - What does this tell you about the timing of the consumer plus display?
-   - [ ] Without going back and actually measuring it, do you think the
-      Consumer ever waits when it calls OS_MailBox_Send?
-      Explain.
+- [X] objectives :: 1/2 page max
+- [X] hardware design :: none
+- [X] software design :: spinlock/round-robin switching source
+- [6/6] measurement data :: graphs and tables of data
+  - [X] plots of the logic analyzer
+     see Figures 2.1, 2.2, 2.3, 2.4, and 2.8
+  - [X] measurement of the thread-switch time
+  - [X] plot of the logic analyzer running spinlock/round-robin
+  - [X] the four sketches with measured data collected during testing
+     from first preparation parts 3 and 5
+  - [X] a table each showing performance measurements versus sizes of
+     OS_Fifo and timeslices
+     like Table 2.1
+  - [X] table showing performance measurements with/without debugging instruments
+- [7/7] analysis and discussion :: 2 page maximum
+  - [X] Why did the time jitter in my solution jump from 4 to 6 μs when
+     interpreter I/O occurred?
+  - [X] Justify why Task 3 has no time jitter on its ADC sampling.
+  - [X] There are four (or more) interrupts in this system DAS, ADC,
+     Select, and SysTick (thread switch).
+     Justify your choice of hardware priorities in the NVIC?
+  - [X] Explain what happens if your stack size is too small.
+     How could you detect stack overflow? How could you prevent stack overflow from crashing the OS?
+  - [X] Both Consumer and Display have an OS_Kill() at the end. Do these
+     OS_Kills always execute, sometime execute, or never execute?
+     Explain.
+  - [X] The interaction between the producer and consumer is
+     deterministic. What does deterministic mean?
+    - Assume for this question that if the OS_Fifo has 5 elements data
+    is lost, but if it has 6 elements no data is lost.
+    - What does this tell you about the timing of the consumer plus display?
+  - [X] Without going back and actually measuring it, do you think the
+     Consumer ever waits when it calls OS_MailBox_Send?
+     Explain.
