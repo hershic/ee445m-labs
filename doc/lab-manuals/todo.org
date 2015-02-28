@@ -273,3 +273,75 @@ libhw, who then queues it? Is this thread-save? is libuart?
   - [X] Without going back and actually measuring it, do you think the
      Consumer ever waits when it calls OS_MailBox_Send?
      Explain.
+* [0/1] Lab 3
+** [/] Preparation
+*** TODO Add a priority field to =OS_AddPeriodicThread=
+**** Valvano
+Consider at least two ways to implement the second periodic background
+thread. A priority parameter in the OS_AddPeriodicThread function
+allows the user to specify the relative priority of the four
+background threads.  This priority does not affect the fact that all
+background threads (two periodic, two aperiodic) will preempt any
+foreground thread. In this lab, OS_AddPeriodicThread will be called 0,
+1, or 2 times. Think about how would your implementation be different
+if there were 10 background threads? Write C code to implement this
+new expanded periodic thread feature.
+**** Decrypted
+We already have a way to start periodic threads, this just means we
+need to rebuild libhw as a threading daemon.
+*** TODO Add libjitter
+**** Valvano
+Add features to the OS to measure and record time jitters for the two
+periodic threads. Record two maximum jitters and two histograms of
+jitter values. In particular, move the jitter measurements from Lab2
+into the OS, and make two copies of it. Feel free to change any of the
+user code in Lab2.c so they are compatible with your RTOS.
+**** Decrypted
+Add libjitter, which just keeps a running average and/or buffer of
+pidwork values.
+*** TODO Aperiodic background thread triggered on button press
+**** Valvano
+Write C code to implement the second aperiodic background thread,
+triggered by a falling edge on PF0. In hardware this is implemented
+with the SW2 button. On the robot, you could add a bumper switch and
+use this feature to detect collisions. Your OS should allow the user
+to activate and arm this feature by passing a user function to
+execute, and using the external event mechanism to trigger the
+background task. You should also provide an OS function to disarm this
+feature. The priority parameters for OS_AddPeriodicThread
+OS_AddSW1Task and OS_AddSW2Task allow the user to specify the relative
+priority of the four background threads.
+**** Decrypted
+Basically, get libhw working and make libbutton generalized to work on
+any gpio (it's almost there).
+*** TODO Beef up semaphore.c
+**** Valvano
+Consider at least two ways to implement blocking semaphores. In this
+class, we have 1 to 10 foreground threads.  How would your
+implementation be different if there were 100 foreground threads?
+Write C code to implement the blocking semaphores. Take one of the
+test programs from Lab2.c and modify it to test the blocking
+semaphores. In particular, there should be multiple threads signaling
+the same semaphore, and multiple threads waiting on that same
+semaphore. You should signal both in the background and in the
+foreground, but you can only wait in the foreground. Use counters to
+make verify the total number of times signal is called matches the
+total number of times wait allows a thread to pass. The key is to run
+the system in an exhaustive manner increasing the likelihood of
+finding bugs. For example, if there is a 1 in 10 4 chance of Condition
+A occurring (e.g., PC is executing at a particular spot) and a 1 in 10
+4 chance of Condition B occurring, there will be a 1 in 10 8 chance of
+Conditions A and B occurring at the same time. You also have to be
+careful not to introduce critical sections in the test program itself.
+Edit Lab2.c so it is compatible with your RTOS. Modify the numbers in
+Signal2() so that the period of this thread is variable.
+**** Decrypted
+Make a counting semaphore.
+*** TODO Consider how to implement a priority scheduler
+**** Valvano
+Consider at least two ways to implement the priority scheduler. Again,
+think about how would your implementation be different if there were
+100 foreground threads? Write C code to implement the priority
+scheduler.
+**** Decrypted
+Think about how to implement a priority scheduler.
