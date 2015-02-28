@@ -298,7 +298,7 @@ into the OS, and make two copies of it. Feel free to change any of the
 user code in Lab2.c so they are compatible with your RTOS.
 **** Decrypted
 Add libjitter, which just keeps a running average and/or buffer of
-pidwork values.
+pidwork values. Research SV (System Service Call).
 *** TODO Aperiodic background thread triggered on button press
 **** Valvano
 Write C code to implement the second aperiodic background thread,
@@ -314,7 +314,7 @@ priority of the four background threads.
 **** Decrypted
 Basically, get libhw working and make libbutton generalized to work on
 any gpio (it's almost there).
-*** TODO Beef up semaphore.c
+*** TODO Implement a counting semaphore
 **** Valvano
 Consider at least two ways to implement blocking semaphores. In this
 class, we have 1 to 10 foreground threads.  How would your
