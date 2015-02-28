@@ -8,6 +8,5 @@ include_directories(../../lib)
 
 add_executable(test-adc ${test-adc-srcs})
 target_link_libraries(test-adc driverlib)
-target_link_libraries(test-adc utils)
 target_link_libraries(test-adc adc)
 target_link_libraries(test-adc std)

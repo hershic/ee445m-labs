@@ -8,5 +8,4 @@ include_directories(../../lib)
 
 add_executable(test-button ${test-button-srcs})
 target_link_libraries(test-button driverlib)
-target_link_libraries(test-button utils)
 target_link_libraries(test-button hw)

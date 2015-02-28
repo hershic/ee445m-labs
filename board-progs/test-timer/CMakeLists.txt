@@ -8,6 +8,5 @@ include_directories(../../lib)
 
 add_executable(test-timer ${test-timer-srcs})
 target_link_libraries(test-timer driverlib)
-target_link_libraries(test-timer utils)
 target_link_libraries(test-timer timer)
 target_link_libraries(test-timer os)
