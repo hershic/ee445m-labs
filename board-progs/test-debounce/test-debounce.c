@@ -63,10 +63,12 @@ void postpone_suicide() {
         if (~button_debounced_mailbox & BUTTON_LEFT) {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
                          GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+            ++button_left_pressed;
         }
         if (~button_debounced_mailbox & BUTTON_RIGHT) {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^
                          GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+            ++button_right_pressed;
         }
     }
 }
