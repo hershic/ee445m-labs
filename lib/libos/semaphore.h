@@ -1,47 +1,34 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/* Created by Hershal Bhave 2015-02-17 */
-/* Revision History: Look in Git FGT */
+/* Created by Hershal Bhave and Eric Crosson 2015-02-28 */
+/* Revision history: Look in Git FGT */
+#ifndef __semaphore__
+#define __semaphore__
 
-#ifndef __SEMAPHORE__
-#define __SEMAPHORE__
-
-#include <stdbool.h>
-#include <stdint.h>
-
-/*! \addtogroup Semaphore OS semaphore library
+/*! \addtogroup OS
  * @{
  */
 
-/*! Implements a simple spinlock-based locking mechanism.
- *  \param Block until this value is nonzero.
- */
-void spinlock_until(int32_t*);
-
-/*! Semaphore typedef */
 typedef bool sem_t;
 
-/*! Initializes a blocking semaphore
- *  \param The semaphore to initialize.
- *  \param The maximum number of concurrent consumers of
- *  the resource guarded by the semaphore.
- */
-void sem_init(sem_t*, bool);
+#define spinlock_until(blocker)                 \
+    while (!(*blocker))
 
-/*! Post (release) a semaphore lock. This increments the value of the
- *  semaphore so that additional resources may be consumed.
- *  \param The semaphore to post (release).
- */
-void sem_post(sem_t*);
+#define sem_init(sem, initial_value)            \
+    sem_t sem;                                  \
+    sem = initial_value
 
-/*! Wait on (block) a semaphore. This waits until the value of the
- *  semaphore is larger than zero to unblock the current thread. The
- *  value of the semaphore is then decremented to consume the resource.
- *  \param The semaphore to wait on (block).
- */
-void sem_wait(sem_t*);
+#define sem_post(sem)                           \
+    sem = 1
 
-#endif  /* __SEMAPHORE__ */
+/* TODO: convert this to make the current thread sleep instead of
+   unnecessarily consuming resources. OS thread sleeping must be
+   completed before this can happen, however. */
+#define sem_wait(sem)                    \
+    while (!sem);                       \
+    sem = 0
 
-/*! End doxygen group
+#endif
+
+/* End Doxygen group
  * @}
  */
