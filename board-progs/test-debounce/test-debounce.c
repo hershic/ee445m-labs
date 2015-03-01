@@ -75,15 +75,17 @@ void postpone_suicide() {
 
 int main() {
 
-    button_left_pressed = 0;
-    button_right_pressed = 0;
-
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
     IntMasterDisable();
 
     /* button init */
+    button_left_pressed = 0;
+    button_right_pressed = 0;
+    button_debounced_mailbox = 0;
+    sem_init(button_debounced_new_data);
+
     button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
 
     hw_init(HW_BUTTON, button_metadata);
