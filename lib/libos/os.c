@@ -6,6 +6,9 @@
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
 
+/* enable for os register debugging */
+/* #define OS_REGISTER_DEBUGGING_ENABLED */
+
 /*! An array of statically allocated threads. */
 static tcb_t OS_THREADS[OS_MAX_THREADS];
 
@@ -151,19 +154,21 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     swcontext->lr = 0xfffffff9;
 
-    /* hwcontext->r0 = 0x00000000; */
-    /* hwcontext->r1 = 0x01010101; */
-    /* hwcontext->r2 = 0x02020202; */
-    /* hwcontext->r3 = 0x03030303; */
+    #ifdef OS_REGISTER_DEBUGGING_ENABLED
+    hwcontext->r0 = 0x00000000;
+    hwcontext->r1 = 0x01010101;
+    hwcontext->r2 = 0x02020202;
+    hwcontext->r3 = 0x03030303;
 
-    /* swcontext->r4 = 0x04040404; */
-    /* swcontext->r5 = 0x05050505; */
-    /* swcontext->r6 = 0x06060606; */
-    /* swcontext->r7 = 0x07070707; */
-    /* swcontext->r8 = 0x08080808; */
-    /* swcontext->r9 = 0x09090909; */
-    /* swcontext->r10 = 0x10101010; */
-    /* swcontext->r11 = 0x11111111; */
+    swcontext->r4 = 0x04040404;
+    swcontext->r5 = 0x05050505;
+    swcontext->r6 = 0x06060606;
+    swcontext->r7 = 0x07070707;
+    swcontext->r8 = 0x08080808;
+    swcontext->r9 = 0x09090909;
+    swcontext->r10 = 0x10101010;
+    swcontext->r11 = 0x11111111;
+    #endif  /* OS_REGISTER_DEBUGGING_ENABLED */
 
     tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
     asm volatile ("PUSH {R9, R10, R11, R12}");
