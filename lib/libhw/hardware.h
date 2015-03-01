@@ -59,7 +59,7 @@ typedef struct {
 /*! Timer properties */
 typedef struct {
     memory_address_t base;
-    uint32_t frequency;
+    frequency_t frequency;
     uint32_t interrupt;
     uint32_t periodic; /* TIMER_CFG_PERIODIC or TIMER_CFG_ONE_SHOT */
 } hw_timer_metadata;
