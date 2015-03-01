@@ -5,6 +5,11 @@
 #include "os.h"
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
+#include "inc/hw_nvic.h"
+#include "inc/hw_types.h"
+
+/* enable time profiling */
+#define OS_TIME_PROFILING_ENABLED
 
 /* enable for os register debugging */
 /* #define OS_REGISTER_DEBUGGING_ENABLED */
@@ -214,6 +219,31 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
+    /* set the profiling data structures for the current thread */
+    /* should this be "enabled" or "disabled"? */
+    #ifdef OS_TIME_PROFILING_ENABLED
+    if (os_running_threads->time_started >= 0) {
+        os_running_threads->time_running_last =
+            HWREG(NVIC_ST_CURRENT) - os_running_threads->time_started;
+
+        /* If we haven't reached the max samples yet, increment the
+           number of samples taken */
+        if (os_running_threads->time_running_samples_taken < OS_TIME_MAX_SAMPLES) {
+            ++(os_running_threads->time_running_samples_taken);
+        }
+
+        /* take another sample */
+        os_running_threads->time_running_avg = os_running_threads->time_running_samples_taken > 1 ?
+            /* if true */
+            (os_running_threads->time_running_last +
+             os_running_threads->time_running_samples_taken * os_running_threads->time_running_avg) /
+            (os_running_threads->time_running_samples_taken+1) :
+            /* else */
+            os_running_threads->time_running_last;
+
+    }
+    #endif /* OS_TIME_PROFILING */
+
     /* load the value of os_running_threads */
     asm volatile("LDR     R2, =os_running_threads");
 
@@ -235,6 +265,11 @@ void PendSV_Handler() {
 
     /* load thread B's msp */
     asm volatile("ldr     r12, [r1]");
+
+    /* set the profiling data structures for the next thread */
+    #ifdef OS_TIME_PROFILING_ENABLED
+        os_running_threads->time_started = HWREG(NVIC_ST_CURRENT);
+    #endif  /* OS_TIME_PROFILING_ENABLED */
 
     /* load thread B's context */
     asm volatile("ldmia   r12!, {r4 - r11, lr}");

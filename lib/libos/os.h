@@ -23,6 +23,9 @@
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   100
 
+/*! Maximum number of samples to take for jitter averaging */
+#define OS_TIME_MAX_SAMPLES   10
+
 typedef enum {
     /* thread is not running and will not run */
     THREAD_DEAD,
@@ -67,6 +70,11 @@ typedef struct tcb {
      * sem contains a pointer's address :: blocked
      */
     semaphore_t* sem;
+
+    uint32_t time_started;
+    uint32_t time_running_last;
+    uint32_t time_running_avg;
+    uint32_t time_running_samples_taken;
 
     /*! sleep timer of the thread */
     /* int32_t sleep_timer;
