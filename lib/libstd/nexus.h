@@ -13,23 +13,23 @@
 #define always __attribute__((always_inline))
 
 /*! Begin a critical section. */
-#define atomic_start()				\
-    int32_t atom;				\
+#define atomic_start()                          \
+    int32_t atom;                               \
     atom = StartCritical()
 
 /*! End a critical section. */
-#define atomic_end()				\
+#define atomic_end()                            \
     EndCritical(atom)
 
 /*! Wrap a block of code and ensure it is executed without
  * interruption.
  * \warning Assumes that an int32t named atom exists in local
  * scope. */
-#define atomic(x) {				\
-    int32_t atom;				\
-    atom = StartCritical();			\
-    x						\
-    EndCritical(atom);				\
+#define atomic(x) {                             \
+    int32_t atom;                               \
+    atom = StartCritical();                     \
+    x                                           \
+    EndCritical(atom);                          \
 }
 
 /*! A macro to make it clear what we're doing with this while loop. */
@@ -66,7 +66,7 @@ void EndCritical(int32_t primask) {
     /*! bug: this line should be removed in favor of the above to
      *  avoid blindly enable interrupts, but instead enabling
      *  interrupts only if they were previously enabled before the
-     *  last \StartCtirical function call. */
+     *  last \StartCritical function call. */
     asm("CPSIE I");
 }
 

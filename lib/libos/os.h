@@ -170,12 +170,12 @@ void os_launch();
 /*! Put the invoking thread to sleep and let another thread take
  *  over. This s another way to say "set the interrupt bit of the
  *  \PendSV_Handler". */
-#define os_suspend()				\
+#define os_suspend()                            \
     IntPendSet(FAULT_PENDSV)
 
 /*! A convenience alias to \os_suspend to circumnavigate the naming
  *  conventions chosen by the couse Administrators. */
-#define os_surrender_context()			\
+#define os_surrender_context()                  \
     os_suspend()
 
 #endif
