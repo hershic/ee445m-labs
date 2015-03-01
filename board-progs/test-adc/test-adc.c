@@ -46,10 +46,10 @@ int main(void) {
 
     /* Trigger an initial ADC sequence. As far as I know this is
        required for proper init. */
-    postpone_death(
+    postpone_death() {
       heart_wrap (
 	/* ADCProcessorTrigger(ADC0_BASE, 0); */
 	adc_collect(0, 10, adc_data_buffer, TIMER0_BASE);
 	);
-      );
+    }
 }
