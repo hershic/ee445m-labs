@@ -35,38 +35,46 @@ void os_threading_init() {
     }
 }
 
+int8_t get_os_num_threads() {
+    return OS_NUM_THREADS;
+}
+
 tcb_t* os_add_thread(task_t task) {
 
+    int32_t status;
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
-    atomic (
-        /* 2. Pop the task from the dead_thread pile and add it to the
-         * list of running threads. */
-        thread_to_add = os_dead_threads;
-        CDL_DELETE(os_dead_threads, thread_to_add);
-        CDL_APPEND(os_running_threads, thread_to_add);
+    status = StartCritical();
+    /* 2. Pop the task from the dead_thread pile and add it to the
+     * list of running threads. */
+    thread_to_add = os_dead_threads;
+    CDL_DELETE(os_dead_threads, thread_to_add);
+    CDL_APPEND(os_running_threads, thread_to_add);
 
-        /* 3. Set the initial stack contents for the new thread. */
-        os_reset_thread_stack(thread_to_add, task);
+    /* 3. Set the initial stack contents for the new thread. */
+    os_reset_thread_stack(thread_to_add, task);
 
-        /* 4. Set metadata for this thread's TCB. */
-        thread_to_add->status = THREAD_RUNNING;
-        /* thread_to_add->sleep_timer = 0; */
-        thread_to_add->entry_point = task;
-        thread_to_add->time_started = 0;
-        thread_to_add->time_running_samples_taken = 0;
-        );
+    /* 4. Set metadata for this thread's TCB. */
+    thread_to_add->status = THREAD_RUNNING;
+    /* thread_to_add->sleep_timer = 0; */
+    thread_to_add->entry_point = task;
+    thread_to_add->time_started = 0;
+    thread_to_add->time_running_samples_taken = 0;
+
+    ++OS_NUM_THREADS;
+    EndCritical(status);
     /* 5. Return. */
     return thread_to_add;
 }
 
 tcb_t* os_remove_thread(task_t task) {
 
-    int32_t status ;
+    int32_t status;
     tcb_t* thread_to_remove;
 
     /* 1. Disable interrupts and save the priority mask */
+    /* TODO: clean this up, make uniform */
     status = StartCritical();
 
     /* 2. Pop the task from the running_thread pile and add it to the
@@ -87,6 +95,9 @@ tcb_t* os_remove_thread(task_t task) {
     thread_to_remove->entry_point = NULL;
 
     /* 4. Return. */
+    /* TODO: clean this up, make uniform */
+    --OS_NUM_THREADS;
+
     EndCritical(status);
     return thread_to_remove;
 }

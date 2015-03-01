@@ -18,13 +18,15 @@
  */
 
 /*! Maximum number of concurrent threads */
-#define OS_MAX_THREADS  4
+#define OS_MAX_THREADS  8
 
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   100
 
 /*! Maximum number of samples to take for jitter averaging */
 #define OS_TIME_MAX_SAMPLES   10
+
+static volatile int8_t OS_NUM_THREADS;
 
 typedef enum {
     /* thread is not running and will not run */
@@ -128,6 +130,8 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task);
 
 /*! An alias to \os_remove_thread. Feels like home sweet home.*/
 #define os_kill_thread(a) os_remove_thread(a)
+
+int8_t get_os_num_threads();
 
 /*! Adds a new thread with the specified task.
  *  \returns the TCB of the newly added thread, null if the addition
