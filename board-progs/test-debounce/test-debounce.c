@@ -31,6 +31,7 @@
 #include "libtimer/timer.h"
 #include "libhw/hardware.h"
 #include "libos/semaphore.h"
+#include "libdisplay/ST7735.h"
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
@@ -60,16 +61,21 @@ void postpone_suicide() {
 
     while (1) {
         sem_wait(button_debounced_new_data);
+        ST7735_DrawCharS(30,0,(uint8_t) (get_os_num_threads() + 0x30), ST7735_YELLOW,ST7735_BLACK, 1);
+
         if (~button_debounced_mailbox & BUTTON_LEFT) {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
                          GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+            ST7735_DrawCharS(10,0,'1',ST7735_YELLOW,ST7735_BLACK, 1);
             ++button_left_pressed;
-        }
+        } else { ST7735_DrawCharS(10,0,(uint8_t)'0',ST7735_YELLOW,ST7735_BLACK, 1); }
+
         if (~button_debounced_mailbox & BUTTON_RIGHT) {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^
                          GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+            ST7735_DrawCharS(20,0,'1',ST7735_YELLOW,ST7735_BLACK, 1);
             ++button_right_pressed;
-        }
+        } else { ST7735_DrawCharS(20,0,'0',ST7735_YELLOW,ST7735_BLACK, 1); }
     }
 }
 
@@ -102,6 +108,8 @@ int main() {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
+
+    ST7735_InitR(INITR_REDTAB);
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 1000);
