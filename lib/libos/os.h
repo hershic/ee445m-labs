@@ -49,11 +49,11 @@
 #define OS_INTERACTIVE_POOL  1
 
 /*! An alias to \os_add_thread. Feels like home sweet home. */
-#define os_spawn_thread(_thread, _priority)	\
+#define os_spawn_thread(_thread, _priority)     \
     os_add_thread(_thread, priority)
 
 /*! An alias to \os_remove_thread. Feels like home sweet home.*/
-#define os_kill_thread(_thread)			\
+#define os_kill_thread(_thread)                 \
     os_remove_thread(_thread)
 
 typedef enum {
@@ -224,7 +224,7 @@ void os_launch();
 
 /*! A convenience alias to \os_suspend to circumnavigate the naming
  *  conventions chosen by the couse Administrators. */
-#define os_surrender_context()			\
+#define os_surrender_context()                  \
     os_suspend()
 
 /*! Put the invoking thread to sleep and let another thread take
@@ -242,7 +242,7 @@ always static inline
 tcb_t* _os_scheduler_round_robin(pool_t pool, tcb_t* first_live_thread) {
 
     while(os_running_threads && first_live_thread != os_running_threads) {
-	first_live_thread = first_live_thread->next;
+        first_live_thread = first_live_thread->next;
     }
     return first_live_thread->next;
 }
@@ -257,10 +257,10 @@ tcb_t* _os_pool_waiting(pool_t pool) {
     tcb_t* tcb = OS_THREAD_POOL[pool];
     if (!tcb) {return NULL;}
     do {
-	if (THREAD_RUNNING == tcb->status) {
-	    return tcb;
-	}
-	tcb = tcb->next;
+        if (THREAD_RUNNING == tcb->status) {
+            return tcb;
+        }
+        tcb = tcb->next;
     } while (tcb != OS_THREAD_POOL[pool]);
     return NULL;
 }
@@ -274,7 +274,7 @@ void _os_choose_next_thread() {
     tcb_t* next_thread = _os_pool_waiting(pool);
 
     while(!next_thread) {
-	next_thread = _os_pool_waiting(++pool);
+        next_thread = _os_pool_waiting(++pool);
     }
     /* TODO: use the Multilevel Feedback-Queue Scheduling here */
     /* For now, all threads are of the same priority so simply
