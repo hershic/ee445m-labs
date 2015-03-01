@@ -94,9 +94,9 @@ tcb_t* os_tcb_of(const task_t task) {
             return &OS_THREADS[i];
         }
     }
-    /* TODO: create a compile-time flag to catch all scary
-     * situations, or let them go. #DANGER_ZONE */
+#ifdef DANGER_ZONE
     postpone_death();
+#endif
     return NULL;
 }
 
