@@ -273,8 +273,8 @@ libhw, who then queues it? Is this thread-save? is libuart?
   - [X] Without going back and actually measuring it, do you think the
      Consumer ever waits when it calls OS_MailBox_Send?
      Explain.
-* [0/1] Lab 3
-** [0/5] Preparation
+* [3/10] Lab 3
+** [3/10] Preparation
 *** TODO Add a priority field to =OS_AddPeriodicThread=
 **** Valvano
 Consider at least two ways to implement the second periodic background
@@ -303,9 +303,9 @@ user code in Lab2.c so they are compatible with your RTOS.
 **** Decrypted
 Add libjitter, which just keeps a running average and/or buffer of
 pidwork values. Research SV (System Service Call).
-*** BLOCKED [2/4] Aperiodic background thread triggered on button press
+*** BLOCKED [3/4] Aperiodic background thread triggered on button press
 **** TODO Create priority threads
-**** TODO Create single-shot threads
+**** DONE Create single-shot threads
 **** DONE Button Detection
 **** DONE Button Debouncing
 **** Valvano
