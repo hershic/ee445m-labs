@@ -1,8 +1,8 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /* Created by Hershal Bhave and Eric Crosson 2015-02-28 */
 /* Revision history: Look in Git FGT */
-#ifndef __semaphore__
-#define __semaphore__
+#ifndef __SEMAPHORE__
+#define __SEMAPHORE__
 
 /*! \addtogroup OS
  * @{
