@@ -156,14 +156,6 @@ typedef struct swcontext {
  *  execute come PendSV_Handler execution time. */
 static tcb_t* OS_NEXT_THREAD;
 
-/*! A tcb_t* containing the currently running thread and a linked list
- *  to other threads, although that shouldn't be used for anything. Oh
- *  no you say, you don't believe these values are equal?
- *  OS_NEXT_THREAD is only updated immediately *before* switching
- *  contexts, so during the execution of said context the previous
- *  'NEXT' is *current*. */
-#define os_running_threads OS_NEXT_THREAD
-
 /*! An array of statically allocated threads. */
 static tcb_t OS_THREADS[OS_MAX_THREADS];
 
