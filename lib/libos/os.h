@@ -5,11 +5,13 @@
 #ifndef __OS__
 #define __OS__
 
-#include "libstd/nexus.h"
-#include "inc/hw_ints.h"
-
 #include <stdint.h>
 #include <stdbool.h>
+
+#include "inc/hw_ints.h"
+
+#include "libstd/nexus.h"
+#include "semaphore.h"
 
 /*! \addtogroup OS
  * @{
@@ -43,12 +45,6 @@ typedef struct tcb {
     /*! pointer to stack (valid for threads not running */
     int32_t *sp;
 
-    /*! linked-list pointer to next tcb */
-    struct tcb *next;
-
-    /*! linked-list pointer to prev tcb */
-    struct tcb *prev;
-
     /*! Unique numeric identifier for the tcb.
      *  THIS PROPERY IS IMMUTABLE */
     immutable int32_t id;
@@ -58,14 +54,25 @@ typedef struct tcb {
      *  a handle to a tcb from his task pointer. */
     task_t entry_point;
 
-    /*! state of this thread */
+    /*! State of this thread */
     tstate_t status;
 
+    /* Semaphore value of this thread.
+     * sem == NULL :: unblocked
+     * sem contains a pointer's address :: blocked
+     */
+    semaphore_t* sem;
+
     /*! sleep timer of the thread */
-    int32_t sleep_timer;
+    /* int32_t sleep_timer;
 
     /*! priority of the thread */
     /* int8_t priority; */
+
+    /*! linked-list pointer to next tcb */
+    struct tcb *next;
+    /*! linked-list pointer to prev tcb */
+    struct tcb *prev;
 } tcb_t;
 
 /*! A circular doubly linked list of currently running threads.
@@ -160,8 +167,16 @@ int32_t os_running_thread_id();
  */
 void os_launch();
 
-/* TODO: doxygenize */
-tcb_t* os_suspend();
+/*! A convenience alias to \os_suspend to circumnavigate the naming
+ *  conventions chosen by the couse Administrators. */
+#define os_surrender_context()			\
+    os_suspend
+
+/*! Put the invoking thread to sleep and let another thread take
+ *  over. This s another way to say "set the interrupt bit of the
+ *  \PendSV_Handler". */
+#define os_suspend()				\
+    IntPendSet(FAULT_PENDSV)
 
 #endif
 

@@ -8,27 +8,66 @@
  * @{
  */
 
-typedef bool sem_t;
+/*! The default initialization value of a semaphore_t. */
+#define SEMAPHORE_DEFAULT_VALUE                 0
 
+/*! Typedef of a semaphore. */
+typedef int8_t semaphore_t;
+
+/*! Spinlock until \blocker is non-zero. */
 #define spinlock_until(blocker)                 \
     while (!(*blocker))
 
-#define sem_init(sem, initial_value)            \
-    sem_t sem;                                  \
+/*! Initialize \sem to \initial_value. */
+#define sem_init_(sem, initial_value)           \
+    semaphore_t sem;				\
     sem = initial_value
 
-#define sem_check(sem)                          \
-    if (sem)
+/* TODO: define */
+#define sem_check(sem)
 
+/*! Initialize a semaphore_t to \SEMAPHORE_DEFAULT_VALUE. */
+#define sem_init(sem)				\
+    sem_init_(sem, SEMAPHORE_DEFAULT_VALUE)
+
+/*! A convenience alias to \sem_post to allow comparison of source
+ *  code to course documents. */
+#define sem_signal(sem)				\
+    sem_post(sem)
+
+/*! Signal \sem and update all threads watching \sem. If the highest
+ *  priority thread watching \sem is released by this post, and it is
+ *  of a higher priority than the currently executing thread, then
+ *  suspend the current thread. The thread-context switcher will then
+ *  choose the higher-priority thread to execute. */
 #define sem_post(sem)                           \
-    sem = 1
+    atomic (					\
+	++sem;					\
+       /* TODO: wake thread */                  \
+    )
 
-/* TODO: convert this to make the current thread sleep instead of
-   unnecessarily consuming resources. OS thread sleeping must be
-   completed before this can happen, however. */
-#define sem_wait(sem)                    \
-    while (!sem);                       \
-    sem = 0
+/*! Stall execution of current thread until \sem is nonblocking. If
+ *  \sem becomes blocking during this invocation, call
+ *  \os_surrender_context for the current executing thread. */
+#define sem_wait(sem)			        \
+    atomic (				        \
+        if (!sem) {      		        \
+	    sem_init(sem);			\
+	}					\
+        --sem;				        \
+        if (!semaphore_blocked(sem)) sem = NULL;\
+	os_surrender_context();			\
+    )
+
+/*! Conditional evaluating to true when a semaphore is blocked by
+ *  virtue of being non-NULL. */
+#define semaphore_blocked(sem)			\
+    (sem != NULL)
+
+/*! Conditional evaluating to true when a thread's tcb_t is blocked by
+ * a semaphore. */
+#define thread_blocked(tcb_t)			\
+    (tcb_t->sem != NULL)
 
 #endif
 

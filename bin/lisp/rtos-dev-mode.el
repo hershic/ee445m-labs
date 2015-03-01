@@ -103,11 +103,11 @@ of a `gud-mode' buffer."
 	   (target   . "target remote localhost:3333")
 	   (step     . "step")
 	   (next     . "next")
-	   (finish     . "finish")
+	   (finish   . "finish")
 	   (continue . "continue")))
 
 ;; todo: determine why lv isn't working. probably an esc-system thing
-(setq hydra-lv nil)
+(setq hydra-lv nil)rtos-dev-mode
 
 (defhydra rtos/hydra-gdb (rtos-dev-mode-map "M-e" :color red)
   "gdb"
@@ -120,7 +120,9 @@ of a `gud-mode' buffer."
   ("n" rtos/gdb-next                 "next")
   ("f" rtos/gdb-finish               "finish")
   ("c" rtos/gdb-continue             "continue")
-  ("a" rtos/gdb-reset-load-continue  "refresh"))
+  ("a" rtos/gdb-reset-load-continue  "refresh")
+  ("b" gud-break                     "gud-break")
+  ("d" gud-remove                    "gud-remove"))
 
 ;; font-lock
 (font-lock-add-keywords

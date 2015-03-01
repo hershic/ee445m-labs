@@ -23,7 +23,7 @@ void os_threading_init() {
         OS_THREADS[i].id = i;
         OS_THREADS[i].entry_point = NULL;
         OS_THREADS[i].status = THREAD_DEAD;
-        OS_THREADS[i].sleep_timer = 0;
+        /* OS_THREADS[i].sleep_timer = 0; */
     }
 }
 
@@ -32,21 +32,22 @@ tcb_t* os_add_thread(task_t task) {
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
-    asm volatile("CPSIE  I");
-    /* 2. Pop the task from the dead_thread pile and add it to the
-     * list of running threads. */
-    thread_to_add = os_dead_threads;
-    CDL_DELETE(os_dead_threads, thread_to_add);
-    CDL_APPEND(os_running_threads, thread_to_add);
+    atomic (
+	asm volatile("CPSIE  I");
+	/* 2. Pop the task from the dead_thread pile and add it to the
+	 * list of running threads. */
+	thread_to_add = os_dead_threads;
+	CDL_DELETE(os_dead_threads, thread_to_add);
+	CDL_APPEND(os_running_threads, thread_to_add);
 
-    /* 3. Set the initial stack contents for the new thread. */
-    os_reset_thread_stack(thread_to_add, task);
+	/* 3. Set the initial stack contents for the new thread. */
+	os_reset_thread_stack(thread_to_add, task);
 
-    /* 4. Set metadata for this thread's TCB. */
-    thread_to_add->status = THREAD_RUNNING;
-    thread_to_add->sleep_timer = 0;
-    thread_to_add->entry_point = task;
-    asm volatile("CPSIE  I");
+	/* 4. Set metadata for this thread's TCB. */
+	thread_to_add->status = THREAD_RUNNING;
+	thread_to_add->sleep_timer = 0;
+	thread_to_add->entry_point = task;
+	);
     /* 5. Return. */
     return thread_to_add;
 }
@@ -192,8 +193,6 @@ void SysTick_Handler() {
      * pin in it, let our subconsciousness do the designing, continue
      * looking for examples and confer in person later.
      */
-
-    return;
 }
 
 void PendSV_Handler() {
@@ -252,10 +251,4 @@ void PendSV_Handler() {
     /* asm volatile("MSR CONTROL, R0"); */
 
     asm volatile ("bx lr");
-}
-
-/* returns the os_dead_threads */
-tcb_t* os_suspend() {
-
-    return NULL;
 }

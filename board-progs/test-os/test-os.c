@@ -145,4 +145,3 @@ int main() {
     IntMasterEnable();
     postpone_death();
 }
-

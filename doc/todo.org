@@ -48,6 +48,11 @@ call sequence:
 - [ ] return prt()'s ret value
   ooh, this one's tricky
 
+** [/] semaphore
+- [ ] #profile
+  collect information like wait time, turnaround time, throughput
+  [[http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/5_CPU_Scheduling.html][Operating Systems: CPU Scheduling]]
+*** minimum viable product for lab 3
 ** [0/2] hardware
 *** IN-PROGRESS bi directional notifications
 look at ASSERT (ti libs)

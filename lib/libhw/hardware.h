@@ -8,7 +8,7 @@
 #include "libos/semaphore.h"
 
 /* TODO: Expand this for all devices */
-static volatile sem_t uart_binary_semaphore;
+static volatile semaphore_t uart_binary_semaphore;
 
 /* Note to developers:
  *
