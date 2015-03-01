@@ -95,7 +95,7 @@ tcb_t* os_tcb_of(const task_t task) {
             return &OS_THREADS[i];
         }
     }
-#ifdef DANGER_ZONE
+#ifndef DANGER_ZONE
     postpone_death();
 #endif
     return NULL;
