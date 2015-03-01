@@ -38,7 +38,7 @@ volatile uint32_t button_right_pressed;
 volatile uint32_t button_debounced_mailbox;
 volatile uint32_t button_debounced_wtf;
 
-volatile sem_t button_debounced_new_data;
+volatile semaphore_t button_debounced_new_data;
 
 void button_debounce_end(notification button_notification) {
 
