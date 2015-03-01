@@ -27,6 +27,9 @@
     while(1) {            \
         x                 \
     }
+/*! #Defined to nothing; results in code sugar allowing developers to
+ * easily determine which parameter is frequency. */
+#define Hz
 
 /*! A pointer to a memory location on the ARM Cortex M4. */
 typedef int32_t memory_address_t;
