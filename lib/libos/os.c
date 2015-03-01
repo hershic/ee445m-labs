@@ -18,7 +18,7 @@ void os_threading_init() {
     os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
-        CDL_PREPEND(os_dead_threads, &OS_THREADS[i]);
+        CDL_APPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
         OS_THREADS[i].entry_point = NULL;
@@ -32,21 +32,21 @@ tcb_t* os_add_thread(task_t task) {
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
-    atomic (
-        /* 2. Pop the task from the dead_thread pile and add it to the
-         * list of running threads. */
-        thread_to_add = os_dead_threads;
-        CDL_DELETE(os_dead_threads, thread_to_add);
-        CDL_PREPEND(os_running_threads, thread_to_add);
+    asm volatile("CPSIE  I");
+    /* 2. Pop the task from the dead_thread pile and add it to the
+     * list of running threads. */
+    thread_to_add = os_dead_threads;
+    CDL_DELETE(os_dead_threads, thread_to_add);
+    CDL_APPEND(os_running_threads, thread_to_add);
 
-        /* 3. Set the initial stack contents for the new thread. */
-        os_reset_thread_stack(thread_to_add, task);
+    /* 3. Set the initial stack contents for the new thread. */
+    os_reset_thread_stack(thread_to_add, task);
 
-        /* 4. Set metadata for this thread's TCB. */
-        thread_to_add->status = THREAD_RUNNING;
-        thread_to_add->sleep_timer = 0;
-        thread_to_add->entry_point = task;
-    )
+    /* 4. Set metadata for this thread's TCB. */
+    thread_to_add->status = THREAD_RUNNING;
+    thread_to_add->sleep_timer = 0;
+    thread_to_add->entry_point = task;
+    asm volatile("CPSIE  I");
     /* 5. Return. */
     return thread_to_add;
 }
@@ -64,7 +64,7 @@ tcb_t* os_remove_thread(task_t task) {
     thread_to_remove = os_tcb_of(task);
     CDL_DELETE(os_running_threads, thread_to_remove);
     /* Means high tcb_t memory reusability */
-    CDL_PREPEND(os_dead_threads, thread_to_remove);
+    CDL_APPEND(os_dead_threads, thread_to_remove);
 
     /* OPTIONAL TODO: do the check for overwritten stacks as long as
      * we kill every thread in our testing we'll get valuable yet
@@ -110,15 +110,15 @@ void os_launch() {
     asm volatile("LDR R0, [R0]");
 
     /* set the process stack value */
-    asm volatile("MSR PSP, R0");
+    asm volatile("MSR MSP, R0");
 
-    /* change EXC_RETURN for return on PSP */
+    /* change EXC_RETURN for return on MSP */
     /* asm volatile("ORR LR, LR, #4"); */
 
-    /* change the active stack to use psp */
-    asm volatile("MRS R0, CONTROL");
-    asm volatile("ORR R0, R0, #2");
-    asm volatile("MSR CONTROL, R0");
+    /* change the active stack to use msp */
+    /* asm volatile("MRS R0, CONTROL"); */
+    /* asm volatile("ORR R0, R0, #2"); */
+    /* asm volatile("MSR CONTROL, R0"); */
 
     asm volatile("POP     {R4-R11}");
 
@@ -148,7 +148,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
     hwcontext->pc = (uint32_t)(task);
     hwcontext->psr = 0x01000000;
 
-    swcontext->lr = 0xfffffffd;
+    swcontext->lr = 0xfffffff9;
 
     /* hwcontext->r0 = 0x00000000; */
     /* hwcontext->r1 = 0x01010101; */
@@ -166,7 +166,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
     asm volatile ("PUSH {R9, R10, R11, R12}");
-    asm volatile ( "mrs     r12, psp" );
+    asm volatile ( "mrs     r12, msp" );
     asm volatile ( "mrs     r11, msp" );
     asm volatile ( "mrs     r10, control" );
 
@@ -182,7 +182,7 @@ void SysTick_Handler() {
      * esc's plan:
      * here call a method, something like os_reschedule_tasks
 
-     * - build a new list with CDL_PREPEND, prepending tasks in order
+     * - build a new list with CDL_APPEND, appending tasks in order
          of lowest priority to highest. this will reassign all *next,
          *prev pointers and when we do the unmodified PendSV_Handler
          it'll grab not the round-robin *next ptr but the
@@ -204,10 +204,10 @@ void PendSV_Handler() {
     /* phase 1: store context                             */
     /* -------------------------------------------------- */
 
-    /* load the psp of thread A into r12 */
-    asm volatile("mrs     r12, psp" );
+    /* load the msp of thread A into r12 */
+    asm volatile("mrs     r12, msp" );
 
-    /* save thread A's registers into the psp */
+    /* save thread A's registers into the msp */
     asm volatile("stmdb   r12!, {r4 - r11, lr}");
 
     /* -------------------------------------------------- */
@@ -230,17 +230,17 @@ void PendSV_Handler() {
     /* phase 3: load context                              */
     /* -------------------------------------------------- */
 
-    /* store the psp from thread A */
+    /* store the msp from thread A */
     asm volatile("str     r12, [r3, #0]");
 
-    /* load thread B's psp */
+    /* load thread B's msp */
     asm volatile("ldr     r12, [r1]");
 
     /* load thread B's context */
     asm volatile("ldmia   r12!, {r4 - r11, lr}");
 
-    /* put thread B's psp into the arch psp register */
-    asm volatile("msr     psp, r12");
+    /* put thread B's msp into the arch msp register */
+    asm volatile("msr     msp, r12");
 
     /* reenable interrupts */
     asm volatile("CPSIE   I");

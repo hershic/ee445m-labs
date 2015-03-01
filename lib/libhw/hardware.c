@@ -144,10 +144,11 @@ void hw_notify(HW_TYPE type, hw_metadata metadata, notification note) {
 
 void hw_daemon(void) {
     while (1) {
-        sem_wait(uart_binary_semaphore);
-        /* TODO: Do something interesting */
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
-                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        sem_check(uart_binary_semaphore) {
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
+                         GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+            /* TODO: Do something interesting */
+        }
     }
 }
 
