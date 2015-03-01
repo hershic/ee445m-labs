@@ -46,12 +46,12 @@ volatile uint32_t uart_dropped_chars;
 void Thread1(void){
     while(1) {
         /* BEGIN CRITICAL SECTION */
-        asm volatile("CPSID  I");
-        ++pidwork;
-        asm volatile("CPSIE  I");
+	atomic (
+	    ++pidwork;
+	    );
+        /* END CRITICAL SECTION */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-        /* END CRITICAL SECTION */
     }
 }
 
