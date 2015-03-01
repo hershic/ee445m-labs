@@ -51,18 +51,16 @@ typedef int8_t semaphore_t;
  *  \os_surrender_context for the current executing thread. */
 #define sem_wait(sem)			        \
     atomic (				        \
-        if (!sem) {      		        \
-	    sem_init(sem);			\
-	}					\
         --sem;				        \
-        if (!semaphore_blocked(sem)) sem = NULL;\
-	os_surrender_context();			\
+        if (semaphore_blocked(sem)) {		\
+	    os_surrender_context();		\
+	}                                       \
     )
 
 /*! Conditional evaluating to true when a semaphore is blocked by
  *  virtue of being non-NULL. */
 #define semaphore_blocked(sem)			\
-    (sem != NULL)
+    (sem < 0)
 
 /*! Conditional evaluating to true when a thread's tcb_t is blocked by
  * a semaphore. */
