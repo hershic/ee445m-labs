@@ -26,7 +26,7 @@ void os_threading_init() {
 
     /* Initialize thread pool metadata */
     for (i=0; i<OS_NUM_POOLS; ++i) {
-	OS_THREAD_POOL[i] = (tcb_t*) NULL;
+        OS_THREAD_POOL[i] = (tcb_t*) NULL;
     }
 }
 
@@ -190,8 +190,8 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 void SysTick_Handler() {
 
     /* Queue the PendSV_Handler after this ISR returns */
-    IntPendSet(FAULT_PENDSV);
     _os_choose_next_thread();
+    IntPendSet(FAULT_PENDSV);
 }
 
 void PendSV_Handler() {
