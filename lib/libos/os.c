@@ -133,11 +133,6 @@ void os_launch() {
     asm volatile("pop {pc}");
 
     asm volatile ("BX LR");
-
-    /* return from handler */
-    /* asm volatile("POP {R0, R1, R2, R3, R12, LR, PC, PSR} "); */
-
-    /* asm volatile("BX LR"); */
 }
 
 void os_reset_thread_stack(tcb_t* tcb, task_t task) {
@@ -202,7 +197,7 @@ void SysTick_Handler() {
 
 void PendSV_Handler() {
 
-    asm volatile("CPSID  I            ;// mask all (except faults)\n");
+    asm volatile("CPSID  I");
 
     /* -------------------------------------------------- */
     /* phase 1: store context                             */
