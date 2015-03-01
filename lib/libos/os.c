@@ -114,6 +114,8 @@ tcb_t* os_tcb_of(const task_t task) {
 void os_launch() {
 
     _os_choose_next_thread();
+    os_running_threads = OS_NEXT_THREAD;
+
     /* acquire the pointer to the stack pointer here */
     asm volatile("LDR     R0, =OS_NEXT_THREAD");
 
