@@ -45,7 +45,7 @@ tcb_t* os_add_thread(task_t task) {
 
 	/* 4. Set metadata for this thread's TCB. */
 	thread_to_add->status = THREAD_RUNNING;
-	thread_to_add->sleep_timer = 0;
+	/* thread_to_add->sleep_timer = 0; */
 	thread_to_add->entry_point = task;
 	);
     /* 5. Return. */
