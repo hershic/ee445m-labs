@@ -95,8 +95,8 @@ void main(void) {
     systick_init(10 Hz);
 
     os_threading_init();
-    os_add_thread(Task1);
-    os_add_thread(Task2);
+    os_add_thread(Task1, OS_SYSTEM_POOL);
+    os_add_thread(Task2, OS_SYSTEM_POOL);
 
     IntMasterEnable();
     os_launch();

@@ -6,9 +6,6 @@
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
 
-/*! An array of statically allocated threads. */
-static tcb_t OS_THREADS[OS_MAX_THREADS];
-
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
 
@@ -17,6 +14,7 @@ void os_threading_init() {
     uint32_t i;
     os_running_threads = NULL;
 
+    /* Initialize thread metadata */
     for (i=0; i<OS_MAX_THREADS; ++i) {
         CDL_APPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
@@ -25,29 +23,39 @@ void os_threading_init() {
         OS_THREADS[i].status = THREAD_DEAD;
         /* OS_THREADS[i].sleep_timer = 0; */
     }
+
+    /* Initialize thread pool metadata */
+    for (i=0; i<OS_NUM_POOLS; ++i) {
+	OS_THREAD_POOL[i] = (tcb_t*) NULL;
+    }
 }
 
-tcb_t* os_add_thread(task_t task) {
+tcb_t* os_add_thread(task_t task, priority_t priority) {
 
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
-    atomic (
-	asm volatile("CPSIE  I");
-	/* 2. Pop the task from the dead_thread pile and add it to the
-	 * list of running threads. */
-	thread_to_add = os_dead_threads;
-	CDL_DELETE(os_dead_threads, thread_to_add);
-	CDL_APPEND(os_running_threads, thread_to_add);
+    atomic_start();
 
-	/* 3. Set the initial stack contents for the new thread. */
-	os_reset_thread_stack(thread_to_add, task);
+    /* 2. Pop the task from the dead_thread pile */
+    thread_to_add = os_dead_threads;
+    CDL_DELETE(os_dead_threads, thread_to_add);
 
-	/* 4. Set metadata for this thread's TCB. */
-	thread_to_add->status = THREAD_RUNNING;
-	/* thread_to_add->sleep_timer = 0; */
-	thread_to_add->entry_point = task;
-	);
+    /* 3. Add the thread to the appropriate priority pool. */
+    /* CDL_APPEND(os_running_threads, thread_to_add); */
+    CDL_APPEND(OS_THREAD_POOL[priority], thread_to_add);
+
+    /* 4. Set the initial stack contents for the new thread. */
+    _os_reset_thread_stack(thread_to_add, task);
+
+    /* 5. Set metadata for this thread's TCB. */
+    thread_to_add->status = THREAD_RUNNING;
+    thread_to_add->entry_point = task;
+    thread_to_add->priority = priority;
+    /* thread_to_add->sleep_timer = 0; */
+
+    atomic_end();
+
     /* 5. Return. */
     return thread_to_add;
 }
@@ -63,8 +71,8 @@ tcb_t* os_remove_thread(task_t task) {
     /* 2. Pop the task from the running_thread pile and add it to the
      * list of dead threads. */
     thread_to_remove = os_tcb_of(task);
-    CDL_DELETE(os_running_threads, thread_to_remove);
-    /* Means high tcb_t memory reusability */
+    CDL_DELETE(OS_THREAD_POOL[thread_to_remove->priority], thread_to_remove);
+    /* Append means low tcb_t memory reusability. Prepend means high */
     CDL_APPEND(os_dead_threads, thread_to_remove);
 
     /* OPTIONAL TODO: do the check for overwritten stacks as long as
@@ -76,6 +84,8 @@ tcb_t* os_remove_thread(task_t task) {
     /* 3. Reset metadata for this thread's TCB. */
     thread_to_remove->status = THREAD_DEAD;
     thread_to_remove->entry_point = NULL;
+    thread_to_remove->next = NULL;
+    thread_to_remove->prev = NULL;
 
     /* 4. Return. */
     EndCritical(status);
@@ -103,8 +113,9 @@ tcb_t* os_tcb_of(const task_t task) {
 
 void os_launch() {
 
+    _os_choose_next_thread();
     /* acquire the pointer to the stack pointer here */
-    asm volatile("LDR     R0, =os_running_threads");
+    asm volatile("LDR     R0, =OS_NEXT_THREAD");
 
     /* acquire the current value of the stack pointer */
     asm volatile("LDR R0, [R0]");
@@ -137,7 +148,7 @@ void os_launch() {
     /* asm volatile("BX LR"); */
 }
 
-void os_reset_thread_stack(tcb_t* tcb, task_t task) {
+void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     hwcontext_t* hwcontext = (hwcontext_t*)
         (((uint32_t)OS_PROGRAM_STACKS[tcb->id]) +
@@ -178,21 +189,9 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
  *  SysTick */
 void SysTick_Handler() {
 
+    /* Queue the PendSV_Handler after this ISR returns */
     IntPendSet(FAULT_PENDSV);
-    /* todo: allow for swappable schedulers.
-     * esc's plan:
-     * here call a method, something like os_reschedule_tasks
-
-     * - build a new list with CDL_APPEND, appending tasks in order
-         of lowest priority to highest. this will reassign all *next,
-         *prev pointers and when we do the unmodified PendSV_Handler
-         it'll grab not the round-robin *next ptr but the
-         just-calculated next thread to grant foreground.
-
-     * notes: still seems a little sub-optimal to me so we'll put a
-     * pin in it, let our subconsciousness do the designing, continue
-     * looking for examples and confer in person later.
-     */
+    _os_choose_next_thread();
 }
 
 void PendSV_Handler() {
@@ -220,9 +219,10 @@ void PendSV_Handler() {
     asm volatile("LDR     R3, [R2]");
 
     /* load the value of os_running_threads->next into r1 */
-    asm volatile("LDR     R1, [R3,#4]");
+    asm volatile("LDR     R1, =OS_NEXT_THREAD");
+    asm volatile("LDR     R1, [R1]");
 
-    /* os_running_threads = os_running_threads->next */
+    /* os_running_threads = OS_NEXT_THREAD */
     asm volatile("STR     R1, [R2]");
 
     /* -------------------------------------------------- */

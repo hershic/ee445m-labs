@@ -17,17 +17,51 @@
  * @{
  */
 
+/* TODO: determine the best ways to document this and choose a default
+ * scheduler -- something like http://bit.ly/1zQSuqw */
+
+/* Possible values are:
+ * SCHEDULER_ROUND_ROBIN
+ * SCHEDULER_MULTILEVEL_QUEUE
+ * SCHEDULER_MULTILEVEL_FEEDBACK_QUEUE
+ */
+
+#if !(defined SCHEDULER_ROUND_ROBIN && \
+      defined SCHEDULER_MULTILEVEL_QUEUE && \
+      defined SCHEDULER_MULTILEVEL_FEEDBACK_QUEUE)
+#define SCHEDULER_MULTILEVEL_QUEUE
+#endif
+
 /*! Maximum number of concurrent threads */
 #define OS_MAX_THREADS  4
 
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   100
 
+/*! Static number of thread pools of distinct priority in use */
+#define OS_NUM_POOLS    2
+
+/*! Highest priority thread pool alias */
+#define OS_SYSTEM_POOL      0
+/*! Highest priority thread pool alias */
+#define OS_REAL_TIME_POOL   0
+/*! Second highest priority thread pool alias */
+#define OS_INTERACTIVE_POOL  1
+
+/*! An alias to \os_add_thread. Feels like home sweet home. */
+#define os_spawn_thread(_thread, _priority)	\
+    os_add_thread(_thread, priority)
+
+/*! An alias to \os_remove_thread. Feels like home sweet home.*/
+#define os_kill_thread(_thread)			\
+    os_remove_thread(_thread)
+
 typedef enum {
     /* thread is not running and will not run */
     THREAD_DEAD,
 
-    /* thread is waiting and will run when the timer runs out */
+    /* thread is waiting and will run when the semaphore blocking it
+     * is released */
     THREAD_SLEEPING,
 
     /* thread is running */
@@ -37,9 +71,17 @@ typedef enum {
     THREAD_ACTIVE
 } tstate_t;
 
+/*! Iterator capable of representing all pools. */
+typedef uint8_t pool_t;
+
+/*! OS thread priority levels; 0 is highest. */
+typedef uint8_t priority_t;
+
+/*! Type declaration of a task. \warning This is not a thread. We need
+ *  real threads. */
 typedef void (*task_t)();
 
-/*! \brief Thread Control Block */
+/*! Thread Control Block definition */
 typedef struct tcb {
 
     /*! pointer to stack (valid for threads not running */
@@ -50,9 +92,10 @@ typedef struct tcb {
     /*! linked-list pointer to prev tcb */
     struct tcb *prev;
 
-    /*! Unique numeric identifier for the tcb.
-     *  THIS PROPERY IS IMMUTABLE */
+    /*! Unique numeric identifier for the tcb. */
     immutable int32_t id;
+
+    priority_t priority;
 
     /*! The function used as this thread's entry point. This is
      *  recorded for developer convenience, i.e. the developer may get
@@ -83,7 +126,6 @@ static tcb_t* os_running_threads = NULL;
 /*! A circular doubly linked list of currently dead threads. */
 static tcb_t* os_dead_threads = NULL;
 
-
 /*! The contents of the stack immediately after a function call. */
 typedef struct hwcontext {
     uint32_t r0;
@@ -109,23 +151,42 @@ typedef struct swcontext {
     uint32_t lr;
 } swcontext_t;
 
+/*! Communication mailbox from the SysTick_Handler to the
+ *  PendSV_Handler; will contain the tcb_t* of the next thread to
+ *  execute come PendSV_Handler execution time. */
+static tcb_t* OS_NEXT_THREAD;
+
+/*! A tcb_t* containing the currently running thread and a linked list
+ *  to other threads, although that shouldn't be used for anything. Oh
+ *  no you say, you don't believe these values are equal?
+ *  OS_NEXT_THREAD is only updated immediately *before* switching
+ *  contexts, so during the execution of said context the previous
+ *  'NEXT' is *current*. */
+#define os_running_threads OS_NEXT_THREAD
+
+/*! An array of statically allocated threads. */
+static tcb_t OS_THREADS[OS_MAX_THREADS];
+
+/*! An array of thread pools to place OS_THREADS into. */
+static tcb_t* OS_THREAD_POOL[OS_NUM_POOLS];
+
+/*! Initialize the threading engine, setting all threads to dead. This
+ *  initializes the dead thread circle appropriately and sets the
+ *  running thread circle to null.
+ */
+void os_threading_init();
+
 /*! Resets the thread stack for a given tcb to run a given task.
  *  \param thread the thread whose stack is to be reset
  *  \param the task for which the thread should run
  */
-void os_reset_thread_stack(tcb_t* tcb, task_t task);
-
-/*! An alias to \os_add_thread. Feels like home sweet home. */
-#define os_spawn_thread(a) os_add_thread(a)
-
-/*! An alias to \os_remove_thread. Feels like home sweet home.*/
-#define os_kill_thread(a) os_remove_thread(a)
+void _os_reset_thread_stack(tcb_t* tcb, task_t task);
 
 /*! Adds a new thread with the specified task.
  *  \returns the TCB of the newly added thread, null if the addition
  *  was not possible for some reason.
  */
-tcb_t* os_add_thread(task_t);
+tcb_t* os_add_thread(task_t, priority_t priority);
 
 /*! Remove a thread from the queue the schedule will choose from.
  * \param The task to kill. This should be the task that was used to start the thread to remove via \os_add_thread.
@@ -149,13 +210,7 @@ tcb_t* os_tcb_of(task_t);
  *  \returns The first thread removed from the dead thread circle, or
  *  null if the dead thread circle is empty.
  */
-tcb_t* os_next_dead_thread();
-
-/*! Initialize the threading engine, setting all threads to dead. This
- *  initializes the dead thread circle appropriately and sets the
- *  running thread circle to null.
- */
-void os_threading_init();
+tcb_t* _os_next_dead_thread();
 
 /* TODO: doxygenize */
 int32_t os_running_thread_id();
@@ -167,16 +222,68 @@ int32_t os_running_thread_id();
  */
 void os_launch();
 
-/*! Put the invoking thread to sleep and let another thread take
- *  over. This s another way to say "set the interrupt bit of the
- *  \PendSV_Handler". */
-#define os_suspend()				\
-    IntPendSet(FAULT_PENDSV)
-
 /*! A convenience alias to \os_suspend to circumnavigate the naming
  *  conventions chosen by the couse Administrators. */
 #define os_surrender_context()			\
     os_suspend()
+
+/*! Put the invoking thread to sleep and let another thread take
+ *  over. This s another way to say "set the interrupt bit of the
+ *  \PendSV_Handler". */
+always static inline os_suspend() {
+
+    IntPendSet(FAULT_PENDSV);
+    /* TODO: penalize long threads, reward quick threads */
+}
+
+/*! Choose the next thread in the specified pool to execute based on a
+ *  round robin scheme. */
+always static inline
+tcb_t* _os_scheduler_round_robin(pool_t pool, tcb_t* first_live_thread) {
+
+    while(os_running_threads && first_live_thread != os_running_threads) {
+	first_live_thread = first_live_thread->next;
+    }
+    return first_live_thread->next;
+}
+
+/*! Returns the tcb of the first running thread in the specified pool,
+ *  or NULL if the specified pool consists of only sleeping
+ *  (deadlocked) threads */
+always static inline
+tcb_t* _os_pool_waiting(pool_t pool) {
+
+    /* optimize: this will be called unbelievably often */
+    tcb_t* tcb = OS_THREAD_POOL[pool];
+    if (!tcb) {return NULL;}
+    do {
+	if (THREAD_RUNNING == tcb->status) {
+	    return tcb;
+	}
+	tcb = tcb->next;
+    } while (tcb != OS_THREAD_POOL[pool]);
+    return NULL;
+}
+
+/* TODO: what happens when we run out of threads to use? aka, when
+ * they are all blocked. I bet it's time again to whip out the idle
+ * thread. */
+static inline
+void _os_choose_next_thread() {
+    pool_t pool = 0;
+    tcb_t* next_thread = _os_pool_waiting(pool);
+
+    while(!next_thread) {
+	next_thread = _os_pool_waiting(++pool);
+    }
+    /* TODO: use the Multilevel Feedback-Queue Scheduling here */
+    /* For now, all threads are of the same priority so simply
+     * implement a round robin scheme. */
+    next_thread = _os_scheduler_round_robin(pool, next_thread);
+
+    OS_NEXT_THREAD = next_thread;
+}
+
 
 #endif
 

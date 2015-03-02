@@ -92,9 +92,9 @@ int main() {
     pidwork_init();
 
     os_threading_init();
-    os_add_thread(postpone_suicide);
-    os_add_thread(pidwork_record);
-    os_add_thread(pidwork_increment);
+    os_add_thread(postpone_suicide, OS_SYSTEM_POOL);
+    os_add_thread(pidwork_record, OS_SYSTEM_POOL);
+    os_add_thread(pidwork_increment, OS_SYSTEM_POOL);
 
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);

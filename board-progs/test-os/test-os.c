@@ -52,6 +52,7 @@ void Thread1(void){
         /* END CRITICAL SECTION */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+	/* os_surrender_context(); */
     }
 }
 
@@ -71,6 +72,7 @@ void Thread2(void){
             pidwork_idx = (pidwork_idx + 1) & PIDWORK_BUFFER_SIZE;
         }
         pidwork = 0;
+	/* os_surrender_context(); */
     }
 }
 
@@ -116,17 +118,17 @@ int main() {
                                  UART_CONFIG_PAR_NONE));
 
     /* Enable the UART interrupt. */
-    IntEnable(INT_UART0);
-    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
 
-    uart_fifo = uart_fifo_raw;
-    uart_producer_idx = 0;
-    uart_consumer_idx = UART_FIFO_SIZE - 1;
+    /* IntEnable(INT_UART0); */
+    /* UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT); */
+    /* uart_fifo = uart_fifo_raw; */
+    /* uart_producer_idx = 0; */
+    /* uart_consumer_idx = UART_FIFO_SIZE - 1; */
 
     os_threading_init();
-    os_add_thread(Thread1);
-    os_add_thread(Thread2);
-    os_add_thread(hw_daemon);
+    os_add_thread(Thread1, OS_INTERACTIVE_POOL);
+    os_add_thread(Thread2, OS_INTERACTIVE_POOL);
+    /* os_add_thread(hw_daemon, OS_SYSTEM_POOL); */
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 1000);
