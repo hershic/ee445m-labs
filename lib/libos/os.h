@@ -233,10 +233,10 @@ always static inline os_suspend() {
 always static inline
 tcb_t* _os_scheduler_round_robin(pool_t pool, tcb_t* first_live_thread) {
 
-    while(os_running_threads && first_live_thread != os_running_threads) {
-        first_live_thread = first_live_thread->next;
+    if (!os_running_threads) {
+	return first_live_thread->next;
     }
-    return first_live_thread->next;
+    return os_running_threads->next;
 }
 
 /*! Returns the tcb of the first running thread in the specified pool,
