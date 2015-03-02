@@ -1,15 +1,13 @@
-
 ;;; disaster-arm.el --- Disassemble C/C++ code for an ARM Cortex under cursor in Emacs
 
 ;; Copyright (C) 2013 Justine Tunney.
 ;; Edited 2015 Eric Crosson: changed compiler/objdumper/disassembler to gnu-arm-eabi-*
 
 ;; Author: Justine Tunney <jtunney@gmail.com>
-;; Created: 2013-03-02
+;; Created: 2015-03-02
 ;; Version: 20130509.1055
 ;; X-Original-Version: 0.1
 ;; Keywords: tools
-;; URL: https://github.com/jart/disaster
 
 ;; This file is not part of GNU Emacs.
 
