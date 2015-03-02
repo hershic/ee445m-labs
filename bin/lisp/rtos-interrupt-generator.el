@@ -4,7 +4,7 @@
 ;; Copyright (C) 2015 Eric Crosson
 
 ;; Author: Eric Crosson <esc@ericcrosson.com>
-;; Keywords: compilation
+;; Keywords: rtos
 ;; Package-Version: 0
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -31,25 +31,29 @@
 
 ;;; Code:
 
-(defvar rtos/interrupt-channels nil
+;; TODO: dependency of rtos-dev-mode
+
+(defcustom rtos/interrupt-channels '(0 1 2)
   "Templates of interruptable device channel numbers on the
-TM4C123G Cortex M4.")
-(setq rtos/interrupt-channels '(0 1 2))
+TM4C123G Cortex M4."
+  :group 'rtos)
+;; (setq rtos/interrupt-channels )
 
-(defvar rtos/interrupt-devices nil
+(defcustom rtos/interrupt-devices '(uart timer)
   "Templates of interruptable device device numbers on the
-TM4C123G Cortex M4.")
-(setq rtos/interrupt-devices '(uart timer))
+TM4C123G Cortex M4."
+  :group 'rtos)
+;; (setq rtos/interrupt-devices '(uart timer))
 
+(require 'cl-lib)
 (defun rtos/combinations (&rest lists)
   "Return a list of all possible combinations of the elements of LISTS."
   (if (car lists)
-      (mapcan (lambda (inner-val)
-                (mapcar (lambda (outer-val)
-                          (cons outer-val
-                                inner-val))
-                        (car lists)))
-              (apply #'rtos/combinations (cdr lists)))
+      (cl-mapcan (lambda (inner-val)
+		   (cl-mapcar (lambda (outer-val)
+				(cons outer-val inner-val))
+			      (car lists)))
+		 (apply #'rtos/combinations (cdr lists)))
     (list nil)))
 
 (defun rtos/isr-template (file sub)
@@ -68,11 +72,11 @@ strings %s substituted with (concat FILE SUB)."
 ;;;###autoload
 (defun rtos/generate-interrupts()
   "Insert at point interrupt handlers for every permutation of
-device and channel number in `rtos/interrupt-devices' and
-`rtos/interrupt-channels', respectively."
+device and channel number in list `rtos/interrupt-devices' and
+list `rtos/interrupt-channels', respectively."
   (interactive)
   (save-excursion
-    (mapcar (lambda (template)
+    (mapc (lambda (template)
 	      (let* ((device (cadr template))
 		     (id     (car template))
 		     (isr-handler (upcase (symbol-name device)))
