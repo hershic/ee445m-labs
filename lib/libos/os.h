@@ -228,12 +228,27 @@ always static inline os_suspend() {
     /* TODO: penalize long threads, reward quick threads */
 }
 
+/* TODO: extract the tree walking from this method and _os_pool_waiting */
+/*! Return true if tcb is in the specified pool of \OS_THREAD_POOL. */
+always static inline
+bool _tcb_in_pool(tcb_t* tcb, pool_t pool) {
+
+    tcb_t* check = OS_THREAD_POOL[pool];
+    do {
+	if (tcb == check) {
+	    return true;
+	}
+	check = check->next;
+    } while (check != OS_THREAD_POOL[pool]);
+    return false;
+}
+
 /*! Choose the next thread in the specified pool to execute based on a
  *  round robin scheme. */
 always static inline
 tcb_t* _os_scheduler_round_robin(pool_t pool, tcb_t* first_live_thread) {
 
-    if (!os_running_threads) {
+    if (!os_running_threads || !_tcb_in_pool(os_running_threads, pool)) {
 	return first_live_thread->next;
     }
     return os_running_threads->next;
