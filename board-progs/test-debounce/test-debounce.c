@@ -21,6 +21,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/systick.h"
 #include "driverlib/timer.h"
+#include "driverlib/adc.h"
 
 #define HEARTBEAT_MODAL
 
@@ -32,6 +33,7 @@
 #include "libhw/hardware.h"
 #include "libos/semaphore.h"
 #include "libdisplay/ST7735.h"
+#include "libadc/adc.h"
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
@@ -40,9 +42,6 @@ volatile uint32_t button_debounced_mailbox;
 volatile uint32_t button_debounced_wtf;
 
 volatile semaphore_t button_debounced_new_data;
-
-volatile uint32_t* adc_sample_buffer;
-
 
 void button_debounce_end(notification button_notification) {
 
@@ -58,13 +57,6 @@ void button_debounce_start(notification button_notification) {
     hw_init(HW_TIMER, timer_metadata);
     hw_subscribe_single_shot(HW_TIMER, timer_metadata,
                              button_debounce_end);
-}
-
-void adc_trigger_sample(notification timer_notification) {
-    ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0]));
-    ADCProcessorTrigger(ADC0_BASE, 0);
-    ST7735_DrawCharS(60,0,(uint8_t) 'T', ST7735_YELLOW,ST7735_BLACK, 1);
-
 }
 
 void postpone_suicide() {
@@ -121,10 +113,23 @@ int main() {
 
     ST7735_InitR(INITR_REDTAB);
 
-    timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER1A, TIMER_CFG_PERIODIC);
-    hw_init(HW_TIMER, timer_metadata);
-    hw_subscribe_single_shot(HW_TIMER, timer_metadata,
-                             adc_trigger_sample);
+    /* start adc init */
+    hw_metadata metadata;
+    metadata.adc.base = ADC0_BASE;
+    metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
+    metadata.adc.sample_sequence = 3;
+    metadata.adc.channel = 0;
+    metadata.adc.channel_configuration =
+        ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+    metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
+    metadata.adc.trigger_metadata.timer.frequency = 2 Hz;
+    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
+    metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
+
+    /* adc_init(metadata); */
+    /* adc_channel_init(metadata); */
+    /* adc_interrupt_init(metadata); */
+    /* end adc init */
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 1000);

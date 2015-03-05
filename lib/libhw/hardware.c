@@ -6,6 +6,8 @@
 /* TI Includes */
 #include "inc/hw_ints.h"
 #include "inc/hw_memmap.h"
+#include "inc/hw_nvic.h"
+#include "inc/hw_types.h"
 
 /* Driverlib Includes */
 #include "driverlib/debug.h"
@@ -30,6 +32,9 @@ hw_driver HW_UART_DRIVER;
 hw_driver HW_TIMER_DRIVER;
 hw_driver HW_BUTTON_DRIVER;
 hw_driver HW_ADC_DRIVER;
+
+volatile int32_t timer_systick_value;
+volatile int32_t adc_systick_value;
 
 /* To satisfy our need for speed, we must avoid the branches and
 * memory ready necessary for lazy initialization; that is to say the
@@ -293,7 +298,7 @@ void UART2_Handler(void) {
  * This isr was generated
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
-void Timer0A_Handler(void) {
+void TIMER0A_Handler(void) {
 
   TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
   notification_init(int, 1);
@@ -307,11 +312,12 @@ void Timer0A_Handler(void) {
  * This isr was generated
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
-void Timer1A_Handler(void) {
+void TIMER1A_Handler(void) {
 
   TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
   notification_init(int, 1);
   timer_metadata_init(TIMER1_BASE, NULL, NULL, NULL);
+  timer_systick_value = HWREG(NVIC_ST_CURRENT);
   hw_notify(HW_TIMER, timer_metadata, note);
 }
 
@@ -364,7 +370,9 @@ void ADC0Seq3_Handler(void) {
     ADCSequenceDataGet(ADC0_BASE, 3, &test_adc_sample_buffer);
     /* ADCProcessorTrigger(ADC0_BASE, 0); */
 
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+    adc_systick_value = HWREG(NVIC_ST_CURRENT);
+
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
 
     /* TODO: Update our report of the data somehow (whatever
        means we define are necessary). For now the data

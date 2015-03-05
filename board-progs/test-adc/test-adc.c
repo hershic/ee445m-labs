@@ -16,7 +16,6 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
-#include "driverlib/rom.h"
 
 #include "libadc/adc.h"
 #include "libstd/nexus.h"
