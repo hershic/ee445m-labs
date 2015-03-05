@@ -98,7 +98,7 @@ void ADC0Seq3_Handler(void) {
     ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0]));
     /* ADCProcessorTrigger(ADC0_BASE, 0); */
 
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
 
     /* TODO: Update our report of the data somehow (whatever
        means we define are necessary). For now the data
