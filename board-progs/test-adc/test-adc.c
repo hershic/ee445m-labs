@@ -52,6 +52,8 @@ int main(void) {
     metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
     adc_init(metadata);
+    adc_channel_init(metadata);
+    adc_interrupt_init(metadata);
 
     /* adc_open(0); */
     IntMasterEnable();
