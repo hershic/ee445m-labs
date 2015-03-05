@@ -20,6 +20,9 @@
 
 #include "libadc/adc.h"
 #include "libstd/nexus.h"
+
+#define HEARTBEAT_MODAL
+
 #include "libheart/heartbeat.h"
 
 #define ADC_DATA_BUFFER_LEN 3
@@ -32,9 +35,9 @@ int main(void) {
                    SYSCTL_XTAL_16MHZ);
 
     heart_init();
-
-    /* Enable TIMER2 (we are using) */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
 
     /* Enable processor interrupts. */
     IntMasterEnable();

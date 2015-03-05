@@ -91,7 +91,7 @@ void adc_interrupt_init(hw_metadata metadata) {
 void ADC0Seq3_Handler(void) {
 
     /* Clear the ADC interrupt. */
-    ADCIntClear(ADC0_BASE, 0);
+    ADCIntClear(ADC0_BASE, 3);
 
     /* Read the data and trigger a new sample request. */
     /* first is channel, second is beginning of buffer length */
