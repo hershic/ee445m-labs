@@ -23,8 +23,8 @@ typedef int8_t semaphore_t;
     semaphore_t sem;                            \
     sem = initial_value
 
-/* TODO: define */
-#define sem_check(sem)
+#define sem_check(sem)				\
+    if(!semaphore_blocked(sem))
 
 /*! Initialize a semaphore_t to \SEMAPHORE_DEFAULT_VALUE. */
 #define sem_init(sem)                           \

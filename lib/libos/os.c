@@ -20,9 +20,21 @@ static tcb_t OS_THREADS[OS_MAX_THREADS];
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
 
+/*! A flag set when \os_threading_init is invoked. */
+static bool OS_THREADING_INITIALIZED = false;
+
 void os_threading_init() {
 
     uint32_t i;
+
+    /* This check exists so libraries may call os_threading_init
+     * without breaking everything. We dont' want to contribute to the
+     * black magic that is the specific initialization of TI
+     * libraries, do we? */
+    if (OS_THREADING_INITIALIZED) {
+	return;
+    }
+
     os_running_threads = NULL;
 
     for (i=0; i<OS_MAX_THREADS; ++i) {
@@ -33,6 +45,7 @@ void os_threading_init() {
         OS_THREADS[i].status = THREAD_DEAD;
         /* OS_THREADS[i].sleep_timer = 0; */
     }
+    OS_THREADING_INITIALIZED = true;
 }
 
 int8_t get_os_num_threads() {
@@ -193,7 +206,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
 /*! \warning Ensure you have something to run before enabling
  *  SysTick */
-void SysTick_Handler() {
+static void SysTick_Handler() {
 
     IntPendSet(FAULT_PENDSV);
     /* todo: allow for swappable schedulers.
@@ -212,7 +225,7 @@ void SysTick_Handler() {
      */
 }
 
-void PendSV_Handler() {
+static void PendSV_Handler() {
 
     asm volatile("CPSID  I");
 

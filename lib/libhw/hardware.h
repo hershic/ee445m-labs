@@ -8,7 +8,7 @@
 #include "libos/semaphore.h"
 
 /* TODO: Expand this for all devices */
-static volatile semaphore_t uart_binary_semaphore;
+static volatile semaphore_t HW_SEM_UART0;
 
 /* Note to developers:
  *
@@ -131,6 +131,9 @@ typedef struct {
     hw_init(type, metadata);                              \
     hw_subscribe(type, metadata, pseudo_isr)
 
+/*! Initialize libhw's internal data structures */
+void hw_init_daemon();
+
 /*! This function is responsible for enabling the peripherals and
  * internal data strutures used by the specified \hw_group.
  * \param hw_group The hardware group driver to initialize
@@ -214,6 +217,12 @@ hw_driver* hw_driver_singleton(HW_TYPE);
  * hardware interrupt event
  */
 void hw_notify(HW_TYPE, hw_metadata, notification);
+
+/*! Iterate over all chars in the respective uart's RX_FIFO and
+ *  notify all subscribed tasks.
+ * \param UART metadata
+ */
+void hw_notify_uart(hw_metadata uart_metadata);
 
 /* TODO: Doxygenize */
 void hw_daemon(void);

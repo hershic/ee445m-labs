@@ -13,6 +13,9 @@
 /*! Default uart baud rate in today's modern world. */
 #define UART_DEFAULT_BAUD_RATE 115200
 
+/*! Flag for libuart to handle CR/LF correctly. */
+static bool UART_LAST_WAS_CR;
+
 /*! Create a hardware_metadata struct named _name */
 #define uart_metadata_init_(_name, _baud_rate, _channel, _interrupt)    \
     hw_metadata _name;                                                  \
