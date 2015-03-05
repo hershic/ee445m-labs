@@ -32,6 +32,7 @@
 #include "libhw/hardware.h"
 #include "libos/semaphore.h"
 #include "libdisplay/ST7735.h"
+#include "libadc/adc.h"
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;

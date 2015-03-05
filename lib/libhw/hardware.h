@@ -45,7 +45,8 @@ static volatile semaphore_t HW_SEM_UART0;
 typedef enum {
     HW_UART,
     HW_TIMER,
-    HW_BUTTON
+    HW_BUTTON,
+    HW_ADC
 } HW_TYPE;
 
 /*! UART properties */
@@ -73,12 +74,29 @@ typedef struct {
     uint32_t interrupt;
 } hw_button_metadata;
 
+typedef union {
+    hw_timer_metadata timer;
+} adc_trigger_metadata;
+
+/*! Adc properties */
+typedef struct {
+    /* NOTE: base will be used in the future when we have adcs on
+       different ports */
+    memory_address_t base;
+    uint32_t trigger_source;
+    uint32_t sample_sequence;
+    uint32_t channel;
+    uint32_t channel_configuration;
+    adc_trigger_metadata trigger_metadata;
+} hw_adc_metadata;
+
 /*! Initialization information comes in many shapes and sizes. Here is
  * one convenient container. */
 typedef union {
     hw_uart_metadata uart;
     hw_timer_metadata timer;
     hw_button_metadata button;
+    hw_adc_metadata adc;
 } hw_metadata;
 
 /*! An iterator ensured to be of an optimized size according to the
