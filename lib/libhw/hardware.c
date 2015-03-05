@@ -29,6 +29,7 @@
 hw_driver HW_UART_DRIVER;
 hw_driver HW_TIMER_DRIVER;
 hw_driver HW_BUTTON_DRIVER;
+hw_driver HW_ADC_DRIVER;
 
 /* To satisfy our need for speed, we must avoid the branches and
 * memory ready necessary for lazy initialization; that is to say the
@@ -57,7 +58,15 @@ void hw_driver_init(HW_TYPE type, hw_metadata metadata) {
          * has to be run again */
         button_init(metadata);
         break;
+    case HW_ADC:
+        switch(metadata.adc.base) {
+        case ADC0_BASE:
+            break;
 
+        default:
+            postpone_death();
+        }
+        break;
     default: postpone_death();
     }
 }
@@ -86,6 +95,13 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
     case HW_BUTTON:
         /* TODO: parametrize */
         button_set_interrupt(metadata);
+        break;
+
+    case HW_ADC:
+        /******************************/
+        /* TODO: CALL ADC DRIVER HERE */
+        /******************************/
+        /* adc_set_interrupt(metadata); */
         break;
 
     default: postpone_death();

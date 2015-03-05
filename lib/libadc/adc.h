@@ -3,11 +3,15 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "libhw/hardware.h"
 
+/* TODO: Create macros for this */
+
+/* TODO: fix documentation */
 /*! Initialize the ADC device on the board
  *  \return void
  */
-void adc_init(void);
+void adc_init(hw_metadata metadata);
 
 /*! Encode the ADC channel bit mask from the integer ADC channel number
  *  \param channel the integer channel to encode into the bit mask

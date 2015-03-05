@@ -273,6 +273,17 @@ libhw, who then queues it? Is this thread-save? is libuart?
   - [X] Without going back and actually measuring it, do you think the
      Consumer ever waits when it calls OS_MailBox_Send?
      Explain.
+#+todo: TODO(t) HB(b) ESC(e) | DONE(d)
+** [0/7] Retry checkout
+*** TODO adc sampling at 2 khz
+follow the figure 2.4
+*** ESC another thread for the serial
+*** HB a thread to update the lcd with adc data
+*** TODO jitter: defined as time past 2khz goal
+*** TODO task: display threadcount to lcd, watch it increase with
+button-created threads
+*** TODO fft to smash the cpu and increase jitter
+*** TODO task 4/5: from starter code. also to smash cpu for jitter
 * [3/10] Lab 3
 ** [1/5] Preparation
 *** TODO Add a priority field to =OS_AddPeriodicThread=
