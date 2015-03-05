@@ -122,10 +122,9 @@ int main() {
     hw_metadata metadata;
     metadata.adc.base = ADC0_BASE;
     metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
-    metadata.adc.sample_sequence = 3;
+    metadata.adc.sample_sequence = 2;
     metadata.adc.channel = 0;
-    metadata.adc.channel_configuration =
-        ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+    metadata.adc.channel_configuration = ADC_CTL_CH0;
     metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
     metadata.adc.trigger_metadata.timer.frequency = 2 Hz;
     metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
@@ -133,6 +132,16 @@ int main() {
 
     adc_init(metadata);
     adc_channel_init(metadata);
+
+    metadata.adc.channel = 1;
+    metadata.adc.channel_configuration = ADC_CTL_CH1;
+    adc_channel_init(metadata);
+
+    metadata.adc.channel = 2;
+    metadata.adc.channel_configuration = ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END;
+    adc_channel_init(metadata);
+
+
     adc_interrupt_init(metadata);
     /* end adc init */
 

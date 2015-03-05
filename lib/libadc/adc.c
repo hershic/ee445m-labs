@@ -16,11 +16,10 @@
 #define NUM_ADC_CHANNELS 11
 
 /* global buffers */
-uint32_t* adc_sample_buffer;
+uint32_t adc_samples[3];
 
 /* TODO: Need to be able to init the adc for any combination of ports and pins */
 void adc_init(hw_metadata metadata) {
-    uint8_t i;
 
     /* TODO: determine where the other ADC ports are located */
     switch(metadata.adc.base) {
@@ -83,9 +82,27 @@ void adc_interrupt_init(hw_metadata metadata) {
 
     /* Clear the interrupt status flag.  This is done to make sure the
        interrupt flag is cleared before we sample. */
-    ADCIntClear(metadata.adc.base, 3);
-    IntEnable(INT_ADC0SS3);
+    ADCIntClear(metadata.adc.base, metadata.adc.sample_sequence);
+    IntEnable(INT_ADC0SS0 + metadata.adc.sample_sequence);
     /* ADCProcessorTrigger(metadata.adc.base, metadata.adc.sample_sequence); */
+}
+
+void ADC0Seq2_Handler(void) {
+
+    /* Clear the ADC interrupt. */
+    ADCIntClear(ADC0_BASE, 2);
+
+    /* Read the data and trigger a new sample request. */
+    /* first is channel, second is beginning of buffer length */
+    ADCSequenceDataGet(ADC0_BASE, 2, adc_samples);
+    /* ADCProcessorTrigger(ADC0_BASE, 0); */
+
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
+
+    /* TODO: Update our report of the data somehow (whatever
+       means we define are necessary). For now the data
+       resides in adc_data_buffer ready for copying and
+       interpretation. */
 }
 
 void ADC0Seq3_Handler(void) {
@@ -95,7 +112,7 @@ void ADC0Seq3_Handler(void) {
 
     /* Read the data and trigger a new sample request. */
     /* first is channel, second is beginning of buffer length */
-    ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0]));
+    ADCSequenceDataGet(ADC0_BASE, 3, adc_samples);
     /* ADCProcessorTrigger(ADC0_BASE, 0); */
 
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
