@@ -42,7 +42,11 @@ typedef enum {
     THREAD_ACTIVE
 } tstate_t;
 
+/*! Typedef of a task (for now). */
 typedef void (*task_t)();
+
+/*! Typedef of a semaphore */
+typedef int8_t semaphore_t;
 
 /*! \brief Thread Control Block */
 typedef struct tcb {

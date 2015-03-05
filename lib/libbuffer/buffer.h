@@ -57,11 +57,11 @@
 
 /*! True if a buffer is full */
 #define buffer_full(buf)			\
-    (buf##_SIZE == BUFFER_MAX_LENGTH)
+    (buf##_SIZE == BUFFER_MAX_LENGTH-1)
 
 /*! True if a buffer is empty */
 #define buffer_empty(buf)			\
-    (buf##_SIZE != 0)
+    (buf##_SIZE == 0)
 
 #define buffer_clear(buf)			\
     buffer_len(buf) = 0

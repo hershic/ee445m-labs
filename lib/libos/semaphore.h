@@ -8,6 +8,8 @@
  * @{
  */
 
+#include "os.h"
+
 /*! The default initialization value of a semaphore_t. */
 #define SEMAPHORE_DEFAULT_VALUE                 0
 
@@ -23,8 +25,15 @@ typedef int8_t semaphore_t;
     semaphore_t sem;                            \
     sem = initial_value
 
+/* TODO: guarantee a transition from check to grab */
 #define sem_check(sem)				\
     if(!semaphore_blocked(sem))
+
+#define sem_take(sem)				\
+    atomic (					\
+	--sem;					\
+       /* TODO: wake thread */                  \
+    )
 
 /*! Initialize a semaphore_t to \SEMAPHORE_DEFAULT_VALUE. */
 #define sem_init(sem)                           \

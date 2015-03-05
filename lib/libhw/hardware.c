@@ -165,8 +165,10 @@ void hw_daemon(void) {
 	 * scheduler's interpretation of priority) */
         sem_check(HW_SEM_UART0) {
 	    /* todo: schedule */
-	    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-	    hw_notify_uart(uart_metadata);
+	    sem_take(HW_SEM_UART0) {
+		uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+		hw_notify_uart(uart_metadata);
+	    }
         }
     }
 }
@@ -261,6 +263,7 @@ void UART0_Handler(void) {
 	    /* Handle backspace by erasing the last character in the
 	     * buffer */
 	    switch(recv) {
+	    case 127:
 	    case '\b':
 		/* If there are any chars to delete, delete the last text */
 		if(!buffer_empty(UART0_RX_BUFFER)) {
@@ -270,9 +273,12 @@ void UART0_Handler(void) {
 		    UARTCharPut(UART0_BASE, '\b');
 		    /* Decrement the number of chars in the buffer */
 		    buffer_dec(UART0_RX_BUFFER);
+		    /* Skip ahead to next buffered char */
+		    continue;
 		}
-		/* Skip ahead to next buffer */
-		continue;
+		/* if it is empty, somebody is watching so pass along
+		 * the backspace */
+		break;
 
 	    case '\r':
 	    case '\n':
@@ -292,6 +298,7 @@ void UART0_Handler(void) {
 
 		/* Echo the received character to the newline */
 		UARTCharPut(UART0_BASE, '\n');
+		break;
 
 	    default: break;
 	    }
@@ -300,9 +307,9 @@ void UART0_Handler(void) {
 	    /* If there is room in the RX FIFO, store the char there,
 	     * else dump it. optional: a circular buffer might keep
 	     * more up-to-date data, considering this is a RTOS */
-	    buffer_add(UART0_RX_BUFFER, recv);
 	    /* this could be cleaned up with error-catching in the buffer library */
 	    if(post) {
+		buffer_add(UART0_RX_BUFFER, recv);
 		sem_post(HW_SEM_UART0);
 	    }
 	}

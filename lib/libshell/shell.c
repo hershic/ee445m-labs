@@ -21,7 +21,7 @@ static unsigned short SHELL_BUFFER_POSITION;
 static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
 
 static char* SHELL_PS1[SHELL_MAX_PS1_LENGTH];
-static char* SHELL_DEFAULT_PS1 = "\n> ";
+static char* SHELL_DEFAULT_PS1 = "\r\n> ";
 
 void shell_spawn() {
 
@@ -32,6 +32,7 @@ void shell_spawn() {
     hw_subscribe(HW_UART, uart_metadata, shell_uart_handler);
     shell_set_ps1(SHELL_DEFAULT_PS1);
     shell_clear_shell_buffer();
+    shell_print_ps1();
 }
 
 char* shell_represent() {
@@ -62,9 +63,10 @@ void shell_uart_handler(notification note) {
     }
     break;
 
+    case 127:
     case SC_BACKSPACE:
 	SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
-	/* represent: with shell_represent */
+	uart_send_string("\b \b");
 	break;
 
     default:
