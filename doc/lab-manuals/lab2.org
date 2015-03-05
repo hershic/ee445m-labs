@@ -1,7 +1,7 @@
 * Lab 2
 - [ ] adc sampling at 2 khz
   follow Figure 2.4
-- [ ] another thread for the serial
+- [X] another thread for the serial
 - [ ] a thread to update the lcd with adc data
 - [ ] jitter: defined as time past 2khz goal
 - [X] task: display threadcount to lcd, watch it increase with button-created threads

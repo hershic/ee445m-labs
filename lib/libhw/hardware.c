@@ -34,8 +34,9 @@ static hw_driver HW_TIMER_DRIVER;
 static hw_driver HW_BUTTON_DRIVER;
 
 static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_RX_BUFFER_SIZE = 0;
+
+static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_TX_BUFFER_SIZE = 0;
 
 void hw_init_daemon() {
@@ -163,12 +164,11 @@ void hw_daemon(void) {
 	 * priorities can be assigned to the threads (which will
 	 * handle simultaneous interrupts according to priority
 	 * scheduler's interpretation of priority) */
-        sem_check(HW_SEM_UART0) {
+        sem_guard(HW_SEM_UART0) {
+	    sem_take(HW_SEM_UART0);
 	    /* todo: schedule */
-	    sem_take(HW_SEM_UART0) {
-		uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-		hw_notify_uart(uart_metadata);
-	    }
+	    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+	    hw_notify_uart(uart_metadata);
         }
     }
 }
@@ -268,9 +268,10 @@ void UART0_Handler(void) {
 		/* If there are any chars to delete, delete the last text */
 		if(!buffer_empty(UART0_RX_BUFFER)) {
 		    /* Erase previous characters on the user's terminal */
-		    UARTCharPut(UART0_BASE, '\b');
-		    UARTCharPut(UART0_BASE, ' ');
-		    UARTCharPut(UART0_BASE, '\b');
+		    /* UARTCharPut(UART0_BASE, '\b'); */
+		    /* UARTCharPut(UART0_BASE, ' '); */
+		    /* UARTCharPut(UART0_BASE, '\b'); */
+
 		    /* Decrement the number of chars in the buffer */
 		    buffer_dec(UART0_RX_BUFFER);
 		    /* Skip ahead to next buffered char */

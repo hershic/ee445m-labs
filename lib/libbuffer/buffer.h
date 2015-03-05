@@ -15,7 +15,7 @@
  *   - global maximum buffer length, set in this file
  */
 
-#define BUFFER_MAX_LENGTH                     128
+#define BUFFER_MAX_LENGTH                      32
 #define BUFFER_DEFAULT_DECREMENT_AMOUNT         1
 
 /*! Initialize buffer and its metadata */
