@@ -11,6 +11,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/adc.h"
+#include "driverlib/timer.h"
 
 #define MAX_NUM_SAMPLES 10
 #define NUM_ADC_CHANNELS 11
@@ -23,7 +24,6 @@ uint32_t* adc_sample_buffer;
 void adc_init(hw_metadata metadata) {
     uint8_t i;
 
-    uint32_t gpio_adc_pins;
     /* TODO: determine where the other ADC ports are located */
     switch(metadata.adc.base) {
     case ADC0_BASE:
@@ -41,9 +41,8 @@ void adc_init(hw_metadata metadata) {
     SysCtlPeripheralReset(metadata.adc.base);
 
     /* we don't have to set the reference for the internal ADC, but we
-       might if we have an external one... This hardfaults normally on
-       internal ADC0. */
-    /* ADCReferenceSet(metadata.adc.base, metadata.adc.reference); */
+       might if we have an external one. */
+    /* ADCReferenceSet(metadata.adc.base, ADC_REF_INT); */
 }
 
 void adc_channel_init(hw_metadata metadata) {
@@ -80,10 +79,10 @@ void adc_channel_init(hw_metadata metadata) {
 void adc_interrupt_init(hw_metadata metadata) {
 
     if (metadata.adc.trigger_source == ADC_TRIGGER_TIMER) {
-        hw_driver_init(HW_TIMER, metadata.adc.trigger_metadata.timer);
+        hw_driver_init(HW_TIMER, (hw_metadata)(metadata.adc.trigger_metadata.timer));
         TimerControlTrigger(metadata.adc.trigger_metadata.timer.base,
                             TIMER_A, true);
-        hw_channel_init(HW_TIMER, metadata.adc.trigger_metadata.timer);
+        hw_channel_init(HW_TIMER, (hw_metadata)(metadata.adc.trigger_metadata.timer));
     }
 
     /* Clear the interrupt status flag.  This is done to make sure the
