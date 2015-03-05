@@ -293,7 +293,7 @@ void UART2_Handler(void) {
  * This isr was generated
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
-void TIMER0A_Handler(void) {
+void Timer0A_Handler(void) {
 
   TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
   notification_init(int, 1);
@@ -307,7 +307,7 @@ void TIMER0A_Handler(void) {
  * This isr was generated
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
-void TIMER1A_Handler(void) {
+void Timer1A_Handler(void) {
 
   TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
   notification_init(int, 1);
@@ -327,4 +327,47 @@ void TIMER2A_Handler(void) {
   notification_init(int, 1);
   timer_metadata_init(TIMER2_BASE, NULL, NULL, NULL);
   hw_notify(HW_TIMER, timer_metadata, note);
+}
+
+/* TODO: DOXYGENIZE */
+void ADC0Seq0_Handler(void) {
+
+    /* Clear the ADC interrupt. */
+    ADCIntClear(ADC0_BASE, 0);
+
+    uint32_t test_adc_sample_buffer[10];
+
+    /* READ the data and trigger a new sample request. */
+    /* first is channel, second is beginning of buffer length */
+    /* ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0])); */
+    ADCSequenceDataGet(ADC0_BASE, 0, &test_adc_sample_buffer);
+    /* ADCProcessorTrigger(ADC0_BASE, 0); */
+
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+
+    /* TODO: Update our report of the data somehow (whatever
+       means we define are necessary). For now the data
+       resides in adc_data_buffer ready for copying and
+       interpretation. */
+}
+
+void ADC0Seq3_Handler(void) {
+
+    /* Clear the ADC interrupt. */
+    ADCIntClear(ADC0_BASE, 3);
+
+    uint32_t test_adc_sample_buffer[10];
+
+    /* READ the data and trigger a new sample request. */
+    /* first is channel, second is beginning of buffer length */
+    /* ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0])); */
+    ADCSequenceDataGet(ADC0_BASE, 3, &test_adc_sample_buffer);
+    /* ADCProcessorTrigger(ADC0_BASE, 0); */
+
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
+
+    /* TODO: Update our report of the data somehow (whatever
+       means we define are necessary). For now the data
+       resides in adc_data_buffer ready for copying and
+       interpretation. */
 }

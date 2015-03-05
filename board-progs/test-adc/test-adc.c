@@ -48,7 +48,7 @@ int main(void) {
         ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
     metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
     metadata.adc.trigger_metadata.timer.frequency = 2000 Hz;
-    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER0A;
+    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
     metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
     adc_init(metadata);
@@ -60,10 +60,6 @@ int main(void) {
 
     /* Trigger an initial ADC sequence. As far as I know this is
        required for proper init. */
-    postpone_death() {
-      heart_wrap (
-        /* ADCProcessorTrigger(ADC0_BASE, 0); */
-        adc_collect(0, 10, adc_data_buffer, TIMER0_BASE);
-        );
-    }
+    while (1) { }
+
 }

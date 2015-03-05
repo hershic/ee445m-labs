@@ -67,24 +67,6 @@ void adc_trigger_sample(notification timer_notification) {
 
 }
 
-void ADC0Seq0_Handler(void) {
-
-    /* Clear the ADC interrupt. */
-    ADCIntClear(ADC0_BASE, 0);
-
-    /* Read the data and trigger a new sample request. */
-    /* first is channel, second is beginning of buffer length */
-    ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0]));
-    /* ADCProcessorTrigger(ADC0_BASE, 0); */
-
-    ST7735_DrawCharS(50,0,(uint8_t) 'H', ST7735_YELLOW,ST7735_BLACK, 1);
-
-    /* TODO: Update our report of the data somehow (whatever
-       means we define are necessary). For now the data
-       resides in adc_data_buffer ready for copying and
-       interpretation. */
-}
-
 void postpone_suicide() {
 
     while (1) {

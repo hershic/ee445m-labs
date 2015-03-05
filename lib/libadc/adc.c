@@ -31,15 +31,12 @@ void adc_init(hw_metadata metadata) {
         SysCtlGPIOAHBEnable(SYSCTL_PERIPH_GPIOE);
         GPIOPinTypeADC(GPIO_PORTE_AHB_BASE,
                        GPIO_PIN_3 | GPIO_PIN_2 | GPIO_PIN_1);
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
+        SysCtlPeripheralReset(SYSCTL_PERIPH_ADC0);
         break;
     default:
         postpone_death();
     }
-
-    /* Enable the GPIOs and the ADC used by this example. */
-    SysCtlPeripheralEnable(metadata.adc.base);
-    SysCtlPeripheralReset(metadata.adc.base);
-
     /* we don't have to set the reference for the internal ADC, but we
        might if we have an external one. */
     /* ADCReferenceSet(metadata.adc.base, ADC_REF_INT); */
@@ -72,23 +69,25 @@ void adc_channel_init(hw_metadata metadata) {
     ADCIntEnable(metadata.adc.base, metadata.adc.sample_sequence);
 
     /* TODO: Parametrize the sequence number */
-    /* ADCSequenceEnable(metadata.adc.base, 3); */
-
+    ADCSequenceEnable(metadata.adc.base, metadata.adc.sample_sequence);
+    /* ADCProcessorTrigger(metadata.adc.base, metadata.adc.sample_sequence); */
 }
 
 void adc_interrupt_init(hw_metadata metadata) {
 
     if (metadata.adc.trigger_source == ADC_TRIGGER_TIMER) {
-        hw_driver_init(HW_TIMER, (hw_metadata)(metadata.adc.trigger_metadata.timer));
+        hw_init(HW_TIMER, (hw_metadata)(metadata.adc.trigger_metadata.timer));
         TimerControlTrigger(metadata.adc.trigger_metadata.timer.base,
                             TIMER_A, true);
         hw_channel_init(HW_TIMER, (hw_metadata)(metadata.adc.trigger_metadata.timer));
+
     }
 
     /* Clear the interrupt status flag.  This is done to make sure the
        interrupt flag is cleared before we sample. */
     ADCIntClear(metadata.adc.base, 3);
-
+    IntEnable(INT_ADC0SS3);
+    /* ADCProcessorTrigger(metadata.adc.base, metadata.adc.sample_sequence); */
 }
 
 uint32_t adc_open(uint32_t channel) {
@@ -161,20 +160,3 @@ uint32_t do_adc_func() {
     return status;
 }
 
-void ADC0Seq0_Handler(void) {
-
-    /* Clear the ADC interrupt. */
-    ADCIntClear(ADC0_BASE, 0);
-
-    /* Read the data and trigger a new sample request. */
-    /* first is channel, second is beginning of buffer length */
-    ADCSequenceDataGet(ADC0_BASE, 0, (int32_t*)(adc_sample_buffer[0]));
-    /* ADCProcessorTrigger(ADC0_BASE, 0); */
-
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2) ^ GPIO_PIN_2);
-
-    /* TODO: Update our report of the data somehow (whatever
-       means we define are necessary). For now the data
-       resides in adc_data_buffer ready for copying and
-       interpretation. */
-}
