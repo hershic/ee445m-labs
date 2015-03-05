@@ -141,7 +141,6 @@ int main() {
     metadata.adc.channel_configuration = ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END;
     adc_channel_init(metadata);
 
-
     adc_interrupt_init(metadata);
     /* end adc init */
 

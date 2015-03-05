@@ -15,9 +15,6 @@
 #define MAX_NUM_SAMPLES 10
 #define NUM_ADC_CHANNELS 11
 
-/* global buffers */
-uint32_t adc_samples[3];
-
 /* TODO: Need to be able to init the adc for any combination of ports and pins */
 void adc_init(hw_metadata metadata) {
 
@@ -36,7 +33,7 @@ void adc_init(hw_metadata metadata) {
     }
     /* we don't have to set the reference for the internal ADC, but we
        might if we have an external one. */
-    /* ADCReferenceSet(metadata.adc.base, ADC_REF_INT); */
+    ADCReferenceSet(metadata.adc.base, ADC_REF_INT);
 }
 
 void adc_channel_init(hw_metadata metadata) {
@@ -85,40 +82,4 @@ void adc_interrupt_init(hw_metadata metadata) {
     ADCIntClear(metadata.adc.base, metadata.adc.sample_sequence);
     IntEnable(INT_ADC0SS0 + metadata.adc.sample_sequence);
     /* ADCProcessorTrigger(metadata.adc.base, metadata.adc.sample_sequence); */
-}
-
-void ADC0Seq2_Handler(void) {
-
-    /* Clear the ADC interrupt. */
-    ADCIntClear(ADC0_BASE, 2);
-
-    /* Read the data and trigger a new sample request. */
-    /* first is channel, second is beginning of buffer length */
-    ADCSequenceDataGet(ADC0_BASE, 2, adc_samples);
-    /* ADCProcessorTrigger(ADC0_BASE, 0); */
-
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
-
-    /* TODO: Update our report of the data somehow (whatever
-       means we define are necessary). For now the data
-       resides in adc_data_buffer ready for copying and
-       interpretation. */
-}
-
-void ADC0Seq3_Handler(void) {
-
-    /* Clear the ADC interrupt. */
-    ADCIntClear(ADC0_BASE, 3);
-
-    /* Read the data and trigger a new sample request. */
-    /* first is channel, second is beginning of buffer length */
-    ADCSequenceDataGet(ADC0_BASE, 3, adc_samples);
-    /* ADCProcessorTrigger(ADC0_BASE, 0); */
-
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
-
-    /* TODO: Update our report of the data somehow (whatever
-       means we define are necessary). For now the data
-       resides in adc_data_buffer ready for copying and
-       interpretation. */
 }

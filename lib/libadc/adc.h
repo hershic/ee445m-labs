@@ -11,6 +11,7 @@
 /*! Initialize the ADC device on the board
  *  \return void
  */
+
 void adc_init(hw_metadata metadata);
 
 void adc_channel_init(hw_metadata metadata);
