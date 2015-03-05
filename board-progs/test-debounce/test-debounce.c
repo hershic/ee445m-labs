@@ -21,6 +21,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/systick.h"
 #include "driverlib/timer.h"
+#include "driverlib/adc.h"
 
 #define HEARTBEAT_MODAL
 
@@ -116,6 +117,24 @@ int main() {
     SysTickPeriodSet(SysCtlClockGet() / 1000);
     SysTickEnable();
     SysTickIntEnable();
+
+    /* start adc init */
+    hw_metadata metadata;
+    metadata.adc.base = ADC0_BASE;
+    metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
+    metadata.adc.sample_sequence = 3;
+    metadata.adc.channel = 0;
+    metadata.adc.channel_configuration =
+        ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+    metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
+    metadata.adc.trigger_metadata.timer.frequency = 2 Hz;
+    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
+    metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
+
+    adc_init(metadata);
+    adc_channel_init(metadata);
+    adc_interrupt_init(metadata);
+    /* end adc init */
 
     IntMasterEnable();
 
