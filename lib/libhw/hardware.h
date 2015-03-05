@@ -10,6 +10,11 @@
 /* TODO: Expand this for all devices */
 static volatile semaphore_t HW_SEM_UART0;
 
+static volatile uint32_t* ADC0_SEQ0_SAMPLES;
+static volatile uint32_t* ADC0_SEQ1_SAMPLES;
+static volatile uint32_t* ADC0_SEQ2_SAMPLES;
+static volatile uint32_t* ADC0_SEQ3_SAMPLES;
+
 /* Note to developers:
  *
  * Why did the authors create structs that contain only an array?

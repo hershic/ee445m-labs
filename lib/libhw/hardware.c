@@ -41,9 +41,6 @@ static uint8_t UART0_RX_BUFFER_SIZE = 0;
 static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_TX_BUFFER_SIZE = 0;
 
-static uint32_t ADC0_SEQ2_SAMPLES[10];
-static uint32_t ADC0_SEQ3_SAMPLES[10];
-
 uint32_t jitter_begin;
 uint32_t jitter_end;
 

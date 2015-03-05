@@ -12,9 +12,6 @@
 
 #include "libhw/hardware.h"
 
-#define MAX_NUM_SAMPLES 10
-#define NUM_ADC_CHANNELS 11
-
 /* TODO: Need to be able to init the adc for any combination of ports and pins */
 void adc_init(hw_metadata metadata) {
 

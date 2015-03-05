@@ -41,6 +41,8 @@ volatile uint32_t button_right_pressed;
 volatile uint32_t button_debounced_mailbox;
 volatile uint32_t button_debounced_wtf;
 
+volatile uint32_t demo_adc_data[4];
+
 volatile semaphore_t button_debounced_new_data;
 
 void button_debounce_end(notification button_notification) {
@@ -60,6 +62,8 @@ void button_debounce_start(notification button_notification) {
 }
 
 void postpone_suicide() {
+
+    ADC0_SEQ2_SAMPLES = demo_adc_data;
 
     while (1) {
         sem_wait(button_debounced_new_data);
