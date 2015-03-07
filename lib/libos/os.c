@@ -7,7 +7,7 @@
 #include "libut/utlist.h"
 
 /*! A block of memory for each thread's local stack. */
-static int32_t OS_PROGRAM_STACKS[OS_MAX_THREADS][OS_STACK_SIZE];
+static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
 
 void os_threading_init() {
 
@@ -15,7 +15,7 @@ void os_threading_init() {
     os_running_threads = NULL;
 
     /* Initialize thread metadata */
-    for (i=0; i<OS_MAX_THREADS; ++i) {
+    for (i=0; i<SCHEDULER_MAX_THREADS; ++i) {
         CDL_APPEND(os_dead_threads, &OS_THREADS[i]);
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
@@ -100,7 +100,7 @@ int32_t os_running_thread_id() {
 tcb_t* os_tcb_of(const task_t task) {
 
     int32_t i;
-    for(i=0; i<OS_MAX_THREADS; ++i) {
+    for(i=0; i<SCHEDULER_MAX_THREADS; ++i) {
         if (task == OS_THREADS[i].entry_point) {
             return &OS_THREADS[i];
         }

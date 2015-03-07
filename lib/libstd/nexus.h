@@ -8,6 +8,10 @@
 /*! A keyword to signify that a value should never be reassigned. */
 #define immutable
 
+/* TODO: doxygenize */
+#define public
+#define private
+
 /*! A convenience alias to '__attribute__((always_inline))' to make
  *  function definitions read more naturally. */
 #define always __attribute__((always_inline))

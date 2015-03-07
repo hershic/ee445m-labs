@@ -17,23 +17,9 @@
  * @{
  */
 
-/* TODO: determine the best ways to document this and choose a default
- * scheduler -- something like http://bit.ly/1zQSuqw */
-
-/* Possible values are:
- * SCHEDULER_ROUND_ROBIN
- * SCHEDULER_MULTILEVEL_QUEUE
- * SCHEDULER_MULTILEVEL_FEEDBACK_QUEUE
- */
-
-#if !(defined SCHEDULER_ROUND_ROBIN && \
-      defined SCHEDULER_MULTILEVEL_QUEUE && \
-      defined SCHEDULER_MULTILEVEL_FEEDBACK_QUEUE)
-#define SCHEDULER_MULTILEVEL_QUEUE
+#if !defined(SCHEDULER_MAX_THREADS)
+#define SCHEDULER_MAX_THREADS   16
 #endif
-
-/*! Maximum number of concurrent threads */
-#define OS_MAX_THREADS  4
 
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   100
@@ -157,7 +143,7 @@ typedef struct swcontext {
 static tcb_t* OS_NEXT_THREAD;
 
 /*! An array of statically allocated threads. */
-static tcb_t OS_THREADS[OS_MAX_THREADS];
+static tcb_t OS_THREADS[SCHEDULER_MAX_THREADS];
 
 /*! An array of thread pools to place OS_THREADS into. */
 static tcb_t* OS_THREAD_POOL[OS_NUM_POOLS];
