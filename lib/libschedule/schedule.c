@@ -33,7 +33,7 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
     ready_task.task = task;
     ready_task.seriousness = seriousness;
 
-    /* Test the pool of ready queues for a pool of tasks with this
+    /* Test the pool of ready queues for a queue of tasks with this
      * frequency */
     HASH_FIND_INT(SCHEDULER_QUEUES, &frequency, ready_queue);
 

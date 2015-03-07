@@ -125,15 +125,10 @@ int main() {
     /* uart_producer_idx = 0; */
     /* uart_consumer_idx = UART_FIFO_SIZE - 1; */
 
-    os_threading_init();
+    os_threading_init(100 Hz);
     os_add_thread(Thread1, OS_INTERACTIVE_POOL);
     os_add_thread(Thread2, OS_INTERACTIVE_POOL);
     /* os_add_thread(hw_daemon, OS_SYSTEM_POOL); */
-
-    /* Load and enable the systick timer */
-    SysTickPeriodSet(SysCtlClockGet() / 1000);
-    SysTickEnable();
-    SysTickIntEnable();
 
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);

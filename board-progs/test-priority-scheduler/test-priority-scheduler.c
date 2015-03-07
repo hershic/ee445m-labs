@@ -92,9 +92,7 @@ void main(void) {
     IntEnable(timer_metadata.timer.interrupt);
     TimerEnable(timer_metadata.timer.base, TIMER_A);
 
-    systick_init(10 Hz);
-
-    os_threading_init();
+    os_threading_init(100 Hz);
     os_add_thread(Task1, OS_SYSTEM_POOL);
     os_add_thread(Task2, OS_SYSTEM_POOL);
 

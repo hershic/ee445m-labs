@@ -91,7 +91,7 @@ int main() {
 
     pidwork_init();
 
-    os_threading_init();
+    os_threading_init(100 Hz);
     os_add_thread(postpone_suicide, OS_SYSTEM_POOL);
     os_add_thread(pidwork_record, OS_SYSTEM_POOL);
     os_add_thread(pidwork_increment, OS_SYSTEM_POOL);
@@ -100,11 +100,6 @@ int main() {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
-
-    /* Load and enable the systick timer */
-    SysTickPeriodSet(SysCtlClockGet() / 1000);
-    SysTickEnable();
-    SysTickIntEnable();
 
     IntMasterEnable();
 

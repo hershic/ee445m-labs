@@ -5,11 +5,12 @@
 #include "os.h"
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
+#include "libsystick/systick.h"
 
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
 
-void os_threading_init() {
+void os_threading_init(frequency_t context_switch) {
 
     uint32_t i;
     os_running_threads = NULL;
@@ -28,6 +29,8 @@ void os_threading_init() {
     for (i=0; i<OS_NUM_POOLS; ++i) {
         OS_THREAD_POOL[i] = (tcb_t*) NULL;
     }
+
+    systick_init(context_switch);
 }
 
 tcb_t* os_add_thread(task_t task, priority_t priority) {

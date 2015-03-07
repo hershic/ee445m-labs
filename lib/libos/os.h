@@ -152,7 +152,7 @@ static tcb_t* OS_THREAD_POOL[OS_NUM_POOLS];
  *  initializes the dead thread circle appropriately and sets the
  *  running thread circle to null.
  */
-void os_threading_init();
+void os_threading_init(frequency_t);
 
 /*! Resets the thread stack for a given tcb to run a given task.
  *  \param thread the thread whose stack is to be reset
@@ -258,9 +258,7 @@ tcb_t* _os_pool_waiting(pool_t pool) {
     return NULL;
 }
 
-/* TODO: what happens when we run out of threads to use? aka, when
- * they are all blocked. I bet it's time again to whip out the idle
- * thread. */
+/* TODO: implement the edf queue of queues */
 static inline
 void _os_choose_next_thread() {
     pool_t pool = 0;
@@ -269,9 +267,7 @@ void _os_choose_next_thread() {
     while(!next_thread) {
         next_thread = _os_pool_waiting(++pool);
     }
-    /* TODO: use the Multilevel Feedback-Queue Scheduling here */
-    /* For now, all threads are of the same priority so simply
-     * implement a round robin scheme. */
+    /* all threads are of the same priority so implement round robin */
     next_thread = _os_scheduler_round_robin(pool, next_thread);
 
     OS_NEXT_THREAD = next_thread;
