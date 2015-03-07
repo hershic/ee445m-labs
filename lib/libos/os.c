@@ -206,7 +206,7 @@ void os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
 /*! \warning Ensure you have something to run before enabling
  *  SysTick */
-static void SysTick_Handler() {
+void SysTick_Handler() {
 
     IntPendSet(FAULT_PENDSV);
     /* todo: allow for swappable schedulers.
@@ -225,7 +225,7 @@ static void SysTick_Handler() {
      */
 }
 
-static void PendSV_Handler() {
+void PendSV_Handler() {
 
     asm volatile("CPSID  I");
 
