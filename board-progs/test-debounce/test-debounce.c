@@ -34,6 +34,8 @@
 #include "libos/semaphore.h"
 #include "libdisplay/ST7735.h"
 #include "libadc/adc.h"
+#include "libuart/uart.h"
+#include "libshell/shell.h"
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
@@ -44,6 +46,13 @@ volatile uint32_t button_debounced_wtf;
 volatile uint32_t demo_adc_data[4];
 
 volatile semaphore_t button_debounced_new_data;
+
+int doctor() {
+
+    /* uart_set_active_channel(UART0_BASE); */
+    uart_send_string("Well what did you expect would happen? You're dreaming!\n");
+    return EXIT_SUCCESS;
+}
 
 void button_debounce_end(notification button_notification) {
 
@@ -61,6 +70,32 @@ void button_debounce_start(notification button_notification) {
                              button_debounce_end);
 }
 
+void display_adc_data_for_checkout(void) {
+    uint8_t string_buf[5];
+    uint8_t tmp;
+    uint16_t i, j, k, l;
+    uint32_t num;
+
+    for (i=0; i<4; ++i) {
+        num = ADC0_SEQ2_SAMPLES[i];
+        for (j=0; j<4 && num > 0; ++j) {
+            string_buf[4-j] = num % 10 + 0x30;
+            num /= 10;
+        }
+
+        string_buf[j] = 0;
+
+        for (k=0, l=4; k<l; ++k, --l) {
+            ST7735_DrawCharS(40,l,(uint8_t) (string_buf[k] + 0x30), ST7735_YELLOW,ST7735_BLACK, 1);
+            /* tmp = string_buf[k]; */
+            /* string_buf[k] = string_buf[l]; */
+            /* string_buf[l] = tmp; */
+        }
+
+        ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
+    }
+}
+
 void postpone_suicide() {
 
     ADC0_SEQ2_SAMPLES = demo_adc_data;
@@ -73,6 +108,7 @@ void postpone_suicide() {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
                          GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
             ST7735_DrawCharS(10,0,'1',ST7735_YELLOW,ST7735_BLACK, 1);
+            display_adc_data_for_checkout();
             ++button_left_pressed;
         } else { ST7735_DrawCharS(10,0,(uint8_t)'0',ST7735_YELLOW,ST7735_BLACK, 1); }
 
@@ -102,18 +138,38 @@ int main() {
 
     hw_init(HW_BUTTON, button_metadata);
     hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
+    /* end button init */
 
+    /* os init */
     pidwork_init();
 
     os_threading_init();
     os_add_thread(postpone_suicide);
     os_add_thread(pidwork_record);
     os_add_thread(pidwork_increment);
+    os_add_thread(hw_daemon);
+    /* end os init */
 
+    /* shell init */
+    /* hw_init_daemon(); */
+
+    system_init();
+    system_register_command((const char*) "doctor", doctor);
+
+    /* Initialize hardware devices */
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    hw_init(HW_UART, uart_metadata);
+
+    /* Initialize the shell and the system it interacts with */
+    shell_spawn();
+    /* end shell init */
+
+    /* heartbeat init */
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
+    /* heartbeat init */
 
     ST7735_InitR(INITR_REDTAB);
 
