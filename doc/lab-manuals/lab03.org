@@ -1,0 +1,13 @@
+Don't
+Panic
+
+
+* lab 3
+** scheduling :: RMA
+
+** optimizing executing time
+*** TODO blocked linked list
+handled by semaphore.h
+*** TODO priority queue per semaphore
+enabling the 1:1 =sem_post= and waking of the highest priority waiting
+thread
