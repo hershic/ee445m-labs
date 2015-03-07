@@ -45,11 +45,17 @@ typedef struct sched_task {
 
 typedef struct {
     frequency_t deadline;   	/* Key */
-    sched_task queue;
+    sched_task* queue;
 
     /* ALlow this structure to be hashable */
     UT_hash_handle hh;
-} sched_ready;
+    /* Allow this structure to be linked-list-able */
+    struct sched_task_pool* next;
+    struct sched_task_pool* prev;
+} sched_task_pool;
+
+/*! Initialize all deep datastructures used by libschedule. */
+void schedule_init();
 
 void schedule(task_t, frequency_t, DEADLINE_TYPE);
 

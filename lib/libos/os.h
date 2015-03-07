@@ -28,9 +28,9 @@
 #define OS_NUM_POOLS    2
 
 /*! Highest priority thread pool alias */
-#define OS_SYSTEM_POOL      0
+#define OS_SYSTEM_POOL       0
 /*! Highest priority thread pool alias */
-#define OS_REAL_TIME_POOL   0
+#define OS_REAL_TIME_POOL    0
 /*! Second highest priority thread pool alias */
 #define OS_INTERACTIVE_POOL  1
 
