@@ -140,18 +140,17 @@ int main() {
     hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
     /* end button init */
 
-    /* os init */
+    /* begin main os init */
     pidwork_init();
 
     os_threading_init();
     os_add_thread(postpone_suicide);
     os_add_thread(pidwork_record);
     os_add_thread(pidwork_increment);
-    os_add_thread(hw_daemon);
-    /* end os init */
+    /* end main os init */
 
-    /* shell init */
-    /* hw_init_daemon(); */
+    /* begin shell init */
+    hw_init_daemon();
 
     system_init();
     system_register_command((const char*) "doctor", doctor);
@@ -164,12 +163,12 @@ int main() {
     shell_spawn();
     /* end shell init */
 
-    /* heartbeat init */
+    /* begin heartbeat init */
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
-    /* heartbeat init */
+    /* end heartbeat init */
 
     ST7735_InitR(INITR_REDTAB);
 
@@ -177,6 +176,7 @@ int main() {
     SysTickPeriodSet(SysCtlClockGet() / 1000);
     SysTickEnable();
     SysTickIntEnable();
+    /* end */
 
     /* start adc init */
     hw_metadata metadata;
@@ -206,6 +206,7 @@ int main() {
 
     IntMasterEnable();
 
+    /* hit the green button */
     os_launch();
 
     while (1) {}
