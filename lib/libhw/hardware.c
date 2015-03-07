@@ -172,17 +172,13 @@ void hw_daemon(void) {
         while (semaphore_blocked(HW_SEM_UART0)) {
             os_surrender_context();
         }
-        int32_t atom;
-        atom = StartCritical();
-        --HW_SEM_UART0;
-        EndCritical(atom);
 
-        /* sem_guard(HW_SEM_UART0) { */
-            /* sem_take(HW_SEM_UART0); */
+        sem_guard(HW_SEM_UART0) {
+            sem_take(HW_SEM_UART0);
             /* todo: schedule */
             uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
             hw_notify_uart(uart_metadata);
-        /* } */
+        }
     }
 }
 
