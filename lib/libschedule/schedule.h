@@ -10,11 +10,16 @@
  * @{
  */
 
+/* fixme: remove and do elsewhere */
 #define SCHEDULE_PRIORITY
 #define SCHEDULER_DEFAULT_MAX_THREADS    16
 
-#if defined(SCHEDULE_PRIORITY)
+#ifdef SCHEDULE_PRIORITY
 /* We are using the priority scheduler */
+
+/* Recognized priority schedulers */
+#include "priority_schedule_structures.h"
+#include "edf.h"
 
 #include "libhw/hardware.h"
 #include "libut/uthash.h"
@@ -22,37 +27,6 @@
 #if !(defined(SCHEDULER_MAX_THREADS))
 #define SCHEDULER_MAX_THREADS   SCHEDULER_DEFAULT_MAX_THREADS
 #endif
-
-typedef void (*task_t)();	/* a task capable of being run */
-typedef void (*isr_t)();	/* isr capable of hw_notifying */
-typedef void (*pisr_t)(notification note);	/* a task capable of being run */
-typedef int32_t frequency_t;
-typedef int32_t microseconds_t; 	/* smallest divisible task time */
-
-typedef enum {
-    DL_HARD,
-    DL_SOFT,
-} DEADLINE_TYPE;
-
-typedef struct sched_task {
-    task_t task;
-    DEADLINE_TYPE seriousness;
-
-    /* For use by utlist library */
-    struct sched_task *next;
-    struct sched_task *prev;
-} sched_task;
-
-typedef struct {
-    frequency_t deadline;   	/* Key */
-    sched_task* queue;
-
-    /* ALlow this structure to be hashable */
-    UT_hash_handle hh;
-    /* Allow this structure to be linked-list-able */
-    struct sched_task_pool* next;
-    struct sched_task_pool* prev;
-} sched_task_pool;
 
 /*! Initialize all deep datastructures used by libschedule. */
 void schedule_init();

@@ -6,6 +6,7 @@
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
 #include "libsystick/systick.h"
+#include "libschedule/schedule.h"
 
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
@@ -31,6 +32,7 @@ void os_threading_init(frequency_t context_switch) {
     }
 
     systick_init(context_switch);
+    schedule_init();
 }
 
 tcb_t* os_add_thread(task_t task, priority_t priority) {

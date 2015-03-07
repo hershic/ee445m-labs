@@ -21,7 +21,7 @@
 #include "libhw/hardware.h"
 
 /* Supported devices */
-/* #include "libuart/uart.h" */
+#include "libuart/uart.h"
 #include "libtimer/timer.h"
 #include "libbutton/button.h"
 
@@ -80,7 +80,13 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
         break;
 
     case HW_TIMER:
-        timer_add_interrupt(metadata);
+	postpone_death();
+	/* why is this postpone death here? esc had a fucking random
+	 * linker error about the below metohd, so he removed it to
+	 * continue developing with time on his side. he wasn't using
+	 * timers. He wasn't using hardware. he doesn't know how it
+	 * broke. whoops. */
+        /* timer_add_interrupt(metadata); */
         break;
 
     case HW_BUTTON:
@@ -277,38 +283,3 @@ void UART2_Handler(void) {
  * This isr was generated
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
-void TIMER0A_Handler(void) {
-
-  TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
-  timer_metadata_init(TIMER0_BASE, NULL, NULL, NULL);
-  hw_notify(HW_TIMER, timer_metadata, note);
-}
-
-/*! TIMER1A isr responsible for notifying all subscriptions with
- * information describing the interrupt.
- *
- * This isr was generated
- * automatically by bin/lisp/rtos-interrupt-generator.el
- */
-void TIMER1A_Handler(void) {
-
-  TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
-  timer_metadata_init(TIMER1_BASE, NULL, NULL, NULL);
-  hw_notify(HW_TIMER, timer_metadata, note);
-}
-
-/*! TIMER2A isr responsible for notifying all subscriptions with
- * information describing the interrupt.
- *
- * This isr was generated
- * automatically by bin/lisp/rtos-interrupt-generator.el
- */
-void TIMER2A_Handler(void) {
-
-  TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
-  timer_metadata_init(TIMER2_BASE, NULL, NULL, NULL);
-  hw_notify(HW_TIMER, timer_metadata, note);
-}
