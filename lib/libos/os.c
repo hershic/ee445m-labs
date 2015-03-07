@@ -32,7 +32,7 @@ void os_threading_init() {
      * black magic that is the specific initialization of TI
      * libraries, do we? */
     if (OS_THREADING_INITIALIZED) {
-	return;
+        return;
     }
 
     os_running_threads = NULL;
