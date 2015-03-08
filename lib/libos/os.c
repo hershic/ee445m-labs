@@ -22,7 +22,7 @@ void os_threading_init(frequency_t context_switch) {
         OS_THREADS[i].sp = OS_PROGRAM_STACKS[i];
         OS_THREADS[i].id = i;
         OS_THREADS[i].entry_point = NULL;
-        OS_THREADS[i].status = THREAD_DEAD;
+        /* OS_THREADS[i].status = THREAD_DEAD; */
         /* OS_THREADS[i].sleep_timer = 0; */
     }
 
@@ -59,7 +59,7 @@ tcb_t* os_add_thread(task_t task) {
 
     /* TODO: Remove this from semaphore. The scheduler manages
      * this. */
-    thread_to_add->status = THREAD_RUNNING;
+    /* thread_to_add->status = THREAD_RUNNING; */
     thread_to_add->entry_point = task;
     /* thread_to_add->priority = priority; */
     /* thread_to_add->sleep_timer = 0; */
@@ -92,7 +92,7 @@ tcb_t* os_remove_thread(task_t task) {
      * verification. */
 
     /* 3. Reset metadata for this thread's TCB. */
-    thread_to_remove->status = THREAD_DEAD;
+    /* thread_to_remove->status = THREAD_DEAD; */
     thread_to_remove->entry_point = NULL;
     thread_to_remove->next = NULL;
     thread_to_remove->prev = NULL;
@@ -228,7 +228,7 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
-    os_reset_thread_stack(os_running_threads, os_running_threads->entry_point);
+    _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point);
 
     /* load the value of os_running_threads */
     asm volatile("LDR     R2, =os_running_threads");

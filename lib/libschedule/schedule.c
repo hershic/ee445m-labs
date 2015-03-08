@@ -7,9 +7,6 @@
 #include "libut/utlist.h"
 #include "libos/os.h"
 
-sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t target_frequency);
-void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
-
 void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
 
     sched_task *ready_task = NULL;
@@ -36,15 +33,15 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
 
     /* No similar tasks exist yet -- create the pool */
     if (!ready_queue) {
-	/* Grab a new queue, remove it from the unused pile,
-	 * initialize it and associate it with this requency of
-	 * task */
-	ready_queue = SCHEDULER_UNUSED_QUEUES;
-	DL_DELETE(SCHEDULER_UNUSED_QUEUES, ready_queue);
+        /* Grab a new queue, remove it from the unused pile,
+         * initialize it and associate it with this requency of
+         * task */
+        ready_queue = SCHEDULER_UNUSED_QUEUES;
+        DL_DELETE(SCHEDULER_UNUSED_QUEUES, ready_queue);
 
-	ready_queue->deadline = frequency;
-	DL_APPEND(SCHEDULER_QUEUES, ready_queue);
-	/* HASH_ADD_INT(SCHEDULER_QUEUES, deadline, ready_queue); */
+        ready_queue->deadline = frequency;
+        DL_APPEND(SCHEDULER_QUEUES, ready_queue);
+        /* HASH_ADD_INT(SCHEDULER_QUEUES, deadline, ready_queue); */
     }
 
     /* Add task to ready queue */
@@ -52,10 +49,10 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
 }
 
 void schedule_aperiodic(pisr_t pisr,
-			HW_TYPE hw_type,
-			hw_metadata metadata,
-			microseconds_t allowed_run_time,
-			DEADLINE_TYPE seriousness) {
+                        HW_TYPE hw_type,
+                        hw_metadata metadata,
+                        microseconds_t allowed_run_time,
+                        DEADLINE_TYPE seriousness) {
 
     /* todo: utilize \allowed_run_time, \seriousness */
     _hw_subscribe(hw_type, metadata, pisr, true);
@@ -65,10 +62,10 @@ void schedule_init() {
 
     int32_t i;
     for(i=0; i<SCHEDULER_MAX_THREADS; ++i) {
-	/* Add all tasks to the unused pile */
-	DL_APPEND(SCHEDULER_UNUSED_TASKS, &SCHEDULER_TASKS[i]);
-	/* Add all task queues to the unused pile */
-	DL_APPEND(SCHEDULER_UNUSED_QUEUES, &SCHEDULER_TASK_QUEUES[i]);
+        /* Add all tasks to the unused pile */
+        DL_APPEND(SCHEDULER_UNUSED_TASKS, &SCHEDULER_TASKS[i]);
+        /* Add all task queues to the unused pile */
+        DL_APPEND(SCHEDULER_UNUSED_QUEUES, &SCHEDULER_TASK_QUEUES[i]);
     }
 }
 
@@ -80,9 +77,9 @@ sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t tar
     if (!inspect) { return NULL; }
 
     do {
-	if(inspect->deadline == target_frequency) {
-	    return inspect;
-	}
-	inspect = inspect->next;
+        if(inspect->deadline == target_frequency) {
+            return inspect;
+        }
+        inspect = inspect->next;
     } while (inspect != start);
 }

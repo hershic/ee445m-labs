@@ -309,7 +309,7 @@ do {                                                                            
 #define LL_PREPEND(head,add)                                                                   \
     LL_PREPEND2(head,add,next)
 
-#define LL_EDF_PREPEND(head,add)		\
+#define LL_EDF_PREPEND(head,add)                \
     LL_PREPEND2(head,add,pri_next)
 
 #define LL_PREPEND2(head,add,next)                                                             \
@@ -354,6 +354,9 @@ do {                                                                            
 
 #define LL_DELETE(head,del)                                                                    \
     LL_DELETE2(head,del,next)
+
+#define LL_EDF_DELETE(head,del)                                                                    \
+    LL_DELETE2(head,del,pri_next)
 
 #define LL_DELETE2(head,del,next)                                                              \
 do {                                                                                           \

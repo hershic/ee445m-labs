@@ -9,6 +9,7 @@
  */
 
 #include "libos/os.h"
+#include "libos/thread_structures.h"
 #include "priority_schedule_structures.h"
 
 /* todo: this is a duplicate, remove it and fix */

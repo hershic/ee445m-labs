@@ -12,7 +12,7 @@
 
 /* Recognized priority schedulers */
 #include "priority_schedule_structures.h"
-
+#include "libnotify/notify.h"
 #include "libhw/hardware.h"
 /* #include "libut/uthash.h" */
 
@@ -21,6 +21,8 @@
 #if !(defined(SCHEDULER_MAX_THREADS))
 #define SCHEDULER_MAX_THREADS   SCHEDULER_DEFAULT_MAX_THREADS
 #endif
+
+typedef void (*pisr_t)(notification note);      /* a task capable of being run */
 
 /*! Statically allocated multiple queues of tasks */
 static sched_task_pool SCHEDULER_TASK_QUEUES[SCHEDULER_MAX_THREADS];
@@ -49,7 +51,11 @@ void schedule(task_t, frequency_t, DEADLINE_TYPE);
  *  described by HW_TYPE and hw_metadata occurs. */
 void schedule_aperiodic(pisr_t, HW_TYPE, hw_metadata, microseconds_t, DEADLINE_TYPE);
 
-#endif	/* __SCHEDULE__ */
+sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t target_frequency);
+
+void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
+
+#endif  /* __SCHEDULE__ */
 
 /* End Doxygen group
  * @}

@@ -5,47 +5,13 @@
 #define __PRIORITY_SCHEDULE_STRUCTURES__
 
 #include "libos/os.h"
+#include "libos/thread_structures.h"
 #include "libnotify/notify.h"
 #include "libut/uthash.h"
 
 /*! \addtogroup
  * @{
  */
-
-typedef void (*task_t)();	/* a task capable of being run */
-typedef void (*isr_t)();	/* isr capable of hw_notifying */
-typedef void (*pisr_t)(notification note);	/* a task capable of being run */
-typedef int32_t frequency_t;
-typedef int32_t deadline_t;
-typedef int32_t microseconds_t; 	/* smallest divisible task time */
-
-typedef enum {
-    DL_HARD,
-    DL_SOFT,
-} DEADLINE_TYPE;
-
-typedef struct sched_task {
-    task_t task;
-    tcb_t* tcb;
-    DEADLINE_TYPE seriousness;
-    deadline_t absolute_deadline;
-
-    /* For use by utlist library */
-    struct sched_task *next;
-    struct sched_task *prev;
-    struct sched_task *pri_next;
-    struct sched_task *pri_prev;
-} sched_task;
-
-typedef struct sched_task_pool {
-    frequency_t deadline;   	/* Key */
-    sched_task* queue;
-
-    /* ALlow this structure to be hashable */
-    /* UT_hash_handle hh; */
-    /* Allow this structure to be linked-list-able */
-    struct sched_task_pool *next, *prev;
-} sched_task_pool;
 
 #endif
 

@@ -13,6 +13,7 @@
 #include "libstd/nexus.h"
 #include "semaphore.h"
 #include "libschedule/edf.h"
+#include "thread_structures.h"
 
 /*! \addtogroup OS
  * @{
@@ -42,68 +43,6 @@
 /*! An alias to \os_remove_thread. Feels like home sweet home.*/
 #define os_kill_thread(_thread)                 \
     os_remove_thread(_thread)
-
-typedef enum {
-    /* thread is not running and will not run */
-    THREAD_DEAD,
-
-    /* thread is waiting and will run when the semaphore blocking it
-     * is released */
-    THREAD_SLEEPING,
-
-    /* thread is running */
-    THREAD_RUNNING,
-
-    /* thread is not running but will run eventually */
-    THREAD_ACTIVE
-} tstate_t;
-
-/*! Iterator capable of representing all pools. */
-typedef uint8_t pool_t;
-
-/*! OS thread priority levels; 0 is highest. */
-typedef uint8_t priority_t;
-
-/*! Type declaration of a task. \warning This is not a thread. We need
- *  real threads. */
-typedef void (*task_t)();
-
-/*! Thread Control Block definition */
-typedef struct tcb_t {
-
-    /*! pointer to stack (valid for threads not running */
-    int32_t *sp;
-
-    /*! linked-list pointer to next tcb */
-    struct tcb_t *next;
-    /*! linked-list pointer to prev tcb */
-    struct tcb_t *prev;
-
-    /*! Unique numeric identifier for the tcb. */
-    immutable int32_t id;
-
-    priority_t priority;
-
-    /*! The function used as this thread's entry point. This is
-     *  recorded for developer convenience, i.e. the developer may get
-     *  a handle to a tcb from his task pointer. */
-    task_t entry_point;
-
-    /*! State of this thread */
-    tstate_t status;
-
-    /* Semaphore value of this thread.
-     * sem == NULL :: unblocked
-     * sem contains a pointer's address :: blocked
-     */
-    semaphore_t* sem;
-
-    /*! sleep timer of the thread */
-    /* int32_t sleep_timer;
-
-    /*! priority of the thread */
-    /* int8_t priority; */
-} tcb_t;
 
 /*! A circular doubly linked list of currently running threads.
  * \note The head of this list is 'os_current_running_thread'
@@ -215,65 +154,15 @@ always static inline os_suspend() {
     /* TODO: penalize long threads, reward quick threads */
 }
 
-/* TODO: extract the tree walking from this method and _os_pool_waiting */
-/*! Return true if tcb is in the specified pool of \OS_THREAD_POOL. */
-always static inline
-bool _tcb_in_pool(tcb_t* tcb, pool_t pool) {
-
-    tcb_t* check = OS_THREAD_POOL[pool];
-    do {
-	if (tcb == check) {
-	    return true;
-	}
-	check = check->next;
-    } while (check != OS_THREAD_POOL[pool]);
-    return false;
-}
-
-/*! Choose the next thread in the specified pool to execute based on a
- *  round robin scheme. */
-always static inline
-tcb_t* _os_scheduler_round_robin(pool_t pool, tcb_t* first_live_thread) {
-
-    if (!os_running_threads || !_tcb_in_pool(os_running_threads, pool)) {
-	return first_live_thread->next;
-    }
-    return os_running_threads->next;
-}
-
-/*! Returns the tcb of the first running thread in the specified pool,
- *  or NULL if the specified pool consists of only sleeping
- *  (deadlocked) threads */
-always static inline
-tcb_t* _os_pool_waiting(pool_t pool) {
-
-    /* optimize: this will be called unbelievably often */
-    tcb_t* tcb = OS_THREAD_POOL[pool];
-    if (!tcb) {return NULL;}
-    do {
-        if (THREAD_RUNNING == tcb->status) {
-            return tcb;
-        }
-        tcb = tcb->next;
-    } while (tcb != OS_THREAD_POOL[pool]);
-    return NULL;
-}
-
 /* TODO: implement the edf queue of queues */
 static inline
 void _os_choose_next_thread() {
-    pool_t pool = 0;
+    uint8_t pool = 0;
 
     /* from the old priority scheduler init */
     /* tcb_t* next_thread = _os_pool_waiting(pool); */
 
     tcb_t* next_thread = edf_pop();
-
-    while(!next_thread) {
-        next_thread = _os_pool_waiting(++pool);
-    }
-    /* all threads are of the same priority so implement round robin */
-    next_thread = _os_scheduler_round_robin(pool, next_thread);
 
     OS_NEXT_THREAD = next_thread;
 }
