@@ -6,28 +6,6 @@
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
 
-#if defined(SCHEDULE_PRIORITY)
-/* We are using the priority scheduler */
-
-/*! Statically allocated multiple queues of tasks */
-static sched_task_pool SCHEDULER_TASK_QUEUES[SCHEDULER_MAX_THREADS];
-
-/*! Doubly linked list of unused task queues */
-static sched_task_pool* SCHEDULER_UNUSED_QUEUES = NULL;
-
-/*! UTHash of live task queues */
-/* for now it's a utlist though, don't get confused */
-static sched_task_pool* SCHEDULER_QUEUES = NULL;
-
-/*! Statically allocated task metadata structures for the scheduler to
- *  manage */
-static sched_task SCHEDULER_TASKS[SCHEDULER_MAX_THREADS][SCHEDULER_MAX_THREADS];
-
-/*! Doubly linked list of unused tasks */
-static sched_task* SCHEDULER_UNUSED_TASKS = NULL;
-
-
-/* private functions */
 sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t target_frequency);
 void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
 
@@ -43,10 +21,12 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
     /* Set new task's metadata */
     ready_task->task = task;
     ready_task->seriousness = seriousness;
+    /* TODO: populate tcb */
+    /* TODO CRITICAL: below should be `frequency + now()` */
+    ready_task->absolute_deadline = frequency;
 
     /* Test the pool of ready queues for a queue of tasks with this
      * frequency */
-
     /* todo: uthash configurable without malloc */
     ready_queue = schedule_hash_find_int(SCHEDULER_QUEUES, frequency);
     /* HASH_FIND_INT(SCHEDULER_QUEUES, &frequency, ready_queue); */
@@ -80,16 +60,11 @@ void schedule_aperiodic(pisr_t pisr,
 
 void schedule_init() {
 
-    int32_t i, j;
-
-    /* Add all tasks to the unused pile */
+    int32_t i;
     for(i=0; i<SCHEDULER_MAX_THREADS; ++i) {
-	for(j=0; j<SCHEDULER_MAX_THREADS; ++j) {
-	    DL_APPEND(SCHEDULER_UNUSED_TASKS, &SCHEDULER_TASKS[i][j]);
-	}
-    }
-    /* Add all task queues to the unused pile */
-    for(i=0; i<SCHEDULER_MAX_THREADS; ++i) {
+	/* Add all tasks to the unused pile */
+	DL_APPEND(SCHEDULER_UNUSED_TASKS, &SCHEDULER_TASKS[i]);
+	/* Add all task queues to the unused pile */
 	DL_APPEND(SCHEDULER_UNUSED_QUEUES, &SCHEDULER_TASK_QUEUES[i]);
     }
 }
@@ -110,8 +85,3 @@ void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add) {
 
     DL_APPEND(queues, add);
 }
-
-#else
-/* We are using the non-priority scheduler */
-
-#endif

@@ -32,7 +32,9 @@ void os_threading_init(frequency_t context_switch) {
     }
 
     systick_init(context_switch);
+#if defined SCHEDULE_PRIORITY
     schedule_init();
+#endif
 }
 
 tcb_t* os_add_thread(task_t task, priority_t priority) {
@@ -118,6 +120,9 @@ tcb_t* os_tcb_of(const task_t task) {
 
 void os_launch() {
 
+#ifdef SCHEDULE_PRIORITY
+    edf_init();
+#endif
     _os_choose_next_thread();
     os_running_threads = OS_NEXT_THREAD;
 

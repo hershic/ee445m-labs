@@ -28,12 +28,6 @@
 #include "libschedule/schedule.h"
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
-#include "libos/semaphore.h"
-#include "libtimer/timer.h"
-
-uint32_t PIDWork = 0;
-semaphore_t semaphore;
-uint32_t interrupt_counter;
 
 #define HEART_RED GPIO_PIN_1
 #define HEART_BLUE GPIO_PIN_2
@@ -63,8 +57,8 @@ void main(void) {
 
     os_threading_init(10 Hz);
     schedule(led_blink_blue, 1 Hz, DL_SOFT);
-    /* next test: different frequencies, different pools */
     schedule(led_blink_red, 1 Hz, DL_SOFT);
+    /* next test: different frequencies,pools */
 
     IntMasterEnable();
     os_launch();

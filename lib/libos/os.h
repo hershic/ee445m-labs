@@ -68,15 +68,15 @@ typedef uint8_t priority_t;
 typedef void (*task_t)();
 
 /*! Thread Control Block definition */
-typedef struct tcb {
+typedef struct tcb_t {
 
     /*! pointer to stack (valid for threads not running */
     int32_t *sp;
 
     /*! linked-list pointer to next tcb */
-    struct tcb *next;
+    struct tcb_t *next;
     /*! linked-list pointer to prev tcb */
-    struct tcb *prev;
+    struct tcb_t *prev;
 
     /*! Unique numeric identifier for the tcb. */
     immutable int32_t id;
