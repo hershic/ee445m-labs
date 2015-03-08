@@ -3,6 +3,10 @@
 /* Revision History: Look in Git FGT */
 
 #include "os.h"
+
+#include "inc/hw_nvic.h"
+#include "inc/hw_types.h"
+
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
 #include "libsystick/systick.h"
@@ -11,7 +15,7 @@
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
 
-void os_threading_init(frequency_t context_switch) {
+void os_threading_init() {
 
     uint32_t i;
     os_running_threads = NULL;
@@ -31,10 +35,7 @@ void os_threading_init(frequency_t context_switch) {
         OS_THREAD_POOL[i] = (tcb_t*) NULL;
     }
 
-    systick_init(context_switch);
-#if defined SCHEDULE_PRIORITY
     schedule_init();
-#endif
 }
 
 tcb_t* os_add_thread(task_t task) {
@@ -123,9 +124,7 @@ tcb_t* os_tcb_of(const task_t task) {
 
 void os_launch() {
 
-#ifdef SCHEDULE_PRIORITY
     edf_init();
-#endif
     _os_choose_next_thread();
     os_running_threads = OS_NEXT_THREAD;
 
@@ -206,7 +205,6 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 void SysTick_Handler() {
 
     /* Queue the PendSV_Handler after this ISR returns */
-    _os_choose_next_thread();
     IntPendSet(FAULT_PENDSV);
 }
 
@@ -228,6 +226,8 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
+    _os_choose_next_thread();
+    HWREG(NVIC_ST_CURRENT) = 0;
     _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point);
 
     /* load the value of os_running_threads */
@@ -263,4 +263,31 @@ void PendSV_Handler() {
     asm volatile("CPSIE   I");
 
     asm volatile ("bx lr");
+}
+
+/*! Put the invoking thread to sleep and let another thread take
+ *  over. This s another way to say "set the interrupt bit of the
+ *  \PendSV_Handler". */
+void os_suspend() {
+
+    IntPendSet(FAULT_PENDSV);
+    /* TODO: penalize long threads, reward quick threads */
+    while (1) {}
+}
+
+/* TODO: implement the edf queue of queues */
+/*! \pre disable interrupts before we get here */
+void _os_choose_next_thread() {
+    uint8_t pool = 0;
+
+    /* from the old priority scheduler init */
+    /* tcb_t* next_thread = _os_pool_waiting(pool); */
+
+    sched_task* next_task = edf_get_edf_queue();
+    HWREG(NVIC_ST_RELOAD) = next_task->absolute_deadline - 1;
+
+    tcb_t* next_tcb = edf_pop();
+    OS_NEXT_THREAD = next_tcb;
+
+
 }

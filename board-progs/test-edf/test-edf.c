@@ -36,18 +36,20 @@
 
 void led_blink_red() {
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
-		 GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+                 GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+    os_surrender_context();
 }
 
 void led_blink_blue() {
     GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-		 GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                 GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+    os_surrender_context();
 }
 
 void main(void) {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-		   SYSCTL_XTAL_16MHZ);
+                   SYSCTL_XTAL_16MHZ);
 
     IntMasterDisable();
 
@@ -55,7 +57,6 @@ void main(void) {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
 
-    schedule_init();
     os_threading_init(10 Hz);
     schedule(led_blink_blue, 1 Hz, DL_SOFT);
     schedule(led_blink_red, 1 Hz, DL_SOFT);

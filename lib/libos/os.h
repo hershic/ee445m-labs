@@ -92,7 +92,7 @@ static tcb_t* OS_THREAD_POOL[OS_NUM_POOLS];
  *  initializes the dead thread circle appropriately and sets the
  *  running thread circle to null.
  */
-void os_threading_init(frequency_t);
+void os_threading_init();
 
 /*! Resets the thread stack for a given tcb to run a given task.
  *  \param thread the thread whose stack is to be reset
@@ -145,28 +145,8 @@ void os_launch();
 #define os_surrender_context()                  \
     os_suspend()
 
-/*! Put the invoking thread to sleep and let another thread take
- *  over. This s another way to say "set the interrupt bit of the
- *  \PendSV_Handler". */
-always static inline os_suspend() {
-
-    IntPendSet(FAULT_PENDSV);
-    /* TODO: penalize long threads, reward quick threads */
-}
-
-/* TODO: implement the edf queue of queues */
-static inline
-void _os_choose_next_thread() {
-    uint8_t pool = 0;
-
-    /* from the old priority scheduler init */
-    /* tcb_t* next_thread = _os_pool_waiting(pool); */
-
-    tcb_t* next_thread = edf_pop();
-
-    OS_NEXT_THREAD = next_thread;
-}
-
+void os_suspend();
+void _os_choose_next_thread();
 
 #endif
 

@@ -17,6 +17,8 @@
 /* #include "libut/uthash.h" */
 
 #define SCHEDULER_DEFAULT_MAX_THREADS    16
+#define SYSTICKS_PER_HZ                  80000000
+#define MAX_SYSTICKS_PER_HZ              16777216
 
 #if !(defined(SCHEDULER_MAX_THREADS))
 #define SCHEDULER_MAX_THREADS   SCHEDULER_DEFAULT_MAX_THREADS
@@ -54,6 +56,8 @@ void schedule_aperiodic(pisr_t, HW_TYPE, hw_metadata, microseconds_t, DEADLINE_T
 sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t target_frequency);
 
 void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
+
+sched_task* edf_get_edf_queue();
 
 #endif  /* __SCHEDULE__ */
 
