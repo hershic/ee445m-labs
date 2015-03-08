@@ -12,6 +12,7 @@
 
 #include "libstd/nexus.h"
 #include "semaphore.h"
+#include "libschedule/edf.h"
 
 /*! \addtogroup OS
  * @{
@@ -164,7 +165,7 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task);
  *  \returns the TCB of the newly added thread, null if the addition
  *  was not possible for some reason.
  */
-tcb_t* os_add_thread(task_t, priority_t priority);
+tcb_t* os_add_thread(task_t);
 
 /*! Remove a thread from the queue the schedule will choose from.
  * \param The task to kill. This should be the task that was used to start the thread to remove via \os_add_thread.
@@ -262,7 +263,11 @@ tcb_t* _os_pool_waiting(pool_t pool) {
 static inline
 void _os_choose_next_thread() {
     pool_t pool = 0;
-    tcb_t* next_thread = _os_pool_waiting(pool);
+
+    /* from the old priority scheduler init */
+    /* tcb_t* next_thread = _os_pool_waiting(pool); */
+
+    tcb_t* next_thread = edf_pop();
 
     while(!next_thread) {
         next_thread = _os_pool_waiting(++pool);

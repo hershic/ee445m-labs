@@ -37,7 +37,7 @@ void os_threading_init(frequency_t context_switch) {
 #endif
 }
 
-tcb_t* os_add_thread(task_t task, priority_t priority) {
+tcb_t* os_add_thread(task_t task) {
 
     tcb_t* thread_to_add;
 
@@ -50,15 +50,18 @@ tcb_t* os_add_thread(task_t task, priority_t priority) {
 
     /* 3. Add the thread to the appropriate priority pool. */
     /* CDL_APPEND(os_running_threads, thread_to_add); */
-    CDL_APPEND(OS_THREAD_POOL[priority], thread_to_add);
+    /* CDL_APPEND(OS_THREAD_POOL[priority], thread_to_add); */
 
     /* 4. Set the initial stack contents for the new thread. */
     _os_reset_thread_stack(thread_to_add, task);
 
     /* 5. Set metadata for this thread's TCB. */
+
+    /* TODO: Remove this from semaphore. The scheduler manages
+     * this. */
     thread_to_add->status = THREAD_RUNNING;
     thread_to_add->entry_point = task;
-    thread_to_add->priority = priority;
+    /* thread_to_add->priority = priority; */
     /* thread_to_add->sleep_timer = 0; */
 
     atomic_end();
@@ -160,6 +163,7 @@ void os_launch() {
     /* asm volatile("BX LR"); */
 }
 
+always inline
 void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     hwcontext_t* hwcontext = (hwcontext_t*)
@@ -223,6 +227,8 @@ void PendSV_Handler() {
     /* -------------------------------------------------- */
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
+
+    os_reset_thread_stack(os_running_threads, os_running_threads->entry_point);
 
     /* load the value of os_running_threads */
     asm volatile("LDR     R2, =os_running_threads");

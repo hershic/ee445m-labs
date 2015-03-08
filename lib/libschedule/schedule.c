@@ -5,6 +5,7 @@
 
 #include "libstd/nexus.h"
 #include "libut/utlist.h"
+#include "libos/os.h"
 
 sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t target_frequency);
 void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
@@ -25,6 +26,8 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
     /* TODO CRITICAL: below should be `frequency + now()` */
     ready_task->absolute_deadline = frequency;
 
+    ready_task->tcb = os_add_thread(task);
+
     /* Test the pool of ready queues for a queue of tasks with this
      * frequency */
     /* todo: uthash configurable without malloc */
@@ -40,7 +43,7 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
 	DL_DELETE(SCHEDULER_UNUSED_QUEUES, ready_queue);
 
 	ready_queue->deadline = frequency;
-	schedule_hash_add_int(SCHEDULER_QUEUES, ready_queue);
+	DL_APPEND(SCHEDULER_QUEUES, ready_queue);
 	/* HASH_ADD_INT(SCHEDULER_QUEUES, deadline, ready_queue); */
     }
 
@@ -71,17 +74,15 @@ void schedule_init() {
 
 sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t target_frequency) {
 
-    int32_t i = 0;
     sched_task_pool* start = queues;
     sched_task_pool* inspect = queues;
-    while(i == 0 || inspect != start) {
+
+    if (!inspect) { return NULL; }
+
+    do {
 	if(inspect->deadline == target_frequency) {
 	    return inspect;
 	}
-    }
-}
-
-void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add) {
-
-    DL_APPEND(queues, add);
+	inspect = inspect->next;
+    } while (inspect != start);
 }

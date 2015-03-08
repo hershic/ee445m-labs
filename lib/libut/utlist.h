@@ -309,6 +309,9 @@ do {                                                                            
 #define LL_PREPEND(head,add)                                                                   \
     LL_PREPEND2(head,add,next)
 
+#define LL_EDF_PREPEND(head,add)		\
+    LL_PREPEND2(head,add,pri_next)
+
 #define LL_PREPEND2(head,add,next)                                                             \
 do {                                                                                           \
   (add)->next = head;                                                                          \
@@ -332,6 +335,9 @@ do {                                                                            
 
 #define LL_APPEND(head,add)                                                                    \
     LL_APPEND2(head,add,next)
+
+#define LL_EDF_APPEND(head,add)                                                                    \
+    LL_APPEND2(head,add,pri_next)
 
 #define LL_APPEND2(head,add,next)                                                              \
 do {                                                                                           \

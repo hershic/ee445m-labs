@@ -22,6 +22,8 @@ void edf_init() {
     }
 }
 
+/*! pre ensure that that least one task has been added to \EDF_QUEUE
+ *  prior to invoking this function */
 void edf_insert(sched_task* task) {
 
     sched_task *elt = EDF_QUEUE;
@@ -30,16 +32,20 @@ void edf_insert(sched_task* task) {
     }
     /* inject task at point -- if elt is null, this is the new end*/
     if (elt) {
-	LL_PREPEND(EDF_QUEUE, elt, task);
+	LL_EDF_PREPEND(EDF_QUEUE, elt);
     } else {
 	/* TODO: this incurs the O(n) again, optimize */
-	LL_APPEND(EDF_QUEUE, task);
+	LL_APPEND2(EDF_QUEUE, task);
     }
 }
 
 tcb_t* edf_pop() {
 
+    sched_task *elt = EDF_QUEUE;
+    LL_DELETE(EDF_QUEUE, elt);
 
+    /* todo: after use, put the command back in the appropriate pool */
+    return elt->tcb;
 }
 
 /* todo: rewrite both these functions in the appropriate style of uthash */

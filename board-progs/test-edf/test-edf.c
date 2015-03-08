@@ -55,6 +55,7 @@ void main(void) {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
 
+    schedule_init();
     os_threading_init(10 Hz);
     schedule(led_blink_blue, 1 Hz, DL_SOFT);
     schedule(led_blink_red, 1 Hz, DL_SOFT);
