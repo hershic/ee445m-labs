@@ -162,7 +162,7 @@ void os_launch() {
     /* asm volatile("BX LR"); */
 }
 
-always inline
+/* always inline */
 void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     hwcontext_t* hwcontext = (hwcontext_t*)
@@ -177,19 +177,19 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     swcontext->lr = 0xfffffff9;
 
-    /* hwcontext->r0 = 0x00000000; */
-    /* hwcontext->r1 = 0x01010101; */
-    /* hwcontext->r2 = 0x02020202; */
-    /* hwcontext->r3 = 0x03030303; */
+    hwcontext->r0 = 0x00000000;
+    hwcontext->r1 = 0x01010101;
+    hwcontext->r2 = 0x02020202;
+    hwcontext->r3 = 0x03030303;
 
-    /* swcontext->r4 = 0x04040404; */
-    /* swcontext->r5 = 0x05050505; */
-    /* swcontext->r6 = 0x06060606; */
-    /* swcontext->r7 = 0x07070707; */
-    /* swcontext->r8 = 0x08080808; */
-    /* swcontext->r9 = 0x09090909; */
-    /* swcontext->r10 = 0x10101010; */
-    /* swcontext->r11 = 0x11111111; */
+    swcontext->r4 = 0x04040404;
+    swcontext->r5 = 0x05050505;
+    swcontext->r6 = 0x06060606;
+    swcontext->r7 = 0x07070707;
+    swcontext->r8 = 0x08080808;
+    swcontext->r9 = 0x09090909;
+    swcontext->r10 = 0x10101010;
+    swcontext->r11 = 0x11111111;
 
     tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
     asm volatile ("PUSH {R9, R10, R11, R12}");
@@ -226,9 +226,10 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
+
     _os_choose_next_thread();
-    HWREG(NVIC_ST_CURRENT) = 0;
-    _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point);
+    /* HWREG(NVIC_ST_CURRENT) = 0; */
+    /* _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point); */
 
     /* load the value of os_running_threads */
     asm volatile("LDR     R2, =os_running_threads");
@@ -272,22 +273,45 @@ void os_suspend() {
 
     IntPendSet(FAULT_PENDSV);
     /* TODO: penalize long threads, reward quick threads */
-    while (1) {}
 }
 
 /* TODO: implement the edf queue of queues */
 /*! \pre disable interrupts before we get here */
-void _os_choose_next_thread() {
-    uint8_t pool = 0;
+always inline void _os_choose_next_thread() {
 
     /* from the old priority scheduler init */
     /* tcb_t* next_thread = _os_pool_waiting(pool); */
 
     sched_task* next_task = edf_get_edf_queue();
-    HWREG(NVIC_ST_RELOAD) = next_task->absolute_deadline - 1;
+    /* HWREG(NVIC_ST_RELOAD) = next_task->absolute_deadline - 1; */
 
-    tcb_t* next_tcb = edf_pop();
-    OS_NEXT_THREAD = next_tcb;
+    /* tcb_t* next_tcb = edf_pop(); */
+
+    sched_task *executing = EDF_QUEUE;
+    sched_task_pool *pool = SCHEDULER_QUEUES;
+
+    /* LL_EDF_DELETE(EDF_QUEUE, elt); */
+    /* TODO: CHECKME: should we use pri_next or pri_prev?? */
+    EDF_QUEUE = EDF_QUEUE->pri_next;
+
+    /* KLUDGE: fix this for production */
+    while (pool->queue != executing) {
+        pool = pool->next;
+    }
+    /* will drop out with pool->queue = executing */
+
+    executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ;
+
+    /* do the recycling, change the pool's head */
+    /* TODO: CHECKME: should we use next or prev?? */
+    pool->queue = executing->next;
+    edf_insert(pool->queue);
 
 
+
+    /* begin replacement for pop */
+
+    /* end replacement for pop */
+
+    OS_NEXT_THREAD = executing->tcb;
 }

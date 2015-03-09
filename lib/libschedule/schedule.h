@@ -43,7 +43,6 @@ static sched_task SCHEDULER_TASKS[SCHEDULER_MAX_THREADS];
 /*! Doubly linked list of unused tasks */
 static sched_task* SCHEDULER_UNUSED_TASKS = NULL;
 
-
 /*! Initialize all deep datastructures used by libschedule. */
 void schedule_init();
 

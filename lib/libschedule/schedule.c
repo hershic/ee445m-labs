@@ -65,8 +65,10 @@ void schedule_init() {
     int32_t i;
     for(i=0; i<SCHEDULER_MAX_THREADS; ++i) {
         /* Add all tasks to the unused pile */
+        SCHEDULER_TASKS[i].id = i;
         DL_PREPEND(SCHEDULER_UNUSED_TASKS, &SCHEDULER_TASKS[i]);
         /* Add all task queues to the unused pile */
+        SCHEDULER_TASK_QUEUES[i].id = i;
         DL_PREPEND(SCHEDULER_UNUSED_QUEUES, &SCHEDULER_TASK_QUEUES[i]);
     }
 }
@@ -123,8 +125,8 @@ void edf_insert(sched_task* task) {
 
 tcb_t* edf_pop() {
 
-    sched_task *executing = EDF_QUEUE;
-    sched_task_pool *pool = SCHEDULER_QUEUES;
+    volatile sched_task *executing = EDF_QUEUE;
+    volatile sched_task_pool *pool = SCHEDULER_QUEUES;
 
     /* LL_EDF_DELETE(EDF_QUEUE, elt); */
     /* TODO: CHECKME: should we use pri_next or pri_prev?? */

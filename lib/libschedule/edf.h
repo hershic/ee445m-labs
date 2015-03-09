@@ -20,7 +20,7 @@
 static sched_task EDF[SCHEDULER_MAX_THREADS];
 
 /*! Linked list of tasks (with different periods) ready to be run. */
-static sched_task* EDF_QUEUE = NULL;
+static sched_task *EDF_QUEUE = NULL;
 
 /*! Initialize the Earliest Deadline First task queue */
 void edf_init();

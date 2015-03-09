@@ -146,7 +146,7 @@ void os_launch();
     os_suspend()
 
 void os_suspend();
-void _os_choose_next_thread();
+always inline void _os_choose_next_thread();
 
 #endif
 

@@ -28,22 +28,36 @@
 #include "libschedule/schedule.h"
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
+#include "libtimer/timer.h"
 
 #define HEART_RED GPIO_PIN_1
 #define HEART_BLUE GPIO_PIN_2
 #define HEART_GREEN GPIO_PIN_3
 
+volatile uint8_t start_on_this;
 
 void led_blink_red() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
-                 GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-    os_surrender_context();
+    while (1) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        os_surrender_context();
+    }
 }
 
 void led_blink_blue() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-                 GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-    os_surrender_context();
+    while (1) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        os_surrender_context();
+    }
+}
+
+void start_threading(notification note) {
+    os_threading_init(10 Hz);
+    schedule(led_blink_blue, 1 Hz, DL_SOFT);
+    schedule(led_blink_red, 1 Hz, DL_SOFT);
+    /* next test: different frequencies,pools */
+    start_on_this = 1;
 }
 
 void main(void) {
@@ -60,9 +74,13 @@ void main(void) {
     os_threading_init(10 Hz);
     schedule(led_blink_blue, 1 Hz, DL_SOFT);
     schedule(led_blink_red, 1 Hz, DL_SOFT);
-    /* next test: different frequencies,pools */
 
+    /* timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT); */
+    /* hw_init(HW_TIMER, timer_metadata); */
+    /* hw_subscribe_single_shot(HW_TIMER, timer_metadata, start_threading); */
     IntMasterEnable();
+
+    /* while (! start_on_this) { } */
     os_launch();
 
     postpone_death();
