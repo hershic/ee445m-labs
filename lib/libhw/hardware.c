@@ -80,13 +80,13 @@ void hw_channel_init(HW_TYPE type, hw_metadata metadata) {
         break;
 
     case HW_TIMER:
-	postpone_death();
-	/* why is this postpone death here? esc had a fucking random
-	 * linker error about the below metohd, so he removed it to
-	 * continue developing with time on his side. he wasn't using
-	 * timers. He wasn't using hardware. he doesn't know how it
-	 * broke. whoops. */
-        /* timer_add_interrupt(metadata); */
+        /* postpone_death(); */
+        /* why is this postpone death here? esc had a fucking random
+         * linker error about the below metohd, so he removed it to
+         * continue developing with time on his side. he wasn't using
+         * timers. He wasn't using hardware. he doesn't know how it
+         * broke. whoops. */
+        timer_add_interrupt(metadata);
         break;
 
     case HW_BUTTON:
@@ -283,3 +283,10 @@ void UART2_Handler(void) {
  * This isr was generated
  * automatically by bin/lisp/rtos-interrupt-generator.el
  */
+void TIMER0A_Handler(void) {
+
+  TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+  notification_init(int, 1);
+  timer_metadata_init(TIMER0_BASE, NULL, NULL, NULL);
+  hw_notify(HW_TIMER, timer_metadata, note);
+}

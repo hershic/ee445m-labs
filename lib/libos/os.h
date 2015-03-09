@@ -92,7 +92,7 @@ static tcb_t* OS_THREAD_POOL[OS_NUM_POOLS];
  *  initializes the dead thread circle appropriately and sets the
  *  running thread circle to null.
  */
-void os_threading_init();
+void os_threading_init(frequency_t freq);
 
 /*! Resets the thread stack for a given tcb to run a given task.
  *  \param thread the thread whose stack is to be reset

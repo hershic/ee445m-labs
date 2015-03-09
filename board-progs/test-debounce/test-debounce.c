@@ -51,7 +51,7 @@ void button_debounce_start(notification button_notification) {
 
     button_debounced_wtf = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
     timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
-    hw_init(HW_TIMER, timer_metadata);
+    hw_channel_init(HW_TIMER, timer_metadata);
     hw_subscribe_single_shot(HW_TIMER, timer_metadata,
                              button_debounce_end);
 }
@@ -83,6 +83,12 @@ int main() {
 
     IntMasterDisable();
 
+    /* begin timer init */
+    timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
+    hw_driver_init(HW_TIMER, timer_metadata);
+    /* end timer init */
+
+
     /* button init */
     button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
 
@@ -92,9 +98,9 @@ int main() {
     pidwork_init();
 
     os_threading_init(100 Hz);
-    os_add_thread(postpone_suicide, OS_SYSTEM_POOL);
-    os_add_thread(pidwork_record, OS_SYSTEM_POOL);
-    os_add_thread(pidwork_increment, OS_SYSTEM_POOL);
+    schedule(postpone_suicide, 1 Hz, DL_SOFT);
+    schedule(pidwork_record, 1 Hz, DL_SOFT);
+    /* schedule(pidwork_increment, 1 Hz, DL_SOFT); */
 
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);

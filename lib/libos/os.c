@@ -17,7 +17,11 @@ static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
 volatile sched_task *executing;
 volatile sched_task_pool *pool;
 
-void os_threading_init() {
+void os_threading_init(frequency_t freq) {
+
+    SysTickPeriodSet(SysCtlClockGet() / freq);
+    SysTickEnable();
+    SysTickIntEnable();
 
     uint32_t i;
     os_running_threads = NULL;
@@ -206,7 +210,47 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
  *  SysTick */
 void SysTick_Handler() {
 
+executing = EDF_QUEUE;
+    pool = SCHEDULER_QUEUES;
+
+    /* DL_EDF_DELETE(EDF_QUEUE, elt); */
+    if (EDF_QUEUE) {
+        EDF_QUEUE = EDF_QUEUE->pri_next;
+    }
+
+    /* KLUDGE: fix this for production */
+    while (pool->queue != executing) {
+        pool = pool->next;
+    }
+    /* will drop out with pool->queue = executing */
+
+    /* TODO: not right now... */
+    /* executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ; */
+
+    /* do the recycling, change the pool's head */
+    /* TODO: CHECKME: should we use next or prev?? */
+    pool->queue = executing->next;
+    /* ----- end edf_pop ----- */
+
+    /* ----- begin edf_insert ----- */
+    /* edf_insert(pool->queue); */
+    volatile sched_task *elt = EDF_QUEUE;
+    while(elt && pool->queue->absolute_deadline > elt->absolute_deadline) {
+        elt = elt->pri_next;
+    }
+    /* inject pool->queue at point -- if elt is null, this is the new end*/
+    if (elt) {
+        DL_EDF_PREPEND(EDF_QUEUE, elt);
+    } else {
+        /* TODO: this incurs the O(n) again, optimize */
+        DL_EDF_INSERT(EDF_QUEUE, pool->queue);
+    }
+    /* ----- end edf_insert ----- */
+
+    OS_NEXT_THREAD = executing->next->tcb;
+
     /* Queue the PendSV_Handler after this ISR returns */
+    /* TODO: penalize long threads, reward quick threads */
     IntPendSet(FAULT_PENDSV);
 }
 
@@ -273,7 +317,7 @@ void PendSV_Handler() {
  *  \PendSV_Handler". */
 void os_suspend() {
 
-        executing = EDF_QUEUE;
+    executing = EDF_QUEUE;
     pool = SCHEDULER_QUEUES;
 
     /* DL_EDF_DELETE(EDF_QUEUE, elt); */
@@ -309,7 +353,6 @@ void os_suspend() {
         DL_EDF_INSERT(EDF_QUEUE, pool->queue);
     }
     /* ----- end edf_insert ----- */
-
 
     OS_NEXT_THREAD = executing->next->tcb;
 
