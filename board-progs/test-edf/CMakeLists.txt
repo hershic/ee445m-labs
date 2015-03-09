@@ -8,5 +8,8 @@ include_directories(../../lib)
 
 add_executable(test-edf ${test-edf-srcs})
 target_link_libraries(test-edf driverlib)
+target_link_libraries(test-edf hw)
 target_link_libraries(test-edf os)
+target_link_libraries(test-edf button)
+target_link_libraries(test-edf timer)
 target_link_libraries(test-edf schedule)
