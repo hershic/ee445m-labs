@@ -30,11 +30,11 @@ typedef void (*pisr_t)(notification note);      /* a task capable of being run *
 static sched_task_pool SCHEDULER_TASK_QUEUES[SCHEDULER_MAX_THREADS];
 
 /*! Doubly linked list of unused task queues */
-static sched_task_pool* SCHEDULER_UNUSED_QUEUES = NULL;
+volatile static sched_task_pool* SCHEDULER_UNUSED_QUEUES = NULL;
 
 /*! UTHash of live task queues */
 /* for now it's a utlist though, don't get confused */
-static sched_task_pool* SCHEDULER_QUEUES = NULL;
+volatile static sched_task_pool* SCHEDULER_QUEUES = NULL;
 
 /*! Statically allocated task metadata structures for the scheduler to
  *  manage */
@@ -58,6 +58,7 @@ sched_task_pool* schedule_hash_find_int(sched_task_pool* queues, frequency_t tar
 void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
 
 sched_task* edf_get_edf_queue();
+void _os_choose_next_thread();
 
 #endif  /* __SCHEDULE__ */
 
