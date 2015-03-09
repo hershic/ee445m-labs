@@ -14,6 +14,8 @@
 
 /*! A block of memory for each thread's local stack. */
 static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
+volatile sched_task *executing;
+volatile sched_task_pool *pool;
 
 void os_threading_init() {
 
@@ -177,19 +179,19 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     swcontext->lr = 0xfffffff9;
 
-    /* hwcontext->r0 = 0x00000000; */
-    /* hwcontext->r1 = 0x01010101; */
-    /* hwcontext->r2 = 0x02020202; */
-    /* hwcontext->r3 = 0x03030303; */
+    hwcontext->r0 = 0x00000000;
+    hwcontext->r1 = 0x01010101;
+    hwcontext->r2 = 0x02020202;
+    hwcontext->r3 = 0x03030303;
 
-    /* swcontext->r4 = 0x04040404; */
-    /* swcontext->r5 = 0x05050505; */
-    /* swcontext->r6 = 0x06060606; */
-    /* swcontext->r7 = 0x07070707; */
-    /* swcontext->r8 = 0x08080808; */
-    /* swcontext->r9 = 0x09090909; */
-    /* swcontext->r10 = 0x10101010; */
-    /* swcontext->r11 = 0x11111111; */
+    swcontext->r4 = 0x04040404;
+    swcontext->r5 = 0x05050505;
+    swcontext->r6 = 0x06060606;
+    swcontext->r7 = 0x07070707;
+    swcontext->r8 = 0x08080808;
+    swcontext->r9 = 0x09090909;
+    swcontext->r10 = 0x10101010;
+    swcontext->r11 = 0x11111111;
 
     tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
     asm volatile ("PUSH {R9, R10, R11, R12}");
@@ -226,45 +228,8 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
+    /*  ----- begin edf_pop ----- */
 
-    volatile sched_task *executing = EDF_QUEUE;
-    volatile sched_task_pool *pool = SCHEDULER_QUEUES;
-
-    /* LL_EDF_DELETE(EDF_QUEUE, elt); */
-    /* TODO: CHECKME: should we use pri_next or pri_prev?? */
-    EDF_QUEUE = EDF_QUEUE->pri_next;
-
-    /* KLUDGE: fix this for production */
-    while (pool->queue != executing) {
-        pool = pool->next;
-    }
-    /* will drop out with pool->queue = executing */
-
-    /* TODO: not right now... */
-    /* executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ; */
-
-    /* do the recycling, change the pool's head */
-    /* TODO: CHECKME: should we use next or prev?? */
-    pool->queue = executing->next;
-
-    /* edf_insert(pool->queue); */
-
-
-    volatile sched_task *elt = EDF_QUEUE;
-    while(elt && pool->queue->absolute_deadline > elt->absolute_deadline) {
-        elt = elt->pri_next;
-    }
-    /* inject pool->queue at point -- if elt is null, this is the new end*/
-    if (elt) {
-        LL_EDF_PREPEND(EDF_QUEUE, elt);
-    } else {
-        /* TODO: this incurs the O(n) again, optimize */
-        LL_EDF_APPEND(EDF_QUEUE, pool->queue);
-    }
-
-
-
-    OS_NEXT_THREAD = executing->tcb;
     /* HWREG(NVIC_ST_CURRENT) = 0; */
     /* _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point); */
 
@@ -308,9 +273,49 @@ void PendSV_Handler() {
  *  \PendSV_Handler". */
 void os_suspend() {
 
+        executing = EDF_QUEUE;
+    pool = SCHEDULER_QUEUES;
+
+    /* DL_EDF_DELETE(EDF_QUEUE, elt); */
+    if (EDF_QUEUE) {
+        EDF_QUEUE = EDF_QUEUE->pri_next;
+    }
+
+    /* KLUDGE: fix this for production */
+    while (pool->queue != executing) {
+        pool = pool->next;
+    }
+    /* will drop out with pool->queue = executing */
+
+    /* TODO: not right now... */
+    /* executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ; */
+
+    /* do the recycling, change the pool's head */
+    /* TODO: CHECKME: should we use next or prev?? */
+    pool->queue = executing->next;
+    /* ----- end edf_pop ----- */
+
+    /* ----- begin edf_insert ----- */
+    /* edf_insert(pool->queue); */
+    volatile sched_task *elt = EDF_QUEUE;
+    while(elt && pool->queue->absolute_deadline > elt->absolute_deadline) {
+        elt = elt->pri_next;
+    }
+    /* inject pool->queue at point -- if elt is null, this is the new end*/
+    if (elt) {
+        DL_EDF_PREPEND(EDF_QUEUE, elt);
+    } else {
+        /* TODO: this incurs the O(n) again, optimize */
+        DL_EDF_INSERT(EDF_QUEUE, pool->queue);
+    }
+    /* ----- end edf_insert ----- */
+
+
+    OS_NEXT_THREAD = executing->next->tcb;
+
     IntPendSet(FAULT_PENDSV);
     /* TODO: penalize long threads, reward quick threads */
-    while (1) {}
+    /* while (1) {} */
 }
 
 
@@ -408,12 +413,7 @@ void edf_init() {
     sched_task_pool *next = start->next;
 
     /* avoid the NULL EDF_QUEUE to allow optimized form of `edf_insert' */
-    LL_EDF_APPEND(EDF_QUEUE, start->queue);
-
-    /* special case: if there is only one item in the scheduler queue */
-    if (next == start) {
-        edf_insert(start->queue);
-    }
+    DL_EDF_INSERT(EDF_QUEUE, start->queue);
 
     /* Create the rest of the EDF */
     while(next && next != start) {
@@ -422,20 +422,19 @@ void edf_init() {
     }
 }
 
-/*! \pre ensure that that least one task has been added to \EDF_QUEUE
- *  prior to invoking this function */
 void edf_insert(sched_task* task) {
 
     sched_task *elt = EDF_QUEUE;
+
     while(elt && task->absolute_deadline > elt->absolute_deadline) {
         elt = elt->pri_next;
     }
     /* inject task at point -- if elt is null, this is the new end*/
     if (elt) {
-        LL_EDF_PREPEND(EDF_QUEUE, elt);
+        DL_EDF_PREPEND(elt, task);
     } else {
         /* TODO: this incurs the O(n) again, optimize */
-        LL_EDF_APPEND(EDF_QUEUE, task);
+        DL_EDF_INSERT(EDF_QUEUE, task);
     }
 }
 
@@ -444,7 +443,7 @@ tcb_t* edf_pop() {
     volatile sched_task *executing = EDF_QUEUE;
     volatile sched_task_pool *pool = SCHEDULER_QUEUES;
 
-    /* LL_EDF_DELETE(EDF_QUEUE, elt); */
+    /* DL_EDF_DELETE(EDF_QUEUE, elt); */
     /* TODO: CHECKME: should we use pri_next or pri_prev?? */
     EDF_QUEUE = EDF_QUEUE->pri_next;
 
@@ -473,6 +472,7 @@ sched_task* edf_get_edf_queue() {
 /*! \pre disable interrupts before we get here */
 void _os_choose_next_thread() {
 
+
     /* from the old priority scheduler init */
     /* tcb_t* next_thread = _os_pool_waiting(pool); */
 
@@ -483,7 +483,7 @@ void _os_choose_next_thread() {
     sched_task *executing = EDF_QUEUE;
     sched_task_pool *pool = SCHEDULER_QUEUES;
 
-    /* LL_EDF_DELETE(EDF_QUEUE, elt); */
+    /* DL_EDF_DELETE(EDF_QUEUE, elt); */
     /* TODO: CHECKME: should we use pri_next or pri_prev?? */
     EDF_QUEUE = EDF_QUEUE->pri_next;
 
@@ -499,8 +499,20 @@ void _os_choose_next_thread() {
 
     /* do the recycling, change the pool's head */
     /* TODO: CHECKME: should we use next or prev?? */
-    pool->queue = executing->next;
-    edf_insert(pool->queue);
+    /* pool->queue = executing->next; */
+    /* edf_insert(pool->queue); */
+
+    sched_task *elt = EDF_QUEUE;
+    while(elt && pool->queue->absolute_deadline > elt->absolute_deadline) {
+        elt = elt->pri_next;
+    }
+    /* inject task at point -- if elt is null, this is the new end*/
+    if (elt) {
+        DL_EDF_PREPEND(EDF_QUEUE, elt);
+    } else {
+        /* TODO: this incurs the O(n) again, optimize */
+        DL_EDF_INSERT(EDF_QUEUE, pool->queue);
+    }
 
     OS_NEXT_THREAD = executing->tcb;
 }

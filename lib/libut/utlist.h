@@ -310,7 +310,10 @@ do {                                                                            
     LL_PREPEND2(head,add,next)
 
 #define LL_EDF_PREPEND(head,add)                \
-    LL_PREPEND2(head,add,pri_next)
+do {                                                                                           \
+  (add)->next = head;                                                                          \
+  head = add;                                                                                  \
+} while (0)
 
 #define LL_PREPEND2(head,add,next)                                                             \
 do {                                                                                           \
@@ -507,6 +510,16 @@ do {                                                                            
 #define DL_PREPEND(head,add)                                                                   \
     DL_PREPEND2(head,add,prev,next)
 
+#define DL_EDF_PREPEND(head,add)      \
+do {                                                                                           \
+ (add)->next = head;                                                                           \
+ if (head) {                                                                                   \
+   (add)->prev = (head)->prev;                                                                 \
+   (head)->prev = (add);                                                                       \
+ }                                                                                             \
+ (head) = (add);                                                                               \
+} while (0)
+
 #define DL_PREPEND2(head,add,prev,next)                                                        \
 do {                                                                                           \
  (add)->next = head;                                                                           \
@@ -521,6 +534,20 @@ do {                                                                            
 
 #define DL_APPEND(head,add)                                                                    \
     DL_APPEND2(head,add,prev,next)
+
+#define DL_EDF_INSERT(head,add)       \
+do {                                                                                           \
+  if (head) {                                                                                  \
+      (add)->pri_prev = (head)->pri_prev;                               \
+      (head)->pri_prev->pri_next = (add);                               \
+      (head)->pri_prev = (add);                                         \
+      (add)->pri_next = NULL;                                           \
+  } else {                                                              \
+      (head)=(add);                                                     \
+      (head)->pri_prev = NULL;                                        \
+      (head)->pri_next = NULL;                                          \
+  }                                                                                            \
+} while (0)
 
 #define DL_APPEND2(head,add,prev,next)                                                         \
 do {                                                                                           \

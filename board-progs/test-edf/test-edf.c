@@ -35,15 +35,19 @@
 
 
 void led_blink_red() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
-                 GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-    os_surrender_context();
+    while (1) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        os_surrender_context();
+    }
 }
 
 void led_blink_blue() {
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-                 GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-    os_surrender_context();
+    while (1) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        os_surrender_context();
+    }
 }
 
 void main(void) {
