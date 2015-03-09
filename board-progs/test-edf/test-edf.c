@@ -61,17 +61,20 @@ void button_debounce_start(notification button_notification) {
 void postpone_suicide() {
 
     while (1) {
-        sem_wait(button_debounced_new_data);
-        if (~button_debounced_mailbox & BUTTON_LEFT) {
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
-                         GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-            ++button_left_pressed;
+        sem_guard(button_debounced_new_data) {
+            sem_take(button_debounced_new_data);
+            if (~button_debounced_mailbox & BUTTON_LEFT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
+                             GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                ++button_left_pressed;
+            }
+            if (~button_debounced_mailbox & BUTTON_RIGHT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^
+                             GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+                ++button_right_pressed;
+            }
         }
-        if (~button_debounced_mailbox & BUTTON_RIGHT) {
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^
-                         GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
-            ++button_right_pressed;
-        }
+        os_surrender_context();
     }
 }
 
@@ -79,7 +82,7 @@ void led_blink_red() {
     while (1) {
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-        /* os_surrender_context(); */
+        os_surrender_context();
     }
 }
 
@@ -87,7 +90,7 @@ void led_blink_blue() {
     while (1) {
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                      GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-        /* os_surrender_context(); */
+        os_surrender_context();
     }
 }
 
@@ -117,8 +120,8 @@ void main(void) {
     pidwork_init();
 
     os_threading_init(10 Hz);
-    schedule(led_blink_red, 1 Hz, DL_SOFT);
-    schedule(postpone_suicide, 1 Hz, DL_SOFT);
+    schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(postpone_suicide, 100 Hz, DL_SOFT);
     /* next test: different frequencies,pools */
 
     IntMasterEnable();

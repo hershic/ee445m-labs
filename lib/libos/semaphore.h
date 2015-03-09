@@ -23,6 +23,19 @@ typedef int8_t semaphore_t;
     semaphore_t sem;                            \
     sem = initial_value
 
+/*! Guard the following code block to evaluate only in the semaphore
+ *  may be obtained. */
+#define sem_guard(sem)                          \
+    if(!semaphore_blocked(sem))
+
+/*! \sem_wait without the br, to be used when you know you can take
+ *  the semaphore. */
+#define sem_take(sem)                           \
+    atomic (                                    \
+        --sem;                                  \
+       /* TODO: wake thread */                  \
+    )
+
 /* TODO: define */
 #define sem_check(sem)
 

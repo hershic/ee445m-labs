@@ -210,7 +210,7 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
  *  SysTick */
 void SysTick_Handler() {
 
-executing = EDF_QUEUE;
+    executing = EDF_QUEUE;
     pool = SCHEDULER_QUEUES;
 
     /* DL_EDF_DELETE(EDF_QUEUE, elt); */
@@ -225,7 +225,7 @@ executing = EDF_QUEUE;
     /* will drop out with pool->queue = executing */
 
     /* TODO: not right now... */
-    /* executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ; */
+    executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ;
 
     /* do the recycling, change the pool's head */
     /* TODO: CHECKME: should we use next or prev?? */
@@ -274,7 +274,7 @@ void PendSV_Handler() {
 
     /*  ----- begin edf_pop ----- */
 
-    /* HWREG(NVIC_ST_CURRENT) = 0; */
+    HWREG(NVIC_ST_CURRENT) = 0;
     /* _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point); */
 
     /* load the value of os_running_threads */
@@ -332,7 +332,7 @@ void os_suspend() {
     /* will drop out with pool->queue = executing */
 
     /* TODO: not right now... */
-    /* executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ; */
+    executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ;
 
     /* do the recycling, change the pool's head */
     /* TODO: CHECKME: should we use next or prev?? */
@@ -521,7 +521,6 @@ void _os_choose_next_thread() {
 
     /* TODO: put this back in when possible; in get-it-working mode */
     /* sched_task* next_task = edf_get_edf_queue(); */
-    /* HWREG(NVIC_ST_RELOAD) = next_task->absolute_deadline - 1; */
 
     sched_task *executing = EDF_QUEUE;
     sched_task_pool *pool = SCHEDULER_QUEUES;
@@ -558,4 +557,5 @@ void _os_choose_next_thread() {
     }
 
     OS_NEXT_THREAD = executing->tcb;
+    HWREG(NVIC_ST_RELOAD) = executing->absolute_deadline - 1;
 }
