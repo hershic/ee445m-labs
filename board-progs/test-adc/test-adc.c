@@ -26,21 +26,20 @@
 #include "libheart/heartbeat.h"
 
 #define ADC_DATA_BUFFER_LEN 3
-static uint32_t adc_data_buffer[ADC_DATA_BUFFER_LEN];
+uint32_t adc_data_buffer[ADC_DATA_BUFFER_LEN];
 
 int main(void) {
 
-    FPUEnable();
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
+
+    /* Enable processor interrupts. */
+    IntMasterDisable();
 
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
-
-    /* Enable processor interrupts. */
-    IntMasterEnable();
 
     /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
     /* start adc init */
@@ -60,6 +59,8 @@ int main(void) {
     adc_channel_init(metadata);
     adc_interrupt_init(metadata);
     /* end adc init */
+
+    IntMasterEnable();
 
     while (1) {}
 
