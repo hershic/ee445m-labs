@@ -25,12 +25,14 @@
 #include "libnotify/notify.h"
 #include "libhw/hardware.h"
 #include "libuart/uart.h"
-#include "libheart/heartbeat.h"
 #include "libstd/nexus.h"
 #include "libos/system.h"
 #include "libos/os.h"
 
 #include <sys/stat.h>
+
+#define HEARTBEAT_MODAL
+#include "libheart/heartbeat.h"
 
 int doctor() {
 
@@ -47,8 +49,12 @@ int main(void) {
     IntMasterDisable();
 
     heart_init();
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
+
     os_threading_init(100 Hz);
-    hw_init_daemon();
+    schedule(hw_daemon, 100 Hz, DL_SOFT);
 
     system_init();
     system_register_command((const char*) "doctor", doctor);
@@ -60,11 +66,7 @@ int main(void) {
     /* Initialize the shell and the system it interacts with */
     shell_spawn();
 
-    /* Enable processor interrupts. */
     IntMasterEnable();
-
     os_launch();
-
-    /* TODO: set self priority to lowest or kill thyself */
     postpone_death();
 }
