@@ -15,13 +15,6 @@
 /* todo: this is a duplicate, remove it and fix */
 #define SCHEDULER_MAX_THREADS    16
 
-/*! Statically allocated array of periodic tasks arranged by
- *  increasing time-to-deadline. */
-volatile static sched_task EDF[SCHEDULER_MAX_THREADS];
-
-/*! Linked list of tasks (with different periods) ready to be run. */
-volatile static sched_task* EDF_QUEUE = NULL;
-
 /*! Initialize the Earliest Deadline First task queue */
 void edf_init();
 

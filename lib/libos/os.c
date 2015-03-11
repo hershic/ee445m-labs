@@ -17,14 +17,21 @@ static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
 volatile sched_task *executing;
 volatile sched_task_pool *pool;
 
+/*! Statically allocated array of periodic tasks arranged by
+ *  increasing time-to-deadline. */
+volatile sched_task EDF[SCHEDULER_MAX_THREADS];
+
+/*! Linked list of tasks (with different periods) ready to be run. */
+volatile sched_task* EDF_QUEUE = NULL;
+
 bool OS_THREADING_INITIALIZED;
 uint8_t OS_NUM_THREADS;
 
 void os_threading_init(frequency_t freq) {
 
-    SysTickPeriodSet(SysCtlClockGet() / freq);
-    SysTickEnable();
-    SysTickIntEnable();
+    /* SysTickPeriodSet(SysCtlClockGet() / freq); */
+    /* SysTickEnable(); */
+    /* SysTickIntEnable(); */
 
     uint32_t i;
 
@@ -230,6 +237,8 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
  *  SysTick */
 void SysTick_Handler() {
 
+    asm volatile("CPSID  I");
+
     executing = EDF_QUEUE;
     pool = SCHEDULER_QUEUES;
 
@@ -270,8 +279,8 @@ void SysTick_Handler() {
     OS_NEXT_THREAD = executing->next->tcb;
 
     /* Queue the PendSV_Handler after this ISR returns */
-    /* TODO: penalize long threads, reward quick threads */
     IntPendSet(FAULT_PENDSV);
+    asm volatile("CPSIE  I");
 }
 
 void PendSV_Handler() {

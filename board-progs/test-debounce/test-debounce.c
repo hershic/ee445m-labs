@@ -32,7 +32,7 @@
 #include "libtimer/timer.h"
 #include "libhw/hardware.h"
 #include "libos/semaphore.h"
-#include "libdisplay/ST7735.h"
+/* #include "libdisplay/ST7735.h" */
 #include "libadc/adc.h"
 #include "libuart/uart.h"
 #include "libshell/shell.h"
@@ -86,13 +86,13 @@ void display_adc_data_for_checkout(void) {
         string_buf[j] = 0;
 
         for (k=0, l=4; k<l; ++k, --l) {
-            ST7735_DrawCharS(40,l,(uint8_t) (string_buf[k] + 0x30), ST7735_YELLOW,ST7735_BLACK, 1);
+            /* ST7735_DrawCharS(40,l,(uint8_t) (string_buf[k] + 0x30), ST7735_YELLOW,ST7735_BLACK, 1); */
             /* tmp = string_buf[k]; */
             /* string_buf[k] = string_buf[l]; */
             /* string_buf[l] = tmp; */
         }
 
-        ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
+        /* ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW); */
     }
 }
 
@@ -101,23 +101,28 @@ void postpone_suicide() {
     ADC0_SEQ2_SAMPLES = demo_adc_data;
 
     while (1) {
-        sem_wait(button_debounced_new_data);
-        ST7735_DrawCharS(30,0,(uint8_t) (get_os_num_threads() + 0x30), ST7735_YELLOW,ST7735_BLACK, 1);
+        /* sem_wait(button_debounced_new_data); */
+        /* ST7735_DrawCharS(30,0,(uint8_t) (get_os_num_threads() + 0x30), ST7735_YELLOW,ST7735_BLACK, 1); */
 
-        if (~button_debounced_mailbox & BUTTON_LEFT) {
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
-                         GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-            ST7735_DrawCharS(10,0,'1',ST7735_YELLOW,ST7735_BLACK, 1);
-            display_adc_data_for_checkout();
-            ++button_left_pressed;
-        } else { ST7735_DrawCharS(10,0,(uint8_t)'0',ST7735_YELLOW,ST7735_BLACK, 1); }
+        sem_guard(button_debounced_new_data) {
+            sem_take(button_debounced_new_data);
+            if (~button_debounced_mailbox & BUTTON_LEFT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2 ^
+                             GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                /* ST7735_DrawCharS(10,0,'1',ST7735_YELLOW,ST7735_BLACK, 1); */
+                display_adc_data_for_checkout();
+                ++button_left_pressed;
+            }
+            /* else { ST7735_DrawCharS(10,0,(uint8_t)'0',ST7735_YELLOW,ST7735_BLACK, 1); } */
 
-        if (~button_debounced_mailbox & BUTTON_RIGHT) {
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^
-                         GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
-            ST7735_DrawCharS(20,0,'1',ST7735_YELLOW,ST7735_BLACK, 1);
-            ++button_right_pressed;
-        } else { ST7735_DrawCharS(20,0,'0',ST7735_YELLOW,ST7735_BLACK, 1); }
+            if (~button_debounced_mailbox & BUTTON_RIGHT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3 ^
+                             GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+                /* ST7735_DrawCharS(20,0,'1',ST7735_YELLOW,ST7735_BLACK, 1); */
+                ++button_right_pressed;
+            }
+        }
+        /*  else { ST7735_DrawCharS(20,0,'0',ST7735_YELLOW,ST7735_BLACK, 1); } */
     }
 }
 
@@ -137,7 +142,7 @@ int main() {
     /* button init */
     button_left_pressed = 0;
     button_right_pressed = 0;
-    button_debounced_mailbox = 0;
+    button_debounced_mailbox = 0xff;
     sem_init(button_debounced_new_data);
 
     button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
@@ -175,7 +180,7 @@ int main() {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
     /* end heartbeat init */
 
-    ST7735_InitR(INITR_REDTAB);
+    /* ST7735_InitR(INITR_REDTAB); */
 
     /* Load and enable the systick timer */
     SysTickPeriodSet(SysCtlClockGet() / 1000);
@@ -184,29 +189,29 @@ int main() {
     /* end */
 
     /* start adc init */
-    hw_metadata metadata;
-    metadata.adc.base = ADC0_BASE;
-    metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
-    metadata.adc.sample_sequence = 2;
-    metadata.adc.channel = 0;
-    metadata.adc.channel_configuration = ADC_CTL_CH0;
-    metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-    metadata.adc.trigger_metadata.timer.frequency = 2 Hz;
-    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
-    metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
-
-    adc_init(metadata);
-    adc_channel_init(metadata);
-
-    metadata.adc.channel = 1;
-    metadata.adc.channel_configuration = ADC_CTL_CH1;
-    adc_channel_init(metadata);
-
-    metadata.adc.channel = 2;
-    metadata.adc.channel_configuration = ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END;
-    adc_channel_init(metadata);
-
-    adc_interrupt_init(metadata);
+    /* hw_metadata metadata; */
+    /* metadata.adc.base = ADC0_BASE; */
+    /* metadata.adc.trigger_source = ADC_TRIGGER_TIMER; */
+    /* metadata.adc.sample_sequence = 2; */
+    /* metadata.adc.channel = 0; */
+    /* metadata.adc.channel_configuration = ADC_CTL_CH0; */
+    /* metadata.adc.trigger_metadata.timer.base = TIMER1_BASE; */
+    /* metadata.adc.trigger_metadata.timer.frequency = 2 Hz; */
+    /* metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A; */
+    /* metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC; */
+    /*  */
+    /* adc_init(metadata); */
+    /* adc_channel_init(metadata); */
+    /*  */
+    /* metadata.adc.channel = 1; */
+    /* metadata.adc.channel_configuration = ADC_CTL_CH1; */
+    /* adc_channel_init(metadata); */
+    /*  */
+    /* metadata.adc.channel = 2; */
+    /* metadata.adc.channel_configuration = ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END; */
+    /* adc_channel_init(metadata); */
+    /*  */
+    /* adc_interrupt_init(metadata); */
     /* end adc init */
 
     IntMasterEnable();

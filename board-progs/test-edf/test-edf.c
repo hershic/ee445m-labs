@@ -42,6 +42,9 @@ volatile uint32_t button_debounced_wtf;
 
 volatile semaphore_t button_debounced_new_data;
 
+volatile uint32_t red_work = 0;
+volatile uint32_t blue_work = 0;
+
 void button_debounce_end(notification button_notification) {
 
     button_debounced_mailbox = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
@@ -80,6 +83,7 @@ void postpone_suicide() {
 
 void led_blink_red() {
     while (1) {
+        ++red_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
         os_surrender_context();
@@ -88,6 +92,7 @@ void led_blink_red() {
 
 void led_blink_blue() {
     while (1) {
+        ++blue_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                      GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
         os_surrender_context();
@@ -119,8 +124,9 @@ void main(void) {
 
     pidwork_init();
 
-    os_threading_init(10 Hz);
+    os_threading_init(1000 Hz);
     schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(led_blink_blue, 100 Hz, DL_SOFT);
     schedule(postpone_suicide, 100 Hz, DL_SOFT);
     /* next test: different frequencies,pools */
 
