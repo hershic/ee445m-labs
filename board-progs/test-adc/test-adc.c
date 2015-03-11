@@ -11,7 +11,7 @@
 
 /* Driverlib Includes */
 #include "driverlib/debug.h"
-#include "driverlib/fpu.h"
+#include "driverlib/adc.h"
 #include "driverlib/gpio.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
@@ -20,6 +20,9 @@
 
 #include "libadc/adc.h"
 #include "libstd/nexus.h"
+
+#define HEARTBEAT_MODAL
+
 #include "libheart/heartbeat.h"
 
 #define ADC_DATA_BUFFER_LEN 3
@@ -32,24 +35,32 @@ int main(void) {
                    SYSCTL_XTAL_16MHZ);
 
     heart_init();
-
-    /* Enable TIMER2 (we are using) */
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
 
     /* Enable processor interrupts. */
     IntMasterEnable();
 
     /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
-    adc_init();
+    /* start adc init */
+    hw_metadata metadata;
+    metadata.adc.base = ADC0_BASE;
+    metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
+    metadata.adc.sample_sequence = 3;
+    metadata.adc.channel = 0;
+    metadata.adc.channel_configuration =
+        ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+    metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
+    metadata.adc.trigger_metadata.timer.frequency = 2 Hz;
+    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
+    metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
-    adc_open(0);
+    adc_init(metadata);
+    adc_channel_init(metadata);
+    adc_interrupt_init(metadata);
+    /* end adc init */
 
-    /* Trigger an initial ADC sequence. As far as I know this is
-       required for proper init. */
-    postpone_death() {
-      heart_wrap (
-	/* ADCProcessorTrigger(ADC0_BASE, 0); */
-	adc_collect(0, 10, adc_data_buffer, TIMER0_BASE);
-	);
-    }
+    while (1) {}
+
 }

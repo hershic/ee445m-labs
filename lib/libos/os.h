@@ -100,6 +100,8 @@ void os_threading_init(frequency_t freq);
  */
 void _os_reset_thread_stack(tcb_t* tcb, task_t task);
 
+int8_t get_os_num_threads();
+
 /*! Adds a new thread with the specified task.
  *  \returns the TCB of the newly added thread, null if the addition
  *  was not possible for some reason.

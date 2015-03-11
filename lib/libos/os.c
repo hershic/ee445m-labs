@@ -24,6 +24,15 @@ void os_threading_init(frequency_t freq) {
     SysTickIntEnable();
 
     uint32_t i;
+
+    /* This check exists so libraries may call os_threading_init
+     * without breaking everything. We dont' want to contribute to the
+     * black magic that is the specific initialization of TI
+     * libraries, do we? */
+    if (OS_THREADING_INITIALIZED) {
+        return;
+    }
+
     os_running_threads = NULL;
 
     /* Initialize thread metadata */
@@ -41,11 +50,18 @@ void os_threading_init(frequency_t freq) {
         OS_THREAD_POOL[i] = (tcb_t*) NULL;
     }
 
+    OS_THREADING_INITIALIZED = true;
+
     schedule_init();
+}
+
+int8_t get_os_num_threads() {
+    return OS_NUM_THREADS;
 }
 
 tcb_t* os_add_thread(task_t task) {
 
+    int32_t status;
     tcb_t* thread_to_add;
 
     /* 1. Disable interrupts and save the priority mask */
@@ -79,10 +95,11 @@ tcb_t* os_add_thread(task_t task) {
 
 tcb_t* os_remove_thread(task_t task) {
 
-    int32_t status ;
+    int32_t status;
     tcb_t* thread_to_remove;
 
     /* 1. Disable interrupts and save the priority mask */
+    /* TODO: clean this up, make uniform */
     status = StartCritical();
 
     /* 2. Pop the task from the running_thread pile and add it to the
@@ -105,6 +122,9 @@ tcb_t* os_remove_thread(task_t task) {
     thread_to_remove->prev = NULL;
 
     /* 4. Return. */
+    /* TODO: clean this up, make uniform */
+    --OS_NUM_THREADS;
+
     EndCritical(status);
     return thread_to_remove;
 }
@@ -161,11 +181,6 @@ void os_launch() {
     asm volatile("pop {pc}");
 
     asm volatile ("BX LR");
-
-    /* return from handler */
-    /* asm volatile("POP {R0, R1, R2, R3, R12, LR, PC, PSR} "); */
-
-    /* asm volatile("BX LR"); */
 }
 
 always inline
@@ -183,6 +198,7 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
 
     swcontext->lr = 0xfffffff9;
 
+    #ifdef OS_REGISTER_DEBUGGING_ENABLED
     hwcontext->r0 = 0x00000000;
     hwcontext->r1 = 0x01010101;
     hwcontext->r2 = 0x02020202;
@@ -196,6 +212,7 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
     swcontext->r9 = 0x09090909;
     swcontext->r10 = 0x10101010;
     swcontext->r11 = 0x11111111;
+    #endif  /* OS_REGISTER_DEBUGGING_ENABLED */
 
     tcb->sp = (uint32_t*)(((uint32_t)hwcontext) - sizeof(swcontext_t));
     asm volatile ("PUSH {R9, R10, R11, R12}");
@@ -256,7 +273,7 @@ void SysTick_Handler() {
 
 void PendSV_Handler() {
 
-    asm volatile("CPSID  I            ;// mask all (except faults)\n");
+    asm volatile("CPSID  I");
 
     /* -------------------------------------------------- */
     /* phase 1: store context                             */
@@ -272,10 +289,33 @@ void PendSV_Handler() {
     /* phase 2: os_running_threads manipulation    */
     /* -------------------------------------------------- */
 
-    /*  ----- begin edf_pop ----- */
+    /* set the profiling data structures for the current thread */
+    /* should this be "enabled" or "disabled"? */
+    #ifdef OS_TIME_PROFILING_ENABLED
+    if (os_running_threads->time_started >= 0) {
+        os_running_threads->time_running_last =
+            HWREG(NVIC_ST_CURRENT) - os_running_threads->time_started;
 
-    HWREG(NVIC_ST_CURRENT) = 0;
-    /* _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point); */
+        /* If we haven't reached the max samples yet, increment the
+           number of samples taken */
+        if (os_running_threads->time_running_samples_taken < OS_TIME_MAX_SAMPLES) {
+            ++(os_running_threads->time_running_samples_taken);
+        }
+
+        HWREG(NVIC_ST_CURRENT) = 0;
+        /* _os_reset_thread_stack(os_running_threads, os_running_threads->entry_point); */
+
+        /* take another sample */
+        os_running_threads->time_running_avg = os_running_threads->time_running_samples_taken > 1 ?
+            /* if true */
+            (os_running_threads->time_running_last +
+             os_running_threads->time_running_samples_taken * os_running_threads->time_running_avg) /
+            (os_running_threads->time_running_samples_taken+1) :
+            /* else */
+            os_running_threads->time_running_last;
+
+    }
+    #endif /* OS_TIME_PROFILING */
 
     /* load the value of os_running_threads */
     asm volatile("LDR     R2, =os_running_threads");
@@ -299,6 +339,11 @@ void PendSV_Handler() {
 
     /* load thread B's msp */
     asm volatile("ldr     r12, [r1]");
+
+    /* set the profiling data structures for the next thread */
+    #ifdef OS_TIME_PROFILING_ENABLED
+        os_running_threads->time_started = HWREG(NVIC_ST_CURRENT);
+    #endif  /* OS_TIME_PROFILING_ENABLED */
 
     /* load thread B's context */
     asm volatile("ldmia   r12!, {r4 - r11, lr}");

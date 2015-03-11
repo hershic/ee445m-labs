@@ -39,14 +39,14 @@ static void BusFault_Handler(void);
 static void UsageFault_Handler(void);
 static void SVC_Handler(void);
 static void DebugMon_Handler(void);
-static void PendSV_Handler(void);
-static void SysTick_Handler(void);
 
 //*****************************************************************************
 //
 // External declarations for the interrupt handlers used by the application.
 //
 //*****************************************************************************
+void __attribute__((weak, isr, naked)) PendSV_Handler(void);
+void __attribute__((weak)) SysTick_Handler(void);
 void __attribute__((weak)) GPIOPortA_Handler(void);
 void __attribute__((weak)) GPIOPortB_Handler(void);
 void __attribute__((weak)) GPIOPortC_Handler(void);
@@ -504,30 +504,9 @@ DebugMon_Handler(void)
     {
     }
 }
-
-static void
-PendSV_Handler(void)
-{
-    //
-    // Enter an infinite loop.
-    //
-    while(1)
-    {
-    }
-}
-
-static void
-SysTick_Handler(void)
-{
-    //
-    // Enter an infinite loop.
-    //
-    while(1)
-    {
-    }
-}
-
 static void Default_Handler(void);
+#pragma weak SysTick_Handler = Default_Handler
+#pragma weak PendSV_Handler = Default_Handler
 #pragma weak GPIOPortA_Handler = Default_Handler
 #pragma weak GPIOPortB_Handler = Default_Handler
 #pragma weak GPIOPortC_Handler = Default_Handler

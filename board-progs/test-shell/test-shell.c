@@ -28,6 +28,7 @@
 #include "libheart/heartbeat.h"
 #include "libstd/nexus.h"
 #include "libos/system.h"
+#include "libos/os.h"
 
 #include <sys/stat.h>
 
@@ -46,6 +47,8 @@ int main(void) {
     IntMasterDisable();
 
     heart_init();
+    os_threading_init();
+    hw_init_daemon();
 
     system_init();
     system_register_command((const char*) "doctor", doctor);
@@ -60,5 +63,8 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterEnable();
 
+    os_launch();
+
+    /* TODO: set self priority to lowest or kill thyself */
     postpone_death();
 }

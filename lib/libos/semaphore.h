@@ -8,6 +8,8 @@
  * @{
  */
 
+#include "os.h"
+
 /*! The default initialization value of a semaphore_t. */
 #define SEMAPHORE_DEFAULT_VALUE                 0
 
@@ -73,7 +75,7 @@ typedef int8_t semaphore_t;
 /*! Conditional evaluating to true when a semaphore is blocked by
  *  virtue of being non-NULL. */
 #define semaphore_blocked(sem)                  \
-    (sem < 0)
+    (sem <= 0)
 
 /*! Conditional evaluating to true when a thread's tcb_t is blocked by
  * a semaphore. */
