@@ -25,8 +25,7 @@
 
 #include "libheart/heartbeat.h"
 
-#define ADC_DATA_BUFFER_LEN 3
-uint32_t adc_data_buffer[ADC_DATA_BUFFER_LEN];
+uint32_t *adc_data_buffer;
 
 int main(void) {
 
@@ -46,7 +45,7 @@ int main(void) {
     hw_metadata metadata;
     metadata.adc.base = ADC0_BASE;
     metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
-    metadata.adc.sample_sequence = 3;
+    metadata.adc.sample_sequence = 2;
     metadata.adc.channel = 0;
     metadata.adc.channel_configuration =
         ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
@@ -58,10 +57,13 @@ int main(void) {
     adc_init(metadata);
     adc_channel_init(metadata);
     adc_interrupt_init(metadata);
+
+    adc_data_buffer = get_adc_samples();
     /* end adc init */
 
     IntMasterEnable();
 
-    while (1) {}
+    while (1) {
 
+    }
 }

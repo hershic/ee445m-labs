@@ -77,7 +77,7 @@ void display_adc_data_for_checkout(void) {
     uint32_t num;
 
     for (i=0; i<4; ++i) {
-        num = ADC0_SEQ2_SAMPLES[i];
+        /* num = ADC0_SEQ2_SAMPLES[i]; */
         for (j=0; j<4 && num > 0; ++j) {
             string_buf[4-j] = num % 10 + 0x30;
             num /= 10;
@@ -98,7 +98,7 @@ void display_adc_data_for_checkout(void) {
 
 void postpone_suicide() {
 
-    ADC0_SEQ2_SAMPLES = demo_adc_data;
+    /* ADC0_SEQ2_SAMPLES = demo_adc_data; */
 
     while (1) {
         /* sem_wait(button_debounced_new_data); */

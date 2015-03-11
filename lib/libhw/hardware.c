@@ -41,8 +41,17 @@ static uint8_t UART0_RX_BUFFER_SIZE = 0;
 static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_TX_BUFFER_SIZE = 0;
 
+uint32_t ADC0_SEQ0_SAMPLES[4];
+uint32_t ADC0_SEQ1_SAMPLES[4];
+uint32_t ADC0_SEQ2_SAMPLES[4];
+uint32_t ADC0_SEQ3_SAMPLES[4];
+
 uint32_t jitter_begin;
 uint32_t jitter_end;
+
+uint32_t* get_adc_samples() {
+    return ADC0_SEQ2_SAMPLES;
+}
 
 void hw_init_daemon() {
 
