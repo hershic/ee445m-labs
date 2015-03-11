@@ -33,14 +33,34 @@ uint32_t interrupt_counter;
 uint32_t wait_counter;
 
 uint32_t red_work = 0;
+uint32_t blue_work = 0;
+uint32_t green_work = 0;
 
 void led_blink_red() {
-    /* while (1) { */
+    while (1) {
         ++red_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        os_surrender_context();
+    }
+}
+
+void led_blink_green() {
+    /* while (1) { */
+        ++green_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
+                     GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
         /* os_surrender_context(); */
     /* } */
+}
+
+void led_blink_blue() {
+    while (1) {
+        ++blue_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        os_surrender_context();
+    }
 }
 
 int main(void) {
@@ -61,9 +81,16 @@ int main(void) {
     timer_metadata_init(TIMER0_BASE, 2 Hz, INT_TIMER0A, TIMER_CFG_PERIODIC);
     hw_driver_init(HW_TIMER, timer_metadata);
     hw_channel_init(HW_TIMER, timer_metadata);
-    hw_subscribe(HW_TIMER, timer_metadata, led_blink_red);
+    hw_subscribe(HW_TIMER, timer_metadata, led_blink_green);
     /* end timer init */
+
+    os_threading_init(1000 Hz);
+    schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(led_blink_blue, 100 Hz, DL_SOFT);
+    /* schedule(postpone_suicide, 100 Hz, DL_SOFT); */
+
     IntMasterEnable();
+    os_launch();
 
     while (1) { }
     /* postpone_death(); */
