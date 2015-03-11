@@ -11,7 +11,6 @@
 #include "inc/hw_ints.h"
 
 #include "libstd/nexus.h"
-#include "semaphore.h"
 #include "libschedule/edf.h"
 #include "thread_structures.h"
 

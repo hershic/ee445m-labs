@@ -17,6 +17,9 @@ static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][OS_STACK_SIZE];
 volatile sched_task *executing;
 volatile sched_task_pool *pool;
 
+bool OS_THREADING_INITIALIZED;
+uint8_t OS_NUM_THREADS;
+
 void os_threading_init(frequency_t freq) {
 
     SysTickPeriodSet(SysCtlClockGet() / freq);

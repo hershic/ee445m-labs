@@ -4,6 +4,7 @@
 
 #include "button.h"
 
+#include "libos/thread_structures.h"
 #include "libhw/hardware.h"
 #include "libnotify/notify.h"
 
