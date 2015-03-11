@@ -34,10 +34,49 @@
 #define HEARTBEAT_MODAL
 #include "libheart/heartbeat.h"
 
+uint32_t red_work = 0;
+uint32_t blue_work = 0;
+uint32_t green_work = 0;
+
+void led_blink_red() {
+    while (1) {
+        ++red_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        os_surrender_context();
+    }
+}
+
+void led_blink_green() {
+    /* while (1) { */
+        ++green_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
+                     GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+        /* os_surrender_context(); */
+    /* } */
+}
+
+void led_blink_blue() {
+    while (1) {
+        ++blue_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        os_surrender_context();
+    }
+}
+
 int doctor() {
 
     /* uart_set_active_channel(UART0_BASE); */
-    uart_send_string("Well what did you expect would happen? You're dreaming!\n");
+    UARTCharPut(UART0_BASE, 'd');
+    /* uart_send_string("Well what did you expect would happen? You're dreaming!\n"); */
+    return EXIT_SUCCESS;
+}
+
+int witch() {
+
+    /* uart_set_active_channel(UART0_BASE); */
+    uart_send_string("no help here\n");
     return EXIT_SUCCESS;
 }
 
@@ -55,9 +94,12 @@ int main(void) {
 
     os_threading_init(100 Hz);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
+    schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(led_blink_blue, 100 Hz, DL_SOFT);
 
     system_init();
     system_register_command((const char*) "doctor", doctor);
+    system_register_command((const char*) "witch", witch);
 
     /* Initialize hardware devices */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);

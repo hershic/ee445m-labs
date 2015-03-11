@@ -204,6 +204,7 @@ hw_channel* _hw_get_channel(HW_TYPE type, hw_metadata metadata) {
 
     memory_address_t idx;
     switch(type){
+	/* optimize: divide should be a shift */
     case HW_UART:   idx = (metadata.uart.channel - UART0_BASE)     / 0x1000; break;
     case HW_TIMER:  idx = (metadata.timer.base   - TIMER0_BASE)    / 0x1000; break;
     case HW_BUTTON: idx = (metadata.button.base  - GPIO_PORTE_BASE)/ 0x1000; break;

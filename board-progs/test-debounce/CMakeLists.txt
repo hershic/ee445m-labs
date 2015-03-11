@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(test-debounce)
-set(test-debounce-srcs test-debounce.c startup_gcc.c)
+set(test-debounce-srcs test-debounce.c ../test-edf/startup_gcc.c)
 
 include_directories(../../)
 include_directories(../../lib)
