@@ -25,7 +25,42 @@
 
 #include "libheart/heartbeat.h"
 
+extern semaphore_t HW_ADC_SEQ2_SEM;
+extern uint32_t ADC0_SEQ2_SAMPLES[4];
 uint32_t *adc_data_buffer;
+uint32_t red_work = 0;
+uint32_t blue_work = 0;
+uint32_t green_work = 0;
+
+void led_blink_red() {
+    while (1) {
+        ++red_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        os_surrender_context();
+    }
+}
+
+void led_blink_green() {
+    while (1) {
+        sem_guard(HW_ADC_SEQ2_SEM) {
+            sem_take(HW_ADC_SEQ2_SEM);
+            ++green_work;
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
+                         GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+            os_surrender_context();
+        }
+    }
+}
+
+void led_blink_blue() {
+    while (1) {
+        ++blue_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        os_surrender_context();
+    }
+}
 
 int main(void) {
 
@@ -58,10 +93,16 @@ int main(void) {
     adc_channel_init(metadata);
     adc_interrupt_init(metadata);
 
-    adc_data_buffer = get_adc_samples();
+    adc_data_buffer = ADC0_SEQ2_SAMPLES;
     /* end adc init */
 
+    os_threading_init(1000 Hz);
+    schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(led_blink_blue, 100 Hz, DL_SOFT);
+    schedule(led_blink_green, 100 Hz, DL_SOFT);
+
     IntMasterEnable();
+    os_launch();
 
     while (1) {
 

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(test-adc)
-set(test-adc-srcs test-adc.c startup_gcc.c)
+set(test-adc-srcs test-adc.c ../test-edf/startup_gcc.c)
 
 include_directories(../../)
 include_directories(../../lib)
