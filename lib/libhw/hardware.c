@@ -176,16 +176,13 @@ void hw_daemon(void) {
          * priorities can be assigned to the threads (which will
          * handle simultaneous interrupts according to priority
          * scheduler's interpretation of priority) */
-        while (semaphore_blocked(HW_SEM_UART0)) {
-            os_surrender_context();
-        }
-
         sem_guard(HW_SEM_UART0) {
             sem_take(HW_SEM_UART0);
             /* todo: schedule */
             uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
             hw_notify_uart(uart_metadata);
         }
+	os_surrender_context();
     }
 }
 

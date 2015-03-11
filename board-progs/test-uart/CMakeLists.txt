@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(test-uart)
-set(test-uart-srcs test-uart.c startup_gcc.c)
+set(test-uart-srcs test-uart.c ../test-edf/startup_gcc.c)
 
 include_directories(../../)
 include_directories(../../lib)

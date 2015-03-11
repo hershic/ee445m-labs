@@ -87,7 +87,6 @@ int main(void) {
     os_threading_init(1000 Hz);
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
-    /* schedule(postpone_suicide, 100 Hz, DL_SOFT); */
 
     IntMasterEnable();
     os_launch();
