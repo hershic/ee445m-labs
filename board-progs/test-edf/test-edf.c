@@ -120,7 +120,7 @@ void main(void) {
     button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
 
     hw_init(HW_BUTTON, button_metadata);
-    hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
+    hw_subscribe(HW_BUTTON, button_metadata, button_debounce_end);
 
     pidwork_init();
 

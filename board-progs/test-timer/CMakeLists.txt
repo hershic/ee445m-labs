@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(test-timer)
-set(test-timer-srcs test-timer.c startup_gcc.c)
+set(test-timer-srcs test-timer.c ../test-edf/startup_gcc.c)
 
 include_directories(../../)
 include_directories(../../lib)
