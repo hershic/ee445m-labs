@@ -182,7 +182,7 @@ void hw_daemon(void) {
             uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
             hw_notify_uart(uart_metadata);
         }
-	os_surrender_context();
+        os_surrender_context();
     }
 }
 
@@ -204,7 +204,7 @@ hw_channel* _hw_get_channel(HW_TYPE type, hw_metadata metadata) {
 
     memory_address_t idx;
     switch(type){
-	/* optimize: divide should be a shift */
+        /* optimize: divide should be a shift */
     case HW_UART:   idx = (metadata.uart.channel - UART0_BASE)     / 0x1000; break;
     case HW_TIMER:  idx = (metadata.timer.base   - TIMER0_BASE)    / 0x1000; break;
     case HW_BUTTON: idx = (metadata.button.base  - GPIO_PORTE_BASE)/ 0x1000; break;
@@ -394,7 +394,7 @@ void ADC0Seq2_Handler(void) {
     ADCIntClear(ADC0_BASE, 2);
     jitter_end = HWREG(NVIC_ST_CURRENT);
     ADCSequenceDataGet(ADC0_BASE, 2, ADC0_SEQ2_SAMPLES);
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
+    /* GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1); */
     sem_post(HW_ADC_SEQ2_SEM);
     /* TODO: Conform to Notify */
 }
@@ -403,6 +403,6 @@ void ADC0Seq3_Handler(void) {
 
     ADCIntClear(ADC0_BASE, 3);
     ADCSequenceDataGet(ADC0_BASE, 3, ADC0_SEQ3_SAMPLES);
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1);
+    /* GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1); */
     /* TODO: Conform to Notify */
 }

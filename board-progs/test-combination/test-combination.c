@@ -46,6 +46,9 @@ volatile uint32_t button_debounced_wtf;
 
 volatile semaphore_t button_debounced_new_data;
 
+extern semaphore_t HW_ADC_SEQ2_SEM;
+extern uint32_t ADC0_SEQ2_SAMPLES[4];
+
 volatile uint32_t red_work = 0;
 volatile uint32_t green_work = 0;
 volatile uint32_t blue_work = 0;
@@ -141,6 +144,32 @@ int doctor() {
     return EXIT_SUCCESS;
 }
 
+void display_adc_data_for_checkout() {
+
+    while (1) {
+        sem_guard(HW_ADC_SEQ2_SEM) {
+            sem_take(HW_ADC_SEQ2_SEM);
+            uint8_t string_buf[5];
+            uint8_t tmp;
+            uint16_t i, j, k, l;
+            uint32_t num;
+
+            for (i=0; i<4; ++i) {
+                num = ADC0_SEQ2_SAMPLES[i];
+                for (j=0; j<4 && num > 0; ++j) {
+                    string_buf[3-j] = (num % 10) + 0x30;
+                    num /= 10;
+                }
+
+                string_buf[j] = 0;
+
+                ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
+            }
+        }
+        os_surrender_context();
+    }
+}
+
 void main(void) {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
@@ -204,6 +233,7 @@ void main(void) {
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(postpone_suicide, 100 Hz, DL_SOFT);
+    schedule(display_adc_data_for_checkout, 100 Hz, DL_SOFT);
     /* next test: different frequencies,pools */
 
     IntMasterEnable();
