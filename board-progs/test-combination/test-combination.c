@@ -156,7 +156,7 @@ void display_adc_data_for_checkout() {
 
             for (i=0; i<4; ++i) {
                 num = ADC0_SEQ2_SAMPLES[i];
-                for (j=0; j<4 && num > 0; ++j) {
+                for (j=0; j<4; ++j) {
                     string_buf[3-j] = (num % 10) + 0x30;
                     num /= 10;
                 }
