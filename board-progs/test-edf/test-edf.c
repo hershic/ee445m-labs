@@ -77,7 +77,7 @@ void postpone_suicide() {
                 ++button_right_pressed;
             }
         }
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -86,7 +86,7 @@ void led_blink_red() {
         ++red_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -95,7 +95,7 @@ void led_blink_blue() {
         ++blue_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                      GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -125,7 +125,7 @@ void main(void) {
     pidwork_init();
 
     os_threading_init(1000 Hz);
-    schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(led_blink_red, 75 Hz, DL_SOFT);
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
     schedule(postpone_suicide, 100 Hz, DL_SOFT);
     /* next test: different frequencies,pools */

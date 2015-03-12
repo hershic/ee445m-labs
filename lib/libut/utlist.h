@@ -512,10 +512,10 @@ do {                                                                            
 
 #define DL_EDF_PREPEND(head,add)      \
 do {                                                                                           \
- (add)->next = head;                                                                           \
- if (head) {                                                                                   \
-   (add)->prev = (head)->prev;                                                                 \
-   (head)->prev = (add);                                                                       \
+    (add)->pri_next = head;                                             \
+ if (head) {                                                            \
+   (add)->pri_prev = (head)->pri_prev;                                \
+   (head)->pri_prev = (add);                                          \
  }                                                                                             \
  (head) = (add);                                                                               \
 } while (0)
@@ -538,13 +538,13 @@ do {                                                                            
 #define DL_EDF_INSERT(head,add)       \
 do {                                                                                           \
   if (head) {                                                                                  \
-      (add)->pri_prev = (head)->pri_prev;                               \
-      (head)->pri_prev->pri_next = (add);                               \
-      (head)->pri_prev = (add);                                         \
-      (add)->pri_next = NULL;                                           \
+      (add)->pri_next = (head)->pri_next;                               \
+      (head)->pri_next->pri_prev = (add);                               \
+      (head)->pri_next = (add);                                         \
+      (add)->pri_prev = NULL;                                           \
   } else {                                                              \
       (head)=(add);                                                     \
-      (head)->pri_prev = NULL;                                        \
+      (head)->pri_prev = NULL;                                          \
       (head)->pri_next = NULL;                                          \
   }                                                                                            \
 } while (0)

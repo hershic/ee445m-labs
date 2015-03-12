@@ -18,10 +18,6 @@
  * @{
  */
 
-#if !defined(SCHEDULER_MAX_THREADS)
-#define SCHEDULER_MAX_THREADS   16
-#endif
-
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   100
 

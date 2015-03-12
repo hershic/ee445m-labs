@@ -16,14 +16,14 @@
 #include "libhw/hardware.h"
 /* #include "libut/uthash.h" */
 
-#define SCHEDULER_DEFAULT_MAX_THREADS    16
+#define SCHEDULER_DEFAULT_MAX_THREADS    5
 #define SYSTICKS_PER_HZ                  80000000
 #define MAX_SYSTICKS_PER_HZ              16777216
 #define SYSCTLCLOCK                      16000000
 
-#if !(defined(SCHEDULER_MAX_THREADS))
+/* #if !(defined(SCHEDULER_MAX_THREADS)) */
 #define SCHEDULER_MAX_THREADS   SCHEDULER_DEFAULT_MAX_THREADS
-#endif
+/* #endif */
 
 typedef void (*pisr_t)(notification note);      /* a task capable of being run */
 
