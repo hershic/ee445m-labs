@@ -66,7 +66,7 @@ void button_debounce_end(notification button_notification) {
 void button_debounce_start(notification button_notification) {
 
     button_debounced_wtf = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
-    timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
+    timer_metadata_init(TIMER0_BASE, 100 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
     hw_channel_init(HW_TIMER, timer_metadata);
     hw_subscribe_single_shot(HW_TIMER, timer_metadata,
                              button_debounce_end);
@@ -114,7 +114,7 @@ void led_blink_red() {
         ++red_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
                      GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -123,7 +123,7 @@ void led_blink_green() {
         ++green_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
                      GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -132,7 +132,7 @@ void led_blink_blue() {
         ++blue_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                      GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -163,10 +163,10 @@ void display_adc_data_for_checkout() {
 
                 string_buf[j] = 0;
 
-                ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
+                /* ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW); */
             }
         }
-        os_surrender_context();
+        /* os_surrender_context(); */
     }
 }
 
@@ -230,7 +230,7 @@ void main(void) {
 
     os_threading_init(1000 Hz);
     schedule(led_blink_red, 100 Hz, DL_SOFT);
-    schedule(led_blink_blue, 100 Hz, DL_SOFT);
+    schedule(led_blink_blue, 2 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(postpone_suicide, 100 Hz, DL_SOFT);
     schedule(display_adc_data_for_checkout, 100 Hz, DL_SOFT);

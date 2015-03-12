@@ -11,6 +11,11 @@
     */
 
 
+/*! Count of SysTick ticks (each of which is equivalent to a bus
+ *  cycle). Note that the SysTick can only count down from a 24-bit
+ *  register. */
+typedef uint32_t tick_t;
+
 /*! The default initialization value of a semaphore_t. */
 #define SEMAPHORE_DEFAULT_VALUE                 0
 
@@ -133,7 +138,7 @@ typedef struct sched_task {
     task_t task;
     tcb_t* tcb;
     DEADLINE_TYPE seriousness;
-    deadline_t absolute_deadline;
+    tick_t absolute_deadline;
 
     void* pool;
 

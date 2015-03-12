@@ -29,9 +29,9 @@ uint8_t OS_NUM_THREADS;
 
 void os_threading_init(frequency_t freq) {
 
-    /* SysTickPeriodSet(SysCtlClockGet() / freq); */
-    /* SysTickEnable(); */
-    /* SysTickIntEnable(); */
+    SysTickPeriodSet(SysCtlClockGet() / freq);
+    SysTickEnable();
+    SysTickIntEnable();
 
     uint32_t i;
 
@@ -253,9 +253,6 @@ void SysTick_Handler() {
     }
     /* will drop out with pool->queue = executing */
 
-    /* TODO: not right now... */
-    executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ;
-
     /* do the recycling, change the pool's head */
     /* TODO: CHECKME: should we use next or prev?? */
     pool->queue = executing->next;
@@ -263,7 +260,7 @@ void SysTick_Handler() {
 
     /* ----- begin edf_insert ----- */
     /* edf_insert(pool->queue); */
-    volatile sched_task *elt = EDF_QUEUE;
+    sched_task *elt = EDF_QUEUE;
     while(elt && pool->queue->absolute_deadline > elt->absolute_deadline) {
         elt = elt->pri_next;
     }
@@ -280,6 +277,7 @@ void SysTick_Handler() {
 
     /* Queue the PendSV_Handler after this ISR returns */
     IntPendSet(FAULT_PENDSV);
+    HWREG(NVIC_ST_RELOAD) = SYSCTLCLOCK / pool->deadline;
     asm volatile("CPSIE  I");
 }
 
@@ -389,7 +387,7 @@ void os_suspend() {
     /* will drop out with pool->queue = executing */
 
     /* TODO: not right now... */
-    executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ;
+    /* executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ; */
 
     /* do the recycling, change the pool's head */
     /* TODO: CHECKME: should we use next or prev?? */
@@ -413,6 +411,7 @@ void os_suspend() {
 
     OS_NEXT_THREAD = executing->next->tcb;
 
+    HWREG(NVIC_ST_RELOAD) = SYSCTLCLOCK / pool->deadline;
     IntPendSet(FAULT_PENDSV);
     /* TODO: penalize long threads, reward quick threads */
     /* while (1) {} */
@@ -614,5 +613,8 @@ void _os_choose_next_thread() {
     }
 
     OS_NEXT_THREAD = executing->tcb;
-    HWREG(NVIC_ST_RELOAD) = executing->absolute_deadline - 1;
+
+    /* TODO: ditch the function jump */
+    executing->absolute_deadline = SysTickValueGet()/pool->deadline;
+    HWREG(NVIC_ST_RELOAD) = SYSCTLCLOCK / pool->deadline;
 }
