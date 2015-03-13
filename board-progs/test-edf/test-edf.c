@@ -55,7 +55,7 @@ void button_debounce_end(notification button_notification) {
 void button_debounce_start(notification button_notification) {
 
     button_debounced_wtf = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
-    timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
+    timer_metadata_init(TIMER0_BASE, 100 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
     hw_channel_init(HW_TIMER, timer_metadata);
     hw_subscribe_single_shot(HW_TIMER, timer_metadata,
                              button_debounce_end);
