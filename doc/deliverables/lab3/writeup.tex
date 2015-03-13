@@ -133,14 +133,14 @@ Reference \cref{lst:test-combination,lst:os-implementation,lst:os-header}.
   are easier to program.
 \item Consider the case where thread T1 interrupts thread T2, and we
   are experimentally verifying the system operates without critical
-  sections. Let n be the number of times T1 interrupts T2. Let m be
+  sections. Let $n$ be the number of times T1 interrupts T2. Let $m$ be
   the total number of interruptible locations within T2. Assume the
   time during which T1 triggers is random with respect to the place
   (between which two instructions of T2) it gets interrupted. In other
   words, there are $m$ equally-likely places within T2 for the T1
-  interrupt to occur. What is the probability after n interrupts that
+  interrupt to occur. What is the probability after $n$ interrupts that
   a particular place in T2 was never selected? Furthermore, what is
-  the probability that all locations were interrupted at least once?
+  the probability that all locations were interrupted at least once? \\
 \end{enumerate}
 
 \section{Code}
