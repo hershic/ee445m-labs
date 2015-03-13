@@ -9,6 +9,8 @@ add_custom_target (copy)
 add_custom_command (
   TARGET copy
   COMMAND ${CMAKE_COMMAND} -E copy ../../../board-progs/test-combination/test-combination.c ${doc-staging-area}/test-combination.c
+  COMMAND ${CMAKE_COMMAND} -E copy ../../../board-progs/test-debounce/test-debounce.c ${doc-staging-area}/test-debounce.c
+  COMMAND ${CMAKE_COMMAND} -E copy ../../../lib/libhw/hardware.c ${doc-staging-area}/hardware.c
   COMMAND ${CMAKE_COMMAND} -E copy ../../../lib/libos/os.c ${doc-staging-area}/os.c
   COMMAND ${CMAKE_COMMAND} -E copy ../../../lib/libos/os.h ${doc-staging-area}/os.h
 )

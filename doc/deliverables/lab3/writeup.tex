@@ -60,16 +60,30 @@
 
 \section{Objectives}
 \begin{enumerate}
-\item \hfill {\huge \color{red} TODO}
+\item Extend the RTOS to include blocking and priority
+\item Extend the RTOS to include two real-time periodic tasks
+\item Develop minimally invasive tools to determine performance
+  measures
+\item Record debugging/performance data and download this data to the
+  PC
 \end{enumerate}
 
 \section{Hardware Design}
 No hardware design required for this lab.
 
 \section{Software Design}
-% - Printout of main program used to measure time jitter in Procedure 2
-% - Printout of main program used test the blocking semaphores Preparation 4
-% - Printout of your blocking/priority RTOS, os.c and any associated assembly files
+\begin{enumerate}
+\item Printout of main program used to measure time jitter in
+  Procedure 2
+
+Reference \cref{lst:hardware-implementation}.
+\item Printout of main program used test the blocking semaphores Preparation 4
+
+Reference \cref{lst:test-debounce}.
+\item Printout of your blocking/priority RTOS, os.c and any associated assembly files
+
+Reference \cref{lst:test-combination,lst:os-implementation,lst:os-header}.
+\end{enumerate}
 \section{Measurement Data}
 % - plot of the logic analyzer running the blocking/sleeping/killing/round-robin system (Lab 3.c)
 % - plot of the scope window running the blocking/sleeping/killing/priority system (Lab 3.c)
@@ -105,6 +119,8 @@ interruptible locations within T2. Assume the time during which T1 triggers is r
 \section{Code}
 \lstinputlisting[language=C,label=lst:os-implementation,caption=\texttt{os.c}]{@doc-staging-area@/os.c}
 \lstinputlisting[language=C,label=lst:os-header,caption=\texttt{os.h}]{@doc-staging-area@/os.h}
+\lstinputlisting[language=C,label=lst:hardware-implementation,caption=\texttt{hardware.c}]{@doc-staging-area@/hardware.c}
 \lstinputlisting[language=C,label=lst:test-combination,caption=\texttt{test-combination.c}]{@doc-staging-area@/test-combination.c}
+\lstinputlisting[language=C,label=lst:test-debounce,caption=\texttt{test-debounce.c}]{@doc-staging-area@/test-debounce.c}
 
 \end{document}
