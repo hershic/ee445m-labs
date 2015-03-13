@@ -90,31 +90,50 @@ Reference \cref{lst:test-combination,lst:os-implementation,lst:os-header}.
 % - table like Table 3.1 each showing performance measurements versus sizes of the Fifo and timeslices
 \section{Analysis and Discussion}
 
-% TODO: format
-
-1) How would your implementation of \verb|OS_AddPeriodicThread| be different if there were 10 background
-threads? (Preparation 1)
-2) How would your implementation of blocking semaphores be different if there were 100 foreground threads?
-(Preparation 4)
-3) How would your implementation of the priority scheduler be different if there were 100 foreground threads?
-(Preparation 5)
-4) What happens to your OS if all the threads are blocked? If your OS would crash, describe exactly what the
-OS does? What happens to your OS if all the threads are sleeping? If your OS would crash, describe exactly
-what the OS does? If you answered crash to either or both, explain how you might change your OS to prevent
-the crash.
-5) What happens to your OS if one of the foreground threads returns? E.g., what if you added this foreground
-void BadThread(void){ int i;
-for(i=0; i<100; i++){};
-return;
-}
-What should your OS have done in this case? Do not implement it, rather, with one sentence, say what the OS
-should have done? Hint: I asked this question on an exam.
-6) What are the advantages of spinlock semaphores over blocking semaphores? What are the advantages of
-blocking semaphores over spinlock?
-7) Consider the case where thread T1 interrupts thread T2, and we are experimentally verifying the system
-operates without critical sections. Let n be the number of times T1 interrupts T2. Let m be the total number of
-interruptible locations within T2. Assume the time during which T1 triggers is random with respect to the place
-(between which two instructions of T2) it gets interrupted. In other words, there are m equally-likely places
+\begin{enumerate}[1)]
+\item How would your implementation of \verb|OS_AddPeriodicThread| be
+  different if there were 10 background threads? \\
+  It would not be different; we designed it without 'arbitrary limits.'
+\item How would your implementation of blocking semaphores be
+  different if there were 100 foreground threads? \\
+  It would not be different; we designed it without 'arbitrary limits.'
+\item How would your implementation of the priority scheduler be
+  different if there were 100 foreground threads? \\
+  It would not be different; we designed it without 'arbitrary limits.'
+\item What happens to your OS if all the threads are blocked? If your
+  OS would crash, describe exactly what the OS does? What happens to
+  your OS if all the threads are sleeping? If your OS would crash,
+  describe exactly what the OS does? If you answered crash to either
+  or both, explain how you might change your OS to prevent the crash. \\
+  If every thread is blocked, our EDF scheduler idles until a thread
+  appears in the set of Ready FIFOs. If all threads are sleeping, the
+  same behavior is exhibited.
+\item What happens to your OS if one of the foreground threads
+  returns? E.g., what if you added this foreground
+  % TODO: format
+  \begin{verbatim}
+    void BadThread(void){
+      for(int i=0; i<100; ++i) {};
+    }
+  \end{verbatim}
+  What should your OS have done in this case? Do not implement it,
+  rather, with one sentence, say what the OS should have done? \\
+  Our OS would crash due to stack underflow, but the OS could use
+  different stacks for OS and user code (MSP and PSP) so that a
+  recovery is possible.
+\item What are the advantages of spinlock semaphores over blocking
+  semaphores? What are the advantages of blocking semaphores over
+  spinlock? \\
+  Blocking semaphores allow other threads to run; spinlock semaphores
+  are easier to program.
+\item Consider the case where thread T1 interrupts thread T2, and we
+  are experimentally verifying the system operates without critical
+  sections. Let n be the number of times T1 interrupts T2. Let m be
+  the total number of interruptible locations within T2. Assume the
+  time during which T1 triggers is random with respect to the place
+  (between which two instructions of T2) it gets interrupted. In other
+  words, there are $m$ equally-likely places % TODO: did this not copy?
+\end{enumerate}
 
 \section{Code}
 \lstinputlisting[language=C,label=lst:os-implementation,caption=\texttt{os.c}]{@doc-staging-area@/os.c}
