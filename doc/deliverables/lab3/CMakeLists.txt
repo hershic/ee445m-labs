@@ -16,7 +16,7 @@ add_custom_command (
 )
 
 add_latex_document (writeup.tex
-  # IMAGE_DIRS img
+  IMAGE_DIRS img
   DEPENDS copy
   CONFIGURE writeup.tex
   USE_GLOSSARY
