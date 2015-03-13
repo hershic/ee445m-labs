@@ -26,14 +26,12 @@ volatile sched_task EDF[SCHEDULER_MAX_THREADS];
 /*! Linked list of tasks (with different periods) ready to be run. */
 volatile sched_task* EDF_QUEUE = NULL;
 
+bool OS_FIRST_RUN = true;
+
 bool OS_THREADING_INITIALIZED;
 uint8_t OS_NUM_THREADS;
 
-void os_threading_init(frequency_t freq) {
-
-    SysTickPeriodSet(SysCtlClockGet() / freq);
-    SysTickEnable();
-    SysTickIntEnable();
+void os_threading_init() {
 
     uint32_t i;
 
@@ -235,42 +233,46 @@ void _os_reset_thread_stack(tcb_t* tcb, task_t task) {
     asm volatile ("POP {R9, R10, R11, R12}");
 }
 
-void scheduler_reschedule(bool first_run) {
+always inline
+void scheduler_reschedule(void) {
     executing = EDF_QUEUE;
     pool = SCHEDULER_QUEUES;
 
-    /* DL_EDF_DELETE(EDF_QUEUE, elt); */
-    if (!first_run) {
-        if (EDF_QUEUE) {
-            EDF_QUEUE = EDF_QUEUE->pri_next;
-        }
-
-        /* KLUDGE: fix this for production */
-        while (pool->queue != executing) {
-            pool = pool->next;
-        }
-        /* will drop out with pool->queue = executing */
+    /* find the queue that the executing task is a member of */
+    /* TODO: Should we link from the sched_task to the
+       sched_task_pool? That will avoid this loop. */
+    while (pool->queue != executing) {
+        pool = pool->next;
     }
 
-    clock += pool->deadline;
-    SysTickPeriodSet((executing->absolute_deadline - clock));
+    /* update  */
+    if (EDF_QUEUE) {
+        EDF_QUEUE = EDF_QUEUE->pri_next;
+    }
+
+    if (OS_FIRST_RUN) {
+        OS_FIRST_RUN = false;
+        SysTickEnable();
+        SysTickIntEnable();
+    } else {
+        clock += pool->deadline;
+    }
+
+    SysTickDisable();
+    /* SysTickPeriodSet(SysCtlClockGet() / (executing->absolute_deadline - clock)); */
+    SysTickPeriodSet(SysCtlClockGet() / (pool->deadline));
+    HWREG(NVIC_ST_CURRENT) = 0;
     executing->absolute_deadline = pool->deadline + clock;
+    SysTickEnable();
 
     /* do the recycling, change the pool's head */
-    /* TODO: CHECKME: should we use next or prev?? */
-    if (!first_run) {
-        pool->queue = executing->next;
-    }
-    /* ----- end edf_pop ----- */
-
+    pool->queue = executing->next;
     edf_insert(pool->queue);
 
     OS_NEXT_THREAD = executing->tcb;
 
     /* Queue the PendSV_Handler after this ISR returns */
     IntPendSet(FAULT_PENDSV);
-    /* HWREG(NVIC_ST_RELOAD) = SYSCTLCLOCK / pool->deadline; */
-    HWREG(NVIC_ST_CURRENT) = 0;
 }
 
 
@@ -281,7 +283,7 @@ void SysTick_Handler() {
 
     asm volatile("CPSID  I");
 
-    scheduler_reschedule(false);
+    scheduler_reschedule();
 
     asm volatile("CPSIE  I");
 }
@@ -377,7 +379,7 @@ void PendSV_Handler() {
  *  \PendSV_Handler". */
 void os_suspend() {
 
-    scheduler_reschedule(false);
+    scheduler_reschedule();
 }
 
 
@@ -541,6 +543,6 @@ sched_task* edf_get_edf_queue() {
 /*! \pre disable interrupts before we get here */
 void _os_choose_next_thread() {
 
-    scheduler_reschedule(true);
+    scheduler_reschedule();
 
 }

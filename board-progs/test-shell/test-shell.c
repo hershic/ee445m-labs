@@ -92,7 +92,7 @@ int main(void) {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
 
-    os_threading_init(100 Hz);
+    os_threading_init();
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(led_blink_blue, 100 Hz, DL_SOFT);

@@ -228,7 +228,7 @@ void main(void) {
     shell_spawn();
     /* end shell init */
 
-    os_threading_init(1000 Hz);
+    os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(led_blink_blue, 2 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);

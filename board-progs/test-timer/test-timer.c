@@ -84,7 +84,7 @@ int main(void) {
     hw_subscribe(HW_TIMER, timer_metadata, led_blink_green);
     /* end timer init */
 
-    os_threading_init(1000 Hz);
+    os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
 

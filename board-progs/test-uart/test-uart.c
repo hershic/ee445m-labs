@@ -82,7 +82,7 @@ int main(void) {
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     hw_init_and_subscribe(HW_UART, uart_metadata, uart_handler);
 
-    os_threading_init(1000 Hz);
+    os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);

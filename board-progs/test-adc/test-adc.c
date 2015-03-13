@@ -96,7 +96,7 @@ int main(void) {
     adc_data_buffer = ADC0_SEQ2_SAMPLES;
     /* end adc init */
 
-    os_threading_init(1000 Hz);
+    os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
     schedule(led_blink_green, 100 Hz, DL_SOFT);

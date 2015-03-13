@@ -124,8 +124,9 @@ void main(void) {
 
     pidwork_init();
 
-    os_threading_init(1000 Hz);
-    schedule(led_blink_red, 75 Hz, DL_SOFT);
+    os_threading_init();
+    schedule(led_blink_red, 10 Hz, DL_SOFT);
+    /* schedule(led_blink_green, 10 Hz, DL_SOFT); */
     schedule(led_blink_blue, 100 Hz, DL_SOFT);
     schedule(postpone_suicide, 100 Hz, DL_SOFT);
     /* next test: different frequencies,pools */

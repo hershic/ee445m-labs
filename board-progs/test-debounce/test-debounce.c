@@ -140,7 +140,7 @@ int main() {
     hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
     /* end button init */
 
-    os_threading_init(100 Hz);
+    os_threading_init();
     schedule(postpone_suicide, 100 Hz, DL_SOFT);
 
     IntMasterEnable();
