@@ -88,28 +88,48 @@ Reference \cref{lst:test-combination,lst:os-implementation,lst:os-header}.
 \begin{enumerate}
 \item Plot of the logic analyzer running the
   blocking/sleeping/killing/round-robin system.
+
+  Reference \cref{fig:round-robin}.
+  \begin{figure}
+    \includegraphics{img/TEK00002}
+    \caption{The operating system running a purely round-robin scheduler}
+    \label{fig:round-robin}
+  \end{figure}
+
 \item Plot of the scope window running the
   blocking/sleeping/killing/priority system.
+
+  Reference \cref{fig:edf}.
+  \begin{figure}
+    \includegraphics{img/TEK00003}
+    \caption{The operating system running an EDF scheduler}
+    \label{fig:edf}
+  \end{figure}
 \item Table like Table 3.1 each showing performance measurements
   versus sizes of the Fifo and timeslices.
+
 \end{enumerate}
 \section{Analysis and Discussion}
 
 \begin{enumerate}[1)]
 \item How would your implementation of \verb|OS_AddPeriodicThread| be
   different if there were 10 background threads? \\
+
   It would not be different; we designed it without 'arbitrary limits.'
 \item How would your implementation of blocking semaphores be
   different if there were 100 foreground threads? \\
+
   It would not be different; we designed it without 'arbitrary limits.'
 \item How would your implementation of the priority scheduler be
   different if there were 100 foreground threads? \\
+
   It would not be different; we designed it without 'arbitrary limits.'
 \item What happens to your OS if all the threads are blocked? If your
   OS would crash, describe exactly what the OS does? What happens to
   your OS if all the threads are sleeping? If your OS would crash,
   describe exactly what the OS does? If you answered crash to either
   or both, explain how you might change your OS to prevent the crash. \\
+
   If every thread is blocked, our EDF scheduler idles until a thread
   appears in the set of Ready FIFOs. If all threads are sleeping, the
   same behavior is exhibited.
@@ -123,12 +143,14 @@ Reference \cref{lst:test-combination,lst:os-implementation,lst:os-header}.
   \end{verbatim}
   What should your OS have done in this case? Do not implement it,
   rather, with one sentence, say what the OS should have done? \\
+
   Our OS would crash due to stack underflow, but the OS could use
   different stacks for OS and user code (MSP and PSP) so that a
   recovery is possible.
 \item What are the advantages of spinlock semaphores over blocking
   semaphores? What are the advantages of blocking semaphores over
   spinlock? \\
+
   Blocking semaphores allow other threads to run; spinlock semaphores
   are easier to program.
 \item Consider the case where thread T1 interrupts thread T2, and we
@@ -141,6 +163,11 @@ Reference \cref{lst:test-combination,lst:os-implementation,lst:os-header}.
   interrupt to occur. What is the probability after $n$ interrupts that
   a particular place in T2 was never selected? Furthermore, what is
   the probability that all locations were interrupted at least once? \\
+
+  The first question it out of the scope of this class. The
+  probability that all locations were interrupted at least once is
+  $\frac{n}{m}$.
+
 \end{enumerate}
 
 \section{Code}
