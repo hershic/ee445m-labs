@@ -7,8 +7,6 @@
 
 #include "libhw/hardware.h"
 
-#define Hz
-
 /*! Create a \hw_metadata struct named \_name. */
 #define timer_metadata_init_(_name, _base, _frequency, _interrupt, _periodic) \
     hw_metadata _name;							\

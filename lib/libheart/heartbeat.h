@@ -167,7 +167,7 @@ typedef struct muscle_t {
     memory_address_t pin;
 } muscle_t;
 
-static muscle_t HEART_MODAL_METADATA[OS_MAX_THREADS];
+static muscle_t HEART_MODAL_METADATA[SCHEDULER_MAX_THREADS];
 
 /*!
  *  \brief Initialize \HEART_ANCILLARY_MUSCLE for visible

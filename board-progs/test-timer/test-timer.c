@@ -32,37 +32,37 @@ volatile uint32_t sem;
 uint32_t interrupt_counter;
 uint32_t wait_counter;
 
-muscle_t red_muscle;
-muscle_t blue_muscle;
+uint32_t red_work = 0;
+uint32_t blue_work = 0;
+uint32_t green_work = 0;
 
-void (*timer_task)(void);   // user function
-
-void timer_set_task(void (*task)(void)) {
-    timer_task = task;
+void led_blink_red() {
+    while (1) {
+        ++red_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
+                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
+        os_surrender_context();
+    }
 }
 
-void timer_release() {
-    sem = 0xdeadfeed;
-    /* sem_post(&sem); */
+void led_blink_green() {
+    /* while (1) { */
+        ++green_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
+                     GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
+        /* os_surrender_context(); */
+    /* } */
 }
 
-void TIMER0A_Handler(void) {
-
-    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-    (*timer_task)();
-
-    /* doesn't work */
-    /* heart_toggle_modal(&red_muscle); */
-
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
-                 GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-
-    ++interrupt_counter;
+void led_blink_blue() {
+    while (1) {
+        ++blue_work;
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+        os_surrender_context();
+    }
 }
 
-/*! Accept input on UART 0, and parrot input back out to UART 0.
- * \return Exit status
- */
 int main(void) {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
@@ -71,40 +71,26 @@ int main(void) {
     /* Enable processor interrupts. */
     IntMasterDisable();
 
-    interrupt_counter = 0;
-    wait_counter = 0;
-
     heart_init();
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
+    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
 
-    /* sem_init(&sem, 0); */
-    sem = false;
-
-    timer_set_task(&timer_release);
-
+    /* begin timer init */
+    /* timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT); */
     timer_metadata_init(TIMER0_BASE, 2 Hz, INT_TIMER0A, TIMER_CFG_PERIODIC);
+    hw_driver_init(HW_TIMER, timer_metadata);
+    hw_channel_init(HW_TIMER, timer_metadata);
+    hw_subscribe(HW_TIMER, timer_metadata, led_blink_green);
+    /* end timer init */
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
-    TimerConfigure(timer_metadata.timer.base, timer_metadata.timer.periodic);
-    TimerLoadSet(timer_metadata.timer.base, TIMER_A, SysCtlClockGet() / timer_metadata.timer.frequency);
-    TimerIntEnable(timer_metadata.timer.base, TIMER_TIMA_TIMEOUT);
-    IntEnable(timer_metadata.timer.interrupt);
-    TimerEnable(timer_metadata.timer.base, TIMER_A);
+    os_threading_init();
+    schedule(led_blink_red, 100 Hz, DL_SOFT);
+    schedule(led_blink_blue, 100 Hz, DL_SOFT);
 
     IntMasterEnable();
+    os_launch();
 
-    heart_hew_muscle(red_muscle, GPIO_PORTF_BASE, HEART_RED);
-    heart_hew_muscle(blue_muscle, GPIO_PORTF_BASE, HEART_BLUE);
-    heart_init_(red_muscle.base, red_muscle.pin);
-    heart_init_(blue_muscle.base, blue_muscle.pin);
-
-    while (1) {
-        while (!sem) {}
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-
-        /* heart_toggle_modal(&blue_muscle); */
-        ++wait_counter;
-        sem = 0;
-    }
+    while (1) { }
     /* postpone_death(); */
 }

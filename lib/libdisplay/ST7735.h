@@ -216,7 +216,7 @@ void ST7735_DrawCharS(int16_t x, int16_t y, uint8_t c, int16_t textColor, int16_
 void ST7735_DrawChar(int16_t x, int16_t y, uint8_t c, int16_t textColor, int16_t bgColor, uint8_t size);
 
 //------------ST7735_DrawString------------
-// String draw function.  
+// String draw function.
 // 16 rows (0 to 15) and 21 characters (0 to 20)
 // Requires (11 + size*size*6*8) bytes of transmission for each character
 // Input: x         columns from the left edge (0 to 20)
@@ -225,7 +225,7 @@ void ST7735_DrawChar(int16_t x, int16_t y, uint8_t c, int16_t textColor, int16_t
 //        textColor 16-bit color of the characters
 // bgColor is Black and size is 1
 // Output: number of characters printed
-uint32_t ST7735_DrawString(uint16_t x, uint16_t y, uint8_t *pt, int16_t textColor);;
+uint32_t ST7735_DrawString(uint16_t x, uint16_t y, uint8_t *pt, int16_t textColor);
 
 
 
@@ -270,28 +270,28 @@ void ST7735_InvertDisplay(int i) ;
 
 // *************** ST7735_PlotClear ********************
 // Clear the graphics buffer, set X coordinate to 0
-// This routine clears the display 
+// This routine clears the display
 // Inputs: ymin and ymax are range of the plot
 // Outputs: none
 void ST7735_PlotClear(int32_t ymin, int32_t ymax);
 
 // *************** ST7735_PlotPoint ********************
 // Used in the voltage versus time plot, plot one point at y
-// It does output to display 
+// It does output to display
 // Inputs: y is the y coordinate of the point plotted
 // Outputs: none
 void ST7735_PlotPoint(int32_t y);
 
 // *************** ST7735_PlotLine ********************
 // Used in the voltage versus time plot, plot line to new point
-// It does output to display 
+// It does output to display
 // Inputs: y is the y coordinate of the point plotted
 // Outputs: none
 void ST7735_PlotLine(int32_t y);
 
 // *************** ST7735_PlotPoints ********************
 // Used in the voltage versus time plot, plot two points at y1, y2
-// It does output to display 
+// It does output to display
 // Inputs: y1 is the y coordinate of the first point plotted
 //         y2 is the y coordinate of the second point plotted
 // Outputs: none
@@ -307,7 +307,7 @@ void ST7735_PlotBar(int32_t y);
 // *************** ST7735_PlotdBfs ********************
 // Used in the amplitude versus frequency plot, plot bar point at y
 // 0 to 0.625V scaled on a log plot from min to max
-// It does output to display 
+// It does output to display
 // Inputs: y is the y ADC value of the bar plotted
 // Outputs: none
 void ST7735_PlotdBfs(int32_t y);
@@ -315,7 +315,7 @@ void ST7735_PlotdBfs(int32_t y);
 // *************** ST7735_PlotNext ********************
 // Used in all the plots to step the X coordinate one pixel
 // X steps from 0 to 127, then back to 0 again
-// It does not output to display 
+// It does not output to display
 // Inputs: none
 // Outputs: none
 void ST7735_PlotNext(void);
@@ -323,7 +323,7 @@ void ST7735_PlotNext(void);
 // *************** ST7735_PlotNextErase ********************
 // Used in all the plots to step the X coordinate one pixel
 // X steps from 0 to 127, then back to 0 again
-// It clears the vertical space into which the next pixel will be drawn 
+// It clears the vertical space into which the next pixel will be drawn
 // Inputs: none
 // Outputs: none
 void ST7735_PlotNextErase(void);
@@ -338,7 +338,7 @@ void ST7735_PlotNextErase(void);
 //    {   for(j=0;j<N;j++){
 //          ST7735_PlotPoint(data[i++]); // called N times
 //        }
-//        ST7735_PlotNext(); 
+//        ST7735_PlotNext();
 //    }   // called 128 times
 
 // Example 2b Voltage versus time (N data points/pixel, time scale)
@@ -346,7 +346,7 @@ void ST7735_PlotNextErase(void);
 //    {   for(j=0;j<N;j++){
 //          ST7735_PlotLine(data[i++]); // called N times
 //        }
-//        ST7735_PlotNext(); 
+//        ST7735_PlotNext();
 //    }   // called 128 times
 
 // Example 3 Voltage versus frequency (512 points)
@@ -354,10 +354,10 @@ void ST7735_PlotNextErase(void);
 //    ST7735_PlotClear(0,1023);  // clip large magnitudes
 //    {
 //        ST7735_PlotBar(mag[i++]); // called 4 times
-//        ST7735_PlotBar(mag[i++]); 
-//        ST7735_PlotBar(mag[i++]); 
-//        ST7735_PlotBar(mag[i++]); 
-//        ST7735_PlotNext(); 
+//        ST7735_PlotBar(mag[i++]);
+//        ST7735_PlotBar(mag[i++]);
+//        ST7735_PlotBar(mag[i++]);
+//        ST7735_PlotNext();
 //    }   // called 128 times
 
 // Example 4 Voltage versus frequency (512 points), dB scale
@@ -365,10 +365,10 @@ void ST7735_PlotNextErase(void);
 //    ST7735_PlotClear(0,511);  // parameters ignored
 //    {
 //        ST7735_PlotdBfs(mag[i++]); // called 4 times
-//        ST7735_PlotdBfs(mag[i++]); 
-//        ST7735_PlotdBfs(mag[i++]); 
-//        ST7735_PlotdBfs(mag[i++]); 
-//        ST7735_PlotNext(); 
+//        ST7735_PlotdBfs(mag[i++]);
+//        ST7735_PlotdBfs(mag[i++]);
+//        ST7735_PlotdBfs(mag[i++]);
+//        ST7735_PlotNext();
 //    }   // called 128 times
 
 // *************** ST7735_OutChar ********************
@@ -389,7 +389,7 @@ void ST7735_OutChar(uint8_t ch);
 void ST7735_OutString(uint8_t *ptr);
 
 // ************** ST7735_SetTextColor ************************
-// Sets the color in which the characters will be printed 
+// Sets the color in which the characters will be printed
 // Background color is fixed at black
 // Input:  16-bit packed color
 // Output: none
@@ -416,6 +416,6 @@ void Output_On(void);
 // Background color is fixed at black
 // Input:  16-bit packed color
 // Output: none
-void Output_Color(uint32_t newColor); 
+void Output_Color(uint32_t newColor);
 
 #endif

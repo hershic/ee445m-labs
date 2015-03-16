@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(test-shell)
-set(test-shell-srcs test-shell.c startup_gcc.c)
+set(test-shell-srcs test-shell.c ../test-edf/startup_gcc.c)
 
 include_directories(../../)
 include_directories(../../inc)

@@ -5,68 +5,39 @@
 #ifndef __OS__
 #define __OS__
 
-#include "libstd/nexus.h"
-#include "inc/hw_ints.h"
-
 #include <stdint.h>
 #include <stdbool.h>
+
+#include "inc/hw_ints.h"
+
+#include "libstd/nexus.h"
+#include "libschedule/edf.h"
+#include "thread_structures.h"
 
 /*! \addtogroup OS
  * @{
  */
 
-/*! Maximum number of concurrent threads */
-#define OS_MAX_THREADS  4
-
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   100
 
-typedef enum {
-    /* thread is not running and will not run */
-    THREAD_DEAD,
+/*! Static number of thread pools of distinct priority in use */
+#define OS_NUM_POOLS    2
 
-    /* thread is waiting and will run when the timer runs out */
-    THREAD_SLEEPING,
+/*! Highest priority thread pool alias */
+#define OS_SYSTEM_POOL       0
+/*! Highest priority thread pool alias */
+#define OS_REAL_TIME_POOL    0
+/*! Second highest priority thread pool alias */
+#define OS_INTERACTIVE_POOL  1
 
-    /* thread is running */
-    THREAD_RUNNING,
+/*! An alias to \os_add_thread. Feels like home sweet home. */
+#define os_spawn_thread(_thread, _priority)     \
+    os_add_thread(_thread, priority)
 
-    /* thread is not running but will run eventually */
-    THREAD_ACTIVE
-} tstate_t;
-
-typedef void (*task_t)();
-
-/*! \brief Thread Control Block */
-typedef struct tcb {
-
-    /*! pointer to stack (valid for threads not running */
-    int32_t *sp;
-
-    /*! linked-list pointer to next tcb */
-    struct tcb *next;
-
-    /*! linked-list pointer to prev tcb */
-    struct tcb *prev;
-
-    /*! Unique numeric identifier for the tcb.
-     *  THIS PROPERY IS IMMUTABLE */
-    immutable int32_t id;
-
-    /*! The function used as this thread's entry point. This is
-     *  recorded for developer convenience, i.e. the developer may get
-     *  a handle to a tcb from his task pointer. */
-    task_t entry_point;
-
-    /*! state of this thread */
-    tstate_t status;
-
-    /*! sleep timer of the thread */
-    int32_t sleep_timer;
-
-    /*! priority of the thread */
-    /* int8_t priority; */
-} tcb_t;
+/*! An alias to \os_remove_thread. Feels like home sweet home.*/
+#define os_kill_thread(_thread)                 \
+    os_remove_thread(_thread)
 
 /*! A circular doubly linked list of currently running threads.
  * \note The head of this list is 'os_current_running_thread'
@@ -75,7 +46,6 @@ static tcb_t* os_running_threads = NULL;
 
 /*! A circular doubly linked list of currently dead threads. */
 static tcb_t* os_dead_threads = NULL;
-
 
 /*! The contents of the stack immediately after a function call. */
 typedef struct hwcontext {
@@ -102,17 +72,30 @@ typedef struct swcontext {
     uint32_t lr;
 } swcontext_t;
 
+/*! Communication mailbox from the SysTick_Handler to the
+ *  PendSV_Handler; will contain the tcb_t* of the next thread to
+ *  execute come PendSV_Handler execution time. */
+static tcb_t* OS_NEXT_THREAD;
+
+/*! An array of statically allocated threads. */
+static tcb_t OS_THREADS[SCHEDULER_MAX_THREADS];
+
+/*! An array of thread pools to place OS_THREADS into. */
+static tcb_t* OS_THREAD_POOL[OS_NUM_POOLS];
+
+/*! Initialize the threading engine, setting all threads to dead. This
+ *  initializes the dead thread circle appropriately and sets the
+ *  running thread circle to null.
+ */
+void os_threading_init(void);
+
 /*! Resets the thread stack for a given tcb to run a given task.
  *  \param thread the thread whose stack is to be reset
  *  \param the task for which the thread should run
  */
-void os_reset_thread_stack(tcb_t* tcb, task_t task);
+void _os_reset_thread_stack(tcb_t* tcb, task_t task);
 
-/*! An alias to \os_add_thread. Feels like home sweet home. */
-#define os_spawn_thread(a) os_add_thread(a)
-
-/*! An alias to \os_remove_thread. Feels like home sweet home.*/
-#define os_kill_thread(a) os_remove_thread(a)
+int8_t get_os_num_threads();
 
 /*! Adds a new thread with the specified task.
  *  \returns the TCB of the newly added thread, null if the addition
@@ -142,13 +125,7 @@ tcb_t* os_tcb_of(task_t);
  *  \returns The first thread removed from the dead thread circle, or
  *  null if the dead thread circle is empty.
  */
-tcb_t* os_next_dead_thread();
-
-/*! Initialize the threading engine, setting all threads to dead. This
- *  initializes the dead thread circle appropriately and sets the
- *  running thread circle to null.
- */
-void os_threading_init();
+tcb_t* _os_next_dead_thread();
 
 /* TODO: doxygenize */
 int32_t os_running_thread_id();
@@ -160,8 +137,12 @@ int32_t os_running_thread_id();
  */
 void os_launch();
 
-/* TODO: doxygenize */
-tcb_t* os_suspend();
+/*! A convenience alias to \os_suspend to circumnavigate the naming
+ *  conventions chosen by the couse Administrators. */
+#define os_surrender_context()                  \
+    os_suspend()
+
+void os_suspend();
 
 #endif
 

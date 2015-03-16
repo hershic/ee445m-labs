@@ -5,7 +5,12 @@
 #include <stdbool.h>
 #include "libnotify/notify.h"
 #include "libstd/nexus.h"
+#include "libos/semaphore.h"
 
+/* TODO: Expand this for all devices */
+static volatile semaphore_t HW_SEM_UART0;
+
+uint32_t* get_adc_samples();
 /* Note to developers:
  *
  * Why did the authors create structs that contain only an array?
@@ -41,7 +46,8 @@
 typedef enum {
     HW_UART,
     HW_TIMER,
-    HW_BUTTON
+    HW_BUTTON,
+    HW_ADC
 } HW_TYPE;
 
 /*! UART properties */
@@ -55,7 +61,7 @@ typedef struct {
 /*! Timer properties */
 typedef struct {
     memory_address_t base;
-    uint32_t frequency;
+    frequency_t frequency;
     uint32_t interrupt;
     uint32_t periodic; /* TIMER_CFG_PERIODIC or TIMER_CFG_ONE_SHOT */
 } hw_timer_metadata;
@@ -69,12 +75,29 @@ typedef struct {
     uint32_t interrupt;
 } hw_button_metadata;
 
+typedef union {
+    hw_timer_metadata timer;
+} adc_trigger_metadata;
+
+/*! Adc properties */
+typedef struct {
+    /* NOTE: base will be used in the future when we have adcs on
+       different ports */
+    memory_address_t base;
+    uint32_t trigger_source;
+    uint32_t sample_sequence;
+    uint32_t channel;
+    uint32_t channel_configuration;
+    adc_trigger_metadata trigger_metadata;
+} hw_adc_metadata;
+
 /*! Initialization information comes in many shapes and sizes. Here is
  * one convenient container. */
 typedef union {
     hw_uart_metadata uart;
     hw_timer_metadata timer;
     hw_button_metadata button;
+    hw_adc_metadata adc;
 } hw_metadata;
 
 /*! An iterator ensured to be of an optimized size according to the
@@ -117,15 +140,18 @@ typedef struct {
 
 /*! Initialize hw driver and channel. Simply a convenience to reduce
  *  boilerplate. */
-#define hw_init(type, metadata)	    \
+#define hw_init(type, metadata)     \
     hw_driver_init(type, metadata); \
     hw_channel_init(type, metadata)
 
 /*! Initialize hw driver, channel and subscribe to
  *  notifications. Simply a convenience to reduce boilerplate. */
 #define hw_init_and_subscribe(type, metadata, pseudo_isr) \
-    hw_init(type, metadata);				  \
+    hw_init(type, metadata);                              \
     hw_subscribe(type, metadata, pseudo_isr)
+
+/*! Initialize libhw's internal data structures */
+void hw_init_daemon();
 
 /*! This function is responsible for enabling the peripherals and
  * internal data strutures used by the specified \hw_group.
@@ -210,6 +236,15 @@ hw_driver* hw_driver_singleton(HW_TYPE);
  * hardware interrupt event
  */
 void hw_notify(HW_TYPE, hw_metadata, notification);
+
+/*! Iterate over all chars in the respective uart's RX_FIFO and
+ *  notify all subscribed tasks.
+ * \param UART metadata
+ */
+void hw_notify_uart(hw_metadata uart_metadata);
+
+/* TODO: Doxygenize */
+void hw_daemon(void);
 
 #endif
 

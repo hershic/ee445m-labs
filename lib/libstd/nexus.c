@@ -73,12 +73,3 @@ void ustrcpy(char* dest, const char* source) {
 	if (dest[i++] == '\0') { break; }
     }
 }
-
-int32_t StartCritical() {
-    asm("MRS    R0, PRIMASK  ;// save old status\n"
-        "CPSID  I            ;// mask all (except faults)\n");
-}
-
-void EndCritical(int32_t primask) {
-    asm("MSR    PRIMASK, R0\n");
-}

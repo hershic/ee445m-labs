@@ -1,6 +1,6 @@
 #+startup: sections
 #+options: H:1 num:nil toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:nil LaTeX:t
-#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) BLOCKED(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
 #+author: Hershal Bhave
 #+author: Eric Crosson
 * [12/12] Lab 1
@@ -273,8 +273,8 @@ libhw, who then queues it? Is this thread-save? is libuart?
   - [X] Without going back and actually measuring it, do you think the
      Consumer ever waits when it calls OS_MailBox_Send?
      Explain.
-* [0/1] Lab 3
-** [0/5] Preparation
+* [3/10] Lab 3
+** [1/5] Preparation
 *** TODO Add a priority field to =OS_AddPeriodicThread=
 **** Valvano
 Consider at least two ways to implement the second periodic background
@@ -289,7 +289,11 @@ new expanded periodic thread feature.
 **** Decrypted
 We already have a way to start periodic threads, this just means we
 need to rebuild libhw as a threading daemon.
-*** TODO Add libjitter
+*** DONE Add libjitter
+**** DONE Add profiling functionality to os
+PendSV needs to record the SysTick before and after thread switch to
+determine the amount of thread-time jitter. Maybe have each thread
+record these jitter values? Not sure how to library-ize this...
 **** Valvano
 Add features to the OS to measure and record time jitters for the two
 periodic threads. Record two maximum jitters and two histograms of
@@ -298,8 +302,12 @@ into the OS, and make two copies of it. Feel free to change any of the
 user code in Lab2.c so they are compatible with your RTOS.
 **** Decrypted
 Add libjitter, which just keeps a running average and/or buffer of
-pidwork values.
-*** TODO Aperiodic background thread triggered on button press
+pidwork values. Research SV (System Service Call).
+*** BLOCKED [3/4] Aperiodic background thread triggered on button press
+**** TODO Create priority threads
+**** DONE Create single-shot threads
+**** DONE Button Detection
+**** DONE Button Debouncing
 **** Valvano
 Write C code to implement the second aperiodic background thread,
 triggered by a falling edge on PF0. In hardware this is implemented
@@ -314,7 +322,7 @@ priority of the four background threads.
 **** Decrypted
 Basically, get libhw working and make libbutton generalized to work on
 any gpio (it's almost there).
-*** TODO Beef up semaphore.c
+*** TODO Implement a counting semaphore
 **** Valvano
 Consider at least two ways to implement blocking semaphores. In this
 class, we have 1 to 10 foreground threads.  How would your
@@ -344,4 +352,14 @@ think about how would your implementation be different if there were
 100 foreground threads? Write C code to implement the priority
 scheduler.
 **** Decrypted
-Think about how to implement a priority scheduler.
+Think about how to implement a priority scheduler. Then implement it.
+** Lab Session Notes
+- adc sampling at 2 khz
+  follow the figure 2.4
+- another thread for the serial
+- a thread to update the lcd with adc data
+- jitter: defined as time past 2khz goal
+
+- task: display threadcount to lcd, watch it increase with button-created threads
+- fft to smash the cpu and increase jitter
+- task 4/5: from starter code. also to smash cpu for jitter

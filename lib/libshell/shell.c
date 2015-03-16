@@ -3,6 +3,8 @@
 
 #include "libuart/uart.h"
 #include "libhw/hardware.h"
+#include "libos/semaphore.h"
+#include "libos/os.h"
 
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -19,16 +21,15 @@ static unsigned short SHELL_BUFFER_POSITION;
 static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
 
 static char* SHELL_PS1[SHELL_MAX_PS1_LENGTH];
-static char* SHELL_DEFAULT_PS1 = "\n> ";
+static char* SHELL_DEFAULT_PS1 = "\r\n> ";
 
 void shell_spawn() {
 
     /* TODO: have this handled by hw_connect (look at the scoreboard,
      * see what HAS been used (don't need to initialize), what IS
      * being used (blocked)) */
-    /* SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0); */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    hw_subscribe(HW_UART, uart_metadata, shell_uart0_handler);
+    hw_subscribe(HW_UART, uart_metadata, shell_uart_handler);
     shell_set_ps1(SHELL_DEFAULT_PS1);
     shell_clear_shell_buffer();
     shell_print_ps1();
@@ -36,7 +37,6 @@ void shell_spawn() {
 
 char* shell_represent() {
 
-    /* TODO: improve */
     return SHELL_BUFFER;
 }
 
@@ -44,26 +44,29 @@ char* shell_represent() {
 void shell_kill() {
 
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    hw_unsubscribe(HW_UART, uart_metadata, shell_uart0_handler);
+    hw_unsubscribe(HW_UART, uart_metadata, shell_uart_handler);
 }
 
-void shell_uart0_handler(notification note) {
+/* TODO: re-doxygenize */
+void shell_uart_handler(notification note) {
 
     char recv = note._char;
+
     switch(recv) {
     case SC_CR:
-        {   /* TODO: schedule */
-	    shell_execute_command();
-	    shell_clear_shell_buffer();
-	    uart_send_string("\r\n");
-	    /* TODO: why doesn't PS1 print twice? */
-	    shell_print_ps1();
-        }
-	break;
+    {   /* TODO: schedule */
+	shell_execute_command();
+	shell_clear_shell_buffer();
+	uart_send_string("\r\n");
+	/* fixme: why doesn't PS1 print twice? */
+	shell_print_ps1();
+    }
+    break;
 
+    case 127:
     case SC_BACKSPACE:
 	SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
-	/* TODO: represent at all, with shell_represent */
+	uart_send_string("\b \b");
 	break;
 
     default:

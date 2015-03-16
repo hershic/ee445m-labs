@@ -10,8 +10,18 @@
 
 /* TODO: Doxygenize better */
 
-#ifndef __G2D_DEFINES__
-#define __G2D_DEFINES__
+#ifndef __DEFINES__
+#define __DEFINES__
+
+#include <stdint.h>
+
+/* os/task defines */
+/*! Type declaration of a task. \warning This is not a thread. We need
+ *  real threads. */
+typedef void (*task_t)();
+
+typedef void (*isr_t)();        /* isr capable of hw_notifying */
+typedef int32_t frequency_t;
 
 /*** Custom data types ***/
 /* swiss army knife data types */

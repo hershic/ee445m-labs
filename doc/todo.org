@@ -1,5 +1,5 @@
 #+startup: all
-#+todo: TODO(t) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
+#+todo: TODO(t) BLOCKED(b) VERIFY(v) IN-PROGRESS(p) DOCUMENT(m) PRINT(r) | OPTIONAL(o) HIATUS(h) DONE(d) CANCELED(c)
 * [2/3] global
 ** OPTIONAL code review
 [[http://www.vogella.com/tutorials/Gerrit/article.html][Gerrit code review - Tutorial]]
@@ -30,7 +30,7 @@ jenkins, travis
 - Wpacked
 - Winline
 
-* [8/19] lib
+* [8/20] lib
 "In a real time system there is no point in finishing your task before
 the deadline." -- Gerstlauer
 ** [0/1] adc
@@ -48,7 +48,13 @@ call sequence:
 - [ ] return prt()'s ret value
   ooh, this one's tricky
 
-** [0/2] hardware
+** [/] semaphore
+- [ ] #profile
+  collect information like wait time, turnaround time, throughput
+  [[http://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/5_CPU_Scheduling.html][Operating Systems: CPU Scheduling]]
+*** minimum viable product for lab 3
+** [0/4] hardware
+*** TODO Absorb HW_TYPE into a common metadata field
 *** IN-PROGRESS bi directional notifications
 look at ASSERT (ti libs)
 *** TODO prevent nonexistent hardware access

@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define UTLIST_VERSION 1.9.9
 
-#include <assert.h>
+/* #include <assert.h> */
 
 /*
  * This file contains macros to manipulate singly and doubly-linked lists.
@@ -309,6 +309,12 @@ do {                                                                            
 #define LL_PREPEND(head,add)                                                                   \
     LL_PREPEND2(head,add,next)
 
+#define LL_EDF_PREPEND(head,add)                \
+do {                                                                                           \
+  (add)->next = head;                                                                          \
+  head = add;                                                                                  \
+} while (0)
+
 #define LL_PREPEND2(head,add,next)                                                             \
 do {                                                                                           \
   (add)->next = head;                                                                          \
@@ -333,6 +339,9 @@ do {                                                                            
 #define LL_APPEND(head,add)                                                                    \
     LL_APPEND2(head,add,next)
 
+#define LL_EDF_APPEND(head,add)                                                                    \
+    LL_APPEND2(head,add,pri_next)
+
 #define LL_APPEND2(head,add,next)                                                              \
 do {                                                                                           \
   LDECLTYPE(head) _tmp;                                                                        \
@@ -348,6 +357,9 @@ do {                                                                            
 
 #define LL_DELETE(head,del)                                                                    \
     LL_DELETE2(head,del,next)
+
+#define LL_EDF_DELETE(head,del)                                                                    \
+    LL_DELETE2(head,del,pri_next)
 
 #define LL_DELETE2(head,del,next)                                                              \
 do {                                                                                           \
@@ -460,9 +472,6 @@ do {                                                                            
 #define LL_REPLACE_ELEM(head, el, add)                                                         \
 do {                                                                                           \
  LDECLTYPE(head) _tmp;                                                                         \
- assert(head != NULL);                                                                         \
- assert(el != NULL);                                                                           \
- assert(add != NULL);                                                                          \
  (add)->next = (el)->next;                                                                     \
  if ((head) == (el)) {                                                                         \
   (head) = (add);                                                                              \
@@ -480,9 +489,6 @@ do {                                                                            
 #define LL_PREPEND_ELEM(head, el, add)                                                         \
 do {                                                                                           \
  LDECLTYPE(head) _tmp;                                                                         \
- assert(head != NULL);                                                                         \
- assert(el != NULL);                                                                           \
- assert(add != NULL);                                                                          \
  (add)->next = (el);                                                                           \
  if ((head) == (el)) {                                                                         \
   (head) = (add);                                                                              \
@@ -504,6 +510,16 @@ do {                                                                            
 #define DL_PREPEND(head,add)                                                                   \
     DL_PREPEND2(head,add,prev,next)
 
+#define DL_EDF_PREPEND(head,add)      \
+do {                                                                                           \
+    (add)->pri_next = head;                                             \
+ if (head) {                                                            \
+   (add)->pri_prev = (head)->pri_prev;                                \
+   (head)->pri_prev = (add);                                          \
+ }                                                                                             \
+ (head) = (add);                                                                               \
+} while (0)
+
 #define DL_PREPEND2(head,add,prev,next)                                                        \
 do {                                                                                           \
  (add)->next = head;                                                                           \
@@ -518,6 +534,20 @@ do {                                                                            
 
 #define DL_APPEND(head,add)                                                                    \
     DL_APPEND2(head,add,prev,next)
+
+#define DL_EDF_INSERT(head,add)       \
+do {                                                                                           \
+  if (head) {                                                                                  \
+      (add)->pri_next = (head)->pri_next;                               \
+      (head)->pri_next->pri_prev = (add);                               \
+      (head)->pri_next = (add);                                         \
+      (add)->pri_prev = NULL;                                           \
+  } else {                                                              \
+      (head)=(add);                                                     \
+      (head)->pri_prev = NULL;                                          \
+      (head)->pri_next = NULL;                                          \
+  }                                                                                            \
+} while (0)
 
 #define DL_APPEND2(head,add,prev,next)                                                         \
 do {                                                                                           \
@@ -556,7 +586,6 @@ do {                                                                            
 
 #define DL_DELETE2(head,del,prev,next)                                                         \
 do {                                                                                           \
-  assert((del)->prev != NULL);                                                                 \
   if ((del)->prev == (del)) {                                                                  \
       (head)=NULL;                                                                             \
   } else if ((del)==(head)) {                                                                  \
@@ -602,9 +631,6 @@ do {                                                                            
 
 #define DL_REPLACE_ELEM(head, el, add)                                                         \
 do {                                                                                           \
- assert(head != NULL);                                                                         \
- assert(el != NULL);                                                                           \
- assert(add != NULL);                                                                          \
  if ((head) == (el)) {                                                                         \
   (head) = (add);                                                                              \
   (add)->next = (el)->next;                                                                    \
@@ -628,9 +654,6 @@ do {                                                                            
 
 #define DL_PREPEND_ELEM(head, el, add)                                                         \
 do {                                                                                           \
- assert(head != NULL);                                                                         \
- assert(el != NULL);                                                                           \
- assert(add != NULL);                                                                          \
  (add)->next = (el);                                                                           \
  (add)->prev = (el)->prev;                                                                     \
  (el)->prev = (add);                                                                           \
@@ -660,6 +683,23 @@ do {                                                                            
    (add)->next = (add);                                                                        \
  }                                                                                             \
 (head)=(add);                                                                                  \
+} while (0)
+
+#define CDL_APPEND(head,add)                                                                  \
+    CDL_APPEND2(head,add,prev,next)
+
+#define CDL_APPEND2(head,add,prev,next)                                                       \
+do {                                                                                           \
+ if (head) {                                                                                   \
+   (add)->prev = (head)->prev;                                                                 \
+   (add)->next = (head);                                                                       \
+   (head)->prev = (add);                                                                       \
+   (add)->prev->next = (add);                                                                  \
+ } else {                                                                                      \
+   (add)->prev = (add);                                                                        \
+   (add)->next = (add);                                                                        \
+   (head)=(add);                                                        \
+ }                                                                                             \
 } while (0)
 
 #define CDL_DELETE(head,del)                                                                   \
@@ -721,9 +761,6 @@ do {                                                                            
 
 #define CDL_REPLACE_ELEM(head, el, add)                                                        \
 do {                                                                                           \
- assert(head != NULL);                                                                         \
- assert(el != NULL);                                                                           \
- assert(add != NULL);                                                                          \
  if ((el)->next == (el)) {                                                                     \
   (add)->next = (add);                                                                         \
   (add)->prev = (add);                                                                         \
@@ -741,9 +778,6 @@ do {                                                                            
 
 #define CDL_PREPEND_ELEM(head, el, add)                                                        \
 do {                                                                                           \
- assert(head != NULL);                                                                         \
- assert(el != NULL);                                                                           \
- assert(add != NULL);                                                                          \
  (add)->next = (el);                                                                           \
  (add)->prev = (el)->prev;                                                                     \
  (el)->prev = (add);                                                                           \

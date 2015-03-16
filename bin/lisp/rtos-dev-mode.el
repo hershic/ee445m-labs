@@ -1,23 +1,45 @@
-;;; rtos-mode.el --- A minor mode to augment the development of ee445m-labs
+;;; rtos-dev-mode.el --- A minor mode to augment the development of ee445m-labs
+;; Version: 0.0.20140301
 
-;;; Commentary: TODO
+;; Copyright (C) 2015 Eric Crosson
+
+;; Author: Eric Crosson <esc@ericcrosson.com>
+;; Keywords: rtos
+;; Package-Version: 0.1
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; This package provides a minor mode that will do two things
+;; after a successful recompile:
+;; 1) bury the *compilation* buffer, and
+;; 2) restore your window configuration to how it looked when you
+;; issued the recompile.
+
+;;; Usage:
+
+;; (rtos-dev-mode 1)
+
+;;; Commentary:
 ;;
-;; dependencies: https://github.com/abo-abo/hydra
 
 ;;; Code:
 
-(defvar rtos-dev-mode-map (make-keymap)
-  "The keymap for `rtos-dev-mode'.")
-
-;;;###autoload
-(define-minor-mode rtos-dev-mode
-  "A minor mode to augment the development of
-https://github.com/hershic/ee445m-labs."
-  :group 'rtos
-  :version "0.1"
-  :init-value nil
-  :lighter " rtos"
-  :keymap rtos-dev-mode-map)
+(defcustom rtos-dev-mode-map (make-keymap)
+  "The keymap for function `rtos-dev-mode'."
+  :group 'rtos)
 
 (defun rtos/git-root ()
   "Root dir of ee445m-labs.git."
@@ -79,6 +101,8 @@ of a `gud-mode' buffer."
      (rtos/exec-comint-command ,command)))
 
 (defmacro rtos/define-gdb-command (function)
+  "Define a defun to execute a command in gdb.
+Argument FUNCTION is a cons, car is the suffix of the gdb command to define and cdr is the gdb command to eexxcute."
   (let ((gdb-command   (cdr function))
 	(funsymbol (intern (format "rtos/gdb-%s" (car function)))))
     `(defun ,funsymbol () (interactive) (rtos/exec-gdb-command ,gdb-command))))
@@ -93,7 +117,8 @@ of a `gud-mode' buffer."
   (rtos/gdb-load)
   (rtos/gdb-continue))
 
-(mapcar* (lambda (function)
+(require 'cl-lib)
+(cl-mapcar (lambda (function)
 	   (eval `(rtos/define-gdb-command ,function)))
 	 '(;; openocd functions
 	   (load  . "load")
@@ -103,10 +128,13 @@ of a `gud-mode' buffer."
 	   (target   . "target remote localhost:3333")
 	   (step     . "step")
 	   (next     . "next")
-	   (finish     . "finish")
+	   (finish   . "finish")
 	   (continue . "continue")))
 
 ;; todo: determine why lv isn't working. probably an esc-system thing
+;; dependency: https://github.com/abo-abo/hydra
+;; associated mode: hydra-mode
+(require 'hydra)
 (setq hydra-lv nil)
 
 (defhydra rtos/hydra-gdb (rtos-dev-mode-map "M-e" :color red)
@@ -120,27 +148,30 @@ of a `gud-mode' buffer."
   ("n" rtos/gdb-next                 "next")
   ("f" rtos/gdb-finish               "finish")
   ("c" rtos/gdb-continue             "continue")
-  ("a" rtos/gdb-reset-load-continue  "refresh"))
+  ("a" rtos/gdb-reset-load-continue  "refresh")
+  ("b" gud-break                     "gud-break")
+  ("d" gud-remove                    "gud-remove"))
 
-;; font-lock
 (font-lock-add-keywords
  'rtos-dev-mode
  '(("\\<\\(<immutable\\|atomic\\)\\>" . font-lock-keyword-face)))
 
 ;; add /bin/lisp to load path
-(let ((default-directory (concat (rtos/git-root) "/bin/lisp")))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
+;; (let ((default-directory (concat (rtos/git-root) "/bin/lisp")))
+;;   (normal-top-level-add-to-load-path '("."))
+;;   (normal-top-level-add-subdirs-to-load-path))
 
 ;; associated mode: c-eldoc
 (require 'c-eldoc)
 (defun rtos/eldoc-hook()
-  (when (equal major-mode 'c-mode) 'c-turn-on-eldoc-mode))
-(add-hook 'rtos-dev-mode-hook 'rtos/eldoc-hook)
+  "When the current buffer is in C Major Mode and is a C source
+file (*not* a header), execute function `c-turn-on-eldoc-mode'."
+  (when (and (equal major-mode 'c-mode)
+	     (string-match "\\.[cC]$" (buffer-file-name)))
+    'c-turn-on-eldoc-mode))
 
 ;; associated mode: disaster-arm
 (require 'disaster-arm)
-
 ;; associated mode: auto-insert-mode
 ;; TODO; clear other .c, .h, .dox expansions in a less nuclear manner
 (setq auto-insert-alist '())
@@ -190,16 +221,32 @@ of a `gud-mode' buffer."
 ;;     " */" \n))
 
 ;; rtos-dev-mode: associated with c-mode and gud-mode
-(defun rtos/patch-dev-mode-hooks ()
+
+(defun rtos-dev-mode-turn-on ()
+  "Turn on function `rtos-dev-mode'."
+  (add-hook 'c-mode-hook 'rtos-dev-mode)
+  (add-hook 'gud-mode-hook 'rtos-dev-mode)
+  (add-hook 'c-mode-hook 'auto-insert-mode))
+
+(defun rtos-dev-mode-turn-off ()
+  "Turn off function `rtos-dev-mode'."
+  (remove-hook 'c-mode-hook 'rtos-dev-mode)
+  (remove-hook 'gud-mode-hook 'rtos-dev-mode)
+  (remove-hook 'c-mode-hook 'auto-insert-mode))
+
+;;;###autoload
+(define-minor-mode rtos-dev-mode
+  "A minor mode to augment the development of
+https://github.com/hershic/ee445m-labs."
+  :group 'rtos
+  :version "0.1"
+  :init-value nil
+  :lighter " rtos"
+  :keymap rtos-dev-mode-map
   (if rtos-dev-mode
-      (progn
-	(add-hook 'c-mode-hook 'rtos-dev-mode)
-	(add-hook 'gud-mode-hook 'rtos-dev-mode)
-	(auto-insert-mode 1))
-    (remove-hook 'c-mode-hook 'rtos-dev-mode)
-    (remove-hook 'gud-mode-hook 'rtos-dev-mode)
-    (auto-insert-mode -1)))
-(add-hook 'rtos-dev-mode-hook 'rtos/patch-dev-mode-hooks)
+      (rtos-dev-mode-turn-on)
+    (rtos-dev-mode-turn-off))
+  (rtos/eldoc-hook))
 
 (provide 'rtos-dev-mode)
 

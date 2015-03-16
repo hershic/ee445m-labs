@@ -24,30 +24,80 @@
 #define HEARTBEAT_MODAL
 #include "libos/os.h"
 #include "libheart/heartbeat.h"
+#include "libos/semaphore.h"
+#include "libtimer/timer.h"
+#include "libsystick/systick.h"
+
+uint32_t PIDWork = 0;
+semaphore_t semaphore;
+uint32_t interrupt_counter;
+
+void timer_task() {
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    sem_post(semaphore);
+}
+
+void Task1() {
+
+    /* Consider: if I can trigger pendsv from an atomic block, will
+     * the atomic block be restarted when the context resumes? */
+    while(1) {
+	/* defun: sem_wait */
+	--semaphore;
+	while (semaphore_blocked(semaphore)) {
+	    /* defun: os_surrender_context */
+	    /* TODO: examine in the context of this not switching to
+	     * Task2 but instead running the loop endlessly */
+	    IntPendSet(FAULT_PENDSV);
+	    /* end_defun */
+	}
+	/* end_defun */
+	heart_toggle();
+    }
+}
+
+void Task2() {
+    while(1) {
+	++PIDWork;
+    }
+}
+
+/* Why does this not trigger more than once? */
+void TIMER0A_Handler(void) {
+
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+
+    /* the task */
+    sem_signal(semaphore);
+    /* we should see Task1 blink the heartbeat */
+
+    ++interrupt_counter;
+}
 
 void main(void) {
 
-  SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-		 SYSCTL_XTAL_16MHZ);
+    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+		   SYSCTL_XTAL_16MHZ);
 
-  IntMasterDisable();
+    IntMasterDisable();
 
-  os_threading_init();
+    heart_init();
+    sem_init(semaphore);
 
-  /* Load and enable the systick timer */
-  SysTickPeriodSet(SysCtlClockGet() / 10);
-  SysTickEnable();
-  SysTickIntEnable();
+    timer_metadata_init(TIMER0_BASE, 1 Hz, INT_TIMER0A, TIMER_CFG_PERIODIC);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
+    TimerConfigure(timer_metadata.timer.base, timer_metadata.timer.periodic);
+    TimerLoadSet(timer_metadata.timer.base, TIMER_A, SysCtlClockGet() / timer_metadata.timer.frequency);
+    TimerIntEnable(timer_metadata.timer.base, TIMER_TIMA_TIMEOUT);
+    IntEnable(timer_metadata.timer.interrupt);
+    TimerEnable(timer_metadata.timer.base, TIMER_A);
 
-  /* os_trap_ */
-  os_launch();
+    os_threading_init(100 Hz);
+    os_add_thread(Task1, OS_SYSTEM_POOL);
+    os_add_thread(Task2, OS_SYSTEM_POOL);
 
-  /* PONDER: why do interrupts fire without this? */
-  IntMasterEnable();
+    IntMasterEnable();
+    os_launch();
 
-  int32_t sem;
-  sem_init(&sem, 1);
-  while(1) {
-    /* sem_wait */
-  }
+    postpone_death();
 }
