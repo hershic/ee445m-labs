@@ -365,18 +365,17 @@ Think about how to implement a priority scheduler. Then implement it.
 - task 4/5: from starter code. also to smash cpu for jitter
 * [0/1] Lab 4
 ** TODO [0/4] preparation
-*** TODO analog interface design                                  :hershal:
-- design the analog interface between the ir sensor and adc
+*** TODO analog interface design/low-pass filter                  :hershal:
+- use either excel or filterpro (probably filterpro will be easier,
+  windows-only), to design an analog low-pass filter
 *** TODO real time data acquisition                               :hershal:
 - use the adc to sample data from the ir sensor
 **** TODO add interpreter commands:                                 :eric:
   - enable/disable sampling
   - enable/disable filtering
   - print out the raw/filtered adc data
-*** TODO design a low-pass filter                                 :hershal:
-- use either excel or filterpro (probably filterpro will be easier,
-  windows-only), to design a low-pass filter to filter the adc data in
-  real time
+*** TODO design a FIR filter
+- design a digial FIR filter to condition the signal
 *** TODO plot the data on the lcd                                    :eric:
 - plot either:
   - voltage vs. time
