@@ -101,7 +101,7 @@ declare -r ocd_openocd="openocd"
 ## @details Users paths to OpenOCD interfaces.
 ## @ingroup OpenOCD
 declare -A ocd_interface_prefixes
-ocd_interface_prefixes=([Linux]=/usr/share [Darwni]=/opt/local/share)
+ocd_interface_prefixes=([Linux]=/usr/share [Darwin]=/opt/local/share)
 
 ## @var ocd_interface
 ## @brief For internal use only.
