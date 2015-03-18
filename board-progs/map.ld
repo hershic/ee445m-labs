@@ -1,3 +1,5 @@
+_stack_size = 4K;
+
 MEMORY
 {
     FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 256K
@@ -8,6 +10,7 @@ SECTIONS
 {
     .text :
     {
+        _text = .;
         KEEP(*(.isr_vector))
         *(.text*)
         *(.rodata*)
@@ -22,19 +25,18 @@ SECTIONS
         _edata = .;
     } > SRAM
 
-    .bss :
+    .bss : AT(ADDR(.data) + SIZEOF(.data))
     {
         _bss = .;
         *(.bss*)
         *(COMMON)
         _ebss = .;
-        . = ALIGN (8);
-       _end = .;
     } > SRAM
+
+    _heap_bottom = .;
+    _heap_top = ORIGIN(SRAM) + LENGTH(SRAM) - _stack_size;
+
+    _stack_bottom = _heap_top;
+    _stack_top = ORIGIN(SRAM) + LENGTH(SRAM);
+
 }
-
-/* end of allocated ram _end */
-PROVIDE( _HEAP_START = _end );
-
-/* end of the heap -> align 8 byte */
-PROVIDE ( _HEAP_END = ALIGN(ORIGIN(SRAM) + LENGTH(SRAM) - 8 ,8) );
