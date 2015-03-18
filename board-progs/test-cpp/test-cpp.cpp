@@ -23,6 +23,8 @@ int main(void) {
     blink.set_base(GPIO_PORTF_BASE);
 
     while (1) {
-        blink.toggle(RED);
+        blink.toggle(PIN_RED);
     }
 }
+
+extern "C" void __cxa_pure_virtual() { while (1); }

@@ -11,18 +11,22 @@
 
 #include <stdint.h>
 
-typedef uint32_t port_t;
-typedef enum color_t {RED, GREEN, BLUE} color_t;
+#include "gpio_twiddler.hpp"
 
-class blinker {
+#include "driverlib/gpio.h"
+
+const pin_t PIN_RED   = GPIO_PIN_1;
+const pin_t PIN_GREEN = GPIO_PIN_3;
+const pin_t PIN_BLUE  = GPIO_PIN_2;
+
+class blinker : public gpio_twiddler {
 public:
     blinker();
-    void set_base(port_t port);
-    void turn_on(color_t color);
-    void turn_off(color_t color);
-    void toggle(color_t color);
+    virtual void set_base(port_t port);
+    virtual void turn_on(pin_t pin);
+    virtual void turn_off(pin_t pin);
+    virtual void toggle(pin_t pin);
 private:
-    uint32_t get_led_pin_from_color(color_t color);
     uint32_t port_base;
 };
 

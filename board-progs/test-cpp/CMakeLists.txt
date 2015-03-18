@@ -8,4 +8,3 @@ include_directories(../../lib)
 
 add_executable(test-cpp ${test-cpp-srcs})
 target_link_libraries(test-cpp driverlib)
-
