@@ -5,9 +5,9 @@
 #ifndef __blinker__
 #define __blinker__
 
-/*! \addtogroup
-   * @{
-    */
+/*! \addtogroup CppTest Test of cpp functionality
+ * @{
+ */
 
 #include <stdint.h>
 
@@ -33,5 +33,5 @@ private:
 #endif
 
 /* End Doxygen group
-    * @}
-     */
+ * @}
+ */
