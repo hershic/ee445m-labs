@@ -363,3 +363,22 @@ Think about how to implement a priority scheduler. Then implement it.
 - task: display threadcount to lcd, watch it increase with button-created threads
 - fft to smash the cpu and increase jitter
 - task 4/5: from starter code. also to smash cpu for jitter
+* [0/1] Lab 4
+** TODO [0/4] preparation
+*** TODO analog interface design
+- design the analog interface between the ir sensor and adc
+*** TODO real time data acquisition
+- use the adc to sample data from the ir sensor
+- add interpreter commands:
+  - enable/disable sampling
+  - enable/disable filtering
+  - print out the raw/filtered adc data
+*** TODO design a low-pass filter
+- use either excel or filterpro (probably filterpro will be easier,
+  windows-only), to design a low-pass filter to filter the adc data in
+  real time
+*** TODO plot the data on the lcd
+- plot either:
+  - voltage vs. time
+  - voltage vs. frequency
+- plots modes switchable by interpreter commands
