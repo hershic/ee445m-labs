@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.8.7)
+
+project(test-cpp)
+set(test-cpp-srcs ../test-edf/startup_gcc.c blinker.cpp test-cpp.cpp)
+
+include_directories(../../)
+include_directories(../../lib)
+
+add_executable(test-cpp ${test-cpp-srcs})
+target_link_libraries(test-cpp driverlib)

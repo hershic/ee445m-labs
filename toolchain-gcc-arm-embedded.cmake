@@ -50,18 +50,18 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(CMAKE_C_FLAGS
   "${CMAKE_C_FLAGS}"
-  "-g -fno-common -ffunction-sections -fdata-sections -fomit-frame-pointer -Dgcc -DPART_TM4C123GH6PM"
+  "-g -fno-common -ffunction-sections -fdata-sections -fomit-frame-pointer -Dgcc"
+  "-unresolved-symbols=ignore-all -fsingle-precision-constant -fno-unwind-tables"
+  "-DPART_TM4C123GH6PM -DTARGET_IS_BLIZZARD_RA1"
 )
 
 if (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m4")
-
   message(STATUS "Setting processor to cortex-m4")
   set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS}"
     "-mcpu=cortex-m4 -march=armv7e-m -mthumb"
     "-mfloat-abi=softfp -mfpu=fpv4-sp-d16"
   )
-
 elseif (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m3")
   message(STATUS "Setting processor to cortex-m3")
   set(CMAKE_C_FLAGS
