@@ -368,6 +368,15 @@ Think about how to implement a priority scheduler. Then implement it.
 *** TODO analog interface design/low-pass filter                  :hershal:
 - use either excel or filterpro (probably filterpro will be easier,
   windows-only), to design an analog low-pass filter
+  - 1kHz analog filter specs:
+    - 2x TI TLC2272ACP :: rail-to-fail dual op-amp
+    - 2x 10 nF Capacitor
+    - 12.4 kOhm Resistor
+    - 16.8 kOhm Resistor
+    - 12 nF Capacitor
+    - 4.220 kOhm Resistor
+    - 7.870 kOhm Resistor
+    - 68 nF Capacitor
 *** TODO real time data acquisition                               :hershal:
 - use the adc to sample data from the ir sensor
 **** TODO add interpreter commands:                                 :eric:
