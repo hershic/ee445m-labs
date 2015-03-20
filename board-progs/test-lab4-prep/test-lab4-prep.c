@@ -29,6 +29,7 @@
 #include "libheart/heartbeat.h"
 
 extern semaphore_t HW_ADC_SEQ2_SEM;
+extern semaphore_t HW_BUTTON_RAW_SEM;
 extern uint32_t ADC0_SEQ2_SAMPLES[4];
 uint32_t red_work = 0;
 uint32_t blue_work = 0;
@@ -67,16 +68,6 @@ void led_blink_blue() {
         ++blue_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                      GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-        os_surrender_context();
-    }
-}
-
-void display_adc_graph() {
-
-    while (1) {
-        sem_guard(HW_ADC_SEQ2_SEM) {
-            sem_take(HW_ADC_SEQ2_SEM);
-        }
         os_surrender_context();
     }
 }
@@ -160,38 +151,46 @@ void display_analog_adc_data() {
     }
 }
 
-void button_debounce_end(notification button_notification) {
+/* void button_debounce_end(notification button_notification) { */
 
-    button_debounced_mailbox = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
-    sem_post(button_debounced_new_data);
-}
+/*     button_debounced_mailbox = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH); */
+/*     sem_post(button_debounced_new_data); */
+/* } */
 
-/* what the btn handler calls */
-void button_debounce_start(notification button_notification) {
+/* /\* what the btn handler calls *\/ */
+/* void button_debounce_start(notification button_notification) { */
 
-    /* button_debounced_wtf = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH); */
-    timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
-    hw_channel_init(HW_TIMER, timer_metadata);
-    hw_subscribe_single_shot(HW_TIMER, timer_metadata,
-                             button_debounce_end);
-}
+/*     /\* button_debounced_wtf = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH); *\/ */
+/*     timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT); */
+/*     hw_channel_init(HW_TIMER, timer_metadata); */
+/*     hw_subscribe_single_shot(HW_TIMER, timer_metadata, */
+/*                              button_debounce_end); */
+/* } */
 
 void button_debounce_daemon() {
 
+    int32_t button_raw_data = 0xff;
+
     while (1) {
-        sem_guard(button_debounced_new_data) {
-            sem_take(button_debounced_new_data);
-            if (~button_debounced_mailbox & BUTTON_LEFT) {
-                ++button_left_pressed;
-                /* ST7735_DrawString(2, 1, "1", ST7735_YELLOW); */
+        sem_guard(HW_BUTTON_RAW_SEM) {
+            sem_take(HW_BUTTON_RAW_SEM);
+            button_raw_data = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
+
+            if (~button_raw_data & BUTTON_LEFT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                             GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                /* ++button_left_pressed; */
+                ST7735_DrawString(1, 2, "1", ST7735_YELLOW);
             } else {
-              /* ST7735_DrawString(2, 1, "0", ST7735_YELLOW); */
+                ST7735_DrawString(1, 2, "0", ST7735_YELLOW);
             }
-            if (~button_debounced_mailbox & BUTTON_RIGHT) {
-                ++button_right_pressed;
-                /* ST7735_DrawString(2, 2, "1", ST7735_YELLOW); */
+            if (~button_raw_data & BUTTON_RIGHT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                             GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                /* ++button_right_pressed; */
+                ST7735_DrawString(2, 2, "1", ST7735_YELLOW);
             } else {
-              /* ST7735_DrawString(2, 2, "0", ST7735_YELLOW); */
+                ST7735_DrawString(2, 2, "0", ST7735_YELLOW);
             }
         }
         os_surrender_context();
@@ -248,7 +247,7 @@ int main(void) {
     button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
 
     hw_init(HW_BUTTON, button_metadata);
-    hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
+    /* hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start); */
     /* end button init */
 
     os_threading_init();

@@ -47,6 +47,7 @@ uint32_t ADC0_SEQ2_SAMPLES[4];
 uint32_t ADC0_SEQ3_SAMPLES[4];
 
 semaphore_t HW_ADC_SEQ2_SEM;
+semaphore_t HW_BUTTON_RAW_SEM;
 
 uint32_t jitter_begin;
 uint32_t jitter_end;
@@ -239,9 +240,11 @@ void GPIOPortF_Handler(void) {
 
     GPIOIntClear(GPIO_PORTF_BASE, BUTTONS_BOTH);
 
-    notification_init(int, GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH));
-    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, NULL);
-    hw_notify(HW_BUTTON, button_metadata, note);
+    ++HW_BUTTON_RAW_SEM;
+
+    /* notification_init(int, GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH)); */
+    /* button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, NULL); */
+    /* hw_notify(HW_BUTTON, button_metadata, note); */
 }
 
 
@@ -394,7 +397,6 @@ void ADC0Seq2_Handler(void) {
     ADCIntClear(ADC0_BASE, 2);
     jitter_end = HWREG(NVIC_ST_CURRENT);
     ADCSequenceDataGet(ADC0_BASE, 2, ADC0_SEQ2_SAMPLES);
-    /* GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1); */
     sem_post(HW_ADC_SEQ2_SEM);
     /* TODO: Conform to Notify */
 }
