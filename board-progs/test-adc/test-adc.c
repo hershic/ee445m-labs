@@ -64,15 +64,10 @@ void led_blink_blue() {
 }
 
 void display_adc_graph() {
-    ST7735_PlotClear(0, 4095);
 
     while (1) {
         sem_guard(HW_ADC_SEQ2_SEM) {
             sem_take(HW_ADC_SEQ2_SEM);
-            ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]);
-            if (ST7735_PlotNext()) {
-                ST7735_PlotClear(0, 4095);
-            }
         }
         os_surrender_context();
     }
@@ -80,7 +75,7 @@ void display_adc_graph() {
 
 /* This function assumes that there is enough space in the string
    buffer to store the digits of the stringified integer. */
-inline char* fixed_4_digit_i2s(uint8_t* string_buf, int32_t data_12bit) {
+char* fixed_4_digit_i2s(char* string_buf, int32_t data_12bit) {
     uint8_t tmp;
     uint16_t i, j, k, l;
     uint32_t num;
@@ -95,7 +90,29 @@ inline char* fixed_4_digit_i2s(uint8_t* string_buf, int32_t data_12bit) {
     return string_buf;
 }
 
-void display_adc_data_for_checkout() {
+void display_all_adc_data() {
+
+    int8_t i;
+    char string_buf[5];
+    ST7735_PlotClear(0, 4095);
+
+    while (1) {
+        sem_guard(HW_ADC_SEQ2_SEM) {
+            sem_take(HW_ADC_SEQ2_SEM);
+
+            fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
+            ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
+
+            ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]);
+            if (ST7735_PlotNext()) {
+                ST7735_PlotClear(0, 4095);
+            }
+        }
+        os_surrender_context();
+    }
+}
+
+void display_digital_adc_data() {
 
     int8_t i;
     uint8_t string_buf[5];
@@ -107,6 +124,28 @@ void display_adc_data_for_checkout() {
             for (i=0; i<4; ++i) {
                 fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[i]);
                 ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
+            }
+        }
+        os_surrender_context();
+    }
+}
+
+void display_analog_adc_data() {
+
+    int8_t i;
+    char string_buf[5];
+    ST7735_PlotClear(0, 4095);
+
+    while (1) {
+        sem_guard(HW_ADC_SEQ2_SEM) {
+            sem_take(HW_ADC_SEQ2_SEM);
+
+            fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
+            ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
+
+            ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]);
+            if (ST7735_PlotNext()) {
+                ST7735_PlotClear(0, 4095);
             }
         }
         os_surrender_context();
@@ -153,8 +192,8 @@ int main(void) {
 
     os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
-    /* schedule(display_adc_data_for_checkout, 100 Hz, DL_SOFT); */
-    schedule(display_adc_graph, 100 Hz, DL_SOFT);
+    schedule(display_all_adc_data, 1500 Hz, DL_SOFT);
+    /* schedule(display_adc_graph, 100 Hz, DL_SOFT); */
     /* schedule(led_blink_blue, 100 Hz, DL_SOFT); */
     /* schedule(led_blink_green, 100 Hz, DL_SOFT); */
 
