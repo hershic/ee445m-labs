@@ -20,6 +20,7 @@
 
 #include "libadc/adc.h"
 #include "libstd/nexus.h"
+#include "libdisplay/ST7735.h"
 
 #define HEARTBEAT_MODAL
 
@@ -62,14 +63,44 @@ void led_blink_blue() {
     }
 }
 
+void display_adc_data_for_checkout() {
+
+    while (1) {
+        sem_guard(HW_ADC_SEQ2_SEM) {
+            sem_take(HW_ADC_SEQ2_SEM);
+            uint8_t string_buf[5];
+            uint8_t tmp;
+            uint16_t i, j, k, l;
+            uint32_t num;
+
+            for (i=0; i<4; ++i) {
+                num = ADC0_SEQ2_SAMPLES[i];
+                for (j=0; j<4; ++j) {
+                    string_buf[3-j] = (num % 10) + 0x30;
+                    num /= 10;
+                }
+
+                string_buf[j] = 0;
+
+                ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
+            }
+        }
+        os_surrender_context();
+    }
+}
+
 int main(void) {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
-    /* Enable processor interrupts. */
+    /* Enable processor interrupts */
     IntMasterDisable();
 
+    /* Initialize the output screen */
+    Output_On();
+
+    /* initialize the led gpio pins */
     heart_init();
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
@@ -98,8 +129,9 @@ int main(void) {
 
     os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
-    schedule(led_blink_blue, 100 Hz, DL_SOFT);
-    schedule(led_blink_green, 100 Hz, DL_SOFT);
+    schedule(display_adc_data_for_checkout, 100 Hz, DL_SOFT);
+    /* schedule(led_blink_blue, 100 Hz, DL_SOFT); */
+    /* schedule(led_blink_green, 100 Hz, DL_SOFT); */
 
     IntMasterEnable();
     os_launch();
