@@ -63,25 +63,34 @@ void led_blink_blue() {
     }
 }
 
+/* This function assumes that there is enough space in the string
+   buffer to store the digits of the stringified integer. */
+inline char* fixed_4_digit_i2s(uint8_t* string_buf, int32_t data_12bit) {
+    uint8_t tmp;
+    uint16_t i, j, k, l;
+    uint32_t num;
+
+    num = data_12bit;
+    for (j=0; j<4; ++j) {
+        string_buf[3-j] = (num % 10) + 0x30;
+        num /= 10;
+    }
+
+    string_buf[j] = 0;
+    return string_buf;
+}
+
 void display_adc_data_for_checkout() {
+
+    int8_t i;
+    uint8_t string_buf[5];
 
     while (1) {
         sem_guard(HW_ADC_SEQ2_SEM) {
             sem_take(HW_ADC_SEQ2_SEM);
-            uint8_t string_buf[5];
-            uint8_t tmp;
-            uint16_t i, j, k, l;
-            uint32_t num;
 
             for (i=0; i<4; ++i) {
-                num = ADC0_SEQ2_SAMPLES[i];
-                for (j=0; j<4; ++j) {
-                    string_buf[3-j] = (num % 10) + 0x30;
-                    num /= 10;
-                }
-
-                string_buf[j] = 0;
-
+                fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[i]);
                 ST7735_DrawString(2, 2+i, string_buf, ST7735_YELLOW);
             }
         }
