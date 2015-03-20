@@ -363,8 +363,8 @@ Think about how to implement a priority scheduler. Then implement it.
 - task: display threadcount to lcd, watch it increase with button-created threads
 - fft to smash the cpu and increase jitter
 - task 4/5: from starter code. also to smash cpu for jitter
-* [0/1] Lab 4
-** TODO [0/4] preparation
+* [0/2] Lab 4
+** TODO [0/3] preparation
 *** BLOCKED analog interface design/low-pass filter               :hershal:
 - update <2015-03-18 Wed>:
   - LAB CLOSED until <2015-03-23 Mon>
@@ -381,11 +381,12 @@ Think about how to implement a priority scheduler. Then implement it.
     - 68 nF Capacitor
 *** TODO real time data acquisition                               :hershal:
 **** DONE use the adc to sample data from the ir sensor          :hershal:
-**** TODO add interpreter commands:                                 :eric:
-  - enable/disable sampling
-  - enable/disable filtering
-  - print out the raw/filtered adc data
-*** TODO design a FIR filter
+**** TODO [2/4] add interpreter commands:                           :eric:
+***** DONE enable/disable sampling
+***** TODO enable/disable filtering
+***** DONE print out the raw adc data
+***** TODO print out the filtered adc data
+*** IN-PROGRESS design a FIR filter
 - design a digial FIR filter to condition the signal
 **** chat with Priscilla
 - look up matlab command =freqz=
@@ -393,7 +394,7 @@ Think about how to implement a priority scheduler. Then implement it.
   - [[http://users.ece.utexas.edu/~bevans/courses/realtime/lectures/05_FIR_Filters/index.html]]
 - look at hw2
 - look at slides from lab3
-** TODO [0/2] plot the data on the lcd
+** IN-PROGRESS [0/2] plot the data on the lcd
 **** TODO [1/2] plot:
 ***** DONE voltage vs. time
 ***** TODO voltage vs. frequency
