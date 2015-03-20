@@ -28,7 +28,6 @@
 
 extern semaphore_t HW_ADC_SEQ2_SEM;
 extern uint32_t ADC0_SEQ2_SAMPLES[4];
-uint32_t *adc_data_buffer;
 uint32_t red_work = 0;
 uint32_t blue_work = 0;
 uint32_t green_work = 0;
@@ -80,7 +79,7 @@ char* fixed_4_digit_i2s(char* string_buf, int32_t data_12bit) {
     uint16_t i, j, k, l;
     uint32_t num;
 
-    num = data_12bit;
+    num = data_12bit & 0x0FFF;
     for (j=0; j<4; ++j) {
         string_buf[3-j] = (num % 10) + 0x30;
         num /= 10;
@@ -179,20 +178,18 @@ int main(void) {
     metadata.adc.channel_configuration =
         ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
     metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-    metadata.adc.trigger_metadata.timer.frequency = 10 Hz;
+    metadata.adc.trigger_metadata.timer.frequency = 20 Hz;
     metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
     metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
     adc_init(metadata);
     adc_channel_init(metadata);
     adc_interrupt_init(metadata);
-
-    adc_data_buffer = ADC0_SEQ2_SAMPLES;
     /* end adc init */
 
     os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
-    schedule(display_all_adc_data, 1500 Hz, DL_SOFT);
+    schedule(display_all_adc_data, 200 Hz, DL_SOFT);
     /* schedule(display_adc_graph, 100 Hz, DL_SOFT); */
     /* schedule(led_blink_blue, 100 Hz, DL_SOFT); */
     /* schedule(led_blink_green, 100 Hz, DL_SOFT); */
