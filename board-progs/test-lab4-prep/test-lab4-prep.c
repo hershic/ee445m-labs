@@ -202,12 +202,24 @@ void button_debounce_daemon() {
     }
 }
 
+always inline
+void poor_mans_uart_send_string(char* text) {
+    uint32_t cnt = ustrlen(text);
+    char* ptr = (char*)text;
+
+    while(cnt--) {
+        UARTCharPut(UART0_BASE, *(ptr++));
+    }
+}
+
 int plot_on() {
     plot_en = 1;
+    poor_mans_uart_send_string("ok");
 }
 
 int plot_off() {
     plot_en = 0;
+    poor_mans_uart_send_string("ok");
 }
 
 int main(void) {
