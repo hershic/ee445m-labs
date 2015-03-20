@@ -23,6 +23,8 @@
 #include "libtimer/timer.h"
 #include "libstd/nexus.h"
 #include "libdisplay/ST7735.h"
+#include "libshell/shell.h"
+#include "libuart/uart.h"
 
 #define HEARTBEAT_MODAL
 
@@ -41,6 +43,8 @@ volatile uint32_t button_right_pressed;
 volatile uint32_t button_debounced_mailbox;
 
 volatile semaphore_t button_debounced_new_data;
+
+int8_t plot_en;
 
 void led_blink_red() {
     while (1) {
@@ -94,9 +98,10 @@ void display_all_adc_data() {
     int8_t i;
     char string_buf[5];
     ST7735_PlotClear(0, 4095);
+    plot_en = 1;
 
     while (1) {
-        sem_guard(HW_ADC_SEQ2_SEM) {
+        sem_guard(HW_ADC_SEQ2_SEM && plot_en) {
             sem_take(HW_ADC_SEQ2_SEM);
 
             fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
@@ -197,7 +202,17 @@ void button_debounce_daemon() {
     }
 }
 
+int plot_on() {
+    plot_en = 1;
+}
+
+int plot_off() {
+    plot_en = 0;
+}
+
 int main(void) {
+
+    hw_metadata metadata;
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
@@ -216,7 +231,6 @@ int main(void) {
 
     /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
     /* start adc init */
-    hw_metadata metadata;
     metadata.adc.base = ADC0_BASE;
     metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
     metadata.adc.sample_sequence = 2;
@@ -253,10 +267,22 @@ int main(void) {
     os_threading_init();
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(display_all_adc_data, 200 Hz, DL_SOFT);
+    schedule(hw_daemon, 100 Hz, DL_SOFT);
     /* schedule(display_adc_graph, 100 Hz, DL_SOFT); */
     /* schedule(led_blink_blue, 100 Hz, DL_SOFT); */
     /* schedule(led_blink_green, 100 Hz, DL_SOFT); */
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
+
+    system_init();
+    system_register_command((const char*) "plot_on", plot_on);
+    system_register_command((const char*) "plot_off", plot_off);
+
+    /* Initialize hardware devices */
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    hw_init(HW_UART, uart_metadata);
+
+    /* Initialize the shell and the system it interacts with */
+    shell_spawn();
 
     IntMasterEnable();
     os_launch();
