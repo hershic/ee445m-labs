@@ -260,7 +260,7 @@ void scheduler_reschedule(void) {
 
     SysTickDisable();
     /* SysTickPeriodSet(SysCtlClockGet() / (executing->absolute_deadline - clock)); */
-    SysTickPeriodSet(SysCtlClockGet() / (pool->deadline));
+    SysTickPeriodSet(SYSCTLCLOCK / (pool->deadline));
     HWREG(NVIC_ST_CURRENT) = 0;
     executing->absolute_deadline = pool->deadline + clock;
     SysTickEnable();
