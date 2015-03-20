@@ -317,8 +317,8 @@ void ST7735_PlotdBfs(int32_t y);
 // X steps from 0 to 127, then back to 0 again
 // It does not output to display
 // Inputs: none
-// Outputs: none
-void ST7735_PlotNext(void);
+// Outputs: returns 1 if the display carriage-returns, 0 otherwise
+int ST7735_PlotNext(void);
 
 // *************** ST7735_PlotNextErase ********************
 // Used in all the plots to step the X coordinate one pixel
