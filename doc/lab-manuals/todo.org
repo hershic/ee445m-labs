@@ -387,7 +387,13 @@ Think about how to implement a priority scheduler. Then implement it.
   - print out the raw/filtered adc data
 *** TODO design a FIR filter
 - design a digial FIR filter to condition the signal
-*** TODO [0/2] plot the data on the lcd
+**** chat with Priscilla
+- look up matlab command =freqz=
+- look at lecture 5, talks about FIR in detail
+  - [[http://users.ece.utexas.edu/~bevans/courses/realtime/lectures/05_FIR_Filters/index.html]]
+- look at hw2
+- look at slides from lab3
+** TODO [0/2] plot the data on the lcd
 **** TODO [1/2] plot:
 ***** DONE voltage vs. time
 ***** TODO voltage vs. frequency
