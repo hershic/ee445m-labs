@@ -365,10 +365,12 @@ Think about how to implement a priority scheduler. Then implement it.
 - task 4/5: from starter code. also to smash cpu for jitter
 * [0/1] Lab 4
 ** TODO [0/4] preparation
-*** TODO analog interface design/low-pass filter                  :hershal:
+*** BLOCKED analog interface design/low-pass filter               :hershal:
+- update <2015-03-18 Wed>:
+  - LAB CLOSED until <2015-03-23 Mon>
 - use either excel or filterpro (probably filterpro will be easier,
   windows-only), to design an analog low-pass filter
-  - 1kHz analog filter specs:
+  - 1kHz analog filter:
     - 2x TI TLC2272ACP :: rail-to-fail dual op-amp
     - 2x 10 nF Capacitor
     - 12.4 kOhm Resistor
@@ -378,15 +380,15 @@ Think about how to implement a priority scheduler. Then implement it.
     - 7.870 kOhm Resistor
     - 68 nF Capacitor
 *** TODO real time data acquisition                               :hershal:
-- use the adc to sample data from the ir sensor
+**** DONE use the adc to sample data from the ir sensor          :hershal:
 **** TODO add interpreter commands:                                 :eric:
   - enable/disable sampling
   - enable/disable filtering
   - print out the raw/filtered adc data
 *** TODO design a FIR filter
 - design a digial FIR filter to condition the signal
-*** TODO plot the data on the lcd                                    :eric:
-- plot either:
-  - voltage vs. time
-  - voltage vs. frequency
-- plots modes switchable by interpreter commands
+*** TODO [0/2] plot the data on the lcd
+**** TODO [1/2] plot:
+***** DONE voltage vs. time
+***** TODO voltage vs. frequency
+**** TODO plots modes switchable by interpreter commands            :eric:
