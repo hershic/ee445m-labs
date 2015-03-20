@@ -45,6 +45,7 @@ volatile uint32_t button_debounced_mailbox;
 volatile semaphore_t button_debounced_new_data;
 
 int8_t plot_en;
+int8_t print_sample_raw;
 
 void led_blink_red() {
     while (1) {
@@ -93,12 +94,22 @@ char* fixed_4_digit_i2s(char* string_buf, int32_t data_12bit) {
     return string_buf;
 }
 
+void poor_mans_uart_send_string(char* text) {
+    uint32_t cnt = ustrlen(text);
+    char* ptr = (char*)text;
+
+    while(cnt--) {
+        UARTCharPut(UART0_BASE, *(ptr++));
+    }
+}
+
 void display_all_adc_data() {
 
     int8_t i;
     char string_buf[5];
     ST7735_PlotClear(0, 4095);
     plot_en = 1;
+    print_sample_raw = 0;
 
     while (1) {
         sem_guard(HW_ADC_SEQ2_SEM && plot_en) {
@@ -110,6 +121,10 @@ void display_all_adc_data() {
             ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]);
             if (ST7735_PlotNext()) {
                 ST7735_PlotClear(0, 4095);
+            }
+            if (print_sample_raw) {
+                poor_mans_uart_send_string(string_buf);
+                print_sample_raw = 0;
             }
         }
         os_surrender_context();
@@ -202,16 +217,6 @@ void button_debounce_daemon() {
     }
 }
 
-always inline
-void poor_mans_uart_send_string(char* text) {
-    uint32_t cnt = ustrlen(text);
-    char* ptr = (char*)text;
-
-    while(cnt--) {
-        UARTCharPut(UART0_BASE, *(ptr++));
-    }
-}
-
 int plot_on() {
     plot_en = 1;
     poor_mans_uart_send_string("ok");
@@ -220,6 +225,10 @@ int plot_on() {
 int plot_off() {
     plot_en = 0;
     poor_mans_uart_send_string("ok");
+}
+
+int sample_raw() {
+    print_sample_raw = 1;
 }
 
 int main(void) {
@@ -280,14 +289,12 @@ int main(void) {
     schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(display_all_adc_data, 200 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
-    /* schedule(display_adc_graph, 100 Hz, DL_SOFT); */
-    /* schedule(led_blink_blue, 100 Hz, DL_SOFT); */
-    /* schedule(led_blink_green, 100 Hz, DL_SOFT); */
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
 
     system_init();
     system_register_command((const char*) "plot_on", plot_on);
     system_register_command((const char*) "plot_off", plot_off);
+    system_register_command((const char*) "sample_raw", sample_raw);
 
     /* Initialize hardware devices */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
