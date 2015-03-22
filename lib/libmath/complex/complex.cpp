@@ -1,5 +1,5 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/* Created by Hershal Bhave on <2015-03-22 Sun> */
+/* Created by Eric Crosson on <2015-03-22 Sun> */
 /* Revision History: Look in git FGT */
 
 #include "complex.hpp"
