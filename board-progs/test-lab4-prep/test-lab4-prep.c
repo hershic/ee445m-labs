@@ -141,19 +141,20 @@ void display_all_adc_data() {
     plot_en = 1;
     print_sample_raw = 0;
     print_sample_filtered = 0;
-    i = 0;
 
     while (1) {
         sem_guard(FILTERED_DATA_AVAIL) {
             if(plot_en) {
                 sem_take(FILTERED_DATA_AVAIL);
 
-                fixed_4_digit_i2s(string_buf, adc_filtered_data[50]);
+                fixed_4_digit_i2s(string_buf, adc_filtered_data[50]+2048);
                 ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
 
-                ST7735_PlotLine(adc_filtered_data[0]);
-                if (ST7735_PlotNext()) {
-                    ST7735_PlotClear(0, 4095);
+                for (i=0; i<(filter_length + signal_length - 1); ++i) {
+                    ST7735_PlotLine(adc_filtered_data[i] + 2048);
+                    if (ST7735_PlotNext()) {
+                        ST7735_PlotClear(0, 4095);
+                    }
                 }
                 if (print_sample_raw) {
                     fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[50]);
