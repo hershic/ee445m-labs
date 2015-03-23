@@ -52,7 +52,7 @@ set(CMAKE_C_FLAGS
   "${CMAKE_C_FLAGS}"
   "-g -fno-common -ffunction-sections -fdata-sections -fomit-frame-pointer -Dgcc"
   "-unresolved-symbols=ignore-all -fsingle-precision-constant -fno-unwind-tables"
-  "-DPART_TM4C123GH6PM -DTARGET_IS_BLIZZARD_RA1"
+  "-DPART_TM4C123GH6PM -DTARGET_IS_BLIZZARD_RA1 -DARM_MATH_CM4"
 )
 
 if (CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m4")
