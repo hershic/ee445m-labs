@@ -34,6 +34,15 @@ uint32_t red_work = 0;
 uint32_t blue_work = 0;
 uint32_t green_work = 0;
 
+uint32_t ADC_DATA_IDX = 0;
+uint32_t ADC_DATA_FIFO[51];
+uint32_t ADC_DATA_SEM = 0;
+
+const long h[51] = {4,-1,-8,-14,-16,-10,-1,6,5,-3,-13,
+		    -15,-8,3,5,-5,-20,-25,-8,25,46,26,-49,-159,-257, 984,
+		    -257,-159,-49,26,46,25,-8,-25,-20,-5,5,3,-8,
+		    -15,-13,-3,5,6,-1,-10,-16,-14,-8,-1,4};
+
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
 
@@ -107,6 +116,11 @@ void display_all_adc_data() {
     while (1) {
         sem_guard(HW_ADC_SEQ2_SEM) {
             sem_take(HW_ADC_SEQ2_SEM);
+
+	    ADC_DATA_FIFO[ADC_DATA_IDX++] - ADC0_SEQ2_SAMPLES[0];
+	    if (ADC_DATA_IDX >= 51) {
+		sem_post(ADC_DATA_SEM);
+	    }
 
             fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
             ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
