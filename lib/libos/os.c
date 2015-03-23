@@ -158,6 +158,7 @@ tcb_t* os_tcb_of(const task_t task) {
     return NULL;
 }
 
+/*! \note This enables interrupts */
 void os_launch() {
 
     edf_init();
@@ -188,6 +189,7 @@ void os_launch() {
     asm volatile("POP     {R0-R3}");
 
     asm volatile("pop {r12, lr}");
+    asm volatile("CPSIE  I");
     asm volatile("pop {pc}");
 
     asm volatile ("BX LR");
