@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.7)
 
-set (adc-src adc.c)
+set (adc-src adc.c adc_sim.cpp)
 
 include_directories(../../)
 include_directories(../../lib)
