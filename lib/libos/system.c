@@ -21,7 +21,7 @@ void system_init() {
     system_iterator i;
     /* All commands begin in the unregistered state */
     for(i=0; i<SYSTEM_MAX_COMMANDS; ++i) {
-	CDL_PREPEND(unregistered_commands, &SYSTEM_COMMANDS[i]);
+        CDL_PREPEND(unregistered_commands, &SYSTEM_COMMANDS[i]);
     }
 }
 
@@ -36,7 +36,7 @@ bool system_register_command(const char* command_name, int(*command)()) {
     CDL_PREPEND(registered_commands, sys_command);
 
     sys_command->valid = true;
-    memset(sys_command->name, 0, SYSTEM_MAX_COMMANDS);
+    umemset(sys_command->name, 0, SYSTEM_MAX_COMMANDS);
     ustrcpy(sys_command->name, command_name);
     sys_command->command = command;
     return true;
@@ -59,8 +59,8 @@ system_command* _system_command_from_name(const char* command_name) {
 
     system_iterator i=0;
     while(i<SYSTEM_MAX_COMMANDS &&
-    	  0 != strcmp(SYSTEM_COMMANDS[i].name, command_name)) {
-    	++i;
+          0 != ustrcmp(SYSTEM_COMMANDS[i].name, command_name)) {
+        ++i;
     }
     return &SYSTEM_COMMANDS[i];
 }
@@ -70,10 +70,10 @@ exit_status_t system_exec(const char* command, const char** arguments) {
 
     system_command* sys_command = _system_command_from_name(command);
     if (sys_command->valid) {
-	return sys_command->command(/*arguments*/);
+        return sys_command->command(/*arguments*/);
     } else {
-	/* TODO: determine what to do here */
-	postpone_death();    	/* plan a */
-	return EXIT_FAILURE;	/* plan b */
+        /* TODO: determine what to do here */
+        postpone_death();       /* plan a */
+        return EXIT_FAILURE;    /* plan b */
     }
 }

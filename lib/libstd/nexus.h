@@ -75,13 +75,13 @@ void EndCritical(int32_t primask) {
 }
 
 /*! A duplicate of the c standard memset function. */
-void* memset(void*, int, int);
+void* umemset(void*, int, int);
 
 /*! A duplicate of the c standard memcpy function. */
-void* memcpy(void*, const void*, long);
+void* umemcpy(void*, const void*, long);
 
 /*! A duplicate of the c standard strcmp function. */
-int strcmp(const char*, const char*);
+int ustrcmp(const char*, const char*);
 
 /*! A duplicate of the c standard strncmp function. */
 int ustrncmp(const char*, const char*, uint32_t);

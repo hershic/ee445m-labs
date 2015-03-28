@@ -55,39 +55,39 @@ void shell_uart_handler(notification note) {
     switch(recv) {
     case SC_CR:
     {   /* TODO: schedule */
-	shell_execute_command();
-	shell_clear_shell_buffer();
-	uart_send_string("\r\n");
-	/* fixme: why doesn't PS1 print twice? */
-	shell_print_ps1();
+        shell_execute_command();
+        shell_clear_shell_buffer();
+        uart_send_string("\r\n");
+        /* fixme: why doesn't PS1 print twice? */
+        shell_print_ps1();
     }
     break;
 
     case 127:
     case SC_BACKSPACE:
-	SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
-	uart_send_string("\b \b");
-	break;
+        SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
+        uart_send_string("\b \b");
+        break;
 
     default:
-	if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
-	    SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
-	    /* Echo char to terminal for user */
-	    uart_send_char(recv);
-	}
-	break;
+        if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
+            SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
+            /* Echo char to terminal for user */
+            uart_send_char(recv);
+        }
+        break;
     }
 }
 
 void shell_set_ps1(char* new_ps1) {
 
     /* TODO: ensure this copies a null terminator */
-    memcpy(SHELL_PS1, new_ps1, ustrlen(new_ps1));
+    umemcpy(SHELL_PS1, new_ps1, ustrlen(new_ps1));
 }
 
 void shell_clear_shell_buffer() {
 
-    memset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
+    umemset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
     SHELL_BUFFER_POSITION = 0;
 }
 

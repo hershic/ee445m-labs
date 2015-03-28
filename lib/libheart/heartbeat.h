@@ -8,8 +8,6 @@
 /* Standard Libs */
 #include <stdint.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* TI Includes */
 #include "inc/hw_ints.h"
