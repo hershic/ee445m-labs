@@ -147,6 +147,8 @@ void display_all_adc_data() {
     int16_t i;
     int16_t j;
     char string_buf[5];
+    int32_t delta;
+    int32_t tmp;
     ST7735_PlotClear(0, 4095);
     plot_en = 1;
     plot_fr = 0;
@@ -156,8 +158,8 @@ void display_all_adc_data() {
         if (plot_fr) {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
-                int delta = signal_length/disp_length;
-                int tmp;
+                delta = signal_length/disp_length;
+                tmp = 0;
                 for (i=0; i<signal_length; ++i) {
                     tmp+= adc_freq_data[i];
                 }
