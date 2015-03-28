@@ -35,23 +35,26 @@
 #include "sine.h"
 
 #define signal_length 1024
-#define filter_length signal_length*2
+#define fft_length signal_length*2
+#define filter_length 51
 #define disp_length 128
 
-const int32_t h[51]={4,-1,-8,-14,-16,-10,-1,6,5,-3,-13,
-                     -15,-8,3,5,-5,-20,-25,-8,25,46,26,-49,-159,-257, 984,
-                     -257,-159,-49,26,46,25,-8,-25,-20,-5,5,3,-8,
-                     -15,-13,-3,5,6,-1,-10,-16,-14,-8,-1,4};
+const int32_t h[filter_length]={4,-1,-8,-14,-16,-10,-1,6,5,-3,-13,
+                                -15,-8,3,5,-5,-20,-25,-8,25,46,26,-49,-159,-257, 984,
+                                -257,-159,-49,26,46,25,-8,-25,-20,-5,5,3,-8,
+                                -15,-13,-3,5,6,-1,-10,-16,-14,-8,-1,4};
 
 arm_cfft_radix4_instance_q31 S;
 
-int32_t adc_data[filter_length];
+int32_t adc_data[fft_length];
 int32_t adc_freq_data[signal_length];
+int32_t adc_filtered_data[filter_length];
 int32_t disp_data[disp_length];
 
 extern semaphore_t HW_ADC_SEQ2_SEM;
 extern semaphore_t HW_BUTTON_RAW_SEM;
 semaphore_t FILTERED_DATA_AVAIL;
+semaphore_t FFT_DATA_AVAIL;
 extern int32_t ADC0_SEQ2_SAMPLES[4];
 
 uint32_t red_work = 0;
@@ -70,16 +73,17 @@ volatile uint32_t button_debounced_mailbox;
 volatile semaphore_t button_debounced_new_data;
 
 int8_t plot_en;
-int8_t plot_fr;
+int8_t plot_fft;
+int8_t plot_filter;
 
 void convolve(int32_t *x, const int32_t *h, int32_t *y, int32_t filter_len, int32_t signal_len) {
     uint32_t i, j;
     uint32_t jmin, jmax;
-    for (i=0; i<(signal_length + filter_length-1); ++i) {
+    for (i=0; i<(signal_len + filter_len-1); ++i) {
         y[i] = 0;
 
-        jmin = (i >= signal_length - 1) ? i - (signal_length - 1) : 0;
-        jmax = (i < filter_length - 1) ? i : filter_length - 1;
+        jmin = (i >= signal_len - 1) ? i - (signal_len - 1) : 0;
+        jmax = (i < filter_len - 1) ? i : filter_len - 1;
 
         for(j = jmin; j<=jmax; ++j) {
             y[i]+= (h[j] * x[i-j]);
@@ -152,14 +156,16 @@ void display_all_adc_data() {
     int32_t delta;
     int32_t tmp;
     ST7735_PlotClear(0, 4095);
+
     plot_en = 1;
-    plot_fr = 1;
+    plot_fft = 1;
+    plot_filter = 0;
 
     while (1) {
 
-        if (plot_fr) {
-            sem_guard(FILTERED_DATA_AVAIL) {
-                sem_take(FILTERED_DATA_AVAIL);
+        if (plot_fft) {
+            sem_guard(FFT_DATA_AVAIL) {
+                sem_take(FFT_DATA_AVAIL);
                 delta = signal_length/disp_length;
                 for (i=0; i<signal_length; i+=delta) {
                     tmp = 0;
@@ -169,6 +175,24 @@ void display_all_adc_data() {
                     disp_data[i/delta] = tmp/delta;
                 }
                 ST7735_DrawString(1, 1, "freq", ST7735_YELLOW);
+                ST7735_PlotClear(-512, 2047);
+                for (i=0; i<disp_length; ++i) {
+                    ST7735_PlotLine(disp_data[i]);
+                    tmp = ST7735_PlotNext();
+                }
+            }
+        } else if (plot_filter) {
+            sem_guard(FILTERED_DATA_AVAIL) {
+                sem_take(FILTERED_DATA_AVAIL);
+                delta = filter_length/disp_length;
+                for (i=0; i<filter_length; i+=delta) {
+                    tmp = 0;
+                    for (j=0; j<delta; ++j) {
+                        tmp+= adc_filtered_data[2*(i+j)];
+                    }
+                    disp_data[i/delta] = tmp/delta;
+                }
+                ST7735_DrawString(1, 1, "filt", ST7735_YELLOW);
                 ST7735_PlotClear(-512, 2047);
                 for (i=0; i<disp_length; ++i) {
                     ST7735_PlotLine(disp_data[i]);
@@ -193,25 +217,19 @@ void display_all_adc_data() {
     }
 }
 
-void filter() {
+void fft() {
 
     int32_t i=0;
 
     while (1) {
-        if (FILTERED_DATA_AVAIL == 0 && plot_fr == 1) {
+        if (FFT_DATA_AVAIL == 0 && plot_fft == 1) {
             sem_guard(HW_ADC_SEQ2_SEM) {
                 sem_take(HW_ADC_SEQ2_SEM);
                 adc_data[i] = ADC0_SEQ2_SAMPLES[0];
                 i+=2;
 
-                if (i >= filter_length) {
+                if (i >= fft_length) {
                     i = 0;
-                    /* convolve(adc_data, h, adc_filtered_data, filter_length, signal_length); */
-
-                    /* HERSHAL: FFT is NOT used for filtering. FIR is
-                     * used for filtering. FFT is for conversion to
-                     * frequency domain. */
-
                     /* Process the data through the CFFT/CIFFT modulke */
                     arm_cfft_radix4_q31(&S, adc_data);
 
@@ -219,6 +237,27 @@ void filter() {
                      * calculating the magnitude at each bin */
                     arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length);
 
+                    sem_post(FFT_DATA_AVAIL);
+                }
+            }
+        }
+        os_surrender_context();
+    }
+}
+
+void filter() {
+
+    int32_t i=0;
+
+    while (1) {
+        if (FILTERED_DATA_AVAIL == 0 && plot_filter == 1) {
+            sem_guard(HW_ADC_SEQ2_SEM) {
+                sem_take(HW_ADC_SEQ2_SEM);
+                adc_data[i] = ADC0_SEQ2_SAMPLES[0];
+                ++i;
+                if (i >= filter_length) {
+                    i = 0;
+                    convolve(adc_data, h, adc_filtered_data, filter_length, filter_length);
                     sem_post(FILTERED_DATA_AVAIL);
                 }
             }
@@ -268,12 +307,12 @@ int plot_off() {
 }
 
 int plot_freq() {
-    plot_fr = 1;
+    plot_fft = 1;
     poor_mans_uart_send_string("ok");
 }
 
 int plot_raw() {
-    plot_fr = 0;
+    plot_fft = 0;
     poor_mans_uart_send_string("ok");
 }
 
@@ -317,10 +356,10 @@ int main(void) {
     Output_On();
 
     /* initialize the led gpio pins */
-    heart_init();
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1);
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
-    heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
+    /* heart_init(); */
+    /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1); */
+    /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2); */
+    /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3); */
 
     /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
     /* start adc init */
@@ -362,7 +401,8 @@ int main(void) {
     schedule(display_all_adc_data, 200 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
-    schedule(filter, 100 Hz, DL_SOFT);
+    schedule(fft, 100 Hz, DL_SOFT);
+    /* schedule(filter, 100 Hz, DL_SOFT); */
     /* schedule(simulate_adc, 100 Hz, DL_SOFT); */
 
     system_init();
@@ -391,8 +431,6 @@ int main(void) {
     if (status != ARM_MATH_SUCCESS) {
         while (1) ;
     }
-
-    plot_fr = 1;
 
     os_launch();
 
