@@ -202,9 +202,9 @@ void filter() {
                     i = 0;
                     /* convolve(adc_data, h, adc_filtered_data, filter_length, signal_length); */
 
-		    /* HERSHAL: FFT is NOT used for filtering. FIR is
-		     * used for filtering. FFT is for conversion to
-		     * frequency domain. */
+                    /* HERSHAL: FFT is NOT used for filtering. FIR is
+                     * used for filtering. FFT is for conversion to
+                     * frequency domain. */
 
                     /* Process the data through the CFFT/CIFFT modulke */
                     /* arm_cfft_radix4_q31(&S, adc_data); */
@@ -383,7 +383,7 @@ int main(void) {
 
     /* If execution enters this loop there is a problem that needs to be addressed */
     if (status != ARM_MATH_SUCCESS) {
-	while (1) ;
+        while (1) ;
     }
 
     plot_fr = 0;
