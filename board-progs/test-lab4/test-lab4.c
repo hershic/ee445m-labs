@@ -32,6 +32,8 @@
 
 #include "arm_math.h"
 
+#include "sine.h"
+
 #define signal_length 1024
 #define filter_length signal_length*2
 #define disp_length 128
@@ -151,7 +153,7 @@ void display_all_adc_data() {
     int32_t tmp;
     ST7735_PlotClear(0, 4095);
     plot_en = 1;
-    plot_fr = 0;
+    plot_fr = 1;
 
     while (1) {
 
@@ -159,14 +161,18 @@ void display_all_adc_data() {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
                 delta = signal_length/disp_length;
-                tmp = 0;
-                for (i=0; i<signal_length; ++i) {
-                    tmp+= adc_freq_data[i];
+                for (i=0; i<signal_length; i+=delta) {
+                    tmp = 0;
+                    for (j=0; j<delta; ++j) {
+                        tmp+= adc_data[2*(i+j)];
+                    }
+                    disp_data[i/delta] = tmp/delta;
                 }
-                disp_data[j] = tmp/delta;
-                ST7735_PlotClear(-512, 1023);
+                ST7735_DrawString(1, 1, "freq", ST7735_YELLOW);
+                ST7735_PlotClear(-512, 2047);
                 for (i=0; i<disp_length; ++i) {
                     ST7735_PlotLine(disp_data[i]);
+                    tmp = ST7735_PlotNext();
                 }
             }
         } else {
@@ -207,11 +213,11 @@ void filter() {
                      * frequency domain. */
 
                     /* Process the data through the CFFT/CIFFT modulke */
-                    /* arm_cfft_radix4_q31(&S, adc_data); */
+                    arm_cfft_radix4_q31(&S, adc_data);
 
                     /* Process the data through the Complex Magnitude Model for
                      * calculating the magnitude at each bin */
-                    /* arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length); */
+                    arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length);
 
                     sem_post(FILTERED_DATA_AVAIL);
                 }
@@ -289,7 +295,7 @@ void simulate_adc() {
 
         if (j > 10) {
             sem_post(HW_ADC_SEQ2_SEM);
-            ADC0_SEQ2_SAMPLES[0] = i & 4095;
+            ADC0_SEQ2_SAMPLES[0] = sine[i & 1023];
             ++i;
             j = 0;
         }
@@ -325,13 +331,13 @@ int main(void) {
     metadata.adc.channel_configuration =
         ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
     metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-    metadata.adc.trigger_metadata.timer.frequency = 20 Hz;
+    metadata.adc.trigger_metadata.timer.frequency = 50 Hz;
     metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
     metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
-    adc_init(metadata);
-    adc_channel_init(metadata);
-    adc_interrupt_init(metadata);
+    /* adc_init(metadata); */
+    /* adc_channel_init(metadata); */
+    /* adc_interrupt_init(metadata); */
     /* end adc init */
 
     /* begin timer init for button debouncer */
@@ -357,7 +363,7 @@ int main(void) {
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(filter, 100 Hz, DL_SOFT);
-    /* schedule(simulate_adc, 100 Hz, DL_SOFT); */
+    schedule(simulate_adc, 100 Hz, DL_SOFT);
 
     system_init();
     system_register_command((const char*) "plot_on", plot_on);
@@ -386,7 +392,7 @@ int main(void) {
         while (1) ;
     }
 
-    plot_fr = 0;
+    plot_fr = 1;
 
     os_launch();
 
