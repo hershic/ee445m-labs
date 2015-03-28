@@ -32,8 +32,8 @@
 
 #include "arm_math.h"
 
-#define filter_length 1024
-#define signal_length 512
+#define signal_length 1024
+#define filter_length signal_length*2
 #define disp_length 128
 
 const int32_t h[51]={4,-1,-8,-14,-16,-10,-1,6,5,-3,-13,
