@@ -376,11 +376,16 @@ int main(void) {
 
     /* Initialize the CFFT/CIFFT module */
     status = arm_cfft_radix4_init_q31(&S, signal_length, ifftFlag, doBitReverse);
+
+    /* If execution enters this loop there is a problem that needs to be addressed */
+    if (status != ARM_MATH_SUCCESS) {
+	while (1) ;
+    }
+
     plot_fr = 0;
 
     os_launch();
 
-    while (1) {
-
-    }
+    /* main never terminates */
+    while (1);
 }
