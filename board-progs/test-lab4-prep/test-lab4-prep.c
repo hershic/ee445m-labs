@@ -50,6 +50,10 @@ uint32_t red_work = 0;
 uint32_t blue_work = 0;
 uint32_t green_work = 0;
 
+uint32_t ADC_DATA_IDX = 0;
+uint32_t ADC_DATA_FIFO[51];
+uint32_t ADC_DATA_SEM = 0;
+
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
 
@@ -169,6 +173,21 @@ void display_all_adc_data() {
                     poor_mans_uart_send_string("\r\n");
                     print_sample_filtered = 0;
                 }
+                /* old */
+        /* sem_guard(HW_ADC_SEQ2_SEM) { */
+        /*     sem_take(HW_ADC_SEQ2_SEM); */
+
+        /*     ADC_DATA_FIFO[ADC_DATA_IDX++] - ADC0_SEQ2_SAMPLES[0]; */
+        /*     if (ADC_DATA_IDX >= 51) { */
+        /*      sem_post(ADC_DATA_SEM); */
+        /*     } */
+
+        /*     fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]); */
+        /*     ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW); */
+
+        /*     ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]); */
+        /*     if (ST7735_PlotNext()) { */
+        /*         ST7735_PlotClear(0, 4095); */
             }
         }
         os_surrender_context();

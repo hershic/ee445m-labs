@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 /* Created by Hershal Bhave and Eric Crosson 2015-03-15 */
 /* Revision history: Look in Git FGT */
 
