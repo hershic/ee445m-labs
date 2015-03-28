@@ -15,12 +15,13 @@
 
 #include "adc_sim.hpp"
 
-const uint32_t len = 1024;
+const uint32_t test_len_samples = 1024;
+const uint32_t fft_len = 512;
 uint32_t idx = 0;
 
 /*! Location of FFT output data */
-static q31_t input[len];
-static q31_t output[len/2];
+static q31_t input[test_len_samples];
+static q31_t output[test_len_samples/2];
 
 adc_sim sim;
 
@@ -46,7 +47,7 @@ int main(void) {
      * init above, not with it */
     adc_sim adc_simulator;
     sim = adc_simulator;
-    for(uint32_t i=0; i<len; ++i) {
+    for(uint32_t i=0; i<test_len_samples; ++i) {
         TIMER0A_Handler();
     }
     /* end timer substitution code */
@@ -60,14 +61,14 @@ int main(void) {
     arm_cfft_radix4_instance_q31 S;
 
     /* Initialize the CFFT/CIFFT module */
-    status = arm_cfft_radix4_init_q31(&S, len, ifftFlag, doBitReverse);
+    status = arm_cfft_radix4_init_q31(&S, fft_len, ifftFlag, doBitReverse);
 
     /* Process the data through the CFFT/CIFFT modulke */
     arm_cfft_radix4_q31(&S, input);
 
     /* Process the data through the Complex Magnitude Model for
      * calculating the magnitude at each bin */
-    arm_cmplx_mag_q31(input, output, len);
+    arm_cmplx_mag_q31(input, output, fft_len);
 
     /* Loop here to signal a test PASS. Looping in the postpone_death
      * indicates test FAILure. */
