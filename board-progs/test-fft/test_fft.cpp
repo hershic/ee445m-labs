@@ -13,7 +13,7 @@
 
 #include "arm_math.h"
 
-#include "libadc/adc_sim.hpp"
+#include "adc_sim.hpp"
 
 const uint32_t len = 1024;
 uint32_t idx = 0;
@@ -47,14 +47,14 @@ int main(void) {
     adc_sim adc_simulator;
     sim = adc_simulator;
     for(uint32_t i=0; i<len; ++i) {
-	TIMER0A_Handler();
+        TIMER0A_Handler();
     }
     /* end timer substitution code */
     /* =================================== end data =================================== */
 
     /* fft code influenced by http://bit.ly/1GZaHXo */
     uint32_t ifftFlag = 0;
-    uint32_t doBitReverse = 0;	/* not sure what this does */
+    uint32_t doBitReverse = 0;  /* not sure what this does */
 
     arm_status status = ARM_MATH_SUCCESS;
     arm_cfft_radix4_instance_q31 S;
@@ -72,7 +72,7 @@ int main(void) {
     /* Loop here to signal a test PASS. Looping in the postpone_death
      * indicates test FAILure. */
     if (status != ARM_MATH_SUCCESS) {
-	while(1);
+        while(1);
     }
 
     /* main method does not return */

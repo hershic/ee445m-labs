@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 /* Created by Eric Crosson 2015-03-22 */
 /* Revision history: Look in Git FGT */
 
@@ -23,7 +23,7 @@ private:
     uint32_t idx;
     /*! Length of the sine wave model */
     const static uint32_t sine_length = 1024;
-    const static uint32_t sine[sine_length];
+    const static uint16_t sine[sine_length];
 };
 
 #endif
