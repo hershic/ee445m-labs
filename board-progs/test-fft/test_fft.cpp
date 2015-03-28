@@ -19,8 +19,8 @@ const uint32_t len = 1024;
 uint32_t idx = 0;
 
 /*! Location of FFT output data */
-static uint32_t input[len];
-static uint32_t output[len/2];
+static q31_t input[len];
+static q31_t output[len/2];
 
 adc_sim sim;
 
@@ -57,17 +57,17 @@ int main(void) {
     uint32_t doBitReverse = 0;	/* not sure what this does */
 
     arm_status status = ARM_MATH_SUCCESS;
-    arm_cfft_radix_instance_q31 S;
+    arm_cfft_radix4_instance_q31 S;
 
     /* Initialize the CFFT/CIFFT module */
-    status = arm_cfft_radix4_init_f32(&S, sine_length, ifftFlag, doBitReverse);
+    status = arm_cfft_radix4_init_q31(&S, len, ifftFlag, doBitReverse);
 
     /* Process the data through the CFFT/CIFFT modulke */
-    arm_cfft_radix4_q31(&S, sine);
+    arm_cfft_radix4_q31(&S, input);
 
     /* Process the data through the Complex Magnitude Model for
      * calculating the magnitude at each bin */
-    arm_cmplx_mag_q31(sine, output, sine_length);
+    arm_cmplx_mag_q31(input, output, len);
 
     /* Loop here to signal a test PASS. Looping in the postpone_death
      * indicates test FAILure. */

@@ -11,3 +11,4 @@ include_directories(../../driverlib)
 add_executable(test-fft ${test-fft-srcs})
 
 target_link_libraries(test-fft cmsis)
+target_link_libraries(test-fft adc)
