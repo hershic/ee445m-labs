@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 /* Created by Eric Crosson 2015-03-22 */
 /* Revision history: Look in Git FGT */
 
@@ -16,7 +16,7 @@
 #include "adc_sim.hpp"
 
 const uint32_t test_len_samples = 1024;
-const uint32_t fft_len = 512;
+const uint32_t fft_len = test_len_samples/2;
 uint32_t idx = 0;
 
 /*! Location of FFT output data */
