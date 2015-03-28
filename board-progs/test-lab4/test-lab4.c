@@ -331,13 +331,13 @@ int main(void) {
     metadata.adc.channel_configuration =
         ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
     metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-    metadata.adc.trigger_metadata.timer.frequency = 50 Hz;
+    metadata.adc.trigger_metadata.timer.frequency = 500 Hz;
     metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
     metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
-    /* adc_init(metadata); */
-    /* adc_channel_init(metadata); */
-    /* adc_interrupt_init(metadata); */
+    adc_init(metadata);
+    adc_channel_init(metadata);
+    adc_interrupt_init(metadata);
     /* end adc init */
 
     /* begin timer init for button debouncer */
@@ -363,7 +363,7 @@ int main(void) {
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(filter, 100 Hz, DL_SOFT);
-    schedule(simulate_adc, 100 Hz, DL_SOFT);
+    /* schedule(simulate_adc, 100 Hz, DL_SOFT); */
 
     system_init();
     system_register_command((const char*) "plot_on", plot_on);
