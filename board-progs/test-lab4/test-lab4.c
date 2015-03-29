@@ -39,6 +39,10 @@
 #define filter_length 51
 #define disp_length 128
 
+#define plot_mode_raw 0
+#define plot_mode_fft 1
+#define plot_mode_filt 2
+
 const int32_t h[filter_length]={4,-1,-8,-14,-16,-10,-1,6,5,-3,-13,
                                 -15,-8,3,5,-5,-20,-25,-8,25,46,26,-49,-159,-257, 984,
                                 -257,-159,-49,26,46,25,-8,-25,-20,-5,5,3,-8,
@@ -73,8 +77,7 @@ volatile uint32_t button_debounced_mailbox;
 volatile semaphore_t button_debounced_new_data;
 
 int8_t plot_en;
-int8_t plot_fft;
-int8_t plot_filter;
+int8_t plot_mode;
 
 void convolve(int32_t *x, const int32_t *h, int32_t *y, int32_t filter_len, int32_t signal_len) {
     uint32_t i, j;
@@ -148,6 +151,31 @@ void poor_mans_uart_send_string(char* text) {
     }
 }
 
+inline int32_t sine_at(uint32_t freq, uint32_t idx) {
+    return sine[(idx * freq) % sine_length];
+}
+
+void generate_sine(uint32_t freq, int32_t* output, uint32_t output_length) {
+    uint32_t i;
+
+    if (freq > (sine_length/2)) {
+        /* This is unreliable! */
+        while (1) {}
+    }
+
+    for (i=0; i<output_length; i+=1) {
+        output[i] = sine_at(freq, i);
+    }
+}
+
+void expand_data(int32_t* input, int32_t* outupt, uint32_t input_length, uint32_t output_length) {
+
+}
+
+void fill_buffer(int32_t* input, int32_t* outupt, uint32_t input_length, uint32_t output_length) {
+
+}
+
 void display_all_adc_data() {
 
     int16_t i;
@@ -158,12 +186,11 @@ void display_all_adc_data() {
     ST7735_PlotClear(0, 4095);
 
     plot_en = 1;
-    plot_fft = 1;
-    plot_filter = 0;
+    plot_mode = plot_mode_fft;
 
     while (1) {
 
-        if (plot_fft) {
+        if (plot_mode == plot_mode_fft) {
             sem_guard(FFT_DATA_AVAIL) {
                 sem_take(FFT_DATA_AVAIL);
                 delta = signal_length/disp_length;
@@ -181,7 +208,7 @@ void display_all_adc_data() {
                     tmp = ST7735_PlotNext();
                 }
             }
-        } else if (plot_filter) {
+        } else if (plot_mode == plot_mode_filt) {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
                 delta = filter_length/disp_length;
@@ -204,12 +231,25 @@ void display_all_adc_data() {
                 sem_take(HW_ADC_SEQ2_SEM);
 
                 fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
-                ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
 
-                ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]);
-                if (ST7735_PlotNext()) {
-                    ST7735_PlotClear(0, 4095);
+                delta = signal_length/disp_length;
+                tmp+= ADC0_SEQ2_SAMPLES[0];
+                if (j >= delta) {
+                    ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
+                    ST7735_PlotLine(tmp/delta);
+                    if (ST7735_PlotNext()) {
+                        ST7735_PlotClear(0, 4096);
+                    }
+                    j = 0;
+                    ++i;
+                    tmp = 0;
                 }
+                ++j;
+
+                /* ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]); */
+                /* if (ST7735_PlotNext()) { */
+                /*     ST7735_PlotClear(0, 4095); */
+                /* } */
             }
         }
 
@@ -222,7 +262,7 @@ void fft() {
     int32_t i=0;
 
     while (1) {
-        if (FFT_DATA_AVAIL == 0 && plot_fft == 1) {
+        if (FFT_DATA_AVAIL == 0 && plot_mode == plot_mode_fft) {
             sem_guard(HW_ADC_SEQ2_SEM) {
                 sem_take(HW_ADC_SEQ2_SEM);
                 adc_data[i] = ADC0_SEQ2_SAMPLES[0];
@@ -250,7 +290,7 @@ void filter() {
     int32_t i=0;
 
     while (1) {
-        if (FILTERED_DATA_AVAIL == 0 && plot_filter == 1) {
+        if (FILTERED_DATA_AVAIL == 0 && plot_mode == plot_mode_filt) {
             sem_guard(HW_ADC_SEQ2_SEM) {
                 sem_take(HW_ADC_SEQ2_SEM);
                 adc_data[i] = ADC0_SEQ2_SAMPLES[0];
@@ -306,16 +346,20 @@ int plot_off() {
     poor_mans_uart_send_string("ok");
 }
 
-int plot_freq() {
-    plot_fft = 1;
+int plot_fft() {
+    plot_mode = plot_mode_fft;
+    poor_mans_uart_send_string("ok");
+}
+
+int plot_filt() {
+    plot_mode = plot_mode_filt;
     poor_mans_uart_send_string("ok");
 }
 
 int plot_raw() {
-    plot_fft = 0;
+    plot_mode = plot_mode_raw;
     poor_mans_uart_send_string("ok");
 }
-
 
 int sample_raw() {
     poor_mans_uart_send_string("no");
@@ -334,7 +378,7 @@ void simulate_adc() {
 
         if (j > 10) {
             sem_post(HW_ADC_SEQ2_SEM);
-            ADC0_SEQ2_SAMPLES[0] = sine[i & 1023];
+            ADC0_SEQ2_SAMPLES[0] = sine_at(10, i);
             ++i;
             j = 0;
         }
@@ -374,9 +418,9 @@ int main(void) {
     metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
     metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
-    adc_init(metadata);
-    adc_channel_init(metadata);
-    adc_interrupt_init(metadata);
+    /* adc_init(metadata); */
+    /* adc_channel_init(metadata); */
+    /* adc_interrupt_init(metadata); */
     /* end adc init */
 
     /* begin timer init for button debouncer */
@@ -403,7 +447,7 @@ int main(void) {
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
     /* schedule(filter, 100 Hz, DL_SOFT); */
-    /* schedule(simulate_adc, 100 Hz, DL_SOFT); */
+    schedule(simulate_adc, 100 Hz, DL_SOFT);
 
     system_init();
     system_register_command((const char*) "plot_on", plot_on);
