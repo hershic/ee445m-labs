@@ -48,7 +48,8 @@
 // CARD_CS (pin 5) unconnected
 // Data/Command (pin 4) connected to PA6 (GPIO)
 // RESET (pin 3) connected to PA7 (GPIO)
-// VCC (pin 2) connected to +3.3 V// Gnd (pin 1) connected to ground
+// VCC (pin 2) connected to +3.3 V
+// Gnd (pin 1) connected to ground
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
