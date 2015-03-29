@@ -20,13 +20,10 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
 
-#include "libtimer/timer.h"
+#include "libtimer/timer.hpp"
 #include "libos/semaphore.h"
 
 #include <sys/stat.h>
-
-#define HEARTBEAT_MODAL
-#include "libheart/heartbeat.h"
 
 volatile uint32_t sem;
 uint32_t interrupt_counter;
@@ -36,7 +33,7 @@ uint32_t red_work = 0;
 uint32_t blue_work = 0;
 uint32_t green_work = 0;
 
-void led_blink_red() {
+inline void led_blink_red() {
     while (1) {
         ++red_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
@@ -45,7 +42,7 @@ void led_blink_red() {
     }
 }
 
-void led_blink_green() {
+inline void led_blink_green() {
     /* while (1) { */
         ++green_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
@@ -54,13 +51,18 @@ void led_blink_green() {
     /* } */
 }
 
-void led_blink_blue() {
+inline void led_blink_blue() {
     while (1) {
         ++blue_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                      GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
         os_surrender_context();
     }
+}
+
+void TIMER0A_Handler() {
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+    led_blink_green();
 }
 
 int main(void) {
@@ -76,12 +78,8 @@ int main(void) {
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2);
     heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3);
 
-    /* begin timer init */
-    /* timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT); */
-    timer_metadata_init(TIMER0_BASE, 2 Hz, INT_TIMER0A, TIMER_CFG_PERIODIC);
-    hw_driver_init(HW_TIMER, timer_metadata);
-    hw_channel_init(HW_TIMER, timer_metadata);
-    hw_subscribe(HW_TIMER, timer_metadata, led_blink_green);
+    /* begin timer init -- TimerController is periodic by default */
+    TimerController timer = TimerController(TIMER0_BASE, 2 Hz, INT_TIMER0A);
     /* end timer init */
 
     os_threading_init();
