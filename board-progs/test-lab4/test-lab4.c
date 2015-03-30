@@ -78,6 +78,7 @@ volatile semaphore_t button_debounced_new_data;
 
 int8_t plot_en;
 int8_t plot_mode;
+uint32_t sim_freq;
 
 void convolve(int32_t *x, const int32_t *h, int32_t *y, int32_t filter_len, int32_t signal_len) {
     uint32_t i, j;
@@ -376,24 +377,29 @@ int plot_raw() {
     poor_mans_uart_send_string("ok");
 }
 
-int sample_raw() {
-    poor_mans_uart_send_string("no");
+int sim_20() {
+    sim_freq = 20;
 }
 
-int sample_filtered() {
-    poor_mans_uart_send_string("no");
+int sim_10() {
+    sim_freq = 10;
+}
+
+int sim_1() {
+    sim_freq = 1;
 }
 
 void simulate_adc() {
     int8_t j;
     int32_t i;
+    sim_freq = 20;
 
     while (1) {
         ++j;
 
         if (j > 10) {
             sem_post(HW_ADC_SEQ2_SEM);
-            ADC0_SEQ2_SAMPLES[0] = sine_at(20, i);
+            ADC0_SEQ2_SAMPLES[0] = sine_at(sim_freq, i);
             ++i;
             j = 0;
         }
@@ -470,8 +476,9 @@ int main(void) {
     system_register_command((const char*) "plot_raw", plot_raw);
     system_register_command((const char*) "plot_fft", plot_fft);
     system_register_command((const char*) "plot_filt", plot_filt);
-    system_register_command((const char*) "sample_raw", sample_raw);
-    system_register_command((const char*) "sample_filtered", sample_filtered);
+    system_register_command((const char*) "sim_20", sim_20);
+    system_register_command((const char*) "sim_10", sim_10);
+    system_register_command((const char*) "sim_1", sim_1);
 
     /* Initialize hardware devices */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
