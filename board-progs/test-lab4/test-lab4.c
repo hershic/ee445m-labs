@@ -197,7 +197,8 @@ void display_all_adc_data() {
                 for (i=0; i<signal_length; i+=delta) {
                     tmp = 0;
                     for (j=0; j<delta; ++j) {
-                        tmp+= adc_data[2*(i+j)];
+                        /* tmp+= adc_data[2*(i+j)]; */
+                        tmp += adc_freq_data[i+j];
                     }
                     disp_data[i/delta] = tmp/delta;
                 }
@@ -257,6 +258,13 @@ void display_all_adc_data() {
     }
 }
 
+void mag(int32_t* in_complex, int32_t* out_real, uint32_t out_len) {
+    int i;
+    for(i=0; i<out_len; ++i) {
+        arm_sqrt_q31(in_complex[2*i]*in_complex[2*i+1], &out_real[i]);
+    }
+}
+
 void fft() {
 
     int32_t i=0;
@@ -269,14 +277,19 @@ void fft() {
                 i+=2;
 
                 if (i >= fft_length) {
-                    i = 0;
                     /* Process the data through the CFFT/CIFFT modulke */
                     arm_cfft_radix4_q31(&S, adc_data);
 
                     /* Process the data through the Complex Magnitude Model for
                      * calculating the magnitude at each bin */
-                    arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length);
+                    /* arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length); */
+                    /* mag(adc_data, adc_freq_data, signal_length); */
+                    for(i=0; i<signal_length; ++i) {
+                        /* arm_sqrt_q31(adc_data[2*i]*adc_data[2*i+1], &adc_freq_data[i]); */
+                        adc_freq_data[i] = adc_data[2*i]*adc_data[2*i+1];
+                    }
 
+                    i = 0;
                     sem_post(FFT_DATA_AVAIL);
                 }
             }
@@ -378,7 +391,7 @@ void simulate_adc() {
 
         if (j > 10) {
             sem_post(HW_ADC_SEQ2_SEM);
-            ADC0_SEQ2_SAMPLES[0] = sine_at(10, i);
+            ADC0_SEQ2_SAMPLES[0] = sine_at(1, i);
             ++i;
             j = 0;
         }
