@@ -190,67 +190,69 @@ void display_all_adc_data() {
 
     while (1) {
 
-        if (plot_mode == plot_mode_fft) {
-            sem_guard(FFT_DATA_AVAIL) {
-                sem_take(FFT_DATA_AVAIL);
-                delta = signal_length/disp_length;
-                for (i=0; i<signal_length; i+=delta) {
-                    tmp = 0;
-                    for (j=0; j<delta; ++j) {
-                        /* tmp+= adc_data[2*(i+j)]; */
-                        tmp += adc_freq_data[i+j];
+        if (plot_en) {
+            if (plot_mode == plot_mode_fft) {
+                sem_guard(FFT_DATA_AVAIL) {
+                    sem_take(FFT_DATA_AVAIL);
+                    delta = signal_length/disp_length;
+                    for (i=0; i<signal_length; i+=delta) {
+                        tmp = 0;
+                        for (j=0; j<delta; ++j) {
+                            /* tmp+= adc_data[2*(i+j)]; */
+                            tmp += adc_freq_data[i+j];
+                        }
+                        disp_data[i/delta] = tmp/delta;
                     }
-                    disp_data[i/delta] = tmp/delta;
-                }
-                ST7735_DrawString(1, 1, "freq", ST7735_YELLOW);
-                ST7735_PlotClear(-512, 2047);
-                for (i=0; i<disp_length; ++i) {
-                    ST7735_PlotLine(disp_data[i]);
-                    tmp = ST7735_PlotNext();
-                }
-            }
-        } else if (plot_mode == plot_mode_filt) {
-            sem_guard(FILTERED_DATA_AVAIL) {
-                sem_take(FILTERED_DATA_AVAIL);
-                delta = filter_length/disp_length;
-                for (i=0; i<filter_length; i+=delta) {
-                    tmp = 0;
-                    for (j=0; j<delta; ++j) {
-                        tmp+= adc_filtered_data[2*(i+j)];
+                    ST7735_DrawString(1, 1, "fft", ST7735_YELLOW);
+                    ST7735_PlotClear(-512, 2047);
+                    for (i=0; i<disp_length; ++i) {
+                        ST7735_PlotLine(disp_data[i]);
+                        tmp = ST7735_PlotNext();
                     }
-                    disp_data[i/delta] = tmp/delta;
                 }
-                ST7735_DrawString(1, 1, "filt", ST7735_YELLOW);
-                ST7735_PlotClear(-512, 2047);
-                for (i=0; i<disp_length; ++i) {
-                    ST7735_PlotLine(disp_data[i]);
-                    tmp = ST7735_PlotNext();
-                }
-            }
-        } else {
-            sem_guard(HW_ADC_SEQ2_SEM) {
-                sem_take(HW_ADC_SEQ2_SEM);
-
-                fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
-
-                delta = signal_length/disp_length;
-                tmp+= ADC0_SEQ2_SAMPLES[0];
-                if (j >= delta) {
-                    ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
-                    ST7735_PlotLine(tmp/delta);
-                    if (ST7735_PlotNext()) {
-                        ST7735_PlotClear(0, 4096);
+            } else if (plot_mode == plot_mode_filt) {
+                sem_guard(FILTERED_DATA_AVAIL) {
+                    sem_take(FILTERED_DATA_AVAIL);
+                    delta = filter_length/disp_length;
+                    for (i=0; i<filter_length; i+=delta) {
+                        tmp = 0;
+                        for (j=0; j<delta; ++j) {
+                            tmp+= adc_filtered_data[2*(i+j)];
+                        }
+                        disp_data[i/delta] = tmp/delta;
                     }
-                    j = 0;
-                    ++i;
-                    tmp = 0;
+                    ST7735_DrawString(1, 1, "filt", ST7735_YELLOW);
+                    ST7735_PlotClear(-512, 2047);
+                    for (i=0; i<disp_length; ++i) {
+                        ST7735_PlotLine(disp_data[i]);
+                        tmp = ST7735_PlotNext();
+                    }
                 }
-                ++j;
+            } else {
+                sem_guard(HW_ADC_SEQ2_SEM) {
+                    sem_take(HW_ADC_SEQ2_SEM);
 
-                /* ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]); */
-                /* if (ST7735_PlotNext()) { */
-                /*     ST7735_PlotClear(0, 4095); */
-                /* } */
+                    fixed_4_digit_i2s(string_buf, ADC0_SEQ2_SAMPLES[0]);
+
+                    delta = signal_length/disp_length;
+                    tmp+= ADC0_SEQ2_SAMPLES[0];
+                    if (j >= delta) {
+                        ST7735_DrawString(1, 1, string_buf, ST7735_YELLOW);
+                        ST7735_PlotLine(tmp/delta);
+                        if (ST7735_PlotNext()) {
+                            ST7735_PlotClear(0, 4096);
+                        }
+                        j = 0;
+                        ++i;
+                        tmp = 0;
+                    }
+                    ++j;
+
+                    /* ST7735_PlotLine(ADC0_SEQ2_SAMPLES[0]); */
+                    /* if (ST7735_PlotNext()) { */
+                    /*     ST7735_PlotClear(0, 4095); */
+                    /* } */
+                }
             }
         }
 
@@ -391,7 +393,7 @@ void simulate_adc() {
 
         if (j > 10) {
             sem_post(HW_ADC_SEQ2_SEM);
-            ADC0_SEQ2_SAMPLES[0] = sine_at(1, i);
+            ADC0_SEQ2_SAMPLES[0] = sine_at(20, i);
             ++i;
             j = 0;
         }
@@ -465,6 +467,9 @@ int main(void) {
     system_init();
     system_register_command((const char*) "plot_on", plot_on);
     system_register_command((const char*) "plot_off", plot_off);
+    system_register_command((const char*) "plot_raw", plot_raw);
+    system_register_command((const char*) "plot_fft", plot_fft);
+    system_register_command((const char*) "plot_filt", plot_filt);
     system_register_command((const char*) "sample_raw", sample_raw);
     system_register_command((const char*) "sample_filtered", sample_filtered);
 
