@@ -16,9 +16,14 @@ system_command* registered_commands = NULL;
 /** Circular doubly-linked list containing all unregistered commands. */
 system_command* unregistered_commands = NULL;
 
+/*! Invalid command for graceful exit on command-not-found */
+system_command SYSTEM_INVALID_COMMAND;
+
 void system_init() {
 
     system_iterator i;
+    /* Invalidate the invalid command stub */
+    SYSTEM_INVALID_COMMAND.valid = false;
     /* All commands begin in the unregistered state */
     for(i=0; i<SYSTEM_MAX_COMMANDS; ++i) {
         CDL_PREPEND(unregistered_commands, &SYSTEM_COMMANDS[i]);
@@ -58,11 +63,19 @@ bool system_deregister_command(const char* command_name) {
 system_command* _system_command_from_name(const char* command_name) {
 
     system_iterator i=0;
+    system_command *ret;
     while(i<SYSTEM_MAX_COMMANDS &&
           0 != ustrcmp(SYSTEM_COMMANDS[i].name, command_name)) {
         ++i;
     }
-    return &SYSTEM_COMMANDS[i];
+
+    /* Graceful exit on invalid command entry */
+    if (i >= SYSTEM_MAX_COMMANDS) {
+	ret = &SYSTEM_INVALID_COMMAND;
+    } else {
+	ret = &SYSTEM_COMMANDS[i];
+    }
+    return ret;
 }
 
 /* TODO: allow for argument passing */
@@ -73,7 +86,7 @@ exit_status_t system_exec(const char* command, const char** arguments) {
         return sys_command->command(/*arguments*/);
     } else {
         /* TODO: determine what to do here */
-        postpone_death();       /* plan a */
+        /* postpone_death();       /\* plan a *\/ */
         return EXIT_FAILURE;    /* plan b */
     }
 }
