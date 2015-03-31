@@ -430,24 +430,6 @@ int main(void) {
     /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2); */
     /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3); */
 
-    /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
-    /* start adc init */
-    metadata.adc.base = ADC0_BASE;
-    metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
-    metadata.adc.sample_sequence = 2;
-    metadata.adc.channel = 0;
-    metadata.adc.channel_configuration =
-        ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
-    metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-    metadata.adc.trigger_metadata.timer.frequency = 500 Hz;
-    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
-    metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
-
-    /* adc_init(metadata); */
-    /* adc_channel_init(metadata); */
-    /* adc_interrupt_init(metadata); */
-    /* end adc init */
-
     /* begin timer init for button debouncer */
     /* timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT); */
     /* hw_driver_init(HW_TIMER, timer_metadata); */
@@ -472,7 +454,29 @@ int main(void) {
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
     /* schedule(filter, 100 Hz, DL_SOFT); */
-    schedule(simulate_adc, 100 Hz, DL_SOFT);
+    #define USE_SIMULATED_ADC true
+    if (USE_SIMULATED_ADC) {
+	schedule(simulate_adc, 100 Hz, DL_SOFT);
+    }
+    else {
+	/* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
+	/* start adc init */
+	metadata.adc.base = ADC0_BASE;
+	metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
+	metadata.adc.sample_sequence = 2;
+	metadata.adc.channel = 0;
+	metadata.adc.channel_configuration =
+	    ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+	metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
+	metadata.adc.trigger_metadata.timer.frequency = 500 Hz;
+	metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
+	metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
+
+	adc_init(metadata);
+	adc_channel_init(metadata);
+	adc_interrupt_init(metadata);
+	/* end adc init */
+    }
 
     system_init();
     system_register_command((const char*) "plot_on", plot_on);
