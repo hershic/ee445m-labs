@@ -475,7 +475,7 @@ int main(void) {
 	metadata.adc.channel_configuration =
 	    ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
 	metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-	metadata.adc.trigger_metadata.timer.frequency = 1500 Hz;
+	metadata.adc.trigger_metadata.timer.frequency = 15000 Hz;
 	metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
 	metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
