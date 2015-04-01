@@ -347,21 +347,6 @@ void TIMER0A_Handler(void) {
   hw_notify(HW_TIMER, timer_metadata, note);
 }
 
-/*! TIMER1A isr responsible for notifying all subscriptions with
- * information describing the interrupt.
- *
- * This isr was generated
- * automatically by bin/lisp/rtos-interrupt-generator.el
- */
-void TIMER1A_Handler(void) {
-
-  TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-  /* jitter_begin = HWREG(NVIC_ST_CURRENT); */
-  /* notification_init(int, 1); */
-  /* timer_metadata_init(TIMER1_BASE, NULL, NULL, NULL); */
-  /* hw_notify(HW_TIMER, timer_metadata, note); */
-}
-
 /*! TIMER2A isr responsible for notifying all subscriptions with
  * information describing the interrupt.
  *
@@ -386,14 +371,6 @@ void ADC0Seq1_Handler(void) {
 
     ADCIntClear(ADC0_BASE, 1);
     ADCSequenceDataGet(ADC0_BASE, 3, ADC0_SEQ3_SAMPLES);
-}
-
-void ADC0Seq2_Handler(void) {
-
-    ADCIntClear(ADC0_BASE, 2);
-    /* jitter_end = HWREG(NVIC_ST_CURRENT); */
-    ADCSequenceDataGet(ADC0_BASE, 2, ADC0_SEQ2_SAMPLES);
-    sem_post(HW_ADC_SEQ2_SEM);
 }
 
 void ADC0Seq3_Handler(void) {

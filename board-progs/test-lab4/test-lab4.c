@@ -488,3 +488,16 @@ int main(void) {
     /* main never terminates */
     while (1);
 }
+
+void TIMER1A_Handler(void) {
+
+  TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+}
+
+void ADC0Seq2_Handler(void) {
+
+    ADCIntClear(ADC0_BASE, 2);
+    ADCSequenceDataGet(ADC0_BASE, 2, &adc_data[adc_producer_index]);
+    ADC_BUFFER_FILLED += adc_producer_index / (signal_length-1);
+    increment_ptr(&adc_producer_index, signal_length);
+}
