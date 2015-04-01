@@ -98,34 +98,6 @@ void convolve(int32_t *x, const int32_t *h, int32_t *y, int32_t filter_len, int3
     }
 }
 
-void led_blink_red() {
-    while (1) {
-        ++red_work;
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,
-                     GPIO_PIN_1 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1));
-        os_surrender_context();
-    }
-}
-
-void led_blink_green() {
-    while (1) {
-        sem_guard(HW_ADC_SEQ2_SEM) {
-            sem_take(HW_ADC_SEQ2_SEM);
-            ++green_work;
-            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
-                         GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
-            os_surrender_context();
-        }
-    }
-}
-
-void led_blink_blue() {
-    while (1) {
-        ++blue_work;
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-                     GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
-        os_surrender_context();
-    }
 }
 
 /* This function assumes that there is enough space in the string
