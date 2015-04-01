@@ -48,12 +48,12 @@ void led_blink_red() {
 }
 
 void led_blink_green() {
-    /* while (1) { */
+    while (1) {
         ++green_work;
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,
                      GPIO_PIN_3 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_3));
-        /* os_surrender_context(); */
-    /* } */
+        os_surrender_context();
+    }
 }
 
 void led_blink_blue() {
