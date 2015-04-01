@@ -177,7 +177,7 @@ void display_all_adc_data() {
     ST7735_PlotClear(0, 4096);
 
     plot_en = 1;
-    plot_mode = FILT;
+    plot_mode = FFT;
     FILTERED_DATA_AVAIL = 0;
     FFT_DATA_AVAIL = 0;
 
@@ -228,7 +228,7 @@ void display_all_adc_data() {
                 increment_ptr(&adc_consumer_index, signal_length);
                 if (j >= delta) {
                     graph_draw("raw ", "    ");
-                    graph_point(tmp/delta, 0, 4096);
+                    /* graph_point(tmp/delta, 0, 4096); */
                     j = 0;
                     ++i;
                     tmp = 0;
@@ -417,7 +417,7 @@ int main(void) {
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
     schedule(filter, 100 Hz, DL_SOFT);
-    const bool USE_SIMULATED_ADC = true;
+    const bool USE_SIMULATED_ADC = false;
     if (USE_SIMULATED_ADC) {
         schedule(simulate_adc, 100 Hz, DL_SOFT);
     }
