@@ -255,7 +255,7 @@ void scheduler_reschedule(void) {
     if (OS_FIRST_RUN) {
         OS_FIRST_RUN = false;
         SysTickEnable();
-        /* SysTickIntEnable(); */
+        SysTickIntEnable();
     } else {
         clock += pool->deadline;
     }
