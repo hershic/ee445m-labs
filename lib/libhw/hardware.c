@@ -382,14 +382,12 @@ void ADC0Seq0_Handler(void) {
 
     ADCIntClear(ADC0_BASE, 0);
     ADCSequenceDataGet(ADC0_BASE, 3, ADC0_SEQ3_SAMPLES);
-    /* TODO: Conform to Notify */
 }
 
 void ADC0Seq1_Handler(void) {
 
     ADCIntClear(ADC0_BASE, 1);
     ADCSequenceDataGet(ADC0_BASE, 3, ADC0_SEQ3_SAMPLES);
-    /* TODO: Conform to Notify */
 }
 
 void ADC0Seq2_Handler(void) {
@@ -398,7 +396,6 @@ void ADC0Seq2_Handler(void) {
     /* jitter_end = HWREG(NVIC_ST_CURRENT); */
     ADCSequenceDataGet(ADC0_BASE, 2, ADC0_SEQ2_SAMPLES);
     sem_post(HW_ADC_SEQ2_SEM);
-    /* TODO: Conform to Notify */
 }
 
 void ADC0Seq3_Handler(void) {
@@ -406,5 +403,4 @@ void ADC0Seq3_Handler(void) {
     ADCIntClear(ADC0_BASE, 3);
     ADCSequenceDataGet(ADC0_BASE, 3, ADC0_SEQ3_SAMPLES);
     /* GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1); */
-    /* TODO: Conform to Notify */
 }
