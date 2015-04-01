@@ -48,7 +48,7 @@ typedef enum {RAW, FFT, FILT} plot_mode_type;
 
 /* Low Pass Filter v2 */
 const int32_t h[filter_length]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-				1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+                                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
 arm_cfft_radix4_instance_q31 S;
 
@@ -458,26 +458,26 @@ int main(void) {
     schedule(filter, 100 Hz, DL_SOFT);
     const bool USE_SIMULATED_ADC = true;
     if (USE_SIMULATED_ADC) {
-	schedule(simulate_adc, 100 Hz, DL_SOFT);
+        schedule(simulate_adc, 100 Hz, DL_SOFT);
     }
     else {
-	/* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
-	/* start adc init */
-	metadata.adc.base = ADC0_BASE;
-	metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
-	metadata.adc.sample_sequence = 2;
-	metadata.adc.channel = 0;
-	metadata.adc.channel_configuration =
-	    ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
-	metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-	metadata.adc.trigger_metadata.timer.frequency = 15000 Hz;
-	metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
-	metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
+        /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
+        /* start adc init */
+        metadata.adc.base = ADC0_BASE;
+        metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
+        metadata.adc.sample_sequence = 2;
+        metadata.adc.channel = 0;
+        metadata.adc.channel_configuration =
+            ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+        metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
+        metadata.adc.trigger_metadata.timer.frequency = 15000 Hz;
+        metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
+        metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
-	adc_init(metadata);
-	adc_channel_init(metadata);
-	adc_interrupt_init(metadata);
-	/* end adc init */
+        adc_init(metadata);
+        adc_channel_init(metadata);
+        adc_interrupt_init(metadata);
+        /* end adc init */
     }
 
     system_init();
