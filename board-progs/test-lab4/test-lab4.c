@@ -59,8 +59,8 @@ int32_t disp_data[disp_length];
 
 extern semaphore_t HW_ADC_SEQ2_SEM;
 extern semaphore_t HW_BUTTON_RAW_SEM;
-semaphore_t FILTERED_DATA_AVAIL;
-semaphore_t FFT_DATA_AVAIL;
+semaphore_t FILTERED_DATA_AVAIL = 0;
+semaphore_t FFT_DATA_AVAIL = 0;
 extern int32_t ADC0_SEQ2_SAMPLES[4];
 
 uint32_t red_work = 0;
@@ -458,7 +458,7 @@ int main(void) {
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
-    /* schedule(filter, 100 Hz, DL_SOFT); */
+    schedule(filter, 100 Hz, DL_SOFT);
     const bool USE_SIMULATED_ADC = true;
     if (USE_SIMULATED_ADC) {
 	schedule(simulate_adc, 100 Hz, DL_SOFT);
