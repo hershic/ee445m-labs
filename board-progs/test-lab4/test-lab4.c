@@ -180,24 +180,21 @@ void fill_buffer(int32_t* input, int32_t* outupt, uint32_t input_length, uint32_
 }
 
 /*! Draw a pro graph plot -- not the data. */
-void graph_draw(char title[5], char adc_itos[5]) {
+inline void graph_draw(char title[5], char adc_itos[5]) {
 
     /* Draw the graph title and value of point */
     ST7735_DrawString(1, 1, title, ST7735_YELLOW);
-    ST7735_DrawString(1, 7, adc_itos, ST7735_YELLOW);
-
-    /* Clear the plot for new data */
-    ST7735_PlotClear(-512, 2047);
+    ST7735_DrawString(7, 1, adc_itos, ST7735_YELLOW);
 }
 
 /*! Graph one point on our pro graph. If a graph carriage-return is
  *  detected, clear the graph and prepare for displaying a new line
  *  from the left side of the screen. */
-void graph_point(int32_t data) {
+inline void graph_point(int32_t data, int32_t lower_limit, int32_t upper_limit) {
 
     ST7735_PlotLine(data);
     if (ST7735_PlotNext()) {
-	ST7735_PlotClear(0, 4096);
+        ST7735_PlotClear(lower_limit, upper_limit);
     }
 }
 
@@ -208,65 +205,65 @@ void display_all_adc_data() {
     char adc_itos[5];
     int32_t delta;
     int32_t tmp;
-    ST7735_PlotClear(0, 4095);
+    ST7735_PlotClear(0, 4096);
 
     plot_en = 1;
-    plot_mode = FFT;
+    plot_mode = RAW;
 
     while (1) {
         if (!plot_en) {continue;}
 
-	if (plot_mode == FFT) {
-	    sem_guard(FFT_DATA_AVAIL) {
-		sem_take(FFT_DATA_AVAIL);
+        if (plot_mode == FFT) {
+            sem_guard(FFT_DATA_AVAIL) {
+                sem_take(FFT_DATA_AVAIL);
 
-		delta = signal_length/disp_length;
-		for (i=0; i<signal_length; i+=delta) {
-		    for (tmp=0, j=0; j<delta; ++j) {
-			tmp += adc_freq_data[i+j]; /* this line is special */
-		    }
-		    disp_data[i/delta] = tmp/delta;
-		}
-		graph_draw("fft ", "    ");
-		for (i=0; i<disp_length; ++i) {
-		    graph_point(disp_data[i]);
-		}
-	    }
-	} else if (plot_mode == FILT) {
-	    sem_guard(FILTERED_DATA_AVAIL) {
-		sem_take(FILTERED_DATA_AVAIL);
+                delta = signal_length/disp_length;
+                for (i=0; i<signal_length; i+=delta) {
+                    for (tmp=0, j=0; j<delta; ++j) {
+                        tmp += adc_freq_data[i+j]; /* this line is special */
+                    }
+                    disp_data[i/delta] = tmp/delta;
+                }
+                graph_draw("fft ", "    ");
+                for (i=0; i<disp_length; ++i) {
+                    graph_point(disp_data[i], -512, 2048);
+                }
+            }
+        } else if (plot_mode == FILT) {
+            sem_guard(FILTERED_DATA_AVAIL) {
+                sem_take(FILTERED_DATA_AVAIL);
 
-		delta = filter_length/disp_length;
-		for (tmp=0, i=0; i<filter_length; i+=delta) {
-		    for (j=0; j<delta; ++j) {
-			tmp+= adc_filtered_data[2*(i+j)]; /* this line is special */
-		    }
-		    disp_data[i/delta] = tmp/delta;
-		}
-		graph_draw("filt", "    ");
-		for (i=0; i<disp_length; ++i) {
-		    graph_point(disp_data[i]);
-		}
-	    }
-	} else {
-	    sem_guard(HW_ADC_SEQ2_SEM) {
-		sem_take(HW_ADC_SEQ2_SEM);
+                delta = filter_length/disp_length;
+                for (tmp=0, i=0; i<filter_length; i+=delta) {
+                    for (j=0; j<delta; ++j) {
+                        tmp+= adc_filtered_data[2*(i+j)]; /* this line is special */
+                    }
+                    disp_data[i/delta] = tmp/delta;
+                }
+                graph_draw("filt", "    ");
+                for (i=0; i<disp_length; ++i) {
+                    graph_point(disp_data[i], -512, 2048);
+                }
+            }
+        } else {
+            sem_guard(HW_ADC_SEQ2_SEM) {
+                sem_take(HW_ADC_SEQ2_SEM);
 
-		/* this block is completely fucking different */
-		fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]);
+                /* this block is completely fucking different */
+                fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]);
 
-		delta = signal_length/disp_length;
-		tmp += ADC0_SEQ2_SAMPLES[0];
-		if (j >= delta) {
-		    graph_draw("raw ", "    ");
-		    graph_point(tmp/delta);
-		    j = 0;
-		    ++i;
-		    tmp = 0;
-		}
-		++j;
-	    }
-	}
+                delta = signal_length/disp_length;
+                tmp += ADC0_SEQ2_SAMPLES[0];
+                if (j >= delta) {
+                    graph_draw("raw ", "    ");
+                    graph_point(tmp/delta, 0, 4096);
+                    j = 0;
+                    ++i;
+                    tmp = 0;
+                }
+                ++j;
+            }
+        }
         os_surrender_context();
     }
 }
