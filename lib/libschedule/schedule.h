@@ -16,7 +16,7 @@
 #include "libhw/hardware.h"
 /* #include "libut/uthash.h" */
 
-#define SCHEDULER_DEFAULT_MAX_THREADS    5
+#define SCHEDULER_DEFAULT_MAX_THREADS    8
 #define SYSTICKS_PER_HZ                  80000000
 #define MAX_SYSTICKS_PER_HZ              16777216
 #define SYSCTLCLOCK                      16000000
