@@ -39,9 +39,7 @@
 #define filter_length 51
 #define disp_length 128
 
-#define plot_mode_raw 0
-#define plot_mode_fft 1
-#define plot_mode_filt 2
+typedef enum {RAW, FFT, FILT} plot_mode_type;
 
 /* const int32_t h[filter_length]={4,-1,-8,-14,-16,-10,-1,6,5,-3,-13, */
 /*                                 -15,-8,3,5,-5,-20,-25,-8,25,46,26,-49,-159,-257, 984, */
@@ -55,7 +53,7 @@ const int32_t h[filter_length]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 arm_cfft_radix4_instance_q31 S;
 
 int32_t adc_data[fft_length];
-oint32_t adc_freq_data[signal_length];
+int32_t adc_freq_data[signal_length];
 int32_t adc_filtered_data[filter_length];
 int32_t disp_data[disp_length];
 
@@ -213,12 +211,12 @@ void display_all_adc_data() {
     ST7735_PlotClear(0, 4095);
 
     plot_en = 1;
-    plot_mode = plot_mode_fft;
+    plot_mode = FFT;
 
     while (1) {
         if (!plot_en) {continue;}
 
-	if (plot_mode == plot_mode_fft) {
+	if (plot_mode == FFT) {
 	    sem_guard(FFT_DATA_AVAIL) {
 		sem_take(FFT_DATA_AVAIL);
 
@@ -234,7 +232,7 @@ void display_all_adc_data() {
 		    graph_point(disp_data[i]);
 		}
 	    }
-	} else if (plot_mode == plot_mode_filt) {
+	} else if (plot_mode == FILT) {
 	    sem_guard(FILTERED_DATA_AVAIL) {
 		sem_take(FILTERED_DATA_AVAIL);
 
@@ -285,7 +283,7 @@ void fft() {
     int32_t i=0;
 
     while (1) {
-        if (FFT_DATA_AVAIL == 0 && plot_mode == plot_mode_fft) {
+        if (FFT_DATA_AVAIL == 0 && plot_mode == FFT) {
             sem_guard(HW_ADC_SEQ2_SEM) {
                 sem_take(HW_ADC_SEQ2_SEM);
                 adc_data[i] = ADC0_SEQ2_SAMPLES[0];
@@ -318,7 +316,7 @@ void filter() {
     int32_t i=0;
 
     while (1) {
-        if (FILTERED_DATA_AVAIL == 0 && plot_mode == plot_mode_filt) {
+        if (FILTERED_DATA_AVAIL == 0 && plot_mode == FILT) {
             sem_guard(HW_ADC_SEQ2_SEM) {
                 sem_take(HW_ADC_SEQ2_SEM);
                 adc_data[i++] = ADC0_SEQ2_SAMPLES[0];
@@ -374,17 +372,17 @@ int plot_off() {
 }
 
 int plot_fft() {
-    plot_mode = plot_mode_fft;
+    plot_mode = FFT;
     poor_mans_uart_send_string("ok");
 }
 
 int plot_filt() {
-    plot_mode = plot_mode_filt;
+    plot_mode = FILT;
     poor_mans_uart_send_string("ok");
 }
 
 int plot_raw() {
-    plot_mode = plot_mode_raw;
+    plot_mode = RAW;
     poor_mans_uart_send_string("ok");
 }
 
