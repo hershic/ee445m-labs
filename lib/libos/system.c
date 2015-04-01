@@ -7,6 +7,9 @@
 #include "libut/utlist.h"
 #include "libstd/nexus.h"
 
+/*! libsystem debugging switch */
+#define SYSTEM_DEBUG false
+
 /** Statically allocated space for all system commands to reside. */
 static system_command SYSTEM_COMMANDS[SYSTEM_MAX_COMMANDS];
 
@@ -82,6 +85,11 @@ system_command* _system_command_from_name(const char* command_name) {
 exit_status_t system_exec(const char* command, const char** arguments) {
 
     system_command* sys_command = _system_command_from_name(command);
+#ifdef SYSTEM_DEBUG
+    uart_send_string("System executed is: ");
+    uart_send_string(command);
+    uart_send_string("\n");
+#endif
     if (sys_command->valid) {
         return sys_command->command(/*arguments*/);
     } else {
