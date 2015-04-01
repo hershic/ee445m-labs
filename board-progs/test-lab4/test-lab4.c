@@ -249,7 +249,7 @@ void display_all_adc_data() {
 		fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]);
 
 		delta = signal_length/disp_length;
-		tmp+= ADC0_SEQ2_SAMPLES[0];
+		tmp += ADC0_SEQ2_SAMPLES[0];
 		if (j >= delta) {
 		    ST7735_DrawString(1, 1, "raw ", ST7735_YELLOW);
 		    ST7735_PlotLine(tmp/delta);
