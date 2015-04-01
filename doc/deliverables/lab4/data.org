@@ -1,0 +1,11 @@
+* Analog Data
+** Dynamic System Test
+| Frequency | Amplitude |
+|-----------+-----------|
+| 100 Hz    | 2.9 V     |
+| 250 Hz    | 2.6 V     |
+| 350 Hz    | 2.2 V     |
+| 500 Hz    | 1.44 v    |
+| 750 Hz    | 1.12 V    |
+| 1 KHz     | 520 mV    |
+| 2 KHz     | 200 mV    |
