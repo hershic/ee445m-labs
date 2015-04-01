@@ -63,13 +63,7 @@ semaphore_t FILTERED_DATA_AVAIL = 0;
 semaphore_t FFT_DATA_AVAIL = 0;
 extern int32_t ADC0_SEQ2_SAMPLES[4];
 
-uint32_t red_work = 0;
-uint32_t blue_work = 0;
-uint32_t green_work = 0;
 
-/* uint32_t ADC_DATA_IDX = 0; */
-/* uint32_t ADC_DATA_FIFO[51]; */
-/* uint32_t ADC_DATA_SEM = 0; */
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
@@ -141,14 +135,6 @@ void generate_sine(uint32_t freq, int32_t* output, uint32_t output_length) {
     for (i=0; i<output_length; i+=1) {
         output[i] = sine_at(freq, i);
     }
-}
-
-void expand_data(int32_t* input, int32_t* outupt, uint32_t input_length, uint32_t output_length) {
-
-}
-
-void fill_buffer(int32_t* input, int32_t* outupt, uint32_t input_length, uint32_t output_length) {
-
 }
 
 /*! Draw a pro graph plot -- not the data. */
@@ -398,17 +384,6 @@ int main(void) {
     /* Initialize the output screen */
     Output_On();
 
-    /* initialize the led gpio pins */
-    /* heart_init(); */
-    /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_1); */
-    /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_2); */
-    /* heart_init_(GPIO_PORTF_BASE, GPIO_PIN_3); */
-
-    /* begin timer init for button debouncer */
-    /* timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT); */
-    /* hw_driver_init(HW_TIMER, timer_metadata); */
-    /* end timer init for button debouncer */
-
     /* button init */
     button_left_pressed = 0;
     button_right_pressed = 0;
@@ -422,7 +397,6 @@ int main(void) {
     /* end button init */
 
     os_threading_init();
-    schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(display_all_adc_data, 200 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
