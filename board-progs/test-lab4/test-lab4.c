@@ -52,18 +52,19 @@ const int32_t h[filter_length]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 
 arm_cfft_radix4_instance_q31 S;
 
-int32_t adc_data[fft_length];
-int32_t adc_freq_data[signal_length];
+uint32_t adc_producer_index = 0;
+uint32_t adc_consumer_index = 0;
+
+int32_t adc_data[signal_length];
+int32_t adc_fft_data[fft_length];
 int32_t adc_filtered_data[filter_length];
 int32_t disp_data[disp_length];
 
-extern semaphore_t HW_ADC_SEQ2_SEM;
 extern semaphore_t HW_BUTTON_RAW_SEM;
 semaphore_t FILTERED_DATA_AVAIL = 0;
 semaphore_t FFT_DATA_AVAIL = 0;
-extern int32_t ADC0_SEQ2_SAMPLES[4];
 
-
+semaphore_t ADC_BUFFER_FILLED = 0;
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
@@ -92,6 +93,8 @@ void convolve(int32_t *x, const int32_t *h, int32_t *y, int32_t filter_len, int3
     }
 }
 
+inline void increment_ptr(uint32_t* ptr, uint32_t wrap_len) {
+    *ptr = (*ptr + 1) % wrap_len;
 }
 
 /* This function assumes that there is enough space in the string
@@ -138,7 +141,7 @@ void generate_sine(uint32_t freq, int32_t* output, uint32_t output_length) {
 }
 
 /*! Draw a pro graph plot -- not the data. */
-inline void graph_draw(char title[5], char adc_itos[5]) {
+void graph_draw(char title[5], char adc_itos[5]) {
 
     /* Draw the graph title and value of point */
     ST7735_DrawString(1, 1, title, ST7735_YELLOW);
@@ -156,6 +159,14 @@ inline void graph_point(int32_t data, int32_t lower_limit, int32_t upper_limit) 
     }
 }
 
+/*! Graph one point on our pro graph. Do not clear the screen (no
+ *  carriage-return).  */
+inline void graph_point_nocr(int32_t data) {
+
+    ST7735_PlotLine(data);
+    ST7735_PlotNext();
+}
+
 void display_all_adc_data() {
 
     int16_t i;
@@ -166,7 +177,9 @@ void display_all_adc_data() {
     ST7735_PlotClear(0, 4096);
 
     plot_en = 1;
-    plot_mode = RAW;
+    plot_mode = FILT;
+    FILTERED_DATA_AVAIL = 0;
+    FFT_DATA_AVAIL = 0;
 
     while (1) {
         if (!plot_en) {continue;}
@@ -174,44 +187,45 @@ void display_all_adc_data() {
         if (plot_mode == FFT) {
             sem_guard(FFT_DATA_AVAIL) {
                 sem_take(FFT_DATA_AVAIL);
+                ST7735_PlotClear(-512, 2048);
 
                 delta = signal_length/disp_length;
                 for (i=0; i<signal_length; i+=delta) {
                     for (tmp=0, j=0; j<delta; ++j) {
-                        tmp += adc_freq_data[i+j]; /* this line is special */
+                        tmp += adc_fft_data[i+j];
                     }
                     disp_data[i/delta] = tmp/delta;
                 }
                 graph_draw("fft ", "    ");
                 for (i=0; i<disp_length; ++i) {
-                    graph_point(disp_data[i], -512, 2048);
+                    graph_point_nocr(disp_data[i]);
                 }
             }
         } else if (plot_mode == FILT) {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
+                ST7735_PlotClear(-512, 2048);
 
-                delta = filter_length/disp_length;
-                for (tmp=0, i=0; i<filter_length; i+=delta) {
-                    for (j=0; j<delta; ++j) {
-                        tmp+= adc_filtered_data[2*(i+j)]; /* this line is special */
+                delta = filter_length/disp_length>0 ? signal_length/disp_length : 1;
+                for (i=0; i<filter_length; i+=delta) {
+                    for (tmp=0, j=0; j<delta; ++j) {
+                        tmp+= adc_filtered_data[i+j];
                     }
                     disp_data[i/delta] = tmp/delta;
                 }
                 graph_draw("filt", "    ");
                 for (i=0; i<disp_length; ++i) {
-                    graph_point(disp_data[i], -512, 2048);
+                    graph_point_nocr(disp_data[i]);
                 }
             }
         } else {
-            sem_guard(HW_ADC_SEQ2_SEM) {
-                sem_take(HW_ADC_SEQ2_SEM);
-
+            while (adc_producer_index != adc_consumer_index) {
                 /* this block is completely fucking different */
-                fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]);
+                /* fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]); */
 
                 delta = signal_length/disp_length;
-                tmp += ADC0_SEQ2_SAMPLES[0];
+                tmp += adc_data[adc_consumer_index];
+                increment_ptr(&adc_consumer_index, signal_length);
                 if (j >= delta) {
                     graph_draw("raw ", "    ");
                     graph_point(tmp/delta, 0, 4096);
@@ -220,6 +234,11 @@ void display_all_adc_data() {
                     tmp = 0;
                 }
                 ++j;
+
+                /* graph_draw("raw ", "    "); */
+                /* graph_point(adc_data[adc_consumer_index], 0, 4096); */
+                /* increment_ptr(&adc_consumer_index, signal_length); */
+
             }
         }
         os_surrender_context();
@@ -235,31 +254,32 @@ void mag(int32_t* in_complex, int32_t* out_real, uint32_t out_len) {
 
 void fft() {
 
-    int32_t i=0;
+    int32_t i;
 
     while (1) {
         if (FFT_DATA_AVAIL == 0 && plot_mode == FFT) {
-            sem_guard(HW_ADC_SEQ2_SEM) {
-                sem_take(HW_ADC_SEQ2_SEM);
-                adc_data[i] = ADC0_SEQ2_SAMPLES[0];
-                i+=2;
+            sem_guard(ADC_BUFFER_FILLED) {
+                sem_take(ADC_BUFFER_FILLED);
 
-                if (i >= fft_length) {
-                    /* Process the data through the CFFT/CIFFT modulke */
-                    arm_cfft_radix4_q31(&S, adc_data);
-
-                    /* Process the data through the Complex Magnitude Model for
-                     * calculating the magnitude at each bin */
-                    /* arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length); */
-                    /* mag(adc_data, adc_freq_data, signal_length); */
-                    for(i=0; i<signal_length; ++i) {
-                        /* arm_sqrt_q31(adc_data[2*i]*adc_data[2*i+1], &adc_freq_data[i]); */
-                        adc_freq_data[i] = adc_data[2*i]*adc_data[2*i+1];
-                    }
-
-                    i = 0;
-                    sem_post(FFT_DATA_AVAIL);
+                /* OH NO, A MEMCPY */
+                for (i=0; i<signal_length; ++i) {
+                    adc_fft_data[2*i] = adc_data[i];
+                    adc_fft_data[2*i+1] = 0;
                 }
+
+                /* Process the data through the CFFT/CIFFT modulke */
+                arm_cfft_radix4_q31(&S, adc_fft_data);
+
+                /* Process the data through the Complex Magnitude Model for
+                 * calculating the magnitude at each bin */
+                /* arm_cmplx_mag_q31(adc_data, adc_freq_data, signal_length); */
+                /* mag(adc_data, adc_freq_data, signal_length); */
+                for(i=0; i<signal_length; ++i) {
+                    /* arm_sqrt_q31(adc_data[2*i]*adc_data[2*i+1], &adc_freq_data[i]); */
+                    adc_fft_data[i] = adc_fft_data[2*i]*adc_fft_data[2*i+1];
+                }
+
+                sem_post(FFT_DATA_AVAIL);
             }
         }
         os_surrender_context();
@@ -268,18 +288,12 @@ void fft() {
 
 void filter() {
 
-    int32_t i=0;
-
     while (1) {
         if (FILTERED_DATA_AVAIL == 0 && plot_mode == FILT) {
-            sem_guard(HW_ADC_SEQ2_SEM) {
-                sem_take(HW_ADC_SEQ2_SEM);
-                adc_data[i++] = ADC0_SEQ2_SAMPLES[0];
-                if (i >= filter_length) {
-                    i = 0;
-                    convolve(adc_data, h, adc_filtered_data, filter_length, filter_length);
-                    sem_post(FILTERED_DATA_AVAIL);
-                }
+            sem_guard(ADC_BUFFER_FILLED) {
+                sem_take(ADC_BUFFER_FILLED);
+                convolve(adc_data, h, adc_filtered_data, filter_length, filter_length);
+                sem_post(FILTERED_DATA_AVAIL);
             }
         }
         os_surrender_context();
@@ -361,9 +375,10 @@ void simulate_adc() {
     while (1) {
         ++j;
 
-        if (j > 10) {
-            sem_post(HW_ADC_SEQ2_SEM);
-            ADC0_SEQ2_SAMPLES[0] = sine_at(sim_freq, i);
+        if (j > 1) {
+            adc_data[adc_producer_index] = sine_at(sim_freq, i);
+            ADC_BUFFER_FILLED += adc_producer_index / (signal_length-1);
+            increment_ptr(&adc_producer_index, signal_length);
             ++i;
             j = 0;
         }
