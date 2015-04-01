@@ -182,7 +182,7 @@ void fill_buffer(int32_t* input, int32_t* outupt, uint32_t input_length, uint32_
 }
 
 /*! Draw a pro graph plot -- not the data. */
-void draw_graph(char title[5], char adc_itos[5]) {
+void graph_draw(char title[5], char adc_itos[5]) {
 
     /* Draw the graph title and value of point */
     ST7735_DrawString(1, 1, title, ST7735_YELLOW);
@@ -190,6 +190,17 @@ void draw_graph(char title[5], char adc_itos[5]) {
 
     /* Clear the plot for new data */
     ST7735_PlotClear(-512, 2047);
+}
+
+/*! Graph one point on our pro graph. If a graph carriage-return is
+ *  detected, clear the graph and prepare for displaying a new line
+ *  from the left side of the screen. */
+void graph_point(int32_t data) {
+
+    ST7735_PlotLine(data);
+    if (ST7735_PlotNext()) {
+	ST7735_PlotClear(0, 4096);
+    }
 }
 
 void display_all_adc_data() {
@@ -212,34 +223,29 @@ void display_all_adc_data() {
 		sem_take(FFT_DATA_AVAIL);
 		delta = signal_length/disp_length;
 		for (i=0; i<signal_length; i+=delta) {
-		    tmp = 0;
-		    for (j=0; j<delta; ++j) {
-			/* tmp+= adc_data[2*(i+j)]; */
+		    for (tmp=0, j=0; j<delta; ++j) {
 			tmp += adc_freq_data[i+j];
 		    }
 		    disp_data[i/delta] = tmp/delta;
 		}
-		draw_graph("fft ", "    ");
+		graph_draw("fft ", "    ");
 		for (i=0; i<disp_length; ++i) {
-		    ST7735_PlotLine(disp_data[i]);
-		    tmp = ST7735_PlotNext();
+		    graph_point(disp_data[i]);
 		}
 	    }
 	} else if (plot_mode == plot_mode_filt) {
 	    sem_guard(FILTERED_DATA_AVAIL) {
 		sem_take(FILTERED_DATA_AVAIL);
 		delta = filter_length/disp_length;
-		for (i=0; i<filter_length; i+=delta) {
-		    tmp = 0;
+		for (tmp=0, i=0; i<filter_length; i+=delta) {
 		    for (j=0; j<delta; ++j) {
 			tmp+= adc_filtered_data[2*(i+j)];
 		    }
 		    disp_data[i/delta] = tmp/delta;
 		}
-		draw_graph("filt", "    ");
+		graph_draw("filt", "    ");
 		for (i=0; i<disp_length; ++i) {
-		    ST7735_PlotLine(disp_data[i]);
-		    tmp = ST7735_PlotNext();
+		    graph_point(disp_data[i]);
 		}
 	    }
 	} else {
@@ -251,11 +257,8 @@ void display_all_adc_data() {
 		delta = signal_length/disp_length;
 		tmp += ADC0_SEQ2_SAMPLES[0];
 		if (j >= delta) {
-		    draw_graph("raw ", "    ");
-		    ST7735_PlotLine(tmp/delta);
-		    if (ST7735_PlotNext()) {
-			ST7735_PlotClear(0, 4096);
-		    }
+		    graph_draw("raw ", "    ");
+		    graph_point(tmp/delta);
 		    j = 0;
 		    ++i;
 		    tmp = 0;
