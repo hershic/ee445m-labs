@@ -251,7 +251,7 @@ void display_all_adc_data() {
 		delta = signal_length/disp_length;
 		tmp += ADC0_SEQ2_SAMPLES[0];
 		if (j >= delta) {
-		    ST7735_DrawString(1, 1, "raw ", ST7735_YELLOW);
+		    draw_graph("raw ", "    ");
 		    ST7735_PlotLine(tmp/delta);
 		    if (ST7735_PlotNext()) {
 			ST7735_PlotClear(0, 4096);
