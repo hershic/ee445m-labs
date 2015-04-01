@@ -454,7 +454,7 @@ int main(void) {
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
     /* schedule(filter, 100 Hz, DL_SOFT); */
-    #define USE_SIMULATED_ADC true
+    #define USE_SIMULATED_ADC false
     if (USE_SIMULATED_ADC) {
 	schedule(simulate_adc, 100 Hz, DL_SOFT);
     }
