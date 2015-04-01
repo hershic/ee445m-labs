@@ -67,16 +67,14 @@ void led_blink_blue() {
 
 int doctor() {
 
-    /* uart_set_active_channel(UART0_BASE); */
-    UARTCharPut(UART0_BASE, 'd');
+     UARTCharPut(UART0_BASE, 'd');
     /* uart_send_string("Well what did you expect would happen? You're dreaming!\n"); */
     return EXIT_SUCCESS;
 }
 
 int witch() {
 
-    /* uart_set_active_channel(UART0_BASE); */
-    uart_send_string("no help here\n");
+     uart_send_string("no help here\n");
     return EXIT_SUCCESS;
 }
 
@@ -110,5 +108,7 @@ int main(void) {
 
     IntMasterEnable();
     os_launch();
+
+    /* main function never returns */
     postpone_death();
 }
