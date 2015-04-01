@@ -55,7 +55,7 @@ const int32_t h[filter_length]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 arm_cfft_radix4_instance_q31 S;
 
 int32_t adc_data[fft_length];
-int32_t adc_freq_data[signal_length];
+oint32_t adc_freq_data[signal_length];
 int32_t adc_filtered_data[filter_length];
 int32_t disp_data[disp_length];
 
@@ -69,9 +69,9 @@ uint32_t red_work = 0;
 uint32_t blue_work = 0;
 uint32_t green_work = 0;
 
-uint32_t ADC_DATA_IDX = 0;
-uint32_t ADC_DATA_FIFO[51];
-uint32_t ADC_DATA_SEM = 0;
+/* uint32_t ADC_DATA_IDX = 0; */
+/* uint32_t ADC_DATA_FIFO[51]; */
+/* uint32_t ADC_DATA_SEM = 0; */
 
 volatile uint32_t button_left_pressed;
 volatile uint32_t button_right_pressed;
