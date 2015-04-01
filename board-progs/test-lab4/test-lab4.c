@@ -141,7 +141,7 @@ void generate_sine(uint32_t freq, int32_t* output, uint32_t output_length) {
 }
 
 /*! Draw a pro graph plot -- not the data. */
-void graph_draw(char title[5], char adc_itos[5]) {
+inline void graph_draw(char title[5], char adc_itos[5]) {
 
     /* Draw the graph title and value of point */
     ST7735_DrawString(1, 1, title, ST7735_YELLOW);
