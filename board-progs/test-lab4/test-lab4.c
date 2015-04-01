@@ -447,7 +447,7 @@ int main(void) {
     /* end button init */
 
     os_threading_init();
-    /* schedule(led_blink_red, 100 Hz, DL_SOFT); */
+    schedule(led_blink_red, 100 Hz, DL_SOFT);
     schedule(display_all_adc_data, 200 Hz, DL_SOFT);
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);

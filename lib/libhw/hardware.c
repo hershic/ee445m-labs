@@ -287,7 +287,6 @@ void UART0_Handler(void) {
                     UARTCharPut(UART0_BASE, '\b');
                     UARTCharPut(UART0_BASE, ' ');
                     UARTCharPut(UART0_BASE, '\b');
-
                     /* Decrement the number of chars in the buffer */
                     buffer_dec(UART0_RX_BUFFER);
                     /* Skip ahead to next buffered char */

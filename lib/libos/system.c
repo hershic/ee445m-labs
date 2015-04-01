@@ -8,7 +8,7 @@
 #include "libstd/nexus.h"
 
 /*! libsystem debugging switch */
-#define SYSTEM_DEBUG false
+const bool SYSTEM_DEBUG = false;
 
 /** Statically allocated space for all system commands to reside. */
 static system_command SYSTEM_COMMANDS[SYSTEM_MAX_COMMANDS];
