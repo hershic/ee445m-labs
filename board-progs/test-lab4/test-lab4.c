@@ -313,8 +313,7 @@ void filter() {
         if (FILTERED_DATA_AVAIL == 0 && plot_mode == plot_mode_filt) {
             sem_guard(HW_ADC_SEQ2_SEM) {
                 sem_take(HW_ADC_SEQ2_SEM);
-                adc_data[i] = ADC0_SEQ2_SAMPLES[0];
-                ++i;
+                adc_data[i++] = ADC0_SEQ2_SAMPLES[0];
                 if (i >= filter_length) {
                     i = 0;
                     convolve(adc_data, h, adc_filtered_data, filter_length, filter_length);
@@ -468,7 +467,7 @@ int main(void) {
 	metadata.adc.channel_configuration =
 	    ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
 	metadata.adc.trigger_metadata.timer.base = TIMER1_BASE;
-	metadata.adc.trigger_metadata.timer.frequency = 15000 Hz;
+	metadata.adc.trigger_metadata.timer.frequency = 1500 Hz;
 	metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER1A;
 	metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
 
