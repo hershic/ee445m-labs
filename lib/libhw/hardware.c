@@ -263,11 +263,10 @@ void UART0_Handler(void) {
     UARTIntClear(UART0_BASE, interrupts);
 
     /* Are we being interrupted because the TX FIFO has space available? */
-    if(interrupts & UART_INT_TX) {
+    /* if(interrupts & UART_INT_TX) { */
         /* Move as many bytes as we can into the transmit FIFO */
-        /* TODO:  */
         /* uart_prime_transmit(UART0_BASE); */
-    }
+    /* } */
 
     /* Are we being interrupted due to a received character? */
     if(interrupts & (UART_INT_RX | UART_INT_RT)) {
@@ -285,9 +284,9 @@ void UART0_Handler(void) {
                 /* If there are any chars to delete, delete the last text */
                 if(!buffer_empty(UART0_RX_BUFFER)) {
                     /* Erase previous characters on the user's terminal */
-                    /* UARTCharPut(UART0_BASE, '\b'); */
-                    /* UARTCharPut(UART0_BASE, ' '); */
-                    /* UARTCharPut(UART0_BASE, '\b'); */
+                    UARTCharPut(UART0_BASE, '\b');
+                    UARTCharPut(UART0_BASE, ' ');
+                    UARTCharPut(UART0_BASE, '\b');
 
                     /* Decrement the number of chars in the buffer */
                     buffer_dec(UART0_RX_BUFFER);
