@@ -221,10 +221,11 @@ void display_all_adc_data() {
 	if (plot_mode == plot_mode_fft) {
 	    sem_guard(FFT_DATA_AVAIL) {
 		sem_take(FFT_DATA_AVAIL);
+
 		delta = signal_length/disp_length;
 		for (i=0; i<signal_length; i+=delta) {
 		    for (tmp=0, j=0; j<delta; ++j) {
-			tmp += adc_freq_data[i+j];
+			tmp += adc_freq_data[i+j]; /* this line is special */
 		    }
 		    disp_data[i/delta] = tmp/delta;
 		}
@@ -236,10 +237,11 @@ void display_all_adc_data() {
 	} else if (plot_mode == plot_mode_filt) {
 	    sem_guard(FILTERED_DATA_AVAIL) {
 		sem_take(FILTERED_DATA_AVAIL);
+
 		delta = filter_length/disp_length;
 		for (tmp=0, i=0; i<filter_length; i+=delta) {
 		    for (j=0; j<delta; ++j) {
-			tmp+= adc_filtered_data[2*(i+j)];
+			tmp+= adc_filtered_data[2*(i+j)]; /* this line is special */
 		    }
 		    disp_data[i/delta] = tmp/delta;
 		}
@@ -252,6 +254,7 @@ void display_all_adc_data() {
 	    sem_guard(HW_ADC_SEQ2_SEM) {
 		sem_take(HW_ADC_SEQ2_SEM);
 
+		/* this block is completely fucking different */
 		fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]);
 
 		delta = signal_length/disp_length;
@@ -458,7 +461,7 @@ int main(void) {
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
     /* schedule(filter, 100 Hz, DL_SOFT); */
-    #define USE_SIMULATED_ADC false
+    const bool USE_SIMULATED_ADC = true;
     if (USE_SIMULATED_ADC) {
 	schedule(simulate_adc, 100 Hz, DL_SOFT);
     }
