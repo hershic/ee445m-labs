@@ -344,17 +344,18 @@ void button_debounce_daemon() {
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                              GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
                 /* ++button_left_pressed; */
-                ST7735_DrawString(1, 2, "1", ST7735_YELLOW);
+                /* ST7735_DrawString(1, 2, "1", ST7735_YELLOW); */
+                plot_mode = (plot_mode+1) % 3;
             } else {
-                ST7735_DrawString(1, 2, "0", ST7735_YELLOW);
+                /* ST7735_DrawString(1, 2, "0", ST7735_YELLOW); */
             }
             if (~button_raw_data & BUTTON_RIGHT) {
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                              GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
                 /* ++button_right_pressed; */
-                ST7735_DrawString(2, 2, "1", ST7735_YELLOW);
+                /* ST7735_DrawString(2, 2, "1", ST7735_YELLOW); */
             } else {
-                ST7735_DrawString(2, 2, "0", ST7735_YELLOW);
+                /* ST7735_DrawString(2, 2, "0", ST7735_YELLOW); */
             }
         }
         os_surrender_context();
