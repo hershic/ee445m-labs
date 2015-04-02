@@ -232,29 +232,21 @@ void display_all_adc_data() {
                 }
             }
         } else {
-            while (adc_producer_index != adc_consumer_index) {
-                /* this block is completely fucking different */
-                /* fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]); */
+                ST7735_PlotClear(0, 4096);
 
-                ST7735_PlotClear(-512, 2048);
-
-                delta = signal_length/disp_length;
-                tmp += adc_data[adc_consumer_index];
-                increment_ptr(&adc_consumer_index, signal_length);
-                if (j >= delta) {
-                    graph_draw("raw ", "    ");
-                    /* graph_point(tmp/delta, 0, 4096); */
-                    j = 0;
-                    ++i;
-                    tmp = 0;
+                delta = (signal_length)/disp_length;
+                while(adc_producer_index != 0) {}
+                for (i=0; i<(signal_length); i+=delta) {
+                    while(i > adc_producer_index) {}
+                    for (tmp=0, j=0; j<delta; ++j) {
+                        tmp+= adc_data[i+j];
+                    }
+                    disp_data[i/delta] = tmp/delta;
                 }
-                ++j;
-
-                /* graph_draw("raw ", "    "); */
-                /* graph_point(adc_data[adc_consumer_index], 0, 4096); */
-                /* increment_ptr(&adc_consumer_index, signal_length); */
-
-            }
+                graph_draw("raw ", "    ");
+                for (i=0; i<disp_length; ++i) {
+                    graph_point_nocr(disp_data[i]);
+                }
         }
         os_surrender_context();
     }
