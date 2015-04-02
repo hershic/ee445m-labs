@@ -34,9 +34,9 @@
 
 #include "sine.h"
 
-#define signal_length 1024
+#define signal_length 512
 #define fft_length signal_length*2
-#define filter_length 51
+#define filter_length 128
 #define disp_length 128
 
 typedef enum {RAW, FFT, FILT} plot_mode_type;
@@ -47,17 +47,26 @@ typedef enum {RAW, FFT, FILT} plot_mode_type;
 /*                                 -15,-13,-3,5,6,-1,-10,-16,-14,-8,-1,4}; */
 
 /* Low Pass Filter v2 */
-const int32_t h[filter_length]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+const int32_t h[filter_length]= {-2, -1, -1, -1, -1, -1, 0, 0, 0, 1, 1, 2, 3, 4, 4, 5, 6, 7, 7, 7,
+                                 7, 7, 6, 5, 4, 2, 0, -3, -5, -9, -12, -16, -19, -22, -25, -28, -30,
+                                 -31, -31, -31, -29, -25, -21, -14, -7, 2, 13, 25, 38, 52, 67, 83,
+                                 99, 115, 130, 146, 160, 174, 186, 196, 205, 211, 216, 218, 218,
+                                 216, 211, 205, 196, 186, 174, 160, 146, 130, 115, 99, 83, 67, 52,
+                                 38, 25, 13, 2, -7, -14, -21, -25, -29, -31, -31, -31, -30, -28,
+                                 -25, -22, -19, -16, -12, -9, -5, -3, 0, 2, 4, 5, 6, 7, 7, 7, 7, 7,
+                                 6, 5, 4, 4, 3, 2, 1, 1, 0, 0, 0, -1, -1, -1, -1, -1, -2};
 
-arm_cfft_radix4_instance_q31 S;
+arm_rfft_instance_q31 S;
+arm_cfft_radix4_instance_q31 S_CFFT;
 
 uint32_t adc_producer_index = 0;
 uint32_t adc_consumer_index = 0;
 
 int32_t adc_data[signal_length];
+int32_t adc_processing_data[signal_length];
+int32_t adc_data2[signal_length];
 int32_t adc_fft_data[fft_length];
-int32_t adc_filtered_data[filter_length];
+int32_t adc_filtered_data[filter_length + signal_length - 1];
 int32_t disp_data[disp_length];
 
 extern semaphore_t HW_BUTTON_RAW_SEM;
@@ -89,7 +98,7 @@ void convolve(int32_t *x, const int32_t *h, int32_t *y, int32_t filter_len, int3
         for(j = jmin; j<=jmax; ++j) {
             y[i]+= (h[j] * x[i-j]);
         }
-        y[i] /= 256;
+        y[i] /= 4096;
     }
 }
 
@@ -187,12 +196,12 @@ void display_all_adc_data() {
         if (plot_mode == FFT) {
             sem_guard(FFT_DATA_AVAIL) {
                 sem_take(FFT_DATA_AVAIL);
-                ST7735_PlotClear(-512, 2048);
+                ST7735_PlotClear(0, 4096);
 
                 delta = signal_length/disp_length;
                 for (i=0; i<signal_length; i+=delta) {
                     for (tmp=0, j=0; j<delta; ++j) {
-                        tmp += adc_fft_data[i+j];
+                        tmp += adc_fft_data[2*(i+j)];
                     }
                     disp_data[i/delta] = tmp/delta;
                 }
@@ -204,10 +213,10 @@ void display_all_adc_data() {
         } else if (plot_mode == FILT) {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
-                ST7735_PlotClear(-512, 2048);
+                ST7735_PlotClear(-1024, 1024);
 
-                delta = filter_length/disp_length>0 ? signal_length/disp_length : 1;
-                for (i=0; i<filter_length; i+=delta) {
+                delta = (signal_length)/disp_length;
+                for (i=0; i<(signal_length); i+=delta) {
                     for (tmp=0, j=0; j<delta; ++j) {
                         tmp+= adc_filtered_data[i+j];
                     }
@@ -223,12 +232,14 @@ void display_all_adc_data() {
                 /* this block is completely fucking different */
                 /* fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]); */
 
+                ST7735_PlotClear(-512, 2048);
+
                 delta = signal_length/disp_length;
                 tmp += adc_data[adc_consumer_index];
                 increment_ptr(&adc_consumer_index, signal_length);
                 if (j >= delta) {
                     graph_draw("raw ", "    ");
-                    graph_point(tmp/delta, 0, 4096);
+                    /* graph_point(tmp/delta, 0, 4096); */
                     j = 0;
                     ++i;
                     tmp = 0;
@@ -259,16 +270,19 @@ void fft() {
     while (1) {
         if (FFT_DATA_AVAIL == 0 && plot_mode == FFT) {
             sem_guard(ADC_BUFFER_FILLED) {
-                sem_take(ADC_BUFFER_FILLED);
+                /* sem_take(ADC_BUFFER_FILLED); */
 
-                /* OH NO, A MEMCPY */
+                /* This takes a snapshot of the adc data after the
+                   next pass, making sure that there is absolutely no
+                   aliasing. */
+                while(adc_producer_index != 0) {}
                 for (i=0; i<signal_length; ++i) {
-                    adc_fft_data[2*i] = adc_data[i];
-                    adc_fft_data[2*i+1] = 0;
+                    while(i > adc_producer_index) {}
+                    adc_processing_data[i] = adc_data[i];
                 }
 
-                /* Process the data through the CFFT/CIFFT modulke */
-                arm_cfft_radix4_q31(&S, adc_fft_data);
+                /* Process the data through the RFFT/RIFFT module */
+                arm_rfft_q31(&S, adc_processing_data, adc_fft_data);
 
                 /* Process the data through the Complex Magnitude Model for
                  * calculating the magnitude at each bin */
@@ -276,10 +290,11 @@ void fft() {
                 /* mag(adc_data, adc_freq_data, signal_length); */
                 for(i=0; i<signal_length; ++i) {
                     /* arm_sqrt_q31(adc_data[2*i]*adc_data[2*i+1], &adc_freq_data[i]); */
-                    adc_fft_data[i] = adc_fft_data[2*i]*adc_fft_data[2*i+1];
+                    adc_fft_data[i] = adc_fft_data[2*i]*adc_fft_data[2*i] + adc_fft_data[2*i+1]*adc_fft_data[2*i+1];
                 }
 
                 sem_post(FFT_DATA_AVAIL);
+                ADC_BUFFER_FILLED = 0;
             }
         }
         os_surrender_context();
@@ -288,12 +303,24 @@ void fft() {
 
 void filter() {
 
+    uint32_t i;
+
     while (1) {
         if (FILTERED_DATA_AVAIL == 0 && plot_mode == FILT) {
             sem_guard(ADC_BUFFER_FILLED) {
-                sem_take(ADC_BUFFER_FILLED);
-                convolve(adc_data, h, adc_filtered_data, filter_length, filter_length);
+
+                /* This takes a snapshot of the adc data after the
+                   next pass, making sure that there is absolutely no
+                   aliasing. */
+                while(adc_producer_index != 0) {}
+                for (i=0; i<signal_length; ++i) {
+                    while(i > adc_producer_index) {}
+                    adc_processing_data[i] = adc_data[i] - 2048;
+                }
+
+                convolve(adc_processing_data, h, adc_filtered_data, filter_length, signal_length);
                 sem_post(FILTERED_DATA_AVAIL);
+                ADC_BUFFER_FILLED = 0;
             }
         }
         os_surrender_context();
@@ -417,7 +444,7 @@ int main(void) {
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(fft, 100 Hz, DL_SOFT);
     schedule(filter, 100 Hz, DL_SOFT);
-    const bool USE_SIMULATED_ADC = true;
+    const bool USE_SIMULATED_ADC = false;
     if (USE_SIMULATED_ADC) {
         schedule(simulate_adc, 100 Hz, DL_SOFT);
     }
@@ -465,7 +492,7 @@ int main(void) {
     arm_status status = ARM_MATH_SUCCESS;
 
     /* Initialize the CFFT/CIFFT module */
-    status = arm_cfft_radix4_init_q31(&S, signal_length, ifftFlag, doBitReverse);
+    status = arm_rfft_init_q31(&S, &S_CFFT, signal_length, ifftFlag, doBitReverse);
 
     /* If execution enters this loop there is a problem that needs to be addressed */
     if (status != ARM_MATH_SUCCESS) {
