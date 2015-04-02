@@ -217,7 +217,7 @@ void display_all_adc_data() {
         } else if (plot_mode == FILT) {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
-                ST7735_PlotClear(-1024, 1024);
+                ST7735_PlotClear(-2048, 2048);
 
                 delta = (signal_length)/disp_length;
                 for (i=0; i<(signal_length); i+=delta) {
