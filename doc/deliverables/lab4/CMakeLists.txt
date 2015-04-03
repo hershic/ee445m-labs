@@ -9,6 +9,9 @@ add_custom_target (copy)
 add_custom_command (
   TARGET copy
   COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/test-lab4/test-lab4.c ${doc-staging-area}/lab4.c
+  COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/test-lab4/filter_gen.m ${doc-staging-area}/filter_gen.m
+  COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/test-lab4/signal_gen.m ${doc-staging-area}/signal_gen.m
+  COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/test-lab4/test.m ${doc-staging-area}/test.m
 )
 
 add_latex_document (writeup.tex
