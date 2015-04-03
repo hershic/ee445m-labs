@@ -173,16 +173,17 @@ actual data versus ideal data in Octave.
   \begin{Ex}
     Prove your FIR implementation can not overflow.
     \begin{solution} \hbr
-      Our ADC samples from voltages which convert to integer values
-      from 0 to 4095, which is then offset by 2048 to make our data
-      fit between -2048 and 2047. Our filter is of length 51. During
-      our \verb|convolve| function, we multiply and accumulate the
-      value from the ADC by the value from the filter. In a worst-case
-      scenario, the filter would continuously apply
-      \verb|y[i] += (-2048)*(-2048)| 51 times. The maximum value
-      possible during this calculation is 213909504. The maximum
-      allowable signed 32-bit integer value is 2147483648. Thus, it is
-      impossible for our filter to overflow.
+      Our ADC samples voltages which convert to integer values between
+      0 to 4095, inclusive, which is then offset by -2048 to make our
+      data fit between -2048 and 2047. Our filter is of length
+      51. During our \verb|convolve| function, we multiply and
+      accumulate the value from the ADC by the value from the
+      filter. In a worst-case scenario, the filter would continuously
+      apply \verb|y[i] += (-2048)*(-2048)| 51 times for one index of
+      the low-pass filter data. The maximum value possible during this
+      calculation is 213909504. The maximum allowable signed 32-bit
+      integer value is 2147483648, a difference of 1933574144. Thus,
+      it is impossible for our filter to overflow.
     \end{solution}
   \end{Ex}
 \item
