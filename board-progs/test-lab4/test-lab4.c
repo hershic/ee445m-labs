@@ -47,14 +47,18 @@ typedef enum {RAW, FFT, FILT} plot_mode_type;
 /*                                 -15,-13,-3,5,6,-1,-10,-16,-14,-8,-1,4}; */
 
 /* Low Pass Filter v2 */
-const int32_t h[filter_length]= {-2, -1, -1, -1, -1, -1, 0, 0, 0, 1, 1, 2, 3, 4, 4, 5, 6, 7, 7, 7,
-                                 7, 7, 6, 5, 4, 2, 0, -3, -5, -9, -12, -16, -19, -22, -25, -28, -30,
-                                 -31, -31, -31, -29, -25, -21, -14, -7, 2, 13, 25, 38, 52, 67, 83,
-                                 99, 115, 130, 146, 160, 174, 186, 196, 205, 211, 216, 218, 218,
-                                 216, 211, 205, 196, 186, 174, 160, 146, 130, 115, 99, 83, 67, 52,
-                                 38, 25, 13, 2, -7, -14, -21, -25, -29, -31, -31, -31, -30, -28,
-                                 -25, -22, -19, -16, -12, -9, -5, -3, 0, 2, 4, 5, 6, 7, 7, 7, 7, 7,
-                                 6, 5, 4, 4, 3, 2, 1, 1, 0, 0, 0, -1, -1, -1, -1, -1, -2};
+const int32_t h[filter_length]= {-2, -1, -1, -1, -1, -1, 0, 0, 0, 1, 1, 2, 3, 4,
+                                 4, 5, 6, 7, 7, 7, 7, 7, 6, 5, 4, 2, 0, -3, -5,
+                                 -9, -12, -16, -19, -22, -25, -28, -30, -31,
+                                 -31, -31, -29, -25, -21, -14, -7, 2, 13, 25,
+                                 38, 52, 67, 83, 99, 115, 130, 146, 160, 174,
+                                 186, 196, 205, 211, 216, 218, 218, 216, 211,
+                                 205, 196, 186, 174, 160, 146, 130, 115, 99, 83,
+                                 67, 52, 38, 25, 13, 2, -7, -14, -21, -25, -29,
+                                 -31, -31, -31, -30, -28, -25, -22, -19, -16,
+                                 -12, -9, -5, -3, 0, 2, 4, 5, 6, 7, 7, 7, 7, 7,
+                                 6, 5, 4, 4, 3, 2, 1, 1, 0, 0, 0, -1, -1, -1,
+                                 -1, -1, -2};
 
 arm_rfft_instance_q31 S;
 arm_cfft_radix4_instance_q31 S_CFFT;
@@ -213,7 +217,7 @@ void display_all_adc_data() {
         } else if (plot_mode == FILT) {
             sem_guard(FILTERED_DATA_AVAIL) {
                 sem_take(FILTERED_DATA_AVAIL);
-                ST7735_PlotClear(-1024, 1024);
+                ST7735_PlotClear(-2048, 2048);
 
                 delta = (signal_length)/disp_length;
                 for (i=0; i<(signal_length); i+=delta) {
@@ -228,29 +232,21 @@ void display_all_adc_data() {
                 }
             }
         } else {
-            while (adc_producer_index != adc_consumer_index) {
-                /* this block is completely fucking different */
-                /* fixed_4_digit_i2s(adc_itos, ADC0_SEQ2_SAMPLES[0]); */
+                ST7735_PlotClear(0, 4096);
 
-                ST7735_PlotClear(-512, 2048);
-
-                delta = signal_length/disp_length;
-                tmp += adc_data[adc_consumer_index];
-                increment_ptr(&adc_consumer_index, signal_length);
-                if (j >= delta) {
-                    graph_draw("raw ", "    ");
-                    /* graph_point(tmp/delta, 0, 4096); */
-                    j = 0;
-                    ++i;
-                    tmp = 0;
+                delta = (signal_length)/disp_length;
+                while(adc_producer_index != 0) {}
+                for (i=0; i<(signal_length); i+=delta) {
+                    while(i > adc_producer_index) {}
+                    for (tmp=0, j=0; j<delta; ++j) {
+                        tmp+= adc_data[i+j];
+                    }
+                    disp_data[i/delta] = tmp/delta;
                 }
-                ++j;
-
-                /* graph_draw("raw ", "    "); */
-                /* graph_point(adc_data[adc_consumer_index], 0, 4096); */
-                /* increment_ptr(&adc_consumer_index, signal_length); */
-
-            }
+                graph_draw("raw ", "    ");
+                for (i=0; i<disp_length; ++i) {
+                    graph_point_nocr(disp_data[i]);
+                }
         }
         os_surrender_context();
     }
@@ -340,17 +336,18 @@ void button_debounce_daemon() {
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                              GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
                 /* ++button_left_pressed; */
-                ST7735_DrawString(1, 2, "1", ST7735_YELLOW);
+                /* ST7735_DrawString(1, 2, "1", ST7735_YELLOW); */
+                plot_mode = (plot_mode+1) % 3;
             } else {
-                ST7735_DrawString(1, 2, "0", ST7735_YELLOW);
+                /* ST7735_DrawString(1, 2, "0", ST7735_YELLOW); */
             }
             if (~button_raw_data & BUTTON_RIGHT) {
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                              GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
                 /* ++button_right_pressed; */
-                ST7735_DrawString(2, 2, "1", ST7735_YELLOW);
+                /* ST7735_DrawString(2, 2, "1", ST7735_YELLOW); */
             } else {
-                ST7735_DrawString(2, 2, "0", ST7735_YELLOW);
+                /* ST7735_DrawString(2, 2, "0", ST7735_YELLOW); */
             }
         }
         os_surrender_context();
