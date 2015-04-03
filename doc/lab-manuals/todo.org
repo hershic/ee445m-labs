@@ -47,8 +47,8 @@
 - be prepared to field questions addressing interrupts/FIFOs
 - demonstrate each interpreter command
 - show screen displaying two stuffs
-* [6/14] Lab 2
-** [6/6] Part 1
+* [1/2] Lab 2
+** DONE [6/6] Part 1
 Demonstrate each of the following
 *** DONE Testmain1
 - needs cooperative thread scheduler without interrupts
@@ -164,7 +164,7 @@ the lab manual.
       responsible for storing R4-R11 to the process stack.
 *** DONE Checkout
 <2015-02-16 Mon 10:30>
-** [0/7] Part 2
+** TODO [1/3] Part 2
 Your job is to design, implement and test operating system commands
 that implement a multiple thread environment.
 
@@ -172,69 +172,20 @@ Note: The word task in this lab is not a formal term, rather a general
 description of an overall function implemented with a combination of
 hardware, background threads (ISR), and foreground threads (main
 programs).
-*** TODO test libsemaphore
-- call =os_signal= from a periodic interrupt
-- call =os_wait= in the main loop and watch the loop step after =os_signal=
-*** [1/2] profiling compile-time flag
+*** DONE [2/2] profiling compile-time flag
 - [X] compiles minimally intrusive pin-toggling code to
 identify when and what tcb is running
-- [ ] measure PIDWork with and without the profiling code
-*** [0/2] guarantee UART never loses data
+- [X] measure PIDWork with and without the profiling code
+*** TODO [0/2] guarantee UART never loses data
 - [ ] stress test :: Hammer it and increase the capacity until no chars
                  are dropped from libuart or libshell
 - [ ] profile ::  Create a table like Table 2.1 in [[./Lab02.pdf]]
-*** IN-PROGRESS make callback to task scheduler explicit
-*** TODO Task 1 : Software triggered data acquisition and filtering
-What's the AR? I have no idea.
-**** notes
-For the data acquisition system DAS, the software must start the
-analog-to-digital converter (ADC) and read the result at precise time
-intervals.
-
-In Labs 2 and 3, f_s is 2 kHz.
-
-I don't know what the fuck this page is asking me to do.
-*** IN-PROGRESS Task 2 : Aperiodic task triggered by the select switch
-A background thread =ButtonPush= should be run whenever the user touches
-the select button. This task will create a foreground thread that:
-
-1. outputs to the LCD,
-2. sleeps for 50ms,
-3. outputs again to the LCD, then
-4. kills itself
-
-Note: if the user pushes the button faster than once every two
-seconds, multiple foreground threads will exist simultaneously.
-*** IN-PROGRESS Task 3 : Hardware triggered data acquisition and FFT
-This task will sample the ADC every 400 Hz (2.5 ms) via a
-hardware-triggered timer.
-
-1. start collecting data (takes 64 ms)
-2. fft on the block, when done trigger interrupt
-3. ADC ISR (=producer=) pushes with =OS_Fifo_Put= into global mem space
-4. =Consumer= foreground thread calculates the FFT
-   question: so the fft is calculated twice? once by us once by
-   hardware?
-
-*Note*: you *must* use 16-bit mode for timer-triggered adc sampling.
-*** IN-PROGRESS Task 4 : CPU Bound task
-- increment PIDWork (global var) continually
-- reset it to 0 each time you are granted foreground
-- try to maximize high water mark of PIDWork
-*** IN-PROGRESS Task 5 : User interface with a command line interpreter
-- use libshell developed in Lab 1
-**** IN-PROGRESS answer esc's questions
-[[../../lib/libshell/shell.c]]
-All invocations to uart_send are through uart.h. Should this be to
-libhw, who then queues it? Is this thread-save? is libuart?
-- I guess so, uart sends chars with an interrupt, doesn't it? pendsv
-  won't interrupt it IF WE SENT PENDSV CORRECTLY. The way we're
-  heading, we'll need a TxFIFO won't we?
-*** [0/4] Checkout
-- [ ] Run the software system and explain the profiling data to the TA
-- [ ] Discuss the sketches you created as part of prep & procedure
-- [ ] Discuss the TCB before and after a thread switch
-- [ ] Identify inefficiencies in your implementation
+*** TODO make callback to task scheduler explicit
+*** [4/4] Checkout
+- [X] Run the software system and explain the profiling data to the TA
+- [X] Discuss the sketches you created as part of prep & procedure
+- [X] Discuss the TCB before and after a thread switch
+- [X] Identify inefficiencies in your implementation
 *** [3/3] Deliverables
 - 20 points :: report
 - 10 points :: software quality
@@ -273,22 +224,8 @@ libhw, who then queues it? Is this thread-save? is libuart?
   - [X] Without going back and actually measuring it, do you think the
      Consumer ever waits when it calls OS_MailBox_Send?
      Explain.
-* [3/10] Lab 3
-** [1/5] Preparation
-*** TODO Add a priority field to =OS_AddPeriodicThread=
-**** Valvano
-Consider at least two ways to implement the second periodic background
-thread. A priority parameter in the OS_AddPeriodicThread function
-allows the user to specify the relative priority of the four
-background threads.  This priority does not affect the fact that all
-background threads (two periodic, two aperiodic) will preempt any
-foreground thread. In this lab, OS_AddPeriodicThread will be called 0,
-1, or 2 times. Think about how would your implementation be different
-if there were 10 background threads? Write C code to implement this
-new expanded periodic thread feature.
-**** Decrypted
-We already have a way to start periodic threads, this just means we
-need to rebuild libhw as a threading daemon.
+* [1/1] Lab 3
+** DONE [4/4] Preparation
 *** DONE Add libjitter
 **** DONE Add profiling functionality to os
 PendSV needs to record the SysTick before and after thread switch to
@@ -303,8 +240,8 @@ user code in Lab2.c so they are compatible with your RTOS.
 **** Decrypted
 Add libjitter, which just keeps a running average and/or buffer of
 pidwork values. Research SV (System Service Call).
-*** BLOCKED [3/4] Aperiodic background thread triggered on button press
-**** TODO Create priority threads
+*** DONE [4/4] Aperiodic background thread triggered on button press
+**** DONE Create priority threads
 **** DONE Create single-shot threads
 **** DONE Button Detection
 **** DONE Button Debouncing
@@ -322,7 +259,7 @@ priority of the four background threads.
 **** Decrypted
 Basically, get libhw working and make libbutton generalized to work on
 any gpio (it's almost there).
-*** TODO Implement a counting semaphore
+*** CANCELED Implement a counting semaphore
 **** Valvano
 Consider at least two ways to implement blocking semaphores. In this
 class, we have 1 to 10 foreground threads.  How would your
@@ -345,7 +282,7 @@ Edit Lab2.c so it is compatible with your RTOS. Modify the numbers in
 Signal2() so that the period of this thread is variable.
 **** Decrypted
 Make a counting semaphore.
-*** TODO Consider how to implement a priority scheduler
+*** DONE Consider how to implement a priority scheduler
 **** Valvano
 Consider at least two ways to implement the priority scheduler. Again,
 think about how would your implementation be different if there were
@@ -363,8 +300,8 @@ Think about how to implement a priority scheduler. Then implement it.
 - task: display threadcount to lcd, watch it increase with button-created threads
 - fft to smash the cpu and increase jitter
 - task 4/5: from starter code. also to smash cpu for jitter
-* [0/2] Lab 4
-** TODO [1/3] preparation
+* [2/2] Lab 4
+** DONE [3/3] preparation
 *** DONE analog interface design/low-pass filter                  :hershal:
 - update <2015-03-18 Wed>:
   - LAB CLOSED until <2015-03-23 Mon>
@@ -379,14 +316,14 @@ Think about how to implement a priority scheduler. Then implement it.
     - 4.220 kOhm Resistor
     - 7.870 kOhm Resistor
     - 68 nF Capacitor
-*** TODO real time data acquisition                               :hershal:
+*** DONE real time data acquisition                               :hershal:
 **** DONE use the adc to sample data from the ir sensor          :hershal:
-**** TODO [2/4] add interpreter commands:                           :eric:
+**** DONE [4/4] add interpreter commands:                           :eric:
 ***** DONE enable/disable sampling
-***** TODO enable/disable filtering
+***** DONE enable/disable filtering
 ***** DONE print out the raw adc data
-***** TODO print out the filtered adc data
-*** IN-PROGRESS design a FIR filter
+***** CANCELED print out the filtered adc data
+*** DONE design a FIR filter
 - design a digial FIR filter to condition the signal
 **** chat with Priscilla
 - look up matlab command =freqz=
@@ -394,8 +331,8 @@ Think about how to implement a priority scheduler. Then implement it.
   - [[http://users.ece.utexas.edu/~bevans/courses/realtime/lectures/05_FIR_Filters/index.html]]
 - look at hw2
 - look at slides from lab3
-** IN-PROGRESS [0/2] plot the data on the lcd
-**** TODO [1/2] plot:
+** DONE [2/2] plot the data on the lcd
+**** DONE [2/2] plot:
 ***** DONE voltage vs. time
-***** TODO voltage vs. frequency
-**** TODO plots modes switchable by interpreter commands            :eric:
+***** CANCELED voltage vs. frequency
+**** CANCELED plots modes switchable by interpreter commands        :eric:
