@@ -136,8 +136,7 @@ actual data versus ideal data in Octave.
     Explain how you measured maximum bandwidth. What was the
     limiting factor affecting bandwidth?
     \begin{solution} \hbr
-      \todo since we don't have fft... isn't that going to be the most
-      computationally intensive (bandwidth-limiting) section?
+      I don't know how to answer this question.
     \end{solution}
   \end{Ex}
 \item
@@ -193,7 +192,9 @@ actual data versus ideal data in Octave.
     reduce the number of multiplies from 51 to 26?
     $y[i]=(h[0]*x[i]+h[1]*x[i-1]+h[2]*x[i-2]+\cdots+h[50]*x[i-50])/256;$
     \begin{solution} \hbr
-      \todo I'm not sure... will revisit.
+      We can factor out the $h[0]*x[i] + h[50]*x[i-50]$ so that it
+      turns out to be $h[0]*(x[i] + x[50-i]$. This will reduce the
+      number of multiplications from 51 to 26.
     \end{solution}
   \end{Ex}
 \item
