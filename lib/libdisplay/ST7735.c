@@ -19,10 +19,13 @@
 // ST7735.c
 // Runs on LM4F120/TM4C123
 // Low level drivers for the ST7735 160x128 LCD based off of
-// the file described above.
+// the file described above.  Further modified for simultaneous
+// use of the SD card (CS on PD7) and ST7735 LCD (CS on PA3).
+//    16-bit color, 128 wide by 160 high LCD
 // Daniel Valvano
 // September 12, 2013
 // Augmented 7/17/2014 to have a simple graphics facility
+// Tested with LaunchPadDLL.dll simulator 9/2/2014
 
 /* This example accompanies the book
    "Embedded Systems: Real Time Interfacing to Arm Cortex M Microcontrollers",
@@ -41,16 +44,16 @@
  */
 
 // Backlight (pin 10) connected to +3.3 V
-// MISO (pin 9) unconnected
+// MISO (pin 9) connected to PA4 (SSI0Rx)
 // SCK (pin 8) connected to PA2 (SSI0Clk)
 // MOSI (pin 7) connected to PA5 (SSI0Tx)
-// TFT_CS (pin 6) connected to PA3 (SSI0Fss)
-// CARD_CS (pin 5) unconnected
-// Data/Command (pin 4) connected to PA6 (GPIO)
+// TFT_CS (pin 6) connected to PA3 (GPIO/SSI0Fss)
+// CARD_CS (pin 5) connected to PD7 (GPIO)
+// Data/Command (pin 4) connected to PA6 (GPIO), high for data, low for command
 // RESET (pin 3) connected to PA7 (GPIO)
 // VCC (pin 2) connected to +3.3 V
 // Gnd (pin 1) connected to ground
-#include <stdlib.h>
+
 #include "stdio_hershic.h"
 #include <stdint.h>
 #include "ST7735.h"
@@ -722,7 +725,6 @@ void static commandList(const uint8_t *addr) {
 
 // Initialization code common to both 'B' and 'R' type displays
 void static commonInit(const uint8_t *cmdList) {
-  volatile uint32_t delay;
   ColStart  = RowStart = 0; // May be overridden in init func
                                         // activate clock for Port A
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0;
