@@ -12,6 +12,7 @@
 \usepackage{color}
 \usepackage{enumerate}
 \usepackage{pdfpages}
+\usepackage{paracol}
 
 \newenvironment{Ex}{\textbf{Problem}\vspace{.75em}\\}{}
 \Newassociation{solution}{Soln}{Answers}
@@ -61,10 +62,10 @@
 
 \section{Objectives}
 \begin{itemize}
-  \item Interface a microphone and record sounds
-  \item Design and implement an analog HPF, LPF and digital FIR filters
-  \item Build a spectrum analyzer
-  \item Write a real-time application that displays in both the time domain and the frequency domain
+\item Interface a microphone and record sounds
+\item Design and implement an analog HPF, LPF and digital FIR filters
+\item Build a spectrum analyzer
+\item Write a real-time application that displays in both the time domain and the frequency domain
 \end{itemize}
 
 \section{Hardware Design}
@@ -96,16 +97,163 @@ accuracy, FFT) was by visual examination of output through the
 LCD.
 
 \section{Measurement Data}
-\begin{enumerate}[a)]
-  \item Dynamic circuit performance
-  \item Digital scope data
-  \item Spectrum analyzer data
-  \item FIR filter test data
+\begin{enumerate}
+\item Dynamic circuit performance \\
+  Below are photographs of the LCD display during sampling of the a
+  frequency of the indicated frequency from a signal generator. The
+  axes are time vs. voltage.
+  \begin{paracol}{2}
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/filtered_100Hz}
+      \caption{\texttt{Filtered data 100 Hz plot}}
+      \label{fig:filtered_100}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/filtered_200Hz}
+      \caption{\texttt{Filtered data 200 Hz plot}}
+      \label{fig:filtered_200}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/filtered_300Hz}
+      \caption{\texttt{Filtered data 300 Hz plot}}
+      \label{fig:filtered_300}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/filtered_400Hz}
+      \caption{\texttt{Filtered data 400 Hz plot}}
+      \label{fig:filtered_400}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/filtered_500Hz}
+      \caption{\texttt{Filtered data 500 Hz plot}}
+      \label{fig:filtered_500}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/filtered_600Hz}
+      \caption{\texttt{Filtered data 600 Hz plot}}
+      \label{fig:filtered_600}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/raw_100Hz}
+      \caption{\texttt{Raw data 100 Hz plot}}
+      \label{fig:raw_100}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/raw_200Hz}
+      \caption{\texttt{Raw data 200 Hz plot}}
+      \label{fig:raw_200}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/raw_300Hz}
+      \caption{\texttt{Raw data 300 Hz plot}}
+      \label{fig:raw_300}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/raw_400Hz}
+      \caption{\texttt{Raw data 400 Hz plot}}
+      \label{fig:raw_400}
+    \end{figure}
+    \switchcolumn
+    \begin{figure}[h!]
+      \includegraphics[width=0.375\textwidth]{./img/raw_500Hz}
+      \caption{\texttt{Raw data 500 Hz plot}}
+      \label{fig:raw_500}
+    \end{figure}
+  \end{paracol}
+\item Digital scope data \\
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00002}
+    \caption{\texttt{Digital scope data: sampling 100 Hz}}
+    \label{fig:dig_100}
+  \end{figure}
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00003}
+    \caption{\texttt{Digital scope data: sampling 250 Hz}}
+    \label{fig:dig_250}
+  \end{figure}
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00004}
+    \caption{\texttt{Digital scope data: sampling 350 Hz}}
+    \label{fig:dig_350}
+  \end{figure}
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00005}
+    \caption{\texttt{Digital scope data: sampling 500 Hz}}
+    \label{fig:dig_500}
+  \end{figure}
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00006}
+    \caption{\texttt{Digital scope data: sampling 750 Hz}}
+    \label{fig:dig_750}
+  \end{figure}
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00007}
+    \caption{\texttt{Digital scope data: sampling 940 Hz}}
+    \label{fig:dig_940}
+  \end{figure}
+  \begin{figure}[h!]
+    \includegraphics[width=0.375\textwidth]{./img/TEK00008}
+    \caption{\texttt{Digital scope data: sampling 4 KHz}}
+    \label{fig:dig_4000}
+  \end{figure}
+  \pagebreak % formatting gets worse without this -- you can probably
+  % improve here
+\item Spectrum analyzer data \\
+  Absent
+\item FIR filter test data \\
+  Filtered and raw data are compared above. See references to the plots
+  of filtered data (Figures \ref{fig:filtered_100} through \ref{fig:filtered_500}).
 \end{enumerate}
 
 \section{Analysis and Discussion}
 \begin{enumerate}[1)]
-  \item todo
+\item How did measured frequency responses compare to your estimations
+  of cutoff frequencies for your HPF and LPF? \\
+  \todo The lowpass filter was created in Octave. TI's web bench tool
+  calculated our analog LPF's cutoff frequencies.
+\item Explain how you measured maximum bandwidth. What was the
+  limiting factor affecting bandwidth? \\
+  \todo since we don't have fft... isn't that going to be the most
+  computationally intensive (bandwidth-limiting) section?
+  \item What is the expected FFT output if the input is a square wave? \\
+  Impulses on the harmonic frequencies of the square wave emerge on
+  the frequency vs. apmlitude plot.
+\item Look at the noise in your digital samples when it is very
+  quiet. What noise is this? \\
+  Error introduced by the sampling components, mathematical rounding
+  errors and jitter. \todo verify
+\item Can you estimate jitter in your ADC samples? \\
+  No, we did not implement jitter calculation in this lab.
+\item Prove your FIR implementation can not overflow. \\
+\item Look at symmetry in the \verb|h[51]| coefficients in the example
+  FIR design. How could you rewrite the following filter equation to
+  reduce the number of multiplies from 51 to 26?
+  $y[i]=(h[0]*x[i]+h[1]*x[i-1]+h[2]*x[i-2]+...+h[50]*x[i-50])/256;$ \\
+  \todo I'm not sure... will revisit.
+\item Explain how the multiple and accumulate instruction (MLA) can
+  reduce the execution time of your filter. If you were to have used
+  the MLA instruction, would your filter have been more accurate?
+
+  MLA obviates the need for adding the products we determine to a
+  separate accumulator. Since the accumulator is handled by MLA
+  hardware, the amount of transferring bits around the
+  microarchitecture at the speed of the bus clock is reduced. Similar
+  to tail-chaining of interrupt service vectors, slight hardware
+  optimization is provided for this common task.
+
+  Our filter would have been more accurate since \verb|IEEE 754-2008|
+  specifies this instruction must be implemented with only one
+  rounding (instead of two). This reduces total error accumulation
+  over time.
 \end{enumerate}
 
 \section{Code}
