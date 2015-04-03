@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(lab5-valvano)
-set(lab5-valvano-srcs SDCFile.c ../test-edf/startup_gcc.c)
+set(lab5-valvano-srcs SDCFile.c ../startup_gcc_canonical.c)
 
 include_directories(../../)
 include_directories(../../lib)
