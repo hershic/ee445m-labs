@@ -336,3 +336,16 @@ Think about how to implement a priority scheduler. Then implement it.
 ***** DONE voltage vs. time
 ***** CANCELED voltage vs. frequency
 **** CANCELED plots modes switchable by interpreter commands        :eric:
+* [0/3] Lab 5
+** TODO add new shell commands
+*** TODO format sdcard
+*** TODO ls a dir
+*** TODO cat a file
+*** TODO rm a file
+** TODO [0/5] task 1 :: stream debugging data to sdcard
+- [ ] create a new file
+- [ ] redirect stdio to a file instead of the serial port
+see fputc
+- [ ] printf to a file
+- [ ] redirect stdio back to the serial port
+- [ ] close the file
