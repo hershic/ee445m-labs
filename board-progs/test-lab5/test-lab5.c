@@ -38,35 +38,34 @@
 
 static FATFS g_sFatFs;
 FIL Handle;
-FRESULT MountFresult;
-FRESULT Fresult;
 unsigned char buffer[512];
 
 int mount(char* args) {
 
-    if(f_mount(&g_sFatFs, "", 0)) {
+    FRESULT MountFresult = f_mount(&g_sFatFs, "", 0);
+    if(MountFresult != FR_OK) {
         uart_send_string("f_mount_error\r\n");
-    } else {
-        uart_send_string("mounted\r\n");
     }
+    return (int32_t)MountFresult;
 }
 
 int umount(char* args) {
 
-    if(f_mount(0, "", 0)){
+    FRESULT MountFresult = f_mount(0, "", 0);
+    if(MountFresult != FR_OK){
         uart_send_string("f_umount_error\r\n");
-        ST7735_DrawString(0, 0, "f_umount error", ST7735_Color565(0, 0, 255));
-    } else {
-        uart_send_string("unmounted\r\n");
     }
+    return (int32_t)MountFresult;
 }
 
 int cat(char* args) {
 
     UINT successfulreads;
     uint8_t c;
+    FRESULT Fresult;
 
-    if(f_open(&Handle, args, FA_READ) == FR_OK){
+    Fresult = f_open(&Handle, args, FA_READ);
+    if(Fresult == FR_OK){
         // get a character in 'c' and the number of successful reads in 'successfulreads'
         Fresult = f_read(&Handle, &c, 1, &successfulreads);
         while((Fresult == FR_OK) && (successfulreads == 1)) {
