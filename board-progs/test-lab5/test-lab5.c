@@ -37,7 +37,6 @@
 #include "driverlib/sysctl.h"
 
 static FATFS g_sFatFs;
-FIL Handle;
 unsigned char buffer[512];
 
 int mount(char* args) {
@@ -63,6 +62,7 @@ int cat(char* args) {
     UINT successfulreads;
     uint8_t c;
     FRESULT Fresult;
+    FIL Handle;
 
     Fresult = f_open(&Handle, args, FA_READ);
     if(Fresult == FR_OK){
