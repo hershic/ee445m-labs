@@ -81,20 +81,20 @@ system_command* _system_command_from_name(const char* command_name) {
     return ret;
 }
 
-/* TODO: allow for argument passing */
-exit_status_t system_exec(const char* command, const char** arguments) {
+exit_status_t system_exec(const char* command, const char* args) {
 
     system_command* sys_command = _system_command_from_name(command);
 #ifdef SYSTEM_DEBUG
-    uart_send_string("System executed is: ");
+    uart_send_string("System executed: ");
     uart_send_string(command);
+    uart_send_string("\n");
+    uart_send_string("args: ");
+    uart_send_string(args);
     uart_send_string("\n");
 #endif
     if (sys_command->valid) {
-        return sys_command->command(/*arguments*/);
+        return sys_command->command(args);
     } else {
-        /* TODO: determine what to do here */
-        /* postpone_death();       /\* plan a *\/ */
         return EXIT_FAILURE;    /* plan b */
     }
 }

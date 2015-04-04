@@ -18,7 +18,8 @@
 #include "driverlib/gpio.h"
 
 static unsigned short SHELL_BUFFER_POSITION;
-static char SHELL_BUFFER[SHELL_BUFFER_LENGTH];
+/* Wondering why there's a one here? Where's waldo? */
+static char SHELL_BUFFER[SHELL_BUFFER_LENGTH+1];
 
 static char* SHELL_PS1[SHELL_MAX_PS1_LENGTH];
 static char* SHELL_DEFAULT_PS1 = "\r\n> ";
@@ -55,6 +56,7 @@ void shell_uart_handler(notification note) {
     switch(recv) {
     case SC_CR:
     {   /* TODO: schedule */
+        uart_send_string("\r\n");
         shell_execute_command();
         shell_clear_shell_buffer();
         uart_send_string("\r\n");
@@ -98,6 +100,12 @@ void shell_print_ps1() {
 
 exit_status_t shell_execute_command() {
 
-    const char** arguments = NULL;
-    return system_exec(SHELL_BUFFER, arguments);
+    /* Null terminate to separate the cmd from the args */
+    uint8_t idx = 0;
+    while(idx < SHELL_BUFFER_POSITION && SHELL_BUFFER[idx] != ' ') {
+	++idx;
+    }
+    SHELL_BUFFER[idx] = 0;
+    /* Waldo says this line requires the extra char to be a 0 */
+    return system_exec(SHELL_BUFFER, &SHELL_BUFFER[idx+1]);
 }

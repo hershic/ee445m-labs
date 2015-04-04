@@ -54,7 +54,7 @@ bool system_deregister_command(const char*);
  * \returns The exit code of the executed command.
  * \bug Currently argument passing is not supported.
  */
-exit_status_t system_exec(const char*, const char**);
+exit_status_t system_exec(const char*, const char*);
 
 /*! For internal use only. This function returns a pointer to the
  * \system_command registered to the command name \command_name. */
