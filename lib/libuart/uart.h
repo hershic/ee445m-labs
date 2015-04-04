@@ -66,6 +66,23 @@ void uart_send_string(const char*);
  */
 void uart_send_string_(hw_metadata, const char*);
 
+/*! Send a unsigned integer over the specified uart channel.
+ *  \param metadata The uart channel to send \text over.
+ *  \param n the unsigned int to send
+ *  \return void
+ *  \note there is potential to thrash the stack here. Please use this
+ *  function wisely and with small numbers if at all possible.
+ */
+void uart_send_udec_(hw_metadata metadata, uint32_t n);
+
+/*! Send a unsigned integer over the active uart channel.
+ *  \param n the unsigned int to send
+ *  \return void
+ *  \note there is potential to thrash the stack here. Please use this
+ *  function wisely and with small numbers if at all possible.
+ */
+void uart_send_udec(uint32_t n);
+
 /*! Read a char from the active uart channel.
  *  \brief Read a char from the active uart channel.
  *  \details Read a char from the active uart channel.

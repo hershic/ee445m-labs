@@ -84,6 +84,20 @@ void uart_send_string_(hw_metadata metadata, const char* text) {
 }
 
 inline
+void uart_send_udec(uint32_t n) {
+
+    uart_send_udec_(uart_active_metadata, n);
+}
+
+void uart_send_udec_(hw_metadata metadata, uint32_t n) {
+
+  if(n >= 10){
+      uart_send_udec_(metadata, n/10);
+  }
+  uart_send_char_(metadata, (n % 10) + '0');
+}
+
+inline
 char uart_get_char() {
 
     return uart_get_char_(uart_active_metadata);
