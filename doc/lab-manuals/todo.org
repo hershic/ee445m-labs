@@ -338,10 +338,11 @@ Think about how to implement a priority scheduler. Then implement it.
 **** CANCELED plots modes switchable by interpreter commands        :eric:
 * [0/3] Lab 5
 ** TODO add new shell commands
-*** TODO format sdcard
-*** TODO ls a dir
-*** TODO cat a file
-*** TODO rm a file
+*** TODO format
+*** TODO mount
+*** TODO ls [dir]
+*** TODO cat [file]
+*** TODO rm [file]
 ** TODO [0/5] task 1 :: stream debugging data to sdcard
 - [ ] create a new file
 - [ ] redirect stdio to a file instead of the serial port
