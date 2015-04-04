@@ -95,6 +95,7 @@ exit_status_t system_exec(const char* command, const char* args) {
     if (sys_command->valid) {
         return sys_command->command(args);
     } else {
+        uart_send_string("command not found");
         return EXIT_FAILURE;    /* plan b */
     }
 }
