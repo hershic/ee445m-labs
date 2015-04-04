@@ -87,14 +87,15 @@ exit_status_t system_exec(const char* command, const char* args) {
 #ifdef SYSTEM_DEBUG
     uart_send_string("System executed: ");
     uart_send_string(command);
-    uart_send_string("\n");
+    uart_send_string("\r\n");
     uart_send_string("args: ");
     uart_send_string(args);
-    uart_send_string("\n");
+    uart_send_string("\r\n");
 #endif
     if (sys_command->valid) {
         return sys_command->command(args);
     } else {
+	uart_send_string("No command found\r\n");
         return EXIT_FAILURE;    /* plan b */
     }
 }
