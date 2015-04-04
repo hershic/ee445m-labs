@@ -34,29 +34,53 @@
 #include "libdisplay/stdio_hershic.h"
 #include "libdisplay/ST7735.h"
 
-/* #include "inc/tm4c123gh6pm.h" */
-
 #include "driverlib/sysctl.h"
 
-int doctor() {
+static FATFS g_sFatFs;
+FIL Handle;
+FRESULT MountFresult;
+FRESULT Fresult;
+unsigned char buffer[512];
 
-     UARTCharPut(UART0_BASE, 'd');
-    /* uart_send_string("Well what did you expect would happen? You're dreaming!\n"); */
-    return EXIT_SUCCESS;
+int mount(char* args) {
+
+    if(f_mount(&g_sFatFs, "", 0)) {
+        uart_send_string("f_mount_error\r\n");
+    } else {
+        uart_send_string("mounted\r\n");
+    }
 }
 
-int witch(char* args) {
+int umount(char* args) {
 
-     uart_send_string("no help here\r\n");
-     uart_send_string(args);
-     uart_send_string("\r\n");
-     return EXIT_SUCCESS;
+    if(f_mount(0, "", 0)){
+        uart_send_string("f_umount_error\r\n");
+        ST7735_DrawString(0, 0, "f_umount error", ST7735_Color565(0, 0, 255));
+    } else {
+        uart_send_string("unmounted\r\n");
+    }
+}
+
+int cat(char* args) {
+
+    UINT successfulreads;
+    uint8_t c;
+
+    if(f_open(&Handle, args, FA_READ) == FR_OK){
+        // get a character in 'c' and the number of successful reads in 'successfulreads'
+        Fresult = f_read(&Handle, &c, 1, &successfulreads);
+        while((Fresult == FR_OK) && (successfulreads == 1)) {
+            uart_send_char(c);
+            /* get the next character in 'c' */
+            Fresult = f_read(&Handle, &c, 1, &successfulreads);
+        }
+        // close the file
+        Fresult = f_close(&Handle);
+    }
 }
 
 int main(void){
     UINT successfulreads, successfulwrites;
-    uint8_t c, x, y;
-    /* PLL_Init();    // 80 MHz */
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
@@ -67,8 +91,9 @@ int main(void){
     os_threading_init();
     schedule(hw_daemon, 100 Hz, DL_SOFT);
     system_init();
-    system_register_command((const char*) "doctor", doctor);
-    system_register_command((const char*) "witch", witch);
+    system_register_command((const char*) "mount", mount);
+    system_register_command((const char*) "umount", umount);
+    system_register_command((const char*) "cat", cat);
 
     /* Initialize hardware devices */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
