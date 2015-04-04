@@ -37,7 +37,9 @@
 #include "driverlib/sysctl.h"
 
 static FATFS g_sFatFs;
-unsigned char buffer[512];
+
+#define GP_BUFFER_LEN 512
+unsigned char buffer[GP_BUFFER_LEN];
 
 int mount(char* args) {
 
