@@ -78,6 +78,69 @@ int cat(char* args) {
         // close the file
         Fresult = f_close(&Handle);
     }
+    return (int32_t)Fresult;
+}
+
+/* TODO: List the structure of a directory */
+int ls(char* args) {
+
+    int arglen = ustrlen(args);
+    if (arglen == 0) {
+        /* current dir */
+
+    } else {
+        /* other dir */
+
+    }
+    /* not yet implemented */
+    return 1;
+}
+
+/* TODO Make a directory. Fail if it exists*/
+int mkdir(char* args) {
+
+    /* not yet implemented */
+    return 1;
+}
+
+/* TODO Remove a file or directory. Should be recursive? */
+int rm(char* args) {
+
+    /* not yet implemented */
+    return 1;
+}
+
+/* TODO: Should be able to echo a string to a file. The file must be
+   either created or overwritten if one ">" is given. The file must be
+   created or appended to if ">>" is given. Should take in a
+   double-quoted string, or a ">"/">>" -terminated string to echo. */
+int echo(char* args) {
+
+    /* not yet implemented */
+    return 1;
+}
+
+/* TODO: Create a file, if it doesn't already exist. */
+int touch(char* args) {
+
+    /* not yet implemented */
+    return 1;
+}
+
+/* TODO: format the sdcard in fat32 */
+int mkfs(char* args) {
+
+    /* not yet implemented */
+    return 1;
+}
+
+int pwd(char* args) {
+
+    FRESULT result = f_getcwd(buffer, GP_BUFFER_LEN);
+    if (result == FR_OK) {
+        uart_send_string(buffer);
+    }
+    return result;
 }
 
 int main(void){
@@ -95,6 +158,13 @@ int main(void){
     system_register_command((const char*) "mount", mount);
     system_register_command((const char*) "umount", umount);
     system_register_command((const char*) "cat", cat);
+    system_register_command((const char*) "pwd", pwd);
+    system_register_command((const char*) "ls", ls);
+    system_register_command((const char*) "mkdir", mkdir);
+    system_register_command((const char*) "rm", rm);
+    system_register_command((const char*) "echo", echo);
+    system_register_command((const char*) "touch", touch);
+    system_register_command((const char*) "mkfs", mkfs);
 
     /* Initialize hardware devices */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
