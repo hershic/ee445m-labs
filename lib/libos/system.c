@@ -74,9 +74,9 @@ system_command* _system_command_from_name(const char* command_name) {
 
     /* Graceful exit on invalid command entry */
     if (i >= SYSTEM_MAX_COMMANDS) {
-	ret = &SYSTEM_INVALID_COMMAND;
+        ret = &SYSTEM_INVALID_COMMAND;
     } else {
-	ret = &SYSTEM_COMMANDS[i];
+        ret = &SYSTEM_COMMANDS[i];
     }
     return ret;
 }
@@ -87,15 +87,15 @@ exit_status_t system_exec(const char* command, const char* args) {
 #ifdef SYSTEM_DEBUG
     uart_send_string("System executed: ");
     uart_send_string(command);
-    uart_send_string("\n");
+    uart_send_string("\r\n");
     uart_send_string("args: ");
     uart_send_string(args);
-    uart_send_string("\n");
+    uart_send_string("\r\n");
 #endif
     if (sys_command->valid) {
         return sys_command->command(args);
     } else {
-        uart_send_string("command not found");
+        uart_send_string("command not found\r\n");
         return EXIT_FAILURE;    /* plan b */
     }
 }
