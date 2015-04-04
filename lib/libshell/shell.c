@@ -52,12 +52,17 @@ void shell_kill() {
 void shell_uart_handler(notification note) {
 
     char recv = note._char;
+    int exit_code;
 
     switch(recv) {
     case SC_CR:
     {   /* TODO: schedule */
-        uart_send_string("\r\n");
-        shell_execute_command();
+        uart_send_string("\r");
+
+        exit_code = shell_execute_command();
+        if(exit_code != 0) {
+            uart_send_udec(exit_code);
+        }
         shell_clear_shell_buffer();
         uart_send_string("\r\n");
         /* fixme: why doesn't PS1 print twice? */
