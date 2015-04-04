@@ -72,10 +72,12 @@ int doctor() {
     return EXIT_SUCCESS;
 }
 
-int witch() {
+int witch(char* args) {
 
-     uart_send_string("no help here\n");
-    return EXIT_SUCCESS;
+     uart_send_string("no help here\r\n");
+     uart_send_string(args);
+     uart_send_string("\r\n");
+     return EXIT_SUCCESS;
 }
 
 int main(void) {
