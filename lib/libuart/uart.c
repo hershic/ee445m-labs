@@ -64,6 +64,7 @@ void uart_send_char(const char text) {
 inline
 void uart_send_char_(hw_metadata metadata, const char text) {
 
+    while(!UARTSpaceAvail(metadata.uart.channel)) {}
     UARTCharPut(metadata.uart.channel, text);
 }
 
@@ -79,6 +80,7 @@ void uart_send_string_(hw_metadata metadata, const char* text) {
     char* ptr = (char*)text;
 
     while(cnt--) {
+        while(!UARTSpaceAvail(metadata.uart.channel)) {}
         UARTCharPut(metadata.uart.channel, *(ptr++));
     }
 }
