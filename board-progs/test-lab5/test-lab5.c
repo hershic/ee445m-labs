@@ -123,17 +123,16 @@ int echo(char* args) {
 }
 
 /* Create a file, if it doesn't already exist. */
+/* TODO: fix last file not being populated */
 int touch(char* args) {
 
     UINT successfulreads;
-    uint8_t c;
     FRESULT Fresult;
-    FIL Handle;
 
-    Fresult = f_open(&Handle, args, FA_READ);
+    Fresult = f_open(&filehandle, args, FA_CREATE_NEW | FA_WRITE);
     if(Fresult = FR_OK) {
-	// close the file
-        Fresult = f_close(&Handle);
+        f_sync(&filehandle);
+        Fresult = f_close(&filehandle);
     }
     return Fresult;
 }
