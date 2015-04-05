@@ -75,7 +75,7 @@
 None in this lab.
 
 \section{Software Design}
-Reference \cref{lst:lab5,lst:ff-h,lst:ff-c,lst:shell-h,lst:shell-c}
+Reference \cref{lst:lab5,lst:ff-h,lst:ff-c,lst:shell-h,lst:shell-c}.
 
 \section{Measurement Data}
 \begin{table}
@@ -163,7 +163,7 @@ oscilloscope and code. Two SPI packets can be seen in
     and some C code explaining how to handle the synchronization.
     \begin{solution} \hbr
     No. The first thread would have to take a semaphore before a write
-    occurs and released after the write goes through. The second
+    occurs and release it after the write goes through. The second
     thread would have to wait for the semaphore to be released before
     writing the data.
     \end{solution}
