@@ -137,6 +137,12 @@ int echo(char* args) {
     return 1;
 }
 
+int cd(char* args) {
+
+    FRESULT result = f_chdir(args);
+    return result;
+}
+
 /* Create a file, if it doesn't already exist. */
 /* TODO: fix last file not being populated */
 int touch(char* args) {
@@ -190,6 +196,7 @@ int main(void){
     system_register_command((const char*) "echo", echo);
     system_register_command((const char*) "touch", touch);
     system_register_command((const char*) "mkfs", mkfs);
+    system_register_command((const char*) "cd", cd);
 
     /* Initialize hardware devices */
     uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
