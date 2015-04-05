@@ -123,8 +123,8 @@ int mkdir(char* args) {
 
 int rm(char* args) {
 
-    /* not yet implemented */
-    return 1;
+    FRESULT result = f_unlink(args);
+    return (uint32_t)result;
 }
 
 /* TODO: Should be able to echo a string to a file. The file must be
