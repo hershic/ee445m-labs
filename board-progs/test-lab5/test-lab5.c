@@ -156,11 +156,11 @@ int touch(char* args) {
     return (uint32_t)Fresult;
 }
 
-/* TODO: format the sdcard in fat32 */
+/* Format the sdcard */
 int mkfs(char* args) {
 
-    /* not yet implemented */
-    return 1;
+    FRESULT result = f_mkfs("", 0, 0);
+    return (uint32_t)result;
 }
 
 int pwd(char* args) {
