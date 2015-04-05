@@ -82,7 +82,7 @@ int cat(char* args) {
     return (int32_t)Fresult;
 }
 ;
-/* TODO: List the structure of a directory */
+/* List the structure of a directory */
 int ls(char* args) {
 
     int32_t i;
