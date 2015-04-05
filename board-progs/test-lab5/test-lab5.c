@@ -43,6 +43,7 @@ static DIR dirhandle;
 #define GP_BUFFER_LEN 512
 unsigned char buffer[GP_BUFFER_LEN];
 
+/* Mount the sdcard. */
 int mount(char* args) {
 
     FRESULT MountFresult = f_mount(&g_sFatFs, "", 0);
@@ -52,6 +53,7 @@ int mount(char* args) {
     return (int32_t)MountFresult;
 }
 
+/* Unmount the sdcard. */
 int umount(char* args) {
 
     FRESULT MountFresult = f_mount(0, "", 0);
@@ -61,6 +63,7 @@ int umount(char* args) {
     return (int32_t)MountFresult;
 }
 
+/* View a file. */
 int cat(char* args) {
 
     UINT successfulreads;
@@ -82,7 +85,7 @@ int cat(char* args) {
     return (int32_t)Fresult;
 }
 
-/* List the structure of a directory */
+/* List the structure of a directory. */
 int ls(char* args) {
 
     int32_t i;
@@ -111,7 +114,7 @@ int ls(char* args) {
     return result;
 }
 
-/* Create a dir */
+/* Create a dir. */
 int mkdir(char* args) {
 
     FRESULT MkdirFresult = f_mkdir(args);
@@ -121,16 +124,17 @@ int mkdir(char* args) {
     return (int32_t)MkdirFresult;
 }
 
+/* Remove a file/empty dir. */
 int rm(char* args) {
 
     FRESULT result = f_unlink(args);
     return (uint32_t)result;
 }
 
-/* TODO: Should be able to echo a string to a file. The file must be
-   either created or overwritten if one ">" is given. The file must be
-   created or appended to if ">>" is given. Should take in a ">"/">>"-
-   terminated string to echo to the given file. */
+/* Write a string to a file. The file is created or overwritten if one
+   ">" is given. The file is created or appended to if ">>" is
+   given. Takes in a ">"/">>"-terminated string to echo to the given
+   file. */
 int echo(char* args) {
 
     char* file = args;
@@ -154,7 +158,6 @@ int echo(char* args) {
 
     bytes_to_write = ustrlen(args);
 
-
     if (append) {
         result = f_open(&filehandle, file, FA_OPEN_ALWAYS | FA_WRITE);
     } else {
@@ -175,13 +178,14 @@ int echo(char* args) {
     return (uint32_t) result;
 }
 
+/* Change directory. */
 int cd(char* args) {
 
     FRESULT result = f_chdir(args);
     return (uint32_t)result;
 }
 
-/* Create a file, if it doesn't already exist. */
+/* Create a file if it doesn't already exist. */
 int touch(char* args) {
 
     FRESULT Fresult;
@@ -193,13 +197,14 @@ int touch(char* args) {
     return (uint32_t)Fresult;
 }
 
-/* Format the sdcard */
+/* Format the sdcard. */
 int mkfs(char* args) {
 
     FRESULT result = f_mkfs("", 0, 0);
     return (uint32_t)result;
 }
 
+/* Print working directory. */
 int pwd(char* args) {
 
     FRESULT result = f_getcwd(buffer, GP_BUFFER_LEN);
