@@ -96,6 +96,7 @@ int ls(char* args) {
     return 1;
 }
 
+/* Create a dir */
 int mkdir(char* args) {
 
     FRESULT MkdirFresult = f_mkdir("");
@@ -105,7 +106,6 @@ int mkdir(char* args) {
     return (int32_t)MkdirFresult;
 }
 
-/* TODO Remove a file or directory. Should be recursive? */
 int rm(char* args) {
 
     /* not yet implemented */
@@ -122,11 +122,20 @@ int echo(char* args) {
     return 1;
 }
 
-/* TODO: Create a file, if it doesn't already exist. */
+/* Create a file, if it doesn't already exist. */
 int touch(char* args) {
 
-    /* not yet implemented */
-    return 1;
+    UINT successfulreads;
+    uint8_t c;
+    FRESULT Fresult;
+    FIL Handle;
+
+    Fresult = f_open(&Handle, args, FA_READ);
+    if(Fresult = FR_OK) {
+	// close the file
+        Fresult = f_close(&Handle);
+    }
+    return Fresult;
 }
 
 /* TODO: format the sdcard in fat32 */
