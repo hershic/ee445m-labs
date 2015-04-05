@@ -37,6 +37,7 @@
 #include "driverlib/sysctl.h"
 
 static FATFS g_sFatFs;
+static FIL filehandle;
 
 #define GP_BUFFER_LEN 512
 unsigned char buffer[GP_BUFFER_LEN];
@@ -64,19 +65,18 @@ int cat(char* args) {
     UINT successfulreads;
     uint8_t c;
     FRESULT Fresult;
-    FIL Handle;
 
-    Fresult = f_open(&Handle, args, FA_READ);
+    Fresult = f_open(&filehandle, args, FA_READ);
     if(Fresult == FR_OK){
         // get a character in 'c' and the number of successful reads in 'successfulreads'
-        Fresult = f_read(&Handle, &c, 1, &successfulreads);
+        Fresult = f_read(&filehandle, &c, 1, &successfulreads);
         while((Fresult == FR_OK) && (successfulreads == 1)) {
             uart_send_char(c);
             /* get the next character in 'c' */
-            Fresult = f_read(&Handle, &c, 1, &successfulreads);
+            Fresult = f_read(&filehandle, &c, 1, &successfulreads);
         }
         // close the file
-        Fresult = f_close(&Handle);
+        Fresult = f_close(&filehandle);
     }
     return (int32_t)Fresult;
 }
