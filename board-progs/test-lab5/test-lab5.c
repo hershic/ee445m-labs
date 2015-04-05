@@ -140,7 +140,7 @@ int echo(char* args) {
 int cd(char* args) {
 
     FRESULT result = f_chdir(args);
-    return result;
+    return (uint32_t)result;
 }
 
 /* Create a file, if it doesn't already exist. */
@@ -169,7 +169,7 @@ int pwd(char* args) {
     if (result == FR_OK) {
         uart_send_string(buffer);
     }
-    return result;
+    return (uint32_t)result;
 }
 
 int main(void){
