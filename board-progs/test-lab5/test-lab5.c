@@ -81,7 +81,7 @@ int cat(char* args) {
     }
     return (int32_t)Fresult;
 }
-;
+
 /* List the structure of a directory */
 int ls(char* args) {
 
