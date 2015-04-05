@@ -144,7 +144,6 @@ int cd(char* args) {
 }
 
 /* Create a file, if it doesn't already exist. */
-/* TODO: fix last file not being populated */
 int touch(char* args) {
 
     FRESULT Fresult;
