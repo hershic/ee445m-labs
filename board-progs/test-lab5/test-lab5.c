@@ -38,6 +38,7 @@
 
 static FATFS g_sFatFs;
 static FIL filehandle;
+static DIR dirhandle;
 
 #define GP_BUFFER_LEN 512
 unsigned char buffer[GP_BUFFER_LEN];
@@ -84,22 +85,36 @@ int cat(char* args) {
 /* TODO: List the structure of a directory */
 int ls(char* args) {
 
-    int arglen = ustrlen(args);
-    if (arglen == 0) {
-        /* current dir */
+    int32_t i;
+    FRESULT result;
+    FILINFO fileinfo;
 
-    } else {
-        /* other dir */
+    result = f_opendir(&dirhandle, args);
+    if (result == FR_OK) {
 
+        while (1) {
+            result = f_readdir(&dirhandle, &fileinfo);
+            if (result != FR_OK || fileinfo.fname[0] == 0) {
+                break;
+            }
+
+            if (fileinfo.fattrib & AM_DIR) {
+                uart_send_string(fileinfo.fname);
+                uart_send_string("/\r\n");
+            } else {
+                uart_send_string(fileinfo.fname);
+                uart_send_string("\r\n");
+            }
+        }
+        result = f_closedir(&dirhandle);
     }
-    /* not yet implemented */
-    return 1;
+    return result;
 }
 
 /* Create a dir */
 int mkdir(char* args) {
 
-    FRESULT MkdirFresult = f_mkdir("");
+    FRESULT MkdirFresult = f_mkdir(args);
     if(MkdirFresult != FR_OK){
         uart_send_string("f_mkdir_error\r\n");
     }
