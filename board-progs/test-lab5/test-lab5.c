@@ -210,13 +210,12 @@ int pwd(char* args) {
 }
 
 int main(void){
-    UINT successfulreads, successfulwrites;
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_16MHZ);
 
     ST7735_InitR(INITR_REDTAB);
-    ST7735_FillScreen(0);                 // set screen to black
+    ST7735_FillScreen(0);
 
     os_threading_init();
     schedule(hw_daemon, 100 Hz, DL_SOFT);
