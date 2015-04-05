@@ -129,12 +129,50 @@ int rm(char* args) {
 
 /* TODO: Should be able to echo a string to a file. The file must be
    either created or overwritten if one ">" is given. The file must be
-   created or appended to if ">>" is given. Should take in a
-   double-quoted string, or a ">"/">>" -terminated string to echo. */
+   created or appended to if ">>" is given. Should take in a ">"/">>"-
+   terminated string to echo to the given file. */
 int echo(char* args) {
 
-    /* not yet implemented */
-    return 1;
+    char* file = args;
+    int8_t append;
+    UINT bytes_written;
+    uint32_t bytes_to_write;
+    FRESULT result;
+
+    while (file[0] != '>') {
+        if (file[0] == 0) {
+            /* command failed */
+            return 1;
+        }
+        ++file;
+    }
+
+    file[-1] = file[-1] == ' ' ? 0 : file[-1];
+    file[0] = 0;
+    append = (file[1] == '>');
+    file += append + 1 + (file[append + 1] == ' ');
+
+    bytes_to_write = ustrlen(args);
+
+
+    if (append) {
+        result = f_open(&filehandle, file, FA_OPEN_ALWAYS | FA_WRITE);
+    } else {
+        result = f_open(&filehandle, file, FA_CREATE_ALWAYS | FA_WRITE);
+    }
+
+    /* check if the open was successful before continuing */
+    if (result == FR_OK) {
+        if (append) {
+            f_lseek(&filehandle, filehandle.fsize);
+            f_write(&filehandle, "\r\n", 2, &bytes_written);
+        }
+        result = f_write(&filehandle, args, bytes_to_write, &bytes_written);
+        if (result == FR_OK) {
+            result = f_close(&filehandle);
+        }
+    }
+    return (uint32_t) result;
 }
 
 int cd(char* args) {
