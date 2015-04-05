@@ -21,7 +21,7 @@
 \pagebreak[3]
 \newcommand{\Opentesthook}[2]{\Writetofile{#1}{\protect\section{#1: #2}}}
 \renewcommand{\Solnlabel}[1]{\textbf{Solution}\quad}
-\newcommand{\todo}{{\LARGE \emph{\color{red}TODO}}}
+\newcommand{\todo}{\hfill{\LARGE \emph{\color{red}TODO}}}
 \newcommand{\ohm}{$\Omega$}
 \newcommand{\hbr}{\hfill\vspace{.25em}\\}
 \newcommand{\dd}[1]{\:\mathrm{d}{#1}}
@@ -75,29 +75,109 @@
 None in this lab.
 
 \section{Software Design}
-Reference \cref{lst:ff-h,lst:ff-c,lst:shell-h,lst:shell-c}
+Reference \cref{lst:lab5,lst:ff-h,lst:ff-c,lst:shell-h,lst:shell-c}
 
 \section{Measurement Data}
 \begin{table}
   \centering
-  \caption{SDCard Read/Write Bandwidth}
   \begin{tabular}{c|c}
     Read Bandwidth & Write Bandwidth \\
     \hline
-    something & something \\
+    51 KB/s & \todo \\
   \end{tabular}
-  The SPI clock rate is 8 MHz, confirmed by oscilloscope and code. The
-  bandwidth is 51 kbytes/sec.
-  inspection.
+  \caption{SDCard Read/Write Bandwidth}
+  \label{tbl:sdcard-bandwidth}
 \end{table}
-\section{Analysis and Discussion}
 
+The SPI read/write bandwidth is shown in
+\cref{tbl:sdcard-bandwidth}. The SPI clock rate is 8 MHz, confirmed by
+oscilloscope and code. Two SPI packets can be seen in
+\cref{fig:data-frames}.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{./img/TEK00001}
+    \caption{A data read frame}
+    \label{fig:data-frame-0}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{./img/TEK00002}
+    \caption{Another data read frame}
+    \label{fig:data-frame-1}
+  \end{subfigure}
+  \caption{Two SPI packets}
+  \label{fig:data-frames}
+\end{figure}
+
+\section{Analysis and Discussion}
+\begin{enumerate}
+\item
+  \begin{Ex}
+    Does your implementation have external fragmentation? Explain with
+    a one sentence answer.
+    \begin{solution} \hbr
+      no idea
+      \todo
+    \end{solution}
+  \end{Ex}
+\item
+  \begin{Ex}
+    If your disk has ten files, and the number of bytes in each file
+    is a random number, what is the expected amount of wasted storage
+    due to internal fragmentation? Explain with a one sentence answer.
+    \begin{solution} \hbr
+      no idea
+      \todo
+    \end{solution}
+  \end{Ex}
+\item
+  \begin{Ex}
+    Assume you replaced the flash memory in the SD card with a high
+    speed battery-backed RAM and kept all other hardware/software the
+    same. What read/write bandwidth could you expect to achieve?
+    Explain with a one sentence answer.
+    \begin{solution} \hbr
+    In this case, we would be limited by the SPI bandwidth since RAM
+    is much faster than SPI. Determine what the spi write
+    bandwidth is. Need oscilloscope.
+    \todo
+    \end{solution}
+  \end{Ex}
+\item
+  \begin{Ex}
+    How many files can you store on your disk? Briefly explain how you
+    could increase this number (do not do it, just explain how it
+    could have been done).
+    \begin{solution} \hbr
+      no idea
+      \todo
+    \end{solution}
+  \end{Ex}
+\item
+  \begin{Ex}
+    Does your system allow for two threads to simultaneously stream
+    debugging data onto one file? If yes, briefly explain how you
+    handled the thread synchronization. If not, explain in detail how
+    it could have been done. Do not do it, just give 4 or 5 sentences
+    and some C code explaining how to handle the synchronization.
+    \begin{solution} \hbr
+    No. The first thread would have to take a semaphore before a write
+    occurs and released after the write goes through. The second
+    thread would have to wait for the semaphore to be released before
+    writing the data.
+    \end{solution}
+  \end{Ex}
+\end{enumerate}
 
 \newpage
 \section{Code}
-%% \lstinputlisting[language=C,label=lst:ff-h,caption=\texttt{ff.h}]{@doc-staging-area@/ff.h}
-%% \lstinputlisting[language=C,label=lst:ff-c,caption=\texttt{ff.c}]{@doc-staging-area@/ff.c}
-%% \lstinputlisting[language=C,label=lst:shell-h,caption=\texttt{shell.h}]{@doc-staging-area@/shell.h}
-%% \lstinputlisting[language=C,label=lst:shell-c,caption=\texttt{shell.c}]{@doc-staging-area@/shell.c}
+\lstinputlisting[language=C,label=lst:lab5,caption=\texttt{lab5.c}]{@doc-staging-area@/lab5.c}
+\lstinputlisting[language=C,label=lst:ff-h,caption=\texttt{ff.h}]{@doc-staging-area@/ff.h}
+\lstinputlisting[language=C,label=lst:ff-c,caption=\texttt{ff.c}]{@doc-staging-area@/ff.c}
+\lstinputlisting[language=C,label=lst:shell-h,caption=\texttt{shell.h}]{@doc-staging-area@/shell.h}
+\lstinputlisting[language=C,label=lst:shell-c,caption=\texttt{shell.c}]{@doc-staging-area@/shell.c}
+\lstinputlisting[language=C,label=lst:system-h,caption=\texttt{system.h}]{@doc-staging-area@/system.h}
+\lstinputlisting[language=C,label=lst:system-c,caption=\texttt{system.c}]{@doc-staging-area@/system.c}
 
 \end{document}
