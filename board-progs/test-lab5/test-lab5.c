@@ -147,15 +147,13 @@ int cd(char* args) {
 /* TODO: fix last file not being populated */
 int touch(char* args) {
 
-    UINT successfulreads;
     FRESULT Fresult;
 
-    Fresult = f_open(&filehandle, args, FA_CREATE_NEW | FA_WRITE);
-    if(Fresult = FR_OK) {
-        f_sync(&filehandle);
-        Fresult = f_close(&filehandle);
+    Fresult = f_open(&filehandle, args, FA_CREATE_NEW);
+    if(Fresult == FR_OK) {
+        Fresult |= f_close(&filehandle);
     }
-    return Fresult;
+    return (uint32_t)Fresult;
 }
 
 /* TODO: format the sdcard in fat32 */
