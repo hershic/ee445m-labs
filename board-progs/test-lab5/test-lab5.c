@@ -80,7 +80,7 @@ int cat(char* args) {
     }
     return (int32_t)Fresult;
 }
-
+;
 /* TODO: List the structure of a directory */
 int ls(char* args) {
 
@@ -96,11 +96,13 @@ int ls(char* args) {
     return 1;
 }
 
-/* TODO Make a directory. Fail if it exists*/
 int mkdir(char* args) {
 
-    /* not yet implemented */
-    return 1;
+    FRESULT MkdirFresult = f_mkdir("");
+    if(MkdirFresult != FR_OK){
+        uart_send_string("f_mkdir_error\r\n");
+    }
+    return (int32_t)MkdirFresult;
 }
 
 /* TODO Remove a file or directory. Should be recursive? */
