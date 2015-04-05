@@ -5,6 +5,7 @@
 
 #include <stdbool.h>
 #include "libstd/nexus.h"
+#include "libfatfs/ff.h"
 
 /*! \addtogroup System
  * @{
@@ -15,6 +16,9 @@
 
 /*! Maximum number of commands supported by the system. */
 #define SYSTEM_MAX_COMMANDS            16
+
+extern bool logging_ready;
+extern FIL logfilehandle;
 
 /*! Iterator optimized for size that is guaranteed to be able to
  * iterate over \SYSTEM_COMMANDS. */

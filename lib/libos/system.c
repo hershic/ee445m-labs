@@ -7,6 +7,9 @@
 #include "libut/utlist.h"
 #include "libstd/nexus.h"
 
+bool logging_ready = 0;
+FIL logfilehandle;
+
 /*! libsystem debugging switch */
 const bool SYSTEM_DEBUG = false;
 
@@ -92,10 +95,20 @@ exit_status_t system_exec(const char* command, const char* args) {
     uart_send_string(args);
     uart_send_string("\r\n");
 #endif
+
+    UINT bytes_written;
+    if (logging_ready) {
+        f_write(&logfilehandle, "\r\n", 2, &bytes_written);
+        f_write(&logfilehandle, command, ustrlen(command),  &bytes_written);
+        f_write(&logfilehandle, " ", 1,  &bytes_written);
+        f_write(&logfilehandle, args, ustrlen(args),  &bytes_written);
+        f_sync(&logfilehandle);
+    }
+
     if (sys_command->valid) {
         return sys_command->command(args);
     } else {
         uart_send_string("command not found\r\n");
-        return EXIT_FAILURE;    /* plan b */
+        return EXIT_FAILURE;
     }
 }

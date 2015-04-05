@@ -40,8 +40,30 @@ static FATFS g_sFatFs;
 static FIL filehandle;
 static DIR dirhandle;
 
+extern FIL logfilehandle;
+extern bool logging_ready;
+
 #define GP_BUFFER_LEN 512
 unsigned char buffer[GP_BUFFER_LEN];
+
+#define logfilename "log"
+
+inline void open_log() {
+
+    if (logging_ready == 0) {
+        f_open(&logfilehandle, logfilename, FA_OPEN_ALWAYS | FA_WRITE);
+        f_lseek(&logfilehandle, logfilehandle.fsize);
+        logging_ready = 1;
+    }
+}
+
+inline void close_log() {
+
+    if (logging_ready == 1) {
+        f_close(&logfilehandle);
+        logging_ready = 0;
+    }
+}
 
 /* Mount the sdcard. */
 int mount(char* args) {
@@ -50,12 +72,14 @@ int mount(char* args) {
     if(MountFresult != FR_OK) {
         uart_send_string("f_mount_error\r\n");
     }
+    open_log();
     return (int32_t)MountFresult;
 }
 
 /* Unmount the sdcard. */
 int umount(char* args) {
 
+    close_log();
     FRESULT MountFresult = f_mount(0, "", 0);
     if(MountFresult != FR_OK){
         uart_send_string("f_umount_error\r\n");
@@ -127,7 +151,13 @@ int mkdir(char* args) {
 /* Remove a file/empty dir. */
 int rm(char* args) {
 
-    FRESULT result = f_unlink(args);
+    FRESULT result;
+    if (ustrcmp(args, logfilename) == 0) {
+        close_log();
+    }
+
+    result = f_unlink(args);
+
     return (uint32_t)result;
 }
 
