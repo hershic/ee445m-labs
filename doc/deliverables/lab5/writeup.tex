@@ -117,8 +117,9 @@ oscilloscope and code. Two SPI packets can be seen in
     Does your implementation have external fragmentation? Explain with
     a one sentence answer.
     \begin{solution} \hbr
-      no idea
-      \todo
+      Yes, during a write \verb|FatFs| iterates over the disk looking
+      for free sectors, writing to each free sector as it is found
+      until the disk is full or no more data exists to be written.
     \end{solution}
   \end{Ex}
 \item
@@ -127,8 +128,10 @@ oscilloscope and code. Two SPI packets can be seen in
     is a random number, what is the expected amount of wasted storage
     due to internal fragmentation? Explain with a one sentence answer.
     \begin{solution} \hbr
-      no idea
-      \todo
+      \verb|FatFs| does not waste any space during any degree of
+      fragmentation -- although files not might be contiguous, there
+      are no wasted sectors in the write process. Fragmentation will
+      not reduce the capacity of our disk.
     \end{solution}
   \end{Ex}
 \item
@@ -138,10 +141,11 @@ oscilloscope and code. Two SPI packets can be seen in
     same. What read/write bandwidth could you expect to achieve?
     Explain with a one sentence answer.
     \begin{solution} \hbr
-    In this case, we would be limited by the SPI bandwidth since RAM
-    is much faster than SPI. Determine what the spi write
-    bandwidth is. Need oscilloscope.
-    \todo
+      In this case the bottleneck of the system would be limited by
+      the SPI bandwidth since RAM is much faster than SPI. SPI is not
+      inherently limited so if this hypothetical new card reader was
+      quick enough our bandwitdh limit would be the TM4C123GXL -- the
+      devices could communicate as quickly as our main bus speed.
     \end{solution}
   \end{Ex}
 \item
