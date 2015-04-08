@@ -154,7 +154,15 @@ oscilloscope and code. Two SPI packets can be seen in
     could increase this number (do not do it, just explain how it
     could have been done).
     \begin{solution} \hbr
-      no idea
+      Given that each file consumes _ blocks, and we have _ blocks
+      total,
+      . We can increase the maximum number of files that may be stored
+      on the disk by shrinking the default cluster size -- smaller
+      clusters will result in less wasted space for the last block of
+      each file, allowing additional information to be packed into the
+      same amount of storage space.
+
+
       \todo
     \end{solution}
   \end{Ex}
