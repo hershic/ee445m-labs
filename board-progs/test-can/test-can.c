@@ -17,6 +17,7 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/rom.h"
+#include "driverlib/can.h"
 
 #include "libadc/adc.h"
 #include "libbutton/button.h"
@@ -528,15 +529,18 @@ int main(void) {
     CANBitTimingSet(can_base, &psClkParms);
 
     /* After CANInit() and CANBitTimingSet() we may CANEnable() */
-    CANEnable();    /* can CANDisable(); which does not re-init */
+    CANEnable(can_base);    /* can CANDisable(); which does not re-init */
 
     /* Begin CAN transmission init */
     uint32_t ui32Base;
     uint32_t ui32ObjID = 0;
     tCANMsgObject *psMsgObject;
     tMsgObjType eMsgType;
-    uint32_t num-data_frame_bytes = 8;
-    uint8_t data_frame[data_frame_bytes] = {'T','h','i','s',' ','i','s',0};
+    uint32_t num_data_frame_bytes = 8;
+    uint8_t data_frame[] = {'T','h','i','s',' ','i','s',0};
+
+/* Comment  the below line to RECEIVE */
+#define CAN_SEND
 
 #ifdef CAN_SEND
     /* To send a data frame or remote frame (in response to a remote */
@@ -588,7 +592,7 @@ int main(void) {
     /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
     /* 6. */
 
-#end
+#endif
     /* Fin. */ CANMessageSet(ui32Base, ui32ObjID, psMsgObject, eMsgType);
     /**************************/
     /* End CAN Initialization */
