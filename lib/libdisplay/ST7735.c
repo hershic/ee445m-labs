@@ -822,6 +822,8 @@ void ST7735_InitR(enum initRFlags option) {
   }
   commandList(Rcmd3);
 
+  ST7735_SetRotation(2);
+
   // if black, change MADCTL color filter
   if (option == INITR_BLACKTAB) {
     writecommand(ST7735_MADCTL);
