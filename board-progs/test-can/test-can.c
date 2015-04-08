@@ -21,6 +21,10 @@
 #include "libstd/nexus.h"
 #include "libuart/uart.h"
 
+/* CAN Control */
+#define CAN_SEND 0
+#define CAN_RECV 1
+
 int main(void) {
 
     hw_metadata metadata;
@@ -59,8 +63,6 @@ int main(void) {
     uint32_t num_data_frame_bytes = 8;
     uint8_t data_frame[] = {'T','h','i','s',' ','i','s',0};
 
-#define CAN_SEND 0
-#define CAN_RECV 1
 #define CAN_ROLE CAN_RECV
 
     if (CAN_ROLE == CAN_SEND) {
