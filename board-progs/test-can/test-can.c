@@ -31,6 +31,9 @@ int main(void) {
     /* Enable processor interrupts */
     IntMasterDisable();
 
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    GPIOPinConfigure(GPIO_PB4_CAN0RX);
+    GPIOPinConfigure(GPIO_PB5_CAN0TX);
     GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
 
