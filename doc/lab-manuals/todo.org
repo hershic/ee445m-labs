@@ -355,3 +355,21 @@ see fputc
 - [ ] printf to a file
 - [ ] redirect stdio back to the serial port
 - [ ] close the file
+* [0/10] Lab 6
+- [ ] modify lab4 to run on two microcontrollers
+  ?
+- [ ] test the CAN physical layer of the network
+- [0/6] debug sensor interfaces
+  - [ ] motor
+    Measure the current and voltage delivered to the motor under
+    no-load conditions.
+  - [ ] ping sensor
+    Must measure distances accurately at 10 Hz. Measure
+    - [ ] max deviation
+    - [ ] average
+    - [ ] std deviation
+  - [ ] ??? sensor
+- [ ] measure maximum sustained bandwidth of the system
+  what factors limit bandwidth?
+- [ ] put all pieces together so data measured in each node is
+  available in both computers
