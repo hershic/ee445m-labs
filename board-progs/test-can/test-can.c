@@ -31,6 +31,8 @@ int main(void) {
     /* Enable processor interrupts */
     IntMasterDisable();
 
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
+
     /**********************/
     /* CAN Initialization */
     /**********************/
@@ -59,7 +61,7 @@ int main(void) {
 
 #define CAN_SEND 0
 #define CAN_RECV 1
-#define CAN_ROLE CAN_SEND
+#define CAN_ROLE CAN_RECV
 
     if (CAN_ROLE == CAN_SEND) {
         /* To send a data frame or remote frame (in response to a remote */
