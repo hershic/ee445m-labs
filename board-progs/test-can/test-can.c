@@ -57,7 +57,6 @@ int main(void) {
     uint32_t num_data_frame_bytes = 8;
     uint8_t data_frame[] = {'T','h','i','s',' ','i','s',0};
 
-<<<<<<< HEAD
 /* Comment  the below line to RECEIVE */
 /* #define CAN_SEND */
 
@@ -167,7 +166,6 @@ int main(void) {
         /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
         /* 6. */
     }
->>>>>>> origin/master
     /* Fin. */ CANMessageSet(ui32Base, ui32ObjID, psMsgObject, eMsgType);
     /**************************/
     /* End CAN Initialization */
