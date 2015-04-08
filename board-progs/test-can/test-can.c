@@ -539,60 +539,60 @@ int main(void) {
     uint32_t num_data_frame_bytes = 8;
     uint8_t data_frame[] = {'T','h','i','s',' ','i','s',0};
 
-/* Comment  the below line to RECEIVE */
-#define CAN_SEND
+#define CAN_SEND 0
+#define CAN_RECV 1
+#define CAN_ROLE CAN_SEND
 
-#ifdef CAN_SEND
-    /* To send a data frame or remote frame (in response to a remote */
-    /* request), take the following steps: */
+    if (CAN_ROLE == CAN_SEND) {
+        /* To send a data frame or remote frame (in response to a remote */
+        /* request), take the following steps: */
 
-    /* 1. Set eMsgType to MSG_OBJ_TYPE_TX. */
-    /* 2. Set psMsgObject->ui32MsgID to the message ID. */
-    /* 3. Set psMsgObject->ui32Flags. Make sure to set */
-    /*    MSG_OBJ_TX_INT_ENABLE to allow an interrupt to be generated */
-    /*    when the message is sent. */
-    /* 4. Set psMsgObject->ui32MsgLen to the number of bytes in the data */
-    /*    frame. */
-    /* 5. Set psMsgObject->pui8MsgData to point to an array containing */
-    /*    the bytes to send in the message. */
-    /* 6. Call this function with ui32ObjID set to one of the 32 object buffers. */
+        /* 1. Set eMsgType to MSG_OBJ_TYPE_TX. */
+        /* 2. Set psMsgObject->ui32MsgID to the message ID. */
+        /* 3. Set psMsgObject->ui32Flags. Make sure to set */
+        /*    MSG_OBJ_TX_INT_ENABLE to allow an interrupt to be generated */
+        /*    when the message is sent. */
+        /* 4. Set psMsgObject->ui32MsgLen to the number of bytes in the data */
+        /*    frame. */
+        /* 5. Set psMsgObject->pui8MsgData to point to an array containing */
+        /*    the bytes to send in the message. */
+        /* 6. Call this function with ui32ObjID set to one of the 32 object buffers. */
 
-    /* 1. */ eMsgType = MSG_OBJ_TYPE_TX;
-    /* 2. */ psMsgObject->ui32MsgID = 0; /* initial message id */
-    /* 3. */ psMsgObject->ui32Flags = MSG_OBJ_TX_INT_ENABLE; /* generate interrupt when message is sent */
-    /* 4. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
-    /* 5. */ psMsgObject->pui8MsgData = data_frame;
+        /* 1. */ eMsgType = MSG_OBJ_TYPE_TX;
+        /* 2. */ psMsgObject->ui32MsgID = 0; /* initial message id */
+        /* 3. */ psMsgObject->ui32Flags = MSG_OBJ_TX_INT_ENABLE; /* generate interrupt when message is sent */
+        /* 4. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
+        /* 5. */ psMsgObject->pui8MsgData = data_frame;
 
-#else /* CAN_RECV */
+    } else if (CAN_ROLE == CAN_RECV) {
 
-    /* Example: To receive a specific data frame, take the following steps: */
+        /* Example: To receive a specific data frame, take the following steps: */
 
-    /* 1. Set eMsgObjType to MSG_OBJ_TYPE_RX. */
-    /* 2. Set psMsgObject->ui32MsgID to the full message ID, or a partial */
-    /*    mask to use partial ID matching. */
-    /* 3. Set psMsgObject->ui32MsgIDMask bits that are used for masking */
-    /*    during comparison. */
-    /* 4. Set psMsgObject->ui32Flags as follows: */
-    /*    - Set MSG_OBJ_RX_INT_ENABLE flag to be interrupted when the data */
-    /*      frame is received. */
-    /*    - Set MSG_OBJ_USE_ID_FILTER flag to enable identifier-based */
-    /*      filtering. */
-    /* 5. Set psMsgObject->ui32MsgLen to the number of bytes in the */
-    /*    expected data frame. */
-    /* 6. The buffer pointed to by psMsgObject->pui8MsgData is not used */
-    /*    by this call as no data is present at the time of the call. */
-    /* 7. Call this function with ui32ObjID set to one of the 32 object */
-    /*    buffers.  If you specify a message object buffer that already */
-    /*    contains a message definition, it is overwrit- ten. */
+        /* 1. Set eMsgObjType to MSG_OBJ_TYPE_RX. */
+        /* 2. Set psMsgObject->ui32MsgID to the full message ID, or a partial */
+        /*    mask to use partial ID matching. */
+        /* 3. Set psMsgObject->ui32MsgIDMask bits that are used for masking */
+        /*    during comparison. */
+        /* 4. Set psMsgObject->ui32Flags as follows: */
+        /*    - Set MSG_OBJ_RX_INT_ENABLE flag to be interrupted when the data */
+        /*      frame is received. */
+        /*    - Set MSG_OBJ_USE_ID_FILTER flag to enable identifier-based */
+        /*      filtering. */
+        /* 5. Set psMsgObject->ui32MsgLen to the number of bytes in the */
+        /*    expected data frame. */
+        /* 6. The buffer pointed to by psMsgObject->pui8MsgData is not used */
+        /*    by this call as no data is present at the time of the call. */
+        /* 7. Call this function with ui32ObjID set to one of the 32 object */
+        /*    buffers.  If you specify a message object buffer that already */
+        /*    contains a message definition, it is overwrit- ten. */
 
-    /* 1. */ eMsgType = MSG_OBJ_TYPE_RX;
-    /* 2. */ psMsgObject->ui32MsgID = 0; /* initial message id */
-    /* 3. */ psMsgObject->ui32MsgIDMask = 0xFFFFFFFF;
-    /* 4. */ psMsgObject->ui32Flags = MSG_OBJ_RX_INT_ENABLE;
-    /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
-    /* 6. */
-
-#endif
+        /* 1. */ eMsgType = MSG_OBJ_TYPE_RX;
+        /* 2. */ psMsgObject->ui32MsgID = 0; /* initial message id */
+        /* 3. */ psMsgObject->ui32MsgIDMask = 0xFFFFFFFF;
+        /* 4. */ psMsgObject->ui32Flags = MSG_OBJ_RX_INT_ENABLE;
+        /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
+        /* 6. */
+    }
     /* Fin. */ CANMessageSet(ui32Base, ui32ObjID, psMsgObject, eMsgType);
     /**************************/
     /* End CAN Initialization */
