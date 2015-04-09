@@ -58,6 +58,7 @@ int main(void) {
 
     /* After CANInit() and CANBitTimingSet() we may CANEnable() */
     CANEnable(can_base);    /* can CANDisable(); which does not re-init */
+    CANIntEnable(can_base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
 
     /* Begin CAN transmission init */
     uint32_t ui32Base;
