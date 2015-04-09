@@ -29,3 +29,6 @@ add_subdirectory(test-lab4)
 add_subdirectory(lab5-valvano)
 add_subdirectory(test-lab5)
 add_subdirectory(test-can)
+
+add_subdirectory(ti-can-rx)
+add_subdirectory(ti-can-tx)
