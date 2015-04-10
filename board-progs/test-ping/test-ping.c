@@ -103,7 +103,7 @@ int TIMER0_Handler() {
 
 }
 
-/* Record how long the Ping))) took torespond */
+/* Record how long the Ping))) took to respond */
 int GPIOPortB_Handler() {
 
     ping_time = TimerValueGet(TIMER0_BASE, TIMER_A);
