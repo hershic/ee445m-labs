@@ -38,7 +38,7 @@ uint32_t button_right_pressed;
 uint32_t button_debounced_mailbox;
 uint32_t button_debounced_wtf;
 
-semaphore_t button_debounced_new_data;
+extern semaphore_t sem_button_debounce;
 
 // Subroutine to wait 1 usec
 // Inputs: n Number of usecs to wait
@@ -60,6 +60,7 @@ int sample(void) {
 
     while(true) {
         sem_guard(sem_ping) {
+            sem_take(sem_ping);
             /* Set Ping))) SIG to output */
             GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0);
             /* Set SIG high for 5usec */
@@ -74,7 +75,7 @@ int sample(void) {
 
             /* Reconfigure PB0 as edge-triggered input */
             GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
-            button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
+            button_metadata_init(GPIO_PORTB_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
             hw_init(HW_BUTTON, button_metadata);
         }
         os_surrender_context();
@@ -97,14 +98,6 @@ void button_debounce_start(notification button_notification) {
                              button_debounce_end);
 }
 
-
-void postpone_suicide() {
-
-    while (1) {
-    }
-}
-
-
 /* Better than Default_Handler */
 int TIMER0_Handler() {
 
@@ -115,6 +108,29 @@ int GPIOPortB_Handler() {
 
     ping_time = TimerValueGet(TIMER0_BASE, TIMER_A);
     TimerDisable(TIMER0_BASE, 0xFFFFFFFF);
+}
+
+void button_debounce_daemon() {
+
+    int32_t button_raw_data = 0xff;
+
+    while (1) {
+        sem_guard(sem_button_debounce) {
+            sem_take(sem_button_debounce);
+            button_raw_data = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
+
+            if (~button_raw_data & BUTTON_LEFT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                             GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+            }
+            if (~button_raw_data & BUTTON_RIGHT) {
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
+                             GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+            }
+            sem_signal(sem_ping);
+        }
+        os_surrender_context();
+    }
 }
 
 int main(void) {
@@ -138,20 +154,25 @@ int main(void) {
     hw_driver_init(HW_TIMER, timer_metadata);
     /* end timer init */
 
+    /* hearts init -- all are outputs */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3);
+    /* end hearts init */
+
     /* button init */
-    button_left_pressed = 0;
-    button_right_pressed = 0;
     button_debounced_mailbox = 0xff;
-    sem_init(button_debounced_new_data);
+    sem_init(sem_button_debounce);
 
     button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
 
     hw_init(HW_BUTTON, button_metadata);
-    hw_subscribe(HW_BUTTON, button_metadata, button_debounce_start);
     /* end button init */
 
     os_threading_init();
-    schedule(postpone_suicide, 100 Hz, DL_SOFT);
+    schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
+    schedule(sample, 100 Hz, DL_SOFT);
 
     IntMasterEnable();
     os_launch();

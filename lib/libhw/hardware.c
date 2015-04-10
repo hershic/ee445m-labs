@@ -30,6 +30,7 @@
 #include "libtimer/timer.h"
 #include "libbutton/button.h"
 
+#include "libos/thread_structures.h"
 #include "libos/os.h"
 
 /* Each driver is statically allocated */
@@ -50,6 +51,7 @@ uint32_t ADC0_SEQ3_SAMPLES[4];
 
 semaphore_t HW_ADC_SEQ2_SEM;
 semaphore_t HW_BUTTON_RAW_SEM;
+semaphore_t sem_button_debounce;
 
 uint32_t jitter_begin;
 uint32_t jitter_end;
@@ -242,11 +244,11 @@ void GPIOPortF_Handler(void) {
 
     GPIOIntClear(GPIO_PORTF_BASE, BUTTONS_BOTH);
 
-    ++HW_BUTTON_RAW_SEM;
+    /* This is the only line needed for test-lab4 */
+    /* ++HW_BUTTON_RAW_SEM; */
 
-    /* notification_init(int, GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH)); */
-    /* button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, NULL); */
-    /* hw_notify(HW_BUTTON, button_metadata, note); */
+    /* this is for test-ping */
+    sem_signal(sem_button_debounce);
 }
 
 
