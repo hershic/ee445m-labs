@@ -27,7 +27,7 @@
 
 #include "libos/os.h"
 #include "libos/jitter.h"
-#include "libheart/heartbeat.h"#i
+#include "libheart/heartbeat.h"
 #include "libbutton/button.h"
 #include "libtimer/timer.h"
 #include "libhw/hardware.h"
