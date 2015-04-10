@@ -30,6 +30,8 @@
 #include "libtimer/timer.h"
 #include "libbutton/button.h"
 
+#include "libos/os.h"
+
 /* Each driver is statically allocated */
 static hw_driver HW_UART_DRIVER;
 static hw_driver HW_TIMER_DRIVER;

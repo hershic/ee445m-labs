@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "libnotify/notify.h"
 #include "libstd/nexus.h"
-#include "libos/semaphore.h"
+#include "libos/thread_structures.h"
 
 /* TODO: Expand this for all devices */
 static volatile semaphore_t HW_SEM_UART0;

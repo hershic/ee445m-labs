@@ -21,7 +21,7 @@
 #include "driverlib/sysctl.h"
 
 #include "libtimer/timer.h"
-#include "libos/semaphore.h"
+#include "libos/thread_structures.h"
 
 #include <sys/stat.h>
 

@@ -27,11 +27,11 @@
 
 #include "libos/os.h"
 #include "libos/jitter.h"
-#include "libheart/heartbeat.h"
+#include "libheart/heartbeat.h"#i
 #include "libbutton/button.h"
 #include "libtimer/timer.h"
 #include "libhw/hardware.h"
-#include "libos/semaphore.h"
+#include "libos/thread_structures.h"
 /* #include "libdisplay/ST7735.h" */
 #include "libadc/adc.h"
 #include "libuart/uart.h"

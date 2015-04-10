@@ -3,7 +3,7 @@
 
 #include "libuart/uart.h"
 #include "libhw/hardware.h"
-#include "libos/semaphore.h"
+#include "libos/thread_structures.h"
 #include "libos/os.h"
 
 #include "inc/hw_memmap.h"
