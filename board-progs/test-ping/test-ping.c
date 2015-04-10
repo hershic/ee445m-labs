@@ -58,6 +58,9 @@ void Delay1us(uint32_t n){
 /*! Sample the Ping))) Sensor */
 int sample(void) {
 
+    GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+    IntEnable(INT_GPIOB);
+
     while(true) {
         sem_guard(sem_ping) {
             sem_take(sem_ping);
