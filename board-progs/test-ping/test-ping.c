@@ -83,6 +83,7 @@ int sample(void) {
 
             /* Set Ping))) SIG to input */
             GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+            IntEnable(INT_GPIOB);
 
             /* Reconfigure PB0 as edge-triggered input */
             GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
