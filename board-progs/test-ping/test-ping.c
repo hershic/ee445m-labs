@@ -71,15 +71,15 @@ int sample(void) {
             Delay1us(5);
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
             /* begin timer init */
-            timer_metadata_init(TIMER0_BASE, 2 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT_UP);
+            timer_metadata_init(TIMER1_BASE, 0, INT_TIMER0A, TIMER_CFG_ONE_SHOT_UP);
+            timer_metadata.timer.subtimer = TIMER_A | TIMER_B;
             hw_driver_init(HW_TIMER, timer_metadata);
-            hw_channel_init(HW_TIMER, timer_metadata);
+            timer_add_interrupt(timer_metadata);
             /* end timer init */
 
             /* Reconfigure PB0 as edge-triggered input */
             GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
-            button_metadata_init(GPIO_PORTB_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
-            hw_init(HW_BUTTON, button_metadata);
+            button_metadata_init(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_BOTH_EDGES);
         }
         os_surrender_context();
     }
@@ -103,14 +103,17 @@ void button_debounce_start(notification button_notification) {
 
 /* Better than Default_Handler */
 int TIMER0_Handler() {
-
+    int test = TimerValueGet(TIMER0_BASE, TIMER_A);
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT | TIMER_TIMB_TIMEOUT);
 }
 
 /* Record how long the Ping))) took to respond */
 int GPIOPortB_Handler() {
 
+    GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
+
     ping_time = TimerValueGet(TIMER0_BASE, TIMER_A);
-    TimerDisable(TIMER0_BASE, 0xFFFFFFFF);
+    /* TimerDisable(TIMER0_BASE, TIMER_A); */
 }
 
 void button_debounce_daemon() {
@@ -130,10 +133,14 @@ void button_debounce_daemon() {
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
                              GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
             }
-            sem_signal(sem_ping);
+            schedule_sample();
         }
         os_surrender_context();
     }
+}
+
+int schedule_sample() {
+    sem_signal(sem_ping);
 }
 
 int main(void) {
@@ -174,8 +181,18 @@ int main(void) {
     /* end button init */
 
     os_threading_init();
+    schedule(hw_daemon, 100 Hz, DL_SOFT);
     schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
     schedule(sample, 100 Hz, DL_SOFT);
+
+    system_init();
+    system_register_command((const char*) "s", schedule_sample);
+
+    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    hw_init(HW_UART, uart_metadata);
+
+    /* Initialize the shell and the system it interacts with */
+    shell_spawn();
 
     IntMasterEnable();
     os_launch();
