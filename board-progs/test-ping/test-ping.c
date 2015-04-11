@@ -81,18 +81,17 @@ int sample(void) {
 
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
 
+            /* Set Ping))) SIG to input */
+            GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+
+            /* Reconfigure PB0 as edge-triggered input */
+            GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
             /* begin timer init */
             timer_metadata_init(TIMER1_BASE, 0x0fffffff, INT_TIMER1A, TIMER_CFG_ONE_SHOT_UP);
             timer_metadata.timer.subtimer = TIMER_A | TIMER_B;
             hw_driver_init(HW_TIMER, timer_metadata);
             timer_add_interrupt(timer_metadata);
             /* end timer init */
-
-            /* Set Ping))) SIG to input */
-            GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
-
-            /* Reconfigure PB0 as edge-triggered input */
-            GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
         }
         os_surrender_context();
     }
