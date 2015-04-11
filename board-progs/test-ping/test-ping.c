@@ -28,6 +28,9 @@
 #include "libbutton/button.h"
 #include "libos/thread_structures.h"
 
+#define led_toggle(port, pin) \
+    GPIOPinWrite(port, pin, pin ^ GPIOPinRead(port, pin))
+
 /*! Ping))) Control */
 semaphore_t sem_ping;
 uint32_t ping_time = 0xDEADBEEF;
@@ -123,12 +126,10 @@ void button_debounce_daemon() {
             button_raw_data = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
 
             if (~button_raw_data & BUTTON_LEFT) {
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-                             GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                led_toggle(GPIO_PORTF_BASE, GPIO_PIN_2);
             }
             if (~button_raw_data & BUTTON_RIGHT) {
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,
-                             GPIO_PIN_2 ^ GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_2));
+                led_toggle(GPIO_PORTF_BASE, GPIO_PIN_2);
             }
             sem_signal(sem_ping);
         }
