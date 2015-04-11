@@ -41,13 +41,23 @@ uint32_t button_right_pressed;
 uint32_t button_debounced_mailbox;
 uint32_t button_debounced_wtf;
 
+uint32_t timer_overflow;
+
 extern semaphore_t sem_button_debounce;
 
+typedef enum ping_status {
+    ping_not_active,
+    ping_signal,
+    ping_response,
+} ping_status_t;
+
+ping_status_t ping_status;
 
 /*! Sample the Ping))) Sensor */
 int sample(void) {
 
     uint32_t counter;
+    ping_status = ping_not_active;
 
     while(true) {
         sem_guard(sem_ping) {
@@ -68,17 +78,12 @@ int sample(void) {
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
 
             /* Set Ping))) SIG to input */
-            GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+            GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
+            GPIOIntTypeSet(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_BOTH_EDGES);
+            GPIOIntEnable(GPIO_PORTB_BASE, GPIO_PIN_0);
+            IntEnable(INT_GPIOB_TM4C123);
             IntEnable(INT_GPIOB);
 
-            /* Reconfigure PB0 as edge-triggered input */
-            GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
-            /* begin timer init */
-            timer_metadata_init(TIMER1_BASE, 0x0fffffff, INT_TIMER1A, TIMER_CFG_ONE_SHOT_UP);
-            timer_metadata.timer.subtimer = TIMER_A | TIMER_B;
-            hw_driver_init(HW_TIMER, timer_metadata);
-            timer_add_interrupt(timer_metadata);
-            /* end timer init */
         }
         os_surrender_context();
     }
@@ -86,7 +91,8 @@ int sample(void) {
 
 void TIMER1A_Handler() {
   TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-  uint32_t test = TimerValueGet(TIMER0_BASE, TIMER_A);
+  uint32_t test = TimerValueGet(TIMER1_BASE, TIMER_A);
+  ++timer_overflow;
 }
 
 void button_debounce_end(notification button_notification) {
@@ -110,8 +116,23 @@ int GPIOPortB_Handler() {
 
     GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
 
-    ping_time = TimerValueGet(TIMER0_BASE, TIMER_A);
-    /* TimerDisable(TIMER0_BASE, TIMER_A); */
+    ++ping_status;
+    timer_overflow = 0;
+
+    if (ping_status == ping_signal) {
+        /* begin timer init */
+        timer_metadata_init(TIMER1_BASE, 0, INT_TIMER1A, TIMER_CFG_PERIODIC_UP);
+        timer_metadata.timer.subtimer = TIMER_A;
+        hw_driver_init(HW_TIMER, timer_metadata);
+        timer_add_interrupt(timer_metadata);
+        TimerLoadSet(TIMER1_BASE, TIMER_A, 0x0fffffe);
+        ping_time = TimerValueGet(TIMER1_BASE, TIMER_A);
+        /* end timer init */
+    } else if (ping_status == ping_response) {
+        ping_time = TimerValueGet(TIMER1_BASE, TIMER_A);
+        ping_status = ping_not_active;
+        TimerDisable(TIMER1_BASE, TIMER_A);
+    }
 }
 
 void button_debounce_daemon() {
