@@ -61,31 +61,46 @@ void Delay1us(uint32_t n){
 /*! Sample the Ping))) Sensor */
 int sample(void) {
 
-    GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
-    IntEnable(INT_GPIOB);
+    uint32_t counter;
 
     while(true) {
         sem_guard(sem_ping) {
             sem_take(sem_ping);
+
             /* Set Ping))) SIG to output */
+            GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
             GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0);
+
             /* Set SIG high for 5usec */
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 1);
-            Delay1us(5);
+            /* Delay1us(5); */
+            while(counter < 4){
+                counter++;
+            }
+            counter = 0;
+
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
+
             /* begin timer init */
-            timer_metadata_init(TIMER1_BASE, 0, INT_TIMER0A, TIMER_CFG_ONE_SHOT_UP);
+            timer_metadata_init(TIMER1_BASE, 0x0fffffff, INT_TIMER1A, TIMER_CFG_ONE_SHOT_UP);
             timer_metadata.timer.subtimer = TIMER_A | TIMER_B;
             hw_driver_init(HW_TIMER, timer_metadata);
             timer_add_interrupt(timer_metadata);
             /* end timer init */
 
+            /* Set Ping))) SIG to input */
+            GPIOIntEnable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+
             /* Reconfigure PB0 as edge-triggered input */
             GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
-            button_metadata_init(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_BOTH_EDGES);
         }
         os_surrender_context();
     }
+}
+
+void TIMER1A_Handler() {
+  TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+  uint32_t test = TimerValueGet(TIMER0_BASE, TIMER_A);
 }
 
 void button_debounce_end(notification button_notification) {
@@ -102,12 +117,6 @@ void button_debounce_start(notification button_notification) {
     hw_channel_init(HW_TIMER, timer_metadata);
     hw_subscribe_single_shot(HW_TIMER, timer_metadata,
                              button_debounce_end);
-}
-
-/* Better than Default_Handler */
-int TIMER0_Handler() {
-    int test = TimerValueGet(TIMER0_BASE, TIMER_A);
-    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT | TIMER_TIMB_TIMEOUT);
 }
 
 /* Record how long the Ping))) took to respond */
@@ -176,9 +185,9 @@ int main(void) {
     button_debounced_mailbox = 0xff;
     sem_init(sem_button_debounce);
 
-    button_metadata_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
+    button_metadata_init_(portf, GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
 
-    hw_init(HW_BUTTON, button_metadata);
+    hw_init(HW_BUTTON, portf);
     /* end button init */
 
     os_threading_init();
