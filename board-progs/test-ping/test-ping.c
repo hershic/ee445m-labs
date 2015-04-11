@@ -43,20 +43,6 @@ uint32_t button_debounced_wtf;
 
 extern semaphore_t sem_button_debounce;
 
-// Subroutine to wait 1 usec
-// Inputs: n Number of usecs to wait
-// Outputs: None
-// Notes: This assumes 80 MHz system clock.
-void Delay1us(uint32_t n){
-  uint32_t volatile time;
-  while(n){
-    time = 72724*2/91000;  // 1usec, tuned at 80 MHz
-    while(time){
-      time--;
-    }
-    n--;
-  }
-}
 
 /*! Sample the Ping))) Sensor */
 int sample(void) {
