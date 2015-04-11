@@ -23,14 +23,14 @@ void button_init(hw_metadata metadata) {
 
     GPIODirModeSet(metadata.button.base, metadata.button.pin, GPIO_DIR_MODE_IN);
 
-    if (metadata.button.base == GPIO_PORTF_BASE) {
+    if ((metadata.button.base == GPIO_PORTF_BASE) && (metadata. button.pin & GPIO_PIN_0)) {
         HWREG(metadata.button.base + GPIO_O_LOCK) = GPIO_LOCK_KEY;
         HWREG(metadata.button.base + GPIO_O_CR) = 0x01;
         HWREG(metadata.button.base + GPIO_O_LOCK) = 0;
 
         GPIOPadConfigSet(metadata.button.base, metadata.button.pin,
                          GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
-    }
+        }
 
     GPIOIntEnable(metadata.button.base, metadata.button.pin);
 }
