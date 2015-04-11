@@ -156,7 +156,7 @@ void heart_beat() {
 #define heart_pump_(a, b) heart_init_(a, b)
 
 /*! A pointer to a memory location on the ARM Cortex M4. */
-typedef int32_t memory_address_t;
+typedef uint32_t memory_address_t;
 
 /*! Contains information to identify a GPIO pin. This includes the
  *  port base and the specific pin. */

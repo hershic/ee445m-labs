@@ -45,10 +45,10 @@
 #define Hz
 
 /*! A reference to a memory location on the ARM Cortex M4. */
-typedef int32_t memory_address_t;
+typedef uint32_t memory_address_t;
 
 /*! A representation of a periodic frequency. */
-typedef int32_t frequency_t;
+typedef uint32_t frequency_t;
 
 /*! Begin a critical section while saving the PRIMASK for future
  *  restoration.

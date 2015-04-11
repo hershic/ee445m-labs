@@ -21,7 +21,7 @@
 typedef void (*task_t)();
 
 typedef void (*isr_t)();        /* isr capable of hw_notifying */
-typedef int32_t frequency_t;
+typedef uint32_t frequency_t;
 
 /*** Custom data types ***/
 /* swiss army knife data types */
