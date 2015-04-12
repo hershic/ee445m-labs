@@ -63,6 +63,8 @@ int sample(void) {
         sem_guard(sem_ping) {
             sem_take(sem_ping);
 
+            uart_send_udec(ping_time);
+
             /* Set Ping))) SIG to output */
             GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
             GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0);
@@ -127,11 +129,13 @@ int GPIOPortB_Handler() {
         timer_add_interrupt(timer_metadata);
         TimerLoadSet(TIMER1_BASE, TIMER_A, 0x0fffffe);
         ping_time = TimerValueGet(TIMER1_BASE, TIMER_A);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         /* end timer init */
     } else if (ping_status == ping_response) {
         ping_time = TimerValueGet(TIMER1_BASE, TIMER_A);
         ping_status = ping_not_active;
         TimerDisable(TIMER1_BASE, TIMER_A);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
     }
 }
 
