@@ -75,7 +75,7 @@ int8_t buffer::get() {
     }
     /* normal operation */
     int8_t ret = buf[--pos];
-    buf[pos] = 0;
+    buf[pos] = 0;               /*buf is always null-terminated*/
     return ret;
 }
 
