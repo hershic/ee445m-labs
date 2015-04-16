@@ -39,7 +39,7 @@ uint32_t ping_idx = 0;
 bool ping_sample_ready = false;
 uint32_t ping_avg;
 uint32_t ping_time[ping_samples_to_avg];
-bool ping_cluster_sample = false;
+bool ping_cluster_sample;
 
 /* Button control */
 uint32_t button_left_pressed;
@@ -64,15 +64,17 @@ int sample(void) {
 
     uint32_t counter;
     ping_status = ping_not_active;
+    ping_cluster_sample = false;
 
     while(true) {
         sem_guard(sem_ping) {
             sem_take(sem_ping);
             IntMasterDisable();
 
-            /* TODO: is this a 5V tolerant pin? */
             /* Set Ping))) SIG to output */
             GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+            IntDisable(INT_GPIOB_TM4C123);
+            IntDisable(INT_GPIOB);
             GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0);
 
             /* Set SIG high for 5usec */
@@ -86,6 +88,11 @@ int sample(void) {
             /* Set Ping))) SIG to input */
             GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
             GPIOIntTypeSet(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_BOTH_EDGES);
+
+            counter = 0;
+            while(counter < 200) { counter++;}
+
+            GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
             GPIOIntEnable(GPIO_PORTB_BASE, GPIO_PIN_0);
             IntEnable(INT_GPIOB_TM4C123);
             IntEnable(INT_GPIOB);
