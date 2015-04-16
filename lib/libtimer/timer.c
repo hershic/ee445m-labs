@@ -17,8 +17,10 @@
 
 void timer_add_interrupt(hw_metadata metadata) {
 
+    frequency_t freq = SysCtlClockGet() / metadata.timer.frequency;
+
     TimerConfigure(metadata.timer.base, metadata.timer.periodic);
-    TimerLoadSet(metadata.timer.base, metadata.timer.subtimer, SysCtlClockGet() / metadata.timer.frequency);
+    TimerLoadSet(metadata.timer.base, metadata.timer.subtimer, freq);
     TimerIntEnable(metadata.timer.base, TIMER_TIMA_TIMEOUT);
     IntEnable(metadata.timer.interrupt, TIMER_DEFAULT_PRIORITY);
     TimerEnable(metadata.timer.base, metadata.timer.subtimer);
