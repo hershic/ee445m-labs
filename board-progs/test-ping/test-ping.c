@@ -91,7 +91,7 @@ int sample(void) {
 void button_debounce_end(notification button_notification) {
 
     button_debounced_mailbox = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
-    sem_post(sem_ping);
+    schedule_sample();
 }
 
 /* what the btn handler calls */
@@ -100,8 +100,7 @@ void button_debounce_start(notification button_notification) {
     button_debounced_wtf = GPIOPinRead(GPIO_PORTF_BASE, BUTTONS_BOTH);
     timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
     hw_channel_init(HW_TIMER, timer_metadata);
-    hw_subscribe_single_shot(HW_TIMER, timer_metadata,
-                             button_debounce_end);
+    hw_subscribe_single_shot(HW_TIMER, timer_metadata, button_debounce_end);
 }
 
 /* Better than Default_Handler */
