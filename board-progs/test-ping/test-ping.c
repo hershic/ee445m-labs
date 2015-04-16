@@ -136,7 +136,6 @@ int GPIOPortB_Handler() {
         hw_driver_init(HW_TIMER, timer_metadata);
         timer_add_interrupt(timer_metadata);
         TimerLoadSet(TIMER1_BASE, TIMER_A, 0x0fffffe);
-        /* ping_time[ping_idx++] = TimerValueGet(TIMER1_BASE, TIMER_A); */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         /* end timer init */
     } else if (ping_status == ping_response) {
@@ -144,13 +143,14 @@ int GPIOPortB_Handler() {
         ping_status = ping_not_active;
         TimerDisable(TIMER1_BASE, TIMER_A);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+        sem_post(sem_ping_do_avg);
     }
-
-    sem_post(sem_ping_do_avg);
 }
 
 /* Exists to decouple work form the GPIOPortB_Handler ISR */
 void ping_average_samples() {
+
+    int32_t counter;
 
     while(1) {
         sem_guard(sem_ping_do_avg) {
@@ -158,7 +158,7 @@ void ping_average_samples() {
 
             /* Each sample of the Ping))) triggers \ping_samples_to_avg
              * samples and averages the results */
-            if (ping_idx == ping_samples_to_avg) {
+            if (ping_idx >= ping_samples_to_avg) {
                 uint32_t sample_sum;
                 for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
                     /* TODO: guarantee no overflow */
@@ -168,9 +168,13 @@ void ping_average_samples() {
                 ping_avg = sample_sum/ping_samples_to_avg;
                 uart_send_string("averaged sample))) ");
                 uart_send_udec(ping_avg);
+                uart_send_string("\n\r");
                 ping_sample_ready = true;
             } else {
                 uart_send_udec(ping_time[ping_idx]);
+                uart_send_string("\n\r");
+                counter = 0;
+                while(counter < 200) { counter++;}
                 schedule_sample();
             }
         }
