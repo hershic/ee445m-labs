@@ -32,8 +32,8 @@
     GPIOPinWrite(port, pin, pin ^ GPIOPinRead(port, pin))
 
 /*! Ping))) Control */
-semaphore_t sem_ping;
-semaphore_t sem_ping_do_avg;
+volatile semaphore_t sem_ping;
+volatile semaphore_t sem_ping_do_avg;
 uint32_t ping_idx = 0;
 #define ping_samples_to_avg 5
 bool ping_sample_ready = false;
@@ -48,6 +48,9 @@ uint32_t button_debounced_mailbox;
 uint32_t button_debounced_wtf;
 
 uint32_t timer_overflow;
+uint32_t timer_signal_value;
+/* for clarity */
+uint32_t timer_response_value;
 
 extern semaphore_t sem_button_debounce;
 
@@ -135,26 +138,25 @@ int GPIOPortB_Handler() {
     GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
 
     ++ping_status;
-    timer_overflow = 0;
 
     if (ping_status == ping_signal) {
         /* begin timer init */
+        timer_overflow = 0;
+        timer_signal_value = TimerValueGet(TIMER1_BASE, TIMER_A);
         timer_metadata_init(TIMER1_BASE, 0, INT_TIMER1A, TIMER_CFG_PERIODIC_UP);
         timer_metadata.timer.subtimer = TIMER_A;
-        hw_driver_init(HW_TIMER, timer_metadata);
         timer_add_interrupt(timer_metadata);
         TimerLoadSet(TIMER1_BASE, TIMER_A, 0x0fffffe);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         /* end timer init */
     } else if (ping_status == ping_response) {
-        ping_time[ping_idx++] = TimerValueGet(TIMER1_BASE, TIMER_A);
+        timer_response_value = TimerValueGet(TIMER1_BASE, TIMER_A);
+        ping_time[ping_idx++] = timer_response_value - timer_signal_value;
         ping_status = ping_not_active;
         TimerDisable(TIMER1_BASE, TIMER_A);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
         GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
-        if (ping_cluster_sample) {
-            sem_post(sem_ping_do_avg);
-        }
+        sem_post(sem_ping_do_avg);
     }
 }
 
@@ -162,32 +164,35 @@ int GPIOPortB_Handler() {
 void ping_average_samples() {
 
     int32_t counter;
-    sem_init(sem_ping_do_avg);
 
     while(1) {
         sem_guard(sem_ping_do_avg) {
             sem_take(sem_ping_do_avg);
-
-            /* Each sample of the Ping))) triggers \ping_samples_to_avg
-             * samples and averages the results */
-            if (ping_idx >= ping_samples_to_avg) {
-                uint32_t sample_sum;
-                for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
-                    /* TODO: guarantee no overflow */
-                    sample_sum += ping_time[ping_idx];
+            if (ping_cluster_sample) {
+                /* Each sample of the Ping))) triggers \ping_samples_to_avg
+                 * samples and averages the results */
+                if (ping_idx >= ping_samples_to_avg) {
+                    uint32_t sample_sum;
+                    for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
+                        /* TODO: guarantee no overflow */
+                        sample_sum += ping_time[ping_idx];
+                    }
+                    ping_idx = 0;
+                    ping_avg = sample_sum/ping_samples_to_avg;
+                    uart_send_string("averaged sample))) ");
+                    uart_send_udec(ping_avg);
+                    uart_send_string("\n\r");
+                    ping_sample_ready = true;
+                } else {
+                    uart_send_udec(ping_time[ping_idx]);
+                    uart_send_string("\n\r");
+                    counter = 0;
+                    while(counter < 200) { counter++;}
+                    schedule_sample();
                 }
-                ping_idx = 0;
-                ping_avg = sample_sum/ping_samples_to_avg;
-                uart_send_string("averaged sample))) ");
-                uart_send_udec(ping_avg);
-                uart_send_string("\n\r");
-                ping_sample_ready = true;
             } else {
-                uart_send_udec(ping_time[ping_idx]);
+                uart_send_udec(ping_time[--ping_idx]);
                 uart_send_string("\n\r");
-                counter = 0;
-                while(counter < 200) { counter++;}
-                schedule_sample();
             }
         }
         os_surrender_context();
@@ -248,6 +253,9 @@ int main(void) {
 
     /* begin timer init */
     timer_anon_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
+    /* HACK */
+    timer_metadata.timer.base = TIMER1_BASE;
+    hw_driver_init(HW_TIMER, timer_metadata);
     /* end timer init */
 
     /* begin shell init */
