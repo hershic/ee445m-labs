@@ -39,10 +39,11 @@ uint32_t ping_idx = 0;
 bool ping_sample_ready = false;
 uint32_t ping_avg;
 uint32_t ping_time[ping_samples_to_avg];
+bool ping_cluster_sample = false;
 
+/* Button control */
 uint32_t button_left_pressed;
 uint32_t button_right_pressed;
-
 uint32_t button_debounced_mailbox;
 uint32_t button_debounced_wtf;
 
@@ -146,7 +147,9 @@ int GPIOPortB_Handler() {
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
     }
 
-    sem_post(sem_ping_do_avg);
+    if (ping_cluster_sample) {
+        sem_post(sem_ping_do_avg);
+    }
 }
 
 /* Exists to decouple work form the GPIOPortB_Handler ISR */
