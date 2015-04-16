@@ -91,6 +91,7 @@ int sample(void) {
 
             IntMasterEnable();
         }
+        os_surrender_context();
     }
 }
 
