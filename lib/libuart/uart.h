@@ -16,6 +16,12 @@
 /*! Flag for libuart to handle CR/LF correctly. */
 static bool UART_LAST_WAS_CR;
 
+/*! Anonymously initialize uart */
+#define uart_anon_init(_baud_rate, _channel, _interrupt)  \
+    uart_metadata_init(_baud_rate, _channel, _interrupt); \
+    hw_driver_init(HW_UART, uart_metadata);               \
+    hw_channel_init(HW_UART, uart_metadata)
+
 /*! Create a hardware_metadata struct named _name */
 #define uart_metadata_init_(_name, _baud_rate, _channel, _interrupt)    \
     hw_metadata _name;                                                  \

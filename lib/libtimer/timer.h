@@ -7,6 +7,10 @@
 
 #include "libhw/hardware.h"
 
+#define timer_anon_init(_base, _frequency, _interrupt, _periodic)  \
+    timer_metadata_init(_base, _frequency, _interrupt, _periodic); \
+    hw_driver_init(HW_TIMER, timer_metadata)
+
 /*! Create a \hw_metadata struct named \_name. */
 /* TODO: Add subtimer here, fix all failures resulting from this */
 #define timer_metadata_init_(_name, _base, _frequency, _interrupt, _periodic) \

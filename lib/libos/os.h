@@ -144,6 +144,10 @@ void os_launch();
 
 void os_suspend();
 
+/*! Schedule a task with default parameters */
+#define sched(task) \
+    schedule(task, 100 Hz, DL_SOFT)
+
 #endif
 
 /*! End doxygen group

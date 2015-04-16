@@ -161,6 +161,7 @@ tcb_t* os_tcb_of(const task_t task) {
 /*! \note This enables interrupts */
 void os_launch() {
 
+    IntMasterEnable();
     edf_init();
     _os_choose_next_thread();
     os_running_threads = OS_NEXT_THREAD;
@@ -383,7 +384,6 @@ void os_suspend() {
 
     scheduler_reschedule();
 }
-
 
 void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
 

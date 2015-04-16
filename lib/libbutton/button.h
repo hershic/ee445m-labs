@@ -9,6 +9,11 @@
  * @{
  */
 
+/*! \hw_init an anonymous button metadata */
+#define button_anon_init(_base, _pin, _interrupt)      \
+    button_metadata_init(_base, _pin, _interrupt); \
+    hw_init(HW_BUTTON, button_metadata)
+
 /*! Create a \hw_metadata struct named \_name. */
 #define button_metadata_init_(_name, _base, _pin, _interrupt)	\
     hw_metadata _name;						\

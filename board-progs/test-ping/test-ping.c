@@ -28,12 +28,17 @@
 #include "libbutton/button.h"
 #include "libos/thread_structures.h"
 
-#define led_toggle(port, pin) \
+#define led_toggle(port, pin)                                   \
     GPIOPinWrite(port, pin, pin ^ GPIOPinRead(port, pin))
 
 /*! Ping))) Control */
 semaphore_t sem_ping;
-uint32_t ping_time = 0xDEADBEEF;
+semaphore_t sem_ping_do_avg;
+uint32_t ping_idx = 0;
+#define ping_samples_to_avg 5
+bool ping_sample_ready = false;
+uint32_t ping_avg;
+uint32_t ping_time[ping_samples_to_avg];
 
 uint32_t button_left_pressed;
 uint32_t button_right_pressed;
@@ -62,9 +67,9 @@ int sample(void) {
     while(true) {
         sem_guard(sem_ping) {
             sem_take(sem_ping);
+            IntMasterDisable();
 
-            uart_send_udec(ping_time);
-
+            /* TODO: is this a 5V tolerant pin? */
             /* Set Ping))) SIG to output */
             GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
             GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0);
@@ -72,9 +77,7 @@ int sample(void) {
             /* Set SIG high for 5usec */
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 1);
             /* Delay1us(5); */
-            while(counter < 4){
-                counter++;
-            }
+            while(counter < 4){counter++;}
             counter = 0;
 
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
@@ -86,15 +89,20 @@ int sample(void) {
             IntEnable(INT_GPIOB_TM4C123);
             IntEnable(INT_GPIOB);
 
+            IntMasterEnable();
         }
-        os_surrender_context();
     }
 }
 
+inline
+int schedule_sample() {
+    sem_signal(sem_ping);
+}
+
 void TIMER1A_Handler() {
-  TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
-  uint32_t test = TimerValueGet(TIMER1_BASE, TIMER_A);
-  ++timer_overflow;
+    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+    uint32_t test = TimerValueGet(TIMER1_BASE, TIMER_A);
+    ++timer_overflow;
 }
 
 void button_debounce_end(notification button_notification) {
@@ -127,14 +135,45 @@ int GPIOPortB_Handler() {
         hw_driver_init(HW_TIMER, timer_metadata);
         timer_add_interrupt(timer_metadata);
         TimerLoadSet(TIMER1_BASE, TIMER_A, 0x0fffffe);
-        ping_time = TimerValueGet(TIMER1_BASE, TIMER_A);
+        ping_time[ping_idx++] = TimerValueGet(TIMER1_BASE, TIMER_A);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         /* end timer init */
     } else if (ping_status == ping_response) {
-        ping_time = TimerValueGet(TIMER1_BASE, TIMER_A);
+        ping_time[ping_idx++] = TimerValueGet(TIMER1_BASE, TIMER_A);
         ping_status = ping_not_active;
         TimerDisable(TIMER1_BASE, TIMER_A);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+    }
+
+    sem_post(sem_ping_do_avg);
+}
+
+/* Exists to decouple work form the GPIOPortB_Handler ISR */
+void ping_average_samples() {
+
+    while(1) {
+        sem_guard(sem_ping_do_avg) {
+            sem_take(sem_ping_do_avg);
+
+            /* Each sample of the Ping))) triggers \ping_samples_to_avg
+             * samples and averages the results */
+            if (ping_idx == ping_samples_to_avg) {
+                uint32_t sample_sum;
+                for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
+                    /* TODO: guarantee no overflow */
+                    sample_sum += ping_time[ping_idx];
+                }
+                ping_idx = 0;
+                ping_avg = sample_sum/ping_samples_to_avg;
+                uart_send_string("averaged sample))) ");
+                uart_send_udec(ping_avg);
+                ping_sample_ready = true;
+            } else {
+                uart_send_udec(ping_time[ping_idx]);
+                schedule_sample();
+            }
+        }
+        os_surrender_context();
     }
 }
 
@@ -159,10 +198,6 @@ void button_debounce_daemon() {
     }
 }
 
-int schedule_sample() {
-    sem_signal(sem_ping);
-}
-
 int main(void) {
 
     hw_metadata metadata;
@@ -173,49 +208,45 @@ int main(void) {
     /* Enable processor interrupts */
     IntMasterDisable();
 
-    /* Enable the Ping))) peripheral */
+    /* begin initialize ping))) */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-
-    /* Initialize Ping))) semaphore */
     sem_init(sem_ping);
+    sem_init(sem_ping_do_avg);
+    /* end initialize ping))) */
 
-    /* begin timer init */
-    timer_metadata_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
-    hw_driver_init(HW_TIMER, timer_metadata);
-    /* end timer init */
-
-    /* hearts init -- all are outputs */
+    /* begin hearts init */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1);
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     /* end hearts init */
 
     /* button init */
     button_debounced_mailbox = 0xff;
     sem_init(sem_button_debounce);
-
-    button_metadata_init_(portf, GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
-
-    hw_init(HW_BUTTON, portf);
+    button_anon_init(GPIO_PORTF_BASE, BUTTONS_BOTH, GPIO_BOTH_EDGES);
     /* end button init */
 
-    os_threading_init();
-    schedule(hw_daemon, 100 Hz, DL_SOFT);
-    schedule(button_debounce_daemon, 100 Hz, DL_SOFT);
-    schedule(sample, 100 Hz, DL_SOFT);
+    /* begin uart init */
+    uart_anon_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    /* end uart init */
 
+    /* begin timer init */
+    timer_anon_init(TIMER0_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
+    /* end timer init */
+
+    /* begin shell init */
     system_init();
     system_register_command((const char*) "s", schedule_sample);
-
-    uart_metadata_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    hw_init(HW_UART, uart_metadata);
-
-    /* Initialize the shell and the system it interacts with */
     shell_spawn();
+    /* end shell init */
 
-    IntMasterEnable();
+    /* begin os init */
+    os_threading_init();
+    sched(hw_daemon);
+    sched(button_debounce_daemon);
+    sched(sample);
+    sched(ping_average_samples);
     os_launch();
+    /* end os init */
 
     /* main never terminates */
     while (1);
