@@ -144,11 +144,10 @@ int GPIOPortB_Handler() {
         ping_status = ping_not_active;
         TimerDisable(TIMER1_BASE, TIMER_A);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
-        sem_post(sem_ping_do_avg);
-    }
-
-    if (ping_cluster_sample) {
-        sem_post(sem_ping_do_avg);
+        GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+        if (ping_cluster_sample) {
+            sem_post(sem_ping_do_avg);
+        }
     }
 }
 
