@@ -164,6 +164,7 @@ int GPIOPortB_Handler() {
 void ping_average_samples() {
 
     int32_t counter;
+    ping_idx = 0;
 
     while(1) {
         sem_guard(sem_ping_do_avg) {
