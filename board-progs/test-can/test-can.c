@@ -34,7 +34,15 @@
 /* CAN Control */
 #define CAN_SEND 0
 #define CAN_RECV 1
+#define signal_length 512
 
+uint32_t adc_producer_index = 0;
+int32_t adc_data[signal_length];
+semaphore_t ADC_BUFFER_FILLED = 0;
+
+inline void increment_ptr(uint32_t* ptr, uint32_t wrap_len) {
+    *ptr = (*ptr + 1) % wrap_len;
+}
 
 #define led_toggle(port, pin)                                   \
     GPIOPinWrite(port, pin, pin ^ GPIOPinRead(port, pin))
@@ -190,7 +198,7 @@ int can_transmit() {
 /*! Sample the Ping))) Sensor. If \ping_cluster_sample is true,
  *  ping_samples_to_avg samples will be averaged together to make
  *  one data point. */
-int sample(void) {
+int sample_ping(void) {
 
     uint32_t counter;
     ping_status = ping_not_active;
@@ -349,10 +357,29 @@ int main(void) {
     shell_spawn();
     /* end shell init */
 
+    /* begin adc init */
+    hw_metadata metadata;
+    /* Activate the ADC on PE1, 2, and 3 (AIN0-2). */
+    metadata.adc.base = ADC0_BASE;
+    metadata.adc.trigger_source = ADC_TRIGGER_TIMER;
+    metadata.adc.sample_sequence = 2;
+    metadata.adc.channel = 0;
+    metadata.adc.channel_configuration = ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END;
+    metadata.adc.trigger_metadata.timer.base = TIMER2_BASE;
+    metadata.adc.trigger_metadata.timer.subtimer = TIMER_A;
+    metadata.adc.trigger_metadata.timer.frequency = 15000 Hz;
+    metadata.adc.trigger_metadata.timer.interrupt = INT_TIMER2A;
+    metadata.adc.trigger_metadata.timer.periodic = TIMER_CFG_PERIODIC;
+
+    adc_init(metadata);
+    adc_channel_init(metadata);
+    adc_interrupt_init(metadata);
+    /* end adc init */
+
     /* begin os init */
     os_threading_init();
     sched(hw_daemon);
-    sched(sample);
+    sched(sample_ping);
     sched(ping_average_samples);
     os_launch();
     /* end os init */
@@ -430,4 +457,18 @@ CAN0_Handler(void)
         // Spurious interrupt handling can go here.
         //
     }
+}
+
+void ADC0Seq2_Handler(void) {
+
+    ADCIntClear(ADC0_BASE, 2);
+    ADCSequenceDataGet(ADC0_BASE, 2, &adc_data[adc_producer_index]);
+    ADC_BUFFER_FILLED += adc_producer_index / (signal_length-1);
+    increment_ptr(&adc_producer_index, signal_length);
+}
+
+/* for adc */
+void TIMER2A_Handler(void) {
+
+  TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
 }
