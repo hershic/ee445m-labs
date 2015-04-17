@@ -8,6 +8,7 @@
 /* TI Includes */
 #include "inc/hw_ints.h"
 #include "inc/hw_memmap.h"
+#include "inc/hw_can.h"
 
 /* Driverlib Includes */
 #include "driverlib/debug.h"
@@ -43,6 +44,7 @@
     while(counter < time){counter++;}
 
 /*! Ping))) Control */
+volatile bool g_bErrFlag = 0;
 volatile semaphore_t sem_ping;
 volatile semaphore_t sem_ping_do_avg;
 uint32_t ping_idx = 0;
@@ -66,19 +68,17 @@ typedef enum ping_status {
 
 ping_status_t ping_status;
 
-
 inline
 int schedule_sample() {
     sem_signal(sem_ping);
 }
 
+tCANMsgObject sCANMessage;
+uint8_t *pui8MsgData;
 
+#define CAN_ROLE CAN_SEND
 int init_can(void) {
 
-    /**********************/
-    /* CAN Initialization */
-    /**********************/
-    /* ctags _CANBaseValid(uint32_t ui32Base) for more info */
     uint32_t can_base = CAN0_BASE;
     CANInit(can_base);
 
@@ -102,9 +102,6 @@ int init_can(void) {
     uint32_t num_data_frame_bytes = 8;
 
     uint32_t ui32MsgData;
-    uint8_t *pui8MsgData;
-
-#define CAN_ROLE CAN_SEND
 
     if (CAN_ROLE == CAN_SEND) {
 
@@ -124,12 +121,6 @@ int init_can(void) {
         IntEnable(INT_CAN0);
         CANEnable(CAN0_BASE);
         ui32MsgData = 0;
-        /* TODO: Move this to when we actually send the message */
-        /* sCANMessage.ui32MsgID = 1; */
-        /* sCANMessage.ui32MsgIDMask = 0; */
-        /* sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE; */
-        /* sCANMessage.ui32MsgLen = sizeof(pui8MsgData); */
-        /* sCANMessage.pui8MsgData = pui8MsgData; */
 
     } else if (CAN_ROLE == CAN_RECV) {
 
@@ -160,56 +151,45 @@ int init_can(void) {
         /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
         /* 6. */
     }
-    /**************************/
-    /* End CAN Initialization */
-    /**************************/
+}
 
-    /* main never terminates */
-    /* TODO: move this to when we actually send a message */
-    /* while (1) { */
-    /*     // */
-    /*     // Print a message to the console showing the message count and the */
-    /*     // contents of the message being sent. */
-    /*     // */
-    /*     UARTprintf("Sending msg: 0x%02X %02X %02X %02X", */
-    /*                pui8MsgData[0], pui8MsgData[1], pui8MsgData[2], */
-    /*                pui8MsgData[3]); */
+/*! Transmit ping data via CAN */
+int can_transmit() {
 
-    /*     // */
-    /*     // Send the CAN message using object number 1 (not the same thing as */
-    /*     // CAN ID, which is also 1 in this example).  This function will cause */
-    /*     // the message to be transmitted right away. */
-    /*     // */
-    /*     CANMessageSet(CAN0_BASE, 1, &sCANMessage, MSG_OBJ_TYPE_TX); */
+    sCANMessage.ui32MsgID = 1;
+    sCANMessage.ui32MsgIDMask = 0;
+    sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
+    sCANMessage.ui32MsgLen = sizeof(uint32_t);
+    sCANMessage.pui8MsgData = (int8_t*)(ping_time);
 
-    /*     // */
-    /*     // Now wait 1 second before continuing */
-    /*     // */
-    /*     SimpleDelay(); */
+    // Print a message to the console showing the message count and the
+    // contents of the message being sent.
+    /* UARTprintf("Sending msg: 0x%02X %02X %02X %02X", */
+    /*            pui8MsgData[0], pui8MsgData[1], pui8MsgData[2], */
+    /*            pui8MsgData[3]); */
 
-    /*     // */
-    /*     // Check the error flag to see if errors occurred */
-    /*     // */
-    /*     if(g_bErrFlag) */
-    /*         { */
-    /*             UARTprintf(" error - cable connected?\n"); */
-    /*         } */
-    /*     else */
-    /*         { */
-    /*             // */
-    /*             // If no errors then print the count of message sent */
-    /*             // */
-    /*             UARTprintf(" total count = %u\n", g_ui32MsgCount); */
-    /*         } */
+    // Send the CAN message using object number 1 (not the same thing as
+    // CAN ID, which is also 1 in this example).  This function will cause
+    // the message to be transmitted right away.
+    CANMessageSet(CAN0_BASE, 1, &sCANMessage, MSG_OBJ_TYPE_TX);
 
-    /*     // */
-    /*     // Increment the value in the message data. */
-    /*     // */
-    /*     ui32MsgData++; */
+    // Now wait 1 second before continuing
+    // SimpleDelay();
+
+    // Check the error flag to see if errors occurred
+    /* if(g_bErrFlag) { */
+    /*     UARTprintf(" error - cable connected?\n"); */
+    /* } */
+    /* else { */
+    /*     // If no errors then print the count of message sent */
+    /*     UARTprintf(" total count = %u\n", g_ui32MsgCount); */
     /* } */
 }
 
-/*! Sample the Ping))) Sensor */
+
+/*! Sample the Ping))) Sensor. If \ping_cluster_sample is true,
+ *  ping_samples_to_avg samples will be averaged together to make
+ *  one data point. */
 int sample(void) {
 
     uint32_t counter;
@@ -308,6 +288,7 @@ void ping_average_samples() {
                     uart_send_udec(ping_avg);
                     uart_send_string("\n\r");
                     ping_sample_ready = true;
+                    can_transmit();
                 } else {
                     uart_send_udec(ping_time[ping_idx]);
                     uart_send_string("\n\r");
@@ -380,4 +361,75 @@ int main(void) {
 
     /* main never terminates */
     while (1);
+}
+
+void
+CAN0_Handler(void)
+{
+    uint32_t ui32Status;
+
+    //
+    // Read the CAN interrupt status to find the cause of the interrupt
+    //
+    ui32Status = CANIntStatus(CAN0_BASE, CAN_INT_STS_CAUSE);
+
+    //
+    // If the cause is a controller status interrupt, then get the status
+    //
+    if(ui32Status == CAN_INT_INTID_STATUS)
+    {
+        //
+        // Read the controller status.  This will return a field of status
+        // error bits that can indicate various errors.  Error processing
+        // is not done in this example for simplicity.  Refer to the
+        // API documentation for details about the error status bits.
+        // The act of reading this status will clear the interrupt.  If the
+        // CAN peripheral is not connected to a CAN bus with other CAN devices
+        // present, then errors will occur and will be indicated in the
+        // controller status.
+        //
+        ui32Status = CANStatusGet(CAN0_BASE, CAN_STS_CONTROL);
+
+        //
+        // Set a flag to indicate some errors may have occurred.
+        //
+        g_bErrFlag = 1;
+    }
+
+    //
+    // Check if the cause is message object 1, which what we are using for
+    // sending messages.
+    //
+    else if(ui32Status == 1)
+    {
+        //
+        // Getting to this point means that the TX interrupt occurred on
+        // message object 1, and the message TX is complete.  Clear the
+        // message object interrupt.
+        //
+        CANIntClear(CAN0_BASE, 1);
+
+        //
+        // Increment a counter to keep track of how many messages have been
+        // sent.  In a real application this could be used to set flags to
+        // indicate when a message is sent.
+        //
+        /* g_ui32MsgCount++; */
+
+        //
+        // Since the message was sent, clear any error flags.
+        //
+        g_bErrFlag = 0;
+    }
+
+    //
+    // Otherwise, something unexpected caused the interrupt.  This should
+    // never happen.
+    //
+    else
+    {
+        //
+        // Spurious interrupt handling can go here.
+        //
+    }
 }
