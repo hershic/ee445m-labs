@@ -13,33 +13,67 @@
 #include "driverlib/debug.h"
 #include "driverlib/adc.h"
 #include "driverlib/gpio.h"
+#include "driverlib/timer.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/can.h"
 
+#include "libos/os.h"
+#include "libhw/hardware.h"
 #include "libstd/nexus.h"
 #include "libuart/uart.h"
+#include "libstd/nexus.h"
+#include "libuart/uart.h"
+
+#include "libtimer/timer.h"
+#include "libbutton/button.h"
+#include "libos/thread_structures.h"
 
 /* CAN Control */
 #define CAN_SEND 0
 #define CAN_RECV 1
 
-int main(void) {
 
-    hw_metadata metadata;
+#define led_toggle(port, pin)                                   \
+    GPIOPinWrite(port, pin, pin ^ GPIOPinRead(port, pin))
 
-    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-                   SYSCTL_XTAL_16MHZ);
+#define counter_delay(time, counter)                \
+    counter = 0;                                    \
+    while(counter < time){counter++;}
 
-    /* Enable processor interrupts */
-    IntMasterDisable();
+/*! Ping))) Control */
+volatile semaphore_t sem_ping;
+volatile semaphore_t sem_ping_do_avg;
+uint32_t ping_idx = 0;
+/* bounded by 2^16 */
+#define ping_samples_to_avg 10
+bool ping_sample_ready = false;
+uint32_t ping_avg;
+uint32_t ping_time[ping_samples_to_avg];
+bool ping_cluster_sample;
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-    GPIOPinConfigure(GPIO_PB4_CAN0RX);
-    GPIOPinConfigure(GPIO_PB5_CAN0TX);
-    GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
+uint32_t timer_overflow;
+uint32_t timer_signal_value;
+/* for clarity */
+uint32_t timer_response_value;
+
+typedef enum ping_status {
+    ping_not_active,
+    ping_signal,
+    ping_response,
+} ping_status_t;
+
+ping_status_t ping_status;
+
+
+inline
+int schedule_sample() {
+    sem_signal(sem_ping);
+}
+
+
+int init_can(void) {
 
     /**********************/
     /* CAN Initialization */
@@ -66,30 +100,36 @@ int main(void) {
     tCANMsgObject *psMsgObject;
     tMsgObjType eMsgType;
     uint32_t num_data_frame_bytes = 8;
-    uint8_t data_frame[] = {'T','h','i','s',' ','i','s',0};
 
-#define CAN_ROLE CAN_RECV
+    uint32_t ui32MsgData;
+    uint8_t *pui8MsgData;
+
+#define CAN_ROLE CAN_SEND
 
     if (CAN_ROLE == CAN_SEND) {
-        /* To send a data frame or remote frame (in response to a remote */
-        /* request), take the following steps: */
 
-        /* 1. Set eMsgType to MSG_OBJ_TYPE_TX. */
-        /* 2. Set psMsgObject->ui32MsgID to the message ID. */
-        /* 3. Set psMsgObject->ui32Flags. Make sure to set */
-        /*    MSG_OBJ_TX_INT_ENABLE to allow an interrupt to be generated */
-        /*    when the message is sent. */
-        /* 4. Set psMsgObject->ui32MsgLen to the number of bytes in the data */
-        /*    frame. */
-        /* 5. Set psMsgObject->pui8MsgData to point to an array containing */
-        /*    the bytes to send in the message. */
-        /* 6. Call this function with ui32ObjID set to one of the 32 object buffers. */
+        pui8MsgData = (uint8_t *)&ui32MsgData;
 
-        /* 1. */ eMsgType = MSG_OBJ_TYPE_TX;
-        /* 2. */ psMsgObject->ui32MsgID = 0; /* initial message id */
-        /* 3. */ psMsgObject->ui32Flags = MSG_OBJ_TX_INT_ENABLE; /* generate interrupt when message is sent */
-        /* 4. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
-        /* 5. */ psMsgObject->pui8MsgData = data_frame;
+        SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+                       SYSCTL_XTAL_16MHZ);
+
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+        GPIOPinConfigure(GPIO_PB4_CAN0RX);
+        GPIOPinConfigure(GPIO_PB5_CAN0TX);
+        GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
+        CANInit(CAN0_BASE);
+        CANBitRateSet(CAN0_BASE, SysCtlClockGet(), 500000);
+        CANIntEnable(CAN0_BASE, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
+        IntEnable(INT_CAN0);
+        CANEnable(CAN0_BASE);
+        ui32MsgData = 0;
+        /* TODO: Move this to when we actually send the message */
+        /* sCANMessage.ui32MsgID = 1; */
+        /* sCANMessage.ui32MsgIDMask = 0; */
+        /* sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE; */
+        /* sCANMessage.ui32MsgLen = sizeof(pui8MsgData); */
+        /* sCANMessage.pui8MsgData = pui8MsgData; */
 
     } else if (CAN_ROLE == CAN_RECV) {
 
@@ -120,10 +160,223 @@ int main(void) {
         /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
         /* 6. */
     }
-    /* Fin. */ CANMessageSet(ui32Base, ui32ObjID, psMsgObject, eMsgType);
     /**************************/
     /* End CAN Initialization */
     /**************************/
+
+    /* main never terminates */
+    /* TODO: move this to when we actually send a message */
+    /* while (1) { */
+    /*     // */
+    /*     // Print a message to the console showing the message count and the */
+    /*     // contents of the message being sent. */
+    /*     // */
+    /*     UARTprintf("Sending msg: 0x%02X %02X %02X %02X", */
+    /*                pui8MsgData[0], pui8MsgData[1], pui8MsgData[2], */
+    /*                pui8MsgData[3]); */
+
+    /*     // */
+    /*     // Send the CAN message using object number 1 (not the same thing as */
+    /*     // CAN ID, which is also 1 in this example).  This function will cause */
+    /*     // the message to be transmitted right away. */
+    /*     // */
+    /*     CANMessageSet(CAN0_BASE, 1, &sCANMessage, MSG_OBJ_TYPE_TX); */
+
+    /*     // */
+    /*     // Now wait 1 second before continuing */
+    /*     // */
+    /*     SimpleDelay(); */
+
+    /*     // */
+    /*     // Check the error flag to see if errors occurred */
+    /*     // */
+    /*     if(g_bErrFlag) */
+    /*         { */
+    /*             UARTprintf(" error - cable connected?\n"); */
+    /*         } */
+    /*     else */
+    /*         { */
+    /*             // */
+    /*             // If no errors then print the count of message sent */
+    /*             // */
+    /*             UARTprintf(" total count = %u\n", g_ui32MsgCount); */
+    /*         } */
+
+    /*     // */
+    /*     // Increment the value in the message data. */
+    /*     // */
+    /*     ui32MsgData++; */
+    /* } */
+}
+
+/*! Sample the Ping))) Sensor */
+int sample(void) {
+
+    uint32_t counter;
+    ping_status = ping_not_active;
+    ping_cluster_sample = true;
+
+    while(true) {
+        sem_guard(sem_ping) {
+            sem_take(sem_ping);
+            IntMasterDisable();
+
+            /* Set Ping))) SIG to output */
+            GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+            IntDisable(INT_GPIOB_TM4C123);
+            IntDisable(INT_GPIOB);
+            GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0);
+
+            /* Set SIG high for 5usec */
+            GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 1);
+            /* Delay1us(5); */
+            counter_delay(4, counter);
+
+            GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
+
+            /* Set Ping))) SIG to input */
+            GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
+            GPIOIntTypeSet(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_BOTH_EDGES);
+
+            counter_delay(200, counter);
+
+            GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
+            GPIOIntEnable(GPIO_PORTB_BASE, GPIO_PIN_0);
+            IntEnable(INT_GPIOB_TM4C123);
+            IntEnable(INT_GPIOB);
+
+            IntMasterEnable();
+        }
+        os_surrender_context();
+    }
+}
+
+void TIMER1A_Handler() {
+    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+    uint32_t test = TimerValueGet(TIMER1_BASE, TIMER_A);
+    ++timer_overflow;
+}
+
+/* Record how long the Ping))) took to respond */
+int GPIOPortB_Handler() {
+
+    GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
+
+    ++ping_status;
+
+    if (ping_status == ping_signal) {
+        /* begin timer init */
+        timer_overflow = 0;
+        timer_signal_value = TimerValueGet(TIMER1_BASE, TIMER_A);
+        timer_metadata_init(TIMER1_BASE, 0, INT_TIMER1A, TIMER_CFG_PERIODIC_UP);
+        timer_metadata.timer.subtimer = TIMER_A;
+        timer_add_interrupt(timer_metadata);
+        TimerLoadSet(TIMER1_BASE, TIMER_A, 0x0fffffe);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+        /* end timer init */
+    } else if (ping_status == ping_response) {
+        timer_response_value = TimerValueGet(TIMER1_BASE, TIMER_A);
+        ping_time[ping_idx++] = timer_response_value - timer_signal_value;
+        ping_status = ping_not_active;
+        TimerDisable(TIMER1_BASE, TIMER_A);
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+        GPIOIntDisable(GPIO_PORTB_BASE, GPIO_INT_PIN_0);
+        sem_post(sem_ping_do_avg);
+    }
+}
+
+/* Exists to decouple work form the GPIOPortB_Handler ISR */
+void ping_average_samples() {
+
+    int32_t counter;
+    ping_idx = 0;
+
+    while(1) {
+        sem_guard(sem_ping_do_avg) {
+            sem_take(sem_ping_do_avg);
+            if (ping_cluster_sample) {
+                /* Each sample of the Ping))) triggers \ping_samples_to_avg
+                 * samples and averages the results */
+                if (ping_idx >= ping_samples_to_avg) {
+                    uint32_t sample_sum = 0;
+                    for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
+                        sample_sum += ping_time[ping_idx];
+                    }
+                    ping_idx = 0;
+                    ping_avg = sample_sum/ping_samples_to_avg;
+                    uart_send_string("averaged sample))) ");
+                    uart_send_udec(ping_avg);
+                    uart_send_string("\n\r");
+                    ping_sample_ready = true;
+                } else {
+                    uart_send_udec(ping_time[ping_idx]);
+                    uart_send_string("\n\r");
+                    counter_delay(2000, counter);
+                    schedule_sample();
+                }
+            } else {
+                uart_send_udec(ping_time[--ping_idx]);
+                uart_send_string("\n\r");
+            }
+        }
+        os_surrender_context();
+    }
+}
+
+int main(void) {
+
+    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+                   SYSCTL_XTAL_16MHZ);
+
+    /* Enable processor interrupts */
+    IntMasterDisable();
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    GPIOPinConfigure(GPIO_PB4_CAN0RX);
+    GPIOPinConfigure(GPIO_PB5_CAN0TX);
+    GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
+
+    hw_metadata metadata;
+
+    init_can();
+
+    /* Enable processor interrupts */
+    IntMasterDisable();
+
+    /* begin initialize ping))) */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    sem_init(sem_ping);
+    sem_init(sem_ping_do_avg);
+    /* end initialize ping))) */
+
+    /* begin hearts init */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+    /* end hearts init */
+
+    /* begin uart init */
+    uart_anon_init(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    /* end uart init */
+
+    /* begin timer init */
+    timer_anon_init(TIMER1_BASE, 10 Hz, INT_TIMER0A, TIMER_CFG_ONE_SHOT);
+    hw_driver_init(HW_TIMER, timer_metadata);
+    /* end timer init */
+
+    /* begin shell init */
+    system_init();
+    system_register_command((const char*) "s", schedule_sample);
+    shell_spawn();
+    /* end shell init */
+
+    /* begin os init */
+    os_threading_init();
+    sched(hw_daemon);
+    sched(sample);
+    sched(ping_average_samples);
+    os_launch();
+    /* end os init */
 
     /* main never terminates */
     while (1);
