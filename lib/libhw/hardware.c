@@ -351,20 +351,6 @@ void TIMER0A_Handler(void) {
   hw_notify(HW_TIMER, timer_metadata, note);
 }
 
-/*! TIMER2A isr responsible for notifying all subscriptions with
- * information describing the interrupt.
- *
- * This isr was generated
- * automatically by bin/lisp/rtos-interrupt-generator.el
- */
-void TIMER2A_Handler(void) {
-
-  TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-  notification_init(int, 1);
-  timer_metadata_init(TIMER2_BASE, NULL, NULL, NULL);
-  hw_notify(HW_TIMER, timer_metadata, note);
-}
-
 void ADC0Seq0_Handler(void) {
 
     ADCIntClear(ADC0_BASE, 0);
