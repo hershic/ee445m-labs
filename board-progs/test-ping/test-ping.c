@@ -31,11 +31,18 @@
 #define led_toggle(port, pin)                                   \
     GPIOPinWrite(port, pin, pin ^ GPIOPinRead(port, pin))
 
+#define counter_delay(time, counter)                \
+    counter = 0;                                    \
+    while(counter < time){counter++;}
+
+
+
 /*! Ping))) Control */
 volatile semaphore_t sem_ping;
 volatile semaphore_t sem_ping_do_avg;
 uint32_t ping_idx = 0;
-#define ping_samples_to_avg 5
+/* bounded by 2^16 */
+#define ping_samples_to_avg 10
 bool ping_sample_ready = false;
 uint32_t ping_avg;
 uint32_t ping_time[ping_samples_to_avg];
@@ -67,7 +74,7 @@ int sample(void) {
 
     uint32_t counter;
     ping_status = ping_not_active;
-    ping_cluster_sample = false;
+    ping_cluster_sample = true;
 
     while(true) {
         sem_guard(sem_ping) {
@@ -83,8 +90,7 @@ int sample(void) {
             /* Set SIG high for 5usec */
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 1);
             /* Delay1us(5); */
-            while(counter < 4){counter++;}
-            counter = 0;
+            counter_delay(4, counter);
 
             GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
 
@@ -92,8 +98,7 @@ int sample(void) {
             GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
             GPIOIntTypeSet(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_BOTH_EDGES);
 
-            counter = 0;
-            while(counter < 200) { counter++;}
+            counter_delay(200, counter);
 
             GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
             GPIOIntEnable(GPIO_PORTB_BASE, GPIO_PIN_0);
@@ -173,9 +178,8 @@ void ping_average_samples() {
                 /* Each sample of the Ping))) triggers \ping_samples_to_avg
                  * samples and averages the results */
                 if (ping_idx >= ping_samples_to_avg) {
-                    uint32_t sample_sum;
+                    uint32_t sample_sum = 0;
                     for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
-                        /* TODO: guarantee no overflow */
                         sample_sum += ping_time[ping_idx];
                     }
                     ping_idx = 0;
@@ -187,8 +191,7 @@ void ping_average_samples() {
                 } else {
                     uart_send_udec(ping_time[ping_idx]);
                     uart_send_string("\n\r");
-                    counter = 0;
-                    while(counter < 200) { counter++;}
+                    counter_delay(2000, counter);
                     schedule_sample();
                 }
             } else {
