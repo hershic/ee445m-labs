@@ -337,8 +337,6 @@ int main(void) {
     GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
 
-    hw_metadata metadata;
-
     init_can();
 
     /* Enable processor interrupts */
