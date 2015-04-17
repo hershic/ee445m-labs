@@ -394,7 +394,7 @@ main(void)
             //
             if(sCANMessage.ui32Flags & MSG_OBJ_DATA_LOST)
             {
-                UARTprintf("CAN message loss detected\n");
+                /* UARTprintf("CAN message loss detected\n"); */
             }
 
             //
