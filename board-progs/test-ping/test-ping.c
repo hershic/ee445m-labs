@@ -19,6 +19,8 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/can.h"
 
+#include "utils/uartstdio.h"
+
 #include "libos/os.h"
 #include "libhw/hardware.h"
 #include "libstd/nexus.h"
@@ -34,8 +36,6 @@
 #define counter_delay(time, counter)                \
     counter = 0;                                    \
     while(counter < time){counter++;}
-
-
 
 /*! Ping))) Control */
 volatile semaphore_t sem_ping;
