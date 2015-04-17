@@ -178,25 +178,25 @@ void ping_average_samples() {
                 /* Each sample of the Ping))) triggers \ping_samples_to_avg
                  * samples and averages the results */
                 if (ping_idx >= ping_samples_to_avg) {
-                    /* process the acquired data */
                     uint32_t sample_sum = 0;
                     for(ping_idx = 0; ping_idx <= ping_samples_to_avg; ++ping_idx) {
                         sample_sum += ping_time[ping_idx];
                     }
-                    ping_avg = sample_sum/ping_samples_to_avg;
-                    /* end processing of acquired IR data */
                     ping_idx = 0;
-                    UARTprintf("averaged sample))) %d\n\r", ping_avg);
+                    ping_avg = sample_sum/ping_samples_to_avg;
+                    uart_send_string("averaged sample))) ");
+                    uart_send_udec(ping_avg);
+                    uart_send_string("\n\r");
                     ping_sample_ready = true;
                 } else {
-                    UARTprintf("ping))) %d\n\r", ping_time[ping_idx]);
+                    uart_send_udec(ping_time[ping_idx]);
+                    uart_send_string("\n\r");
                     counter_delay(2000, counter);
-                    /* keep sampling for this cluster */
                     schedule_sample();
                 }
             } else {
-                /* no clusters, just simgle samples */
-                UARTprintf("ping))) %d\n\r:", ping_time[--ping_idx]);
+                uart_send_udec(ping_time[--ping_idx]);
+                uart_send_string("\n\r");
             }
         }
         os_surrender_context();
