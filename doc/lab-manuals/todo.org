@@ -373,7 +373,7 @@ see fputc
   what factors limit bandwidth?
 - [ ] put all pieces together in modified lab4 so data measured in
   each node is available in both computers
-* [0/0] Lab 7
+* [0/7] Lab 7
 ** Race rules
 1. 60 seconds to set up robot
    - must touch the starting line
@@ -500,10 +500,84 @@ To qualify for the 20 point grade bonus, check out on or before <2015-04-28 Tue>
   time.
 - The TA-referees will decide any discrepancies in the contest play.
 - All decisions of the TA-referees are final.
+** Robot structure restrictions
+- no additional
+  - batteries
+  - servos
+  - solenoids
+  - motors
+Besides the above,
+- everything powered from the one 8.4V bettery is allowed
+- teams may possess only one battery at a time
+- no DC-DC converters to gain voltage
+- humans may not pre-load potential energy into the 'bot before racing
+- no tape
+- discard rubber bands before returning kit
+** 50$ rule
+- don't exceed 50 dollars before shipping and handling when purchasing
+add-ons for your robot
+- must be available to all teams at that price/delay
+- robot name, description, cost, source must be first approved by a
+  TA, titled /The 50$ Rule/
+- items logged within 5 days of purchase
+- purchased/unused items do not count towards yoru limit
+- receipt must be shown to TA (with date and cost
+** [0/1] Preparation
+DEADLINE: <2015-05-15 Fri>
+*** TODO Submit the following
+- robot name
+- first, last name of all team members
+- home phone numbers of all teams (?)
+- email addresses of all teams
+- select two time/week for an official team project meeting (sans TA)
+- list regularly scheduled lab hours that all team members can meet
+  with a TA
+  The TA will select one of these hours to be when your preparation
+  and demonstrations will be due
+** [0/6] Procedure
+DEADLINE: <2015-04-22 Wed>
+Note: Don't be a dingus when it comes to debugging
+*** TODO Design and build the mechanical aspects of the robot
+- Be able to
+  - move
+  - turn
+  - carry electronics
+- Sketch
+  - mechanical form of robot detailing
+    - moving
+    - turning
+    - carrying
+    - sensing
+*** TODO Design electronic driving interface
+- define the interface connecting
+  - steering and motors, to the
+  - microcontroller
+- snubber diodes must be used for all devices having an inductive load
+*** TODO Show how the system will be powered
+*** TODO Design low-level sw drivers for movement and steering motors
+- robot must use some sort of controller feedback
+  defined as sensor input controlling the motor output (hur-dur)
+"You can control pweriod, speed, angle to wall, or distance to the
+wall. If you want to control another parameter, please get approval
+from your TA."
+*** TODO Test movement and steering
+- [ ] measure maximum speed of the robot
+- determine the best way to make turns
+- [ ] calculate the accuracy of the turning algorithm
+  i.e. if you say "turn 90 degrees" how many degrees does the robot
+  actually turn?
+** TODO Deliverables
+1. Objectives (not required for this 7A)
+2. Hardware Design
+   - Rough mechanical sketch of the robot (Procedure 1)
+   - Electrical circuit diagram for the motor interfaces (Procedure 2)
+   - Power supply circuitry (Procedure 3)
+3. Software Design (printout of these software components)
+   - Low-level device drivers for the motor interfaces (header and code files) (Procedure 4)
+   - High-level test program to evaluate movement and steering (Procedure 5)
+4. Measurement Data
+   - Give the voltage and currents of each of the motors used (Procedure 2)
+   - Give the robot speed and turning accuracy (Procedure 5)
 
-
-
-** just keeps going and going
-holy cow
-stopping at
-Robot Structure Restrictions
+5. Analysis and Discussion
+   None
