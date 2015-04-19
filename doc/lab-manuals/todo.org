@@ -542,8 +542,7 @@ Note: Don't be a dingus when it comes to debugging
   - move
   - turn
   - carry electronics
-- Sketch
-  - mechanical form of robot detailing
+- Sketch mechanical form of robot detailing
     - moving
     - turning
     - carrying
