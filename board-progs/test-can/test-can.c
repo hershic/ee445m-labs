@@ -40,7 +40,7 @@ uint32_t adc_producer_index = 0;
 int32_t adc_data[signal_length];
 semaphore_t ADC_BUFFER_FILLED = 0;
 
-inline void increment_ptr(uint32_t* ptr, uint32_t wrap_len) {
+inline void inc_ptr(uint32_t* ptr, uint32_t wrap_len) {
     *ptr = (*ptr + 1) % wrap_len;
 }
 
@@ -76,8 +76,7 @@ typedef enum ping_status {
 
 ping_status_t ping_status;
 
-inline
-int schedule_sample() {
+inline int schedule_sample() {
     sem_signal(sem_ping);
 }
 
@@ -131,33 +130,14 @@ int init_can(void) {
         ui32MsgData = 0;
 
     } else if (CAN_ROLE == CAN_RECV) {
-
-        /* Example: To receive a specific data frame, take the following steps: */
-
-        /* 1. Set eMsgObjType to MSG_OBJ_TYPE_RX. */
-        /* 2. Set psMsgObject->ui32MsgID to the full message ID, or a partial */
-        /*    mask to use partial ID matching. */
-        /* 3. Set psMsgObject->ui32MsgIDMask bits that are used for masking */
-        /*    during comparison. */
-        /* 4. Set psMsgObject->ui32Flags as follows: */
-        /*    - Set MSG_OBJ_RX_INT_ENABLE flag to be interrupted when the data */
-        /*      frame is received. */
-        /*    - Set MSG_OBJ_USE_ID_FILTER flag to enable identifier-based */
-        /*      filtering. */
-        /* 5. Set psMsgObject->ui32MsgLen to the number of bytes in the */
-        /*    expected data frame. */
-        /* 6. The buffer pointed to by psMsgObject->pui8MsgData is not used */
-        /*    by this call as no data is present at the time of the call. */
-        /* 7. Call this function with ui32ObjID set to one of the 32 object */
-        /*    buffers.  If you specify a message object buffer that already */
-        /*    contains a message definition, it is overwrit- ten. */
+        /* This wasn't used to receive in this test, the receiving
+         * prograsm was ti-can-rx */
 
         /* 1. */ eMsgType = MSG_OBJ_TYPE_RX;
         /* 2. */ psMsgObject->ui32MsgID = 0; /* initial message id */
         /* 3. */ psMsgObject->ui32MsgIDMask = 0xFFFFFFFF;
         /* 4. */ psMsgObject->ui32Flags = MSG_OBJ_RX_INT_ENABLE;
         /* 5. */ psMsgObject->ui32MsgLen = num_data_frame_bytes;
-        /* 6. */
     }
 }
 
@@ -170,27 +150,14 @@ int can_transmit() {
     sCANMessage.ui32MsgLen = sizeof(uint32_t);
     sCANMessage.pui8MsgData = (int8_t*)(ping_time);
 
-    // Print a message to the console showing the message count and the
-    // contents of the message being sent.
-    /* UARTprintf("Sending msg: 0x%02X %02X %02X %02X", */
-    /*            pui8MsgData[0], pui8MsgData[1], pui8MsgData[2], */
-    /*            pui8MsgData[3]); */
-
     // Send the CAN message using object number 1 (not the same thing as
     // CAN ID, which is also 1 in this example).  This function will cause
     // the message to be transmitted right away.
     CANMessageSet(CAN0_BASE, 1, &sCANMessage, MSG_OBJ_TYPE_TX);
 
-    // Now wait 1 second before continuing
-    // SimpleDelay();
-
     // Check the error flag to see if errors occurred
     /* if(g_bErrFlag) { */
     /*     UARTprintf(" error - cable connected?\n"); */
-    /* } */
-    /* else { */
-    /*     // If no errors then print the count of message sent */
-    /*     UARTprintf(" total count = %u\n", g_ui32MsgCount); */
     /* } */
 }
 
@@ -282,7 +249,10 @@ void ping_average_samples() {
     while(1) {
         sem_guard(sem_ping_do_avg) {
             sem_take(sem_ping_do_avg);
-            if (ping_cluster_sample) {
+            if (!ping_cluster_sample) {
+                uart_send_udec(ping_time[--ping_idx]);
+                uart_send_string("\n\r");
+            } else {
                 /* Each sample of the Ping))) triggers \ping_samples_to_avg
                  * samples and averages the results */
                 if (ping_idx >= ping_samples_to_avg) {
@@ -303,9 +273,6 @@ void ping_average_samples() {
                     counter_delay(2000, counter);
                     schedule_sample();
                 }
-            } else {
-                uart_send_udec(ping_time[--ping_idx]);
-                uart_send_string("\n\r");
             }
         }
         os_surrender_context();
@@ -388,22 +355,16 @@ int main(void) {
     while (1);
 }
 
-void
-CAN0_Handler(void)
+void CAN0_Handler(void)
 {
     uint32_t ui32Status;
 
-    //
     // Read the CAN interrupt status to find the cause of the interrupt
-    //
     ui32Status = CANIntStatus(CAN0_BASE, CAN_INT_STS_CAUSE);
 
-    //
     // If the cause is a controller status interrupt, then get the status
-    //
     if(ui32Status == CAN_INT_INTID_STATUS)
     {
-        //
         // Read the controller status.  This will return a field of status
         // error bits that can indicate various errors.  Error processing
         // is not done in this example for simplicity.  Refer to the
@@ -412,50 +373,28 @@ CAN0_Handler(void)
         // CAN peripheral is not connected to a CAN bus with other CAN devices
         // present, then errors will occur and will be indicated in the
         // controller status.
-        //
         ui32Status = CANStatusGet(CAN0_BASE, CAN_STS_CONTROL);
 
-        //
         // Set a flag to indicate some errors may have occurred.
-        //
         g_bErrFlag = 1;
     }
 
-    //
     // Check if the cause is message object 1, which what we are using for
     // sending messages.
-    //
     else if(ui32Status == 1)
     {
-        //
         // Getting to this point means that the TX interrupt occurred on
         // message object 1, and the message TX is complete.  Clear the
         // message object interrupt.
-        //
         CANIntClear(CAN0_BASE, 1);
 
-        //
         // Increment a counter to keep track of how many messages have been
         // sent.  In a real application this could be used to set flags to
         // indicate when a message is sent.
-        //
         /* g_ui32MsgCount++; */
 
-        //
         // Since the message was sent, clear any error flags.
-        //
         g_bErrFlag = 0;
-    }
-
-    //
-    // Otherwise, something unexpected caused the interrupt.  This should
-    // never happen.
-    //
-    else
-    {
-        //
-        // Spurious interrupt handling can go here.
-        //
     }
 }
 
@@ -464,7 +403,7 @@ void ADC0Seq2_Handler(void) {
     ADCIntClear(ADC0_BASE, 2);
     ADCSequenceDataGet(ADC0_BASE, 2, &adc_data[adc_producer_index]);
     ADC_BUFFER_FILLED += adc_producer_index / (signal_length-1);
-    increment_ptr(&adc_producer_index, signal_length);
+    inc_ptr(&adc_producer_index, signal_length);
 }
 
 /* for adc */
