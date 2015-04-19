@@ -543,10 +543,10 @@ Note: Don't be a dingus when it comes to debugging
   - turn
   - carry electronics
 - Sketch mechanical form of robot detailing
-    - moving
-    - turning
-    - carrying
-    - sensing
+  - moving
+  - turning
+  - carrying
+  - sensing
 *** TODO Design electronic driving interface
 - define the interface connecting
   - steering and motors, to the
