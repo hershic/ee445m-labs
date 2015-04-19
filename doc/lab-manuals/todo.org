@@ -373,3 +373,137 @@ see fputc
   what factors limit bandwidth?
 - [ ] put all pieces together in modified lab4 so data measured in
   each node is available in both computers
+* [0/0] Lab 7
+** Race rules
+1. 60 seconds to set up robot
+   - must touch the starting line
+2. TA yells go
+   - /false start/ when a robot fails to start
+     two /false starts/ constitutes a disqualifications
+3. Race lasts 180 seconds
+   - robots must stop all movement after this time
+     robots that continue to move after 180 seconds are deducted two
+     points
+   - unintelligent robots will be disqualified
+   - no pieces may be dropped by your robot
+     - TAs will remove unintentionally dropped refuse
+*** Team mechanic
+- one member of the team will be designated as the mechanic
+- mechanic permitted to make *up to 3* repairs during the race
+- robots requiring a fourth repair it will be disqualified
+**** Examples of repairs
+- reorienting the robot
+- moving a robot because it's stuck
+- reconnecting a loose wire
+- fixing a mechanical malfunction
+- resetting the software
+**** Rules of repairs
+- repairs may not impede other robots
+- all repairs incur a minimum of 15 seconds penalty
+  - a team member shall count down 15 seconds out loud during the
+    repair (are you kidding me)
+- after repair: robot must be placed back on the track /behind/ where it
+  was picked up and not within 2 feet of another robot
+*** Scoring
+$P = M + S$
+| Variable | Meaning                                              |
+|----------+------------------------------------------------------|
+| $P$      | Score                                                |
+| $M$      | Milestones passed                                    |
+| $S$      | Bool: robot stops moving after precisely 180 seconds |
+
+**** Achieving a milestone
+- any part of your Frisbee disk must cross the milestone line
+- only one milestone may be acheived per lap
+*** Disqualified robots
+- disqualified robots will be removed from the track and placed in a
+  position of shame
+- disqualified robots get credit and penalties according to the
+  scoring criteria up to the point of disqualification
+*** Strategy
+- move quickly and accurately around the track
+- be a good sport
+*** Bonus points
+**** Pre-Qualifying round
+To qualify for the 20 point grade bonus, check out on or before <2015-04-28 Tue>.
+- demonstrate to any TA
+- on or before <2015-04-30 Thu>
+- to reach qualifying round
+  - positive score
+  - at least two milestones
+***** Pre-qualifying rules
+- one robot on the track at a time
+- first come first served basis
+***** Qualifying rules
+<2015-05-05 Tue>
+- robots race twice
+- TA decides race order
+- ECJ outdoor plaza
+- scores used for seeding into finals
+- scores used for finals tie breakers
+- can qualify for finals after the pre-qualifying round
+  - incurs grade penalty
+  - lower seeding score
+***** Final competition
+<2015-05-07 Thu>
+- during class
+- ECJ plaza
+- direction determined by coin flip at start of each race
+- can run test runs between 15:00 and 18:00
+- charge batteries for 8 hours prior to race
+- after every able robots races three times
+  - places 4-7 race for a winner
+  - places 1-3 race for a winner
+  - ultimate ties broken by additional race-offs
+*** The robot
+- choose a name for your robot
+  - limit to 20 chars including spaces (lol)
+- use materials from robot kit
+- do not cut the circumference of the Frisbee
+- input devices
+  - four IR sensors
+  - four tactile touch sensors
+  - four ultrasonic ranging sensors
+- output devices
+  - one servo
+  - four geeared DC motors
+  - two high-RPM low-torque DC motors
+  - two stepper motors
+  - one solenoid
+- must fit in /bounding box/
+  - defined as 3D cylinder with 80-degree angles that should contain all hard
+    components of your robot
+  - /footprint/ is defined as floor of its /bounding box/
+    - /footprint/ must equal a standard circular Frisbee at all times
+      during the competition
+    - soft components (rubber bands, string, piano wire) may extend 2
+      inches beyond the footprint.
+      - minimize the chance of tangling with other robots
+      - tangled robots reqult in double disqualification
+  - max height of /bounding box/ is 12 inches at all times during the competition
+- wheels on the ground at all times
+- cannot go over walls
+** Three laws of robotics
+1. A robot may not harm a human being, or, through inaction, allow a
+   human being to come to harm.
+2. A robot must obey the orders given to it by TA-referees.
+3. A robot must protect its own existence and the existence of the
+   other robots, as long as such protection does not conflict with the
+   First or Second Law.
+** Judges Rules
+- The instructor is the judge.
+- Contestants should ask the judge about possible designs or
+  strategies that may be questionable under any of the rules.
+- Contest rules and procedures, or even the game, may have to be
+  altered during the semester. As much notice as possible will be given.
+- The judge may alter or eliminate any rule, or add rules, at any
+  time.
+- The TA-referees will decide any discrepancies in the contest play.
+- All decisions of the TA-referees are final.
+
+
+
+** just keeps going and going
+holy cow
+stopping at
+Robot Structure Restrictions
