@@ -18,6 +18,11 @@
  * @{
  */
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 /*! Maximum amount of threads allowed in the system */
 #define SCHEDULER_MAX_THREADS    10
 
@@ -150,6 +155,10 @@ void os_suspend();
 /*! Schedule a task with default parameters */
 #define sched(task) \
     schedule(task, 100 Hz, DL_SOFT)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

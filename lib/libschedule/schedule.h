@@ -7,6 +7,10 @@
 /*! \addtogroup
  * @{
  */
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 /* We are using the priority scheduler */
 
@@ -55,6 +59,10 @@ void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
 
 sched_task* edf_get_edf_queue();
 void _os_choose_next_thread();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* __SCHEDULE__ */
 
