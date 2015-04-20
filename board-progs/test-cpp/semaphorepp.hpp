@@ -1,8 +1,8 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 /* Created by Hershal Bhave and Eric Crosson 2015-03-08 */
 /* Revision history: Look in Git FGT */
-#ifndef __thread_structrues__
-#define __thread_structrues__
+#ifndef __semaphorepp__
+#define __semaphorepp__
 
 /*! \addtogroup semaphore
  * @{

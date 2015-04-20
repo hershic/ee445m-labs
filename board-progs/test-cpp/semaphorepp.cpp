@@ -1,5 +1,7 @@
 #include "semaphorepp.hpp"
 
+#include "libos/os.h"
+
 semaphore::semaphore() {
 
     reset();
