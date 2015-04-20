@@ -411,7 +411,6 @@ $P = M + S$
 | $P$      | Score                                                |
 | $M$      | Milestones passed                                    |
 | $S$      | Bool: robot stops moving after precisely 180 seconds |
-
 **** Achieving a milestone
 - any part of your Frisbee disk must cross the milestone line
 - only one milestone may be acheived per lap
@@ -565,6 +564,7 @@ from your TA."
 - [ ] calculate the accuracy of the turning algorithm
   i.e. if you say "turn 90 degrees" how many degrees does the robot
   actually turn?
+
 ** TODO Deliverables
 1. Objectives (not required for this 7A)
 2. Hardware Design
@@ -577,6 +577,5 @@ from your TA."
 4. Measurement Data
    - Give the voltage and currents of each of the motors used (Procedure 2)
    - Give the robot speed and turning accuracy (Procedure 5)
-
 5. Analysis and Discussion
    None
