@@ -441,7 +441,7 @@ void schedule_aperiodic(pisr_t pisr,
                         DEADLINE_TYPE seriousness) {
 
     /* todo: utilize \allowed_run_time, \seriousness */
-    _hw_subscribe(hw_type, metadata, pisr, true);
+    /* _hw_subscribe(hw_type, metadata, pisr, true); */
 }
 
 void schedule_init() {
