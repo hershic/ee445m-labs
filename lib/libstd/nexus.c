@@ -22,7 +22,7 @@ uint32_t ustrlen(const char* s) {
 
 /* TODO: sanitize long to a type of specific length */
 /* TODO: use a duff device (speed is the name of the game, remember?) */
-void *umemcpy(void *str1, const void *str2, long n) {
+void *memcpy(void *str1, const void *str2, long n) {
 
     long i = 0;
     uint8_t *dest8 = (uint8_t*)str1;

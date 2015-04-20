@@ -4,6 +4,7 @@
 
 #include "blinker.hpp"
 #include "timerpp.hpp"
+#include "uartpp.hpp"
 
 #include "libos/os.h"
 #include "libschedule/schedule.h"
@@ -16,9 +17,11 @@
 
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
+#include "driverlib/interrupt.h"
 
 blinker blink;
 timer timer0a;
+uart uart0;
 
 void thread_0() {
 
@@ -40,12 +43,19 @@ void thread_1() {
 int main(void) {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
+    IntMasterDisable();
+
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
-
     blink = blinker(GPIO_PORTF_BASE);
+
     timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT);
     timer0a.start();
+
+    uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    uart0.send_string("bite my shiny metal ass");
+    uart0.send_newline();
+    /* resume: uart_printf */
 
     /* begin os init */
     os_threading_init();

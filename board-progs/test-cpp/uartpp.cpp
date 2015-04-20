@@ -16,6 +16,7 @@ uint32_t ustrlen(const char* s) {
 
 uart::uart() {}
 
+/* \warning currently only allows uart from GPIO_PORTA on the TM4C123GXL */
 uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
            memory_address_t uart_interrupt) {
 
@@ -23,16 +24,19 @@ uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
     this->channel = uart_channel;
     this->interrupt = uart_interrupt;
 
-    /* warning: currently only allows uart from GPIO_PORTA */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0 +
+                           (uart_channel - UART0_BASE) / 0x1000);
+
     /* Enable uart pins */
+    /* todo: parametrize */
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     GPIOPinConfigure(GPIO_PA0_U0RX);
     GPIOPinConfigure(GPIO_PA1_U0TX);
-    /* todo: parametrize */
     GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
-    /* UARTConfigSetExpClk(channel, SysCtlClockGet(), baud_rate, */
-    /*                     (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | */
-    /*                      UART_CONFIG_PAR_NONE)); */
+    UARTConfigSetExpClk(channel, SysCtlClockGet(), baud_rate,
+                        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
+                         UART_CONFIG_PAR_NONE));
 
     enable();
 }

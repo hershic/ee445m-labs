@@ -12,10 +12,10 @@
  */
 
 /*! Flag for proper handling of newlines input from terminal. */
-/* static bool UART_LAST_WAS_CR; */
+static bool UART_LAST_WAS_CR;
 
 /*! Default uart baud rate in today's modern world. */
-/* #define UART_DEFAULT_BAUD_RATE 115200 */
+#define UART_DEFAULT_BAUD_RATE 115200
 
 /*! Default max length string that uart may return */
 const uint32_t UART_DEFAULT_MAX_GET_STRING_LENGTH = 64;
