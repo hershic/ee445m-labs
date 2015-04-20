@@ -87,7 +87,7 @@ void shell::cmd_buf_del() {
 
 void shell::cmd_buf_add(char c) {
 
-    this->cmd[this->buffer_position++] = c;x
+    this->cmd[this->buffer_position++] = c;
 }
 
 void shell::set_ps1(char* new_ps1) {
