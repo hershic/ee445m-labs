@@ -5,8 +5,6 @@
 
 #include "libnotify/notify.h"
 
-extern buffer BUFFER_UART0_RX;
-
 /* Client code :*/
 /* hardware hw = hardware(); */
 /* hw.init_uart(UART_BASE0, INT_UART0); */
@@ -15,10 +13,14 @@ extern buffer BUFFER_UART0_RX;
 hardware::hardware() {
 
     BUFFER_UART0_RX = buffer();
-    std::map<int, void (*isr)(notification note)> uart_map;
+    /* list<pseudo_isr> uart_list; */
+    /* todo: init uart_list */
+    map<int, list<pseudo_isr> > uart_map;
     notifies[UART] = uart_map;
+    /* todo: init timer */
 }
 
+/* Ensure \hardware_uninitialized = true when you want a constructor call */
 hardware hardware::singleton(void) {
 
     if (hardware_uninitialized) {
@@ -59,6 +61,19 @@ HW_TYPE hardware::interrupt_type(memory_address_t interrupt) {
     case INT_UART6:
     case INT_UART7:
         return UART;
+    case INT_TIMER0A:
+    case INT_TIMER0B:
+    case INT_TIMER1A:
+    case INT_TIMER1B:
+    case INT_TIMER2A:
+    case INT_TIMER2B:
+    case INT_TIMER3A:
+    case INT_TIMER3B:
+    case INT_TIMER4A:
+    case INT_TIMER4B:
+    case INT_TIMER5A:
+    case INT_TIMER5B:
+        return TIMER;
     default:
         while(1) {}
     }

@@ -2,8 +2,8 @@
 #ifndef __uartpp__
 #define __uartpp__
 
-#include <stdbool.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #include "libstd/nexus.h"
 
