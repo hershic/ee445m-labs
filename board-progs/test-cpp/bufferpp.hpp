@@ -1,6 +1,6 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-#ifndef __hardwarepp__
-#define __hardwarepp__
+#ifndef __bufferpp__
+#define __bufferpp__
 
 #include <stdint.h>
 

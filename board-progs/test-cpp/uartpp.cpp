@@ -8,7 +8,6 @@
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
 
-
 uint32_t ustrlen(const char* s) {
     uint32_t len = 0;
     while(s[len]) { ++len; }
