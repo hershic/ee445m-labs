@@ -56,6 +56,11 @@ void uart_init(hw_metadata metadata) {
 }
 
 inline
+void uart_send_backspace() {
+    uart_send_string("\b \b");
+}
+
+inline
 void uart_send_char(const char text) {
 
     uart_send_char_(uart_active_metadata, text);
