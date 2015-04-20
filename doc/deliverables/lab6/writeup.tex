@@ -1,0 +1,162 @@
+\documentclass[12pt]{article}
+\title{EE445M Lab 6}
+\author{Hershal Bhave (hb6279), Eric Crosson (esc625), Matth Zhang
+  (TODO) and Robert Golshan (lol)}
+\date{Friday April 10, 2015}
+
+\usepackage[in]{fullpage}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{cleveref}
+\usepackage[nosolutionfiles]{answers}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{subcaption}
+
+\newenvironment{Ex}{\textbf{Problem}\vspace{.25em}\\}{}
+\Newassociation{solution}{Soln}{Answers}
+\pagebreak[3]
+\newcommand{\Opentesthook}[2]{\Writetofile{#1}{\protect\section{#1: #2}}}
+\renewcommand{\Solnlabel}[1]{\textbf{Solution}\quad}
+\newcommand{\todo}{\hfill{\LARGE \emph{\color{red}TODO}}}
+\newcommand{\ohm}{$\Omega$}
+\newcommand{\hbr}{\hfill\vspace{.25em}\\}
+\newcommand{\dd}[1]{\:\mathrm{d}{#1}}
+\newcommand{\ddt}[1]{\frac{\dd{}}{\dd{#1}}}
+\newcommand{\dddt}[1]{\frac{\dd{}^2}{\dd{#1}^2}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+% \definecolor{mygreen}{rgb}{0.13,0.55,0.13}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  backgroundcolor=\color{white},
+  basicstyle=\scriptsize\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{mygreen},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  frame=single,
+  keywordstyle=\color{blue},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stringstyle=\color{mymauve},
+  tabsize=2,
+  title=\lstname,
+  columns=fullflexible,
+}
+
+\begin{document}
+\maketitle
+
+\section{Objectives}
+
+\begin{itemize}
+\item Develop a layered communication system
+\item Design and implement a hardware/software interconnect protocol
+\item Interface two sensors and one motor needed for the robot
+\item Use communication skills to work effectively as team
+\end{itemize}
+
+\section{Hardware Design}
+\todo
+
+\section{Software Design}
+Reference \cref{lst:test-can}.
+
+\section{Measurement Data}
+\begin{table}
+  \centering
+  \begin{tabular}{c|cc}
+    IR data (V) & Actual distance (cm) & Accuracy (\%) \\
+    \hline
+    todo & todo & todo \\
+    todo & todo & todo \\
+    todo & todo & todo \\
+    todo & todo & todo \\
+    todo & todo & todo \\
+  \end{tabular}
+  \caption{Ping Sensor Calibration}
+  \label{tbl:ping-calib}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{c|c}
+    IR data (V) & Actual distance (in) \\
+    \hline
+    3.17 & 5.25 \\
+    1.31 & 8.5 \\
+    0.851 & 14.5 \\
+    0.573 & 26.5 \\
+    0.430 & 38.5 \\
+  \end{tabular}
+  \caption{IR Sensor (GP2Y0A21YK) Calibration}
+  \label{tbl:ir-calib}
+\end{table}
+
+\begin{enumerate}
+\item todo table of QRB1134 (motor?) data (procedure 4C)
+\item todo scope traces of can signals measured on both sides of the SN
+65HVD1050 (procedure 5)
+\item todo measure network bandwidth
+\end{enumerate}
+
+% \begin{figure}[H]
+%   \centering
+%   \begin{subfigure}[b]{0.45\textwidth}
+%   \end{subfigure}
+%   \begin{subfigure}[b]{0.45\textwidth}
+%   \end{subfigure}
+%   \caption{Two SPI packets}
+%   \label{fig:data-frames}
+% \end{figure}
+
+\section{Analysis and Discussion}
+
+\begin{enumerate}[1)]
+\item What is one advantage of the ping sensor over the GP2Y0A21YK
+  sensor? \\ \Solnlabel \newline \\
+  The ping sensor is rate monotonic.
+\item What is one advantage of the GP2Y0A21YK sensor over the ping
+  sensor? \\ \Solnlabel \newline \\
+  The GP2Y0A21YK continuously provides data.
+\item Describe the noise of the GP2Y0A21YK when measured with a
+  spectrum analyzer. \\ \Solnlabel \newline \\
+  \todo
+\item Why did you choose the digital filters for your sensors? What is
+  the time constant for this filter? I.e., if there is a step change
+  in input, how long until your output changes to at least $\frac{1}{e}$ of the
+  final value? \\ \Solnlabel \newline \\
+  \todo
+\item Present an alternative design for your H-bridge and describe how
+  your H-bridge is better or worse? \\ \Solnlabel \newline \\
+  Our H-bridge could use MOSFET transisters to reduce power leaked
+  during normal operation. Our MOSFET had the advantage of requiring
+  less developer time to implement.
+\item Give the single-most important factor in determining the maximum
+  bandwidth on this distributed system.  Give the second-most
+  important factor. Justify your answers. \\ \Solnlabel \newline \\
+  The most important factor in determine the maximum bandwidth of this
+  distributed system is the frequency of the CAN channel, as a slow
+  bandwidth is an absolute bottleneck on the system. The second
+  determining factor is how quickly each component in the distributed
+  system handles interrupts. This rate of interrupt handling must
+  exceed the rate at which interrupts are generated.
+\end{enumerate}
+
+\newpage
+\section{Code}
+\lstinputlisting[language=C,label=lst:test-can,caption=\texttt{test-can.c}]{@doc-staging-area@/test-can.c}
+
+\end{document}
