@@ -385,7 +385,9 @@ void os_suspend() {
     scheduler_reschedule();
 }
 
-void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
+void schedule(task_t task, frequency_t frequency) {
+
+    deadline_t seriousness = DL_SOFT;
 
     sched_task *ready_task = NULL;
     sched_task_pool *ready_queue = NULL;

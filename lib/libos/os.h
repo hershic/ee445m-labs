@@ -154,7 +154,7 @@ void os_suspend();
 
 /*! Schedule a task with default parameters */
 #define sched(task) \
-    schedule(task, 100 Hz, DL_SOFT)
+    schedule(task, 100 Hz)
 
 #ifdef __cplusplus
 }

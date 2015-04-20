@@ -49,8 +49,8 @@ int main(void) {
 
     /* begin os init */
     os_threading_init();
-    schedule(thread_1, 200, DL_SOFT);
-    schedule(thread_0, 50, DL_SOFT);
+    schedule(thread_1, 200);
+    schedule(thread_0, 50);
     os_launch();
     /* end os init */
 

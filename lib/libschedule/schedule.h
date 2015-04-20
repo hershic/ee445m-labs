@@ -47,7 +47,7 @@ static sched_task* SCHEDULER_UNUSED_TASKS = NULL;
 /*! Initialize all deep datastructures used by libschedule. */
 void schedule_init();
 
-void schedule(task_t, frequency_t, DEADLINE_TYPE);
+void schedule(task_t, frequency_t);
 
 /*! Schedule a pseudo-isr to be executed when a hardware event
  *  described by HW_TYPE and hw_metadata occurs. */
