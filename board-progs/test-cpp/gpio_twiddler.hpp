@@ -14,6 +14,7 @@ typedef uint32_t pin_t;
 class gpio_twiddler {
 public:
     gpio_twiddler() {}
+    gpio_twiddler(port_t port) {}
     virtual void set_base(port_t) = 0;
     virtual void turn_on(pin_t) = 0;
     virtual void turn_off(pin_t) = 0;

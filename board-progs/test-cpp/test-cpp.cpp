@@ -19,11 +19,10 @@ int main(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    blinker blink;
-    blink.set_base(GPIO_PORTF_BASE);
+    blinker blink = blinker(GPIO_PORTF_BASE);
 
     while (1) {
-        blink.toggle(PIN_RED);
+        blink.toggle(PIN_BLUE);
     }
 }
 

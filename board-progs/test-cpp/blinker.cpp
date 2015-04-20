@@ -6,6 +6,10 @@
 
 blinker::blinker() { }
 
+blinker::blinker(port_t port_base) {
+    set_base(port_base);
+}
+
 void blinker::set_base(port_t port_base) {
     this->port_base = port_base;
 }
