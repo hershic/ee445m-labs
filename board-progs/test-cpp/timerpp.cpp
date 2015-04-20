@@ -37,10 +37,16 @@ timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
 
 void timer::reload() {
 
-    if (subtimer == TIMER_BOTH) {
+    switch(subtimer) {
+    case TIMER_A:
+    case TIMER_BOTH:
         TimerLoadSet(base, TIMER_A, reload_value);
-    } else {
-        TimerLoadSet(base, subtimer, reload_value);
+        break;
+    case TIMER_B:
+        TimerLoadSet(base, TIMER_B, reload_value);
+        break;
+    default:
+        while (1) {}
     }
 }
 
