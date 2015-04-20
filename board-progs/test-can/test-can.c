@@ -251,7 +251,7 @@ void ping_average_samples() {
             sem_take(sem_ping_do_avg);
             if (!ping_cluster_sample) {
                 uart_send_udec(ping_time[--ping_idx]);
-                uart_send_string("\n\r");
+                uart_send_newline();
             } else {
                 /* Each sample of the Ping))) triggers \ping_samples_to_avg
                  * samples and averages the results */
@@ -264,12 +264,12 @@ void ping_average_samples() {
                     ping_avg = sample_sum/ping_samples_to_avg;
                     uart_send_string("averaged sample))) ");
                     uart_send_udec(ping_avg);
-                    uart_send_string("\n\r");
+                    uart_send_newline()
                     ping_sample_ready = true;
                     can_transmit();
                 } else {
                     uart_send_udec(ping_time[ping_idx]);
-                    uart_send_string("\n\r");
+                    uart_send_newline();
                     counter_delay(2000, counter);
                     schedule_sample();
                 }

@@ -74,6 +74,12 @@ void uart_send_string(const char* text) {
     uart_send_string_(uart_active_metadata, text);
 }
 
+inline
+void uart_send_newline(void) {
+
+    uart_send_string_(uart_active_metadata, "\r\n");
+}
+
 void uart_send_string_(hw_metadata metadata, const char* text) {
 
     uint32_t cnt = ustrlen(text);

@@ -65,6 +65,12 @@ void uart_send_char_(hw_metadata, const char);
  */
 void uart_send_string(const char*);
 
+/*! Send a newline over the active uart channel.
+ *  \param void
+ *  \return void
+ */
+void uart_send_newline(void);
+
 /*! Send a char array over the specified uart channel.
  *  \param channel The uart channel to send \text over.
  *  \param text The null-terminated array of chars to send via uart.
