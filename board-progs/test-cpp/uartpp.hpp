@@ -2,6 +2,7 @@
 #ifndef __uartpp__
 #define __uartpp__
 
+#include <stdarg.h>
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -31,6 +32,8 @@ private:
     uint32_t baud_rate;
     memory_address_t channel;
     memory_address_t interrupt;
+
+    void vprintf(const char *pcString, va_list vaArgP);
 
 public:
     char buffer[UART_DEFAULT_MAX_GET_STRING_LENGTH];
@@ -62,6 +65,9 @@ public:
 
     /*! Receive a string of LENGTH characters. */
     char* get_string(const uint32_t length);
+
+    /*! Printf over uart. */
+    void printf(const char *pcString, ...);
 };
 
 #endif

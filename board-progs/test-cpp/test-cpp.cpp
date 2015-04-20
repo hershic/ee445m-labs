@@ -53,9 +53,7 @@ int main(void) {
     timer0a.start();
 
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    uart0.send_string("bite my shiny metal ass");
-    uart0.send_newline();
-    /* resume: uart_printf */
+    uart0.printf("bite my shiny metal ass %d times\n\r", 1);
 
     /* begin os init */
     os_threading_init();
