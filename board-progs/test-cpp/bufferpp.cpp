@@ -36,3 +36,13 @@ char buffer::get(void) {
     }
     return buf[--pos];
 }
+
+bool buffer::full(void) {
+
+    return pos == 0;
+}
+
+bool buffer::empty(void) {
+
+    return pos == DEFAULT_BUFFER_LENGTH;
+}

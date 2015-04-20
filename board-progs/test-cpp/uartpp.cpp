@@ -64,6 +64,13 @@ void uart::ack(void) {
     UARTIntClear(channel, ui32Status);
 }
 
+uint32_t uart::ack(memory_address_t uart_base) {
+
+    uint32_t interrupts = UARTIntStatus(uart_baes, true);
+    UARTIntClear(uart_base, interrupts);
+    return interrupts;
+}
+
 char* uart::get_string(const uint32_t length) {
 
     uint32_t remaining_chars = (uint32_t) length;

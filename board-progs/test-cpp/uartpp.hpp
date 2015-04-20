@@ -42,6 +42,9 @@ public:
     /*! Acknowledge interrupt. */
     void ack(void);
 
+    /*! Statically acknowdeged interrupt. */
+    static void ack(memory_address_t uart_base);
+
     /*! Send a char. */
     void send_char(const char);
 

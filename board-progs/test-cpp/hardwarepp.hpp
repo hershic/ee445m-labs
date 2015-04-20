@@ -29,13 +29,13 @@ private:
     static hardware single;
     std::map<int, std::map<int, list<pseudo_isr> > > notifies;
 
-    static volatile semaphore_t HW_SEM_UART0;
-    static volatile buffer BUFFER_UART0_RX;
-
     /*! Return the hw_type that \interrupt belongs to. */
     static HW_TYPE interrupt_type(memory_address_t interrupt);
 
 public:
+    static volatile semaphore_t HW_SEM_UART0;
+    static volatile buffer BUFFER_UART0_RX;
+
     hardware();
     static hardware singleton(void);
 

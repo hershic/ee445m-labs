@@ -30,6 +30,12 @@ public:
 
     /*! Clear the buffer. */
     void clear(void);
+
+    /*! True if buffer is full */
+    bool full(void);
+
+    /*! True if buffer is empty */
+    bool empty(void);
 };
 
 #endif
