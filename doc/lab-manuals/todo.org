@@ -556,12 +556,12 @@ Note: Don't be a dingus when it comes to debugging
 *** TODO Design low-level sw drivers for movement and steering motors
 - robot must use some sort of controller feedback
   defined as sensor input controlling the motor output (hur-dur)
-"You can control pweriod, speed, angle to wall, or distance to the
+"You can control period, speed, angle to wall, or distance to the
 wall. If you want to control another parameter, please get approval
 from your TA."
 *** TODO Test movement and steering
-- [ ] measure maximum speed of the robot
 - determine the best way to make turns
+- [ ] measure maximum speed of the robot
 - [ ] calculate the accuracy of the turning algorithm
   i.e. if you say "turn 90 degrees" how many degrees does the robot
   actually turn?
