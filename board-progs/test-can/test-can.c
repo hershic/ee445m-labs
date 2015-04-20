@@ -162,13 +162,13 @@ int init_can(void) {
 }
 
 /*! Transmit ping data via CAN */
-int can_transmit() {
+int can_transmit(uint32_t data) {
 
     sCANMessage.ui32MsgID = 1;
     sCANMessage.ui32MsgIDMask = 0;
     sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
     sCANMessage.ui32MsgLen = sizeof(uint32_t);
-    sCANMessage.pui8MsgData = (int8_t*)(ping_time);
+    sCANMessage.pui8MsgData = (int8_t*)(&data);
 
     // Print a message to the console showing the message count and the
     // contents of the message being sent.
@@ -239,6 +239,11 @@ int sample_ping(void) {
     }
 }
 
+int send_adc(void) {
+    can_transmit(adc_data[0]);
+    uart_send_udec(adc_data[0]);
+}
+
 void TIMER1A_Handler() {
     TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
     uint32_t test = TimerValueGet(TIMER1_BASE, TIMER_A);
@@ -296,7 +301,7 @@ void ping_average_samples() {
                     uart_send_udec(ping_avg);
                     uart_send_string("\n\r");
                     ping_sample_ready = true;
-                    can_transmit();
+                    can_transmit(ping_avg);
                 } else {
                     uart_send_udec(ping_time[ping_idx]);
                     uart_send_string("\n\r");
@@ -354,6 +359,7 @@ int main(void) {
     /* begin shell init */
     system_init();
     system_register_command((const char*) "s", schedule_sample);
+    system_register_command((const char*) "a", send_adc);
     shell_spawn();
     /* end shell init */
 
