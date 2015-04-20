@@ -22,13 +22,11 @@ timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
 
     switch(subtimer) {
     case TIMER_A:
+    case TIMER_BOTH:
         IntEnable(INT_TIMER0A + id*2);
         break;
     case TIMER_B:
         IntEnable(INT_TIMER0A + id*2 + 1);
-        break;
-    case TIMER_BOTH:
-        IntEnable(INT_TIMER0A + id*2);
         break;
     default:
         while (1) {}
@@ -62,13 +60,11 @@ void timer::ack() {
 
     switch(subtimer) {
     case TIMER_A:
+    case TIMER_BOTH:
         TimerIntClear(base, INT_TIMER0A + id*2);
         break;
     case TIMER_B:
         TimerIntClear(base, INT_TIMER0A + id*2 + 1);
-        break;
-    case TIMER_BOTH:
-        TimerIntClear(base, INT_TIMER0A + id*2);
         break;
     default:
         while (1) {}
