@@ -367,5 +367,4 @@ void ADC0Seq3_Handler(void) {
 
     ADCIntClear(ADC0_BASE, 3);
     ADCSequenceDataGet(ADC0_BASE, 3, ADC0_SEQ3_SAMPLES);
-    /* GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_1) ^ GPIO_PIN_1); */
 }

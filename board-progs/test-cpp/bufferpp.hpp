@@ -2,7 +2,7 @@
 #ifndef __hardwarepp__
 #define __hardwarepp__
 
-#endif
+#include <stdint.h>
 
 /*! \addtogroup buffer
  * @{
@@ -31,6 +31,8 @@ public:
     /*! Clear the buffer. */
     void clear(void);
 };
+
+#endif
 
 /*! End doxygen group
  * @}
