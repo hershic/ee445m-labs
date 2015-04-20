@@ -1,24 +1,30 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #ifndef __uartpp__
 #define __uartpp__
 
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "libstd/nexus.h"
+/* #include "libstd/nexus.h" */
 
 /*! \addtogroup UART
  * @{
  */
 
 /*! Flag for proper handling of newlines input from terminal. */
-static bool UART_LAST_WAS_CR;
+/* static bool UART_LAST_WAS_CR; */
 
 /*! Default uart baud rate in today's modern world. */
-#define UART_DEFAULT_BAUD_RATE 115200
+/* #define UART_DEFAULT_BAUD_RATE 115200 */
 
 /*! Default max length string that uart may return */
-#define UART_DEFAULT_MAX_GET_STRING_LENGTH 64
+const uint32_t UART_DEFAULT_MAX_GET_STRING_LENGTH = 64;
+
+/*! A reference to a memory location on the ARM Cortex M4. */
+typedef uint32_t memory_address_t;
+
+/*! A representation of a periodic frequency. */
+typedef uint32_t frequency_t;
 
 class uart {
 private:
@@ -42,9 +48,6 @@ public:
     /*! Acknowledge interrupt. */
     void ack(void);
 
-    /*! Statically acknowdeged interrupt. */
-    static void ack(memory_address_t uart_base);
-
     /*! Send a char. */
     void send_char(const char);
 
@@ -59,7 +62,7 @@ public:
 
     /*! Receive a string of LENGTH characters. */
     char* get_string(const uint32_t length);
-}
+};
 
 #endif
 

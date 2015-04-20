@@ -8,6 +8,13 @@
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
 
+
+uint32_t ustrlen(const char* s) {
+    uint32_t len = 0;
+    while(s[len]) { ++len; }
+    return(len);
+}
+
 uart::uart() {}
 
 uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
@@ -24,9 +31,9 @@ uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
     /* todo: parametrize */
     GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
-    UARTConfigSetExpClk(channel, SysCtlClockGet(), baud_rate,
-                        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-                         UART_CONFIG_PAR_NONE));
+    /* UARTConfigSetExpClk(channel, SysCtlClockGet(), baud_rate, */
+    /*                     (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | */
+    /*                      UART_CONFIG_PAR_NONE)); */
 
     enable();
 }
@@ -62,13 +69,6 @@ void uart::ack(void) {
     uint32_t ui32Status;
     ui32Status = UARTIntStatus(channel, true);
     UARTIntClear(channel, ui32Status);
-}
-
-uint32_t uart::ack(memory_address_t uart_base) {
-
-    uint32_t interrupts = UARTIntStatus(uart_baes, true);
-    UARTIntClear(uart_base, interrupts);
-    return interrupts;
 }
 
 char* uart::get_string(const uint32_t length) {
