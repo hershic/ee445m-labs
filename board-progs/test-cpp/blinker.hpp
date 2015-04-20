@@ -22,6 +22,7 @@ const pin_t PIN_BLUE  = GPIO_PIN_2;
 class blinker : public gpio_twiddler {
 public:
     blinker();
+    blinker(port_t port_base);
     virtual void set_base(port_t port);
     virtual void turn_on(pin_t pin);
     virtual void turn_off(pin_t pin);
