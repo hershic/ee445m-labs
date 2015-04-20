@@ -264,7 +264,7 @@ void ping_average_samples() {
                     ping_avg = sample_sum/ping_samples_to_avg;
                     uart_send_string("averaged sample))) ");
                     uart_send_udec(ping_avg);
-                    uart_send_newline()
+                    uart_send_newline();
                     ping_sample_ready = true;
                     can_transmit();
                 } else {
