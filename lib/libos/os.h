@@ -18,6 +18,9 @@
  * @{
  */
 
+/*! Maximum amount of threads allowed in the system */
+#define SCHEDULER_MAX_THREADS    10
+
 /*! Maximum number of 32-bit values allowed in each thread's stack */
 #define OS_STACK_SIZE   256
 

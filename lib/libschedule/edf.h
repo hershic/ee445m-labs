@@ -12,9 +12,6 @@
 #include "libos/thread_structures.h"
 #include "priority_schedule_structures.h"
 
-/* todo: this is a duplicate, remove it and fix */
-#define SCHEDULER_MAX_THREADS    16
-
 /*! Initialize the Earliest Deadline First task queue */
 void edf_init();
 
