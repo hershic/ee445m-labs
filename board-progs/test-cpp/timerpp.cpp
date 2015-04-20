@@ -7,16 +7,18 @@
 timer::timer() {}
 
 timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
-             uint32_t timer_cfg_bitset, reload_t timer_load_val) {
+             uint32_t timer_configuration, reload_t timer_load_val,
+             uint32_t timer_interrupt) {
 
     id = timer_id;
     base = TIMER0_BASE + 0x1000 * timer_id;
     subtimer = timer_subtimer;
     reload_value = timer_load_val;
-    cfg_bitset = timer_cfg_bitset;
+    configuration = timer_configuration;
+    interrupt = timer_interrupt;
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0 + id);
-    TimerConfigure(base, cfg_bitset);
+    TimerConfigure(base, configuration);
 
     switch(subtimer) {
     case TIMER_A:
@@ -37,18 +39,22 @@ timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
 
 void timer::reload() {
 
-    TimerLoadSet(base, subtimer, reload_value);
+    if (subtimer == TIMER_BOTH) {
+        TimerLoadSet(base, TIMER_A, reload_value);
+    } else {
+        TimerLoadSet(base, subtimer, reload_value);
+    }
 }
 
 void timer::start() {
 
-    TimerIntEnable(base, TIMER_TIMA_TIMEOUT);
+    TimerIntEnable(base, interrupt);
     TimerEnable(base, subtimer);
 }
 
 void timer::stop() {
 
-    TimerIntDisable(base, TIMER_TIMA_TIMEOUT);
+    TimerIntDisable(base, interrupt);
     TimerDisable(base, subtimer);
 }
 

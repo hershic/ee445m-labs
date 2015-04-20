@@ -37,18 +37,29 @@ private:
     uint32_t base;
 
     /*! The configuration bitset for the timer */
-    /*! \note Reference timer.h for possible configuration options */
-    uint32_t cfg_bitset;
+    /*! \note Reference timer.h for possible options (e.g. TIMER_CFG_PERIODIC) */
+    uint32_t configuration;
+
+    /*! The timer interrupt to be acknowdeged, enabled, disabled */
+    /*! \note Reference timer.h for possible options (e.g. TIMER_TIMA_TIMEOUT) */
+    uint32_t interrupt;
 
 public:
     timer();
     timer(timer_t timer_id, subtimer_t timer_subtimer,
-          uint32_t timer_cfg_bitset, reload_t timer_load_val);
+          uint32_t timer_configuration, reload_t timer_load_val,
+          uint32_t timer_interrupt);
 
-    /* timer routines */
+    /*! Start a timer. */
     void start();
+
+    /*! Stop a timer. */
     void stop();
+
+    /*! Reload the timer with the initial reload value */
     void reload();
+
+    /*! Acknowledge an interrupt. Clears the interrupt bits for this timer. */
     void ack();
 };
 
