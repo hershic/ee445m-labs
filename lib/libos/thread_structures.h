@@ -4,12 +4,17 @@
 #ifndef __thread_structrues__
 #define __thread_structrues__
 
-#include "libstd/defines.h"
+/* #include "libstd/defines.h" */
+#include <stdint.h>
 
 /*! \addtogroup
    * @{
     */
 
+typedef void (*task_t)();
+
+typedef void (*isr_t)();        /* isr capable of hw_notifying */
+typedef uint32_t frequency_t;
 
 /*! Count of SysTick ticks (each of which is equivalent to a bus
  *  cycle). Note that the SysTick can only count down from a 24-bit
@@ -112,7 +117,7 @@ typedef struct tcb_t {
     struct tcb_t *prev;
 
     /*! Unique numeric identifier for the tcb. */
-    immutable int32_t id;
+    int32_t id;
 
     priority_t priority;
 

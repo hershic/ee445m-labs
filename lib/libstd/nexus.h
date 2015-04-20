@@ -8,10 +8,6 @@
 /*! A keyword to signify that a value should never be reassigned. */
 #define immutable
 
-/* TODO: doxygenize */
-#define public
-#define private
-
 /*! A convenience alias to '__attribute__((always_inline))' to make
  *  function definitions read more naturally. */
 #define always __attribute__((always_inline))
@@ -74,6 +70,11 @@ void EndCritical(int32_t primask) {
     asm("CPSIE I");
 }
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 /*! A duplicate of the c standard memset function. */
 void* umemset(void*, int, int);
 
@@ -91,5 +92,9 @@ void ustrcpy(char*, const char*);
 
 /*! A duplicate of the c standard strlen function. */
 uint32_t ustrlen(const char *s);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

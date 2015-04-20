@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #ifndef __hardwarepp__
 #define __hardwarepp__
 
@@ -6,7 +6,7 @@
 #include <list>
 #include <stdbool.h>
 
-#include "libstd/nexus.h"
+/* #include "libstd/nexus.h" */
 #include "libnotify/notify.h"
 #include "libos/thread_structures.h"
 
