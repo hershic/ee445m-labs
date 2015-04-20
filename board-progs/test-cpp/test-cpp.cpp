@@ -33,8 +33,7 @@ int main(void) {
 }
 
 extern "C" void Timer0A_Handler() {
-    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-    GPIOPinWrite(GPIO_PORTF_BASE, PIN_GREEN, PIN_GREEN ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_GREEN));
+    timer0a.ack();
     blink.toggle(PIN_RED);
 }
 
