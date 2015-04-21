@@ -25,3 +25,8 @@ void blinker::turn_off(pin_t pin) {
 void blinker::toggle(pin_t pin) {
     GPIOPinWrite(port_base, pin, pin ^ GPIOPinRead(port_base, pin));
 }
+
+void blinker::blink(pin_t pin) {
+    GPIOPinWrite(port_base, pin, pin ^ GPIOPinRead(port_base, pin));
+    GPIOPinWrite(port_base, pin, pin ^ GPIOPinRead(port_base, pin));
+}

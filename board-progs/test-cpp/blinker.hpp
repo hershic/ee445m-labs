@@ -27,6 +27,7 @@ public:
     virtual void turn_on(pin_t pin);
     virtual void turn_off(pin_t pin);
     virtual void toggle(pin_t pin);
+    virtual void blink(pin_t pin);
 private:
     uint32_t port_base;
 };
