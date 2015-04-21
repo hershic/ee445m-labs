@@ -34,8 +34,11 @@ private:
     char ps1[SHELL_MAX_PS1_LENGTH];
 
     /*! Execute a system command. */
-    static exit_status_t system_exec(const char*, const char*);
-    static int ustrncmp(const char*, const char*, uint32_t);
+    int32_t ustrncmp(const char*, const char*, uint32_t);
+    void* memset(void* b, int c, int len);
+
+    /*! Return the length of a null-terminated string. */
+    uint32_t strlen(const char*);
 
     static exit_status_t doctor(const char* args);
     static exit_status_t witch(const char* args);
@@ -61,16 +64,8 @@ public:
     /*! Print the PS1. */
     void print_ps1();
 
-    /*! Execute the shell command described in \buf */
-    exit_status_t execute_command();
-
     /*! Execute this command. */
-    static exit_status_t execute_command(char* cmd_and_args);
-    static exit_status_t execute_command(char* cmd, char* args);
-
-    /*! Shell's pseudo isr -- feed it chars to advance the shell's
-     *  state. */
-    void shell_uart_handler(const char);
+    exit_status_t execute_command(char* cmd_and_args);
 };
 
 #endif

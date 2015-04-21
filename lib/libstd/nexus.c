@@ -1,19 +1,6 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "nexus.h"
 
-void* umemset(void* b, int c, int len) {
-
-    int i;
-    unsigned char *p = b;
-    i = 0;
-    while(len > 0) {
-        *p = c;
-        ++p;
-        --len;
-    }
-    return b;
-}
-
 uint32_t ustrlen(const char* s) {
     uint32_t len = 0;
     while(s[len]) { ++len; }

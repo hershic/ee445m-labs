@@ -10,9 +10,10 @@
 #include "driverlib/uart.h"
 
 uint32_t ustrlen(const char* s) {
+
     uint32_t len = 0;
     while(s[len]) { ++len; }
-    return(len);
+    return len;
 }
 
 uart::uart() {}
@@ -21,14 +22,13 @@ uart::uart() {}
 uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
            memory_address_t uart_interrupt) {
 
-    this->baud_rate = uart_baud_rate;
-    this->channel = uart_channel;
-    this->interrupt = uart_interrupt;
+    baud_rate = uart_baud_rate;
+    channel = uart_channel;
+    interrupt = uart_interrupt;
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0 +
                            (uart_channel - UART0_BASE) / 0x1000);
 
-    /* Enable uart pins */
     /* todo: parametrize */
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     GPIOPinConfigure(GPIO_PA0_U0RX);
@@ -390,12 +390,12 @@ char* uart::get_string(const uint32_t length) {
 
 void uart::enable(void) {
 
-    IntEnable(this->interrupt);
-    UARTIntEnable(this->channel, UART_INT_RX | UART_INT_RT);
+    IntEnable(interrupt);
+    UARTIntEnable(channel, UART_INT_RX | UART_INT_RT);
 }
 
 void uart::disable(void) {
 
-    IntDisable(this->interrupt);
-    UARTIntDisable(this->channel, UART_INT_RX | UART_INT_RT);
+    IntDisable(interrupt);
+    UARTIntDisable(channel, UART_INT_RX | UART_INT_RT);
 }

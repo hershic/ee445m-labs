@@ -40,6 +40,7 @@ static uint8_t UART0_RX_BUFFER_SIZE = 0;
 static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_TX_BUFFER_SIZE = 0;
 
+static uint16_t SHELL_BUFFER_SIZE = SHELL_BUFFER_LENGTH;
 static unsigned short SHELL_BUFFER_POSITION;
 /* Wondering why there's a one here? Where's waldo? */
 static char SHELL_BUFFER[SHELL_BUFFER_LENGTH+1];
@@ -75,7 +76,22 @@ void thread_uart_update() {
     }
 }
 
+void* umemset(void* b, int c, int len) {
+
+    int i;
+    unsigned char *p = (unsigned char *) b;
+    i = 0;
+    while(len > 0) {
+        *p = c;
+        ++p;
+        --len;
+    }
+    return b;
+}
+
 void shell_handler() {
+
+    shell0.print_ps1();
 
     while(1) {
         if(UART0_RX_SEM.guard()) {
@@ -93,7 +109,9 @@ void shell_handler() {
                 if(exit_code != 0) {
                     uart0.printf("%d", exit_code);
                 }
-                shell0.clear_buffer();
+                SHELL_BUFFER_POSITION = 0;
+                umemset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
+                /* shell0.clear_buffer(); */
                 uart0.send_newline();
                 shell0.print_ps1();
             break;
@@ -113,6 +131,7 @@ void shell_handler() {
                 break;
             }
         }
+        os_surrender_context();
     }
 }
 
@@ -134,8 +153,8 @@ int main(void) {
 
     /* begin os init */
     os_threading_init();
-    schedule(thread_1, 200);
-    schedule(thread_0, 200);
+    /* schedule(thread_1, 200); */
+    /* schedule(thread_0, 200); */
     schedule(shell_handler, 200);
     /* schedule(thread_uart_update, 1000000); */
     os_launch();

@@ -17,7 +17,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 
-static unsigned short SHELL_BUFFER_POSITION;
+static uint16_t SHELL_BUFFER_POSITION;
 /* Wondering why there's a one here? Where's waldo? */
 static char SHELL_BUFFER[SHELL_BUFFER_LENGTH+1];
 

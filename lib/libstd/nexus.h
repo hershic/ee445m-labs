@@ -75,9 +75,6 @@ extern "C"
 {
 #endif
 
-/*! A duplicate of the c standard memset function. */
-void* umemset(void*, int, int);
-
 /*! A duplicate of the c standard memcpy function. */
 void* umemcpy(void*, const void*, long);
 

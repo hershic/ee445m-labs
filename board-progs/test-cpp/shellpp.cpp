@@ -21,7 +21,7 @@ exit_status_t shell::witch(const char* args) {
     blink.toggle(PIN_GREEN);
 }
 
-int shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
+int32_t shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
 
     /* Loop while there are more characters. */
     while(n) {
@@ -50,42 +50,11 @@ int shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
     return 0;
 }
 
-exit_status_t shell::system_exec(const char* cmd, const char* args) {
-
-    sys_cmd sys_command = 0;
-    int16_t i = 0;
-    while(i<sizeof(system_command_funcs)/4 &&
-          0 != ustrncmp(system_command_names[i], cmd, (uint32_t)-1)) {
-        ++i;
-        /* resume: the strncmp didnt' work */
-    }
-    sys_command = system_command_funcs[i];
-
-#ifdef SHELL_LOG
-    UINT bytes_written;
-    if (logging_ready) {
-        f_write(&logfilehandle, "\r\n", 2, &bytes_written);
-        f_write(&logfilehandle, command, strlen(command),  &bytes_written);
-        f_write(&logfilehandle, " ", 1,  &bytes_written);
-        f_write(&logfilehandle, args, strlen(args),  &bytes_written);
-        f_sync(&logfilehandle);
-    }
-#endif
-
-    exit_status_t ret;
-    if (0 == sys_command) {
-        ret = sys_command(args);
-    } else {
-        ret = -1;
-    }
-    return ret;
-}
-
 void shell::ustrcpy(char* dest, const char* source) {
     uint32_t i = 0;
     while (1) {
         dest[i] = source[i];
-        if (dest[i++] == '\0') { break; }
+        if (source[i++] == '\0') { break; }
     }
 }
 
@@ -97,13 +66,11 @@ shell::shell(uart u) {
     pos = 0;
     uart0 = u;
 
-    ustrcpy(system_command_names[0], str_doc);    system_command_funcs[0] = doctor;
-    ustrcpy(system_command_names[1], str_witch);  system_command_funcs[1] = witch;
     clear_buffer();
     print_ps1();
 }
 
-void* umemset(void* b, int c, int len) {
+void* shell::memset(void* b, int c, int len) {
 
     int i;
     unsigned char *p = (unsigned char *) b;
@@ -116,7 +83,7 @@ void* umemset(void* b, int c, int len) {
     return b;
 }
 
-uint32_t strlen(const char* s) {
+uint32_t shell::strlen(const char* s) {
     uint32_t len = 0;
     while(s[len]) { ++len; }
     return(len);
@@ -134,7 +101,7 @@ void* umemcpy(void *str1, const void *str2, long n) {
 
 void shell::clear_buffer() {
 
-    umemset(buf, 0, sizeof(buf));
+    memset(buf, 0, sizeof(buf));
     pos = 0;
 }
 
@@ -145,20 +112,7 @@ void shell::set_ps1(char* new_ps1) {
 
 void shell::print_ps1() {
 
-    uart0.printf(ps1);
-}
-
-exit_status_t shell::execute_command() {
-
-    /* Null terminate to separate the cmd from the args */
-    uint8_t idx = 0;
-    while(idx < pos && buf[idx] != ' ') {
-	++idx;
-    }
-    buf[idx] = 0;
-
-    /* Waldo says this line requires the extra char to be a 0 */
-    return system_exec((const char*) buf, (const char*) &buf[idx+1]);
+    uart0.printf("%s", ps1);
 }
 
 exit_status_t shell::execute_command(char* cmd_and_args) {
@@ -171,46 +125,14 @@ exit_status_t shell::execute_command(char* cmd_and_args) {
     }
     cmd_and_args[idx] = 0;
 
+    exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
     /* Waldo says this line requires the extra char to be a 0 */
-    return system_exec((const char*) cmd_and_args, (const char*) &cmd_and_args[idx+1]);
-}
-
-exit_status_t shell::execute_command(char* cmd, char* args) {
-
-     /* Waldo says this line requires the extra char to be a 0 */
-    return system_exec((const char*) cmd, (const char*) args);
-}
-
-void shell::shell_uart_handler(const char ch) {
-
-    char recv = (char) ch;
-    exit_status_t exit_code;
-
-    switch(recv) {
-    case 13:
-        uart0.printf("\r");
-
-        exit_code = execute_command();
-        if(UART_VERBOSE && exit_code != 0) {
-            uart0.printf("%d", exit_code);
-        }
-        clear_buffer();
-        uart0.send_newline();
-        print_ps1();
-        break;
-
-    case 127:
-    case 8:
-        buf[pos--] = (char) 0;
-        uart0.printf("\b \b");
-        break;
-
-    default:
-        if (SHELL_BUFFER_LENGTH > pos) {
-            buf[pos++] = recv;
-            /* Echo char to terminal for user */
-            uart0.printf("%c", recv);
-        }
-        break;
+    if(0 == ustrncmp("doctor", (const char*) cmd_and_args, strlen(cmd_and_args))) {
+        exit_code = doctor(&cmd_and_args[idx+1]);
+    } else if(0 == ustrncmp("witch", (const char*) cmd_and_args, strlen(cmd_and_args))) {
+        exit_code = witch(&cmd_and_args[idx+1]);
+    } else {
+        uart0.printf("%s is not a recognized command. \n\n", cmd_and_args);
     }
+    return exit_code;
 }

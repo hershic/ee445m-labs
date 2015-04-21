@@ -11,7 +11,7 @@
 /*! A buffer consists of storage and metadata. Specifically,
  * - the storage of a buffer is an array of any type; and
  * - the metadata of a buffer is
- *   - uint32_t of the same name suffixed with '_SIZE'
+ *   - uint32_t of the same name suffixed with '_POSITION'
  *   - global maximum buffer length, set in this file
  */
 
@@ -57,14 +57,15 @@
 
 /*! True if a buffer is full */
 #define buffer_full(buf)			\
-    (buf##_SIZE == BUFFER_MAX_LENGTH-1)
+    (buf##_POSITION == BUFFER_MAX_LENGTH-1)
 
 /*! True if a buffer is empty */
 #define buffer_empty(buf)			\
-    (buf##_SIZE == 0)
+    (buf##_POSITION == 0)
 
 #define buffer_clear(buf)			\
-    buffer_len(buf) = 0
+    umemset(buf, 0, sizeof(buf));               \
+    buf##_POSITION = 0
 
 /*! Terminate a buffer with a null character. */
 #define buffer_null_terminate(buf)		\
@@ -72,7 +73,7 @@
 
 /*! Evaluate to the length of a buffer. */
 #define buffer_len(buf)				\
-    buf##_SIZE
+    buf##_POSITION
 
 #endif
 
