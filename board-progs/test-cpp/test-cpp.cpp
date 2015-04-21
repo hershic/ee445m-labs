@@ -52,8 +52,8 @@ void thread_uart_update() {
     while(1) {
         int32_t status = StartCritical();
         uart0.printf("%d\n\r", blink_count_green);
-        os_surrender_context();
         EndCritical(status);
+        os_surrender_context();
     }
 }
 
