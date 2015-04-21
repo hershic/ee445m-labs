@@ -1,16 +1,106 @@
 #include "shellpp.hpp"
+#include "blinker.hpp"
 
-extern "C" {
-#include "libos/system.h"
+#include "inc/hw_memmap.h"
+
+char shell::str_doc[10] = "doctor   ";
+char shell::str_witch[10] = "witch   ";
+
+char shell::system_command_names[SHELL_COMMANDS][SYSTEM_MAX_NAME_LENGTH];
+sys_cmd shell::system_command_funcs[SHELL_COMMANDS];
+
+exit_status_t shell::doctor(const char* args) {
+
+    blinker blink = blinker(GPIO_PORTF_BASE);
+    blink.toggle(PIN_RED);
 }
+
+exit_status_t shell::witch(const char* args) {
+
+    blinker blink = blinker(GPIO_PORTF_BASE);
+    blink.toggle(PIN_GREEN);
+}
+
+int shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
+
+    /* Loop while there are more characters. */
+    while(n) {
+        /* If we reached a NULL in both strings, they must be equal so
+         * we end the comparison and return 0 */
+        if((!*s1 || (*s1 == ' ')) && (!*s2 || (*s2 == ' '))) {
+            return(0);
+        }
+
+        /* Compare the two characters and, if different, return the
+         * relevant return code. */
+        if(*s2 < *s1) {
+            return(1);
+        }
+        if(*s1 < *s2) {
+            return(-1);
+        }
+
+        /* Move on to the next character. */
+        s1++;
+        s2++;
+        n--;
+    }
+    /* If we fall out, the strings must be equal for at least the
+     * first n characters so return 0 to indicate this. */
+    return 0;
+}
+
+exit_status_t shell::system_exec(const char* cmd, const char* args) {
+
+    sys_cmd sys_command = 0;
+    int16_t i = 0;
+    while(i<sizeof(system_command_funcs)/4 &&
+          0 != ustrncmp(system_command_names[i], cmd, (uint32_t)-1)) {
+        ++i;
+        /* resume: the strncmp didnt' work */
+    }
+    sys_command = system_command_funcs[i];
+
+#ifdef SHELL_LOG
+    UINT bytes_written;
+    if (logging_ready) {
+        f_write(&logfilehandle, "\r\n", 2, &bytes_written);
+        f_write(&logfilehandle, command, strlen(command),  &bytes_written);
+        f_write(&logfilehandle, " ", 1,  &bytes_written);
+        f_write(&logfilehandle, args, strlen(args),  &bytes_written);
+        f_sync(&logfilehandle);
+    }
+#endif
+
+    exit_status_t ret;
+    if (0 == sys_command) {
+        ret = sys_command(args);
+    } else {
+        ret = -1;
+    }
+    return ret;
+}
+
+void shell::ustrcpy(char* dest, const char* source) {
+    uint32_t i = 0;
+    while (1) {
+        dest[i] = source[i];
+        if (dest[i++] == '\0') { break; }
+    }
+}
+
 
 shell::shell() {}
 
 shell::shell(uart u) {
 
-    this->pos = 0;
-    this->uart0 = u;
+    pos = 0;
+    uart0 = u;
+
+    ustrcpy(system_command_names[0], str_doc);    system_command_funcs[0] = doctor;
+    ustrcpy(system_command_names[1], str_witch);  system_command_funcs[1] = witch;
     clear_buffer();
+    print_ps1();
 }
 
 void* umemset(void* b, int c, int len) {
@@ -69,6 +159,26 @@ exit_status_t shell::execute_command() {
 
     /* Waldo says this line requires the extra char to be a 0 */
     return system_exec((const char*) buf, (const char*) &buf[idx+1]);
+}
+
+exit_status_t shell::execute_command(char* cmd_and_args) {
+
+    /* Null terminate to separate the cmd from the args */
+    uint8_t len = strlen(cmd_and_args);
+    uint8_t idx = 0;
+    while((idx < len) && (cmd_and_args[idx] != ' ')) {
+	++idx;
+    }
+    cmd_and_args[idx] = 0;
+
+    /* Waldo says this line requires the extra char to be a 0 */
+    return system_exec((const char*) cmd_and_args, (const char*) &cmd_and_args[idx+1]);
+}
+
+exit_status_t shell::execute_command(char* cmd, char* args) {
+
+     /* Waldo says this line requires the extra char to be a 0 */
+    return system_exec((const char*) cmd, (const char*) args);
 }
 
 void shell::shell_uart_handler(const char ch) {

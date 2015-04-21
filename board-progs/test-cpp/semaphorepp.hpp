@@ -4,6 +4,8 @@
 #ifndef __semaphorepp__
 #define __semaphorepp__
 
+#include <stdint.h>
+
 /*! \addtogroup semaphore
  * @{
  */
@@ -13,6 +15,7 @@ private:
     int16_t value;
 public:
     semaphore();
+    semaphore(int16_t initial_value);
 
     /*! Increment the semaphore. */
     void post(void);
@@ -31,7 +34,7 @@ public:
 
     /*! Reset the semaphore. */
     void reset(void);
-}
+};
 
 #endif
 

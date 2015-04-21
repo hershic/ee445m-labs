@@ -6,7 +6,9 @@
 #include "timerpp.hpp"
 #include "uartpp.hpp"
 #include "shellpp.hpp"
+#include "semaphorepp.hpp"
 
+#include "libio/kbd.h"
 #include "libos/os.h"
 #include "libschedule/schedule.h"
 
@@ -21,10 +23,26 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/uart.h"
 
+/* I avoid using a buffer object in the UART*_Handler so that the data
+ * structures are instantiated correctly without client code. */
+#include "pseudo-buffer.h"
+
 blinker blink;
 timer timer0a;
 uart uart0;
 shell shell0;
+
+static semaphore UART0_RX_SEM;
+
+static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
+static uint8_t UART0_RX_BUFFER_SIZE = 0;
+
+static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
+static uint8_t UART0_TX_BUFFER_SIZE = 0;
+
+static unsigned short SHELL_BUFFER_POSITION;
+/* Wondering why there's a one here? Where's waldo? */
+static char SHELL_BUFFER[SHELL_BUFFER_LENGTH+1];
 
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
@@ -51,9 +69,50 @@ void thread_uart_update() {
 
     while(1) {
         int32_t status = StartCritical();
-        uart0.printf("%d\n\r", blink_count_green);
+        uart0.printf("%d\n\r", blink_count_blue);
         EndCritical(status);
         os_surrender_context();
+    }
+}
+
+void shell_handler() {
+
+    while(1) {
+        if(UART0_RX_SEM.guard()) {
+            UART0_RX_SEM.take();
+
+            char recv = UART0_RX_BUFFER[buffer_len(UART0_RX_BUFFER)-1];
+            buffer_dec(UART0_RX_BUFFER);
+            exit_status_t exit_code;
+
+            switch(recv) {
+            case SC_CR:
+                uart0.printf("\r\n");
+
+                exit_code = shell0.execute_command(SHELL_BUFFER);
+                if(exit_code != 0) {
+                    uart0.printf("%d", exit_code);
+                }
+                shell0.clear_buffer();
+                uart0.send_newline();
+                shell0.print_ps1();
+            break;
+
+            case 127:
+            case SC_BACKSPACE:
+                SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
+                uart0.printf("\b \b");
+                break;
+
+            default:
+                if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
+                    SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
+                    /* Echo char to terminal for user */
+                    uart0.printf("%c", recv);
+                }
+                break;
+            }
+        }
     }
 }
 
@@ -66,9 +125,10 @@ int main(void) {
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     blink = blinker(GPIO_PORTF_BASE);
 
-    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT);
-    timer0a.start();
+    /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT); */
+    /* timer0a.start(); */
 
+    UART0_RX_SEM = semaphore();
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     shell0 = shell(uart0);
 
@@ -76,6 +136,7 @@ int main(void) {
     os_threading_init();
     schedule(thread_1, 200);
     schedule(thread_0, 200);
+    schedule(shell_handler, 200);
     /* schedule(thread_uart_update, 1000000); */
     os_launch();
     /* end os init */
@@ -89,88 +150,19 @@ extern "C" void Timer0A_Handler() {
     blink.toggle(PIN_RED);
 }
 
-/* I avoid using a buffer object here so that the data structures are
- * instantiated correctly without client code. */
-#define BUFFER_MAX_LENGTH 16
-
-static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_RX_BUFFER_SIZE = 0;
-
-static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_TX_BUFFER_SIZE = 0;
-
-/*! True if a buffer is empty */
-#define buffer_empty(buf)			\
-    (buf##_SIZE == 0)
-
-/*! Decrement the number of characters in buffer by the standard
- *  amount. */
-#define buffer_dec(buf)				\
-    buffer_dec_(buf, 1)
-
-/*! Decrement the number of characters in buffer by amount.
- * \note This macro needs to be called on its own line.
- * \bug No warning on underflow failure
- * \bug Non-atomic
- */
-#define buffer_dec_(buf, amount)				\
-    do {							\
-        if(buffer_len(buf) - amount >= 0) {			\
-	    buffer_len(buf) = buffer_len(buf) - amount;		\
-        }							\
-    } while (false)
-
-/*! Evaluate to the length of a buffer. */
-#define buffer_len(buf)				\
-    buf##_SIZE
-
-/*! True if a buffer is full */
-#define buffer_full(buf)			\
-    (buf##_SIZE == BUFFER_MAX_LENGTH-1)
-
-/*! True if a buffer is empty */
-#define buffer_empty(buf)			\
-    (buf##_SIZE == 0)
-
-#define buffer_clear(buf)			\
-    buffer_len(buf) = 0
-
-/*! Initialize buffer and its metadata */
-#define buffer_init(buf)			\
-    buffer_len(buf) = 0;
-
-/*! Add to buffer a single element.
- * \bug No warning on overflow failure
- */
-#define buffer_add(buf, elt)				\
-    do {						\
-        if(buffer_len(buf) + 1 <= BUFFER_MAX_LENGTH) {  \
-	    buf[buffer_len(buf)] = elt;			\
-	    ++buffer_len(buf);                          \
-        }                                               \
-    } while (false)
-
 extern "C" void UART0_Handler(void) {
 
-    bool post;
     uint8_t recv;
+
     /* Get and clear the current interrupt sources */
     uint32_t interrupts = UARTIntStatus(UART0_BASE, true);
     UARTIntClear(UART0_BASE, interrupts);
-
-    /* Are we being interrupted because the TX FIFO has space available? */
-    /* if(interrupts & UART_INT_TX) { */
-        /* Move as many bytes as we can into the transmit FIFO */
-        /* uart_prime_transmit(UART0_BASE); */
-    /* } */
 
     /* Are we being interrupted due to a received character? */
     if(interrupts & (UART_INT_RX | UART_INT_RT)) {
         /* Get all available chars from the UART */
         while(UARTCharsAvail(UART0_BASE)) {
             recv = (unsigned char) (UARTCharGetNonBlocking(UART0_BASE) & 0xFF);
-
-            /* optional: check for '@echo_off */
 
             /* Handle backspace by erasing the last character in the
              * buffer */
@@ -207,23 +199,22 @@ extern "C" void UART0_Handler(void) {
                 recv = '\r';
 
                 /* Echo the received character to the newline */
-                UARTCharPut(UART0_BASE, '\n');
+                /* UARTCharPut(UART0_BASE, '\n'); */
                 break;
 
             default: break;
             }
 
-            post = !buffer_full(UART0_RX_BUFFER);
             /* If there is room in the RX FIFO, store the char there,
              * else dump it. optional: a circular buffer might keep
              * more up-to-date data, considering this is a RTOS */
             /* this could be cleaned up with error-catching in the buffer library */
-            if(post) {
+            if(!buffer_full(UART0_RX_BUFFER)) {
                 buffer_add(UART0_RX_BUFFER, recv);
-                sem_post(HW_SEM_UART0);
+                UART0_RX_SEM.post();
             }
         }
     }
 }
 
-extern "C" void __cxa_pure_virtual() { while (1); }
+extern "C" void __cxa_pure_virtual() { while (1) {} }
