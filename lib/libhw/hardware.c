@@ -38,12 +38,6 @@ static hw_driver HW_UART_DRIVER;
 static hw_driver HW_TIMER_DRIVER;
 static hw_driver HW_BUTTON_DRIVER;
 
-static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_RX_BUFFER_SIZE = 0;
-
-static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_TX_BUFFER_SIZE = 0;
-
 uint32_t ADC0_SEQ0_SAMPLES[4];
 uint32_t ADC0_SEQ1_SAMPLES[4];
 uint32_t ADC0_SEQ2_SAMPLES[4];
@@ -254,88 +248,6 @@ void GPIOPortF_Handler(void) {
 
 /* These ISRs were generated programatically -- see
  * /bin/lisp/rtos-interrupt-generator.el */
-
-/*! UART0 isr responsible for notifying all subscriptions with information
- * describing the interrupt.
- */
-void UART0_Handler(void) {
-
-    bool post;
-    uint8_t recv;
-    /* Get and clear the current interrupt sources */
-    uint32_t interrupts = UARTIntStatus(UART0_BASE, true);
-    UARTIntClear(UART0_BASE, interrupts);
-
-    /* Are we being interrupted because the TX FIFO has space available? */
-    /* if(interrupts & UART_INT_TX) { */
-        /* Move as many bytes as we can into the transmit FIFO */
-        /* uart_prime_transmit(UART0_BASE); */
-    /* } */
-
-    /* Are we being interrupted due to a received character? */
-    if(interrupts & (UART_INT_RX | UART_INT_RT)) {
-        /* Get all available chars from the UART */
-        while(UARTCharsAvail(UART0_BASE)) {
-            recv = (unsigned char) (UARTCharGetNonBlocking(UART0_BASE) & 0xFF);
-
-            /* optional: check for '@echo_off */
-
-            /* Handle backspace by erasing the last character in the
-             * buffer */
-            switch(recv) {
-            case 127:
-            case '\b':
-                /* If there are any chars to delete, delete the last text */
-                if(!buffer_empty(UART0_RX_BUFFER)) {
-                    /* Erase previous characters on the user's terminal */
-                    UARTCharPut(UART0_BASE, '\b');
-                    UARTCharPut(UART0_BASE, ' ');
-                    UARTCharPut(UART0_BASE, '\b');
-                    /* Decrement the number of chars in the buffer */
-                    buffer_dec(UART0_RX_BUFFER);
-                    /* Skip ahead to next buffered char */
-                    continue;
-                }
-                /* if it is empty, somebody is watching so pass along
-                 * the backspace */
-                break;
-
-            case '\r':
-            case '\n':
-                if(recv == '\r') {
-                    UART_LAST_WAS_CR = true;
-                }
-                else if (UART_LAST_WAS_CR) {
-                    UART_LAST_WAS_CR = false;
-                    /* Don't react twice to a single newline */
-                    continue;
-                }
-            case 0x1b:
-                /* Regardless of the newline received, our convention
-                 * is to mark end-of-lines in a buffer with the CR
-                 * character. */
-                recv = '\r';
-
-                /* Echo the received character to the newline */
-                UARTCharPut(UART0_BASE, '\n');
-                break;
-
-            default: break;
-            }
-
-            post = !buffer_full(UART0_RX_BUFFER);
-            /* If there is room in the RX FIFO, store the char there,
-             * else dump it. optional: a circular buffer might keep
-             * more up-to-date data, considering this is a RTOS */
-            /* this could be cleaned up with error-catching in the buffer library */
-            if(post) {
-                buffer_add(UART0_RX_BUFFER, recv);
-                sem_post(HW_SEM_UART0);
-            }
-        }
-    }
-}
-
 
 /*! TIMER0A isr responsible for notifying all subscriptions with
  * information describing the interrupt.

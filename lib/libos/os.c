@@ -385,7 +385,7 @@ void os_suspend() {
     scheduler_reschedule();
 }
 
-void schedule(task_t task, frequency_t frequency) {
+void schedule(task_t task, frequency_t frequency_in_cycles) {
 
     deadline_t seriousness = DL_SOFT;
 
@@ -400,17 +400,17 @@ void schedule(task_t task, frequency_t frequency) {
     ready_task->task = task;
     ready_task->seriousness = seriousness;
 
-    if (frequency > MAX_SYSTICKS_PER_HZ) {
+    if (frequency_in_cycles > MAX_SYSTICKS_PER_HZ) {
         postpone_death();
     }
-    ready_task->absolute_deadline = frequency + clock;
+    ready_task->absolute_deadline = frequency_in_cycles + clock;
 
     ready_task->tcb = os_add_thread(task);
 
     /* Test the pool of ready queues for a queue of tasks with this
      * frequency */
     /* todo: uthash configurable without malloc */
-    ready_queue = schedule_hash_find_int(SCHEDULER_QUEUES, frequency);
+    ready_queue = schedule_hash_find_int(SCHEDULER_QUEUES, frequency_in_cycles);
     /* HASH_FIND_INT(SCHEDULER_QUEUES, &frequency, ready_queue); */
 
     /* No similar tasks exist yet -- create the pool */
@@ -421,7 +421,7 @@ void schedule(task_t task, frequency_t frequency) {
         ready_queue = SCHEDULER_UNUSED_QUEUES;
         CDL_DELETE(SCHEDULER_UNUSED_QUEUES, ready_queue);
 
-        ready_queue->deadline = frequency;
+        ready_queue->deadline = frequency_in_cycles;
         if (!SCHEDULER_QUEUES) {
             SCHEDULER_QUEUES = ready_queue;
             SCHEDULER_QUEUES->next = SCHEDULER_QUEUES;
