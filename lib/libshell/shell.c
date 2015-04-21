@@ -35,7 +35,6 @@ void shell_spawn() {
     shell_clear_shell_buffer();
     shell_print_ps1();
 }
-
 char* shell_represent() {
 
     return SHELL_BUFFER;
@@ -88,7 +87,6 @@ void shell_uart_handler(notification note) {
 
 void shell_set_ps1(char* new_ps1) {
 
-    /* TODO: ensure this copies a null terminator */
     umemcpy(SHELL_PS1, new_ps1, ustrlen(new_ps1));
 }
 

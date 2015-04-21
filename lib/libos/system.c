@@ -87,14 +87,6 @@ system_command* _system_command_from_name(const char* command_name) {
 exit_status_t system_exec(const char* command, const char* args) {
 
     system_command* sys_command = _system_command_from_name(command);
-#ifdef SYSTEM_DEBUG
-    uart_send_string("System executed: ");
-    uart_send_string(command);
-    uart_send_string("\r\n");
-    uart_send_string("args: ");
-    uart_send_string(args);
-    uart_send_string("\r\n");
-#endif
 
     UINT bytes_written;
     if (logging_ready) {
@@ -108,7 +100,6 @@ exit_status_t system_exec(const char* command, const char* args) {
     if (sys_command->valid) {
         return sys_command->command(args);
     } else {
-        uart_send_string("command not found\r\n");
         return EXIT_FAILURE;
     }
 }

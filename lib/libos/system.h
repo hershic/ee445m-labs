@@ -4,7 +4,7 @@
 #define __SYSTEM__
 
 #include <stdbool.h>
-#include "libstd/nexus.h"
+#include <stdint.h>
 #include "libfatfs/ff.h"
 
 /*! \addtogroup System

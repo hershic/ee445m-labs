@@ -5,6 +5,7 @@
 #include "blinker.hpp"
 #include "timerpp.hpp"
 #include "uartpp.hpp"
+#include "shellpp.hpp"
 
 #include "libos/os.h"
 #include "libschedule/schedule.h"
@@ -23,6 +24,7 @@
 blinker blink;
 timer timer0a;
 uart uart0;
+shell shell0;
 
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
@@ -68,12 +70,13 @@ int main(void) {
     timer0a.start();
 
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    shell0 = shell(uart0);
 
     /* begin os init */
     os_threading_init();
     schedule(thread_1, 200);
     schedule(thread_0, 200);
-    schedule(thread_uart_update, 1000000);
+    /* schedule(thread_uart_update, 1000000); */
     os_launch();
     /* end os init */
 

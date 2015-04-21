@@ -387,7 +387,7 @@ void os_suspend() {
 
 void schedule(task_t task, frequency_t frequency_in_cycles) {
 
-    deadline_t seriousness = DL_SOFT;
+    /* deadline_t seriousness = DL_SOFT; */
 
     sched_task *ready_task = NULL;
     sched_task_pool *ready_queue = NULL;
@@ -398,10 +398,10 @@ void schedule(task_t task, frequency_t frequency_in_cycles) {
 
     /* Set new task's metadata */
     ready_task->task = task;
-    ready_task->seriousness = seriousness;
+    /* ready_task->seriousness = seriousness; */
 
     if (frequency_in_cycles > MAX_SYSTICKS_PER_HZ) {
-        postpone_death();
+        while(1) {}
     }
     ready_task->absolute_deadline = frequency_in_cycles + clock;
 
