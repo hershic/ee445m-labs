@@ -31,7 +31,8 @@ class shell {
 private:
     uart uart0;
     buffer buf;
-    char ps1[SHELL_MAX_PS1_LENGTH];
+    /* Wondering why there's a +1 here? Waldo has the answers */
+    char ps1[SHELL_MAX_PS1_LENGTH+1];
 
     /*! Execute a system command. */
     int32_t ustrncmp(const char*, const char*, uint32_t);
