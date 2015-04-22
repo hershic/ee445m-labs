@@ -2,6 +2,7 @@
 /* Created by Hershal Bhave on <2015-03-15 Sun> */
 /* Revision History: Look in Git FGT */
 
+#include "adcpp.hpp"
 #include "blinker.hpp"
 #include "timerpp.hpp"
 #include "uartpp.hpp"
@@ -18,6 +19,7 @@
 
 #include "inc/hw_memmap.h"
 
+#include "driverlib/adc.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 #include "driverlib/interrupt.h"
@@ -31,6 +33,7 @@ blinker blink;
 timer timer0a;
 uart uart0;
 shell shell0;
+adc adc0;
 
 static semaphore UART0_RX_SEM;
 
@@ -119,7 +122,6 @@ void shell_handler() {
 
 extern "C" void Timer0A_Handler() {
     timer0a.ack();
-    blink.toggle(PIN_RED);
 }
 
 extern "C" void UART0_Handler(void) {
@@ -186,6 +188,13 @@ extern "C" void UART0_Handler(void) {
     }
 }
 
+extern "C" void ADC0Seq0_Handler(void) {
+
+    adc0.ack();
+    adc0.sample();
+    blink.toggle(PIN_RED);
+}
+
 extern "C" void __cxa_pure_virtual() { while (1) {} }
 
 int main(void) {
@@ -197,12 +206,19 @@ int main(void) {
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     blink = blinker(GPIO_PORTF_BASE);
 
-    /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT); */
-    /* timer0a.start(); */
+    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT);
+    timer0a.start();
 
     UART0_RX_SEM = semaphore();
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     shell0 = shell(uart0);
+
+    adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
+    adc0.configure_sequence(ADC_CTL_CH0);
+    adc0.configure_sequence(ADC_CTL_CH1);
+    adc0.configure_sequence(ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END);
+    adc0.configure_timer_interrupt(TIMER0_BASE, TIMER_A);
+    adc0.start();
 
     /* begin os init */
     os_threading_init();
