@@ -25,7 +25,8 @@ public:
     /*! Initialize adc. */
     adc();
     adc(memory_address_t adc_base, uint8_t adc_trigger_source, uint8_t adc_sequencer);
-    void configure(uint32_t sequencer_configuration);
+    void configure_sequence(uint32_t sequencer_configuration);
+    void configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer);
 
     void start();
     void stop();

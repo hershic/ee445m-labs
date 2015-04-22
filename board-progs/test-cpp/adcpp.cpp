@@ -6,6 +6,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/sysctl.h"
+#include "driverlib/timer.h"
 
 #include "inc/hw_memmap.h"
 
@@ -40,11 +41,13 @@ adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
     channel_counter = 0;
 }
 
-/*! Configure an adc channel */
-void adc::configure(uint32_t sequencer_configuration) {
+void adc::configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer) {
 
-    /* Disable the sample sequencer so we can configure it */
-    ADCSequenceDisable(base, sequencer);
+    TimerControlTrigger(timer_base, timer_subtimer, true);
+}
+
+/*! Configure an adc channel */
+void adc::configure_sequence(uint32_t sequencer_configuration) {
 
     /* From TI: Configure step 0 on sequence 3.  Sample channel 0
        (ADC_CTL_CH0) in single-ended mode (default) and configure the
@@ -84,5 +87,6 @@ void adc::sample() {
 }
 
 void adc::ack() {
+
     ADCIntClear(base, sequencer);
 }
