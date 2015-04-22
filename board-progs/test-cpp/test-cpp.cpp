@@ -34,6 +34,12 @@ uart uart0;
 shell shell0;
 motor motor0;
 
+#define thread(x)               \
+    while(1) {                  \
+        x                       \
+        os_surrender_context(); \
+    }
+
 static semaphore UART0_RX_SEM;
 
 static buffer UART0_RX_BUFFER;
@@ -43,30 +49,27 @@ uint32_t blink_count_blue = 0;
 
 void thread_0() {
 
-    while (1) {
+    thread (
         blink.toggle(PIN_BLUE);
         ++blink_count_blue;
-        os_surrender_context();
-    }
+        )
 }
 
 void thread_1() {
 
-    while (1) {
+    thread (
         blink.toggle(PIN_GREEN);
         ++blink_count_green;
-        os_surrender_context();
-    }
+        )
 }
 
 void thread_uart_update() {
 
-    while(1) {
+    thread (
         int32_t status = StartCritical();
         uart0.printf("%d\n\r", blink_count_blue);
         EndCritical(status);
-        os_surrender_context();
-    }
+        )
 }
 
 void shell_handler() {
@@ -80,7 +83,7 @@ void shell_handler() {
             switch(recv) {
             case SC_CR:
                 shell0.execute_command();
-            break;
+                break;
 
             case 127:
             case SC_BACKSPACE:
@@ -122,10 +125,8 @@ extern "C" void UART0_Handler(void) {
             case '\n':
                 if(recv == '\r') {
                     UART_LAST_WAS_CR = true;
-                }
-                else if (UART_LAST_WAS_CR) {
+                } else if (UART_LAST_WAS_CR) {
                     UART_LAST_WAS_CR = false;
-                    /* Don't react twice to a single newline */
                     continue;
                 }
                 break;
@@ -155,7 +156,8 @@ int main(void) {
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT); */
+    /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, */
+    /*                 TIMER_TIMA_TIMEOUT); */
     /* timer0a.start(); */
 
     UART0_RX_SEM = semaphore();
