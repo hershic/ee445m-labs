@@ -69,7 +69,25 @@
 \end{itemize}
 
 \section{Hardware Design}
-\todo
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{./img/motor-schematic.png}
+    \caption{The MOSFET-based Motor Interface Schematic}
+    \label{fig:mosfet-schematic}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{./img/ping-schematic.png}
+    \caption{The Ping sensor schematic (P15 is PB0, Vdd is 5V, Vss is Gnd)}
+    \label{fig:ping-schematic}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \todo{IR Sensor Schematic}
+  \end{subfigure}
+  \caption{Lab 6 hardware interfaces}
+  \label{fig:hardware-design}
+\end{figure}
 
 \section{Software Design}
 Reference \cref{lst:test-can}.
