@@ -20,6 +20,8 @@ private:
     /*! Configure CAN for 1 Mbit operation -- http://bit.ly/1CW7hUO */
     void set_timing(void);
 public:
+    static bool error_flag;
+
     can();
     can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender);
 
