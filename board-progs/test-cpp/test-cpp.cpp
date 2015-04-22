@@ -214,10 +214,15 @@ int main(void) {
     shell0 = shell(uart0);
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
+    /* PE3 */
     adc0.configure_sequence(ADC_CTL_CH0);
+    /* PE2 */
     adc0.configure_sequence(ADC_CTL_CH1);
+    /* PE1 */
     adc0.configure_sequence(ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END);
-    adc0.configure_timer_interrupt(TIMER0_BASE, TIMER_A);
+    /* PE0 */
+    adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END);
+    adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
     adc0.start();
 
     /* begin os init */
