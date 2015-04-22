@@ -36,8 +36,7 @@ motor motor0;
 
 static semaphore UART0_RX_SEM;
 
-static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_RX_BUFFER_SIZE = 0;
+static buffer UART0_RX_BUFFER;
 
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
@@ -76,8 +75,7 @@ void shell_handler() {
         if(UART0_RX_SEM.guard()) {
             UART0_RX_SEM.take();
 
-            char recv = UART0_RX_BUFFER[buffer_len(UART0_RX_BUFFER)-1];
-            buffer_dec(UART0_RX_BUFFER);
+            char recv = UART0_RX_BUFFER.get();
 
             switch(recv) {
             case SC_CR:
@@ -105,7 +103,7 @@ extern "C" void Timer0A_Handler() {
 
 extern "C" void UART0_Handler(void) {
 
-    uint8_t recv;
+    int8_t recv;
 
     /* Get and clear the current interrupt sources */
     uint32_t interrupts = UARTIntStatus(UART0_BASE, true);
@@ -115,26 +113,11 @@ extern "C" void UART0_Handler(void) {
     if(interrupts & (UART_INT_RX | UART_INT_RT)) {
         /* Get all available chars from the UART */
         while(UARTCharsAvail(UART0_BASE)) {
-            recv = (unsigned char) (UARTCharGetNonBlocking(UART0_BASE) & 0xFF);
+            recv = uart0.get_char();
 
             /* Handle backspace by erasing the last character in the
              * buffer */
             switch(recv) {
-            case 127:
-            case '\b':
-                /* If there are any chars to delete, delete the last text */
-                if(!buffer_empty(UART0_RX_BUFFER)) {
-                    /* Erase previous characters on the user's terminal */
-                    uart0.printf("\b \b");
-                    /* Decrement the number of chars in the buffer */
-                    buffer_dec(UART0_RX_BUFFER);
-                    /* Skip ahead to next buffered char */
-                    continue;
-                }
-                /* if it is empty, somebody is watching so pass along
-                 * the backspace */
-                break;
-
             case '\r':
             case '\n':
                 if(recv == '\r') {
@@ -145,9 +128,11 @@ extern "C" void UART0_Handler(void) {
                     /* Don't react twice to a single newline */
                     continue;
                 }
+                break;
+
             case 0x1b:
-                /* Regardless of the newline received, our convention
-                 * is to mark end-of-lines in a buffer with the CR
+                /* Regardless of newline received, our convention is
+                 * to mark end-of-lines in a buffer with the CR
                  * character. */
                 recv = '\r';
                 break;
@@ -155,14 +140,7 @@ extern "C" void UART0_Handler(void) {
             default: break;
             }
 
-            /* If there is room in the RX FIFO, store the char there,
-             * else dump it. optional: a circular buffer might keep
-             * more up-to-date data, considering this is a RTOS */
-            /* this could be cleaned up with error-catching in the buffer library */
-            if(!buffer_full(UART0_RX_BUFFER)) {
-                buffer_add(UART0_RX_BUFFER, recv);
-                UART0_RX_SEM.post();
-            }
+            UART0_RX_BUFFER.notify((const int8_t) recv);
         }
     }
 }
@@ -171,17 +149,18 @@ extern "C" void __cxa_pure_virtual() { while (1) {} }
 
 int main(void) {
 
-    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
+    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+                   SYSCTL_XTAL_16MHZ);
     IntMasterDisable();
 
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
-    blink = blinker(GPIO_PORTF_BASE);
+    blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
     /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT); */
     /* timer0a.start(); */
 
     UART0_RX_SEM = semaphore();
+    UART0_RX_BUFFER = buffer(UART0_RX_SEM);
+
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     shell0 = shell(uart0);
 
