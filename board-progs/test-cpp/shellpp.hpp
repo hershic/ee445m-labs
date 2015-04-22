@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 #include "uartpp.hpp"
+#include "bufferpp.hpp"
 
 /*! \addtogroup Shell
  * @{
@@ -29,8 +30,7 @@ typedef exit_status_t (*sys_cmd)(const char*);
 class shell {
 private:
     uart uart0;
-    uint8_t pos;
-    char buf[SHELL_BUFFER_LENGTH];
+    buffer buf;
     char ps1[SHELL_MAX_PS1_LENGTH];
 
     /*! Execute a system command. */
@@ -42,6 +42,7 @@ private:
 
     static exit_status_t doctor(const char* args);
     static exit_status_t witch(const char* args);
+    static exit_status_t jester(const char* args);
 
     static char system_command_names[SHELL_COMMANDS][SYSTEM_MAX_NAME_LENGTH];
     static sys_cmd system_command_funcs[SHELL_COMMANDS];
@@ -64,8 +65,14 @@ public:
     /*! Print the PS1. */
     void print_ps1();
 
+    /*! Add a char to the shell buffer. */
+    bool type(char ch);
+
+    /*! Remove a char from the shell buffer. */
+    void backspace(void);
+
     /*! Execute this command. */
-    exit_status_t execute_command(char* cmd_and_args);
+    exit_status_t execute_command();
 };
 
 #endif
