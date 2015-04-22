@@ -16,7 +16,7 @@ private:
 public:
     memory_address_t base;
     uint8_t sequencer;
-    uint8_t channel_counter;
+    uint8_t channel_count;
     uint32_t configuration;
     uint8_t trigger_source;
 

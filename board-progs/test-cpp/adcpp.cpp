@@ -38,7 +38,7 @@ adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
 
     ADCSequenceConfigure(base, sequencer, trigger_source, default_priority);
 
-    channel_counter = 0;
+    channel_count = 0;
 }
 
 void adc::configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer) {
@@ -59,9 +59,9 @@ void adc::configure_sequence(uint32_t sequencer_configuration) {
        conversion using sequence 3 we will only configure step 0.  For
        more information on the ADC sequences and steps, reference the
        datasheet. */
-    ADCSequenceStepConfigure(base, sequencer, channel_counter,
+    ADCSequenceStepConfigure(base, sequencer, channel_count,
                              sequencer_configuration);
-    ++channel_counter;
+    ++channel_count;
 }
 
 void adc::start() {
