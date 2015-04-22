@@ -8,6 +8,7 @@
 #include "uartpp.hpp"
 #include "shellpp.hpp"
 #include "semaphorepp.hpp"
+#include "motorpp.hpp"
 
 #include "libio/kbd.h"
 #include "libos/os.h"
@@ -34,19 +35,12 @@ timer timer0a;
 uart uart0;
 shell shell0;
 adc adc0;
+motor motor0;
 
 static semaphore UART0_RX_SEM;
 
 static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_RX_BUFFER_SIZE = 0;
-
-static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_TX_BUFFER_SIZE = 0;
-
-static uint16_t SHELL_BUFFER_SIZE = SHELL_BUFFER_LENGTH;
-static unsigned short SHELL_BUFFER_POSITION;
-/* Wondering why there's a one here? Where's waldo? */
-static char SHELL_BUFFER[SHELL_BUFFER_LENGTH+1];
 
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
@@ -77,19 +71,6 @@ void thread_uart_update() {
         EndCritical(status);
         os_surrender_context();
     }
-}
-
-void* umemset(void* b, int c, int len) {
-
-    int i;
-    unsigned char *p = (unsigned char *) b;
-    i = 0;
-    while(len > 0) {
-        *p = c;
-        ++p;
-        --len;
-    }
-    return b;
 }
 
 void shell_handler() {
@@ -225,10 +206,12 @@ int main(void) {
     adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
     adc0.start();
 
+    motor0 = motor(10000, 9999, FORWARD);
+
     /* begin os init */
     os_threading_init();
     /* schedule(thread_1, 200); */
-    /* schedule(thread_0, 200); */
+    schedule(thread_0, 200);
     schedule(shell_handler, 200);
     /* schedule(thread_uart_update, 1000000); */
     os_launch();
