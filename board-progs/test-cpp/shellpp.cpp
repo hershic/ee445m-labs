@@ -173,11 +173,11 @@ exit_status_t shell::execute_command() {
     exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
     /* Waldo says this line requires the extra char to be a 0 */
     if(shell_command_is("doctor")) {
-        exit_code = doctor(&buf.buf[idx+1]);
+        exit_code = doctor((const char*) &buf.buf[idx+1]);
     } else if(shell_command_is("witch")) {
-        exit_code = witch(&buf.buf[idx+1]);
+        exit_code = witch((const char*) &buf.buf[idx+1]);
     } else if(shell_command_is("jester")) {
-        exit_code = jester(&buf.buf[idx+1]);
+        exit_code = jester((const char*) &buf.buf[idx+1]);
     } else {
         uart0.printf("%s is not a recognized command.\n\r", buf.buf);
     }
