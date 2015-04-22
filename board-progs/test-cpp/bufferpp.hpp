@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #ifndef __bufferpp__
 #define __bufferpp__
 
