@@ -37,9 +37,6 @@ static semaphore UART0_RX_SEM;
 static uint8_t UART0_RX_BUFFER[BUFFER_MAX_LENGTH];
 static uint8_t UART0_RX_BUFFER_SIZE = 0;
 
-static uint8_t UART0_TX_BUFFER[BUFFER_MAX_LENGTH];
-static uint8_t UART0_TX_BUFFER_SIZE = 0;
-
 static uint16_t SHELL_BUFFER_SIZE = SHELL_BUFFER_LENGTH;
 static unsigned short SHELL_BUFFER_POSITION;
 /* Wondering why there's a one here? Where's waldo? */
