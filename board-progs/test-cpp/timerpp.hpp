@@ -23,18 +23,18 @@ const uint32_t TIMER_DEFAULT_PRIORITY = 0;
 
 class timer {
 private:
-
+public:
     /*! Defined between 0 to 4, where 0 indicates TIMER0 */
     timer_t id;
+
+    /*! The base address of the specified timer */
+    uint32_t base;
 
     /*! TIMER_A, TIMER_B, or TIMER_BOTH */
     subtimer_t subtimer;
 
     /*! The reload value for the timer */
     reload_t reload_value;
-
-    /*! The base address of the specified timer */
-    uint32_t base;
 
     /*! The configuration bitset for the timer */
     /*! \note Reference timer.h for possible options (e.g. TIMER_CFG_PERIODIC) */
@@ -44,7 +44,6 @@ private:
     /*! \note Reference timer.h for possible options (e.g. TIMER_TIMA_TIMEOUT) */
     uint32_t interrupt;
 
-public:
     timer();
     timer(timer_t timer_id, subtimer_t timer_subtimer,
           uint32_t timer_configuration, reload_t timer_load_val,
