@@ -22,7 +22,7 @@
 \pagebreak[3]
 \newcommand{\Opentesthook}[2]{\Writetofile{#1}{\protect\section{#1: #2}}}
 \renewcommand{\Solnlabel}[1]{\textbf{Solution}\quad}
-\newcommand{\todo}{\hfill{\LARGE \emph{\color{red}TODO}}}
+\newcommand{\todo}[1]{{\color{red}{\LARGE TODO} #1}}
 \newcommand{\ohm}{$\Omega$}
 \newcommand{\hbr}{\hfill\vspace{.25em}\\}
 \newcommand{\dd}[1]{\:\mathrm{d}{#1}}
@@ -128,10 +128,10 @@ Reference \cref{lst:test-can}.
 \end{table}
 
 \begin{enumerate}
-\item todo table of QRB1134 (motor?) data (procedure 4C)
-\item todo scope traces of can signals measured on both sides of the SN
-65HVD1050 (procedure 5)
-\item todo measure network bandwidth
+\item \todo{table of QRB1134 (motor?) data (procedure 4C)}
+\item \todo{scope traces of can signals measured on both sides of the SN
+  65HVD1050 (procedure 5)}
+\item \todo{measure network bandwidth}
 \end{enumerate}
 
 % \begin{figure}[H]
@@ -162,7 +162,7 @@ Reference \cref{lst:test-can}.
   the time constant for this filter? I.e., if there is a step change
   in input, how long until your output changes to at least $\frac{1}{e}$ of the
   final value? \\ \Solnlabel \newline \\
-  \todo
+  \todo{answer this question}
 \item Present an alternative design for your H-bridge and describe how
   your H-bridge is better or worse? \\ \Solnlabel \newline \\
   Our H-bridge could use MOSFET transisters to reduce power leaked
