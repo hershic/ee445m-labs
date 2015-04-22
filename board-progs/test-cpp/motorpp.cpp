@@ -13,6 +13,7 @@ motor::motor(uint32_t pwm_period, uint32_t duty_period,
     this->duty_period = duty_period;
     this->direction = direction;
 
+    motor_init();
 }
 
 void motor::stop() {
