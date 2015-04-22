@@ -3,6 +3,13 @@
 
 #include "inc/hw_memmap.h"
 
+#define EXIT_SUCCESS 0
+
+#define SHELL_VERBOSE
+
+#define shell_command_is(a)                     \
+    0 == ustrncmp(a, (const char*) buf.buf, buf.length())
+
 char shell::str_doc[10] = "doctor   ";
 char shell::str_witch[10] = "witch   ";
 
@@ -13,14 +20,25 @@ exit_status_t shell::doctor(const char* args) {
 
     blinker blink = blinker(GPIO_PORTF_BASE);
     blink.toggle(PIN_RED);
+    return EXIT_SUCCESS;
 }
 
 exit_status_t shell::witch(const char* args) {
 
     blinker blink = blinker(GPIO_PORTF_BASE);
     blink.toggle(PIN_GREEN);
+    return EXIT_SUCCESS;
 }
 
+exit_status_t shell::jester(const char* args) {
+
+    blinker blink = blinker(GPIO_PORTF_BASE);
+    blink.toggle(PIN_BLUE);
+    return EXIT_SUCCESS;
+}
+
+/*! \note this implementation does not compare length, thus unique
+ *  abbreviations are fair game (gdb style) */
 int32_t shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
 
     /* Loop while there are more characters. */
@@ -63,8 +81,12 @@ shell::shell() {}
 
 shell::shell(uart u) {
 
-    pos = 0;
+    buf = buffer();
     uart0 = u;
+    ps1[0] = '>';
+    ps1[1] = ' ';
+    ps1[2] = ' ';
+    ps1[3] = 0;
 
     clear_buffer();
     print_ps1();
@@ -101,8 +123,7 @@ void* umemcpy(void *str1, const void *str2, long n) {
 
 void shell::clear_buffer() {
 
-    memset(buf, 0, sizeof(buf));
-    pos = 0;
+    buf.clear();
 }
 
 void shell::set_ps1(char* new_ps1) {
@@ -110,29 +131,65 @@ void shell::set_ps1(char* new_ps1) {
     umemcpy(ps1, new_ps1, strlen(new_ps1));
 }
 
+/*! \note has the side effect of clearing the shell buffer */
 void shell::print_ps1() {
 
-    uart0.printf("%s", ps1);
+    buf.clear();
+    uart0.printf("\n\n\r%s", ps1);
 }
 
-exit_status_t shell::execute_command(char* cmd_and_args) {
+bool shell::type(char ch) {
+
+    bool ret;
+    if (buf.full()) {
+        ret = false;
+    } else {
+        ret = true;
+        buf.add((const char) ch);
+    }
+    uart0.printf("%c", ch);
+    return ret;
+}
+
+void shell::backspace() {
+
+    buf.get();
+    uart0.printf("\b \b");
+}
+
+exit_status_t shell::execute_command() {
 
     /* Null terminate to separate the cmd from the args */
-    uint8_t len = strlen(cmd_and_args);
+    uint8_t len = buf.length();
     uint8_t idx = 0;
-    while((idx < len) && (cmd_and_args[idx] != ' ')) {
+    while((idx < len) && (buf.buf[idx] != ' ')) {
 	++idx;
     }
-    cmd_and_args[idx] = 0;
+    buf.buf[idx] = 0;
+
+    /* Clear some space between the user input and this cmd output */
+    uart0.printf("\r\n");
 
     exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
     /* Waldo says this line requires the extra char to be a 0 */
-    if(0 == ustrncmp("doctor", (const char*) cmd_and_args, strlen(cmd_and_args))) {
-        exit_code = doctor(&cmd_and_args[idx+1]);
-    } else if(0 == ustrncmp("witch", (const char*) cmd_and_args, strlen(cmd_and_args))) {
-        exit_code = witch(&cmd_and_args[idx+1]);
+    if(shell_command_is("doctor")) {
+        exit_code = doctor(&buf.buf[idx+1]);
+    } else if(shell_command_is("witch")) {
+        exit_code = witch(&buf.buf[idx+1]);
+    } else if(shell_command_is("jester")) {
+        exit_code = jester(&buf.buf[idx+1]);
     } else {
-        uart0.printf("%s is not a recognized command. \n\n", cmd_and_args);
+        uart0.printf("%s is not a recognized command.\n\r", buf.buf);
     }
+
+#ifdef SHELL_VERBOSE
+    if (exit_code != EXIT_SUCCESS) {
+        uart0.printf("\n\rnonzero exit code: %d", exit_code);
+    }
+#endif
+
+    /* Prepare for the next command */
+    print_ps1();
+
     return exit_code;
 }

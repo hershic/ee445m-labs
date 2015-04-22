@@ -3,46 +3,53 @@
 buffer::buffer() {
 
     pos = 0;
+    len = DEFAULT_BUFFER_LENGTH;
     clear();
 }
 
 void buffer::clear() {
 
-    uint32_t i;
-    for(i=0; i<DEFAULT_BUFFER_LENGTH; ++i) {
-        buf[i] = 0;
+    while(pos>0) {
+        buf[--pos] = 0;
     }
 }
 
 /*! warning: drops chars if buffer is full */
 void buffer::add(const char ch) {
 
-    if (pos >= DEFAULT_BUFFER_LENGTH) {
+    if (pos >= len) {
         return;
     }
     buf[pos++] = (char) ch;
 }
 
-char buffer::peek(void) {
+char buffer::peek() {
 
     return buf[pos];
 }
 
 /*! warning: returns 0 if no more chars in buffer */
-char buffer::get(void) {
+char buffer::get() {
 
     if (pos <= 0) {
         return 0;
     }
-    return buf[--pos];
+    char ret = buf[--pos];
+    buf[pos] = 0;
+    return ret;
 }
 
-bool buffer::full(void) {
+bool buffer::full() {
+
+    return pos == len;
+}
+
+bool buffer::empty() {
 
     return pos == 0;
 }
 
-bool buffer::empty(void) {
+uint32_t buffer::length() {
 
-    return pos == DEFAULT_BUFFER_LENGTH;
+    return pos;
 }

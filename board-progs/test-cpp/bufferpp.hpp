@@ -12,11 +12,13 @@
 
 class buffer {
 private:
-    char buf[DEFAULT_BUFFER_LENGTH];
     /* Points ahead of last valid char */
     uint32_t pos;
+    uint32_t len;
 
 public:
+    char buf[DEFAULT_BUFFER_LENGTH];
+
     buffer();
 
     /*! Add a char. */
@@ -36,6 +38,9 @@ public:
 
     /*! True if buffer is empty */
     bool empty(void);
+
+    /*! Length of buffer contents. */
+    uint32_t length(void);
 };
 
 #endif

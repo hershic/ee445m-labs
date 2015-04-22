@@ -91,77 +91,30 @@ void* umemset(void* b, int c, int len) {
 
 void shell_handler() {
 
-    shell0.print_ps1();
-
     while(1) {
         if(UART0_RX_SEM.guard()) {
             UART0_RX_SEM.take();
 
             char recv = UART0_RX_BUFFER[buffer_len(UART0_RX_BUFFER)-1];
             buffer_dec(UART0_RX_BUFFER);
-            exit_status_t exit_code;
 
             switch(recv) {
             case SC_CR:
-                uart0.printf("\r\n");
-
-                exit_code = shell0.execute_command(SHELL_BUFFER);
-                if(exit_code != 0) {
-                    uart0.printf("%d", exit_code);
-                }
-                SHELL_BUFFER_POSITION = 0;
-                umemset(SHELL_BUFFER, 0, sizeof(SHELL_BUFFER));
-                /* shell0.clear_buffer(); */
-                uart0.send_newline();
-                shell0.print_ps1();
+                shell0.execute_command();
             break;
 
             case 127:
             case SC_BACKSPACE:
-                SHELL_BUFFER[SHELL_BUFFER_POSITION--] = (char) 0;
-                uart0.printf("\b \b");
+                shell0.backspace();
                 break;
 
             default:
-                if (SHELL_BUFFER_LENGTH > SHELL_BUFFER_POSITION) {
-                    SHELL_BUFFER[SHELL_BUFFER_POSITION++] = recv;
-                    /* Echo char to terminal for user */
-                    uart0.printf("%c", recv);
-                }
+                shell0.type(recv);
                 break;
             }
         }
         os_surrender_context();
     }
-}
-
-int main(void) {
-
-    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
-    IntMasterDisable();
-
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
-    blink = blinker(GPIO_PORTF_BASE);
-
-    /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT); */
-    /* timer0a.start(); */
-
-    UART0_RX_SEM = semaphore();
-    uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    shell0 = shell(uart0);
-
-    /* begin os init */
-    os_threading_init();
-    /* schedule(thread_1, 200); */
-    /* schedule(thread_0, 200); */
-    schedule(shell_handler, 200);
-    /* schedule(thread_uart_update, 1000000); */
-    os_launch();
-    /* end os init */
-
-    /* main never terminates */
-    while (1);
 }
 
 extern "C" void Timer0A_Handler() {
@@ -216,9 +169,6 @@ extern "C" void UART0_Handler(void) {
                  * is to mark end-of-lines in a buffer with the CR
                  * character. */
                 recv = '\r';
-
-                /* Echo the received character to the newline */
-                /* UARTCharPut(UART0_BASE, '\n'); */
                 break;
 
             default: break;
@@ -237,3 +187,32 @@ extern "C" void UART0_Handler(void) {
 }
 
 extern "C" void __cxa_pure_virtual() { while (1) {} }
+
+int main(void) {
+
+    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
+    IntMasterDisable();
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+    blink = blinker(GPIO_PORTF_BASE);
+
+    /* timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2, TIMER_TIMA_TIMEOUT); */
+    /* timer0a.start(); */
+
+    UART0_RX_SEM = semaphore();
+    uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    shell0 = shell(uart0);
+
+    /* begin os init */
+    os_threading_init();
+    /* schedule(thread_1, 200); */
+    /* schedule(thread_0, 200); */
+    schedule(shell_handler, 200);
+    /* schedule(thread_uart_update, 1000000); */
+    os_launch();
+    /* end os init */
+
+    /* main never terminates */
+    while (1);
+}
