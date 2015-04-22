@@ -10,37 +10,69 @@
 
 #define DEFAULT_BUFFER_LENGTH 64
 
+template <typename T, uint32_t N>
 class buffer {
 private:
-    /* Points ahead of last valid char */
+    /* Points ahead of last valid T */
     uint32_t pos;
     uint32_t len;
 
 public:
-    char buf[DEFAULT_BUFFER_LENGTH];
+    T buf[N];
 
-    buffer();
+    buffer() {
 
-    /*! Add a char. */
-    void add(const char ch);
+        pos = 0;
+        len = N;
+        clear();
+    }
 
-    /*! Peek at a char. */
-    char peek(void);
+    void clear() {
 
-    /*! Remove a char. */
-    char get(void);
+        while(pos>0) {
+            buf[--pos] = 0;
+        }
+    }
 
-    /*! Clear the buffer. */
-    void clear(void);
+    /*! warning: drops Ts if buffer is full */
+    void add(const T ch) {
 
-    /*! True if buffer is full */
-    bool full(void);
+        if (pos >= len) {
+            return;
+        }
+        buf[pos++] = (T) ch;
+    }
 
-    /*! True if buffer is empty */
-    bool empty(void);
+    T peek() {
 
-    /*! Length of buffer contents. */
-    uint32_t length(void);
+        return buf[pos];
+    }
+
+    /*! warning: returns 0 if no more Ts in buffer */
+    T get() {
+
+        if (pos <= 0) {
+            return 0;
+        }
+        T ret = buf[--pos];
+        buf[pos] = 0;
+        return ret;
+    }
+
+    bool full() {
+
+        return pos == len;
+    }
+
+    bool empty() {
+
+        return pos == 0;
+    }
+
+    uint32_t length() {
+
+        return pos;
+    }
 };
 
 #endif

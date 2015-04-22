@@ -30,7 +30,7 @@ typedef exit_status_t (*sys_cmd)(const char*);
 class shell {
 private:
     uart uart0;
-    buffer buf;
+    buffer<char, SHELL_BUFFER_LENGTH> buf;
     char ps1[SHELL_MAX_PS1_LENGTH];
 
     /*! Execute a system command. */

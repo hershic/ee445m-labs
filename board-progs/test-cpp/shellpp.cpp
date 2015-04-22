@@ -81,7 +81,7 @@ shell::shell() {}
 
 shell::shell(uart u) {
 
-    buf = buffer();
+    buf = buffer<char, SHELL_BUFFER_LENGTH>();
     uart0 = u;
     ps1[0] = '>';
     ps1[1] = ' ';
@@ -163,7 +163,7 @@ exit_status_t shell::execute_command() {
     uint8_t len = buf.length();
     uint8_t idx = 0;
     while((idx < len) && (buf.buf[idx] != ' ')) {
-	++idx;
+        ++idx;
     }
     buf.buf[idx] = 0;
 
