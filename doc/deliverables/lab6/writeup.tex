@@ -147,8 +147,22 @@ Reference \cref{lst:test-can}.
 
 \begin{enumerate}
 \item \todo{table of QRB1134 (motor?) data (procedure 4C)}
-\item \todo{scope traces of can signals measured on both sides of the SN
-  65HVD1050 (procedure 5)}
+\item Scope traces of CAN signals are indicated in
+  \cref{fig:can-frames}.
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{./img/TEK00008}
+    \caption{CANL Signals}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{./img/TEK00009}
+    \caption{CANH Signals}
+  \end{subfigure}
+  \caption{Scope traces of CAN signals}
+  \label{fig:can-frames}
+\end{figure}
+
 \item \todo{measure network bandwidth}
 \end{enumerate}
 
