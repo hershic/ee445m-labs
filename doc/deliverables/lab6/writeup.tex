@@ -149,13 +149,15 @@ Reference \cref{lst:test-can}.
 \begin{enumerate}[1)]
 \item What is one advantage of the ping sensor over the GP2Y0A21YK
   sensor? \\ \Solnlabel \newline \\
-  The ping sensor is rate monotonic.
+  The ping sensor is more accurate when the target is perpendicular
+  and not sound-absorbant.
 \item What is one advantage of the GP2Y0A21YK sensor over the ping
   sensor? \\ \Solnlabel \newline \\
-  The GP2Y0A21YK continuously provides data.
+  The GP2Y0A21YK provides usable distance data when the object is not
+  perpendicular to the sensor.
 \item Describe the noise of the GP2Y0A21YK when measured with a
   spectrum analyzer. \\ \Solnlabel \newline \\
-  \todo
+  The data spikes at a regular interval.
 \item Why did you choose the digital filters for your sensors? What is
   the time constant for this filter? I.e., if there is a step change
   in input, how long until your output changes to at least $\frac{1}{e}$ of the
