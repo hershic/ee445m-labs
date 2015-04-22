@@ -3,6 +3,9 @@
 #define __bufferpp__
 
 #include <stdint.h>
+#include <stdbool.h>
+
+#include "semaphorepp.hpp"
 
 /*! \addtogroup buffer
  * @{
@@ -12,23 +15,41 @@
 
 class buffer {
 private:
-    /* Points ahead of last valid char */
+    /* Points ahead of last valid data. */
     uint32_t pos;
+    /* Total length of bufer. */
     uint32_t len;
+    /* Optional notification system */
+    semaphore sem;
+    /* Number of overflows */
+    uint32_t error_overflow;
+    /* Number of underflows */
+    uint32_t error_underflow;
+
+    /*! Internal init protocol */
+    void init(void);
 
 public:
-    char buf[DEFAULT_BUFFER_LENGTH];
+    int8_t buf[DEFAULT_BUFFER_LENGTH];
 
     buffer();
+    buffer(semaphore sem);
 
-    /*! Add a char. */
-    void add(const char ch);
+    /* Not possible without malloc */
+    /* buffer(int32_t length); */
+    /* buffer(int32_t length, semaphore sem); */
 
-    /*! Peek at a char. */
-    char peek(void);
+    /*! Add data. */
+    bool add(const int8_t data);
 
-    /*! Remove a char. */
-    char get(void);
+    /*! Add data and notify via semaphore. */
+    void notify(const int8_t data);
+
+    /*! Peek at an int8_t. */
+    int8_t peek(void);
+
+    /*! Remove an int8_t. */
+    int8_t get(void);
 
     /*! Clear the buffer. */
     void clear(void);
