@@ -33,7 +33,6 @@ public:
     void sample();
     void ack();
 
-    semaphore sem;
     uint32_t sequencer_data[max_num_sequencer_steps];
 };
 
