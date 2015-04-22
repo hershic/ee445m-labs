@@ -62,17 +62,18 @@ void adc::configure_sequence(uint32_t sequencer_configuration) {
     ADCSequenceStepConfigure(base, sequencer, channel_counter,
                              sequencer_configuration);
     ++channel_counter;
-    IntEnable(INT_ADC0SS0 + sequencer);
 }
 
 void adc::start() {
 
+    IntEnable(INT_ADC0SS0 + sequencer);
     ADCIntEnable(base, sequencer);
     ADCSequenceEnable(base, sequencer);
 }
 
 void adc::stop() {
 
+    IntDisable(INT_ADC0SS0 + sequencer);
     ADCIntDisable(base, sequencer);
     ADCSequenceDisable(base, sequencer);
 }
