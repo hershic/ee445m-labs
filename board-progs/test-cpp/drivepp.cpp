@@ -1,3 +1,4 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #include "drivepp.hpp"
 
 #include "libos/os.h"
