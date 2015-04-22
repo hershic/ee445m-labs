@@ -106,7 +106,7 @@ extern "C" void Timer0A_Handler() {
 
 extern "C" void UART0_Handler(void) {
 
-    int8_t recv;
+    char recv;
 
     /* Get and clear the current interrupt sources */
     uint32_t interrupts = UARTIntStatus(UART0_BASE, true);
