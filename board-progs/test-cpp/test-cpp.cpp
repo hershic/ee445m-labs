@@ -7,6 +7,7 @@
 #include "uartpp.hpp"
 #include "shellpp.hpp"
 #include "semaphorepp.hpp"
+#include "motorpp.hpp"
 
 #include "libio/kbd.h"
 #include "libos/os.h"
@@ -31,6 +32,7 @@ blinker blink;
 timer timer0a;
 uart uart0;
 shell shell0;
+motor motor0;
 
 static semaphore UART0_RX_SEM;
 
@@ -183,10 +185,12 @@ int main(void) {
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     shell0 = shell(uart0);
 
+    motor0 = motor(10000, 9999, FORWARD);
+
     /* begin os init */
     os_threading_init();
     /* schedule(thread_1, 200); */
-    /* schedule(thread_0, 200); */
+    schedule(thread_0, 200);
     schedule(shell_handler, 200);
     /* schedule(thread_uart_update, 1000000); */
     os_launch();
