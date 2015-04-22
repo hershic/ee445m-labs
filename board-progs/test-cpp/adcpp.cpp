@@ -11,10 +11,14 @@
 
 adc::adc() {}
 
-adc::adc(memory_address_t adc_base) {
+adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
+         uint8_t adc_sequencer) {
 
     base = adc_base;
-    /* todo: determine where the other ADC ports are located */
+    trigger_source = adc_trigger_source;
+    sequencer = adc_sequencer;
+
+    /* TODO: determine where the other ADC ports are located */
     switch(adc_base) {
     case ADC0_BASE:
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
@@ -30,15 +34,14 @@ adc::adc(memory_address_t adc_base) {
     /* we don't have to set the reference for the internal ADC, but we
        might if we have an external one. */
     ADCReferenceSet(base, ADC_REF_INT);
+
+    ADCSequenceConfigure(base, sequencer, trigger_source, default_priority);
+
+    channel_counter = 0;
 }
 
-void adc::adc_configure(uint8_t adc_sequencer, uint8_t adc_channel,
-    uint32_t adc_configuration, uint8_t adc_trigger_source) {
-
-    sequencer = adc_sequencer;
-    channel = adc_channel;
-    configuration = adc_configuration;
-    trigger_source = adc_trigger_source;
+/*! Configure an adc channel */
+void adc::configure(uint32_t sequencer_configuration) {
 
     /* Disable the sample sequencer so we can configure it */
     ADCSequenceDisable(base, sequencer);
@@ -53,8 +56,9 @@ void adc::adc_configure(uint8_t adc_sequencer, uint8_t adc_channel,
        conversion using sequence 3 we will only configure step 0.  For
        more information on the ADC sequences and steps, reference the
        datasheet. */
-    ADCSequenceConfigure(base, sequencer, trigger_source, default_priority);
-    ADCSequenceStepConfigure(base, sequencer, channel, configuration);
+    ADCSequenceStepConfigure(base, sequencer, channel_counter,
+                             sequencer_configuration);
+    ++channel_counter;
     IntEnable(INT_ADC0SS0 + sequencer);
 }
 
@@ -70,13 +74,15 @@ void adc::stop() {
     ADCSequenceDisable(base, sequencer);
 }
 
-inline void increment_ptr(uint32_t* ptr, uint32_t wrap_len) {
-    *ptr = (*ptr + 1) % wrap_len;
+inline void increment_ptr(uint32_t* ptr, uint32_t increment,  uint32_t wrap_len) {
+    *ptr = (*ptr + increment) % wrap_len;
 }
 
 void adc::sample() {
 
-    ADCSequenceDataGet(base, sequencer, &data[producer_index]);
-    /* sem += producer_index / (signal_length-1); */
-    increment_ptr(&producer_index, signal_length);
+    ADCSequenceDataGet(base, sequencer, sequencer_data);
+}
+
+void adc::ack() {
+    ADCIntClear(base, sequencer);
 }

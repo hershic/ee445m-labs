@@ -12,11 +12,11 @@ class adc {
 private:
 
     static const uint8_t default_priority = 0;
-    static const uint16_t signal_length = 128;
+    static const uint8_t max_num_sequencer_steps = 8;
 
     memory_address_t base;
     uint8_t sequencer;
-    uint8_t channel;
+    uint8_t channel_counter;
     uint32_t configuration;
     uint8_t trigger_source;
 
@@ -24,16 +24,16 @@ private:
 public:
     /*! Initialize adc. */
     adc();
-    adc(memory_address_t adc_base);
-    void adc_configure(uint8_t adc_sequencer, uint8_t adc_channel,
-                       uint32_t adc_configuration, uint8_t adc_trigger_source);
+    adc(memory_address_t adc_base, uint8_t adc_trigger_source, uint8_t adc_sequencer);
+    void configure(uint32_t sequencer_configuration);
 
     void start();
     void stop();
     void sample();
+    void ack();
 
     semaphore sem;
-    uint32_t data[signal_length];
+    uint32_t sequencer_data[max_num_sequencer_steps];
 };
 
 #endif  /* __ADC__ */
