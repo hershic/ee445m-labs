@@ -1,7 +1,8 @@
+/* -*- mode: c; c-basic-offset: 4; -*- */
 #ifndef __canpp__
 #define __canpp__
 
-/*! \addtogroup
+/*! \addtogroup CAN
  * @{
  */
 
