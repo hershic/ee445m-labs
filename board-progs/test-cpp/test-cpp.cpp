@@ -292,8 +292,8 @@ int main(void) {
     /* motor0 = motor(10000, 9999, FORWARD); */
 
     os_threading_init();
-    /* schedule(thread_1, 200); */
-    schedule(motor_control, 200);
+    schedule(thread_1, 200);
+    /* schedule(motor_control, 200); */
     schedule(thread_0, 200);
     schedule(shell_handler, 200);
     if(can_sender) {
