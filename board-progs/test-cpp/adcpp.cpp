@@ -25,7 +25,7 @@ adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
         SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
         SysCtlGPIOAHBEnable(SYSCTL_PERIPH_GPIOE);
         GPIOPinTypeADC(GPIO_PORTE_AHB_BASE,
-                       GPIO_PIN_3 | GPIO_PIN_2 | GPIO_PIN_1);
+                       GPIO_PIN_3 | GPIO_PIN_2 | GPIO_PIN_1 | GPIO_PIN_0);
         SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
         SysCtlPeripheralReset(SYSCTL_PERIPH_ADC0);
         break;
