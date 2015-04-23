@@ -7,4 +7,3 @@ include_directories(../../)
 
 add_library (timer STATIC ${timer-src})
 target_link_libraries(timer driverlib)
-target_link_libraries(timer hw)

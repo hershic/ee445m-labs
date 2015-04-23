@@ -7,6 +7,10 @@
 /*! \addtogroup
  * @{
  */
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 /* We are using the priority scheduler */
 
@@ -16,14 +20,9 @@
 #include "libhw/hardware.h"
 /* #include "libut/uthash.h" */
 
-#define SCHEDULER_DEFAULT_MAX_THREADS    8
 #define SYSTICKS_PER_HZ                  80000000
 #define MAX_SYSTICKS_PER_HZ              16777216
 #define SYSCTLCLOCK                      16000000
-
-/* #if !(defined(SCHEDULER_MAX_THREADS)) */
-#define SCHEDULER_MAX_THREADS   SCHEDULER_DEFAULT_MAX_THREADS
-/* #endif */
 
 typedef void (*pisr_t)(notification note);      /* a task capable of being run */
 
@@ -48,7 +47,7 @@ static sched_task* SCHEDULER_UNUSED_TASKS = NULL;
 /*! Initialize all deep datastructures used by libschedule. */
 void schedule_init();
 
-void schedule(task_t, frequency_t, DEADLINE_TYPE);
+void schedule(task_t, frequency_t);
 
 /*! Schedule a pseudo-isr to be executed when a hardware event
  *  described by HW_TYPE and hw_metadata occurs. */
@@ -60,6 +59,10 @@ void schedule_hash_add_int(sched_task_pool* queues, sched_task_pool* add);
 
 sched_task* edf_get_edf_queue();
 void _os_choose_next_thread();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* __SCHEDULE__ */
 

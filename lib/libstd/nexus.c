@@ -1,19 +1,6 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
 #include "nexus.h"
 
-void* umemset(void* b, int c, int len) {
-
-    int i;
-    unsigned char *p = b;
-    i = 0;
-    while(len > 0) {
-        *p = c;
-        ++p;
-        --len;
-    }
-    return b;
-}
-
 uint32_t ustrlen(const char* s) {
     uint32_t len = 0;
     while(s[len]) { ++len; }
@@ -22,7 +9,7 @@ uint32_t ustrlen(const char* s) {
 
 /* TODO: sanitize long to a type of specific length */
 /* TODO: use a duff device (speed is the name of the game, remember?) */
-void *umemcpy(void *str1, const void *str2, long n) {
+void *memcpy(void *str1, const void *str2, long n) {
 
     long i = 0;
     uint8_t *dest8 = (uint8_t*)str1;

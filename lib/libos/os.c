@@ -385,7 +385,9 @@ void os_suspend() {
     scheduler_reschedule();
 }
 
-void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
+void schedule(task_t task, frequency_t frequency_in_cycles) {
+
+    /* deadline_t seriousness = DL_SOFT; */
 
     sched_task *ready_task = NULL;
     sched_task_pool *ready_queue = NULL;
@@ -396,19 +398,19 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
 
     /* Set new task's metadata */
     ready_task->task = task;
-    ready_task->seriousness = seriousness;
+    /* ready_task->seriousness = seriousness; */
 
-    if (frequency > MAX_SYSTICKS_PER_HZ) {
-        postpone_death();
+    if (frequency_in_cycles > MAX_SYSTICKS_PER_HZ) {
+        while(1) {}
     }
-    ready_task->absolute_deadline = frequency + clock;
+    ready_task->absolute_deadline = frequency_in_cycles + clock;
 
     ready_task->tcb = os_add_thread(task);
 
     /* Test the pool of ready queues for a queue of tasks with this
      * frequency */
     /* todo: uthash configurable without malloc */
-    ready_queue = schedule_hash_find_int(SCHEDULER_QUEUES, frequency);
+    ready_queue = schedule_hash_find_int(SCHEDULER_QUEUES, frequency_in_cycles);
     /* HASH_FIND_INT(SCHEDULER_QUEUES, &frequency, ready_queue); */
 
     /* No similar tasks exist yet -- create the pool */
@@ -419,7 +421,7 @@ void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness) {
         ready_queue = SCHEDULER_UNUSED_QUEUES;
         CDL_DELETE(SCHEDULER_UNUSED_QUEUES, ready_queue);
 
-        ready_queue->deadline = frequency;
+        ready_queue->deadline = frequency_in_cycles;
         if (!SCHEDULER_QUEUES) {
             SCHEDULER_QUEUES = ready_queue;
             SCHEDULER_QUEUES->next = SCHEDULER_QUEUES;
@@ -441,7 +443,7 @@ void schedule_aperiodic(pisr_t pisr,
                         DEADLINE_TYPE seriousness) {
 
     /* todo: utilize \allowed_run_time, \seriousness */
-    _hw_subscribe(hw_type, metadata, pisr, true);
+    /* _hw_subscribe(hw_type, metadata, pisr, true); */
 }
 
 void schedule_init() {

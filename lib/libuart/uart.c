@@ -44,7 +44,7 @@ void uart_init(hw_metadata metadata) {
     /* todo: parametrize */
     GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
 
-    /* This is the HF aculprit Thursday February 26, 2015 */
+    /* This is the HF culprit Thursday February 26, 2015 */
     UARTConfigSetExpClk(metadata.uart.channel, SysCtlClockGet(),
                         metadata.uart.baud_rate,
                         (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
