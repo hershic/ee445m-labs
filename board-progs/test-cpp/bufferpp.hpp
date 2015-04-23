@@ -13,9 +13,6 @@
 template <typename T, uint32_t N>
 class buffer {
 private:
-    /* Points ahead of last valid T */
-    uint32_t pos;
-    uint32_t len;
 
 public:
     T buf[N];
@@ -73,6 +70,10 @@ public:
 
         return pos;
     }
+
+    /* Points ahead of last valid T */
+    uint32_t pos;
+    uint32_t len;
 };
 
 #endif
