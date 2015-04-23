@@ -17,8 +17,6 @@ void can::init() {
     messages_sent = 0;
     messages_received = 0;
 
-    set_timing();
-
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
     GPIOPinConfigure(GPIO_PB4_CAN0RX);
@@ -30,10 +28,7 @@ void can::init() {
     enable();
 }
 
-can::can() {
-
-    init();
-}
+can::can() {}
 
 can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
 
@@ -41,8 +36,9 @@ can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
     base = can_base;
     interrupt = can_interrupt;
 
-    CANInit(base);
     init();
+    CANInit(base);
+    set_timing();
 
     if(!can_sender) {
         // Initialize a message object to be used for receiving CAN messages with
