@@ -11,6 +11,7 @@
 #include "motorpp.hpp"
 #include "ir.hpp"
 #include "drivepp.hpp"
+#include "canpp.hpp"
 
 #include "libio/kbd.h"
 #include "libos/os.h"
@@ -40,6 +41,13 @@ adc adc0;
 motor motor0;
 motor motor1;
 drive drive0;
+
+can can0;
+bool can_sender = true;
+semaphore can_recv_sem;
+#define can_data_length 8
+#define can_msg_id 1
+uint8_t can_data[can_data_length];
 
 semaphore motor_start;
 semaphore motor_stop;
@@ -173,6 +181,44 @@ extern "C" void ADC0Seq0_Handler(void) {
     blink.toggle(PIN_RED);
 }
 
+extern "C" void CAN0_Handler(void) {
+
+    // Read the CAN interrupt status to find the cause of the interrupt
+    uint32_t message_id = can0.ack();
+
+    switch(message_id) {
+    case 1:
+        // Since the message was sent, clear any error flags.
+        can_recv_sem.post();
+        break;
+    default:
+        /* will this ever hang? put your money in now */
+        while(1) {}
+        break;
+    }
+}
+
+void can_handler(void) {
+
+    while(1) {
+        if(can_recv_sem.guard()) {
+            can_recv_sem.take();
+
+            can0.mailbox(can_data);
+            uart0.printf("Received CAN data\n\r");
+        }
+        os_surrender_context();
+    }
+}
+
+void can_transmitter(void) {
+
+    while(1) {
+        can0.transmit(can_data, can_data_length, can_msg_id);
+        os_surrender_context();
+    }
+}
+
 extern "C" void __cxa_pure_virtual() { while (1) {} }
 
 void motor_control(void) {
@@ -229,6 +275,15 @@ int main(void) {
     ir2 = ir(2, &adc0);
     ir3 = ir(3, &adc0);
 
+    can_recv_sem = semaphore();
+    can0 = can(CAN0_BASE, INT_CAN0, can_sender);
+    if(can_sender) {
+        uint8_t i;
+        for(i=0; i<can_data_length; ++i) {
+            can_data[i] = i;
+        }
+    }
+
     /*******************************************************/
     /* !!!! NOTICE !!!!                                    */
     /* Right now, the motor uses the same pins as the ADC. */
@@ -241,6 +296,11 @@ int main(void) {
     schedule(motor_control, 200);
     schedule(thread_0, 200);
     schedule(shell_handler, 200);
+    if(can_sender) {
+        schedule(can_transmitter, 200);
+    } else {
+        schedule(can_handler, 200);
+    }
     /* schedule(thread_uart_update, 1000000); */
     os_launch();
 }

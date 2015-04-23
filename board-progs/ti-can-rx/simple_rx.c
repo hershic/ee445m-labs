@@ -327,22 +327,18 @@ main(void)
     //
     CANEnable(CAN0_BASE);
 
-    //
     // Initialize a message object to be used for receiving CAN messages with
     // any CAN ID.  In order to receive any CAN ID, the ID and mask must both
     // be set to 0, and the ID filter enabled.
-    //
     sCANMessage.ui32MsgID = 0;
     sCANMessage.ui32MsgIDMask = 0;
     sCANMessage.ui32Flags = MSG_OBJ_RX_INT_ENABLE | MSG_OBJ_USE_ID_FILTER;
     sCANMessage.ui32MsgLen = 8;
 
-    //
     // Now load the message object into the CAN peripheral.  Once loaded the
     // CAN will receive any message on the bus, and an interrupt will occur.
     // Use message object 1 for receiving messages (this is not the same as
     // the CAN ID which can be any value in this example).
-    //
     CANMessageSet(CAN0_BASE, 1, &sCANMessage, MSG_OBJ_TYPE_RX);
 
     //
@@ -360,46 +356,33 @@ main(void)
     {
         unsigned int uIdx;
 
-        //
         // If the flag is set, that means that the RX interrupt occurred and
         // there is a message ready to be read from the CAN
-        //
         if(g_bRXFlag)
         {
-            //
             // Reuse the same message object that was used earlier to configure
             // the CAN for receiving messages.  A buffer for storing the
             // received data must also be provided, so set the buffer pointer
             // within the message object.
-            //
             sCANMessage.pui8MsgData = pui8MsgData;
 
-            //
             // Read the message from the CAN.  Message object number 1 is used
             // (which is not the same thing as CAN ID).  The interrupt clearing
             // flag is not set because this interrupt was already cleared in
             // the interrupt handler.
-            //
             CANMessageGet(CAN0_BASE, 1, &sCANMessage, 0);
 
-            //
             // Clear the pending message flag so that the interrupt handler can
             // set it again when the next message arrives.
-            //
             g_bRXFlag = 0;
 
-            //
             // Check to see if there is an indication that some messages were
             // lost.
-            //
-            if(sCANMessage.ui32Flags & MSG_OBJ_DATA_LOST)
-            {
+            if(sCANMessage.ui32Flags & MSG_OBJ_DATA_LOST) {
                 UARTprintf("CAN message loss detected\n");
             }
 
-            //
             // Print out the contents of the message that was received.
-            //
             UARTprintf("Msg ID=0x%08X len=%u data=0x",
                        sCANMessage.ui32MsgID, sCANMessage.ui32MsgLen);
             for(uIdx = 0; uIdx < sCANMessage.ui32MsgLen; uIdx++)

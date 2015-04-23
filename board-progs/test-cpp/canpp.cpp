@@ -1,6 +1,5 @@
 #include "canpp.hpp"
 
-#include "driverlib/can.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 #include "driverlib/pin_map.h"
@@ -9,30 +8,57 @@
 #include "inc/hw_memmap.h"
 #include "inc/hw_can.h"
 
-bool can::error_flag;
+#include <stdint.h>
 
-can::can() {}
+void can::init() {
 
-can::can(memory_address_t can_base, uint32_t can_interrupt,
-         bool can_sender) {
-
-    base = can_base;
-    interrupt = can_interrupt;
-    CANInit(base);
+    errors_rx = 0;
+    errors_tx = 0;
+    messages_sent = 0;
+    messages_received = 0;
 
     set_timing();
-    enable();
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
     GPIOPinConfigure(GPIO_PB4_CAN0RX);
     GPIOPinConfigure(GPIO_PB5_CAN0TX);
     GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
-    CANInit(base);
+
     CANBitRateSet(base, SysCtlClockGet(), 500000);
-    CANIntEnable(base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
     IntEnable(interrupt);
-    CANEnable(base);
+    enable();
+}
+
+can::can() {
+
+    init();
+}
+
+can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
+
+    sender = can_sender;
+    base = can_base;
+    interrupt = can_interrupt;
+
+    CANInit(base);
+    init();
+
+    if(!can_sender) {
+        // Initialize a message object to be used for receiving CAN messages with
+        // any CAN ID.  In order to receive any CAN ID, the ID and mask must both
+        // be set to 0, and the ID filter enabled.
+        sCANMessage.ui32MsgID = 0;
+        sCANMessage.ui32MsgIDMask = 0;
+        sCANMessage.ui32Flags = MSG_OBJ_RX_INT_ENABLE | MSG_OBJ_USE_ID_FILTER;
+        sCANMessage.ui32MsgLen = 8;
+
+        // Now load the message object into the CAN peripheral.  Once loaded the
+        // CAN will receive any message on the bus, and an interrupt will occur.
+        // Use message object 1 for receiving messages (this is not the same as
+        // the CAN ID which can be any value in this example).
+        CANMessageSet(base, 1, &sCANMessage, MSG_OBJ_TYPE_RX);
+    }
 }
 
 void can::set_timing() {
@@ -57,9 +83,17 @@ void can::disable() {
     CANIntDisable(base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
 }
 
+void can::mailbox(uint8_t *data) {
+
+    sCANMessage.pui8MsgData = data;
+    CANMessageGet(base, 1, &sCANMessage, 0);
+    if(sCANMessage.ui32Flags & MSG_OBJ_DATA_LOST) {
+        ++errors_rx;
+    }
+}
+
 void can::transmit(uint8_t* data, uint32_t length, uint32_t id) {
 
-    tCANMsgObject sCANMessage;
     sCANMessage.ui32MsgID = id;
     sCANMessage.ui32MsgIDMask = 0;
     sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
@@ -72,51 +106,25 @@ void can::transmit(uint8_t* data, uint32_t length, uint32_t id) {
     // transmitted right away.
     CANMessageSet(base, 1, &sCANMessage, MSG_OBJ_TYPE_TX);
 
-    // Check the error flag to see if errors occurred
-    if(error_flag) {
-        ++errors_tx;
-        /* UARTprintf(" error - cable connected?\n"); */
-    }
+    /* todo: resend if errors occured */
 }
 
-extern "C" void CAN0_Handler(void) {
-    uint32_t ui32Status;
+uint32_t can::count_message() {
+
+    uint32_t ret;
+    switch(sender) {
+    case true:  ret = ++messages_sent; break;
+    case false: ret = ++messages_received; break;
+    default: while(1) {}
+    }
+    return ret;
+}
+
+uint32_t can::ack() {
 
     // Read the CAN interrupt status to find the cause of the interrupt
-    ui32Status = CANIntStatus(CAN0_BASE, CAN_INT_STS_CAUSE);
-
-    // If the cause is a controller status interrupt, then get the status
-    if(ui32Status == CAN_INT_INTID_STATUS)
-    {
-        // Read the controller status.  This will return a field of status
-        // error bits that can indicate various errors.  Error processing
-        // is not done in this example for simplicity.  Refer to the
-        // API documentation for details about the error status bits.
-        // The act of reading this status will clear the interrupt.  If the
-        // CAN peripheral is not connected to a CAN bus with other CAN devices
-        // present, then errors will occur and will be indicated in the
-        // controller status.
-        ui32Status = CANStatusGet(CAN0_BASE, CAN_STS_CONTROL);
-
-        // Set a flag to indicate some errors may have occurred.
-        can::error_flag = 1;
-    }
-
-    // Check if the cause is message object 1, which what we are using for
-    // sending messages.
-    else if(ui32Status == 1)
-    {
-        // Getting to this point means that the TX interrupt occurred on
-        // message object 1, and the message TX is complete.  Clear the
-        // message object interrupt.
-        CANIntClear(CAN0_BASE, 1);
-
-        // Increment a counter to keep track of how many messages have been
-        // sent.  In a real application this could be used to set flags to
-        // indicate when a message is sent.
-        /* g_ui32MsgCount++; */
-
-        // Since the message was sent, clear any error flags.
-        can::error_flag = 0;
-    }
+    uint32_t ui32Status = CANIntStatus(base, CAN_INT_STS_CAUSE);
+    count_message();
+    CANIntClear(base, ui32Status);
+    return ui32Status;
 }
