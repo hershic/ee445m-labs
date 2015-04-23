@@ -59,6 +59,9 @@ private:
     static semaphore* m_start;
     static semaphore* m_stop;
 
+    /*! Common code between constructors */
+    void init(void);
+
 public:
     shell();
     shell(uart* u);
