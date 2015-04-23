@@ -73,7 +73,7 @@ void shell::ustrcpy(char* dest, const char* source) {
 void shell::init() {
 
     buf = buffer<char, SHELL_BUFFER_LENGTH>();
-    print_ps1();
+    init_ps1();
 }
 
 shell::shell() {
@@ -89,13 +89,12 @@ shell::shell(uart* u) {
 
 shell::shell(uart* u, semaphore* m_start, semaphore* m_stop) {
 
-    buf = buffer<char, SHELL_BUFFER_LENGTH>();
     uart0 = u;
 
     m_start = m_start;
     m_stop = m_stop;
 
-    print_ps1();
+    init();
 }
 
 void shell::init_ps1() {

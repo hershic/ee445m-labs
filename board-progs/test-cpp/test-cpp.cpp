@@ -43,7 +43,7 @@ motor motor1;
 drive drive0;
 
 can can0;
-bool can_sender = true;
+const bool can_sender = true;
 semaphore can_recv_sem;
 #define can_data_length 8
 #define can_msg_id 1
@@ -246,7 +246,7 @@ int main(void) {
 
     timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2,
                     TIMER_TIMA_TIMEOUT);
-    timer0a.start();
+    /* timer0a.start(); */
 
     motor0 = motor();
     motor1 = motor();
