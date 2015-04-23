@@ -70,19 +70,21 @@ void shell::ustrcpy(char* dest, const char* source) {
     }
 }
 
-
-shell::shell() {
+void shell::init() {
 
     buf = buffer<char, SHELL_BUFFER_LENGTH>();
     print_ps1();
 }
 
+shell::shell() {
+
+    init();
+}
+
 shell::shell(uart* u) {
 
-    buf = buffer<char, SHELL_BUFFER_LENGTH>();
     uart0 = u;
-
-    print_ps1();
+    init();
 }
 
 shell::shell(uart* u, semaphore* m_start, semaphore* m_stop) {
