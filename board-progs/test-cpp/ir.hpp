@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define IR_BUFFER_LENGTH 64
+#define IR_BUFFER_LENGTH 32
 #define IR_BUFFER_TYPE   int16_t
 
 class ir {

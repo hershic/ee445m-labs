@@ -19,7 +19,7 @@ static bool UART_LAST_WAS_CR;
 #define UART_DEFAULT_BAUD_RATE 115200
 
 /*! Default max length string that uart may return */
-const uint32_t UART_DEFAULT_MAX_GET_STRING_LENGTH = 64;
+const uint32_t UART_DEFAULT_MAX_GET_STRING_LENGTH = 32;
 
 /*! A reference to a memory location on the ARM Cortex M4. */
 typedef uint32_t memory_address_t;
