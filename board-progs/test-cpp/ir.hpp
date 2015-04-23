@@ -17,11 +17,10 @@ private:
 
 public:
     ir();
-    ir(semaphore* ir_sem, uint8_t ir_adc_sequence_step, adc* ir_assoc_adc);
+    ir(uint8_t ir_adc_sequence_step, adc* ir_assoc_adc);
     void sample();
 
     circularbuffer<IR_BUFFER_TYPE, IR_BUFFER_LENGTH> buf;
-    semaphore* sem;
     uint8_t adc_sequence_step;
     adc* assoc_adc;
 };

@@ -2,11 +2,9 @@
 
 ir::ir() {}
 
-ir::ir(semaphore* ir_sem, uint8_t ir_adc_sequence_step,
-       adc* ir_assoc_adc) {
+ir::ir(uint8_t ir_adc_sequence_step, adc* ir_assoc_adc) {
 
     buf = circularbuffer<IR_BUFFER_TYPE, IR_BUFFER_LENGTH>();
-    sem = ir_sem;
     adc_sequence_step = ir_adc_sequence_step;
     assoc_adc = ir_assoc_adc;
 }
