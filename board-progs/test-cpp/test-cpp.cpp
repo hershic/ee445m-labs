@@ -206,7 +206,13 @@ int main(void) {
     adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
     adc0.start();
 
-    motor0 = motor(10000, 9999, FORWARD);
+
+    /*******************************************************/
+    /* !!!! NOTICE !!!!                                    */
+    /* Right now, the motor uses the same pins as the ADC. */
+    /* This needs to be fixed                              */
+    /*******************************************************/
+    /* motor0 = motor(10000, 9999, FORWARD); */
 
     /* begin os init */
     os_threading_init();
