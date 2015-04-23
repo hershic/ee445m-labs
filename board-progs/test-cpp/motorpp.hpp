@@ -4,11 +4,11 @@
 
 #include <stdint.h>
 
+#include "direction.hpp"
+
 /*! \addtogroup Motor
  * @{
  */
-
-enum Direction { FORWARD, BACKWARD, };
 
 class motor {
 private:

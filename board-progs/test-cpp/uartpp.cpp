@@ -364,7 +364,7 @@ void uart::send_newline(void) {
 
 char uart::get_char(void) {
 
-    return UARTCharGet(channel);
+    return UARTCharGet(channel) & 0xFF;
 }
 
 void uart::ack(void) {
