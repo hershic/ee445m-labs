@@ -1,8 +1,6 @@
 #include "ir.hpp"
 
-ir::ir() {
-
-}
+ir::ir() {}
 
 ir::ir(semaphore* ir_sem, uint8_t ir_adc_sequence_step,
        adc* ir_assoc_adc) {
@@ -13,12 +11,7 @@ ir::ir(semaphore* ir_sem, uint8_t ir_adc_sequence_step,
     assoc_adc = ir_assoc_adc;
 }
 
-inline void increment_ptr(uint32_t* ptr, uint32_t increment,  uint32_t wrap_len) {
-    *ptr = (*ptr + increment) % wrap_len;
-}
-
 void ir::sample() {
     buf.buf[buf.pos] = assoc_adc->get_sample(adc_sequence_step);
     /* sem += adc_producer_index / (signal_length-1); */
-    /* increment_ptr(&adc_producer_index, signal_length); */
 }
