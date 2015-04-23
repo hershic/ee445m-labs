@@ -185,7 +185,7 @@ int main(void) {
     UART0_RX_BUFFER = buffer<char, 32>(UART0_RX_SEM);
 
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    shell0 = shell(uart0);
+    shell0 = shell(&uart0);
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
     /* PE3 */

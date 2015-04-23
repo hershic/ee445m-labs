@@ -79,16 +79,17 @@ void shell::ustrcpy(char* dest, const char* source) {
 
 shell::shell() {}
 
-shell::shell(uart u) {
+shell::shell(uart* u) {
 
     buf = buffer<char, SHELL_BUFFER_LENGTH>();
     uart0 = u;
+
+    /* KLUDGE: shitty way to set PS1 */
     ps1[0] = '>';
     ps1[1] = ' ';
     ps1[2] = ' ';
     ps1[3] = 0;
 
-    clear_buffer();
     print_ps1();
 }
 
@@ -135,7 +136,7 @@ void shell::set_ps1(char* new_ps1) {
 void shell::print_ps1() {
 
     buf.clear();
-    uart0.printf("\n\n\r%s", ps1);
+    uart0->printf("\n\n\r%s", ps1);
 }
 
 bool shell::type(char ch) {
@@ -147,14 +148,14 @@ bool shell::type(char ch) {
         ret = true;
         buf.add((const char) ch);
     }
-    uart0.printf("%c", ch);
+    uart0->printf("%c", ch);
     return ret;
 }
 
 void shell::backspace() {
 
     buf.get();
-    uart0.printf("\b \b");
+    uart0->printf("\b \b");
 }
 
 exit_status_t shell::execute_command() {
@@ -168,7 +169,7 @@ exit_status_t shell::execute_command() {
     buf.buf[idx] = 0;
 
     /* Clear some space between the user input and this cmd output */
-    uart0.printf("\r\n");
+    uart0->printf("\r\n");
 
     exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
     /* Waldo says this line requires the extra char to be a 0 */
@@ -179,12 +180,12 @@ exit_status_t shell::execute_command() {
     } else if(shell_command_is("jester")) {
         exit_code = jester((const char*) &buf.buf[idx+1]);
     } else {
-        uart0.printf("%s is not a recognized command.\n\r", buf.buf);
+        uart0->printf("%s is not a recognized command.\n\r", buf.buf);
     }
 
 #ifdef SHELL_VERBOSE
     if (exit_code != EXIT_SUCCESS) {
-        uart0.printf("\n\rnonzero exit code: %d", exit_code);
+        uart0->printf("\n\rnonzero exit code: %d", exit_code);
     }
 #endif
 

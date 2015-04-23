@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #ifndef __shellpp__
 #define __shellpp__
 
@@ -29,7 +29,7 @@ typedef exit_status_t (*sys_cmd)(const char*);
 
 class shell {
 private:
-    uart uart0;
+    uart* uart0;
     buffer<char, SHELL_BUFFER_LENGTH> buf;
     /* Wondering why there's a +1 here? Waldo has the answers */
     char ps1[SHELL_MAX_PS1_LENGTH+1];
@@ -55,7 +55,7 @@ public:
     static char str_witch[10];
 
     shell();
-    shell(uart u);
+    shell(uart* u);
 
     /*! Clear the shell buffer. */
     void clear_buffer();
