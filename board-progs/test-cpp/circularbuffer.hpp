@@ -16,14 +16,14 @@ private:
 public:
     circularbuffer() : buffer<T, N>() { }
 
-    inline void increment_ptr(uint32_t* ptr, uint32_t increment,
-                              uint32_t wrap_len) {
+    void increment_ptr(uint32_t* ptr, uint32_t increment,
+                       uint32_t wrap_len) {
         *ptr = (*ptr + increment) % wrap_len;
     }
 
     void add(const T ch) {
         this->buf[this->pos] = ch;
-        increment_ptr(this->buf, 1, this->len);
+        increment_ptr(&(this->pos), 1, this->len);
     }
 };
 
