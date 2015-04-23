@@ -10,11 +10,11 @@
 #define shell_command_is(a)                     \
     0 == ustrncmp(a, (const char*) buf.buf, buf.length())
 
-char shell::str_doc[10] = "doctor   ";
-char shell::str_witch[10] = "witch   ";
-
 char shell::system_command_names[SHELL_COMMANDS][SYSTEM_MAX_NAME_LENGTH];
 sys_cmd shell::system_command_funcs[SHELL_COMMANDS];
+
+semaphore* shell::m_start;
+semaphore* shell::m_stop;
 
 exit_status_t shell::doctor(const char* args) {
 
@@ -49,16 +49,9 @@ int32_t shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
             return(0);
         }
 
-        /* Compare the two characters and, if different, return the
-         * relevant return code. */
-        if(*s2 < *s1) {
-            return(1);
-        }
-        if(*s1 < *s2) {
-            return(-1);
-        }
+        if(*s2 < *s1) { return(1); }
+        if(*s1 < *s2) { return(-1); }
 
-        /* Move on to the next character. */
         s1++;
         s2++;
         n--;
@@ -69,6 +62,7 @@ int32_t shell::ustrncmp(const char *s1, const char *s2, uint32_t n) {
 }
 
 void shell::ustrcpy(char* dest, const char* source) {
+
     uint32_t i = 0;
     while (1) {
         dest[i] = source[i];
@@ -77,12 +71,32 @@ void shell::ustrcpy(char* dest, const char* source) {
 }
 
 
-shell::shell() {}
+shell::shell() {
+
+    buf = buffer<char, SHELL_BUFFER_LENGTH>();
+    print_ps1();
+}
 
 shell::shell(uart* u) {
 
     buf = buffer<char, SHELL_BUFFER_LENGTH>();
     uart0 = u;
+
+    print_ps1();
+}
+
+shell::shell(uart* u, semaphore* m_start, semaphore* m_stop) {
+
+    buf = buffer<char, SHELL_BUFFER_LENGTH>();
+    uart0 = u;
+
+    m_start = m_start;
+    m_stop = m_stop;
+
+    print_ps1();
+}
+
+void shell::init_ps1() {
 
     /* KLUDGE: shitty way to set PS1 */
     ps1[0] = '>';
@@ -158,6 +172,18 @@ void shell::backspace() {
     uart0->printf("\b \b");
 }
 
+exit_status_t shell::motor_start(const char* args) {
+
+    shell::m_start->post();
+    return EXIT_SUCCESS;
+}
+
+exit_status_t shell::motor_stop(const char* args) {
+
+    shell::m_stop->post();
+    return EXIT_SUCCESS;
+}
+
 exit_status_t shell::execute_command() {
 
     /* Null terminate to separate the cmd from the args */
@@ -179,6 +205,11 @@ exit_status_t shell::execute_command() {
         exit_code = witch((const char*) &buf.buf[idx+1]);
     } else if(shell_command_is("jester")) {
         exit_code = jester((const char*) &buf.buf[idx+1]);
+        /* begin motor control commands */
+    } else if(shell_command_is("start")) {
+        exit_code = motor_start((const char*) &buf.buf[idx+1]);
+    } else if(shell_command_is("stop")) {
+        exit_code = motor_stop((const char*) &buf.buf[idx+1]);
     } else {
         uart0->printf("%s is not a recognized command.\n\r", buf.buf);
     }

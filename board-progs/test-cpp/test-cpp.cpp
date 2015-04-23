@@ -10,6 +10,7 @@
 #include "semaphorepp.hpp"
 #include "motorpp.hpp"
 #include "ir.hpp"
+#include "drivepp.hpp"
 
 #include "libio/kbd.h"
 #include "libos/os.h"
@@ -37,6 +38,11 @@ uart uart0;
 shell shell0;
 adc adc0;
 motor motor0;
+motor motor1;
+drive drive0;
+
+semaphore motor_start;
+semaphore motor_stop;
 
 ir ir0;
 ir ir1;
@@ -169,6 +175,21 @@ extern "C" void ADC0Seq0_Handler(void) {
 
 extern "C" void __cxa_pure_virtual() { while (1) {} }
 
+void motor_control(void) {
+    while(1) {
+
+        if(motor_start.guard()) {
+            motor_start.take();
+
+        }
+        if(motor_stop.guard()) {
+            motor_stop.take();
+
+        }
+        os_surrender_context();
+    }
+}
+
 int main(void) {
 
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
@@ -181,21 +202,24 @@ int main(void) {
                     TIMER_TIMA_TIMEOUT);
     timer0a.start();
 
+    motor0 = motor();
+    motor1 = motor();
+    drive0 = drive(&motor0, &motor1);
+
     UART0_RX_SEM = semaphore();
     UART0_RX_BUFFER = buffer<char, 32>(UART0_RX_SEM);
 
+    motor_start = semaphore();
+    motor_stop = semaphore();
+
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    shell0 = shell(&uart0);
+    shell0 = shell(&uart0, &motor_start, &motor_stop);
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
-    /* PE3 */
-    adc0.configure_sequence(ADC_CTL_CH0);
-    /* PE2 */
-    adc0.configure_sequence(ADC_CTL_CH1);
-    /* PE1 */
-    adc0.configure_sequence(ADC_CTL_CH2);
-    /* PE0 */
-    adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END);
+    adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
+    adc0.configure_sequence(ADC_CTL_CH1); /* PE2 */
+    adc0.configure_sequence(ADC_CTL_CH2); /* PE1 */
+    adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
     adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
     adc0.start();
@@ -212,15 +236,11 @@ int main(void) {
     /*******************************************************/
     /* motor0 = motor(10000, 9999, FORWARD); */
 
-    /* begin os init */
     os_threading_init();
     /* schedule(thread_1, 200); */
+    schedule(motor_control, 200);
     schedule(thread_0, 200);
     schedule(shell_handler, 200);
     /* schedule(thread_uart_update, 1000000); */
     os_launch();
-    /* end os init */
-
-    /* main never terminates */
-    while (1);
 }

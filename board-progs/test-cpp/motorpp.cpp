@@ -4,7 +4,10 @@
 
 #include "driverlib/sysctl.h"
 
-motor::motor() {}
+motor::motor() {
+
+    motor_init();
+}
 
 motor::motor(uint32_t pwm_period, uint32_t duty_period,
              Direction direction) {
@@ -18,6 +21,7 @@ motor::motor(uint32_t pwm_period, uint32_t duty_period,
 
 void motor::stop() {
 
+    /* todo: implement */
 }
 
 void motor::set(uint32_t pwm_period, uint32_t duty_period,
@@ -25,7 +29,7 @@ void motor::set(uint32_t pwm_period, uint32_t duty_period,
 
     PWM0_0_LOAD_R = pwm_period - 1;
     PWM0_0_CMPA_R = duty_period - 1;
-    /* todo: implement direction */
+    /* TODO: implement direction */
 }
 
 void motor::motor_init() {
@@ -43,6 +47,8 @@ void motor::motor_init() {
     asm("MRS    R0, PRIMASK  ;// save old status\n"); \
     asm("CPSID  I            ;// mask all (except faults)\n")
 
+/* todo: don't blindly enable interrupts you ma-roon, only enable them
+ * if they were enabled at the time StartCritical was called */
 #define EndCritical(primask) \
     asm("CPSIE I");
 

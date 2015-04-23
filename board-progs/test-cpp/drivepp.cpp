@@ -7,11 +7,10 @@ drive::drive() {
 
 }
 
-drive::drive(motor* left, motor* right, distance wheel_circumference) {
+drive::drive(motor* left, motor* right) {
 
     this->left = left;
     this->right = right;
-    this->wheel_circum = wheel_circumference;
 }
 
 void drive::stop() {

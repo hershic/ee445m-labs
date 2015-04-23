@@ -19,11 +19,10 @@ class drive {
 private:
     motor* left;
     motor* right;
-    distance wheel_circum;
 
 public:
     drive();
-    drive(motor* left, motor* right, distance wheel_circumference);
+    drive(motor* left, motor* right);
 
     /*! Move forward at some percent of full-speed. */
     void forward(percent speed);

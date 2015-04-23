@@ -6,6 +6,7 @@
 
 #include "uartpp.hpp"
 #include "bufferpp.hpp"
+#include "semaphorepp.hpp"
 
 /*! \addtogroup Shell
  * @{
@@ -45,17 +46,23 @@ private:
     static exit_status_t witch(const char* args);
     static exit_status_t jester(const char* args);
 
+    static exit_status_t motor_start(const char* args);
+    static exit_status_t motor_stop(const char* args);
+
     static char system_command_names[SHELL_COMMANDS][SYSTEM_MAX_NAME_LENGTH];
     static sys_cmd system_command_funcs[SHELL_COMMANDS];
 
     static void ustrcpy(char* dest, const char* source);
 
-public:
-    static char str_doc[10];
-    static char str_witch[10];
+    void init_ps1(void);
 
+    static semaphore* m_start;
+    static semaphore* m_stop;
+
+public:
     shell();
     shell(uart* u);
+    shell(uart* u, semaphore* m_start, semaphore* m_stop);
 
     /*! Clear the shell buffer. */
     void clear_buffer();
