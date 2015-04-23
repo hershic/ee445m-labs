@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #ifndef __drivepp__
 #define __drivepp__
 
@@ -17,28 +17,22 @@ typedef uint16_t angle;         /* 1 - 360 */
 
 class drive {
 private:
-    motor left;
-    motor right;
+    motor* left;
+    motor* right;
     distance wheel_circum;
 
 public:
     drive();
-    drive(motor left, motor right, distance wheel_circumference);
+    drive(motor* left, motor* right, distance wheel_circumference);
 
     /*! Move forward at some percent of full-speed. */
     void forward(percent speed);
 
-    /*! Move forward a set distance at some percent of full-speed. */
-    void forward(percent speed, distance distance);
-
     /*! Move backward at some percent of full-speed. */
     void backward(percent speed);
 
-    /*! Move backward a set distance at some percent of full-speed. */
-    void backward(percent speed, distance distance);
-
     /*! Turn ang degrees in direction dir. */
-    void turn(Direction dir, angle ang);
+    void turn(Direction dir, percent speed);
 
     /*! Stop all motors */
     void stop(void);

@@ -5,7 +5,7 @@
  * @{
  */
 
-enum Direction { FORWARD, BACKWARD, };
+enum Direction { FORWARD, BACKWARD, LEFT, RIGHT, };
 
 /*! End doxygen group
  * @}

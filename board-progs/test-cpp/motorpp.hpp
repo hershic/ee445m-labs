@@ -20,9 +20,9 @@ private:
     /*! Initializes pins PE0-3 for output */
     void motor_init(void);
 
+public:
     void pwm0a_init(uint16_t period, uint16_t duty);
 
-public:
     motor();
     motor(uint32_t pwm_period, uint32_t duty_period,
           Direction direction);
