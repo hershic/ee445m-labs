@@ -9,6 +9,7 @@
 #include "shellpp.hpp"
 #include "semaphorepp.hpp"
 #include "motorpp.hpp"
+#include "ir.hpp"
 
 #include "libio/kbd.h"
 #include "libos/os.h"
@@ -36,6 +37,11 @@ uart uart0;
 shell shell0;
 adc adc0;
 motor motor0;
+
+ir ir0;
+ir ir1;
+ir ir2;
+ir ir3;
 
 static semaphore UART0_RX_SEM;
 
@@ -173,6 +179,12 @@ extern "C" void ADC0Seq0_Handler(void) {
 
     adc0.ack();
     adc0.sample();
+
+    ir0.sample();
+    ir1.sample();
+    ir2.sample();
+    ir3.sample();
+
     blink.toggle(PIN_RED);
 }
 
@@ -208,6 +220,10 @@ int main(void) {
     adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
     adc0.start();
 
+    ir0 = ir(0, &adc0);
+    ir1 = ir(1, &adc0);
+    ir2 = ir(2, &adc0);
+    ir3 = ir(3, &adc0);
 
     /*******************************************************/
     /* !!!! NOTICE !!!!                                    */
