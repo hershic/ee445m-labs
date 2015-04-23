@@ -19,7 +19,6 @@ public:
     uint8_t channel_count;
     uint32_t configuration;
     uint8_t trigger_source;
-    uint32_t producer_index;
     uint32_t sequencer_data[max_num_sequencer_steps];
 
     /*! Initialize adc. */
@@ -31,6 +30,7 @@ public:
     void start();
     void stop();
     void sample();
+    uint32_t get_sample(uint8_t i);
     void ack();
 };
 

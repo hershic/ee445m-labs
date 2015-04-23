@@ -78,13 +78,13 @@ void adc::stop() {
     ADCSequenceDisable(base, sequencer);
 }
 
-inline void increment_ptr(uint32_t* ptr, uint32_t increment,  uint32_t wrap_len) {
-    *ptr = (*ptr + increment) % wrap_len;
-}
-
 void adc::sample() {
 
     ADCSequenceDataGet(base, sequencer, sequencer_data);
+}
+
+uint32_t adc::get_sample(uint8_t i) {
+    return sequencer_data[i];
 }
 
 void adc::ack() {
