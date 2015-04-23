@@ -210,7 +210,7 @@ int main(void) {
     /*******************************************************/
     /* !!!! NOTICE !!!!                                    */
     /* Right now, the motor uses the same pins as the ADC. */
-    /* This needs to be fixed                              */
+    /* TODO: This needs to be fixed                        */
     /*******************************************************/
     /* motor0 = motor(10000, 9999, FORWARD); */
 
