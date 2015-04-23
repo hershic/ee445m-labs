@@ -214,9 +214,10 @@ int main(void) {
     /* PE2 */
     adc0.configure_sequence(ADC_CTL_CH1);
     /* PE1 */
-    adc0.configure_sequence(ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END);
+    adc0.configure_sequence(ADC_CTL_CH2);
     /* PE0 */
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END);
+
     adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
     adc0.start();
 
