@@ -10,6 +10,6 @@ ir::ir(uint8_t ir_adc_sequence_step, adc* ir_assoc_adc) {
 }
 
 void ir::sample() {
-    buf.buf[buf.pos] = assoc_adc->get_sample(adc_sequence_step);
+    buf.add(assoc_adc->get_sample(adc_sequence_step));
     /* sem += adc_producer_index / (signal_length-1); */
 }
