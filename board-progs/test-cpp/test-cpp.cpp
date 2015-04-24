@@ -115,34 +115,32 @@ extern "C" void Timer0A_Handler() {
 
 extern "C" void UART0_Handler(void) {
 
-    char recv;
-    uint32_t interrupts = uart0.ack();
+    if(!(uart0.ack() & (UART_INT_RX | UART_INT_RT))) {
+        return;
+    }
 
-    if(interrupts & (UART_INT_RX | UART_INT_RT)) {
-        /* Get all available chars from the UART */
-        while(UARTCharsAvail(UART0_BASE)) {
-            recv = uart0.get_char();
+    while(UARTCharsAvail(UART0_BASE)) {
+        char recv = uart0.get_char();
 
-            /* Regardless of newline received, our convention is to
-             * mark end-of-lines in a buffer with the CR character. */
-            switch(recv) {
-            case '\n':
-                if (UART_LAST_WAS_CR) {
-                    UART_LAST_WAS_CR = false;
-                    continue;
-                }
-                break;
-            case '\r':
-                UART_LAST_WAS_CR = true;
-                break;
-            case 0x1b:
-                recv = '\r';
-                break;
-            default: break;
+        /* Regardless of newline received, our convention is to
+         * mark end-of-lines in a buffer with the CR character. */
+        switch(recv) {
+        case '\n':
+            if (UART_LAST_WAS_CR) {
+                UART_LAST_WAS_CR = false;
+                continue;
             }
-            UART0_RX_BUFFER.notify((const int8_t) recv);
-            blink.blink(PIN_RED);
+            break;
+        case '\r':
+            UART_LAST_WAS_CR = true;
+            break;
+        case 0x1b:
+            recv = '\r';
+            break;
+        default: break;
         }
+        UART0_RX_BUFFER.notify((const int8_t) recv);
+        blink.blink(PIN_RED);
     }
 }
 
