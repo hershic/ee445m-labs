@@ -22,7 +22,7 @@ public:
         init();
     }
 
-    buffer(semaphore sem) {
+    buffer(semaphore* sem) {
 
         this->sem = sem;
         init();
@@ -46,7 +46,7 @@ public:
     void notify(const T data) {
 
         if (add(data)) {
-            sem.post();
+            sem->post();
         }
     }
 
@@ -102,7 +102,7 @@ public:
     /* Points ahead of last valid T */
     uint32_t pos;
     uint32_t len;
-    semaphore sem;
+    semaphore* sem;
     T buf[N];
 
     uint32_t error_overflow;

@@ -164,6 +164,7 @@ extern "C" void UART0_Handler(void) {
             }
 
             UART0_RX_BUFFER.notify((const int8_t) recv);
+            blink.toggle(PIN_RED);
         }
     }
 }
@@ -253,7 +254,7 @@ int main(void) {
     drive0 = drive(&motor0, &motor1);
 
     UART0_RX_SEM = semaphore();
-    UART0_RX_BUFFER = buffer<char, 32>(UART0_RX_SEM);
+    UART0_RX_BUFFER = buffer<char, 32>(&UART0_RX_SEM);
 
     motor_start = semaphore();
     motor_stop = semaphore();
@@ -292,8 +293,8 @@ int main(void) {
     /* motor0 = motor(10000, 9999, FORWARD); */
 
     os_threading_init();
-    schedule(thread_1, 200);
     /* schedule(motor_control, 200); */
+    schedule(thread_1, 200);
     schedule(thread_0, 200);
     schedule(shell_handler, 200);
     if(can_sender) {

@@ -10,6 +10,26 @@
 #define shell_command_is(a)                     \
     0 == ustrncmp(a, (const char*) buf.buf, buf.length())
 
+inline
+int32_t StartCritical() {
+    asm("MRS    R0, PRIMASK  ;// save old status\n");
+    asm("CPSID  I            ;// mask all (except faults)\n");
+}
+
+/*! End a critical section by restoring a previously saved PRIMASK.
+ * \param PRIMASK to restore
+ */
+inline
+void EndCritical(int32_t primask) {
+    /* asm("MSR    PRIMASK, R0\n"); */
+
+    /*! bug: this line should be removed in favor of the above to
+     *  avoid blindly enable interrupts, but instead enabling
+     *  interrupts only if they were previously enabled before the
+     *  last \StartCritical function call. */
+    asm("CPSIE I");
+}
+
 char shell::system_command_names[SHELL_COMMANDS][SYSTEM_MAX_NAME_LENGTH];
 sys_cmd shell::system_command_funcs[SHELL_COMMANDS];
 
@@ -151,7 +171,9 @@ void shell::set_ps1(char* new_ps1) {
 void shell::print_ps1() {
 
     buf.clear();
+    uint32_t status = StartCritical();
     uart0->printf("\n\n\r%s", ps1);
+    EndCritical(status);
 }
 
 bool shell::type(char ch) {
@@ -163,14 +185,18 @@ bool shell::type(char ch) {
         ret = true;
         buf.add((const char) ch);
     }
+    uint32_t status = StartCritical();
     uart0->printf("%c", ch);
+    EndCritical(status);
     return ret;
 }
 
 void shell::backspace() {
 
     buf.get();
+    int32_t status = StartCritical();
     uart0->printf("\b \b");
+    EndCritical(status);
 }
 
 exit_status_t shell::motor_start(const char* args) {
@@ -196,7 +222,9 @@ exit_status_t shell::execute_command() {
     buf.buf[idx] = 0;
 
     /* Clear some space between the user input and this cmd output */
+    uint32_t status = StartCritical();
     uart0->printf("\r\n");
+    EndCritical(status);
 
     exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
     /* Waldo says this line requires the extra char to be a 0 */
@@ -212,12 +240,16 @@ exit_status_t shell::execute_command() {
     } else if(shell_command_is("stop")) {
         exit_code = motor_stop((const char*) &buf.buf[idx+1]);
     } else {
+        uint32_t status = StartCritical();
         uart0->printf("%s is not a recognized command.\n\r", buf.buf);
+        EndCritical(status);
     }
 
 #ifdef SHELL_VERBOSE
     if (exit_code != EXIT_SUCCESS) {
+        uint32_t status = StartCritical();
         uart0->printf("\n\rnonzero exit code: %d", exit_code);
+        EndCritical(status);
     }
 #endif
 
