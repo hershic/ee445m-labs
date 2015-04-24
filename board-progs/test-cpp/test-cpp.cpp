@@ -178,7 +178,6 @@ extern "C" void CAN0_Handler(void) {
     default:
         /* will this ever hang? put your money in now */
         while(1) {}
-        break;
     }
 }
 
@@ -210,11 +209,11 @@ void motor_control(void) {
 
         if(motor_start.guard()) {
             motor_start.take();
-
+            /* todo: fill me in ^^ */
         }
         if(motor_stop.guard()) {
             motor_stop.take();
-
+            /* todo: fill me in ^^ */
         }
         os_surrender_context();
     }
@@ -234,6 +233,12 @@ int main(void) {
 
     motor0 = motor();
     motor1 = motor();
+    /*******************************************************/
+    /* !!!! NOTICE !!!!                                    */
+    /* Right now, the motor uses the same pins as the ADC. */
+    /* TODO: This needs to be fixed                        */
+    /*******************************************************/
+    /* motor0 = motor(10000, 9999, FORWARD); */
     drive0 = drive(&motor0, &motor1);
 
     UART0_RX_SEM = semaphore();
@@ -268,13 +273,6 @@ int main(void) {
             can_data[i] = i;
         }
     }
-
-    /*******************************************************/
-    /* !!!! NOTICE !!!!                                    */
-    /* Right now, the motor uses the same pins as the ADC. */
-    /* TODO: This needs to be fixed                        */
-    /*******************************************************/
-    /* motor0 = motor(10000, 9999, FORWARD); */
 
     os_threading_init();
     /* schedule(motor_control, 200); */
