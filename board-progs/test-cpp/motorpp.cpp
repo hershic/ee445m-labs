@@ -21,6 +21,8 @@ motor::motor(uint32_t pwm_period, uint32_t duty_period,
 
 void motor::stop() {
 
+    /* todo: keeping direction unchanged might result in better
+     * performance */
     set(10000, 0, FORWARD);
 }
 
