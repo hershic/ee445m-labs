@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \title{EE445M Lab 6}
 \author{Hershal Bhave (hb6279), Eric Crosson (esc625), \\
-  Matt Zhan (TODO) and Robert Golshan (lol)}
+  Matt Zhan (myz84) and Robert Golshan (rpg499)}
 \date{Friday April 10, 2015}
 
 \usepackage[in]{fullpage}
@@ -79,11 +79,11 @@
   \end{subfigure}
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{./img/ping-schematic.png}
-    \caption{The Ping sensor schematic (P15 is PB0, Vdd is 5V, Vss is Gnd)}
+    \caption{The Ping sensor schematic (P15 is PB0, Vdd is 5V, Vss is GND)}
     \label{fig:ping-schematic}
   \end{subfigure}
   \begin{subfigure}[b]{0.45\textwidth}
-    \todo{IR Sensor Schematic}
+    \caption{The IR sensor is connected to GND, 5V, and an analog input pin on the board.}
   \end{subfigure}
   \caption{Lab 6 hardware interfaces}
   \label{fig:hardware-design}
@@ -195,8 +195,7 @@ Reference \cref{lst:test-can}.
 \item Why did you choose the digital filters for your sensors? What is
   the time constant for this filter? I.e., if there is a step change
   in input, how long until your output changes to at least $\frac{1}{e}$ of the
-  final value? \\ \Solnlabel \newline \\
-  \todo{answer this question}
+  final value? \\ %% \Solnlabel \newline \\
 \item Present an alternative design for your H-bridge and describe how
   your H-bridge is better or worse? \\ \Solnlabel \newline \\
   Our H-bridge could use MOSFET transisters to reduce power leaked
