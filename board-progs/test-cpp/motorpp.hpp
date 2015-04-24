@@ -22,7 +22,8 @@ private:
     blinker pwm;
     memory_address_t ctrl_pin;
     memory_address_t pwm_base;
-    memory_address_t pwm_pin;
+    memory_address_t pwm_gen;
+    memory_address_t pwm_out;
     uint16_t pwm_max_period;
     bool motor_installed_backwards;
 
@@ -35,12 +36,12 @@ private:
     void motor_init();
 
 public:
-    void pwm0a_init();
+    void pwm_init();
 
     motor();
     motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
-          memory_address_t pwm_base, memory_address_t pwm_pin,
-          bool logical_reverse);
+          memory_address_t pwm_base, memory_address_t pwm_gen,
+          memory_address_t pwm_out, bool logical_reverse);
 
     /*! Cut all power to the motor. */
     void stop(void);
