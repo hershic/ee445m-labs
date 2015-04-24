@@ -42,7 +42,7 @@ motor motor1;
 drive drive0;
 
 can can0;
-const bool can_sender = true;
+const bool can_sender = false;
 semaphore can_recv_sem;
 #define can_data_length 8
 #define can_msg_id 1
@@ -169,7 +169,8 @@ extern "C" void CAN0_Handler(void) {
         break;
     default:
         /* will this ever hang? put your money in now */
-        while(1) {}
+        /* while(1) {} */
+        break;
     }
 }
 
@@ -180,7 +181,7 @@ void can_handler(void) {
             can_recv_sem.take();
 
             can0.mailbox(can_data);
-            uart0.atomic_printf("Received CAN data\n\r");
+            uart0.atomic_printf("Received CAN data: %0X %0X\n\r", can_data[0], can_data[1]);
         }
         os_surrender_context();
     }
@@ -190,6 +191,7 @@ void can_transmitter(void) {
 
     while(1) {
         can0.transmit(can_data, can_data_length, can_msg_id);
+        ++can_data[0];
         os_surrender_context();
     }
 }
