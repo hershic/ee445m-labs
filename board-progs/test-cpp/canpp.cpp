@@ -23,6 +23,8 @@ void can::init() {
     GPIOPinConfigure(GPIO_PB5_CAN0TX);
     GPIOPinTypeCAN(GPIO_PORTB_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
+    CANInit(base);
+
     CANBitRateSet(base, SysCtlClockGet(), 500000);
     IntEnable(interrupt);
     enable();
@@ -37,10 +39,18 @@ can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
     interrupt = can_interrupt;
 
     init();
-    CANInit(base);
-    set_timing();
 
-    if(!can_sender) {
+    if(can_sender) {
+        // Initialize the message object that will be used for sending CAN
+        // messages.  The message will be 4 bytes that will contain an incrementing
+        // value.  Initially it will be set to 0.
+        sCANMessage.ui32MsgID = 1;
+        sCANMessage.ui32MsgIDMask = 0;
+        sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
+        sCANMessage.ui32MsgLen = 4;
+        /* sCANMessage.pui8MsgData = pui8MsgData; */
+
+    } else {
         // Initialize a message object to be used for receiving CAN messages with
         // any CAN ID.  In order to receive any CAN ID, the ID and mask must both
         // be set to 0, and the ID filter enabled.
@@ -69,14 +79,14 @@ void can::set_timing() {
 
 void can::enable() {
 
-    CANEnable(base);
     CANIntEnable(base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
+    CANEnable(base);
 }
 
 void can::disable() {
 
-    CANDisable(base);
     CANIntDisable(base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
+    CANDisable(base);
 }
 
 void can::mailbox(uint8_t *data) {
