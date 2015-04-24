@@ -13,7 +13,6 @@
 #include "drivepp.hpp"
 #include "canpp.hpp"
 
-#include "libio/kbd.h"
 #include "libos/os.h"
 #include "libschedule/schedule.h"
 
@@ -106,22 +105,7 @@ void shell_handler() {
             bool ok;
             char recv = UART0_RX_BUFFER.get(ok);
 
-            if(ok) {
-                switch(recv) {
-                case SC_CR:
-                    shell0.execute_command();
-                    break;
-
-                case 127:
-                case SC_BACKSPACE:
-                    shell0.backspace();
-                    break;
-
-                default:
-                    shell0.type(recv);
-                    break;
-                }
-            }
+            if(ok) { shell0.accept(recv); }
         }
         os_surrender_context();
     }
@@ -136,8 +120,7 @@ extern "C" void UART0_Handler(void) {
     char recv;
 
     /* Get and clear the current interrupt sources */
-    uint32_t interrupts = UARTIntStatus(UART0_BASE, true);
-    UARTIntClear(UART0_BASE, interrupts);
+    uint32_t uart0.ack();
 
     /* Are we being interrupted due to a received character? */
     if(interrupts & (UART_INT_RX | UART_INT_RT)) {
@@ -145,8 +128,8 @@ extern "C" void UART0_Handler(void) {
         while(UARTCharsAvail(UART0_BASE)) {
             recv = uart0.get_char();
 
-            /* Handle backspace by erasing the last character in the
-             * buffer */
+            /* Regardless of newline received, our convention is to
+             * mark end-of-lines in a buffer with the CR character. */
             switch(recv) {
             case '\r':
             case '\n':
@@ -159,9 +142,6 @@ extern "C" void UART0_Handler(void) {
                 break;
 
             case 0x1b:
-                /* Regardless of newline received, our convention is
-                 * to mark end-of-lines in a buffer with the CR
-                 * character. */
                 recv = '\r';
                 break;
 

@@ -49,7 +49,7 @@ public:
     void disable(void);
 
     /*! Acknowledge interrupt. */
-    void ack(void);
+    uint32_t ack(void);
 
     /*! Send a char. */
     void send_char(const char);

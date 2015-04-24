@@ -82,6 +82,9 @@ public:
     /*! Remove a char from the shell buffer. */
     void backspace(void);
 
+    /*! Accept a char, shell will call \type or \backspace appropriately. */
+    void accept(char ch);
+
     /*! Execute this command. */
     exit_status_t execute_command();
 };

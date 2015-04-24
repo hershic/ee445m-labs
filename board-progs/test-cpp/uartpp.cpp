@@ -367,11 +367,12 @@ char uart::get_char(void) {
     return UARTCharGet(channel) & 0xFF;
 }
 
-void uart::ack(void) {
+uint32_t uart::ack(void) {
 
     uint32_t ui32Status;
     ui32Status = UARTIntStatus(channel, true);
     UARTIntClear(channel, ui32Status);
+    return ui32Status;
 }
 
 char* uart::get_string(const uint32_t length) {

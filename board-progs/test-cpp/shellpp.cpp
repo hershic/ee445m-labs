@@ -3,6 +3,8 @@
 
 #include "inc/hw_memmap.h"
 
+#include "libio/kbd.h"
+
 #define EXIT_SUCCESS 0
 
 #define SHELL_VERBOSE
@@ -191,6 +193,24 @@ bool shell::type(char ch) {
     }
     EndCritical(status);
     return ret;
+}
+
+void shell::accept(char ch) {
+
+    switch(ch) {
+    case SC_CR:
+        execute_command();
+        break;
+
+    case 127:
+    case SC_BACKSPACE:
+        backspace();
+        break;
+
+    default:
+        type(ch);
+        break;
+    }
 }
 
 void shell::backspace() {
