@@ -75,7 +75,7 @@ void motor::motor_init() {
 
 void motor::start() {
 
-    PWM0_0_CTL_R |= 1;
+    pwm0a_init();
 }
 
 void motor::pwm0a_init() {
