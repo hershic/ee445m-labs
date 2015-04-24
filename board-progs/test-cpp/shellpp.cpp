@@ -173,9 +173,7 @@ void shell::set_ps1(char* new_ps1) {
 void shell::print_ps1() {
 
     buf.clear();
-    uint32_t status = StartCritical();
-    uart0->printf("\n\n\r%s", ps1);
-    EndCritical(status);
+    uart0->atomic_printf("\n\n\r%s", ps1);
 }
 
 bool shell::type(char ch) {
@@ -187,11 +185,9 @@ bool shell::type(char ch) {
         ret = true;
         buf.add((const char) ch);
     }
-    uint32_t status = StartCritical();
     if(ret) {
-    uart0->printf("%c", ch);
+    uart0->atomic_printf("%c", ch);
     }
-    EndCritical(status);
     return ret;
 }
 
@@ -217,11 +213,9 @@ void shell::backspace() {
 
     bool ok;
     buf.get(ok);
-    int32_t status = StartCritical();
     if (ok) {
-        uart0->printf("\b \b");
+        uart0->atomic_printf("\b \b");
     }
-    EndCritical(status);
 }
 
 exit_status_t shell::motor_start(const char* args) {
@@ -247,9 +241,7 @@ exit_status_t shell::execute_command() {
     buf.buf[idx] = 0;
 
     /* Clear some space between the user input and this cmd output */
-    uint32_t status = StartCritical();
-    uart0->printf("\r\n");
-    EndCritical(status);
+    uart0->atomic_printf("\r\n");
 
     exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
     /* Waldo says this line requires the extra char to be a 0 */
@@ -265,16 +257,12 @@ exit_status_t shell::execute_command() {
     } else if(shell_command_is("stop")) {
         exit_code = motor_stop((const char*) &buf.buf[idx+1]);
     } else {
-        uint32_t status = StartCritical();
-        uart0->printf("%s is not a recognized command.\n\r", buf.buf);
-        EndCritical(status);
+        uart0->atomic_printf("%s is not a recognized command.\n\r", buf.buf);
     }
 
 #ifdef SHELL_VERBOSE
     if (exit_code != EXIT_SUCCESS) {
-        uint32_t status = StartCritical();
-        uart0->printf("\n\rnonzero exit code: %d", exit_code);
-        EndCritical(status);
+        uart0->atomic_printf("\n\rnonzero exit code: %d", exit_code);
     }
 #endif
 

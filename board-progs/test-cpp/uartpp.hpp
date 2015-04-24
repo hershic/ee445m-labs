@@ -68,6 +68,9 @@ public:
 
     /*! Printf over uart. */
     void printf(const char *pcString, ...);
+
+    /*! Printf atomically over uart. */
+    void atomic_printf(const char *pcString, ...);
 };
 
 #endif

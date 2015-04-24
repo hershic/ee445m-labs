@@ -90,9 +90,7 @@ void thread_1() {
 void thread_uart_update() {
 
     thread (
-            int32_t status = StartCritical();
-            uart0.printf("%d\n\r", blink_count_blue);
-            EndCritical(status);
+            uart0.atomic_printf("%d\n\r", blink_count_blue);
             )
         }
 
@@ -120,7 +118,7 @@ extern "C" void UART0_Handler(void) {
     char recv;
 
     /* Get and clear the current interrupt sources */
-    uint32_t uart0.ack();
+    uint32_t interrupts = uart0.ack();
 
     /* Are we being interrupted due to a received character? */
     if(interrupts & (UART_INT_RX | UART_INT_RT)) {
@@ -191,9 +189,7 @@ void can_handler(void) {
             can_recv_sem.take();
 
             can0.mailbox(can_data);
-            uint32_t status = StartCritical();
-            uart0.printf("Received CAN data\n\r");
-            EndCritical(status);
+            uart0.atomic_printf("Received CAN data\n\r");
         }
         os_surrender_context();
     }
