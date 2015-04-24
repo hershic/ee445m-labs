@@ -116,11 +116,8 @@ extern "C" void Timer0A_Handler() {
 extern "C" void UART0_Handler(void) {
 
     char recv;
-
-    /* Get and clear the current interrupt sources */
     uint32_t interrupts = uart0.ack();
 
-    /* Are we being interrupted due to a received character? */
     if(interrupts & (UART_INT_RX | UART_INT_RT)) {
         /* Get all available chars from the UART */
         while(UARTCharsAvail(UART0_BASE)) {
@@ -129,23 +126,20 @@ extern "C" void UART0_Handler(void) {
             /* Regardless of newline received, our convention is to
              * mark end-of-lines in a buffer with the CR character. */
             switch(recv) {
-            case '\r':
             case '\n':
-                if(recv == '\r') {
-                    UART_LAST_WAS_CR = true;
-                } else if (UART_LAST_WAS_CR) {
+                if (UART_LAST_WAS_CR) {
                     UART_LAST_WAS_CR = false;
                     continue;
                 }
                 break;
-
+            case '\r':
+                UART_LAST_WAS_CR = true;
+                break;
             case 0x1b:
                 recv = '\r';
                 break;
-
             default: break;
             }
-
             UART0_RX_BUFFER.notify((const int8_t) recv);
             blink.blink(PIN_RED);
         }
