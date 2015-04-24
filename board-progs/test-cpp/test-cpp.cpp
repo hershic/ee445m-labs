@@ -226,12 +226,6 @@ int main(void) {
     motor_stop = semaphore();
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PORTB_BASE, GPIO_PIN_6, true);
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PORTB_BASE, GPIO_PIN_7, false);
-    /*******************************************************/
-    /* !!!! NOTICE !!!!                                    */
-    /* Right now, the motor uses the same pins as the ADC. */
-    /* TODO: This needs to be fixed                        */
-    /*******************************************************/
-    /* motor0 = motor(10000, 9999, FORWARD); */
     drive0 = drive(&motor0, &motor1);
 
     UART0_RX_SEM = semaphore();

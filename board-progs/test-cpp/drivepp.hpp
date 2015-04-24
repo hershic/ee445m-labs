@@ -35,6 +35,9 @@ public:
 
     /*! Stop all motors */
     void stop(void);
+
+    /*! Feed the autonomous driver. */
+    void steer();
 };
 
 #endif

@@ -3,9 +3,7 @@
 
 #include "libos/os.h"
 
-drive::drive() {
-
-}
+drive::drive() {}
 
 drive::drive(motor* left, motor* right) {
 
@@ -19,17 +17,13 @@ void drive::stop() {
 
 void drive::forward(percent speed) {
 
-    // todo: correct arguments for this fn
-    left->set(10000, speed*100);
-    // todo: one motor needs to be reversed
-    right->set(10000, speed*100);
 }
 
-// todo: some variation of forward
 void drive::backward(percent speed) {
 
 }
 
 void drive::turn(Direction dir, percent speed) {
+
 
 }
