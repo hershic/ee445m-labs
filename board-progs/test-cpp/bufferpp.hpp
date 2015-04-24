@@ -22,6 +22,7 @@ public:
         init();
     }
 
+    /*! Sem is only incremented on successful add */
     buffer(semaphore* sem) {
 
         this->sem = sem;
