@@ -30,14 +30,11 @@ public:
     /*! Move backward at some percent of full-speed. */
     void backward(percent speed);
 
-    /*! Turn ang degrees in direction dir. */
-    void turn(Direction dir, percent speed);
-
     /*! Stop all motors */
     void stop(void);
 
     /*! Feed the autonomous driver. */
-    void steer();
+    void steer(uint32_t lfol, uint32_t rfor);
 };
 
 #endif
