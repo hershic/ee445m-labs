@@ -66,5 +66,4 @@ void motor::pwm0a_init(uint16_t period, uint16_t duty) {
     PWM0_0_CTL_R |= 0x00000001;           // 7) start PWM0
     PWM0_ENABLE_R |= 0x00000001;          // enable PB6/M0PWM0
     EndCritical(status);
-    /* TODO: re-enable, not blindly enable, interrupts */
 }
