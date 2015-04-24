@@ -21,7 +21,7 @@ motor::motor(uint32_t pwm_period, uint32_t duty_period,
 
 void motor::stop() {
 
-    /* todo: implement */
+    set(10000, 0, FORWARD);
 }
 
 void motor::set(uint32_t pwm_period, uint32_t duty_period,
