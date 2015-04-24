@@ -126,13 +126,13 @@ extern "C" void UART0_Handler(void) {
          * mark end-of-lines in a buffer with the CR character. */
         switch(recv) {
         case '\n':
-            if (UART_LAST_WAS_CR) {
-                UART_LAST_WAS_CR = false;
+            if (uart::LAST_WAS_CR) {
+                uart::LAST_WAS_CR = false;
                 continue;
             }
             break;
         case '\r':
-            UART_LAST_WAS_CR = true;
+            uart::LAST_WAS_CR = true;
             break;
         case 0x1b:
             recv = '\r';

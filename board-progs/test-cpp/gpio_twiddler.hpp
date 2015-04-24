@@ -4,7 +4,7 @@
 #ifndef __gpio_twiddler__
 #define __gpio_twiddler__
 
-/*! \addtogroup
+/*! \addtogroup GPIO_Twiddler
  * @{
  */
 
@@ -19,10 +19,10 @@ public:
     virtual void turn_on(pin_t) = 0;
     virtual void turn_off(pin_t) = 0;
     virtual void toggle(pin_t) = 0;
+    virtual void blink(pin_t) = 0;
 };
 #endif
 
 /* End Doxygen group
  * @}
  */
-

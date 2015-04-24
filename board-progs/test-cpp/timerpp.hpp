@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "interruptable.hpp"
+
 #include "driverlib/pin_map.h"
 #include "driverlib/timer.h"
 #include "driverlib/sysctl.h"
@@ -21,8 +23,7 @@ typedef uint32_t reload_t;
 
 const uint32_t TIMER_DEFAULT_PRIORITY = 0;
 
-class timer {
-private:
+class timer : public interruptable {
 public:
     /*! Defined between 0 to 4, where 0 indicates TIMER0 */
     timer_t id;
@@ -50,16 +51,16 @@ public:
           uint32_t timer_interrupt);
 
     /*! Start a timer. */
-    void start();
+    virtual void start();
 
     /*! Stop a timer. */
-    void stop();
+    virtual void stop();
+
+    /*! Acknowledge an interrupt. Clears the interrupt bits for this timer. */
+    virtual uint32_t ack();
 
     /*! Reload the timer with the initial reload value */
     void reload();
-
-    /*! Acknowledge an interrupt. Clears the interrupt bits for this timer. */
-    void ack();
 };
 
 #endif

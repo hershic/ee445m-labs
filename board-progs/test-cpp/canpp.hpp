@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #ifndef __canpp__
 #define __canpp__
 
@@ -9,11 +9,13 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "interruptable.hpp"
+
 #include "driverlib/can.h"
 
 typedef uint32_t memory_address_t;
 
-class can {
+class can : public interruptable {
 private:
     memory_address_t base;
     uint32_t interrupt;
@@ -40,17 +42,17 @@ public:
     /*! Initialize a can sender. */
     can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender);
 
-    /*! Enable CAN transmissions. */
-    void enable(void);
+    /*! Start CAN transmissions. */
+    virtual void start(void);
 
-    /*! Disable CAN transmissions. */
-    void disable(void);
+    /*! Stop CAN transmissions. */
+    virtual void stop(void);
 
     /*! Transmit a message via CAN. */
     void transmit(uint8_t* data, uint32_t length, uint32_t id);
 
     /*! Acknowledge CAN interrupt */
-    uint32_t ack(void);
+    virtual uint32_t ack(void);
 
     /*! Set data mailbox for received can message. */
     void mailbox(uint8_t *data);

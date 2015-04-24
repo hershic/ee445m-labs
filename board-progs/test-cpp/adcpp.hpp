@@ -2,13 +2,14 @@
 #define __adcpp__
 
 #include "semaphorepp.hpp"
+#include "interruptable.hpp"
 
 #include <stdbool.h>
 #include <stdint.h>
 
 typedef uint32_t memory_address_t;
 
-class adc {
+class adc : public interruptable {
 private:
     static const uint8_t default_priority = 0;
     static const uint8_t max_num_sequencer_steps = 8;
@@ -27,11 +28,11 @@ public:
     void configure_sequence(uint32_t sequencer_configuration);
     void configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer);
 
-    void start();
-    void stop();
+    virtual void start();
+    virtual void stop();
+    virtual uint32_t ack();
     void sample();
     uint32_t get_sample(uint8_t i);
-    void ack();
 };
 
 #endif  /* __ADC__ */

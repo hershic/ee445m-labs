@@ -9,6 +9,8 @@
 #include "driverlib/gpio.h"
 #include "driverlib/uart.h"
 
+bool uart::LAST_WAS_CR;
+
 uint32_t ustrlen(const char* s) {
 
     uint32_t len = 0;
@@ -39,7 +41,7 @@ uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
                         (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                          UART_CONFIG_PAR_NONE));
 
-    enable();
+    start();
 }
 
 void uart::send_string(const char* str) {
@@ -421,13 +423,13 @@ char* uart::get_string(const uint32_t length) {
     return buffer;
 }
 
-void uart::enable(void) {
+void uart::start(void) {
 
     IntEnable(interrupt);
     UARTIntEnable(channel, UART_INT_RX | UART_INT_RT);
 }
 
-void uart::disable(void) {
+void uart::stop(void) {
 
     IntDisable(interrupt);
     UARTIntDisable(channel, UART_INT_RX | UART_INT_RT);

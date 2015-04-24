@@ -87,7 +87,8 @@ uint32_t adc::get_sample(uint8_t i) {
     return sequencer_data[i];
 }
 
-void adc::ack() {
+uint32_t adc::ack() {
 
     ADCIntClear(base, sequencer);
+    return 0xDEADBEEF;
 }

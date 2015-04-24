@@ -62,7 +62,7 @@ void timer::stop() {
     TimerDisable(base, subtimer);
 }
 
-void timer::ack() {
+uint32_t timer::ack() {
 
     switch(subtimer) {
     case TIMER_A:
@@ -75,4 +75,5 @@ void timer::ack() {
     default:
         while (1) {}
     }
+    return 0xDEADBEEF;
 }

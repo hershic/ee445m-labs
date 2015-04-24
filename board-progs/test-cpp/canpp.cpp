@@ -27,7 +27,7 @@ void can::init() {
 
     CANBitRateSet(base, SysCtlClockGet(), 500000);
     IntEnable(interrupt);
-    enable();
+    start();
 }
 
 can::can() {}
@@ -77,13 +77,13 @@ void can::set_timing() {
     CANBitTimingSet(base, &psClkParms);
 }
 
-void can::enable() {
+void can::start() {
 
     CANIntEnable(base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
     CANEnable(base);
 }
 
-void can::disable() {
+void can::stop() {
 
     CANIntDisable(base, CAN_INT_MASTER | CAN_INT_ERROR | CAN_INT_STATUS);
     CANDisable(base);
