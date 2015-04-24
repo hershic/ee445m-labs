@@ -209,7 +209,9 @@ void can_handler(void) {
             can_recv_sem.take();
 
             can0.mailbox(can_data);
+            uint32_t status = StartCritical();
             uart0.printf("Received CAN data\n\r");
+            EndCritical(status);
         }
         os_surrender_context();
     }
