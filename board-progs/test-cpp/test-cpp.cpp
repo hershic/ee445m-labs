@@ -28,46 +28,35 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/uart.h"
 
-/* I avoid using a buffer object in the UART*_Handler so that the data
- * structures are instantiated correctly without client code. */
-#include "pseudo-buffer.h"
+#define thread(x)                   \
+    while(1) {                      \
+        x                           \
+            os_surrender_context(); \
+    }
 
 blinker blink;
 timer timer0a;
 uart uart0;
 shell shell0;
 adc adc0;
-motor motor0;
-motor motor1;
+ir ir0, ir1, ir2, ir3;
+
+semaphore motor_start, motor_stop;
+motor motor0, motor1;
 drive drive0;
 
-can can0;
-const bool can_sender = false;
-semaphore can_recv_sem;
 #define can_data_length 8
 #define can_msg_id 1
+const bool can_sender = false;
+can can0;
+semaphore can_recv_sem;
 uint8_t can_data[can_data_length];
 
-semaphore motor_start;
-semaphore motor_stop;
-
-ir ir0;
-ir ir1;
-ir ir2;
-ir ir3;
-
-#define thread(x)                               \
-    while(1) {                                  \
-        x                                       \
-            os_surrender_context();             \
-    }
-
-static semaphore UART0_RX_SEM;
-
 #define UART0_RX_BUFFER_SIZE 8
-
+static semaphore UART0_RX_SEM;
 static buffer<char, UART0_RX_BUFFER_SIZE> UART0_RX_BUFFER;
 
+uint32_t blink_count_red = 0;
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
 
