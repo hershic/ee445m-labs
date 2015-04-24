@@ -164,7 +164,7 @@ extern "C" void UART0_Handler(void) {
             }
 
             UART0_RX_BUFFER.notify((const int8_t) recv);
-            blink.toggle(PIN_RED);
+            blink.blink(PIN_RED);
         }
     }
 }
