@@ -41,7 +41,7 @@ void motor::motor_init() {
     GPIO_PORTE_PCTL_R = ~0x0000FFFF;
     GPIO_PORTE_AMSEL_R &= ~0x01;      // disable analog functionality on PF
 
-    pwm0a_init(10000, 2);
+    pwm0a_init(pwm_period, duty_period);
 }
 
 void motor::pwm0a_init(uint16_t period, uint16_t duty) {
