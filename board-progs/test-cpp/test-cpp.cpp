@@ -101,21 +101,24 @@ void shell_handler() {
         if(UART0_RX_SEM.guard()) {
             UART0_RX_SEM.take();
 
-            char recv = UART0_RX_BUFFER.get();
+            bool ok;
+            char recv = UART0_RX_BUFFER.get(ok);
 
-            switch(recv) {
-            case SC_CR:
-                shell0.execute_command();
-                break;
+            if(ok) {
+                switch(recv) {
+                case SC_CR:
+                    shell0.execute_command();
+                    break;
 
-            case 127:
-            case SC_BACKSPACE:
-                shell0.backspace();
-                break;
+                case 127:
+                case SC_BACKSPACE:
+                    shell0.backspace();
+                    break;
 
-            default:
-                shell0.type(recv);
-                break;
+                default:
+                    shell0.type(recv);
+                    break;
+                }
             }
         }
         os_surrender_context();

@@ -68,15 +68,18 @@ public:
     }
 
     /*! warning: returns 0 if no more Ts in buffer */
-    T get() {
+    T get(bool &ok) {
 
         /* base case */
         if (pos <= 0) {
             ++error_underflow;
+            ok = false;
             return 0;
         }
 
         /* normal operation */
+        ok = true;
+
         T ret = buf[--pos];
 
         /*buf is always null-terminated*/

@@ -193,9 +193,12 @@ bool shell::type(char ch) {
 
 void shell::backspace() {
 
-    buf.get();
+    bool ok;
+    buf.get(ok);
     int32_t status = StartCritical();
-    uart0->printf("\b \b");
+    if (ok) {
+        uart0->printf("\b \b");
+    }
     EndCritical(status);
 }
 
