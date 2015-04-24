@@ -13,7 +13,6 @@
 #include "drivepp.hpp"
 #include "canpp.hpp"
 
-#include "libio/kbd.h"
 #include "libos/os.h"
 #include "libschedule/schedule.h"
 
@@ -65,7 +64,9 @@ ir ir3;
 
 static semaphore UART0_RX_SEM;
 
-static buffer<char, 32> UART0_RX_BUFFER;
+#define UART0_RX_BUFFER_SIZE 8
+
+static buffer<char, UART0_RX_BUFFER_SIZE> UART0_RX_BUFFER;
 
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
@@ -89,9 +90,7 @@ void thread_1() {
 void thread_uart_update() {
 
     thread (
-            int32_t status = StartCritical();
-            uart0.printf("%d\n\r", blink_count_blue);
-            EndCritical(status);
+            uart0.atomic_printf("%d\n\r", blink_count_blue);
             )
         }
 
@@ -104,22 +103,7 @@ void shell_handler() {
             bool ok;
             char recv = UART0_RX_BUFFER.get(ok);
 
-            if(ok) {
-                switch(recv) {
-                case SC_CR:
-                    shell0.execute_command();
-                    break;
-
-                case 127:
-                case SC_BACKSPACE:
-                    shell0.backspace();
-                    break;
-
-                default:
-                    shell0.type(recv);
-                    break;
-                }
-            }
+            if(ok) { shell0.accept(recv); }
         }
         os_surrender_context();
     }
@@ -131,44 +115,32 @@ extern "C" void Timer0A_Handler() {
 
 extern "C" void UART0_Handler(void) {
 
-    char recv;
+    if(!(uart0.ack() & (UART_INT_RX | UART_INT_RT))) {
+        return;
+    }
 
-    /* Get and clear the current interrupt sources */
-    uint32_t interrupts = UARTIntStatus(UART0_BASE, true);
-    UARTIntClear(UART0_BASE, interrupts);
+    while(UARTCharsAvail(UART0_BASE)) {
+        char recv = uart0.get_char();
 
-    /* Are we being interrupted due to a received character? */
-    if(interrupts & (UART_INT_RX | UART_INT_RT)) {
-        /* Get all available chars from the UART */
-        while(UARTCharsAvail(UART0_BASE)) {
-            recv = uart0.get_char();
-
-            /* Handle backspace by erasing the last character in the
-             * buffer */
-            switch(recv) {
-            case '\r':
-            case '\n':
-                if(recv == '\r') {
-                    UART_LAST_WAS_CR = true;
-                } else if (UART_LAST_WAS_CR) {
-                    UART_LAST_WAS_CR = false;
-                    continue;
-                }
-                break;
-
-            case 0x1b:
-                /* Regardless of newline received, our convention is
-                 * to mark end-of-lines in a buffer with the CR
-                 * character. */
-                recv = '\r';
-                break;
-
-            default: break;
+        /* Regardless of newline received, our convention is to
+         * mark end-of-lines in a buffer with the CR character. */
+        switch(recv) {
+        case '\n':
+            if (UART_LAST_WAS_CR) {
+                UART_LAST_WAS_CR = false;
+                continue;
             }
-
-            UART0_RX_BUFFER.notify((const int8_t) recv);
-            blink.blink(PIN_RED);
+            break;
+        case '\r':
+            UART_LAST_WAS_CR = true;
+            break;
+        case 0x1b:
+            recv = '\r';
+            break;
+        default: break;
         }
+        UART0_RX_BUFFER.notify((const int8_t) recv);
+        blink.blink(PIN_RED);
     }
 }
 
@@ -198,7 +170,6 @@ extern "C" void CAN0_Handler(void) {
     default:
         /* will this ever hang? put your money in now */
         while(1) {}
-        break;
     }
 }
 
@@ -209,9 +180,7 @@ void can_handler(void) {
             can_recv_sem.take();
 
             can0.mailbox(can_data);
-            uint32_t status = StartCritical();
-            uart0.printf("Received CAN data\n\r");
-            EndCritical(status);
+            uart0.atomic_printf("Received CAN data\n\r");
         }
         os_surrender_context();
     }
@@ -232,11 +201,11 @@ void motor_control(void) {
 
         if(motor_start.guard()) {
             motor_start.take();
-
+            /* todo: fill me in ^^ */
         }
         if(motor_stop.guard()) {
             motor_stop.take();
-
+            /* todo: fill me in ^^ */
         }
         os_surrender_context();
     }
@@ -256,10 +225,16 @@ int main(void) {
 
     motor0 = motor();
     motor1 = motor();
+    /*******************************************************/
+    /* !!!! NOTICE !!!!                                    */
+    /* Right now, the motor uses the same pins as the ADC. */
+    /* TODO: This needs to be fixed                        */
+    /*******************************************************/
+    /* motor0 = motor(10000, 9999, FORWARD); */
     drive0 = drive(&motor0, &motor1);
 
     UART0_RX_SEM = semaphore();
-    UART0_RX_BUFFER = buffer<char, 32>(&UART0_RX_SEM);
+    UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
     motor_start = semaphore();
     motor_stop = semaphore();
@@ -290,13 +265,6 @@ int main(void) {
             can_data[i] = i;
         }
     }
-
-    /*******************************************************/
-    /* !!!! NOTICE !!!!                                    */
-    /* Right now, the motor uses the same pins as the ADC. */
-    /* TODO: This needs to be fixed                        */
-    /*******************************************************/
-    /* motor0 = motor(10000, 9999, FORWARD); */
 
     os_threading_init();
     /* schedule(motor_control, 200); */

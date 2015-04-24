@@ -49,7 +49,7 @@ public:
     void disable(void);
 
     /*! Acknowledge interrupt. */
-    void ack(void);
+    uint32_t ack(void);
 
     /*! Send a char. */
     void send_char(const char);
@@ -68,6 +68,9 @@ public:
 
     /*! Printf over uart. */
     void printf(const char *pcString, ...);
+
+    /*! Printf atomically over uart. */
+    void atomic_printf(const char *pcString, ...);
 };
 
 #endif
