@@ -12,26 +12,6 @@
 #define shell_command_is(a)                     \
     0 == ustrncmp(a, (const char*) buf.buf, buf.length())
 
-inline
-int32_t StartCritical() {
-    asm("MRS    R0, PRIMASK  ;// save old status\n");
-    asm("CPSID  I            ;// mask all (except faults)\n");
-}
-
-/*! End a critical section by restoring a previously saved PRIMASK.
- * \param PRIMASK to restore
- */
-inline
-void EndCritical(int32_t primask) {
-    /* asm("MSR    PRIMASK, R0\n"); */
-
-    /*! bug: this line should be removed in favor of the above to
-     *  avoid blindly enable interrupts, but instead enabling
-     *  interrupts only if they were previously enabled before the
-     *  last \StartCritical function call. */
-    asm("CPSIE I");
-}
-
 char shell::system_command_names[SHELL_COMMANDS][SYSTEM_MAX_NAME_LENGTH];
 sys_cmd shell::system_command_funcs[SHELL_COMMANDS];
 
