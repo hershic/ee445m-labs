@@ -7,6 +7,7 @@
 #include <stdbool.h>
 
 #include "interruptable.hpp"
+#include "criticalpp.hpp"
 
 /*! \addtogroup UART
  * @{
@@ -24,7 +25,7 @@ typedef uint32_t memory_address_t;
 /*! A representation of a periodic frequency. */
 typedef uint32_t frequency_t;
 
-class uart : public interruptable {
+class uart : public interruptable, public critical {
 private:
     uint32_t baud_rate;
     memory_address_t channel;

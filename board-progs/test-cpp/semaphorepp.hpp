@@ -1,4 +1,4 @@
-/* -*- mode: c; c-basic-offset: 4; -*- */
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 /* Created by Hershal Bhave and Eric Crosson 2015-03-08 */
 /* Revision history: Look in Git FGT */
 #ifndef __semaphorepp__
@@ -6,11 +6,13 @@
 
 #include <stdint.h>
 
+#include "criticalpp.hpp"
+
 /*! \addtogroup semaphore
  * @{
  */
 
-class semaphore {
+class semaphore : public critical {
 private:
     int16_t value;
 public:

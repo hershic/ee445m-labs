@@ -33,6 +33,7 @@ void motor::set(uint32_t pwm_period, uint32_t duty_period,
 }
 
 void motor::motor_init() {
+
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
     GPIO_PORTE_DIR_R |= 0x01;    // make PE3-0 output heartbeats
     GPIO_PORTE_AFSEL_R &= ~0x01;   // disable alt funct on PE3-0
@@ -43,18 +44,9 @@ void motor::motor_init() {
     pwm0a_init(10000, 2);
 }
 
-#define StartCritical() \
-    asm("MRS    R0, PRIMASK  ;// save old status\n"); \
-    asm("CPSID  I            ;// mask all (except faults)\n")
-
-/* todo: don't blindly enable interrupts you ma-roon, only enable them
- * if they were enabled at the time StartCritical was called */
-#define EndCritical(primask) \
-    asm("CPSIE I");
-
 void motor::pwm0a_init(uint16_t period, uint16_t duty) {
 
-    StartCritical();
+    uint32_t status = StartCritical();
     SYSCTL_RCGCPWM_R |= 0x01;             // 1) activate PWM0
     SYSCTL_RCGCGPIO_R |= 0x02;            // 2) activate port B
     while((SYSCTL_PRGPIO_R&0x02) == 0){};
@@ -73,6 +65,6 @@ void motor::pwm0a_init(uint16_t period, uint16_t duty) {
     PWM0_0_CMPA_R = duty - 1;             // 6) count value when output rises
     PWM0_0_CTL_R |= 0x00000001;           // 7) start PWM0
     PWM0_ENABLE_R |= 0x00000001;          // enable PB6/M0PWM0
-    EndCritical();
-    /* todo: re-enable, not blindly enable, interrupts */
+    EndCritical(status);
+    /* TODO: re-enable, not blindly enable, interrupts */
 }

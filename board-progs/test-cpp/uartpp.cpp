@@ -343,26 +343,6 @@ convert:
     }
 }
 
-inline
-int32_t StartCritical() {
-    asm("MRS    R0, PRIMASK  ;// save old status\n");
-    asm("CPSID  I            ;// mask all (except faults)\n");
-}
-
-/*! End a critical section by restoring a previously saved PRIMASK.
- * \param PRIMASK to restore
- */
-inline
-void EndCritical(int32_t primask) {
-    /* asm("MSR    PRIMASK, R0\n"); */
-
-    /*! bug: this line should be removed in favor of the above to
-     *  avoid blindly enable interrupts, but instead enabling
-     *  interrupts only if they were previously enabled before the
-     *  last \StartCritical function call. */
-    asm("CPSIE I");
-}
-
 void uart::atomic_printf(const char *pcString, ...) {
 
     va_list vaArgP;

@@ -5,12 +5,13 @@
 #include <stdint.h>
 
 #include "direction.hpp"
+#include "criticalpp.hpp"
 
 /*! \addtogroup Motor
  * @{
  */
 
-class motor {
+class motor : public critical {
 private:
     uint32_t pwm_period;
     uint32_t duty_period;
