@@ -222,8 +222,10 @@ int main(void) {
                     TIMER_TIMA_TIMEOUT);
     /* timer0a.start(); */
 
-    motor0 = motor();
-    motor1 = motor();
+    motor_start = semaphore();
+    motor_stop = semaphore();
+    motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PORTB_BASE, GPIO_PIN_6, true);
+    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PORTB_BASE, GPIO_PIN_7, false);
     /*******************************************************/
     /* !!!! NOTICE !!!!                                    */
     /* Right now, the motor uses the same pins as the ADC. */
@@ -234,9 +236,6 @@ int main(void) {
 
     UART0_RX_SEM = semaphore();
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
-
-    motor_start = semaphore();
-    motor_stop = semaphore();
 
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
     uart0.printf("\n\rWelcome to RRTOS v0\n\r");

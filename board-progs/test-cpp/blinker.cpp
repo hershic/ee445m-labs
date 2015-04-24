@@ -3,10 +3,7 @@
 /* Revision History: Look in git FGT */
 
 #include "blinker.hpp"
-
-#include "inc/hw_memmap.h"
-
-#include "driverlib/sysctl.h"
+#include "ctlsysctl.hpp"
 
 blinker::blinker() { }
 
@@ -15,22 +12,10 @@ blinker::blinker(port_t port_base) {
 }
 
 blinker::blinker(port_t port_base, port_t output_pins) {
+
     set_base(port_base);
 
-    port_t periph_base = 0xDEADBEEF;
-    switch(port_base) {
-    case GPIO_PORTA_BASE: periph_base = SYSCTL_PERIPH_GPIOA; break;
-    case GPIO_PORTB_BASE: periph_base = SYSCTL_PERIPH_GPIOB; break;
-    case GPIO_PORTC_BASE: periph_base = SYSCTL_PERIPH_GPIOC; break;
-    case GPIO_PORTD_BASE: periph_base = SYSCTL_PERIPH_GPIOD; break;
-    case GPIO_PORTE_BASE: periph_base = SYSCTL_PERIPH_GPIOE; break;
-    case GPIO_PORTF_BASE: periph_base = SYSCTL_PERIPH_GPIOF; break;
-    case GPIO_PORTG_BASE: periph_base = SYSCTL_PERIPH_GPIOG; break;
-    case GPIO_PORTH_BASE: periph_base = SYSCTL_PERIPH_GPIOH; break;
-    case GPIO_PORTJ_BASE: periph_base = SYSCTL_PERIPH_GPIOJ; break;
-    }
-    SysCtlPeripheralEnable(periph_base);
-
+    ctlsys::enable_periph(port_base);
     GPIOPinTypeGPIOOutput(port_base, output_pins);
 }
 

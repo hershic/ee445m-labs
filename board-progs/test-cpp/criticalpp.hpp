@@ -11,6 +11,15 @@ public:
     void EndCritical(uint32_t primask) {
         asm("MSR    PRIMASK, R0\n");
     }
+
+    static uint32_t static_StartCritical(void) {
+        asm("MRS    R0, PRIMASK  ;// save old status\n");
+        asm("CPSID  I            ;// mask all (except faults)\n");
+    }
+
+    static void static_EndCritical(uint32_t primask) {
+        asm("MSR    PRIMASK, R0\n");
+    }
 };
 
 #endif

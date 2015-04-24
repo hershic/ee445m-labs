@@ -20,9 +20,9 @@ void drive::stop() {
 void drive::forward(percent speed) {
 
     // todo: correct arguments for this fn
-    left->set(10000, speed*100, FORWARD);
+    left->set(10000, speed*100);
     // todo: one motor needs to be reversed
-    right->set(10000, speed*100, FORWARD);
+    right->set(10000, speed*100);
 }
 
 // todo: some variation of forward
