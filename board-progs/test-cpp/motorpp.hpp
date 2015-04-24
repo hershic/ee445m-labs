@@ -23,6 +23,7 @@ private:
     memory_address_t ctrl_pin;
     memory_address_t pwm_base;
     memory_address_t pwm_pin;
+    memory_address_t pwm_hw; /* Either PWM0_BASE or PWM1_BASE */
     uint16_t pwm_max_period;
     bool motor_installed_backwards;
 

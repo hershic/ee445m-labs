@@ -4,6 +4,7 @@
 
 #include "driverlib/sysctl.h"
 #include "driverlib/pin_map.h"
+#include "driverlib/pwm.h"
 
 #include "ctlsysctl.hpp"
 
@@ -24,6 +25,8 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     this->pwm_pin = pwm_pin;
     this->motor_installed_backwards = logical_reverse;
 
+    pwm_hw = (pwm_pin = GPIO_PIN_6) ? PWM0_BASE : PWM1_BASE;
+
     ctlsys::enable_periph(ctrl_base);
     ctlsys::enable_periph(pwm_base);
 
@@ -33,7 +36,7 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
 
 void motor::stop() {
 
-    set((percent_t) 0);
+    PWMGenDisable(pwm_hw, PWM_GEN_0);
 }
 
 void motor::set(percent_t percent_full_speed) {
@@ -73,8 +76,7 @@ void motor::motor_init() {
 
 void motor::start() {
 
-    /* todo: is this for the right pin? */
-    PWM0_0_CTL_R |= 0x00000001;           // 7) start PWM0
+    PWMGenEnable(pwm_hw, PWM_GEN_0);
 }
 
 void motor::pwm0a_init() {
