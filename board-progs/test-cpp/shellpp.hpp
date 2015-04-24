@@ -21,7 +21,7 @@
 #define SHELL_MAX_PS1_LENGTH 4
 
 /*! Maximum length of shell input per command */
-#define SHELL_BUFFER_LENGTH 16
+#define SHELL_BUFFER_LENGTH 32
 
 #define UART_VERBOSE true
 

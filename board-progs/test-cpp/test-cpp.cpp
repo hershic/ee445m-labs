@@ -65,7 +65,9 @@ ir ir3;
 
 static semaphore UART0_RX_SEM;
 
-static buffer<char, 32> UART0_RX_BUFFER;
+#define UART0_RX_BUFFER_SIZE 8
+
+static buffer<char, UART0_RX_BUFFER_SIZE> UART0_RX_BUFFER;
 
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
@@ -259,7 +261,7 @@ int main(void) {
     drive0 = drive(&motor0, &motor1);
 
     UART0_RX_SEM = semaphore();
-    UART0_RX_BUFFER = buffer<char, 32>(&UART0_RX_SEM);
+    UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
     motor_start = semaphore();
     motor_stop = semaphore();
