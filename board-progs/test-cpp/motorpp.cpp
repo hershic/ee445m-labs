@@ -36,8 +36,6 @@ void motor::stop() {
     set((percent_t) 0);
 }
 
-
-
 void motor::set(percent_t percent_full_speed) {
 
     uint16_t adjusted_duty;
@@ -75,7 +73,8 @@ void motor::motor_init() {
 
 void motor::start() {
 
-    pwm0a_init();
+    /* todo: is this for the right pin? */
+    PWM0_0_CTL_R |= 0x00000001;           // 7) start PWM0
 }
 
 void motor::pwm0a_init() {
@@ -84,14 +83,14 @@ void motor::pwm0a_init() {
     ctlsys::enable_periph(pwm_base);
     uint32_t pwm_conf;
     switch(pwm_pin) {
-    case GPIO_PIN_6: pwm_conf = GPIO_PB6_M0PWM0;
-    case GPIO_PIN_7: pwm_conf = GPIO_PB7_M0PWM1;
+    case GPIO_PIN_6: pwm_conf = GPIO_PB6_M0PWM0; break;
+    case GPIO_PIN_7: pwm_conf = GPIO_PB7_M0PWM1; break;
         /* todo: verify the above GPIO_PBx_MOPWMx's are what we want */
     default: while(1) {}
         /* Don't attempt to initialize something other than these
          * recognized values */
     }
-     GPIOPinConfigure(pwm_conf);
+    GPIOPinConfigure(pwm_conf);
     GPIOPinTypePWM(pwm_base, pwm_pin);
     GPIO_PORTB_AMSEL_R &= ~0x40;          // disable analog functionality on PB6
     GPIO_PORTB_DEN_R |= 0x40;             // enable digital I/O on PB6

@@ -34,5 +34,5 @@ void drive::backward(percent speed) {
 void drive::steer(uint32_t lfol, uint32_t rfor) {
 
     /* todo: feed the lf/f, rf/r data here for porportional control of
-     * the motors */
+     * the motors. the side with the larger coefficient slows more */
 }
