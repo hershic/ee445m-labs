@@ -260,6 +260,7 @@ int main(void) {
     motor_stop = semaphore();
 
     uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    uart0.printf("\n\rWelcome to RRTOS v0\n\r");
     shell0 = shell(&uart0, &motor_start, &motor_stop);
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
