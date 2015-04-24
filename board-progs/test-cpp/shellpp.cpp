@@ -186,7 +186,9 @@ bool shell::type(char ch) {
         buf.add((const char) ch);
     }
     uint32_t status = StartCritical();
+    if(ret) {
     uart0->printf("%c", ch);
+    }
     EndCritical(status);
     return ret;
 }
