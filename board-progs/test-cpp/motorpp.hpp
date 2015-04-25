@@ -38,8 +38,13 @@ private:
     /* Matt's functions -- untouched for sanity */
     /*! Initializes pins PE0-3 for output */
     void motor_init(void);
-
     void pwm_init(void);
+
+    /*! Return direction adjusted for motor position on the robot --
+     *  Direction refers to the robot's orientation, not the
+     *  motor's */
+    Direction adjusted_direction();
+
 public:
 
     motor();

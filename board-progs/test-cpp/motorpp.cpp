@@ -33,6 +33,11 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     motor_init();
 }
 
+Direction motor::adjusted_direction() {
+
+    return motor_installed_backwards ? direction : nav::opposite(direction);
+}
+
 void motor::stop() {
 
     PWMGenDisable(pwm_hw, pwm_gen);
@@ -41,24 +46,24 @@ void motor::stop() {
 void motor::set(percent_t speed, Direction dir) {
 
     this->direction = dir;
+    switch(adjusted_direction()) {
+    case FORWARD: ctrl.turn_off(ctrl_pin); break;
+    case BACKWARD: ctrl.turn_on(ctrl_pin); break;
+    default: while(1) {}
+    }
     set(speed);
 }
 
 void motor::set(percent_t speed) {
 
-    Direction adjusted_direction = motor_installed_backwards ?
-        direction : nav::opposite(direction);
-
     current_speed = speed;
 
     uint16_t adjusted_duty;
-    switch(adjusted_direction) {
+    switch(adjusted_direction()) {
     case FORWARD:
-        ctrl.turn_off(ctrl_pin);
         adjusted_duty = speed * pwm_max_period / 100;
         break;
     case BACKWARD:
-         ctrl.turn_on(ctrl_pin);
          adjusted_duty = pwm_max_period - speed * pwm_max_period / 100;
          break;
     default: while(1) {}
@@ -108,7 +113,7 @@ void motor::pwm_init() {
     /* Enable the outputs. */
     PWMOutputState(pwm_base, (PWM_OUT_0_BIT | PWM_OUT_1_BIT), true);
 
-    set(75);
+    set(50, FORWARD);
     /* start(); */
     EndCritical(status);
 }
