@@ -33,7 +33,8 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
 
 Direction motor::adjusted_direction() {
 
-    return motor_installed_backwards ? direction : nav::opposite(direction);
+    return motor_installed_backwards ? nav::opposite(direction) :
+        direction;
 }
 
 void motor::stop() {
