@@ -14,7 +14,7 @@ motor::motor() {}
 
 motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
              memory_address_t pwm_base, memory_address_t pwm_gen,
-             memory_address_t pwm_out, bool logical_reverse) {
+             memory_address_t pwm_out) {
 
     this->ctrl = blinker(ctrl_base, ctrl_pin);
     this->ctrl_base = ctrl_base;
@@ -22,13 +22,17 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     this->pwm_base = pwm_base;
     this->pwm_gen = pwm_gen;
     this->pwm_out = pwm_out;
-    this->motor_installed_backwards = logical_reverse;
 
     ctlsys::enable_periph(ctrl_base);
     ctlsys::enable_periph(pwm_base);
 
     this->pwm_max_period = DEFAULT_PWM_PERIOD;
     motor_init();
+}
+
+void motor::set_motor_installed_backwards(bool backwards) {
+
+    this->motor_installed_backwards = backwards;
 }
 
 Direction motor::adjusted_direction() {

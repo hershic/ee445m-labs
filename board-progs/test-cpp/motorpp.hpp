@@ -48,7 +48,11 @@ public:
     motor();
     motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
           memory_address_t pwm_base, memory_address_t pwm_gen,
-          memory_address_t pwm_out, bool logical_reverse);
+          memory_address_t pwm_out);
+
+    /*! Denote that this motor is fastened to the robot in such a way
+     *  that it requires reversed (directionally) control signals. */
+    void set_motor_installed_backwards(bool);
 
     /*! Cut all power to the motor. */
     void stop(void);
