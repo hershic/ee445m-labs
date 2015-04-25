@@ -118,8 +118,7 @@ void motor::pwm_init() {
 
 void motor::reverse() {
 
-    direction = nav::opposite(direction);
-    set(current_speed);
+    set(current_speed, nav::opposite(direction));
 }
 
 /* Local Variables: */
