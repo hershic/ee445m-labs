@@ -21,7 +21,8 @@ private:
 
 public:
     drive();
-    drive(motor* left, motor* right);
+    drive(motor* left, motor* right, percent_t speed = 0,
+          Direction direction = FORWARD);
 
     /*! Move forward at some percent_t of full-speed. */
     void forward(percent_t speed);

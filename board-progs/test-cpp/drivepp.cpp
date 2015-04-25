@@ -5,10 +5,11 @@
 
 drive::drive() {}
 
-drive::drive(motor* left, motor* right) {
+drive::drive(motor* left, motor* right, percent_t speed, Direction direction) {
 
     this->left = left;
     this->right = right;
+    set(speed, direction);
 }
 
 void drive::stop() {

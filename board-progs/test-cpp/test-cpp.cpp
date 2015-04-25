@@ -260,8 +260,7 @@ int main(void) {
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
     motor1.set_motor_installed_backwards(true);
-    drive0 = drive(&motor0, &motor1);
-    drive0.forward(50);
+    drive0 = drive(&motor0, &motor1, 50);
 
     os_threading_init();
     schedule(motor_control, 200);
