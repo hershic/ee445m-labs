@@ -48,18 +48,24 @@ public:
     /*! Stop CAN transmissions. */
     virtual void stop(void);
 
-    /*! Transmit a message via CAN. */
-    void transmit(uint8_t* data, uint32_t length, uint32_t id);
-
     /*! Acknowledge CAN interrupt */
     virtual uint32_t ack(void);
 
+    void pack(uint8_t* dest, uint32_t data, uint8_t offset = 0);
+
+    /*! Transmit a message via CAN. */
+    void transmit(uint8_t* data, uint32_t length, uint32_t id);
+
     /*! Set data mailbox for received can message. */
-    void mailbox(uint8_t *data);
+    void get(uint8_t *data);
 };
+
+#endif
 
 /*! End doxygen group
  * @}
  */
 
-#endif
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

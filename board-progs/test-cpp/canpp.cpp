@@ -89,12 +89,21 @@ void can::stop() {
     CANDisable(base);
 }
 
-void can::mailbox(uint8_t *data) {
+void can::get(uint8_t *data) {
 
     sCANMessage.pui8MsgData = data;
     CANMessageGet(base, 1, &sCANMessage, 0);
     if(sCANMessage.ui32Flags & MSG_OBJ_DATA_LOST) {
         ++errors_rx;
+    }
+}
+
+void can::pack(uint8_t* dest, uint32_t data, uint8_t offset) {
+
+    uint8_t i;
+    for(i=0; i<sizeof(data); ++i) {
+        /* todo: perfect the endian-swap */
+        *(dest+offset) = (uint8_t) (data && (0xFF << (i*4)));
     }
 }
 
@@ -104,7 +113,6 @@ void can::transmit(uint8_t* data, uint32_t length, uint32_t id) {
     sCANMessage.ui32MsgIDMask = 0;
     sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
     sCANMessage.ui32MsgLen = length;
-    /* todo: endian-swap */
     sCANMessage.pui8MsgData = data;
 
     // Send the CAN message using object number 1 (not the same thing
@@ -134,3 +142,7 @@ uint32_t can::ack() {
     CANIntClear(base, ui32Status);
     return ui32Status;
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

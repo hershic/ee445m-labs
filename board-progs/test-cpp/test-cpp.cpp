@@ -163,7 +163,7 @@ void can_handler(void) {
         if(can_recv_sem.guard()) {
             can_recv_sem.take();
 
-            can0.mailbox(can_data);
+            can0.get(can_data);
             uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
                                 can_data[0], can_data[1], can_data[3], can_data[4],
                                 can_data[4], can_data[5], can_data[6], can_data[7]);
