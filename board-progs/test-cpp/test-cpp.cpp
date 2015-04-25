@@ -258,8 +258,7 @@ int main(void) {
     motor_stop = semaphore();
     shell0 = shell(&uart0, &motor_start, &motor_stop);
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
-    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
-    motor1.set_motor_installed_backwards(true);
+    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
 
     os_threading_init();

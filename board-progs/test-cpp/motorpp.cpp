@@ -14,7 +14,7 @@ motor::motor() {}
 
 motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
              memory_address_t pwm_base, memory_address_t pwm_gen,
-             memory_address_t pwm_out) {
+             memory_address_t pwm_out, bool motor_installed_backwards) {
 
     this->ctrl = blinker(ctrl_base, ctrl_pin);
     this->ctrl_base = ctrl_base;
@@ -27,6 +27,7 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     ctlsys::enable_periph(pwm_base);
 
     this->pwm_max_period = DEFAULT_PWM_PERIOD;
+    this->motor_installed_backwards = motor_installed_backwards;
     motor_init();
 }
 

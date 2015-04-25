@@ -48,7 +48,7 @@ public:
     motor();
     motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
           memory_address_t pwm_base, memory_address_t pwm_gen,
-          memory_address_t pwm_out);
+          memory_address_t pwm_out, bool motor_installed_backwards = false);
 
     /*! Denote that this motor is fastened to the robot in such a way
      *  that it requires reversed (directionally) control signals. */
