@@ -41,7 +41,7 @@ private:
     /*! Return direction adjusted for motor position on the robot --
      *  Direction refers to the robot's orientation, not the
      *  motor's */
-    Direction adjusted_direction();
+    Direction adjusted_direction(void);
 
 public:
 
