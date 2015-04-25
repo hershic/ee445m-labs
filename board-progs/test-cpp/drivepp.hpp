@@ -29,7 +29,7 @@ public:
     /*! Move backward at some percent_t of full-speed. */
     void backward(percent_t speed);
 
-    /*!  */
+    /*! Set motor vectors */
     void set(percent_t speed, Direction dir);
 
     /*! Stop all motors */
