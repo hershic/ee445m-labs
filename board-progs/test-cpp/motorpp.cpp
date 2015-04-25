@@ -1,3 +1,4 @@
+/* -*- mode: c++; c-basic-offset: 4; -*- */
 #include "motorpp.hpp"
 
 #include "inc/tm4c123gh6pm.h"
@@ -27,7 +28,7 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     this->pwm_out = pwm_out;
     this->motor_installed_backwards = logical_reverse;
 
-    pwm_hw = (pwm_pin = GPIO_PIN_6) ? PWM0_BASE : PWM1_BASE;
+    this->pwm_hw = (pwm_pin = GPIO_PIN_6) ? PWM0_BASE : PWM1_BASE;
 
     ctlsys::enable_periph(ctrl_base);
     ctlsys::enable_periph(pwm_base);
@@ -38,15 +39,15 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
 
 void motor::stop() {
 
-    PWMGenDisable(pwm_hw, PWM_GEN_0);
+    PWMGenDisable(pwm_hw, pwm_gen);
 }
 
 void motor::set(percent_t percent_full_speed) {
 
-    uint16_t adjusted_duty;
     Direction adjusted_direction = motor_installed_backwards ?
         direction : nav::opposite(direction);
 
+    uint16_t adjusted_duty;
     switch(adjusted_direction) {
     case FORWARD:
         ctrl.turn_off(ctrl_pin);
@@ -82,7 +83,7 @@ void motor::motor_init() {
 
 void motor::start() {
 
-    PWMGenEnable(pwm_hw, PWM_GEN_0);
+    PWMGenEnable(pwm_hw, pwm_gen);
 }
 
 void motor::pwm_init() {
@@ -123,3 +124,7 @@ void motor::reverse() {
 
     direction = nav::opposite(direction);
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */
