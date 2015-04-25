@@ -24,8 +24,6 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     this->pwm_out = pwm_out;
     this->motor_installed_backwards = logical_reverse;
 
-    this->pwm_hw = (pwm_pin = GPIO_PIN_6) ? PWM0_BASE : PWM1_BASE;
-
     ctlsys::enable_periph(ctrl_base);
     ctlsys::enable_periph(pwm_base);
 
@@ -40,7 +38,7 @@ Direction motor::adjusted_direction() {
 
 void motor::stop() {
 
-    PWMGenDisable(pwm_hw, pwm_gen);
+    PWMGenDisable(pwm_base, pwm_gen);
 }
 
 void motor::set(percent_t speed, Direction dir) {
@@ -81,7 +79,7 @@ void motor::motor_init() {
 
 void motor::start() {
 
-    PWMGenEnable(pwm_hw, pwm_gen);
+    PWMGenEnable(pwm_base, pwm_gen);
 }
 
 void motor::pwm_init() {
