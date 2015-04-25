@@ -17,6 +17,12 @@ void drive::stop() {
     right->stop();
 }
 
+void drive::start() {
+
+    left->start();
+    right->start();
+}
+
 void drive::forward(percent_t speed) {
 
     left->set(speed, FORWARD);

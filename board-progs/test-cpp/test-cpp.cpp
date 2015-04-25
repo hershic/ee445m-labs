@@ -201,11 +201,11 @@ void motor_control(void) {
 
         if(motor_start.guard()) {
             motor_start.take();
-            /* todo: fill me in ^^ */
+            drive0.start();
         }
         if(motor_stop.guard()) {
             motor_stop.take();
-            /* todo: fill me in ^^ */
+            drive0.stop();
         }
         os_surrender_context();
     }

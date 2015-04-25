@@ -35,6 +35,9 @@ public:
     /*! Stop all motors */
     void stop(void);
 
+    /*! Re-enable all previoulsy stopped motors */
+    void start(void);
+
     /*! Feed the autonomous driver. */
     void steer(uint32_t lfol, uint32_t rfor);
 };
