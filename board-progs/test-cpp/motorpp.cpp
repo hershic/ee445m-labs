@@ -97,19 +97,18 @@ void motor::pwm_init() {
     PWMGenPeriodSet(pwm_base, pwm_gen, DEFAULT_PWM_PERIOD);
     PWMGenEnable(pwm_base, pwm_gen);
 
-    /* this isn't used, is it? */
-    /* switch(pwm_out) { */
-    /* case PWM_OUT_0: */
-    /*     GPIOPinConfigure(GPIO_PB6_M0PWM0); */
-    /*     GPIOPinTypePWM(GPIO_PORTB_BASE, GPIO_PIN_6); */
-    /*     break; */
-    /* case PWM_OUT_1: */
-    /*     GPIOPinConfigure(GPIO_PB7_M0PWM1); */
-    /*     GPIOPinTypePWM(GPIO_PORTB_BASE, GPIO_PIN_7); */
-    /*     break; */
-    /* default: */
-    /*     while(1) {} */
-    /* } */
+    switch(pwm_out) {
+    case PWM_OUT_0:
+        GPIOPinConfigure(GPIO_PB6_M0PWM0);
+        GPIOPinTypePWM(GPIO_PORTB_BASE, GPIO_PIN_6);
+        break;
+    case PWM_OUT_1:
+        GPIOPinConfigure(GPIO_PB7_M0PWM1);
+        GPIOPinTypePWM(GPIO_PORTB_BASE, GPIO_PIN_7);
+        break;
+    default:
+        while(1) {}
+    }
 
     /* Enable the outputs. */
     PWMOutputState(pwm_base, (PWM_OUT_0_BIT | PWM_OUT_1_BIT), true);
