@@ -1,3 +1,6 @@
+/* -*- mode: c++; c-basic-offset: 4; */
+/* Created by Hershal Bhave and Eric Crosson on <2015-03-15 Sun> */
+/* Revision History: Look in Git FGT */
 #ifndef __ctlsysctl__
 #define __ctlsysctl__
 
@@ -13,6 +16,7 @@
 
 class ctlsys : public critical {
 public:
+    /*! Enable peripherals based on a GPIO_PORTx_BASE. */
     static void enable_periph(uint32_t sys_periph) {
         uint32_t periph_base = 0xDEADBEEF;
         switch(sys_periph) {
@@ -34,6 +38,12 @@ public:
         uint32_t ui32Status = static_StartCritical();
         SysCtlPeripheralEnable(periph_base);
         static_EndCritical(ui32Status);
+    }
+
+    /*! Set the clock as used in our labs. */
+    static void set_clock(void) {
+        SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+                       SYSCTL_XTAL_16MHZ);
     }
 };
 

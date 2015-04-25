@@ -1,3 +1,6 @@
+/* -*- mode: c++; c-basic-offset: 4; */
+/* Created by Hershal Bhave and Eric Crosson on <2015-03-15 Sun> */
+/* Revision History: Look in Git FGT */
 #include "timerpp.hpp"
 
 #include "inc/hw_memmap.h"
@@ -8,7 +11,7 @@ timer::timer() {}
 
 timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
              uint32_t timer_configuration, reload_t timer_load_val,
-             uint32_t timer_interrupt) {
+             uint32_t timer_interrupt, bool timer_start) {
 
     id = timer_id;
     base = TIMER0_BASE + 0x1000 * timer_id;
@@ -33,6 +36,7 @@ timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
     }
 
     reload();
+    if (timer_start) { start(); }
 }
 
 void timer::reload() {
@@ -77,3 +81,7 @@ uint32_t timer::ack() {
     }
     return 0xDEADBEEF;
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

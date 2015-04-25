@@ -40,8 +40,8 @@ public:
     char buffer[UART_DEFAULT_MAX_GET_STRING_LENGTH];
 
     uart();
-    uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
-         memory_address_t uart_interrupt);
+    uart(memory_address_t uart_channel, memory_address_t uart_interrupt,
+        uint32_t uart_baud_rate = UART_DEFAULT_BAUD_RATE);
 
     /*! Enable the uart. */
     virtual void start(void);

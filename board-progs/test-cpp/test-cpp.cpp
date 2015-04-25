@@ -12,6 +12,7 @@
 #include "ir.hpp"
 #include "drivepp.hpp"
 #include "canpp.hpp"
+#include "ctlsysctl.hpp"
 
 #include "libos/os.h"
 #include "libschedule/schedule.h"
@@ -220,15 +221,13 @@ void can_prepare_dummy_data(void) {
 
 int main(void) {
 
-    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
-                   SYSCTL_XTAL_16MHZ);
+    ctlsys::set_clock();
     IntMasterDisable();
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
     timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2,
-                    TIMER_TIMA_TIMEOUT);
-    /* timer0a.start(); */
+                    TIMER_TIMA_TIMEOUT/*, true */); /* uncomment the true to start timer */
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
     adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
@@ -236,8 +235,7 @@ int main(void) {
     adc0.configure_sequence(ADC_CTL_CH2); /* PE1 */
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
-    adc0.configure_timer_interrupt(&timer0a);
-    adc0.start();
+    adc0.configure_timer_interrupt(&timer0a, true);
 
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
@@ -247,9 +245,7 @@ int main(void) {
     UART0_RX_SEM = semaphore();
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
-    uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    uart0.printf("\n\rWelcome to RRTOS v0\n\r");
-    shell0 = shell(&uart0, &motor_start, &motor_stop);
+    uart0 = uart(UART0_BASE, INT_UART0);
 
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
     if(can_sender) {
@@ -260,6 +256,7 @@ int main(void) {
 
     motor_start = semaphore();
     motor_stop = semaphore();
+    shell0 = shell(&uart0, &motor_start, &motor_stop);
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
     motor1.set_motor_installed_backwards(true);

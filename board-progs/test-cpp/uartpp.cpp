@@ -21,8 +21,8 @@ uint32_t ustrlen(const char* s) {
 uart::uart() {}
 
 /* \warning currently only allows uart from GPIO_PORTA on the TM4C123GXL */
-uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
-           memory_address_t uart_interrupt) {
+uart::uart(memory_address_t uart_channel, memory_address_t uart_interrupt,
+           uint32_t uart_baud_rate) {
 
     baud_rate = uart_baud_rate;
     channel = uart_channel;
@@ -42,6 +42,8 @@ uart::uart(uint32_t uart_baud_rate, memory_address_t uart_channel,
                          UART_CONFIG_PAR_NONE));
 
     start();
+
+    printf("\n\rWelcome to RRTOS v0\n\r");
 }
 
 void uart::send_string(const char* str) {
@@ -414,3 +416,7 @@ void uart::stop(void) {
     IntDisable(interrupt);
     UARTIntDisable(channel, UART_INT_RX | UART_INT_RT);
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

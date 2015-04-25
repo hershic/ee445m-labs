@@ -48,7 +48,7 @@ public:
     timer();
     timer(timer_t timer_id, subtimer_t timer_subtimer,
           uint32_t timer_configuration, reload_t timer_load_val,
-          uint32_t timer_interrupt);
+          uint32_t timer_interrupt, bool timer_start = false);
 
     /*! Start a timer. */
     virtual void start();

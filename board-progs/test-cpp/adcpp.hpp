@@ -34,7 +34,7 @@ public:
     void configure_sequence(uint32_t sequencer_configuration);
     void configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer);
 #ifdef TIMER_KNOWN
-    void configure_timer_interrupt(timer* t);
+    void configure_timer_interrupt(timer* t, bool adc_start = false);
 #endif
 
     virtual void start();
