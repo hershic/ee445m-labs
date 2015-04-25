@@ -10,6 +10,8 @@
 
 #include <stdint.h>
 
+#define CAN_MSG_OBJ 1
+
 void can::init() {
 
     errors_rx = 0;
@@ -44,11 +46,10 @@ can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
         // Initialize the message object that will be used for sending CAN
         // messages.  The message will be 4 bytes that will contain an incrementing
         // value.  Initially it will be set to 0.
-        sCANMessage.ui32MsgID = 1;
+        sCANMessage.ui32MsgID = CAN_MSG_OBJ;
         sCANMessage.ui32MsgIDMask = 0;
         sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
         sCANMessage.ui32MsgLen = 4;
-        /* sCANMessage.pui8MsgData = pui8MsgData; */
 
     } else {
         // Initialize a message object to be used for receiving CAN messages with
@@ -63,7 +64,7 @@ can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
         // CAN will receive any message on the bus, and an interrupt will occur.
         // Use message object 1 for receiving messages (this is not the same as
         // the CAN ID which can be any value in this example).
-        CANMessageSet(base, 1, &sCANMessage, MSG_OBJ_TYPE_RX);
+        CANMessageSet(base, CAN_MSG_OBJ, &sCANMessage, MSG_OBJ_TYPE_RX);
     }
 }
 
