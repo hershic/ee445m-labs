@@ -17,16 +17,22 @@ void drive::stop() {
     right->stop();
 }
 
-void drive::forward(percent speed) {
+void drive::forward(percent_t speed) {
 
     left->set(speed, FORWARD);
     right->set(speed, FORWARD);
 }
 
-void drive::backward(percent speed) {
+void drive::backward(percent_t speed) {
 
     left->set(speed, BACKWARD);
     right->set(speed, BACKWARD);
+}
+
+void drive::set(percent_t speed, Direction dir) {
+
+    left->set(speed, dir);
+    right->set(speed, dir);
 }
 
 void drive::steer(uint32_t lfol, uint32_t rfor) {

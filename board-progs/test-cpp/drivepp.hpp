@@ -11,7 +11,6 @@
  * @{
  */
 
-typedef uint8_t percent;        /* 0 - 100 */
 typedef uint32_t distance;      /* cm */
 typedef uint16_t angle;         /* 0 - 360 */
 
@@ -24,11 +23,14 @@ public:
     drive();
     drive(motor* left, motor* right);
 
-    /*! Move forward at some percent of full-speed. */
-    void forward(percent speed);
+    /*! Move forward at some percent_t of full-speed. */
+    void forward(percent_t speed);
 
-    /*! Move backward at some percent of full-speed. */
-    void backward(percent speed);
+    /*! Move backward at some percent_t of full-speed. */
+    void backward(percent_t speed);
+
+    /*!  */
+    void set(percent_t speed, Direction dir);
 
     /*! Stop all motors */
     void stop(void);
