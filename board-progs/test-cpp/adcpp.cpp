@@ -41,6 +41,11 @@ adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
     channel_count = 0;
 }
 
+void adc::configure_timer_interrupt(timer* t) {
+
+    TimerControlTrigger(t->base, t->subtimer, true);
+}
+
 void adc::configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer) {
 
     TimerControlTrigger(timer_base, timer_subtimer, true);
@@ -92,3 +97,7 @@ uint32_t adc::ack() {
     ADCIntClear(base, sequencer);
     return 0xDEADBEEF;
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

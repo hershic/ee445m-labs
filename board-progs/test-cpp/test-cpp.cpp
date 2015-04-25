@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset: 4; */
-/* Created by Hershal Bhave on <2015-03-15 Sun> */
+/* Created by Hershal Bhave and Eric Crosson on <2015-03-15 Sun> */
 /* Revision History: Look in Git FGT */
 
 #include "adcpp.hpp"
@@ -236,7 +236,7 @@ int main(void) {
     adc0.configure_sequence(ADC_CTL_CH2); /* PE1 */
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
-    adc0.configure_timer_interrupt(timer0a.base, timer0a.subtimer);
+    adc0.configure_timer_interrupt(&timer0a);
     adc0.start();
 
     ir0 = ir(0, &adc0);
