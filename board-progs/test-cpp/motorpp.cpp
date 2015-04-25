@@ -54,6 +54,8 @@ void motor::set(percent_t speed, Direction dir) {
 
 void motor::set(percent_t speed) {
 
+    if(speed > 100) { speed = 100; }
+
     current_speed = speed;
 
     uint16_t adjusted_duty;
@@ -112,7 +114,7 @@ void motor::pwm_init() {
     PWMOutputState(pwm_base, (PWM_OUT_0_BIT | PWM_OUT_1_BIT), true);
 
     set(50, FORWARD);
-    /* start(); */
+    start();
     EndCritical(status);
 }
 
