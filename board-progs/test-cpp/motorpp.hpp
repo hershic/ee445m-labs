@@ -34,7 +34,6 @@ private:
     Direction direction;
     percent_t current_speed;
 
-    /* Matt's functions -- untouched for sanity */
     /*! Initializes pins PE0-3 for output */
     void motor_init(void);
     void pwm_init(void);
@@ -57,7 +56,7 @@ public:
     /*! Enable power to the motor. */
     void start(void);
 
-    /*! Set the motor duty cycle and direction. */
+    /*! Set the motor speed. */
     void set(percent_t speed);
 
     /*! Set motor speed and direction. */

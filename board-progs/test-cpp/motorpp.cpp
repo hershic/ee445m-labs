@@ -116,6 +116,7 @@ void motor::pwm_init() {
     EndCritical(status);
 }
 
+/*! note maintains current speed */
 void motor::reverse() {
 
     set(current_speed, nav::opposite(direction));
