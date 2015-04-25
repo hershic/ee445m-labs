@@ -14,12 +14,13 @@
 
 typedef uint16_t percent_t;
 typedef uint32_t memory_address_t;
-#define DEFAULT_PWM_PERIOD 0xFFFF
+#define DEFAULT_PWM_PERIOD 10000
 
 class motor : public critical {
 private:
     blinker ctrl;
     blinker pwm;
+    memory_address_t ctrl_base;
     memory_address_t ctrl_pin;
     memory_address_t pwm_base;
     memory_address_t pwm_pin;
