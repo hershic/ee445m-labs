@@ -252,7 +252,7 @@ int main(void) {
     ir3 = ir(3, &adc0);
 
     can_recv_sem = semaphore();
-    can0 = can(CAN0_BASE, INT_CAN0, can_sender);
+    can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
     if(can_sender) {
         uint8_t i;
         for(i=0; i<can_data_length; ++i) {
@@ -274,3 +274,7 @@ int main(void) {
     /* schedule(thread_uart_update, 1000000); */
     os_launch();
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

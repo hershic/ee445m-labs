@@ -40,7 +40,8 @@ private:
 public:
     can();
     /*! Initialize a can node. */
-    can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender);
+    can(memory_address_t can_base, uint32_t can_interrupt,
+        bool can_sender, uint32_t msg_length);
 
     /*! Start CAN transmissions. */
     virtual void start(void);

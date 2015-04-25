@@ -34,7 +34,8 @@ void can::init() {
 
 can::can() {}
 
-can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
+can::can(memory_address_t can_base, uint32_t can_interrupt,
+         bool can_sender, uint32_t msg_length) {
 
     sender = can_sender;
     base = can_base;
@@ -46,7 +47,7 @@ can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
         sCANMessage.ui32MsgID = 1;
         sCANMessage.ui32MsgIDMask = 0;
         sCANMessage.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
-        sCANMessage.ui32MsgLen = 4;
+        sCANMessage.ui32MsgLen = msg_length;
 
     } else {
         // Initialize a message object to be used for receiving CAN messages with
@@ -55,7 +56,7 @@ can::can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender) {
         sCANMessage.ui32MsgID = 0;
         sCANMessage.ui32MsgIDMask = 0;
         sCANMessage.ui32Flags = MSG_OBJ_RX_INT_ENABLE | MSG_OBJ_USE_ID_FILTER;
-        sCANMessage.ui32MsgLen = 8;
+        sCANMessage.ui32MsgLen = msg_length;
 
         // Load the message object into the CAN peripheral.  Once
         // loaded the CAN will receive any message on the bus, and an
