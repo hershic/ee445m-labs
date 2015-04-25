@@ -25,6 +25,8 @@ public:
         case GPIO_PORTG_BASE: periph_base = SYSCTL_PERIPH_GPIOG; break;
         case GPIO_PORTH_BASE: periph_base = SYSCTL_PERIPH_GPIOH; break;
         case GPIO_PORTJ_BASE: periph_base = SYSCTL_PERIPH_GPIOJ; break;
+        case PWM0_BASE:       periph_base = SYSCTL_PERIPH_PWM0; break;
+        case PWM1_BASE:       periph_base = SYSCTL_PERIPH_PWM1; break;
         default: while(1) {}
         }
         uint32_t ui32Status = static_StartCritical();
