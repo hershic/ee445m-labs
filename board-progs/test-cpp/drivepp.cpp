@@ -19,14 +19,14 @@ void drive::stop() {
 
 void drive::forward(percent speed) {
 
-    left->set(speed);
-    right->set(speed);
+    left->set(speed, FORWARD);
+    right->set(speed, FORWARD);
 }
 
 void drive::backward(percent speed) {
 
-    left->reverse();
-    right->reverse();
+    left->set(speed, BACKWARD);
+    right->set(speed, BACKWARD);
 }
 
 void drive::steer(uint32_t lfol, uint32_t rfor) {
