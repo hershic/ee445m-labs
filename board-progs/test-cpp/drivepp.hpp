@@ -11,9 +11,9 @@
  * @{
  */
 
-typedef uint8_t percent;        /* 1 - 100 */
+typedef uint8_t percent;        /* 0 - 100 */
 typedef uint32_t distance;      /* cm */
-typedef uint16_t angle;         /* 1 - 360 */
+typedef uint16_t angle;         /* 0 - 360 */
 
 class drive {
 private:
