@@ -10,12 +10,7 @@
 
 #include "ctlsysctl.hpp"
 
-motor::motor() {
-
-    while(1) {}
-    /* this is not a safe constructor to call, severe breakages will
-     * shortly follow */
-}
+motor::motor() {}
 
 motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
              memory_address_t pwm_base, memory_address_t pwm_gen,
@@ -43,25 +38,33 @@ void motor::stop() {
     PWMGenDisable(pwm_hw, pwm_gen);
 }
 
-void motor::set(percent_t percent_full_speed) {
+void motor::set(percent_t speed, Direction dir) {
+
+    this->direction = dir;
+    set(speed);
+}
+
+void motor::set(percent_t speed) {
 
     Direction adjusted_direction = motor_installed_backwards ?
         direction : nav::opposite(direction);
+
+    current_speed = speed;
 
     uint16_t adjusted_duty;
     switch(adjusted_direction) {
     case FORWARD:
         ctrl.turn_off(ctrl_pin);
-        adjusted_duty = percent_full_speed*pwm_max_period/100;
+        adjusted_duty = speed * pwm_max_period / 100;
         break;
     case BACKWARD:
          ctrl.turn_on(ctrl_pin);
-         adjusted_duty = pwm_max_period - percent_full_speed*pwm_max_period/100;
+         adjusted_duty = pwm_max_period - speed * pwm_max_period / 100;
          break;
     default: while(1) {}
     }
 
-    PWMPulseWidthSet(pwm_base, pwm_out, percent_full_speed*pwm_max_period/100);
+    PWMPulseWidthSet(pwm_base, pwm_out, speed*pwm_max_period/100);
 }
 
 void motor::motor_init() {
@@ -112,6 +115,7 @@ void motor::pwm_init() {
 void motor::reverse() {
 
     direction = nav::opposite(direction);
+    set(current_speed);
 }
 
 /* Local Variables: */

@@ -33,13 +33,14 @@ private:
     uint32_t pwm_period;
     uint32_t duty_period;
     Direction direction;
+    percent_t current_speed;
 
     /* Matt's functions -- untouched for sanity */
     /*! Initializes pins PE0-3 for output */
-    void motor_init();
+    void motor_init(void);
 
+    void pwm_init(void);
 public:
-    void pwm_init();
 
     motor();
     motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
@@ -53,7 +54,7 @@ public:
     void start(void);
 
     /*! Set the motor duty cycle and direction. */
-    void set(percent_t percent_full_speed);
+    void set(percent_t speed);
 
     /*! Set motor speed and direction. */
     void set(percent_t percent_full_speed, Direction dir);
