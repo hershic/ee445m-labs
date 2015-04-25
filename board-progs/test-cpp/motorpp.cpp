@@ -82,7 +82,8 @@ void motor::start() {
 void motor::pwm_init() {
 
     uint32_t status = StartCritical();
-    ctlsys::enable_periph(pwm_base);
+    /* nucleo: abstract */
+    ctlsys::enable_periph(SYSCTL_PERIPH_GPIOB);
     ctlsys::enable_periph(ctrl_base);
 
     SysCtlPWMClockSet(SYSCTL_PWMDIV_64);
