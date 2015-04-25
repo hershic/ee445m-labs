@@ -197,8 +197,8 @@ void shell_handler() {
 }
 
 void motor_control(void) {
-    while(1) {
 
+    while(1) {
         if(motor_start.guard()) {
             motor_start.take();
             drive0.start();
@@ -208,6 +208,13 @@ void motor_control(void) {
             drive0.stop();
         }
         os_surrender_context();
+    }
+}
+
+void can_prepare_dummy_data(void) {
+
+    for(uint8_t i=0; i<can_data_length; ++i) {
+        can_data[i] = i;
     }
 }
 
@@ -223,20 +230,6 @@ int main(void) {
                     TIMER_TIMA_TIMEOUT);
     /* timer0a.start(); */
 
-    motor_start = semaphore();
-    motor_stop = semaphore();
-    motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0, true);
-    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, false);
-    drive0 = drive(&motor0, &motor1);
-    /* drive0.forward(20); */
-
-    UART0_RX_SEM = semaphore();
-    UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
-
-    uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
-    uart0.printf("\n\rWelcome to RRTOS v0\n\r");
-    shell0 = shell(&uart0, &motor_start, &motor_stop);
-
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
     adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
     adc0.configure_sequence(ADC_CTL_CH1); /* PE2 */
@@ -251,14 +244,23 @@ int main(void) {
     ir2 = ir(2, &adc0);
     ir3 = ir(3, &adc0);
 
+    UART0_RX_SEM = semaphore();
+    UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
+
+    uart0 = uart(UART_DEFAULT_BAUD_RATE, UART0_BASE, INT_UART0);
+    uart0.printf("\n\rWelcome to RRTOS v0\n\r");
+    shell0 = shell(&uart0, &motor_start, &motor_stop);
+
     can_recv_sem = semaphore();
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
-    if(can_sender) {
-        uint8_t i;
-        for(i=0; i<can_data_length; ++i) {
-            can_data[i] = i;
-        }
-    }
+    if(can_sender) { can_prepare_dummy_data(); }
+
+    motor_start = semaphore();
+    motor_stop = semaphore();
+    motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0, true);
+    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, false);
+    drive0 = drive(&motor0, &motor1);
+    /* drive0.forward(20); */
 
     os_threading_init();
     /* schedule(motor_control, 200); */
