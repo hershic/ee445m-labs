@@ -225,8 +225,8 @@ int main(void) {
 
     motor_start = semaphore();
     motor_stop = semaphore();
-    motor0 = motor(GPIO_PORTB_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0, true);
-    motor1 = motor(GPIO_PORTB_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, false);
+    motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0, true);
+    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, false);
     drive0 = drive(&motor0, &motor1);
     /* drive0.forward(20); */
 
