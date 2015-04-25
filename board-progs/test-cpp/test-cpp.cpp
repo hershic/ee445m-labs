@@ -152,7 +152,7 @@ extern "C" void CAN0_Handler(void) {
         can_recv_sem.post();
         break;
     default:
-        /* while(1) {} */
+        can0.error_tx();
         break;
     }
 }

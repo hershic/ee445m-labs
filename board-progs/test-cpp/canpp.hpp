@@ -59,6 +59,9 @@ public:
 
     /*! Set mailbox for received can message data. */
     void get(uint8_t *data);
+
+    /*! Register a tx error. */
+    void error_tx(void);
 };
 
 #endif

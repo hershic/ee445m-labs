@@ -92,6 +92,11 @@ void can::stop() {
     CANDisable(base);
 }
 
+void can::error_tx() {
+
+    ++errors_tx;
+}
+
 void can::get(uint8_t *data) {
 
     sCANMessage.pui8MsgData = data;
