@@ -39,7 +39,7 @@ private:
 
 public:
     can();
-    /*! Initialize a can sender. */
+    /*! Initialize a can node. */
     can(memory_address_t can_base, uint32_t can_interrupt, bool can_sender);
 
     /*! Start CAN transmissions. */
