@@ -57,7 +57,7 @@ public:
     /*! Transmit a message via CAN. */
     void transmit(uint8_t* data, uint32_t length, uint32_t id);
 
-    /*! Set data mailbox for received can message. */
+    /*! Set mailbox for received can message data. */
     void get(uint8_t *data);
 };
 

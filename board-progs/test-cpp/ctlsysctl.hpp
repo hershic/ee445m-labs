@@ -27,6 +27,8 @@ public:
         case GPIO_PORTJ_BASE: periph_base = SYSCTL_PERIPH_GPIOJ; break;
         case PWM0_BASE:       periph_base = SYSCTL_PERIPH_PWM0; break;
         case PWM1_BASE:       periph_base = SYSCTL_PERIPH_PWM1; break;
+        case CAN0_BASE:       periph_base = SYSCTL_PERIPH_CAN0; break;
+        case CAN1_BASE:       periph_base = SYSCTL_PERIPH_CAN1; break;
         default: while(1) {}
         }
         uint32_t ui32Status = static_StartCritical();
@@ -40,3 +42,7 @@ public:
 /* End Doxygen group
  * @}
  */
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */
