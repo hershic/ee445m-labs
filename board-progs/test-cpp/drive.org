@@ -58,10 +58,12 @@ on the track, we would see the following geometry:
                     |                                           |
 #+END_SRC
 
-with $y$ being equal to $x$. A very common subset of this placement is
-where $x$ and $y$ are not equal but are both members of the above
-isosceles triangles. We will continue to focus on the instance where
-$x$ and $y$ are equal for now.
+with $y$ being equal to $x$. Here $x$ is the distance being read by
+the $R$ (right) sensor, $x*\sqrt(2)$ is the distance being read by the
+$R_f$ (right-front) sensor, etc. A very common subset of this
+placement is where $x$ and $y$ are not equal but are both members of
+the above isosceles triangles. We will continue to focus on the
+instance where $x$ and $y$ are equal for now.
 
 When the above geometry is realized, indicating no turns are in sight,
 the ideal response from the robot is full speed ahead. Now let us see
@@ -264,6 +266,7 @@ is able to
 - navigate through turns,
 - prevent getting turned around 180 degrees, and
 - navigate around obstacles, dynamic and static
+
 * Path centering algorithm
 This section will discuss path centering mechanics for our autonomous
 robot.
@@ -271,7 +274,7 @@ robot.
 Why is path centering important?
 
 * Sensors
-Which sensors should be used on the robot? Assuming your inicidental
+Which sensors should be used on the robot? Assuming your iicidental
 angle of reflection is a non-issue, comparing like sensor data reduces
 the need for calibration. Since only four of each kind of sensor may
 be used on our final robot, I suggest we make the rear-facing sensor
