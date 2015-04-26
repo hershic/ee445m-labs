@@ -35,7 +35,7 @@ either IR or Ping will suffice.
 If a robot with sensors positioned just so were to be placed optimally
 on the track, we would see the following geometry:
 
-
+#+BEGIN_SRC fundamental
                     |                                           |
                     |                                           |
                     +                                          /+
@@ -56,7 +56,7 @@ on the track, we would see the following geometry:
                     |                                           |
                     |                                           |
                     |                                           |
-
+#+END_SRC
 
 with $y$ being equal to $x$. A very common subset of this placement is
 where $x$ and $y$ are not equal but are both members of the above
@@ -68,7 +68,7 @@ the ideal response from the robot is full speed ahead. Now let us see
 how our robot will sense a 90 degree angle in the track:
 
 
-
+#+BEGIN_SRC fundamental
     ------------------------------------------------------------+
                                  				|
         							|
@@ -100,7 +100,7 @@ how our robot will sense a 90 degree angle in the track:
                     |                                           |
                     |                                           |
                     |                                           |
-
+#+END_SRC
 
 In this case we see the left front sensor is registering a much larger
 value than the $x\sqrt(2)$ as before. The ideal response from the
@@ -132,7 +132,8 @@ possibility in turn.
 
 If the robot approaches perpendicular to the desired path down the
 hallway, like so
-					   /
+
+#+BEGIN_SRC fundamental
 	      |		|		  /    |
 	      |		\ R_f		 /     |
 	      |		 |	        /      |
@@ -155,6 +156,7 @@ hallway, like so
 	      |	       / L 		       |
 	      |	      / 		       |
 	      |	     / 			       |
+#+END_SRC
 
 we should see $R_f$ slightly greater than $R$, and $L >> L_f$. This
 imbalance of $L$ to $L_f$ will increase the motor output on the left
@@ -173,7 +175,7 @@ and when our robot needs to change direction instead of maintaining
 current course -- during turns. Each case below will be inspected
 individually:
 
-
+#+BEGIN_SRC fundamental
     ------------------------------------------------------------+
                                  				|
         							|
@@ -205,6 +207,7 @@ individually:
                     |                                           |
                     |                                           |
                     |                                           |
+#+END_SRC
 
 Assuming a robot is in position A, $L_f$ drops in porportion to
 $L$. This manifests in our algorithm as decreased motor output on the
@@ -239,6 +242,7 @@ side walls of the track.
 
 Finally, a robot with the following sensor configuration
 
+#+BEGIN_SRC fundamental
               -\                             /
                 -\                         -/
                   -\                     -/
@@ -254,6 +258,7 @@ Finally, a robot with the following sensor configuration
 			        |
 			        |
 			        |
+#+END_SRC
 
 is able to
 - navigate through turns,
