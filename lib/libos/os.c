@@ -436,16 +436,6 @@ void schedule(task_t task, frequency_t frequency_in_cycles) {
     CDL_APPEND(ready_queue->queue, ready_task);
 }
 
-void schedule_aperiodic(pisr_t pisr,
-                        HW_TYPE hw_type,
-                        hw_metadata metadata,
-                        microseconds_t allowed_run_time,
-                        DEADLINE_TYPE seriousness) {
-
-    /* todo: utilize \allowed_run_time, \seriousness */
-    /* _hw_subscribe(hw_type, metadata, pisr, true); */
-}
-
 void schedule_init() {
 
     int32_t i;
