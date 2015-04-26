@@ -30,7 +30,7 @@ Consider a robot with the following sensors:
 
 The square is the frame of the robot, with the front pointing
 North. The lines extruding from the robot are the angles of sensors:
-either IR or Ping will suffice.
+either IR or ultra-sonic Ping will suffice.
 
 If a robot with sensors positioned just so were to be placed optimally
 on the track, we would see the following geometry:
@@ -226,13 +226,14 @@ proportion to $R_f$, causing the robot to move to the left and
 successfully avoiding the obstacle.
 
 Assuming a robot is in position D, our robot will not detect an
-approaching turn with as much clarity as without interference. This is
-to be expected, but it leads to a tricky situation: supposing the
-robot at D is moving in the same direction as our robot (North in the
-diagram) and continues to block from our sensors the extra space
-created by the left turn of the track. In this case our robot may not
-register drastic changes in sensor data (and thus sterring) until the
-$L$ signal sees the new corridor.
+approaching turn with as much clarity as it is able to without
+interference. This is to be expected, but it leads to a tricky
+situation: supposing the robot at D is moving in the same direction as
+our robot (North in the diagram) and continues to block from our
+sensors the extra distance created by the left turn of the track. In
+this case our robot may not register drastic changes in sensor data
+(and thus steering) until the $L$ signal sees the new corridor and our
+robot is nose agains the North wall.
 
 At this point, we cannot differentiate between our current situation
 and having been turned around while going down a straightaway -- so we
@@ -275,9 +276,28 @@ robot.
 
 Why is path centering important?
 
+Although our robot's optimal position on the path is in the direct
+center and pointing down the long dimension of the track, the robot's
+lateral placement is not nearly as important during a race as the
+direction the robot is facing (and moving). This is because the
+
+For these reasons,
+
 * Sensors
 Which sensors should be used on the robot? Assuming your iicidental
 angle of reflection is a non-issue, comparing like sensor data reduces
 the need for calibration. Since only four of each kind of sensor may
 be used on our final robot, I suggest we make the rear-facing sensor
-the oddball since all we need from him is "far or near?"
+the odd-ball since all we need from him is "far or near?"
+
+** Rear sensor
+If the data from the rear sensor is:
+- short
+  This is only a problem if $L$ and $R$ are long in comparison to
+  front sensors. If $R$ and $L$ are part of the isosceles triangle
+  arrangemeny, we have just rounded a corner and should disregard
+  proximity alarms coming from the rear sensor
+  - which _f sensor is longer?
+    turn that way to avoid a turnaround
+- far
+  - everything is proceeding normally
