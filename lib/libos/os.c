@@ -1,5 +1,5 @@
 /* -*- mode: c; c-basic-offset: 4; -*- */
-/* Created by Hershal Bhave 2015-02-08 */
+/* Created by Hershal Bhave and Eric Crosson 2015-02-08 */
 /* Revision History: Look in Git FGT */
 
 #include "os.h"
@@ -509,10 +509,8 @@ tcb_t* edf_pop() {
     volatile sched_task_pool *pool = SCHEDULER_QUEUES;
 
     /* DL_EDF_DELETE(EDF_QUEUE, elt); */
-    /* TODO: CHECKME: should we use pri_next or pri_prev?? */
     EDF_QUEUE = EDF_QUEUE->pri_next;
 
-    /* KLUDGE: fix this for production */
     while (pool->queue != executing) {
         pool = pool->next;
     }
@@ -521,11 +519,9 @@ tcb_t* edf_pop() {
     executing->absolute_deadline = pool->deadline * SYSTICKS_PER_HZ;
 
     /* do the recycling, change the pool's head */
-    /* TODO: CHECKME: should we use next or prev?? */
     pool->queue = executing->next;
     edf_insert(pool->queue);
 
-    /* TODO: after use, put the command back in the appropriate pool */
     return executing->tcb;
 }
 
@@ -533,7 +529,6 @@ sched_task* edf_get_edf_queue() {
     return EDF_QUEUE;
 }
 
-/* TODO: implement the edf queue of queues */
 /*! \pre disable interrupts before we get here */
 void _os_choose_next_thread() {
 
