@@ -225,7 +225,7 @@ Assuming a robot is in position C, we should sense $R$ dropping in
 proportion to $R_f$, causing the robot to move to the left and
 successfully avoiding the obstacle.
 
-Assuming a robot is in position D, Our robot will not detect an
+Assuming a robot is in position D, our robot will not detect an
 approaching turn with as much clarity as without interference. This is
 to be expected, but it leads to a tricky situation: supposing the
 robot at D is moving in the same direction as our robot (North in the
