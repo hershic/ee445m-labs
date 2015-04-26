@@ -300,11 +300,11 @@ the odd-ball since all we need from him is "far or near?"
 
 ** Rear sensor
 If the data from the rear sensor is:
-- short
-  This is only a problem if $L$ and $R$ are long in comparison to
-  front sensors. If $R$ and $L$ are part of the isosceles triangle
-  arrangemeny, we have just rounded a corner and should disregard
-  proximity alarms coming from the rear sensor
+- short :: This is only a problem if $L$ and $R$ are long in
+           comparison to front sensors. If $R$ and $L$ are part of the
+           isosceles triangle arrangemeny, we have just rounded a
+           corner and should disregard proximity alarms coming from
+           the rear sensor
   - which _f sensor is longer?
     turn that way to avoid a turnaround
 - far
