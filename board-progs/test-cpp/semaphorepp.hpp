@@ -28,7 +28,7 @@ public:
     /*! Take the semaphore */
     void take(void);
 
-    /*! True if the semaphore is ready to take. */
+    /*! \Wait without the waiting -- take if ready, leave if not. */
     bool guard(void);
 
     /*! True if the semaphore is blocked. */
