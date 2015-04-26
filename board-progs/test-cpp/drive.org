@@ -12,6 +12,7 @@ appropriately.
 
 Consider a robot with the following sensors:
 
+#+BEGIN_SRC fundamental
                    -\                             /
                      -\                         -/
                        -\                     -/
@@ -24,6 +25,7 @@ Consider a robot with the following sensors:
                            |                |
                            |                |
                            |----------------|
+#+END_SRC
 
 
 The square is the frame of the robot, with the front pointing
