@@ -221,7 +221,9 @@ Assuming a robot is in position B, our robot behaves the same as it
 did with interference in position A: steering away from the
 interfering body.
 
-Assuming a robot is in position C,
+Assuming a robot is in position C, we should sense $R$ dropping in
+proportion to $R_f$, causing the robot to move to the left and
+successfully avoiding the obstacle.
 
 Assuming a robot is in position D, Our robot will not detect an
 approaching turn with as much clarity as without interference. This is
