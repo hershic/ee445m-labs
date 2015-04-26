@@ -255,9 +255,9 @@ Finally, a robot with the following sensor configuration
                       |                |
                       |                |
                       |-------+--------|
-			        |
-			        |
-			        |
+                              |
+                              |
+                              |
 #+END_SRC
 
 is able to
