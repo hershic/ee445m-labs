@@ -208,6 +208,7 @@ void motor_control(void) {
             motor_stop.take();
             drive0.stop();
         }
+        critical::restore_primask();
         os_surrender_context();
     }
 }

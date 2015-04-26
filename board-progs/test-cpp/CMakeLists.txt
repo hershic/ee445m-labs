@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 
 project(test-cpp)
-set(test-cpp-srcs ../startup_gcc_canonical.c blinker.cpp timerpp.cpp uartpp.cpp shellpp.cpp semaphorepp.cpp canpp.cpp adcpp.cpp motorpp.cpp drivepp.cpp ir.cpp test-cpp.cpp)
+set(test-cpp-srcs ../startup_gcc_canonical.c blinker.cpp timerpp.cpp uartpp.cpp shellpp.cpp semaphorepp.cpp canpp.cpp adcpp.cpp motorpp.cpp drivepp.cpp ir.cpp criticalpp.cpp test-cpp.cpp)
 
 include_directories(../../)
 include_directories(../../lib)

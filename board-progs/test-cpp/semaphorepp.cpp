@@ -2,6 +2,8 @@
 
 #include "libos/os.h"
 
+#include "criticalpp.hpp"
+
 semaphore::semaphore() {
 
     reset();
@@ -38,8 +40,13 @@ void semaphore::post() {
     EndCritical(status);
 }
 
+/*! \note after checking all guard's, ensure you call
+ *  \critical::restore_primask() to re-enable interrupts */
 bool semaphore::guard() {
 
+    if (!critical::primask_saved()) {
+        critical::save_primask();
+    }
     return value > 0;
 }
 
@@ -51,7 +58,6 @@ bool semaphore::blocked() {
 /*! \warning: you had better be guaranteed permission to take this */
 void semaphore::take() {
 
-    int32_t status = StartCritical();
     if(value <=0) {
         /* if you ever get caught here this means you need to remove
          * the critical section that exists between the method calls
@@ -59,5 +65,7 @@ void semaphore::take() {
         while(1) {}
     }
     value--;
-    EndCritical(status);
+    if (critical::primask_saved()) {
+        critical::restore_primask();
+    }
 }
