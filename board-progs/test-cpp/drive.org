@@ -1,7 +1,7 @@
 #+AUTHOR: Eric Crosson
 #+DATE: 2015.04.26
 #+TITLE: Steering alrogithm
-* Drive algorithm
+* Steering algorithm
 This paper will outline the steering algorithm implemented in our EE
 445M autonomous robot.
 
@@ -274,14 +274,22 @@ is able to
 This section will discuss path centering mechanics for our autonomous
 robot.
 
-Why is path centering important?
+Why is path centering important? How important is it really?
 
-Although our robot's optimal position on the path is in the direct
-center and pointing down the long dimension of the track, the robot's
-lateral placement is not nearly as important during a race as the
-direction the robot is facing (and moving). This is because the
+Our robot's optimal position on the path is in the direct center and
+pointing down the long dimension of the track, as this allows for our
+robot to take the mathematically shortest path possible: straight
+lines on the straight-a-ways and cutting towards the insides of
+corners. Our robot's lateral placement is not nearly as important
+during a race as the direction the robot is facing (and moving),
+because the steering algorithm works just as well when the robot is
+centered as it does when the robot closer to one wall or the other.
 
-For these reasons,
+For these reasons, we can consider a robot placed centrally down a
+straight-a-way as having an advantage over a robot off to the side,
+but only slightly. Thus, the effect of the path-centering algorithm on
+the desired course of the robot should not be able to overwhelm the
+more important course-navigation algorithm detailed above.
 
 * Sensors
 Which sensors should be used on the robot? Assuming your iicidental
