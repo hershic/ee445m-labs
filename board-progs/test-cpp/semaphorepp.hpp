@@ -31,10 +31,6 @@ public:
     /*! True if the semaphore is ready to take. */
     bool guard(void);
 
-    /*! Call this function when you are done checking your semaphore
-     *  guards. */
-    static void done_with_guards(void);
-
     /*! True if the semaphore is blocked. */
     bool blocked(void);
 

@@ -41,10 +41,9 @@ adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
     channel_count = 0;
 }
 
-void adc::configure_timer_interrupt(timer* t, bool adc_start) {
+void adc::configure_timer_interrupt(timer* t) {
 
     TimerControlTrigger(t->base, t->subtimer, true);
-    if(adc_start) { start(); }
 }
 
 void adc::configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer) {

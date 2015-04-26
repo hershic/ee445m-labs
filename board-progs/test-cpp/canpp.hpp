@@ -6,6 +6,8 @@
  * @{
  */
 
+#define DEFAULT_CAN_MSG_ID 1
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -55,7 +57,7 @@ public:
     void pack(uint8_t* dest, uint32_t data, uint8_t offset = 0);
 
     /*! Transmit a message via CAN. */
-    void transmit(uint8_t* data, uint32_t length, uint32_t id);
+    void transmit(uint8_t* data, uint32_t length, uint32_t id = DEFAULT_CAN_MSG_ID);
 
     /*! Set mailbox for received can message data. */
     void get(uint8_t *data);

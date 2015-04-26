@@ -210,6 +210,21 @@ exit_status_t shell::motor_stop(const char* args) {
     return EXIT_SUCCESS;
 }
 
+/*! You know how I know this shell sucks? You can't even do this,
+ *  because uart0 is a non-static context and this is a static
+ *  context. eff this implementation of system */
+/* exit_status_t shell::help_info(const char* args) { */
+
+/*     uart0->atomic_printf("Recognized commands:\n"); */
+/*     uart0->atomic_printf("help\n"); */
+/*     uart0->atomic_printf("doctor\n"); */
+/*     uart0->atomic_printf("witch\n"); */
+/*     uart0->atomic_printf("jester\n"); */
+/*     uart0->atomic_printf("start\n"); */
+/*     uart0->atomic_printf("stop\n"); */
+/*     return EXIT_SUCCESS; */
+/* } */
+
 exit_status_t shell::execute_command() {
 
     /* Null terminate to separate the cmd from the args */
@@ -224,18 +239,19 @@ exit_status_t shell::execute_command() {
     uart0->atomic_printf("\r\n");
 
     exit_status_t exit_code = (exit_status_t) 0xDEADBEEF;
+    const char* args = &buf.buf[idx+1];
     /* Waldo says this line requires the extra char to be a 0 */
     if(shell_command_is("doctor")) {
-        exit_code = doctor((const char*) &buf.buf[idx+1]);
+        exit_code = doctor(args);
     } else if(shell_command_is("witch")) {
-        exit_code = witch((const char*) &buf.buf[idx+1]);
+        exit_code = witch(args);
     } else if(shell_command_is("jester")) {
-        exit_code = jester((const char*) &buf.buf[idx+1]);
+        exit_code = jester(args);
         /* begin motor control commands */
     } else if(shell_command_is("start")) {
-        exit_code = motor_start((const char*) &buf.buf[idx+1]);
+        exit_code = motor_start(args);
     } else if(shell_command_is("stop")) {
-        exit_code = motor_stop((const char*) &buf.buf[idx+1]);
+        exit_code = motor_stop(args);
     } else {
         uart0->atomic_printf("%s is not a recognized command.\n\r", buf.buf);
     }

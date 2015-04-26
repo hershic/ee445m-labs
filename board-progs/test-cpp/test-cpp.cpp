@@ -162,14 +162,12 @@ void can_handler(void) {
 
     while(1) {
         if(can_recv_sem.guard()) {
-            can_recv_sem.take();
 
             can0.get(can_data);
             uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
                                 can_data[0], can_data[1], can_data[3], can_data[4],
                                 can_data[4], can_data[5], can_data[6], can_data[7]);
         }
-        semaphore::done_with_guards();
         os_surrender_context();
     }
 }
@@ -177,7 +175,7 @@ void can_handler(void) {
 void can_transmitter(void) {
 
     while(1) {
-        can0.transmit(can_data, can_data_length, can_msg_id);
+        can0.transmit(can_data, can_data_length);
         ++can_data[0];
         os_surrender_context();
     }
@@ -187,14 +185,12 @@ void shell_handler() {
 
     while(1) {
         if(UART0_RX_SEM.guard()) {
-            UART0_RX_SEM.take();
 
             bool ok;
             char recv = UART0_RX_BUFFER.get(ok);
 
             if(ok) { shell0.accept(recv); }
         }
-        semaphore::done_with_guards();
         os_surrender_context();
     }
 }
@@ -203,14 +199,11 @@ void motor_control(void) {
 
     while(1) {
         if(motor_start.guard()) {
-            motor_start.take();
             drive0.start();
         }
         if(motor_stop.guard()) {
-            motor_stop.take();
             drive0.stop();
         }
-        semaphore::done_with_guards();
         os_surrender_context();
     }
 }
@@ -238,7 +231,9 @@ int main(void) {
     adc0.configure_sequence(ADC_CTL_CH2); /* PE1 */
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
-    adc0.configure_timer_interrupt(&timer0a, true);
+    adc0.configure_timer_interrupt(&timer0a);
+    adc0.start();
+
 
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
@@ -266,7 +261,7 @@ int main(void) {
 
     os_threading_init();
     schedule(motor_control, 200);
-    schedule(thread_blink_red, 200);
+    /* schedule(thread_blink_red, 200); */
     schedule(thread_blink_blue, 200);
     schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);

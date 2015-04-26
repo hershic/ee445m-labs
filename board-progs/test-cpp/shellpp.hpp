@@ -42,6 +42,7 @@ private:
     /*! Return the length of a null-terminated string. */
     uint32_t strlen(const char*);
 
+    static exit_status_t help_info(const char* args);
     static exit_status_t doctor(const char* args);
     static exit_status_t witch(const char* args);
     static exit_status_t jester(const char* args);
