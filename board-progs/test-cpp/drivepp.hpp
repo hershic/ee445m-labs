@@ -12,6 +12,10 @@
  * -3.0950797e-12.  */
 #define SQRT_2 (1855077841/1311738121)
 
+/* This is implemented as a #define for accuracy -- no loss of
+ * precision during the sandwiching into a return value */
+#define delta(d, df) (d*SQRT_2/df)
+
 /*! \addtogroup Drive
  * @{
  */
@@ -29,10 +33,10 @@ public:
     drive(motor* left, motor* right, percent_t speed = 0,
           Direction direction = FORWARD);
 
-    /*! Move forward at some percent_t of full-speed. */
+    /*! Move forward at some percent of full-speed. */
     void forward(percent_t speed);
 
-    /*! Move backward at some percent_t of full-speed. */
+    /*! Move backward at some percent of full-speed. */
     void backward(percent_t speed);
 
     /*! Set motor vectors */
