@@ -7,6 +7,11 @@
 #include "motorpp.hpp"
 #include "direction.hpp"
 
+/* As much precision as we can get with uint32_t's. With these two
+ * 31-bit numbers, the difference between sqrt(2) and SQRT_2 is
+ * -3.0950797e-12.  */
+#define SQRT_2 (1855077841/1311738121)
+
 /*! \addtogroup Drive
  * @{
  */
@@ -39,8 +44,9 @@ public:
     /*! Re-enable all previoulsy stopped motors */
     void start(void);
 
-    /*! Feed the autonomous driver. */
-    void steer(uint32_t lfol, uint32_t rfor);
+    /*! Feed the autonomous driver sensor inputs. */
+    void steer(uint32_t left_sens, uint32_t left_front_sens,
+               uint32_t right_sens, uint32_t right_front_sens);
 };
 
 #endif
