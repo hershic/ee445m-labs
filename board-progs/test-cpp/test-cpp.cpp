@@ -234,13 +234,11 @@ int main(void) {
     adc0.configure_timer_interrupt(&timer0a);
     adc0.start();
 
-
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
     ir2 = ir(2, &adc0);
     ir3 = ir(3, &adc0);
 
-    UART0_RX_SEM = semaphore();
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
     uart0 = uart(UART0_BASE, INT_UART0);

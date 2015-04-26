@@ -26,6 +26,7 @@ public:
     buffer(semaphore* sem) {
 
         this->sem = sem;
+        *(this->sem) = semaphore();
         init();
     }
 
