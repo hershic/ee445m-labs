@@ -233,7 +233,6 @@ int main(void) {
 
     adc0.configure_timer_interrupt(&timer0a);
     adc0.start();
-
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
     ir2 = ir(2, &adc0);
