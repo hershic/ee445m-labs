@@ -35,9 +35,10 @@ public:
     }
 
     /*! Restore saved primask. */
-    static void restore_primask(void) {
+    static void restore_primask(bool noerror = false) {
 
         if(!critical::valid_primask) {
+            if (noerror) { return; }
             while(1) {}         /* fix yo code, this should never be called */
         }
         critical::valid_primask = false;

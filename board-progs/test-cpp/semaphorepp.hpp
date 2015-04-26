@@ -31,6 +31,10 @@ public:
     /*! True if the semaphore is ready to take. */
     bool guard(void);
 
+    /*! Call this function when you are done checking your semaphore
+     *  guards. */
+    static void done_with_guards(void);
+
     /*! True if the semaphore is blocked. */
     bool blocked(void);
 
@@ -43,3 +47,7 @@ public:
 /* End Doxygen group
     * @}
      */
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

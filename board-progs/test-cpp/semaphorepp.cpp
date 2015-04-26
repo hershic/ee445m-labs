@@ -41,13 +41,18 @@ void semaphore::post() {
 }
 
 /*! \note after checking all guard's, ensure you call
- *  \critical::restore_primask() to re-enable interrupts */
+ *  \semaphore::done_with_guards() to re-enable interrupts */
 bool semaphore::guard() {
 
     if (!critical::primask_saved()) {
         critical::save_primask();
     }
     return value > 0;
+}
+
+void semaphore::done_with_guards() {
+
+    critical::restore_primask(true);
 }
 
 bool semaphore::blocked() {
@@ -69,3 +74,7 @@ void semaphore::take() {
         critical::restore_primask();
     }
 }
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

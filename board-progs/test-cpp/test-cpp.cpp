@@ -169,6 +169,7 @@ void can_handler(void) {
                                 can_data[0], can_data[1], can_data[3], can_data[4],
                                 can_data[4], can_data[5], can_data[6], can_data[7]);
         }
+        semaphore::done_with_guards();
         os_surrender_context();
     }
 }
@@ -193,6 +194,7 @@ void shell_handler() {
 
             if(ok) { shell0.accept(recv); }
         }
+        semaphore::done_with_guards();
         os_surrender_context();
     }
 }
@@ -208,7 +210,7 @@ void motor_control(void) {
             motor_stop.take();
             drive0.stop();
         }
-        critical::restore_primask();
+        semaphore::done_with_guards();
         os_surrender_context();
     }
 }
