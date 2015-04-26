@@ -1,0 +1,271 @@
+#+AUTHOR: Eric Crosson
+#+DATE: 2015.04.26
+#+TITLE: Steering alrogithm
+* Drive algorithm
+This paper will outline the steering algorithm implemented in our EE
+445M autonomous robot.
+
+Many famous algorithms seem nearly trivial when applied to the
+appropriate data format. Analogously, this steering algorithm is
+simple to implement when sensors are positioned on the robot
+appropriately.
+
+Consider a robot with the following sensors:
+
+                   -\                             /
+                     -\                         -/
+                       -\                     -/
+                         -\                 -/
+                           +-\-------------/|
+                           |  -\         -/ |
+                           |    -\     -/   |
+                           |      -\ -/     |
+            ---------------+----------------+----------------
+                           |                |
+                           |                |
+                           |----------------|
+
+
+The square is the frame of the robot, with the front pointing
+North. The lines extruding from the robot are the angles of sensors:
+either IR or Ping will suffice.
+
+If a robot with sensors positioned just so were to be placed optimally
+on the track, we would see the following geometry:
+
+
+                    |                                           |
+                    |                                           |
+                    +                                          /+
+                    |\-                                      /- |
+                    |  \-                                  /-   |
+                    |    \-   x*sqrt(2)       y*sqrt(2)  /-     |
+                    |      \-                          /-       |
+                    |        \--                     /-         |
+                    |           \-                 /-           |  y
+                 x  |             \-             /-             |
+                    |               \-         /-               |
+                    |                -\------/--                |
+                    |                |  \- /-  |                |
+                    | ---------------+---------+----------------|
+                    |       x        |         |        y       |
+                    |                -----------                |
+                    |                                           |
+                    |                                           |
+                    |                                           |
+                    |                                           |
+
+
+with $y$ being equal to $x$. A very common subset of this placement is
+where $x$ and $y$ are not equal but are both members of the above
+isosceles triangles. We will continue to focus on the instance where
+$x$ and $y$ are equal for now.
+
+When the above geometry is realized, indicating no turns are in sight,
+the ideal response from the robot is full speed ahead. Now let us see
+how our robot will sense a 90 degree angle in the track:
+
+
+
+    ------------------------------------------------------------+
+                                 				|
+        							|
+\         						        |
+ -\        						        |
+   -\       						        |
+     -\      						        |
+       -\      						        |
+	 -\      					        |
+	   -\     					        |
+	     -\    						|
+               -\                                               |
+                 -\                                             |
+                   -\                                          /+
+      --------------+\-                                      /- |
+                    |  \-                                  /-   |
+                    |    \-  >> x*sqrt(2)     y*sqrt(2)  /-     |
+                    |      \-                          /-       |
+                    |        \--                     /-         |
+                    |           \-                 /-           |  y
+                 x  |             \-             /-             |
+                    |               \-         /-               |
+                    |                -\------/--                |
+                    |                |  \- /-  |                |
+                    | ---------------+---------+----------------|
+                    |       x        |         |        y       |
+                    |                -----------                |
+                    |                                           |
+                    |                                           |
+                    |                                           |
+                    |                                           |
+
+
+In this case we see the left front sensor is registering a much larger
+value than the $x\sqrt(2)$ as before. The ideal response from the
+robot in this case is to lower the ratio of left:right motor output.
+
+From this information, we can identify an emerging trend: the ratio of
+distance picked up by the front sensor to the side sensor corresponds
+to the motor output intensity on the same side of the robot. In
+symbols,
+
+\begin{align}
+\delta_R &= \frac{R\sqrt(2)}{R_f} \\
+\text{motor output} &= \frac{\gamma\cdot{}\delta_R}{100}
+\end{align}
+
+where $gamma$ is some percent of the motors total possible
+output. Choosing gamma less than 100 allows the wheel on the outside
+of the turn to speed up as the inside wheel slows down.
+
+This algorithm can thus move from an initial position pointing down a
+corridown to the first turn, and mount the turn. As the robot comes
+into the new hallway it will be ready to repeat the last sentence.
+
+How does this algorithm hold up in preventing unfortunate
+possibilities from occuring? Two highly likely possibilities on the
+race track are getting turned around and dealing with sensor
+interference from other robots on the track. We will examine each
+possibility in turn.
+
+If the robot approaches perpendicular to the desired path down the
+hallway, like so
+					   /
+	      |		|		  /    |
+	      |		\ R_f		 /     |
+	      |		 |	        /      |
+	      |		 \ 	       /       |
+	      |		  |	      /        |
+	      |		  \ 	     / 	R      |
+	      |		   |	    / 	       |
+	      |		   \-	   / 	       |
+	      |		  | |\--- / 	       |
+	      |		  / \    X--	       |
+	      |		 |   |  /   \-/	       |
+	      |		 /   \ /     /	       |
+	      |		|  ----      |	       |
+	      |	   -------/  / 	    /	       |
+	      |---/    --\  /  	   /	       |
+	      |   	  -/---\   |	       |
+	      |	L_f	  /     ---	       |
+	      |		 /   	  	       |
+	      |		/  		       |
+	      |	       / L 		       |
+	      |	      / 		       |
+	      |	     / 			       |
+
+we should see $R_f$ slightly greater than $R$, and $L >> L_f$. This
+imbalance of $L$ to $L_f$ will increase the motor output on the left
+side of the robot (assuming $gamma < 100$) and accelerate back towards
+the optimal position in the hallway. Note that the ability of the
+robot to correct path-reversals depends on the amount that motor on the side
+pointing closest to backwards (in this example, let) can be driven
+over $gamma$. That is to say, choosing a $gamma$ too close to your top
+speed will hinder your robot's ability to avoid getting turned around.
+
+The event of other robots interfering with sensor data can take many
+forms. We will suppose robots are interfering with our sensors during
+the most critical time for our robot -- when sensor values are
+changing the most rapidly, the likelihood of a turnaround is highest,
+and when our robot needs to change direction instead of maintaining
+current course -- during turns. Each case below will be inspected
+individually:
+
+
+    ------------------------------------------------------------+
+                                 				|
+        							|
+\         						  B     |
+ -\        						        |
+   -\       						        |
+     -\      						        |
+       D     						        |
+	 -\      					        |
+	   -\     					        |
+	     -\    						|
+               -\                                               |
+                 -\                                             |
+                   -\                                          /+
+      --------------+\-                                      /- |
+                    |  \-                                  /-   |
+                    |    \-  >> x*sqrt(2)     y*sqrt(2)  /-     |
+                    |      A                           /-       |
+                    |        \--                     /-         |
+                    |           \-                 /-           |  y
+                 x  |             \-             /-             |
+                    |               \-         /-               |
+                    |                -\------/--        C       |
+                    |                |  \- /-  |                |
+                    | ---------------+---------+----------------|
+                    |       x        |         |        y       |
+                    |                -----------                |
+                    |                                           |
+                    |                                           |
+                    |                                           |
+                    |                                           |
+
+Assuming a robot is in position A, $L_f$ drops in porportion to
+$L$. This manifests in our algorithm as decreased motor output on the
+left side, aka movement and steering towards the right. This has the
+effect of moving around the interfering body instead of plotting a
+course towards it, an advantage by all counts.
+
+Assuming a robot is in position B, our robot behaves the same as it
+did with interference in position A: steering away from the
+interfering body.
+
+Assuming a robot is in position C,
+
+Assuming a robot is in position D, Our robot will not detect an
+approaching turn with as much clarity as without interference. This is
+to be expected, but it leads to a tricky situation: supposing the
+robot at D is moving in the same direction as our robot (North in the
+diagram) and continues to block from our sensors the extra space
+created by the left turn of the track. In this case our robot may not
+register drastic changes in sensor data (and thus sterring) until the
+$L$ signal sees the new corridor.
+
+At this point, we cannot differentiate between our current situation
+and having been turned around while going down a straightaway -- so we
+add a sensor pointing directly behind our robot. If all sensors are
+detecting obstacles except $L$ and the rear sensor, we know we have
+gone forward so far that we have hit the wall and missed our turn. We
+can differentiate this case from being turned around on a straightaway
+because during the turnaround our rear sensor will be reading a small
+distance as both the front and rear of our robot will be facing the
+side walls of the track.
+
+Finally, a robot with the following sensor configuration
+
+              -\                             /
+                -\                         -/
+                  -\                     -/
+                    -\                 -/
+                      +-\-------------/|
+                      |  -\         -/ |
+                      |    -\     -/   |
+                      |      -\ -/     |
+       ---------------+----------------+----------------
+                      |                |
+                      |                |
+                      |-------+--------|
+			        |
+			        |
+			        |
+
+is able to
+- navigate through turns,
+- prevent getting turned around 180 degrees, and
+- navigate around obstacles, dynamic and static
+* Path centering algorithm
+This section will discuss path centering mechanics for our autonomous
+robot.
+
+Why is path centering important?
+
+* Sensors
+Which sensors should be used on the robot? Assuming your inicidental
+angle of reflection is a non-issue, comparing like sensor data reduces
+the need for calibration. Since only four of each kind of sensor may
+be used on our final robot, I suggest we make the rear-facing sensor
+the oddball since all we need from him is "far or near?"
