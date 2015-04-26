@@ -307,5 +307,4 @@ If the data from the rear sensor is:
            the rear sensor
   - which _f sensor is longer?
     turn that way to avoid a turnaround
-- far
-  - everything is proceeding normally
+- far :: everything is proceeding normally
