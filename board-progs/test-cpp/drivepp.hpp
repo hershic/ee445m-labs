@@ -50,7 +50,8 @@ public:
 
     /*! Feed the autonomous driver sensor inputs. */
     void steer(uint32_t left_sens, uint32_t left_front_sens,
-               uint32_t right_sens, uint32_t right_front_sens);
+               uint32_t right_sens, uint32_t right_front_sens,
+               uint32_t back_sens);
 };
 
 #endif

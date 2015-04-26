@@ -43,6 +43,12 @@ shell shell0;
 adc adc0;
 ir ir0, ir1, ir2, ir3;
 
+uint32_t sens_ir_left;
+uint32_t sens_ir_left_front;
+uint32_t sens_ir_right;
+uint32_t sens_ir_right_front;
+uint32_t back;
+
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
 drive drive0;
@@ -215,6 +221,16 @@ void can_prepare_dummy_data(void) {
     }
 }
 
+void driver(void) {
+
+    while(1) {
+        /* todo: populate these uint32_t's with sensor data */
+        drive0.steer(sens_ir_left, sens_ir_left_front,
+                     sens_ir_right, sens_ir_right_front, back);
+        os_surrender_context();
+    }
+}
+
 int main(void) {
 
     ctlsys::set_clock();
@@ -262,6 +278,7 @@ int main(void) {
     schedule(thread_blink_blue, 200);
     schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);
+    schedule(driver, 200);
     if(can_sender) {
         schedule(can_transmitter, 200);
     } else {

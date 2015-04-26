@@ -43,7 +43,8 @@ void drive::set(percent_t speed, Direction dir) {
 }
 
 void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
-                  uint32_t right_sens, uint32_t right_front_sens) {
+                  uint32_t right_sens, uint32_t right_front_sens,
+                  uint32_t back_sens) {
 
     /* todo: feed the lf/f, rf/r data here for porportional control of
      * the motors. the side with the larger coefficient slows more */
@@ -53,6 +54,10 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     percent_t left_speed = delta(left_sens, left_front_sens);
     percent_t right_speed = delta(right_sens, right_front_sens);
+
+    /* todo: utilize \back_sens */
+
+    /* optional: path-centering algorithm */
 
     left->set(race_speed*left_speed/100, dir);
     right->set(race_speed*right_speed/100, dir);

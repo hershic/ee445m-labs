@@ -291,6 +291,10 @@ but only slightly. Thus, the effect of the path-centering algorithm on
 the desired course of the robot should not be able to overwhelm the
 more important course-navigation algorithm detailed above.
 
+-- best idea thus far: compare the left and right final steering
+signals. if they are within some threashold, allow the path-centering
+algorithm to do its thing
+
 * Sensors
 Which sensors should be used on the robot? Assuming your iicidental
 angle of reflection is a non-issue, comparing like sensor data reduces
