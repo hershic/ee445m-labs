@@ -4,16 +4,13 @@
 
 #include "adcpp.hpp"
 #include "blinker.hpp"
-#include "timerpp.hpp"
 #include "uartpp.hpp"
 #include "shellpp.hpp"
 #include "semaphorepp.hpp"
 #include "motorpp.hpp"
-#include "ir.hpp"
 #include "drivepp.hpp"
 #include "canpp.hpp"
 #include "ctlsysctl.hpp"
-#include "pingpp.hpp"
 
 #include "libos/os.h"
 #include "libschedule/schedule.h"
@@ -38,19 +35,14 @@
     } while(true)
 
 blinker blink;
-timer timer0a;
 uart uart0;
 shell shell0;
-adc adc0;
-ir ir0, ir1, ir2, ir3;
-ping ping0;
-bool ping_sent = false;
 
 uint32_t sens_ir_left;
 uint32_t sens_ir_left_front;
 uint32_t sens_ir_right;
 uint32_t sens_ir_right_front;
-uint32_t back;
+uint32_t sens_ping_back;
 
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
@@ -71,27 +63,37 @@ uint32_t blink_count_red = 0;
 uint32_t blink_count_green = 0;
 uint32_t blink_count_blue = 0;
 
+semaphore sem_blink_red;
+semaphore sem_blink_blue;
+semaphore sem_blink_green;
+
 void thread_blink_red() {
 
     thread (
+        if (sem_blink_red.guard()) {
             blink.toggle(PIN_RED);
             ++blink_count_red;
+        }
         );
 }
 
 void thread_blink_blue() {
 
     thread (
+        if (sem_blink_blue.guard()) {
             blink.toggle(PIN_BLUE);
             ++blink_count_blue;
+        }
         );
 }
 
 void thread_blink_green() {
 
     thread (
+        if (sem_blink_green.guard()) {
             blink.toggle(PIN_GREEN);
             ++blink_count_green;
+        }
         );
 }
 
@@ -104,10 +106,6 @@ void thread_uart_update() {
 }
 
 extern "C" void __cxa_pure_virtual() { while (1) {} }
-
-extern "C" void Timer0A_Handler() {
-    timer0a.ack();
-}
 
 extern "C" void UART0_Handler(void) {
 
@@ -140,19 +138,6 @@ extern "C" void UART0_Handler(void) {
     }
 }
 
-extern "C" void ADC0Seq0_Handler(void) {
-
-    adc0.ack();
-    adc0.sample();
-
-    ir0.sample();
-    ir1.sample();
-    ir2.sample();
-    ir3.sample();
-
-    blink.toggle(PIN_RED);
-}
-
 extern "C" void CAN0_Handler(void) {
 
     uint32_t message_id = can0.ack();
@@ -167,42 +152,27 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
-/* Record how long the Ping))) took to respond */
-extern "C"
-int GPIOPortB_Handler() {
-
-    GPIOIntClear(ping0.base, ping0.pin);
-
-    switch(ping_sent) {
-    case false:
-        ping0.start();
-        break;
-    case true:
-        ping0.stop();
-        break;
-    }
-    ping_sent = !ping_sent;
-}
-
 void can_handler(void) {
 
     while(1) {
         if(can_recv_sem.guard()) {
 
+            sem_blink_blue.post();
             can0.get(can_data);
+            sens_ir_left = can_data[0];
+            sens_ir_left_front = can_data[1];
+            sens_ir_right = can_data[2];
+            sens_ir_right_front = can_data[3];
+            sens_ping_back = can_data[4];
+            /* sens_ir_left = can_data[5]; */
+            /* sens_ir_left = can_data[6]; */
+            /* sens_ir_left = can_data[7]; */
+            /* sens_ir_left = can_data[8]; */
+            /* sens_ir_left = can_data[9]; */
             uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
                                 can_data[0], can_data[1], can_data[3], can_data[4],
                                 can_data[4], can_data[5], can_data[6], can_data[7]);
         }
-        os_surrender_context();
-    }
-}
-
-void can_transmitter(void) {
-
-    while(1) {
-        can0.transmit(can_data, can_data_length);
-        ++can_data[0];
         os_surrender_context();
     }
 }
@@ -234,20 +204,12 @@ void motor_control(void) {
     }
 }
 
-void can_prepare_dummy_data(void) {
-
-    for(uint8_t i=0; i<can_data_length; ++i) {
-        can_data[i] = i;
-    }
-}
-
 void driver(void) {
 
     while(1) {
         /* todo: populate these uint32_t's with sensor data */
-
         drive0.steer(sens_ir_left, sens_ir_left_front,
-                     sens_ir_right, sens_ir_right_front, back);
+                     sens_ir_right, sens_ir_right_front, sens_ping_back);
         os_surrender_context();
     }
 }
@@ -259,35 +221,16 @@ int main(void) {
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2,
-                    TIMER_TIMA_TIMEOUT, true);
-
-    /* resume: create timer for ping sensor */
-    /* timer1a = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, S); */
-
-    adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
-    adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
-    adc0.configure_sequence(ADC_CTL_CH1); /* PE2 */
-    adc0.configure_sequence(ADC_CTL_CH2); /* PE1 */
-    adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
-
-    adc0.configure_timer_interrupt(&timer0a);
-    adc0.start();
-    ir0 = ir(0, &adc0);
-    ir1 = ir(1, &adc0);
-    ir2 = ir(2, &adc0);
-    ir3 = ir(3, &adc0);
+    sem_blink_red = semaphore();
+    sem_blink_green = semaphore();
+    sem_blink_blue = semaphore();
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
     uart0 = uart(UART0_BASE, INT_UART0);
 
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
-    if(can_sender) {
-        can_prepare_dummy_data();
-    } else {
-        can_recv_sem = semaphore();
-    }
+    can_recv_sem = semaphore();
 
     motor_start = semaphore();
     motor_stop = semaphore();
@@ -298,16 +241,13 @@ int main(void) {
 
     os_threading_init();
     schedule(motor_control, 200);
-    /* schedule(thread_blink_red, 200); */
+    schedule(thread_blink_red, 200);
     schedule(thread_blink_blue, 200);
     schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);
-    /* schedule(driver, 200); */
-    if(can_sender) {
-        schedule(can_transmitter, 200);
-    } else {
-        schedule(can_handler, 200);
-    }
+    schedule(thread_uart_update, 200);
+    schedule(driver, 200);
+    schedule(can_handler, 200);
     os_launch();
 }
 
