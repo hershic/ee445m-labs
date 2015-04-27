@@ -196,6 +196,9 @@ int sample_ping(void) {
             counter_delay(200, counter);
 
             GPIOIntClear(GPIO_PORTB_BASE, GPIO_PIN_0);
+            /* todo: pretty sure the below line should read
+             * GPIO_INT_PIN_0, but I'm not going to change it, just
+             * ponder... */
             GPIOIntEnable(GPIO_PORTB_BASE, GPIO_PIN_0);
             IntEnable(INT_GPIOB_TM4C123);
             IntEnable(INT_GPIOB);
