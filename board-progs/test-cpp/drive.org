@@ -1,6 +1,6 @@
 #+AUTHOR: Eric Crosson
 #+DATE: 2015.04.26
-#+TITLE: Steering alrogithm
+#+TITLE: Steering algorithm
 * Steering algorithm
 This paper will outline the steering algorithm implemented in our EE
 445M autonomous robot.
