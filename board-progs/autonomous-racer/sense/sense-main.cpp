@@ -50,13 +50,19 @@ uint32_t sens_ir_left;
 uint32_t sens_ir_left_front;
 uint32_t sens_ir_right;
 uint32_t sens_ir_right_front;
-uint32_t back;
+uint32_t sens_ping_back;
+
+uint8_t* ir_left_ptr;
+uint8_t* ir_left_front_ptr;
+uint8_t* ir_right_ptr;
+uint8_t* ir_right_front_ptr;
+uint8_t* ping_back_ptr;
 
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
 drive drive0;
 
-#define can_data_length 8
+#define can_data_length 5*2
 const uint32_t can_msg_id = 1;
 const bool can_sender = false;
 can can0;
@@ -200,9 +206,35 @@ void can_handler(void) {
 
 void can_transmitter(void) {
 
+    ir_left_ptr = (uint8_t*)(&sens_ir_left);
+    ir_left_front_ptr = (uint8_t*)(&sens_ir_left_front);
+    ir_right_ptr = (uint8_t*)(&sens_ir_right);
+    ir_right_front_ptr = (uint8_t*)(&sens_ir_right_front);
+
     while(1) {
+
+        sens_ir_left = ir0.buf.peek();
+        sens_ir_left_front = ir1.buf.peek();
+        sens_ir_right = ir2.buf.peek();
+        sens_ir_right_front = ir3.buf.peek();
+
+        can_data[0] = ir_left_ptr[0];
+        can_data[1] = ir_left_ptr[1];
+
+        can_data[2] = ir_left_front_ptr[0];
+        can_data[3] = ir_left_front_ptr[1];
+
+        can_data[4] = ir_right_ptr[0];
+        can_data[5] = ir_right_ptr[1];
+
+        can_data[6] = ir_right_front_ptr[0];
+        can_data[7] = ir_right_front_ptr[1];
+
+        /* TODO: Populate */
+        can_data[8] = 0;              /* sens_ping_back  */
+        can_data[9] = 0;              /* sens_ping_back  */
+
         can0.transmit(can_data, can_data_length);
-        ++can_data[0];
         os_surrender_context();
     }
 }
@@ -247,7 +279,7 @@ void driver(void) {
         /* todo: populate these uint32_t's with sensor data */
 
         drive0.steer(sens_ir_left, sens_ir_left_front,
-                     sens_ir_right, sens_ir_right_front, back);
+                     sens_ir_right, sens_ir_right_front, sens_ping_back);
         os_surrender_context();
     }
 }
@@ -259,7 +291,7 @@ int main(void) {
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2,
+    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 10,
                     TIMER_TIMA_TIMEOUT, true);
 
     /* resume: create timer for ping sensor */
