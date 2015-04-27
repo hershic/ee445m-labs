@@ -1,0 +1,26 @@
+<html>
+   <head>
+      <title>Robot Simulator</title>
+      <style>
+      body { background:#333333; }
+      #header { background:#212121; font-family:'Arial'; color:#FFF; }
+      </style>
+   </head>
+   <body>
+   <div id="header">
+      <label for="sim_select">Simulation:</label>
+      <select id="sim_select">
+        <option value="initial.js">Initial (Noah)</option>
+        <option value="fuzzy.js">Fuzzy (Chris)</option>
+        <option value="history.js">PID (Nick)</option>
+      </select>
+      <button onclick="loadSimulation()">Start</button>
+    </div>
+    <div>
+      <canvas id="canvas" width="1000" height="700" style="background-color:#333333;" ></canvas>
+    </div>
+   </body>
+   <script type="text/javascript" src="Box2dWeb-2.1.a.3.js"></script>
+   <script type="text/javascript" src="sensors.js"></script>	   
+   <script type="text/javascript" src="sim.js"></script>	
+</html>
