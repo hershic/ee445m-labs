@@ -111,7 +111,7 @@ void can::pack(uint8_t* dest, uint32_t data, uint8_t offset) {
     uint8_t i;
     for(i=0; i<sizeof(data); ++i) {
         /* todo: perfect the endian-swap */
-        *(dest+offset) = (uint8_t) (data && (0xFF << (i*4)));
+        *(dest+offset) = (uint8_t) (data & (0xFF << (i*4)));
     }
 }
 
