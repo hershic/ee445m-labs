@@ -64,7 +64,7 @@ drive drive0;
 
 #define can_data_length 5*2
 const uint32_t can_msg_id = 1;
-const bool can_sender = false;
+const bool can_sender = true;
 can can0;
 semaphore can_recv_sem;
 uint8_t can_data[can_data_length];
