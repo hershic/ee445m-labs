@@ -11,6 +11,7 @@
 #include "inc/hw_memmap.h"
 
 #include "driverlib/sysctl.h"
+#include "driverlib/gpio.h"
 
 #include "criticalpp.hpp"
 
@@ -37,6 +38,36 @@ public:
         }
         uint32_t ui32Status = static_StartCritical();
         SysCtlPeripheralEnable(periph_base);
+        static_EndCritical(ui32Status);
+    }
+
+    static uint32_t gpio_pin_to_int(uint32_t pin) {
+        switch(pin) {
+        case GPIO_PIN_0: return GPIO_INT_PIN_0;
+        case GPIO_PIN_1: return GPIO_INT_PIN_1;
+        case GPIO_PIN_2: return GPIO_INT_PIN_2;
+        case GPIO_PIN_3: return GPIO_INT_PIN_3;
+        case GPIO_PIN_4: return GPIO_INT_PIN_4;
+        case GPIO_PIN_5: return GPIO_INT_PIN_5;
+        case GPIO_PIN_6: return GPIO_INT_PIN_6;
+        case GPIO_PIN_7: return GPIO_INT_PIN_7;
+        default: while(1) {}
+        }
+    }
+
+    static void gpio_int_disable(uint32_t base, uint32_t pin) {
+
+        uint32_t interrupt = gpio_pin_to_int(pin);
+        uint32_t ui32Status = static_StartCritical();
+        GPIOIntDisable(base, interrupt);
+        static_EndCritical(ui32Status);
+    }
+
+    static void gpio_int_enable(uint32_t base, uint32_t pin) {
+
+        uint32_t interrupt = gpio_pin_to_int(pin);
+        uint32_t ui32Status = static_StartCritical();
+        GPIOIntEnable(base, interrupt);
         static_EndCritical(ui32Status);
     }
 

@@ -13,6 +13,7 @@
 #include "drivepp.hpp"
 #include "canpp.hpp"
 #include "ctlsysctl.hpp"
+#include "pingpp.hpp"
 
 #include "libos/os.h"
 #include "libschedule/schedule.h"
@@ -42,6 +43,8 @@ uart uart0;
 shell shell0;
 adc adc0;
 ir ir0, ir1, ir2, ir3;
+ping ping0;
+bool ping_sent = false;
 
 uint32_t sens_ir_left;
 uint32_t sens_ir_left_front;
@@ -164,6 +167,23 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
+/* Record how long the Ping))) took to respond */
+extern "C"
+int GPIOPortB_Handler() {
+
+    GPIOIntClear(ping0.base, ping0.pin);
+
+    switch(ping_sent) {
+    case false:
+        ping0.start();
+        break;
+    case true:
+        ping0.stop();
+        break;
+    }
+    ping_sent = !ping_sent;
+}
+
 void can_handler(void) {
 
     while(1) {
@@ -239,7 +259,7 @@ int main(void) {
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
     timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2,
-                    TIMER_TIMA_TIMEOUT/*, true */); /* uncomment the true to start timer */
+                    TIMER_TIMA_TIMEOUT, true);
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
     adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
