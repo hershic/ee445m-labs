@@ -47,7 +47,6 @@ void ping::sample() {
      * interrupt en/disabling are not necessary. */
     GPIOIntClear(base, pin);
     ctlsys::gpio_int_enable(base, pin);
-    GPIOIntEnable(base, pin);
     IntEnable(INT_GPIOB_TM4C123);
     IntEnable(INT_GPIOB);
 
