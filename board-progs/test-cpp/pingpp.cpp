@@ -1,5 +1,6 @@
 #include "pingpp.hpp"
 
+#include "delay.hpp"
 #include "ctlsysctl.hpp"
 
 #include "driverlib/interrupt.c"
@@ -16,15 +17,12 @@ ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem
     ctlsys::enable_periph(base);
 }
 
-#define counter_delay(time, counter)                    \
-    while(counter < time){counter++;}
-
 /*! \warning this device should not be sampled more than once every
  *  200 micro-seconds */
 void ping::sample() {
 
     uint32_t status = StartCritical();
-    uint32_t counter = 0;
+    Delay d;
 
     /* Set Ping))) SIG to output */
     ctlsys::gpio_int_disable(base, pin);
@@ -34,8 +32,7 @@ void ping::sample() {
 
     /* Set SIG high for 5usec */
     GPIOPinWrite(base, pin, 1);
-    /* Delay1us(5); */
-    counter_delay(4, counter);
+    d = Delay(4);
 
     GPIOPinWrite(base, pin, 0);
 
@@ -43,8 +40,11 @@ void ping::sample() {
     GPIOPinTypeGPIOInput(base, pin);
     GPIOIntTypeSet(base, pin, GPIO_BOTH_EDGES);
 
-    counter_delay(200, counter);
+    d = Delay(200);
 
+    /* FIXME: bug in second param to the below function call. how does
+     * this even work? I have a feeling many of these calls to
+     * interrupt en/disabling are not necessary. */
     GPIOIntClear(base, pin);
     ctlsys::gpio_int_enable(base, pin);
     GPIOIntEnable(base, pin);
@@ -56,24 +56,28 @@ void ping::sample() {
 /* resume: finish hooking this above function up, the receiving ISR,
  * internal data structures, etc */
 
-/* todo: implement */
+/* todo: first pass ping() constructor a timer so this can use a timer
+ * for distance measurements without colliding with another in-use
+ * timer */
+/* resume:: implement these virtual functions */
 void ping::start() {
 
-
+    /* TODO: place here the if clause from the GPIOPortB_Handler from
+     * test-can.c */
 }
 
-/* resume:: implement these virtual functions */
 
-/* todo: implement */
 void ping::stop() {
 
-
+    /* TODO: place here the if clause from the GPIOPortB_Handler from
+     * test-can.c */
 }
 
-/* todo: implement */
 uint32_t ping::ack() {
 
 
+    /* TODO: place here the if clause from the GPIOPortB_Handler from
+     * test-can.c */
 }
 
 /* Local Variables: */
