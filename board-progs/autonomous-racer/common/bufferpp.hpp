@@ -65,7 +65,11 @@ public:
 
     T peek() {
 
-        return buf[pos];
+        if (pos == 0) {
+            return buf[len-1];
+        } else {
+            return buf[pos-1];
+        }
     }
 
     /*! warning: returns 0 if no more Ts in buffer */
