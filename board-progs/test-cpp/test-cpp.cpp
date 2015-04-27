@@ -261,6 +261,9 @@ int main(void) {
     timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 2,
                     TIMER_TIMA_TIMEOUT, true);
 
+    /* resume: create timer for ping sensor */
+    /* timer1a = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, S); */
+
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
     adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
     adc0.configure_sequence(ADC_CTL_CH1); /* PE2 */
