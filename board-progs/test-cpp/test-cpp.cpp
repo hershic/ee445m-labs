@@ -301,7 +301,7 @@ int main(void) {
     schedule(thread_blink_blue, 200);
     schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);
-    schedule(driver, 200);
+    /* schedule(driver, 200); */
     if(can_sender) {
         schedule(can_transmitter, 200);
     } else {
