@@ -245,6 +245,7 @@ void driver(void) {
 
     while(1) {
         /* todo: populate these uint32_t's with sensor data */
+
         drive0.steer(sens_ir_left, sens_ir_left_front,
                      sens_ir_right, sens_ir_right_front, back);
         os_surrender_context();

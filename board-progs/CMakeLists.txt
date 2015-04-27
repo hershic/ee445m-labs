@@ -22,7 +22,7 @@ configure_file(map.ld map.ld COPYONLY)
 # add_subdirectory(test-priority-scheduler)
 # add_subdirectory(test-edf)
 # add_subdirectory(test-combination)
-add_subdirectory(test-cpp)
+add_subdirectory(autonomous-racer)
 # add_subdirectory(test-lab4-prep)
 # add_subdirectory(test-fft)
 # add_subdirectory(test-lab4)     #
