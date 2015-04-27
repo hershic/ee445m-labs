@@ -24,14 +24,15 @@ void ping::sample() {
     uint32_t status = StartCritical();
     Delay d;
 
-    /* Set Ping))) SIG to output */
+    /* Disable interrupts in SIG */
     ctlsys::gpio_int_disable(base, pin);
     IntDisable(INT_GPIOB_TM4C123);
     IntDisable(INT_GPIOB);      /* todo: parametrize */
-    GPIOPinTypeGPIOOutput(base, pin);
 
-    /* Set SIG high for 5usec */
+    /* Set Ping))) SIG to output */
+    GPIOPinTypeGPIOOutput(base, pin);
     GPIOPinWrite(base, pin, 1);
+    /* Set SIG high for 5usec */
     d = Delay(4);
 
     GPIOPinWrite(base, pin, 0);
@@ -42,11 +43,8 @@ void ping::sample() {
 
     d = Delay(200);
 
-    /* FIXME: bug in second param to the below function call. how does
-     * this even work? I have a feeling many of these calls to
-     * interrupt en/disabling are not necessary. */
-    GPIOIntClear(base, pin);
-    ctlsys::gpio_int_enable(base, pin);
+    /* Enable interupts on SIG */
+    ctlsys::gpio_int_enable(base, pin, true);
     IntEnable(INT_GPIOB_TM4C123);
     IntEnable(INT_GPIOB);
 

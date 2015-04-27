@@ -55,20 +55,24 @@ public:
         }
     }
 
+    static void gpio_int_clear(uint32_t base, uint32_t pin) {
+        uint32_t interrupt = gpio_pin_to_int(pin);
+        GPIOIntClear(base, interrupt);
+    }
+
     static void gpio_int_disable(uint32_t base, uint32_t pin) {
 
         uint32_t interrupt = gpio_pin_to_int(pin);
-        uint32_t ui32Status = static_StartCritical();
         GPIOIntDisable(base, interrupt);
-        static_EndCritical(ui32Status);
     }
 
-    static void gpio_int_enable(uint32_t base, uint32_t pin) {
+    static void gpio_int_enable(uint32_t base, uint32_t pin, bool clear_int = false) {
 
         uint32_t interrupt = gpio_pin_to_int(pin);
-        uint32_t ui32Status = static_StartCritical();
+        if (clear_int) {
+            gpio_int_clear(base, interrupt);
+        }
         GPIOIntEnable(base, interrupt);
-        static_EndCritical(ui32Status);
     }
 
     /*! Set the clock as used in our labs. */
