@@ -49,7 +49,7 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     /* todo: feed the lf/f, rf/r data here for porportional control of
      * the motors. the side with the larger coefficient slows more */
 
-    percent_t race_speed = 40;
+    percent_t race_speed = 30;
     Direction dir = FORWARD;
 
     percent_t left_speed = delta(left_sens, left_front_sens);
@@ -59,8 +59,16 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     /* optional: path-centering algorithm */
 
-    left->set(race_speed*left_speed/100, dir);
-    right->set(race_speed*right_speed/100, dir);
+    /* left->set(race_speed*left_speed/100, dir); */
+    /* right->set(race_speed*right_speed/100, dir); */
+
+    if (left_sens > 1500) {
+        left->set(0, dir);
+        right->set(race_speed, dir);
+    } else {
+        left->set(race_speed);
+        right->set(race_speed);
+    }
 }
 
 /* Local Variables: */
