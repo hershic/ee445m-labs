@@ -30,14 +30,14 @@ public:
         init();
     }
 
-    void clear() {
+    virtual void clear() {
 
         while(pos>0) {
             buf[--pos] = 0;
         }
     }
 
-    void init() {
+    virtual void init() {
         error_overflow = 0;
         error_underflow = 0;
         pos = 0;
@@ -45,7 +45,7 @@ public:
         clear();
     }
 
-    void notify(const T data) {
+    virtual void notify(const T data) {
 
         if (add(data)) {
             sem->post();
@@ -53,7 +53,7 @@ public:
     }
 
     /*! warning: drops Ts if buffer is full */
-    bool add(const T data) {
+    virtual bool add(const T data) {
 
         if (full()) {
             ++error_overflow;
@@ -63,7 +63,7 @@ public:
         return true;
     }
 
-    T peek() {
+    virtual T peek() {
 
         if (pos == 0) {
             return buf[len-1];
@@ -73,7 +73,7 @@ public:
     }
 
     /*! warning: returns 0 if no more Ts in buffer */
-    T get(bool &ok) {
+    virtual T get(bool &ok) {
 
         /* base case */
         if (pos <= 0) {
@@ -93,17 +93,17 @@ public:
         return ret;
     }
 
-    bool full() {
+    virtual bool full() {
 
         return pos == len;
     }
 
-    bool empty() {
+    virtual bool empty() {
 
         return pos == 0;
     }
 
-    uint32_t length() {
+    virtual uint32_t length() {
 
         return pos;
     }
