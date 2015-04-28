@@ -25,10 +25,10 @@
 #include "driverlib/uart.h"
 #include "driverlib/pwm.h"
 
-#define thread(x)                               \
-    do {                                        \
-        x;                                      \
-        os_surrender_context();                 \
+#define thread(x)                   \
+    do {                            \
+        x;                          \
+        os_surrender_context();     \
     } while(true)
 
 blinker blink;
@@ -73,8 +73,8 @@ void thread_blink_green() {
 
     thread (
         /* if (sem_blink_green.guard()) { */
-        blink.toggle(PIN_GREEN);
-        ++blink_count_green;
+            blink.toggle(PIN_GREEN);
+            ++blink_count_green;
         /* } */
         );
 }
@@ -82,8 +82,8 @@ void thread_blink_green() {
 void thread_uart_update() {
 
     thread (
-        uart0.atomic_printf("%x %x %x\n\r", blink_count_red,
-                            blink_count_blue, blink_count_green);
+            uart0.atomic_printf("%x %x %x\n\r", blink_count_red,
+                                blink_count_blue, blink_count_green);
         );
 }
 
