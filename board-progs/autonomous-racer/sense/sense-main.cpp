@@ -213,10 +213,10 @@ void can_transmitter(void) {
 
     while(1) {
 
-        sens_ir_left = ir0.buf.peek();
-        sens_ir_left_front = ir1.buf.peek();
-        sens_ir_right = ir2.buf.peek();
-        sens_ir_right_front = ir3.buf.peek();
+        sens_ir_left = ir0.average();
+        sens_ir_left_front = ir1.average();
+        sens_ir_right = ir2.average();
+        sens_ir_right_front = ir3.average();
 
         can_data[0] = ir_left_ptr[0];
         can_data[1] = ir_left_ptr[1];
