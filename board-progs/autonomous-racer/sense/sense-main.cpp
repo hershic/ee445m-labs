@@ -177,15 +177,11 @@ extern "C" void CAN0_Handler(void) {
 extern "C"
 int GPIOPortB_Handler() {
 
-    GPIOIntClear(ping0.base, ping0.pin);
+    ping0.ack();
 
     switch(ping_sent) {
-    case false:
-        ping0.start();
-        break;
-    case true:
-        ping0.stop();
-        break;
+    case false: ping0.start(); break;
+    case true:  ping0.stop();  break;
     }
     ping_sent = !ping_sent;
 }

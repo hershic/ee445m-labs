@@ -1,0 +1,39 @@
+/* -*- mode: c++; c-basic-offset: 4; */
+#ifndef __lswitchpp__
+#define __lswitchpp__
+
+#include <stdbool.h>
+#include <stdint.h>
+
+#include "semaphorepp.hpp"
+#include "interruptable.hpp"
+
+#include "driverlib/gpio.h"
+
+typedef uint32_t memory_address_t;
+
+class lswitch : public interruptable {
+private:
+    memory_address_t base;
+    memory_address_t pin;
+    semaphore *sem;
+public:
+    /*! Initialize lswitch. */
+    lswitch();
+    lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
+            semaphore *sem, uint32_t interrupt_mask = GPIO_BOTH_EDGES,
+            bool start = false);
+
+    virtual void start(void);
+    virtual void stop(void);
+    virtual uint32_t ack(void);
+
+    /*! Return current value of the limit lswitch */
+    uint32_t sample(void);
+};
+
+#endif  /* __LSWITCHPP__ */
+
+/* Local Variables: */
+/* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
+/* End: */

@@ -37,10 +37,10 @@ public:
     void configure_timer_interrupt(timer* t);
 #endif
 
-    virtual void start();
-    virtual void stop();
-    virtual uint32_t ack();
-    void sample();
+    virtual void start(void);
+    virtual void stop(void);
+    virtual uint32_t ack(void);
+    void sample(void);
     uint32_t get_sample(uint8_t i);
 };
 

@@ -72,9 +72,7 @@ void ping::stop() {
 
 uint32_t ping::ack() {
 
-
-    /* TODO: place here the if clause from the GPIOPortB_Handler from
-     * test-can.c */
+    GPIOIntClear(base, pin);
 }
 
 /* Local Variables: */
