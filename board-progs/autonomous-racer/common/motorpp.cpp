@@ -61,6 +61,7 @@ void motor::set(percent_t speed, Direction dir) {
 void motor::set(percent_t speed) {
 
     if(speed > 100) { speed = 100; }
+    if(speed <= 0) { speed = 1; }
 
     current_speed = speed;
 

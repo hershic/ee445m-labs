@@ -12,7 +12,7 @@
  * @{
  */
 
-typedef uint16_t percent_t;
+typedef int16_t percent_t;
 typedef uint32_t memory_address_t;
 #define DEFAULT_PWM_PERIOD 10000
 
