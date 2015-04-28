@@ -21,10 +21,9 @@ public:
         *ptr = (*ptr + increment) % wrap_len;
     }
 
-    virtual bool add(const T ch) {
+    void add(const T ch) {
         this->buf[this->pos] = ch;
         increment_ptr(&(this->pos), 1, this->len);
-        return true;
     }
 };
 
