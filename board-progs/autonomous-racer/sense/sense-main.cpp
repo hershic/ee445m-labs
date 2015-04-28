@@ -291,7 +291,7 @@ int main(void) {
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 10,
+    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 50,
                     TIMER_TIMA_TIMEOUT, true);
 
     /* resume: create timer for ping sensor */
