@@ -1,6 +1,7 @@
 /* -*- mode: c++; c-basic-offset: 4; */
 /* Created by Hershal Bhave and Eric Crosson on <2015-03-15 Sun> */
 /* Revision History: Look in Git FGT */
+
 #include "switchpp.hpp"
 #include "ctlsysctl.hpp"
 
@@ -18,6 +19,7 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
     pin = lswitch_pin;
     ctlsys::enable_periph(base);
     GPIOPinTypeGPIOInput(base, pin);
+    GPIOPadConfigSet(base, pin, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
     GPIOIntTypeSet(base, pin, interrupt_mask);
 
     this->sem = sem;
