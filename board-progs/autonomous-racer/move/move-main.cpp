@@ -44,11 +44,17 @@ uint32_t sens_ir_right;
 uint32_t sens_ir_right_front;
 uint32_t sens_ping_back;
 
+uint8_t sens_ir_left_front_ptr[2];
+uint8_t sens_ir_left_ptr[2];
+uint8_t sens_ir_right_front_ptr[2];
+uint8_t sens_ir_right_ptr[2];
+uint8_t sens_ping_back_ptr[2];
+
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
 drive drive0;
 
-#define can_data_length 8
+#define can_data_length 10
 const uint32_t can_msg_id = 1;
 const bool can_sender = false;
 can can0;
@@ -70,10 +76,10 @@ semaphore sem_blink_green;
 void thread_blink_red() {
 
     thread (
-        if (sem_blink_red.guard()) {
+        /* if (sem_blink_red.guard()) { */
             blink.toggle(PIN_RED);
             ++blink_count_red;
-        }
+        /* } */
         );
 }
 
@@ -90,10 +96,10 @@ void thread_blink_blue() {
 void thread_blink_green() {
 
     thread (
-        if (sem_blink_green.guard()) {
+        /* if (sem_blink_green.guard()) { */
             blink.toggle(PIN_GREEN);
             ++blink_count_green;
-        }
+        /* } */
         );
 }
 
@@ -159,18 +165,25 @@ void can_handler(void) {
 
             sem_blink_blue.post();
             can0.get(can_data);
-            sens_ir_left = can_data[0];
-            sens_ir_left_front = can_data[1];
-            sens_ir_right = can_data[2];
-            sens_ir_right_front = can_data[3];
-            sens_ping_back = can_data[4];
-            /* sens_ir_left = can_data[5]; */
-            /* sens_ir_left = can_data[6]; */
-            /* sens_ir_left = can_data[7]; */
-            /* sens_ir_left = can_data[8]; */
-            /* sens_ir_left = can_data[9]; */
-            uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
-                                can_data[0], can_data[1], can_data[3], can_data[4],
+
+            sens_ir_left_ptr[0] = can_data[0];
+            sens_ir_left_ptr[1] = can_data[1];
+            sens_ir_left_front_ptr[0] = can_data[2];
+            sens_ir_left_front_ptr[1] = can_data[3];
+            sens_ir_right_ptr[0] = can_data[4];
+            sens_ir_right_ptr[1] = can_data[5];
+            sens_ir_right_front_ptr[0] = can_data[6];
+            sens_ir_right_front_ptr[1] = can_data[7];
+            sens_ping_back_ptr[0] = can_data[8];
+            sens_ping_back_ptr[1] = can_data[9];
+
+            sens_ir_left = (can_data[1] << 8) | (can_data[0]);
+            sens_ir_left_front = (can_data[3] << 8) | (can_data[2]);
+            sens_ir_right = (can_data[5] << 8) | (can_data[4]);
+            sens_ir_right_front = (can_data[7] << 8) | (can_data[6]);
+
+            uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X \n",
+                                can_data[0], can_data[1], can_data[2], can_data[3],
                                 can_data[4], can_data[5], can_data[6], can_data[7]);
         }
         os_surrender_context();
@@ -245,7 +258,7 @@ int main(void) {
     schedule(thread_blink_blue, 200);
     schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);
-    schedule(thread_uart_update, 200);
+    /* schedule(thread_uart_update, 200); */
     schedule(driver, 200);
     schedule(can_handler, 200);
     os_launch();
