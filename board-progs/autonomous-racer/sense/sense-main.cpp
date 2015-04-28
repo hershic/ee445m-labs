@@ -235,6 +235,10 @@ void can_transmitter(void) {
         can_data[9] = 0;              /* sens_ping_back  */
 
         can0.transmit(can_data, can_data_length);
+
+        uart0.atomic_printf("data:                                      \r");
+        uart0.atomic_printf("data: %u %u %u %u\r", sens_ir_left, sens_ir_left_front, sens_ir_right, sens_ir_right_front);
+
         os_surrender_context();
     }
 }
