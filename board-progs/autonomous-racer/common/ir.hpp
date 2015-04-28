@@ -19,6 +19,7 @@ public:
     ir();
     ir(uint8_t ir_adc_sequence_step, adc* ir_assoc_adc);
     void sample(void);
+    IR_BUFFER_TYPE average();
 
     circularbuffer<IR_BUFFER_TYPE, IR_BUFFER_LENGTH> buf;
     uint8_t adc_sequence_step;
