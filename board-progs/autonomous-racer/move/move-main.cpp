@@ -207,6 +207,7 @@ void shell_handler() {
     }
 }
 
+/*! Allows motor control from shell */
 void motor_control(void) {
 
     while(1) {
