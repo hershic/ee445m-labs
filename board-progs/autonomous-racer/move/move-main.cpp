@@ -53,6 +53,8 @@ uint8_t sens_ping_back_ptr[2];
 
 lswitch switch0;
 semaphore sem_switch;
+semaphore sem_ignore_ir;
+
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
 drive drive0;
@@ -161,6 +163,14 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
+extern "C" int GPIOPortB_Handler() {
+
+    switch0.ack();
+
+    /* resume */
+}
+
+
 void can_handler(void) {
 
     while(1) {
@@ -246,7 +256,6 @@ int main(void) {
     sem_blink_blue = semaphore();
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
-
     uart0 = uart(UART0_BASE, INT_UART0);
 
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
@@ -259,6 +268,7 @@ int main(void) {
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
 
+    sem_ignore_ir = semaphore();
     switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_0, &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
 
     os_threading_init();
