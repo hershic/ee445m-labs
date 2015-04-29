@@ -21,8 +21,8 @@ public:
     /*! Initialize lswitch. */
     lswitch();
     lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
-            semaphore *sem, uint32_t interrupt_mask = GPIO_BOTH_EDGES,
-            bool start = false);
+            semaphore *sem, uint32_t switch_interrupt,
+            uint32_t interrupt_mask = GPIO_BOTH_EDGES, bool start = false);
 
     virtual void start(void);
     virtual void stop(void);

@@ -62,10 +62,10 @@ void thread_blink_red() {
 void thread_blink_blue() {
 
     thread (
-        if (sem_blink_blue.guard()) {
+        /* if (sem_blink_blue.guard()) { */
             blink.toggle(PIN_BLUE);
             ++blink_count_blue;
-        }
+        /* } */
         );
 }
 
@@ -120,8 +120,9 @@ extern "C" void UART0_Handler(void) {
     }
 }
 
-extern "C" void GPIOPortB_Handler(void) {
+extern "C" void GPIOPortE_Handler(void) {
 
+    blink.toggle(PIN_GREEN);
     switch0.ack();
 }
 
@@ -132,6 +133,7 @@ void lswitch_handler() {
 
             uint32_t sample = switch0.sample();
             uint32_t sample_bro = 5;
+            blink.toggle(PIN_RED);
         }
         os_surrender_context();
     }
@@ -167,12 +169,12 @@ int main(void) {
     uart0 = uart(UART0_BASE, INT_UART0);
     shell0 = shell(&uart0);
 
-    switch0 = lswitch(GPIO_PORTB_BASE, GPIO_PIN_0, &sem_switch, GPIO_BOTH_EDGES, true);
+    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_0, &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
 
     os_threading_init();
-    schedule(thread_blink_red, 200);
+    /* schedule(thread_blink_red, 200); */
     schedule(thread_blink_blue, 200);
-    schedule(thread_blink_green, 200);
+    /* schedule(thread_blink_green, 200); */
     schedule(shell_handler, 200);
     schedule(lswitch_handler, 200);
     /* schedule(thread_uart_update, 200); */

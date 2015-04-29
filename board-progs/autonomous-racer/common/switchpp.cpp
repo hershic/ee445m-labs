@@ -5,6 +5,11 @@
 #include "switchpp.hpp"
 #include "ctlsysctl.hpp"
 
+#include "driverlib/interrupt.h"
+
+#include "inc/hw_types.h"
+#include "inc/hw_gpio.h"
+
 #define NULL 0x00
 
 lswitch::lswitch() {
@@ -13,14 +18,26 @@ lswitch::lswitch() {
 }
 
 lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
-                 semaphore *sem, uint32_t interrupt_mask, bool start) {
+                 semaphore *sem, uint32_t switch_interrupt, uint32_t interrupt_mask,
+                 bool start) {
 
     base = lswitch_base;
     pin = lswitch_pin;
+
     ctlsys::enable_periph(base);
     GPIOPinTypeGPIOInput(base, pin);
-    GPIOPadConfigSet(base, pin, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
-    GPIOIntTypeSet(base, pin, interrupt_mask);
+    GPIODirModeSet(base, pin, GPIO_DIR_MODE_IN);
+
+    if ((base == GPIO_PORTF_BASE) && (pin & GPIO_PIN_0)) {
+        HWREG(base + GPIO_O_LOCK) = GPIO_LOCK_KEY;
+        HWREG(base + GPIO_O_CR) = 0x01;
+        HWREG(base + GPIO_O_LOCK) = 0;
+
+        GPIOPadConfigSet(base, pin, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+    }
+
+    GPIOIntTypeSet(base, pin, switch_interrupt);
+    IntEnable(interrupt_mask);
 
     this->sem = sem;
     *(this->sem) = semaphore();
