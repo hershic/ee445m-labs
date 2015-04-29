@@ -174,8 +174,17 @@ void switch_responder() {
     while(1) {
         if(sem_ignore_ir.guard()) {
             /* resume: write limit switch isr */
-        }
+            uint32_t pins = switch0.sample();
+            if(pins | GPIO_PIN_1) {
 
+            }
+            if(pins | GPIO_PIN_2) {
+
+            }
+            if(pins | GPIO_PIN_3) {
+
+            }
+        }
         os_surrender_context();
     }
 }
@@ -278,7 +287,8 @@ int main(void) {
     drive0 = drive(&motor0, &motor1, 50);
 
     sem_ignore_ir = semaphore();
-    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_0, &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
+    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
+                      &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
 
     os_threading_init();
     schedule(motor_control, 200);
