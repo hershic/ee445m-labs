@@ -53,7 +53,6 @@ uint8_t sens_ping_back_ptr[2];
 
 lswitch switch0;
 semaphore sem_switch;
-semaphore sem_ignore_ir;
 
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
@@ -166,13 +165,13 @@ extern "C" void CAN0_Handler(void) {
 extern "C" int GPIOPortE_Handler() {
 
     switch0.ack();
-    sem_ignore_ir.post();
+    sem_switch.post();
 }
 
 void switch_responder() {
 
     while(1) {
-        if(sem_ignore_ir.guard()) {
+        if(sem_switch.guard()) {
             /* resume: write limit switch isr */
             uint32_t pins = switch0.sample();
             if(pins | GPIO_PIN_1) {
@@ -286,7 +285,6 @@ int main(void) {
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
 
-    sem_ignore_ir = semaphore();
     switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
                       &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
 
