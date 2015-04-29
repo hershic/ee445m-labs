@@ -174,13 +174,13 @@ void switch_responder() {
         if(sem_switch.guard()) {
             /* resume: write limit switch isr */
             uint32_t pins = switch0.sample();
-            if(pins | GPIO_PIN_1) {
+            if(pins & GPIO_PIN_1) {
 
             }
-            if(pins | GPIO_PIN_2) {
+            if(pins & GPIO_PIN_2) {
 
             }
-            if(pins | GPIO_PIN_3) {
+            if(pins & GPIO_PIN_3) {
 
             }
         }
