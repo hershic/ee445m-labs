@@ -163,13 +163,22 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
-extern "C" int GPIOPortB_Handler() {
+extern "C" int GPIOPortE_Handler() {
 
     switch0.ack();
-
-    /* resume */
+    sem_ignore_ir.post();
 }
 
+void switch_responder() {
+
+    while(1) {
+        if(sem_ignore_ir.guard()) {
+            /* resume: write limit switch isr */
+        }
+
+        os_surrender_context();
+    }
+}
 
 void can_handler(void) {
 
@@ -278,6 +287,7 @@ int main(void) {
     schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);
     /* schedule(thread_uart_update, 200); */
+    schedule(switch_responder, 200);
     schedule(driver, 200);
     schedule(can_handler, 200);
     os_launch();
