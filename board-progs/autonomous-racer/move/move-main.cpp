@@ -11,6 +11,7 @@
 #include "drivepp.hpp"
 #include "canpp.hpp"
 #include "ctlsysctl.hpp"
+#include "switchpp.hpp"
 
 #include "libos/os.h"
 #include "libschedule/schedule.h"
@@ -50,6 +51,8 @@ uint8_t sens_ir_right_front_ptr[2];
 uint8_t sens_ir_right_ptr[2];
 uint8_t sens_ping_back_ptr[2];
 
+lswitch switch0;
+semaphore sem_switch;
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
 drive drive0;
@@ -255,6 +258,8 @@ int main(void) {
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
+
+    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_0, &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
 
     os_threading_init();
     schedule(motor_control, 200);

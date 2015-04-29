@@ -6,6 +6,7 @@ set(move-main-srcs ../../startup_gcc_canonical.c
 ../common/uartpp.cpp ../common/shellpp.cpp ../common/semaphorepp.cpp
 ../common/canpp.cpp ../common/adcpp.cpp ../common/
 ../common/motorpp.cpp ../common/drivepp.cpp ../common/ir.cpp
+../common/switchpp.cpp
 ../common/pingpp.cpp move-main.cpp)
 
 configure_file(../../map.ld ../map.ld COPYONLY)
