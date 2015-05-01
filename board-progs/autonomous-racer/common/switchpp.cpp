@@ -18,8 +18,8 @@ lswitch::lswitch() {
 }
 
 lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
-                 semaphore *sem, uint32_t switch_interrupt, uint32_t interrupt_mask,
-                 bool start) {
+                 semaphore *sem, timer* tim, uint32_t switch_interrupt,
+                 uint32_t interrupt_mask, bool start) {
 
     base = lswitch_base;
     pin = lswitch_pin;
@@ -35,6 +35,11 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
 
         GPIOPadConfigSet(base, pin, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
     }
+
+    this->tim = tim;
+    /* TODO: parametrize first two parameters, this decision of hw choice belongs in main */
+    *(this->tim) = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
+                         TIMER_TIMA_TIMEOUT);
 
     GPIOIntTypeSet(base, pin, switch_interrupt);
     IntEnable(interrupt_mask);
@@ -57,19 +62,38 @@ void lswitch::stop() {
     GPIOIntDisable(base, pin);
 }
 
-uint32_t lswitch::ack() {
+/*! Call this  in the isr of the switch  */
+void lswitch::debounce() {
 
-    GPIOIntClear(base, pin);
+    // TODO: sched TIMER
+    ack();
+    stop();
+    tim->start();
+}
+
+/* todo: remove need for external (client) isr's by changing the isr
+ * at runtime in tis lib */
+
+/*! Call this in the isr of the switch's timer  */
+uint32_t lswitch::end_debounce() {
+
+    tim->ack();
     if(NULL != sem) {
         sem->post();
     }
+    start();
+    return sample();
+}
+
+uint32_t lswitch::ack() {
+
+    GPIOIntClear(base, pin);
 }
 
 uint32_t lswitch::sample() {
 
     return GPIOPinRead(base, pin);
 }
-
 
 /* Local Variables: */
 /* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
