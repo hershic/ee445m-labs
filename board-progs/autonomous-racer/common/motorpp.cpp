@@ -98,7 +98,7 @@ void motor::pwm_init() {
     ctlsys::enable_periph(GPIO_PORTB_BASE);
     ctlsys::enable_periph(ctrl_base);
 
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_64);
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_1);
     PWMGenConfigure(pwm_base, pwm_gen, PWM_GEN_MODE_DOWN | PWM_GEN_MODE_NO_SYNC);
     PWMGenPeriodSet(pwm_base, pwm_gen, DEFAULT_PWM_PERIOD);
     PWMGenEnable(pwm_base, pwm_gen);
