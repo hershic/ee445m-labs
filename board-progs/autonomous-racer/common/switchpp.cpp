@@ -37,6 +37,7 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
     }
 
     this->tim = tim;
+    /* TODO: parametrize, this decision of hw choice belongs in main */
     *(this->tim) = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
                          TIMER_TIMA_TIMEOUT);
 
