@@ -37,9 +37,17 @@ public:
          timer_t timer_id, subtimer_t timer_subtimer);
     void sample(void);
 
+    /*! Start the timer monitoring sig. */
     virtual void start(void);
+
+    /*! Stop the timer monitoring sig. */
     virtual void stop(void);
+
+    /*! Acknowledge isr for sig. */
     virtual uint32_t ack(void);
+
+    /*! Alert object that the isr watching both edges of sig has been triggered. */
+    uint32_t notify();
 
     circularbuffer<PING_BUFFER_TYPE, PING_BUFFER_LENGTH> buf;
 };

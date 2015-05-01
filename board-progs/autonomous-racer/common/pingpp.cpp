@@ -16,6 +16,7 @@ ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem
 
     base = port_base;
     pin = port_pin;
+    sig = blinker(base);
 
     this->sem = sem;
     *(this->sem) = semaphore();
@@ -39,10 +40,10 @@ void ping::sample() {
 
     /* Set Ping))) SIG to output */
     GPIOPinTypeGPIOOutput(base, pin);
-    GPIOPinWrite(base, pin, 1);
+    sig.turn_on(pin);
     /* Set SIG high for 5usec */
     delay::count(4);
-    GPIOPinWrite(base, pin, 0);
+    sig.turn_off(pin);
 
     /* Set Ping))) SIG to input */
     GPIOPinTypeGPIOInput(base, pin);
@@ -59,6 +60,24 @@ void ping::sample() {
 /* resume: finish hooking this above function up, the receiving ISR,
  * internal data structures, etc */
 
+/*! \note this acknowledges the interrupt */
+uint32_t ping::notify() {
+
+    switch(status) {
+    case PING_INACTIVE: start(); break;
+    case PING_SENT: stop(); break;
+    case PING_RESPONSE:
+        #if TEST_PING == 1
+        while(1) {}
+        #else
+        /* do nothing for now */
+        #endif
+        break;
+    default: while(1) {}
+    }
+    return ack();
+}
+
 /* resume:: implement these virtual functions */
 void ping::start() {
 #if TEST_PING == 1
@@ -67,8 +86,11 @@ void ping::start() {
     }
 #endif
     status = PING_SENT;
-    /* TODO: start timer */
+    tim.reload();
+    tim.start();
 }
+
+/* TODO: watch overflow or make time 32 bit by default */
 
 void ping::stop() {
 #if TEST_PING == 1
@@ -77,7 +99,7 @@ void ping::stop() {
     }
 #endif
     status = PING_RESPONSE;
-    /* TODO: read timer contents and stop timer */
+    /* TODO: read timer contents and stop timer, populate buffer  */
     sem->post();
     status = PING_INACTIVE;
 }
