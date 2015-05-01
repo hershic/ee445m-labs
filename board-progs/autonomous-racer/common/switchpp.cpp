@@ -18,8 +18,8 @@ lswitch::lswitch() {
 }
 
 lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
-                 semaphore *sem, timer* tim, uint32_t switch_interrupt,
-                 uint32_t interrupt_mask, bool start) {
+                 semaphore *sem, timer_t timer_id, subtimer_t timer_subtimer,
+                 uint32_t switch_interrupt, uint32_t interrupt_mask, bool start) {
 
     base = lswitch_base;
     pin = lswitch_pin;
@@ -36,10 +36,16 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
         GPIOPadConfigSet(base, pin, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
     }
 
-    this->tim = tim;
-    /* TODO: parametrize first two parameters, this decision of hw choice belongs in main */
-    *(this->tim) = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
-                         TIMER_TIMA_TIMEOUT);
+    /* other solution: timer scoreboard */
+    uint32_t timeout = 0;
+    switch(timer_subtimer) {
+    case TIMER_BOTH:
+    case TIMER_A: timeout = TIMER_TIMA_TIMEOUT; break;
+    case TIMER_B: timeout = TIMER_TIMB_TIMEOUT; break;
+    default: while(1) {}
+    }
+    *(this->tim) = timer(timer_id, timer_subtimer, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
+                         timeout);
 
     GPIOIntTypeSet(base, pin, switch_interrupt);
     IntEnable(interrupt_mask);

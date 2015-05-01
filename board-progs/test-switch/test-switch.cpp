@@ -36,7 +36,6 @@ blinker blink;
 uart uart0;
 shell shell0;
 lswitch switch0;
-timer switch_timer;
 
 #define UART0_RX_BUFFER_SIZE 8
 static semaphore UART0_RX_SEM;
@@ -171,7 +170,7 @@ int main(void) {
     uart0 = uart(UART0_BASE, INT_UART0);
     shell0 = shell(&uart0);
 
-    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_0, &sem_switch, &switch_timer, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
+    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_0, &sem_switch, 1, TIMER_A, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
 
     os_threading_init();
     /* schedule(thread_blink_red, 200); */
