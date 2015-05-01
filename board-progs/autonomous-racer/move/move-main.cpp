@@ -78,34 +78,53 @@ semaphore sem_blink_red;
 semaphore sem_blink_blue;
 semaphore sem_blink_green;
 
+#define BLINK_RED_WAIT_FOR_SEM 0
+#define BLINK_BLUE_WAIT_FOR_SEM 1
+#define BLINK_GREEN_WAIT_FOR_SEM 0
+
 void thread_blink_red() {
 
-    thread (
-        /* if (sem_blink_red.guard()) { */
+    while(1) {
+#if BLINK_RED_WAIT_FOR_SEM == 1
+        if (sem_blink_red.guard()) {
+#endif
             blink.toggle(PIN_RED);
             ++blink_count_red;
-        /* } */
-        );
+#if BLINK_RED_WAIT_FOR_SEM == 1
+        }
+#endif
+        os_surrender_context();
+    }
 }
 
 void thread_blink_blue() {
 
-    thread (
+    while(1) {
+#if BLINK_BLUE_WAIT_FOR_SEM == 1
         if (sem_blink_blue.guard()) {
+#endif
             blink.toggle(PIN_BLUE);
             ++blink_count_blue;
+#if BLINK_BLUE_WAIT_FOR_SEM == 1
         }
-        );
+#endif
+        os_surrender_context();
+    }
 }
 
 void thread_blink_green() {
 
-    thread (
-        /* if (sem_blink_green.guard()) { */
+    while(1) {
+#if BLINK_GREEN_WAIT_FOR_SEM == 1
+        if (sem_blink_green.guard()) {
+#endif
             blink.toggle(PIN_GREEN);
             ++blink_count_green;
-        /* } */
-        );
+#if BLINK_GREEN_WAIT_FOR_SEM == 1
+        }
+#endif
+        os_surrender_context();
+    }
 }
 
 void thread_uart_update() {
