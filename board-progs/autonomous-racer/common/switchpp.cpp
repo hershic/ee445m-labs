@@ -65,7 +65,7 @@ void lswitch::stop() {
 /*! Call this  in the isr of the switch  */
 void lswitch::debounce() {
 
-    // sched TIMER
+    // TODO: sched TIMER
     ack();
     stop();
     tim->start();
