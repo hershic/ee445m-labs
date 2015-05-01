@@ -30,6 +30,9 @@ public:
     virtual void stop(void);
     virtual uint32_t ack(void);
 
+    void debounce(void);
+    void end_debounce(void);
+
     /*! Return current value of the limit lswitch */
     uint32_t sample(void);
 };

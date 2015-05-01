@@ -14,6 +14,9 @@ ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem
     this->sem = sem;
     *(this->sem) = semaphore();
 
+    this->sem = sem;
+    *(this->sem) = semaphore();
+
     ctlsys::enable_periph(base);
 }
 

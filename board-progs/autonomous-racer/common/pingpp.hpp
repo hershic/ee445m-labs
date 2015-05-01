@@ -7,6 +7,7 @@
 #include "interruptable.hpp"
 #include "semaphorepp.hpp"
 #include "criticalpp.hpp"
+#include "blinker.hpp"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -19,6 +20,7 @@ typedef uint32_t memory_address_t;
 class ping : public critical, public interruptable {
 private:
     semaphore *sem;
+    blinker sig;
 public:
     memory_address_t base;
     memory_address_t pin;
