@@ -53,6 +53,7 @@ uint8_t sens_ping_back_ptr[2];
 
 lswitch switch0;
 semaphore sem_switch;
+timer switch_timer;
 
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
@@ -164,8 +165,7 @@ extern "C" void CAN0_Handler(void) {
 
 extern "C" int GPIOPortE_Handler() {
 
-    switch0.ack();
-    sem_switch.post();
+    switch0.debounce();
 }
 
 void switch_responder() {
@@ -251,6 +251,11 @@ void motor_control(void) {
     }
 }
 
+extern "C" void Timer1A_Handler() {
+
+    switch0.end_debounce();
+}
+
 void driver(void) {
 
     while(1) {
@@ -285,8 +290,10 @@ int main(void) {
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
 
+    switch_timer = timer();
     switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
-                      &sem_switch, GPIO_BOTH_EDGES, INT_GPIOE_TM4C123, true);
+                      &sem_switch, &switch_timer, GPIO_BOTH_EDGES,
+                      INT_GPIOE_TM4C123, true);
 
     os_threading_init();
     schedule(motor_control, 200);
