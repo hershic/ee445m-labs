@@ -189,19 +189,31 @@ extern "C" int GPIOPortE_Handler() {
 
 void switch_responder() {
 
+    const uint32_t counter_max = 100000;
+    uint32_t pins, counter;
+    percent_t left_speed, right_speed;
+
     while(1) {
         if(sem_switch.guard()) {
-            /* resume: write limit switch isr */
-            uint32_t pins = switch0.sample();
+            pins = switch0.sample();
+            counter = 0;
+
             if(pins & GPIO_PIN_1) {
-
+                left_speed = 100;
+                right_speed = 0;
+            } else if(pins & GPIO_PIN_2) {
+                left_speed = 0;
+                right_speed = 100;
+            } else if(pins & GPIO_PIN_3) {
+                left_speed = 100;
+                right_speed = 100;
             }
-            if(pins & GPIO_PIN_2) {
 
-            }
-            if(pins & GPIO_PIN_3) {
-
-            }
+            motor0.reverse();
+            motor1.reverse();
+            while (++counter < counter_max) { }
+            motor0.reverse();
+            motor1.reverse();
         }
         os_surrender_context();
     }
