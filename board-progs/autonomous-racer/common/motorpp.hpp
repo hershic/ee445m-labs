@@ -66,6 +66,8 @@ public:
     /*! Set motor speed and direction. */
     void set(percent_t percent_full_speed, Direction dir);
 
+    percent_t get(void);
+
     /*! Reverse motor direction. */
     void reverse(void);
 };

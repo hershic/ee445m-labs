@@ -130,6 +130,11 @@ void motor::reverse() {
     set(current_speed, nav::opposite(direction));
 }
 
+percent_t motor::get() {
+
+    return current_speed;
+}
+
 /* Local Variables: */
 /* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
 /* End: */
