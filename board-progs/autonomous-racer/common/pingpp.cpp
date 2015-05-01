@@ -9,7 +9,8 @@
 
 ping::ping() {}
 
-ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem) {
+ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem,
+    timer_t timer_id, subtimer_t timer_subtimer) {
 
     status = PING_INACTIVE;
 
@@ -18,6 +19,9 @@ ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem
 
     this->sem = sem;
     *(this->sem) = semaphore();
+
+    tim = timer(timer_id, timer_subtimer, TIMER_CFG_PERIODIC_UP, 0x0fffffe,
+        ctlsys::timer_timeout_from_subtimer(timer_subtimer));
 
     ctlsys::enable_periph(base);
 }
@@ -55,9 +59,6 @@ void ping::sample() {
 /* resume: finish hooking this above function up, the receiving ISR,
  * internal data structures, etc */
 
-/* todo: first pass ping() constructor a timer so this can use a timer
- * for distance measurements without colliding with another in-use
- * timer */
 /* resume:: implement these virtual functions */
 void ping::start() {
 #if TEST_PING == 1

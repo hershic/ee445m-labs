@@ -13,6 +13,8 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 
+#include "driverlib/timer.h"
+
 #include "criticalpp.hpp"
 
 class ctlsys : public critical {
@@ -39,6 +41,18 @@ public:
         uint32_t ui32Status = static_StartCritical();
         SysCtlPeripheralEnable(periph_base);
         static_EndCritical(ui32Status);
+    }
+
+    static uint32_t timer_timeout_from_subtimer(uint32_t subtimer) {
+
+        uint32_t timeout =  0x0;
+        switch(subtimer) {
+        case TIMER_BOTH:
+        case TIMER_A: timeout = TIMER_TIMA_TIMEOUT; break;
+        case TIMER_B: timeout = TIMER_TIMB_TIMEOUT; break;
+        default: while(1) {}
+        }
+        return timeout;
     }
 
     static uint32_t gpio_pin_to_int(uint32_t pin) {

@@ -37,15 +37,8 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
     }
 
     /* other solution: timer scoreboard */
-    uint32_t timeout = 0;
-    switch(timer_subtimer) {
-    case TIMER_BOTH:
-    case TIMER_A: timeout = TIMER_TIMA_TIMEOUT; break;
-    case TIMER_B: timeout = TIMER_TIMB_TIMEOUT; break;
-    default: while(1) {}
-    }
-    *(this->tim) = timer(timer_id, timer_subtimer, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
-                         timeout);
+    this->tim = timer(timer_id, timer_subtimer, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
+                      ctlsys::timer_timeout_from_subtimer(timer_subtimer));
 
     GPIOIntTypeSet(base, pin, switch_interrupt);
     IntEnable(interrupt_mask);
@@ -74,7 +67,7 @@ void lswitch::debounce() {
     // TODO: sched TIMER
     ack();
     stop();
-    tim->start();
+    tim.start();
 }
 
 /* todo: remove need for external (client) isr's by changing the isr
@@ -83,7 +76,7 @@ void lswitch::debounce() {
 /*! Call this in the isr of the switch's timer  */
 uint32_t lswitch::end_debounce() {
 
-    tim->ack();
+    tim.ack();
     if(NULL != sem) {
         sem->post();
     }

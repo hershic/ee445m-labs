@@ -18,7 +18,7 @@ private:
     memory_address_t base;
     memory_address_t pin;
     semaphore *sem;
-    timer* tim;
+    timer tim;
 public:
     /*! Initialize lswitch. */
     lswitch();

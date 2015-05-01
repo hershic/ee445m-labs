@@ -8,6 +8,7 @@
 #include "semaphorepp.hpp"
 #include "criticalpp.hpp"
 #include "blinker.hpp"
+#include "timerpp.hpp"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -26,12 +27,14 @@ private:
     semaphore *sem;
     blinker sig;
     uint16_t status;
+    timer tim;
 public:
     memory_address_t base;
     memory_address_t pin;
 
     ping();
-    ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem);
+    ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem,
+         timer_t timer_id, subtimer_t timer_subtimer);
     void sample(void);
 
     virtual void start(void);
