@@ -75,26 +75,93 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     /* left->set(race_speed*left_speed/100, dir); */
     /* right->set(race_speed*right_speed/100, dir); */
 
-    if (left_sens < 1500) {
-        left_speed += 2;
-        right_speed -= 2;
-    } else if (left_sens > 1600) {
-        left_speed -= 2;
-        right_speed += 2;
+
+    int32_t side_error = (int32_t)left_sens - (int32_t)right_sens;
+    int32_t oblique_error = (int32_t)left_front_sens - (int32_t)right_front_sens;
+    int32_t side_error_dir = (side_error < 0)*2-1;
+    int32_t oblique_error_dir = (oblique_error < 0)*2-1;
+
+    /* if (side_error < -100) { */
+    /*     /\* go left *\/ */
+
+    /*     if (side_error > side_error_dir*2000) { */
+    /*         left_speed -= side_error_dir*2; */
+    /*         right_speed += side_error_dir*2; */
+    /*     } else if (side_error > side_error_dir*1500) { */
+    /*         left_speed -= side_error_dir*3; */
+    /*         right_speed += side_error_dir*3; */
+    /*     } else if (side_error > side_error_dir*1000) { */
+    /*         left_speed -= side_error_dir*4; */
+    /*         right_speed += side_error_dir*4; */
+    /*     } else if (side_error > side_error_dir*100) { */
+    /*         left_speed -= side_error_dir*5; */
+    /*         right_speed += side_error_dir*5; */
+    /*     } */
+
+    /*     /\* left_speed += 2; *\/ */
+    /*     /\* right_speed -= 2; *\/ */
+    /*     /\* left_speed += (-side_error)/race_speed/10; *\/ */
+    /*     /\* right_speed -= (-side_error)/race_speed/10; *\/ */
+    /* } else if (side_error > 100) { */
+    /*     /\* go right *\/ */
+
+    /*     if (side_error > 2000) { */
+    /*         left_speed -= 2; */
+    /*         right_speed += 2; */
+    /*     } else if (side_error > 1500) { */
+    /*         left_speed -= 3; */
+    /*         right_speed += 3; */
+    /*     } else if (side_error > 1000) { */
+    /*         left_speed -= 4; */
+    /*         right_speed += 4; */
+    /*     } else if (side_error > 100) { */
+    /*         left_speed -= 5; */
+    /*         right_speed += 5; */
+    /*     } */
+
+    /*     /\* left_speed -= 2; *\/ */
+    /*     /\* right_speed += 2; *\/ */
+    /*     /\* left_speed -= (side_error)/race_speed/10; *\/ */
+    /*     /\* right_speed += (side_error)/race_speed/10; *\/ */
+    /* } */
+
+    if (oblique_error < -100 || oblique_error > 100) {
+        if ((oblique_error > oblique_error_dir*2000) || (oblique_error < oblique_error_dir*2000)) {
+            left_speed -= (oblique_error)/race_speed/2;
+            right_speed += (oblique_error)/race_speed/2;
+        } else if ((oblique_error > oblique_error_dir*1500) || (oblique_error < oblique_error_dir*1500)) {
+            left_speed -= (oblique_error)/race_speed/3;
+            right_speed += (oblique_error)/race_speed/3;
+        } else if ((oblique_error > oblique_error_dir*1000) || (oblique_error < oblique_error_dir*1000)) {
+            left_speed -= (oblique_error)/race_speed/4;
+            right_speed += (oblique_error)/race_speed/4;
+        } else if ((oblique_error > oblique_error_dir*100) || (oblique_error < oblique_error_dir*100)) {
+            left_speed -= (oblique_error)/race_speed/5;
+            right_speed += (oblique_error)/race_speed/5;
+        }
     }
 
-    if (left_front_sens < 750) {
-        left_speed += (750-left_front_sens)/30;
-        right_speed -= (750-left_front_sens)/30;
-    } else if (left_front_sens > 950) {
-        left_speed -= clamp(left_front_sens, 950, 1500)/68;
-        right_speed += clamp(left_front_sens, 950, 1500)/68;
-    }
+    /* almost evade */
+    /* if (left_sens > 3200 || left_front_sens > 3200) { */
+    /*     left_speed -= (oblique_error)/race_speed/6; */
+    /*     right_speed += (oblique_error)/race_speed/6; */
+    /* } */
 
-    if (left_front_sens < 450) {
-        left_speed = race_speed;
-        right_speed = race_speed/2;
-    }
+    /* if (right_sens > 3200 | right_front_sens > 3200) { */
+    /*     left_speed -= (oblique_error)/race_speed/6; */
+    /*     right_speed += (oblique_error)/race_speed/6; */
+    /* } */
+
+    /* evade! */
+    /* if (left_sens > 3350 || left_front_sens > 3350) { */
+    /*     left_speed -= (oblique_error)/race_speed/3; */
+    /*     right_speed += (oblique_error)/race_speed/3; */
+    /* } */
+
+    /* if (right_sens > 3350 | right_front_sens > 3350) { */
+    /*     left_speed -= (oblique_error)/race_speed/3; */
+    /*     right_speed += (oblique_error)/race_speed/3; */
+    /* } */
 
     left->set(left_speed);
     right->set(right_speed);
