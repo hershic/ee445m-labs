@@ -17,10 +17,15 @@
 
 typedef uint32_t memory_address_t;
 
+#define PING_INACTIVE 0x01
+#define PING_SENT     0x02
+#define PING_RESPONSE 0x04
+
 class ping : public critical, public interruptable {
 private:
     semaphore *sem;
     blinker sig;
+    uint16_t status;
 public:
     memory_address_t base;
     memory_address_t pin;
