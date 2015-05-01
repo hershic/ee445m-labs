@@ -4,15 +4,15 @@
 
 #include <stdint.h>
 
-class Delay {
+class delay {
 public:
-    Delay() {}
-    Delay(uint32_t cycles) {
+    delay() {}
+    delay(uint32_t cycles) {
         uint32_t counter = 0;
         while(counter < cycles){counter++;}
     }
 
-    static void static_delay(uint32_t cycles) {
+    static void count(uint32_t cycles) {
         uint32_t counter = 0;
         while(counter < cycles){counter++;}
     }

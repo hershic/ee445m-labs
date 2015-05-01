@@ -37,13 +37,13 @@ void ping::sample() {
     GPIOPinTypeGPIOOutput(base, pin);
     GPIOPinWrite(base, pin, 1);
     /* Set SIG high for 5usec */
-    Delay(4);
+    delay::count(4);
     GPIOPinWrite(base, pin, 0);
 
     /* Set Ping))) SIG to input */
     GPIOPinTypeGPIOInput(base, pin);
     GPIOIntTypeSet(base, pin, GPIO_BOTH_EDGES);
-    Delay(200);
+    delay::count(200);
 
     /* Enable interupts on SIG */
     ctlsys::gpio_int_enable(base, pin, true);
