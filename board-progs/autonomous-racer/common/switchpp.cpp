@@ -37,7 +37,7 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
     }
 
     this->tim = tim;
-    /* TODO: parametrize, this decision of hw choice belongs in main */
+    /* TODO: parametrize first two parameters, this decision of hw choice belongs in main */
     *(this->tim) = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
                          TIMER_TIMA_TIMEOUT);
 
@@ -75,13 +75,14 @@ void lswitch::debounce() {
  * at runtime in tis lib */
 
 /*! Call this in the isr of the switch's timer  */
-void lswitch::end_debounce() {
+uint32_t lswitch::end_debounce() {
 
     tim->ack();
     if(NULL != sem) {
         sem->post();
     }
     start();
+    return sample();
 }
 
 uint32_t lswitch::ack() {
