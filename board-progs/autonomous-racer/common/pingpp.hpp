@@ -47,7 +47,7 @@ public:
     virtual uint32_t ack(void);
 
     /*! Alert object that the isr watching both edges of sig has been triggered. */
-    uint32_t notify();
+    uint32_t notify(void);
 
     circularbuffer<PING_BUFFER_TYPE, PING_BUFFER_LENGTH> buf;
 };

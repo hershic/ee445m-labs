@@ -1,3 +1,6 @@
+/* -*- mode: c++; c-basic-offset: 4; -*- */
+/* Created by Hershal Bhave and Eric Crosson 2015-04 */
+/* Revision history: Look in Git FGT */
 #include "pingpp.hpp"
 
 #include "delay.hpp"
@@ -70,7 +73,7 @@ uint32_t ping::notify() {
         #if TEST_PING == 1
         while(1) {}
         #else
-        /* do nothing for now */
+        /* do nothing for now, ideally queue the notification */
         #endif
         break;
     default: while(1) {}
