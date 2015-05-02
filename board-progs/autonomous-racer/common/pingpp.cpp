@@ -106,7 +106,8 @@ void ping::stop() {
 
 uint32_t ping::ack() {
 
-    return GPIOIntClear(base, pin);
+    GPIOIntClear(base, pin);
+    return 0xDEADBEEF;
 }
 
 /* Local Variables: */
