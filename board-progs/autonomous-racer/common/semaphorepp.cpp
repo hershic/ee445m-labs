@@ -6,6 +6,7 @@
 
 semaphore::semaphore() {
 
+    init();
     reset();
 }
 
@@ -14,6 +15,14 @@ semaphore::semaphore(int16_t initial_value) {
     int32_t status = StartCritical();
     value = initial_value;
     EndCritical(status);
+    init();
+}
+
+void semaphore::init() {
+
+#if TEST_SEMAPHORE == 1
+    total_posts = 0;
+#endif
 }
 
 void semaphore::reset() {
@@ -37,6 +46,9 @@ void semaphore::post() {
 
     int32_t status = StartCritical();
     ++value;
+#if TEST_SEMAPHORE == 1
+    ++total_posts;
+#endif
     EndCritical(status);
 }
 

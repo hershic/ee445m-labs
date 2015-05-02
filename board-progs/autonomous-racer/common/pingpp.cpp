@@ -9,15 +9,20 @@
 
 ping::ping() {}
 
-ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem) {
+ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem,
+    timer_t timer_id, subtimer_t timer_subtimer) {
 
     status = PING_INACTIVE;
 
     base = port_base;
     pin = port_pin;
+    sig = blinker(base);
 
     this->sem = sem;
     *(this->sem) = semaphore();
+
+    tim = timer(timer_id, timer_subtimer, TIMER_CFG_PERIODIC_UP, 0x0fffffe,
+        ctlsys::timer_timeout_from_subtimer(timer_subtimer));
 
     ctlsys::enable_periph(base);
 }
@@ -35,15 +40,15 @@ void ping::sample() {
 
     /* Set Ping))) SIG to output */
     GPIOPinTypeGPIOOutput(base, pin);
-    GPIOPinWrite(base, pin, 1);
+    sig.turn_on(pin);
     /* Set SIG high for 5usec */
-    Delay(4);
-    GPIOPinWrite(base, pin, 0);
+    delay::count(4);
+    sig.turn_off(pin);
 
     /* Set Ping))) SIG to input */
     GPIOPinTypeGPIOInput(base, pin);
     GPIOIntTypeSet(base, pin, GPIO_BOTH_EDGES);
-    Delay(200);
+    delay::count(200);
 
     /* Enable interupts on SIG */
     ctlsys::gpio_int_enable(base, pin, true);
@@ -55,9 +60,24 @@ void ping::sample() {
 /* resume: finish hooking this above function up, the receiving ISR,
  * internal data structures, etc */
 
-/* todo: first pass ping() constructor a timer so this can use a timer
- * for distance measurements without colliding with another in-use
- * timer */
+/*! \note this acknowledges the interrupt */
+uint32_t ping::notify() {
+
+    switch(status) {
+    case PING_INACTIVE: start(); break;
+    case PING_SENT: stop(); break;
+    case PING_RESPONSE:
+        #if TEST_PING == 1
+        while(1) {}
+        #else
+        /* do nothing for now */
+        #endif
+        break;
+    default: while(1) {}
+    }
+    return ack();
+}
+
 /* resume:: implement these virtual functions */
 void ping::start() {
 #if TEST_PING == 1
@@ -66,8 +86,11 @@ void ping::start() {
     }
 #endif
     status = PING_SENT;
-    /* TODO: start timer */
+    tim.reload();
+    tim.start();
 }
+
+/* TODO: watch overflow or make time 32 bit by default */
 
 void ping::stop() {
 #if TEST_PING == 1
@@ -76,14 +99,14 @@ void ping::stop() {
     }
 #endif
     status = PING_RESPONSE;
-    /* TODO: read timer contents and stop timer */
+    /* TODO: read timer contents and stop timer, populate buffer  */
     sem->post();
     status = PING_INACTIVE;
 }
 
 uint32_t ping::ack() {
 
-    GPIOIntClear(base, pin);
+    return GPIOIntClear(base, pin);
 }
 
 /* Local Variables: */

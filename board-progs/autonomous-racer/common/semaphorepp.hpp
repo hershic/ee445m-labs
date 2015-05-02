@@ -8,6 +8,8 @@
 
 #include "criticalpp.hpp"
 
+#define TEST_SEMAPHORE 1
+
 /*! \addtogroup semaphore
  * @{
  */
@@ -15,9 +17,14 @@
 class semaphore : public critical {
 private:
     int16_t value;
+#if TEST_SEMAPHORE == 1
+    uint32_t total_posts;
+#endif
 public:
     semaphore();
     semaphore(int16_t initial_value);
+
+    void init(void);
 
     /*! Increment the semaphore. */
     void post(void);

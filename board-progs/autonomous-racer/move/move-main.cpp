@@ -321,9 +321,8 @@ int main(void) {
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
 
-    switch_timer = timer();
     switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
-                      &sem_switch, &switch_timer, GPIO_BOTH_EDGES,
+                      &sem_switch, 1, TIMER_A, GPIO_BOTH_EDGES,
                       INT_GPIOE_TM4C123, true);
 
     os_threading_init();

@@ -8,6 +8,7 @@
 #include "semaphorepp.hpp"
 #include "criticalpp.hpp"
 #include "blinker.hpp"
+#include "timerpp.hpp"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -26,17 +27,27 @@ private:
     semaphore *sem;
     blinker sig;
     uint16_t status;
+    timer tim;
 public:
     memory_address_t base;
     memory_address_t pin;
 
     ping();
-    ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem);
+    ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem,
+         timer_t timer_id, subtimer_t timer_subtimer);
     void sample(void);
 
+    /*! Start the timer monitoring sig. */
     virtual void start(void);
+
+    /*! Stop the timer monitoring sig. */
     virtual void stop(void);
+
+    /*! Acknowledge isr for sig. */
     virtual uint32_t ack(void);
+
+    /*! Alert object that the isr watching both edges of sig has been triggered. */
+    uint32_t notify();
 
     circularbuffer<PING_BUFFER_TYPE, PING_BUFFER_LENGTH> buf;
 };
