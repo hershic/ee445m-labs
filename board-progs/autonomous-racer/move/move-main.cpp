@@ -53,7 +53,7 @@ uint8_t sens_ping_back_ptr[2];
 
 lswitch switch0;
 semaphore sem_switch;
-timer switch_timer;
+timer countdown_timer;
 
 semaphore motor_start, motor_stop;
 motor motor0, motor1;
@@ -287,6 +287,12 @@ extern "C" void Timer1A_Handler() {
     switch0.end_debounce();
 }
 
+extern "C" void Timer0A_Handler() {
+
+    countdown_timer.ack();
+    drive0.stop();
+}
+
 void driver(void) {
 
     while(1) {
@@ -320,7 +326,8 @@ int main(void) {
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
     drive0 = drive(&motor0, &motor1, 50);
-
+    countdown_timer = timer(0, TIMER_BOTH, TIMER_CFG_ONE_SHOT, SysCtlClockGet()*180,
+                            TIMER_TIMA_TIMEOUT, true);
     switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
                       &sem_switch, 1, TIMER_A, GPIO_BOTH_EDGES,
                       INT_GPIOE_TM4C123, true);
