@@ -39,17 +39,11 @@ blinker blink;
 uart uart0;
 shell shell0;
 
-uint32_t sens_ir_left;
-uint32_t sens_ir_left_front;
-uint32_t sens_ir_right;
-uint32_t sens_ir_right_front;
-uint32_t sens_ping_back;
-
-uint8_t sens_ir_left_front_ptr[2];
-uint8_t sens_ir_left_ptr[2];
-uint8_t sens_ir_right_front_ptr[2];
-uint8_t sens_ir_right_ptr[2];
-uint8_t sens_ping_back_ptr[2];
+int16_t sens_ir_left;
+int16_t sens_ir_left_front;
+int16_t sens_ir_right;
+int16_t sens_ir_right_front;
+int16_t sens_ping_back;
 
 uint32_t debounced_switch_data;
 
@@ -221,6 +215,12 @@ void switch_responder() {
 }
 
 void can_handler(void) {
+
+    uint8_t sens_ir_left_front_ptr[2];
+    uint8_t sens_ir_left_ptr[2];
+    uint8_t sens_ir_right_front_ptr[2];
+    uint8_t sens_ir_right_ptr[2];
+    uint8_t sens_ping_back_ptr[2];
 
     while(1) {
         if(can_recv_sem.guard()) {
