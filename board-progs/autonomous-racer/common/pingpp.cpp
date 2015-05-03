@@ -145,8 +145,15 @@ int32_t ping::average() {
 
 int32_t ping::distance() {
 
-    /* TODO: calibrate */
-    return 0;
+    /* The speed of sound is 340 m/s or 29 microseconds per centimeter. */
+    /* The ping travels out and back, so to find the distance of the */
+    /* object we take half of the distance travelled. */
+
+    /* bus clock is 25/2 ns */
+    /* num bus clocks is in average() */
+    /* time taken for round trip is average()*25/2 in ns */
+
+    return (average() * 25) / (2492);
 }
 
 
