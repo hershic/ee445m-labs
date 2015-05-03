@@ -44,7 +44,7 @@ shell shell0;
 adc adc0;
 ir ir0, ir1, ir2, ir3;
 ping ping0;
-bool ping_sent = false;
+semaphore* ping0_sem;
 
 #define can_data_length 5*2
 const uint32_t can_msg_id = 1;
@@ -96,6 +96,14 @@ extern "C" void __cxa_pure_virtual() { while (1) {} }
 
 extern "C" void Timer0A_Handler() {
     timer0a.ack();
+}
+
+extern "C" void Timer1A_Handler() {
+    ping0.handle_timer();
+}
+
+extern "C" void GPIOPortD_Handler() {
+    ping0.handle_gpio();
 }
 
 extern "C" void UART0_Handler(void) {
@@ -154,17 +162,17 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
-/* Record how long the Ping))) took to respond */
-extern "C"
-int GPIOPortB_Handler() {
+void ping_handler() {
 
-    ping0.ack();
+    ping0.start();
 
-    switch(ping_sent) {
-    case false: ping0.start(); break;
-    case true:  ping0.stop();  break;
+    while(1){
+        if (ping0_sem->guard()) {
+            ping0.sample();
+            /* uart0.printf("ping: %u\n", ping0.average()); */
+        }
+        os_surrender_context();
     }
-    ping_sent = !ping_sent;
 }
 
 void can_handler(void) {
@@ -173,9 +181,9 @@ void can_handler(void) {
         if(can0.recv_sem.guard()) {
 
             can0.get(can_data);
-            uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
-                                can_data[0], can_data[1], can_data[3], can_data[4],
-                                can_data[4], can_data[5], can_data[6], can_data[7]);
+            uart0.printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
+                         can_data[0], can_data[1], can_data[3], can_data[4],
+                         can_data[4], can_data[5], can_data[6], can_data[7]);
         }
         os_surrender_context();
     }
@@ -207,6 +215,7 @@ void can_transmitter(void) {
         sens_ir_left_front = ir1.distance();
         sens_ir_right = ir2.distance();
         sens_ir_right_front = ir3.distance();
+        sens_ping_front = ping0.distance();
 
         can_data[0] = ir_left_ptr[0];
         can_data[1] = ir_left_ptr[1];
@@ -225,11 +234,13 @@ void can_transmitter(void) {
 
         can0.transmit(can_data, can_data_length);
 
-        uart0.atomic_printf("data:                                      \r");
-        uart0.atomic_printf("data: %u %u %u %u\r",
-                            sens_ir_left, sens_ir_left_front,
-                            sens_ir_right, sens_ir_right_front,
-                            sens_ping_front);
+        /* uart0.atomic_printf("data:                                      \r"); */
+        uart0.printf("data: %u %u %u %u %u\r\n",
+                     sens_ir_left, sens_ir_left_front,
+                     sens_ir_right, sens_ir_right_front,
+                     sens_ping_front);
+
+        /* blink.toggle(PIN_BLUE); */
 
         os_surrender_context();
     }
@@ -263,11 +274,11 @@ int main(void) {
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 15000,
+    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 1000,
                     TIMER_TIMA_TIMEOUT, true);
 
-    /* resume: create timer for ping sensor */
-    /* timer1a = timer(1, TIMER_A, TIMER_CFG_ONE_SHOT, S); */
+    ping0 = ping(GPIO_PORTD_BASE, GPIO_PIN_3, 1, TIMER_A);
+    ping0_sem = ping0.get_sem();
 
     adc0 = adc(ADC0_BASE, ADC_TRIGGER_TIMER, 0);
     adc0.configure_sequence(ADC_CTL_CH0); /* PE3 */
@@ -278,10 +289,10 @@ int main(void) {
     adc0.configure_timer_interrupt(&timer0a);
     adc0.start();
 
-    ir0 = ir(0, &adc0);
-    ir1 = ir(1, &adc0);
-    ir2 = ir(2, &adc0);
-    ir3 = ir(3, &adc0);
+    ir0 = ir(0, &adc0, 302703, -198, 11);         /* PE3: GREEN: a = 302703; b = -198; k = 11 */
+    ir1 = ir(1, &adc0);         /* PE2 */
+    ir2 = ir(2, &adc0, 307042, -200, 14);         /* PE1: BLUE: a = 307042; b = -200; k = 14 */
+    ir3 = ir(3, &adc0);         /* PE0 */
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
@@ -298,6 +309,7 @@ int main(void) {
     /* schedule(thread_blink_red, 200); */
     /* schedule(thread_blink_blue, 200); */
     /* schedule(thread_blink_green, 200); */
+    schedule(ping_handler, 200);
     schedule(shell_handler, 200);
     if(can_sender) {
         schedule(can_transmitter, 200);
