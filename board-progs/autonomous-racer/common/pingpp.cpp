@@ -38,7 +38,7 @@ void ping::sample() {
 
     /* Disable interrupts in SIG */
     ctlsys::gpio_int_disable(base, pin);
-    IntDisable(ctlsysctl::periph_to_int(base));
+    IntDisable(ctlsys::periph_to_int(base));
 
     /* Set Ping))) SIG to output */
     GPIOPinTypeGPIOOutput(base, pin);
@@ -54,7 +54,7 @@ void ping::sample() {
 
     /* Enable interupts on SIG */
     ctlsys::gpio_int_enable(base, pin, true);
-    IntEnable(ctlsysctl::periph_to_int(base));
+    IntEnable(ctlsys::periph_to_int(base));
 
     EndCritical(status);
 }
