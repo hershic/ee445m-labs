@@ -44,31 +44,31 @@ ping::ping(memory_address_t ping_base, memory_address_t ping_pin,
  *  200 micro-seconds */
 void ping::sample() {
 
-    uint32_t intstatus = StartCritical();
+    if (status == ping_not_active) {
+        uint32_t intstatus = StartCritical();
 
-    status = ping_not_active;
+        /* Disable interrupts in SIG */
+        ctlsys::gpio_int_disable(base, pin);
+        IntDisable(ctlsys::periph_to_int(base));
 
-    /* Disable interrupts in SIG */
-    ctlsys::gpio_int_disable(base, pin);
-    IntDisable(ctlsys::periph_to_int(base));
+        /* Set Ping))) SIG to output */
+        GPIOPinTypeGPIOOutput(base, pin);
+        sig.turn_on(pin);
+        /* Set SIG high for 5usec */
+        delay::count(1);
+        sig.turn_off(pin);
 
-    /* Set Ping))) SIG to output */
-    GPIOPinTypeGPIOOutput(base, pin);
-    sig.turn_on(pin);
-    /* Set SIG high for 5usec */
-    delay::count(1);
-    sig.turn_off(pin);
+        /* Set Ping))) SIG to input */
+        GPIOPinTypeGPIOInput(base, pin);
+        GPIOIntTypeSet(base, pin, GPIO_BOTH_EDGES);
+        delay::count(200);
 
-    /* Set Ping))) SIG to input */
-    GPIOPinTypeGPIOInput(base, pin);
-    GPIOIntTypeSet(base, pin, GPIO_BOTH_EDGES);
-    delay::count(200);
+        /* Enable interupts on SIG */
+        ctlsys::gpio_int_enable(base, pin, true);
+        IntEnable(ctlsys::periph_to_int(base));
 
-    /* Enable interupts on SIG */
-    ctlsys::gpio_int_enable(base, pin, true);
-    IntEnable(ctlsys::periph_to_int(base));
-
-    EndCritical(intstatus);
+        EndCritical(intstatus);
+    }
 }
 
 void ping::start() {
@@ -87,15 +87,21 @@ uint32_t ping::handle_timer() {
     tim.ack();
 
     if (status == ping_not_active) {
+        /* TODO: remove when done debugging */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
     } else if (status == ping_signal) {
+        /* TODO: remove when done debugging */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
     } else if (status == ping_response) {
+        /* TODO: remove when done debugging */
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
     } else if (status == ping_sample_delay) {
         status = ping_not_active;
-        sem.post();
     }
+
+    /* either a timeout happened or the sensor delay period has been
+       achieved */
+    sem.post();
 }
 
 uint32_t ping::handle_gpio() {
@@ -114,6 +120,8 @@ uint32_t ping::handle_gpio() {
         status = ping_sample_delay;
         tim.load(SysCtlClockGet()/25);
         tim.start();
+    } else {
+        /* TODO: do something here? */
     }
 
     return 0xDEADBEEF;
