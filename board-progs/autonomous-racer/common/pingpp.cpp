@@ -8,24 +8,34 @@
 
 #include "driverlib/interrupt.c"
 
-#define TEST_PING 1
-
 ping::ping() {}
 
-ping::ping(memory_address_t port_base, memory_address_t port_pin,
-           semaphore* sem, timer_t timer_id) {
+ping::ping(memory_address_t ping_base, memory_address_t ping_pin,
+           timer_t ping_timer_id, subtimer_t ping_timer_subtimer) {
 
-    status = PING_INACTIVE;
+    status = ping_not_active;
 
-    base = port_base;
-    pin = port_pin;
+    base = ping_base;
+    pin = ping_pin;
     sig = blinker(base);
 
-    this->sem = sem;
-    *(this->sem) = semaphore();
+    sem = semaphore();
+    buf = circularbuffer<PING_BUFFER_TYPE, PING_BUFFER_LENGTH>();
 
-    tim = timer(timer_id, TIMER_BOTH, TIMER_CFG_PERIODIC_UP, 0x0fffffe,
-        TIMER_TIMA_TIMEOUT);
+    switch(ping_timer_subtimer) {
+    case TIMER_A:
+    case TIMER_BOTH:
+        timer_interrupt = TIMER_TIMA_TIMEOUT;
+        break;
+    case TIMER_B:
+        timer_interrupt = TIMER_TIMB_TIMEOUT;
+        break;
+    default:
+        while (1) {}
+    }
+
+    tim = timer(ping_timer_id, ping_timer_subtimer, TIMER_CFG_ONE_SHOT_UP, 0x0fffffe,
+                timer_interrupt);
 
     ctlsys::enable_periph(base);
 }
@@ -34,7 +44,7 @@ ping::ping(memory_address_t port_base, memory_address_t port_pin,
  *  200 micro-seconds */
 void ping::sample() {
 
-    uint32_t status = StartCritical();
+    uint32_t intstatus = StartCritical();
 
     /* Disable interrupts in SIG */
     ctlsys::gpio_int_disable(base, pin);
@@ -44,7 +54,7 @@ void ping::sample() {
     GPIOPinTypeGPIOOutput(base, pin);
     sig.turn_on(pin);
     /* Set SIG high for 5usec */
-    delay::count(4);
+    delay::count(1);
     sig.turn_off(pin);
 
     /* Set Ping))) SIG to input */
@@ -56,55 +66,69 @@ void ping::sample() {
     ctlsys::gpio_int_enable(base, pin, true);
     IntEnable(ctlsys::periph_to_int(base));
 
-    EndCritical(status);
-}
-
-/*! \note this acknowledges the interrupt */
-uint32_t ping::notify() {
-
-    switch(status) {
-    case PING_INACTIVE: start(); break;
-    case PING_SENT: stop(); break;
-    case PING_RESPONSE:
-        #if TEST_PING == 1
-        while(1) {}
-        #else
-        /* do nothing for now, ideally queue the notification */
-        #endif
-        break;
-    default: while(1) {}
-    }
-    return ack();
+    EndCritical(intstatus);
 }
 
 void ping::start() {
-#if TEST_PING == 1
-    if (status != PING_INACTIVE) {
-        while(1) {}
-    }
-#endif
-    status = PING_SENT;
-    tim.reload();
-    tim.start();
+
+    /* start the chain */
+    sem.post();
 }
 
 void ping::stop() {
-#if TEST_PING == 1
-    if (status != PING_SENT) {
-        while(1) {}
-    }
-#endif
-    status = PING_RESPONSE;
-    buf.add(tim.get());
-    sem->post();
-    status = PING_INACTIVE;
+
+    sem.reset();
 }
 
-uint32_t ping::ack() {
+uint32_t ping::handle_timer() {
+    tim.ack();
+    sem.post();
+    status = ping_not_active;
+}
+
+uint32_t ping::handle_gpio() {
 
     GPIOIntClear(base, pin);
+
+    status = ping_status_t(int(status) + 1);
+
+    if (status == ping_signal) {
+        tim.reload();
+        timer_signal_value = tim.get();
+        tim.start();
+    } else if (status == ping_response) {
+        timer_response_value = tim.get();
+        buf.add(timer_response_value - timer_signal_value);
+        status = ping_sample_delay;
+        tim.load(SysCtlClockGet()/50);
+        tim.start();
+    }
+
     return 0xDEADBEEF;
 }
+
+semaphore* ping::get_sem() {
+
+    return &sem;
+}
+
+int32_t ping::average() {
+
+    int32_t i, value;
+    value = 0;
+    for (i=0; i<buf.len; ++i) {
+        value += buf.buf[i];
+    }
+    value /= buf.len;
+    return value;
+}
+
+int32_t ping::distance() {
+
+    /* TODO: calibrate */
+    return 0;
+}
+
 
 /* Local Variables: */
 /* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
