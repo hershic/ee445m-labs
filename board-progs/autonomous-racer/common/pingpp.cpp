@@ -46,6 +46,8 @@ void ping::sample() {
 
     uint32_t intstatus = StartCritical();
 
+    status = ping_not_active;
+
     /* Disable interrupts in SIG */
     ctlsys::gpio_int_disable(base, pin);
     IntDisable(ctlsys::periph_to_int(base));
@@ -81,9 +83,19 @@ void ping::stop() {
 }
 
 uint32_t ping::handle_timer() {
+
     tim.ack();
-    sem.post();
-    status = ping_not_active;
+
+    if (status == ping_not_active) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
+    } else if (status == ping_signal) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+    } else if (status == ping_response) {
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+    } else if (status == ping_sample_delay) {
+        status = ping_not_active;
+        sem.post();
+    }
 }
 
 uint32_t ping::handle_gpio() {
@@ -100,7 +112,7 @@ uint32_t ping::handle_gpio() {
         timer_response_value = tim.get();
         buf.add(timer_response_value - timer_signal_value);
         status = ping_sample_delay;
-        tim.load(SysCtlClockGet()/50);
+        tim.load(SysCtlClockGet()/25);
         tim.start();
     }
 
