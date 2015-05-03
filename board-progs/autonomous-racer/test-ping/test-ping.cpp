@@ -70,12 +70,6 @@ int main(void) {
 
 extern "C" void Timer1A_Handler() {
     ping0.handle_timer();
-    blink.turn_on(PIN_BLUE);
-}
-
-extern "C" void Timer1B_Handler() {
-    ping0.handle_timer();
-    blink.turn_on(PIN_BLUE);
 }
 
 extern "C" void GPIOPortD_Handler() {
