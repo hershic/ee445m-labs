@@ -188,13 +188,13 @@ void switch_responder() {
     percent_t left_speed, right_speed;
 
     while(1) {
-        if(sem_switch.guard() && debounced_switch_data) {
+        if(sem_switch.guard() && switch0.debounced_data) {
             counter = 0;
 
-            if(debounced_switch_data & GPIO_PIN_1) {
+            if(switch0.debounced_data & GPIO_PIN_1) {
                 left_speed = 100;
                 right_speed = 0;
-            } else if(debounced_switch_data & GPIO_PIN_2) {
+            } else if(switch0.debounced_data & GPIO_PIN_2) {
                 left_speed = 0;
                 right_speed = 100;
             }
@@ -282,7 +282,7 @@ void motor_control(void) {
 
 extern "C" void Timer1A_Handler() {
 
-    debounced_switch_data = switch0.end_debounce();
+    switch0.end_debounce();
 }
 
 extern "C" void Timer0A_Handler() {

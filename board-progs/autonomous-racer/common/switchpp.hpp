@@ -36,6 +36,8 @@ public:
 
     /*! Return current value of the limit lswitch */
     uint32_t sample(void);
+
+    uint32_t debounced_data;
 };
 
 #endif  /* __LSWITCHPP__ */

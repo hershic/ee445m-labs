@@ -87,7 +87,7 @@ uint32_t lswitch::ack() {
 
 uint32_t lswitch::sample() {
 
-    return GPIOPinRead(base, pin);
+    return debounced_data = GPIOPinRead(base, pin);
 }
 
 /* Local Variables: */
