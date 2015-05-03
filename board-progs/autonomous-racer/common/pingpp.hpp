@@ -13,7 +13,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define PING_BUFFER_LENGTH 32
+#define PING_BUFFER_LENGTH 5
 #define PING_BUFFER_TYPE   int32_t
 
 typedef uint32_t memory_address_t;
