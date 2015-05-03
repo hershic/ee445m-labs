@@ -58,10 +58,6 @@ uint8_t* ir_right_ptr;
 uint8_t* ir_right_front_ptr;
 uint8_t* ping_back_ptr;
 
-semaphore motor_start, motor_stop;
-motor motor0, motor1;
-drive drive0;
-
 #define can_data_length 5*2
 const uint32_t can_msg_id = 1;
 const bool can_sender = true;
@@ -255,34 +251,10 @@ void shell_handler() {
     }
 }
 
-void motor_control(void) {
-
-    while(1) {
-        if(motor_start.guard()) {
-            drive0.start();
-        }
-        if(motor_stop.guard()) {
-            drive0.stop();
-        }
-        os_surrender_context();
-    }
-}
-
 void can_prepare_dummy_data(void) {
 
     for(uint8_t i=0; i<can_data_length; ++i) {
         can_data[i] = i;
-    }
-}
-
-void driver(void) {
-
-    while(1) {
-        /* todo: populate these uint32_t's with sensor data */
-
-        drive0.steer(sens_ir_left, sens_ir_left_front,
-                     sens_ir_right, sens_ir_right_front, sens_ping_back);
-        os_surrender_context();
     }
 }
 
@@ -324,20 +296,11 @@ int main(void) {
         can_recv_sem = semaphore();
     }
 
-    motor_start = semaphore();
-    motor_stop = semaphore();
-    shell0 = shell(&uart0, &motor_start, &motor_stop);
-    motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
-    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
-    drive0 = drive(&motor0, &motor1, 50);
+    shell0 = shell(&uart0);
 
     os_threading_init();
-    schedule(motor_control, 200);
     /* schedule(thread_blink_red, 200); */
-    schedule(thread_blink_blue, 200);
-    schedule(thread_blink_green, 200);
     schedule(shell_handler, 200);
-    /* schedule(driver, 200); */
     if(can_sender) {
         schedule(can_transmitter, 200);
     } else {
