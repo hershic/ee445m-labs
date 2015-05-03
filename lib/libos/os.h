@@ -27,7 +27,7 @@ extern "C"
 #define SCHEDULER_MAX_THREADS    10
 
 /*! Maximum number of 32-bit values allowed in each thread's stack */
-#define OS_STACK_SIZE   256
+#define OS_STACK_SIZE   368
 
 /*! Static number of thread pools of distinct priority in use */
 #define OS_NUM_POOLS    2
