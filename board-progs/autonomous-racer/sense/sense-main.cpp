@@ -138,8 +138,6 @@ extern "C" void ADC0Seq0_Handler(void) {
     ir1.sample();
     ir2.sample();
     ir3.sample();
-
-    blink.toggle(PIN_RED);
 }
 
 extern "C" void CAN0_Handler(void) {
@@ -227,8 +225,8 @@ void can_transmitter(void) {
 
         can0.transmit(can_data, can_data_length);
 
-        /* uart0.atomic_printf("data:                                      \r"); */
-        uart0.atomic_printf("data: %u %u %u %u\r\n",
+        uart0.atomic_printf("data:                                      \r");
+        uart0.atomic_printf("data: %u %u %u %u\r",
                             sens_ir_left, sens_ir_left_front,
                             sens_ir_right, sens_ir_right_front);
 
@@ -297,6 +295,8 @@ int main(void) {
 
     os_threading_init();
     /* schedule(thread_blink_red, 200); */
+    /* schedule(thread_blink_blue, 200); */
+    /* schedule(thread_blink_green, 200); */
     schedule(shell_handler, 200);
     if(can_sender) {
         schedule(can_transmitter, 200);
