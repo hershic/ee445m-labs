@@ -42,16 +42,6 @@ void drive::set(percent_t speed, Direction dir) {
     right->set(speed, dir);
 }
 
-int32_t clamp(int32_t value, int32_t min, int32_t max) {
-    if (value > max) {
-        return max;
-    } else if (value < min) {
-        return min;
-    } else {
-        return value;
-    }
-}
-
 void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
                   uint32_t right_sens, uint32_t right_front_sens,
                   uint32_t back_sens) {
