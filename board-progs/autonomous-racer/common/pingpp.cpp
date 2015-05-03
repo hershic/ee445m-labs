@@ -13,7 +13,7 @@
 ping::ping() {}
 
 ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem,
-    timer_t timer_id, subtimer_t timer_subtimer) {
+    timer_t timer_id) {
 
     status = PING_INACTIVE;
 
@@ -24,8 +24,8 @@ ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem
     this->sem = sem;
     *(this->sem) = semaphore();
 
-    tim = timer(timer_id, timer_subtimer, TIMER_CFG_PERIODIC_UP, 0x0fffffe,
-        ctlsys::timer_timeout_from_subtimer(timer_subtimer));
+    tim = timer(timer_id, TIMER_BOTH, TIMER_CFG_PERIODIC_UP, 0x0fffffe,
+        TIMER_TIMA_TIMEOUT);
 
     ctlsys::enable_periph(base);
 }
@@ -60,8 +60,6 @@ void ping::sample() {
 
     EndCritical(status);
 }
-/* resume: finish hooking this above function up, the receiving ISR,
- * internal data structures, etc */
 
 /*! \note this acknowledges the interrupt */
 uint32_t ping::notify() {
@@ -81,7 +79,6 @@ uint32_t ping::notify() {
     return ack();
 }
 
-/* resume:: implement these virtual functions */
 void ping::start() {
 #if TEST_PING == 1
     if (status != PING_INACTIVE) {
@@ -93,8 +90,6 @@ void ping::start() {
     tim.start();
 }
 
-/* TODO: watch overflow or make time 32 bit by default */
-
 void ping::stop() {
 #if TEST_PING == 1
     if (status != PING_SENT) {
@@ -102,7 +97,7 @@ void ping::stop() {
     }
 #endif
     status = PING_RESPONSE;
-    /* TODO: read timer contents and stop timer, populate buffer  */
+    buf.add(tim.get());
     sem->post();
     status = PING_INACTIVE;
 }
