@@ -306,12 +306,19 @@ int main(void) {
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
     adc0.configure_timer_interrupt(&timer0a);
-    adc0.start();
+    /* adc0.start(); */
 
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
     ir2 = ir(2, &adc0);
     ir3 = ir(3, &adc0);
+
+    int32_t adc_value = 423;
+    int32_t dist_value;
+    while (1) {
+        dist_value = ir0.lin_interp(adc_value);
+        adc_value += 100;
+    }
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
