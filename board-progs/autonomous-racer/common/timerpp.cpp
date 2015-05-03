@@ -41,13 +41,18 @@ timer::timer(timer_t timer_id, subtimer_t timer_subtimer,
 
 void timer::reload() {
 
+    load(reload_value);
+}
+
+void timer::load(uint32_t load_value) {
+
     switch(subtimer) {
     case TIMER_A:
     case TIMER_BOTH:
-        TimerLoadSet(base, TIMER_A, reload_value);
+        TimerLoadSet(base, TIMER_A, load_value);
         break;
     case TIMER_B:
-        TimerLoadSet(base, TIMER_B, reload_value);
+        TimerLoadSet(base, TIMER_B, load_value);
         break;
     default:
         while (1) {}

@@ -68,7 +68,8 @@ public:
     const uint32_t get_base();
 
     /*! Reload the timer with the initial reload value */
-    void reload();
+    void reload(void);
+    void load(uint32_t load_value);
 };
 
 #endif
