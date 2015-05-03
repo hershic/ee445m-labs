@@ -25,17 +25,18 @@ void ir::sample() {
 
 int32_t ir::average() {
 
-    uint32_t i, value;
+    int32_t i, value;
+    value = 0;
     for (i=0; i<buf.len; ++i) {
         value += buf.buf[i];
     }
     value /= buf.len;
-    return (IR_BUFFER_TYPE)value;
+    return value;
 }
 
 /*! Converts the values of the IR distance sensor to centimeters */
 /*! \returns 0 if the conversion did not succeed, data otherwise */
 int32_t ir::distance() {
 
-    return (int32_t)(calibration.a / (average() + calibration.b) - calibration.k);
+    return calibration.a / (average() + calibration.b) - calibration.k;
 }
