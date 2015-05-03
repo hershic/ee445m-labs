@@ -213,36 +213,20 @@ void switch_responder() {
 
 void can_handler(void) {
 
-    uint8_t sens_ir_left_front_ptr[2];
-    uint8_t sens_ir_left_ptr[2];
-    uint8_t sens_ir_right_front_ptr[2];
-    uint8_t sens_ir_right_ptr[2];
-    uint8_t sens_ping_back_ptr[2];
-
     while(1) {
         if(can0.recv_sem.guard()) {
 
             sem_blink_blue.post();
             can0.get(can_data);
 
-            sens_ir_left_ptr[0] = can_data[0];
-            sens_ir_left_ptr[1] = can_data[1];
-            sens_ir_left_front_ptr[0] = can_data[2];
-            sens_ir_left_front_ptr[1] = can_data[3];
-            sens_ir_right_ptr[0] = can_data[4];
-            sens_ir_right_ptr[1] = can_data[5];
-            sens_ir_right_front_ptr[0] = can_data[6];
-            sens_ir_right_front_ptr[1] = can_data[7];
-            sens_ping_back_ptr[0] = can_data[8];
-            sens_ping_back_ptr[1] = can_data[9];
-
             sens_ir_left = (can_data[1] << 8) | (can_data[0]);
             sens_ir_left_front = (can_data[3] << 8) | (can_data[2]);
             sens_ir_right = (can_data[5] << 8) | (can_data[4]);
             sens_ir_right_front = (can_data[7] << 8) | (can_data[6]);
 
-            uart0.atomic_printf("data:                                      \r");
-            uart0.atomic_printf("data: %u %u %u %u\r", sens_ir_left, sens_ir_left_front, sens_ir_right, sens_ir_right_front);
+            /* uart0.atomic_printf("data:                                      \r"); */
+            /* uart0.atomic_printf("data: %u %u %u %u\r", sens_ir_left, sens_ir_left_front, */
+            /*                     sens_ir_right, sens_ir_right_front); */
 
             /* uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X \n", */
             /*                     can_data[0], can_data[1], can_data[2], can_data[3], */
