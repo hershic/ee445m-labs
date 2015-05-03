@@ -46,12 +46,6 @@ ir ir0, ir1, ir2, ir3;
 ping ping0;
 bool ping_sent = false;
 
-uint8_t* ir_left_ptr;
-uint8_t* ir_left_front_ptr;
-uint8_t* ir_right_ptr;
-uint8_t* ir_right_front_ptr;
-uint8_t* ping_back_ptr;
-
 #define can_data_length 5*2
 const uint32_t can_msg_id = 1;
 const bool can_sender = true;
@@ -196,6 +190,12 @@ void can_transmitter(void) {
     uint16_t sens_ir_right;
     uint16_t sens_ir_right_front;
     uint16_t sens_ping_back;
+
+    uint8_t* ir_left_ptr;
+    uint8_t* ir_left_front_ptr;
+    uint8_t* ir_right_ptr;
+    uint8_t* ir_right_front_ptr;
+    uint8_t* ping_back_ptr;
 
     ir_left_ptr = (uint8_t*)(&sens_ir_left);
     ir_left_front_ptr = (uint8_t*)(&sens_ir_left_front);
