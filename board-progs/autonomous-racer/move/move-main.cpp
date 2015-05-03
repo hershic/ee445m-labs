@@ -43,7 +43,7 @@ uint16_t sens_ir_left;
 uint16_t sens_ir_left_front;
 uint16_t sens_ir_right;
 uint16_t sens_ir_right_front;
-uint16_t sens_ping_back;
+uint16_t sens_ping_front;
 
 lswitch switch0;
 semaphore sem_switch;
@@ -223,6 +223,7 @@ void can_handler(void) {
             sens_ir_left_front = (can_data[3] << 8) | (can_data[2]);
             sens_ir_right = (can_data[5] << 8) | (can_data[4]);
             sens_ir_right_front = (can_data[7] << 8) | (can_data[6]);
+            sens_ping_front = (can_data[9] << 8) | (can_data[8]);
 
             /* uart0.atomic_printf("data:                                      \r"); */
             /* uart0.atomic_printf("data: %u %u %u %u\r", sens_ir_left, sens_ir_left_front, */
@@ -279,7 +280,7 @@ void driver(void) {
 
     while(1) {
         drive0.steer(sens_ir_left, sens_ir_left_front,
-                     sens_ir_right, sens_ir_right_front, sens_ping_back);
+                     sens_ir_right, sens_ir_right_front, sens_ping_front);
         os_surrender_context();
     }
 }

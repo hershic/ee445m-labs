@@ -187,18 +187,19 @@ void can_transmitter(void) {
     uint16_t sens_ir_left_front;
     uint16_t sens_ir_right;
     uint16_t sens_ir_right_front;
-    uint16_t sens_ping_back;
+    uint16_t sens_ping_front;
 
     uint8_t* ir_left_ptr;
     uint8_t* ir_left_front_ptr;
     uint8_t* ir_right_ptr;
     uint8_t* ir_right_front_ptr;
-    uint8_t* ping_back_ptr;
+    uint8_t* ping_front_ptr;
 
     ir_left_ptr = (uint8_t*)(&sens_ir_left);
     ir_left_front_ptr = (uint8_t*)(&sens_ir_left_front);
     ir_right_ptr = (uint8_t*)(&sens_ir_right);
     ir_right_front_ptr = (uint8_t*)(&sens_ir_right_front);
+    ping_front_ptr = (uint8_t*)(&sens_ping_front);
 
     while(1) {
 
@@ -219,16 +220,16 @@ void can_transmitter(void) {
         can_data[6] = ir_right_front_ptr[0];
         can_data[7] = ir_right_front_ptr[1];
 
-        /* TODO: Populate */
-        can_data[8] = 0;              /* sens_ping_back  */
-        can_data[9] = 0;              /* sens_ping_back  */
+        can_data[8] = ping_front_ptr[0];
+        can_data[9] = ping_front_ptr[1];
 
         can0.transmit(can_data, can_data_length);
 
         uart0.atomic_printf("data:                                      \r");
         uart0.atomic_printf("data: %u %u %u %u\r",
                             sens_ir_left, sens_ir_left_front,
-                            sens_ir_right, sens_ir_right_front);
+                            sens_ir_right, sens_ir_right_front,
+                            sens_ping_front);
 
         os_surrender_context();
     }
