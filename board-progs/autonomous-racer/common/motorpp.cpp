@@ -1,9 +1,6 @@
 /* -*- mode: c++; c-basic-offset: 4; -*- */
 #include "motorpp.hpp"
 
-#include "inc/tm4c123gh6pm.h"
-#include "inc/hw_pwm.h"
-
 #include "driverlib/sysctl.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/pwm.h"
