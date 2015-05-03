@@ -76,9 +76,6 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     /*     } */
     /* } */
 
-    left_speed = 50;
-    right_speed = 50;
-
     left->set(left_speed, dir);
     right->set(right_speed, dir);
 
