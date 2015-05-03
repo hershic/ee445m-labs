@@ -46,12 +46,6 @@ ir ir0, ir1, ir2, ir3;
 ping ping0;
 bool ping_sent = false;
 
-uint32_t sens_ir_left;
-uint32_t sens_ir_left_front;
-uint32_t sens_ir_right;
-uint32_t sens_ir_right_front;
-uint32_t sens_ping_back;
-
 uint8_t* ir_left_ptr;
 uint8_t* ir_left_front_ptr;
 uint8_t* ir_right_ptr;
@@ -197,6 +191,12 @@ void can_handler(void) {
 }
 
 void can_transmitter(void) {
+
+    uint16_t sens_ir_left;
+    uint16_t sens_ir_left_front;
+    uint16_t sens_ir_right;
+    uint16_t sens_ir_right_front;
+    uint16_t sens_ping_back;
 
     ir_left_ptr = (uint8_t*)(&sens_ir_left);
     ir_left_front_ptr = (uint8_t*)(&sens_ir_left_front);
