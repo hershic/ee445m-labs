@@ -306,7 +306,7 @@ int main(void) {
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
     adc0.configure_timer_interrupt(&timer0a);
-    /* adc0.start(); */
+    adc0.start();
 
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
