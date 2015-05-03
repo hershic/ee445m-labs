@@ -39,13 +39,11 @@ blinker blink;
 uart uart0;
 shell shell0;
 
-int16_t sens_ir_left;
-int16_t sens_ir_left_front;
-int16_t sens_ir_right;
-int16_t sens_ir_right_front;
-int16_t sens_ping_back;
-
-uint32_t debounced_switch_data;
+uint16_t sens_ir_left;
+uint16_t sens_ir_left_front;
+uint16_t sens_ir_right;
+uint16_t sens_ir_right_front;
+uint16_t sens_ping_back;
 
 lswitch switch0;
 semaphore sem_switch;
