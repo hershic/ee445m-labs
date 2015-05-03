@@ -37,7 +37,7 @@ lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
     }
 
     /* other solution: timer scoreboard */
-    this->tim = timer(timer_id, timer_subtimer, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 10,
+    this->tim = timer(timer_id, timer_subtimer, TIMER_CFG_ONE_SHOT, SysCtlClockGet() / 50,
                       ctlsys::timer_timeout_from_subtimer(timer_subtimer));
 
     GPIOIntTypeSet(base, pin, switch_interrupt);
@@ -64,9 +64,6 @@ void lswitch::stop() {
 /*! Call this  in the isr of the switch  */
 void lswitch::debounce() {
 
-    // TODO: sched TIMER
-    ack();
-    stop();
     tim.start();
 }
 
@@ -80,7 +77,6 @@ uint32_t lswitch::end_debounce() {
     if(NULL != sem) {
         sem->post();
     }
-    start();
     return sample();
 }
 
