@@ -47,6 +47,10 @@ class ir {
     } calibration_data;
 
 private:
+    calibration_data calibration;
+    circularbuffer<IR_BUFFER_TYPE, IR_BUFFER_LENGTH> buf;
+    uint8_t adc_sequence_step;
+    adc* assoc_adc;
 
 public:
     ir();
@@ -57,11 +61,6 @@ public:
     void sample(void);
     IR_BUFFER_TYPE average();
     int32_t distance();
-
-    calibration_data calibration;
-    circularbuffer<IR_BUFFER_TYPE, IR_BUFFER_LENGTH> buf;
-    uint8_t adc_sequence_step;
-    adc* assoc_adc;
 };
 
 #endif  /* __IR__ */
