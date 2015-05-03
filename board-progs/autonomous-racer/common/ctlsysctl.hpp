@@ -9,6 +9,7 @@
  */
 
 #include "inc/hw_memmap.h"
+#include "inc/hw_ints.h"
 
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
@@ -65,6 +66,21 @@ public:
         case GPIO_PIN_5: return GPIO_INT_PIN_5;
         case GPIO_PIN_6: return GPIO_INT_PIN_6;
         case GPIO_PIN_7: return GPIO_INT_PIN_7;
+        default: while(1) {}
+        }
+    }
+
+    static uint32_t periph_to_int(uint32_t periph) {
+        switch(periph) {
+        case GPIO_PORTA_BASE: return INT_GPIOA_TM4C123;
+        case GPIO_PORTB_BASE: return INT_GPIOB_TM4C123;
+        case GPIO_PORTC_BASE: return INT_GPIOC_TM4C123;
+        case GPIO_PORTD_BASE: return INT_GPIOD_TM4C123;
+        case GPIO_PORTE_BASE: return INT_GPIOE_TM4C123;
+        case GPIO_PORTF_BASE: return INT_GPIOF_TM4C123;
+        case GPIO_PORTG_BASE: return INT_GPIOG_TM4C123;
+        case GPIO_PORTH_BASE: return INT_GPIOH_TM4C123;
+        case CAN0_BASE:       return INT_CAN0_TM4C123;
         default: while(1) {}
         }
     }
