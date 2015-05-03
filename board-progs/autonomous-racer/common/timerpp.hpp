@@ -24,7 +24,7 @@ typedef uint32_t reload_t;
 const uint32_t TIMER_DEFAULT_PRIORITY = 0;
 
 class timer : public interruptable {
-public:
+private:
     /*! Defined between 0 to 4, where 0 indicates TIMER0 */
     timer_t id;
 
@@ -45,6 +45,8 @@ public:
     /*! \note Reference timer.h for possible options (e.g. TIMER_TIMA_TIMEOUT) */
     uint32_t interrupt;
 
+public:
+
     timer();
     timer(timer_t timer_id, subtimer_t timer_subtimer,
           uint32_t timer_configuration, reload_t timer_load_val,
@@ -60,6 +62,10 @@ public:
     virtual uint32_t ack();
 
     virtual uint32_t get();
+
+    const subtimer_t get_subtimer();
+
+    const uint32_t get_base();
 
     /*! Reload the timer with the initial reload value */
     void reload();

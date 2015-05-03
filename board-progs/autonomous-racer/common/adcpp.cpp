@@ -43,7 +43,7 @@ adc::adc(memory_address_t adc_base, uint8_t adc_trigger_source,
 
 void adc::configure_timer_interrupt(timer* t) {
 
-    TimerControlTrigger(t->base, t->subtimer, true);
+    TimerControlTrigger(t->get_base(), t->get_subtimer(), true);
 }
 
 void adc::configure_timer_interrupt(uint32_t timer_base, uint32_t timer_subtimer) {

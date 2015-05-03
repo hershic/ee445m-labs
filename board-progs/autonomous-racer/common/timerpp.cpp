@@ -97,6 +97,15 @@ uint32_t timer::get() {
     }
 }
 
+const subtimer_t timer::get_subtimer() {
+    return subtimer;
+}
+
+const uint32_t timer::get_base() {
+    return base;
+}
+
+
 /* Local Variables: */
 /* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
 /* End: */
