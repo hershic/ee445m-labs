@@ -82,6 +82,21 @@ uint32_t timer::ack() {
     return 0xDEADBEEF;
 }
 
+uint32_t timer::get() {
+
+    switch(subtimer) {
+    case TIMER_A:
+    case TIMER_BOTH:
+        TimerValueGet(base, TIMER_A);
+        break;
+    case TIMER_B:
+        TimerValueGet(base, TIMER_B);
+        break;
+    default:
+        while (1) {}
+    }
+}
+
 /* Local Variables: */
 /* firestarter: (compile "make -k -j32 -C ~/workspace/ee445m-labs/build/") */
 /* End: */

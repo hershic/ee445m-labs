@@ -59,6 +59,8 @@ public:
     /*! Acknowledge an interrupt. Clears the interrupt bits for this timer. */
     virtual uint32_t ack();
 
+    virtual uint32_t get();
+
     /*! Reload the timer with the initial reload value */
     void reload();
 };
