@@ -51,6 +51,8 @@ uint8_t sens_ir_right_front_ptr[2];
 uint8_t sens_ir_right_ptr[2];
 uint8_t sens_ping_back_ptr[2];
 
+uint32_t debounced_switch_data;
+
 lswitch switch0;
 semaphore sem_switch;
 timer countdown_timer;
@@ -182,36 +184,35 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
-extern "C" int GPIOPortE_Handler() {
+extern "C" void GPIOPortE_Handler() {
 
+    switch0.ack();
     switch0.debounce();
 }
 
 void switch_responder() {
 
-    const uint32_t counter_max = 100000;
+    const uint32_t counter_max = SysCtlClockGet()/50;
     uint32_t pins, counter;
     percent_t left_speed, right_speed;
 
     while(1) {
-        if(sem_switch.guard()) {
-            pins = switch0.sample();
+        if(sem_switch.guard() && debounced_switch_data) {
             counter = 0;
 
-            if(pins & GPIO_PIN_1) {
+            if(debounced_switch_data & GPIO_PIN_1) {
                 left_speed = 100;
                 right_speed = 0;
-            } else if(pins & GPIO_PIN_2) {
+            } else if(debounced_switch_data & GPIO_PIN_2) {
                 left_speed = 0;
-                right_speed = 100;
-            } else if(pins & GPIO_PIN_3) {
-                left_speed = 100;
                 right_speed = 100;
             }
 
             motor0.reverse();
             motor1.reverse();
+            blink.turn_on(PIN_GREEN);
             while (++counter < counter_max) { }
+            blink.turn_off(PIN_GREEN);
             motor0.reverse();
             motor1.reverse();
         }
@@ -284,7 +285,7 @@ void motor_control(void) {
 
 extern "C" void Timer1A_Handler() {
 
-    switch0.end_debounce();
+    debounced_switch_data = switch0.end_debounce();
 }
 
 extern "C" void Timer0A_Handler() {

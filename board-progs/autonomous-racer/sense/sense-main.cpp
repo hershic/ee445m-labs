@@ -209,10 +209,10 @@ void can_transmitter(void) {
 
     while(1) {
 
-        sens_ir_left = ir0.average();
-        sens_ir_left_front = ir1.average();
-        sens_ir_right = ir2.average();
-        sens_ir_right_front = ir3.average();
+        sens_ir_left = ir0.distance();
+        sens_ir_left_front = ir1.distance();
+        sens_ir_right = ir2.distance();
+        sens_ir_right_front = ir3.distance();
 
         can_data[0] = ir_left_ptr[0];
         can_data[1] = ir_left_ptr[1];
@@ -232,8 +232,10 @@ void can_transmitter(void) {
 
         can0.transmit(can_data, can_data_length);
 
-        uart0.atomic_printf("data:                                      \r");
-        uart0.atomic_printf("data: %u %u %u %u\r", sens_ir_left, sens_ir_left_front, sens_ir_right, sens_ir_right_front);
+        /* uart0.atomic_printf("data:                                      \r"); */
+        uart0.atomic_printf("data: %u %u %u %u\r\n",
+                            sens_ir_left, sens_ir_left_front,
+                            sens_ir_right, sens_ir_right_front);
 
         os_surrender_context();
     }
@@ -291,7 +293,7 @@ int main(void) {
 
     blink = blinker(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 5000,
+    timer0a = timer(0, TIMER_A, TIMER_CFG_PERIODIC, SysCtlClockGet() / 10000,
                     TIMER_TIMA_TIMEOUT, true);
 
     /* resume: create timer for ping sensor */
@@ -304,7 +306,8 @@ int main(void) {
     adc0.configure_sequence(ADC_CTL_CH3 | ADC_CTL_IE | ADC_CTL_END); /* PE0 */
 
     adc0.configure_timer_interrupt(&timer0a);
-    adc0.start();
+    /* adc0.start(); */
+
     ir0 = ir(0, &adc0);
     ir1 = ir(1, &adc0);
     ir2 = ir(2, &adc0);

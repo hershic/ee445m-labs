@@ -25,6 +25,20 @@ public:
         this->buf[this->pos] = ch;
         increment_ptr(&(this->pos), 1, this->len);
     }
+
+    T peek() {
+        return this->buf(this->pos);
+    }
+
+    T get(int32_t offset) {
+
+        int32_t position_to_get = ((this->pos+offset) % this->len);
+
+        if (position_to_get < 0) {
+            return this->buf[position_to_get + this->len];
+        }
+        return this->buf[position_to_get];
+    }
 };
 
 #endif  /* __circularbuffer__ */
