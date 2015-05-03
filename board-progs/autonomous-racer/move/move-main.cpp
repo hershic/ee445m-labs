@@ -71,9 +71,9 @@ semaphore sem_blink_red;
 semaphore sem_blink_blue;
 semaphore sem_blink_green;
 
-#define BLINK_RED_WAIT_FOR_SEM 0
+#define BLINK_RED_WAIT_FOR_SEM 1
 #define BLINK_BLUE_WAIT_FOR_SEM 1
-#define BLINK_GREEN_WAIT_FOR_SEM 0
+#define BLINK_GREEN_WAIT_FOR_SEM 1
 
 void thread_blink_red() {
 
