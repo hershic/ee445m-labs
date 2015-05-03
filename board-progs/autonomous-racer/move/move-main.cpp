@@ -59,7 +59,6 @@ drive drive0;
 const uint32_t can_msg_id = 1;
 const bool can_sender = false;
 can can0;
-semaphore can_recv_sem;
 uint8_t can_data[can_data_length];
 
 #define UART0_RX_BUFFER_SIZE 8
@@ -170,7 +169,7 @@ extern "C" void CAN0_Handler(void) {
 
     switch(message_id) {
     case 1:
-        can_recv_sem.post();
+        can0.recv_sem.post();
         break;
     default:
         can0.error_tx();
@@ -223,7 +222,7 @@ void can_handler(void) {
     uint8_t sens_ping_back_ptr[2];
 
     while(1) {
-        if(can_recv_sem.guard()) {
+        if(can0.recv_sem.guard()) {
 
             sem_blink_blue.post();
             can0.get(can_data);
@@ -319,13 +318,13 @@ int main(void) {
     uart0 = uart(UART0_BASE, INT_UART0);
 
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
-    can_recv_sem = semaphore();
 
     motor_start = semaphore();
     motor_stop = semaphore();
     shell0 = shell(&uart0, &motor_start, &motor_stop);
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
-    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1, true);
+    /* TODO: Change this to true */
+    motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
     drive0 = drive(&motor0, &motor1, 50);
     countdown_timer = timer(0, TIMER_BOTH, TIMER_CFG_ONE_SHOT, SysCtlClockGet()*180,
                             TIMER_TIMA_TIMEOUT, true);

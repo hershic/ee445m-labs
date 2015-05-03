@@ -29,6 +29,8 @@ void can::init() {
 
     CANInit(base);
 
+    recv_sem = semaphore();
+
     CANBitRateSet(base, SysCtlClockGet(), 500000);
     IntEnable(interrupt);
     start();

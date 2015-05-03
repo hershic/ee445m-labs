@@ -56,7 +56,6 @@ uint8_t* ping_back_ptr;
 const uint32_t can_msg_id = 1;
 const bool can_sender = true;
 can can0;
-semaphore can_recv_sem;
 uint8_t can_data[can_data_length];
 
 #define UART0_RX_BUFFER_SIZE 8
@@ -155,7 +154,7 @@ extern "C" void CAN0_Handler(void) {
 
     switch(message_id) {
     case 1:
-        can_recv_sem.post();
+        can0.recv_sem.post();
         break;
     default:
         can0.error_tx();
@@ -179,7 +178,7 @@ int GPIOPortB_Handler() {
 void can_handler(void) {
 
     while(1) {
-        if(can_recv_sem.guard()) {
+        if(can0.recv_sem.guard()) {
 
             can0.get(can_data);
             uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X ",
@@ -292,8 +291,6 @@ int main(void) {
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
     if(can_sender) {
         can_prepare_dummy_data();
-    } else {
-        can_recv_sem = semaphore();
     }
 
     shell0 = shell(&uart0);

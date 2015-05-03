@@ -12,6 +12,7 @@
 #include <stdbool.h>
 
 #include "interruptable.hpp"
+#include "semaphorepp.hpp"
 
 #include "driverlib/can.h"
 
@@ -64,6 +65,8 @@ public:
 
     /*! Register a tx error. */
     void error_tx(void);
+
+    semaphore recv_sem;
 };
 
 #endif
