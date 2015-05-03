@@ -12,8 +12,8 @@
 
 ping::ping() {}
 
-ping::ping(memory_address_t port_base, memory_address_t port_pin, semaphore* sem,
-    timer_t timer_id) {
+ping::ping(memory_address_t port_base, memory_address_t port_pin,
+           semaphore* sem, timer_t timer_id) {
 
     status = PING_INACTIVE;
 
