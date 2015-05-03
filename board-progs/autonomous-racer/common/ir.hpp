@@ -59,7 +59,7 @@ public:
        int32_t ir_a=240333, int32_t ir_b=-314, int32_t ir_k=0);
     void calibrate(int32_t a, int32_t b, int32_t k);
     void sample(void);
-    IR_BUFFER_TYPE average();
+    int32_t average();
     int32_t distance();
 };
 
