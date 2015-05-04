@@ -1,7 +1,6 @@
 /* -*- mode: c++; c-basic-offset: 4; -*- */
 #include "drivepp.hpp"
-
-/* map, map, where art thou map */
+#include "math.hpp"
 
 drive::drive() {}
 
@@ -49,36 +48,22 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     /* todo: feed the lf/f, rf/r data here for porportional control of
      * the motors. the side with the larger coefficient slows more */
 
-    percent_t race_speed = 50;
     Direction dir = FORWARD;
 
-    uint32_t left_speed = race_speed;
-    uint32_t right_speed = race_speed;
+    /* int32_t left_speed = left->get(); */
+    /* int32_t right_speed = right->get(); */
 
-    /* int32_t side_error = ((int32_t)left_sens - (int32_t)right_sens)*race_speed/30; */
-    /* int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens)*race_speed/30; */
-    /* int32_t side_error_dir = (side_error < 0)*2-1; */
-    /* int32_t oblique_error_dir = (oblique_error < 0)*2-1; */
+    int32_t left_speed = left->pwm_max_period/2;
+    int32_t right_speed = right->pwm_max_period/2;
 
-    /* if (oblique_error < -100 || oblique_error > 100) { */
-    /*     if ((oblique_error > oblique_error_dir*2000) || (oblique_error < oblique_error_dir*2000)) { */
-    /*         left_speed -= (oblique_error)/race_speed/4; */
-    /*         right_speed += (oblique_error)/race_speed/5; */
-    /*     } else if ((oblique_error > oblique_error_dir*1500) || (oblique_error < oblique_error_dir*1500)) { */
-    /*         left_speed -= (oblique_error)/race_speed/4; */
-    /*         right_speed += (oblique_error)/race_speed/4; */
-    /*     } else if ((oblique_error > oblique_error_dir*1000) || (oblique_error < oblique_error_dir*1000)) { */
-    /*         left_speed -= (oblique_error)/race_speed/4; */
-    /*         right_speed += (oblique_error)/race_speed/4; */
-    /*     } else if ((oblique_error > oblique_error_dir*500) || (oblique_error < oblique_error_dir*500)) { */
-    /*         left_speed -= (oblique_error)/race_speed/4; */
-    /*         right_speed += (oblique_error)/race_speed/4; */
-    /*     } */
-    /* } */
+    int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens);
+    integral_oblique_error += oblique_error;
+
+    left_speed += oblique_error*kp_num/kp_denom;
+    right_speed -= oblique_error*kp_num/kp_denom;
 
     left->set(left_speed, dir);
     right->set(right_speed, dir);
-
 }
 
 /* Local Variables: */

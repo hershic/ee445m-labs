@@ -28,6 +28,9 @@ private:
     motor* left;
     motor* right;
 
+    static const int32_t kp_denom = 1;
+    static const int32_t kp_num = 10;
+
 public:
     drive();
     drive(motor* left, motor* right, percent_t speed = 0,
