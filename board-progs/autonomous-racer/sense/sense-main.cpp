@@ -211,10 +211,10 @@ void can_transmitter(void) {
 
     while(1) {
 
-        sens_ir_left = ir0.distance();
-        sens_ir_left_front = ir1.distance();
-        sens_ir_right = ir2.distance();
-        sens_ir_right_front = ir3.distance();
+        sens_ir_left = ir0.distance(); /* PE3 */
+        sens_ir_left_front = ir1.distance(); /* PE2 */
+        sens_ir_right = ir2.distance();      /* PE1 */
+        sens_ir_right_front = ir3.distance(); /* PE0 */
         sens_ping_front = ping0.distance();
 
         can_data[0] = ir_left_ptr[0];
@@ -234,13 +234,12 @@ void can_transmitter(void) {
 
         can0.transmit(can_data, can_data_length);
 
-        /* uart0.atomic_printf("data:                                      \r"); */
-        uart0.printf("data: %u %u %u %u %u\r\n",
-                     sens_ir_left, sens_ir_left_front,
-                     sens_ir_right, sens_ir_right_front,
-                     sens_ping_front);
+        uart0.printf("l: %u lf: %u r: %u rf: %u pf: %u\r\n",
+                            sens_ir_left, sens_ir_left_front,
+                            sens_ir_right, sens_ir_right_front,
+                            sens_ping_front);
 
-        /* blink.toggle(PIN_BLUE); */
+        blink.toggle(PIN_BLUE);
 
         os_surrender_context();
     }
@@ -289,10 +288,10 @@ int main(void) {
     adc0.configure_timer_interrupt(&timer0a);
     adc0.start();
 
-    ir0 = ir(0, &adc0, 302703, -198, 11);         /* PE3: GREEN: a = 302703; b = -198; k = 11 */
+    ir0 = ir(0, &adc0, 284013, 22, 7);         /* PE3 */
     ir1 = ir(1, &adc0);         /* PE2 */
-    ir2 = ir(2, &adc0, 307042, -200, 14);         /* PE1: BLUE: a = 307042; b = -200; k = 14 */
-    ir3 = ir(3, &adc0);         /* PE0 */
+    ir2 = ir(2, &adc0);         /* PE1 */
+    ir3 = ir(3, &adc0, 302703, -198, 11);         /* PE0 */
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
