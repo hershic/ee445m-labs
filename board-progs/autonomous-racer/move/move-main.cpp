@@ -305,7 +305,6 @@ int main(void) {
     motor_stop = semaphore();
     shell0 = shell(&uart0, &motor_start, &motor_stop);
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
-    /* TODO: Change this to true */
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
     drive0 = drive(&motor0, &motor1, 50);
     countdown_timer = timer(0, TIMER_BOTH, TIMER_CFG_ONE_SHOT, SysCtlClockGet()*180,
