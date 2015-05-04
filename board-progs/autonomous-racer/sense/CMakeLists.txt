@@ -6,7 +6,7 @@ set(sense-main-srcs ../../startup_gcc_canonical.c
 ../common/uartpp.cpp ../common/shellpp.cpp ../common/semaphorepp.cpp
 ../common/canpp.cpp ../common/adcpp.cpp ../common/
 ../common/motorpp.cpp ../common/drivepp.cpp ../common/ir.cpp
-../common/pingpp.cpp sense-main.cpp)
+../common/pingpp.cpp ../common/math.cpp sense-main.cpp)
 
 configure_file(../../map.ld ../map.ld COPYONLY)
 
