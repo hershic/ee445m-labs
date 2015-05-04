@@ -6,6 +6,7 @@
 #include "driverlib/pwm.h"
 
 #include "ctlsysctl.hpp"
+#include "math.hpp"
 
 motor::motor() {}
 
@@ -23,7 +24,6 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     ctlsys::enable_periph(ctrl_base);
     ctlsys::enable_periph(pwm_base);
 
-    this->pwm_max_period = DEFAULT_PWM_PERIOD;
     this->motor_installed_backwards = motor_installed_backwards;
     motor_init();
 }
@@ -57,23 +57,22 @@ void motor::set(percent_t speed, Direction dir) {
 
 void motor::set(percent_t speed) {
 
-    if(speed > 100) { speed = 100; }
-    if(speed <= 0) { speed = 1; }
+    speed = clamp(speed, 1, pwm_max_period);
 
     current_speed = speed;
 
     uint16_t adjusted_duty;
     switch(adjusted_direction()) {
     case FORWARD:
-        adjusted_duty = speed * pwm_max_period / 100;
+        adjusted_duty = speed;
         break;
     case BACKWARD:
-         adjusted_duty = pwm_max_period - speed * pwm_max_period / 100;
-         break;
+        adjusted_duty = pwm_max_period - speed;
+        break;
     default: while(1) {}
     }
 
-    PWMPulseWidthSet(pwm_base, pwm_out, speed*pwm_max_period/100);
+    PWMPulseWidthSet(pwm_base, pwm_out, speed);
 }
 
 void motor::motor_init() {

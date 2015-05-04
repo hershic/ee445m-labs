@@ -12,7 +12,7 @@
  * @{
  */
 
-typedef int16_t percent_t;
+typedef int32_t percent_t;
 typedef uint32_t memory_address_t;
 #define DEFAULT_PWM_PERIOD 10000
 
@@ -26,7 +26,6 @@ private:
     memory_address_t pwm_pin;
     memory_address_t pwm_gen;
     memory_address_t pwm_out;
-    uint16_t pwm_max_period;
     bool motor_installed_backwards;
 
     uint32_t pwm_period;
@@ -70,6 +69,8 @@ public:
 
     /*! Reverse motor direction. */
     void reverse(void);
+
+    const static uint16_t pwm_max_period = DEFAULT_PWM_PERIOD;
 };
 
 #endif
