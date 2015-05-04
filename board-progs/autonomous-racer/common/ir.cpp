@@ -1,4 +1,5 @@
 #include "ir.hpp"
+#include "math.hpp"
 
 ir::ir() {}
 
@@ -38,5 +39,11 @@ int32_t ir::average() {
 /*! \returns 0 if the conversion did not succeed, data otherwise */
 int32_t ir::distance() {
 
-    return calibration.a / (average() + calibration.b) - calibration.k;
+    cached_average = average();
+
+    if ((cached_average + calibration.b) <= 0) {
+        return 600;
+    }
+
+    return clamp(calibration.a / (cached_average + calibration.b) - calibration.k, 0, 600);
 }

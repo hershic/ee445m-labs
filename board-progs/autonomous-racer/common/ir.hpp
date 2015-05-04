@@ -52,6 +52,8 @@ private:
     uint8_t adc_sequence_step;
     adc* assoc_adc;
 
+    int32_t cached_average;
+
 public:
     ir();
     /* the default calibration is ideal as per the GP2Y0A21YK spec sheet*/
