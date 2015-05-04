@@ -216,8 +216,8 @@ void can_handler(void) {
     while(1) {
         if(can0.recv_sem.guard()) {
 
-            sem_blink_blue.post();
             can0.get(can_data);
+            blink.toggle(PIN_BLUE);
 
             sens_ir_left = (can_data[1] << 8) | (can_data[0]);
             sens_ir_left_front = (can_data[3] << 8) | (can_data[2]);
