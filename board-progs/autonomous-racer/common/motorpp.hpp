@@ -42,6 +42,8 @@ private:
      *  motor's */
     Direction adjusted_direction(void);
 
+    bool enabled;
+
 public:
 
     motor();

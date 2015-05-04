@@ -25,6 +25,9 @@ motor::motor(memory_address_t ctrl_base, memory_address_t ctrl_pin,
     ctlsys::enable_periph(pwm_base);
 
     this->motor_installed_backwards = motor_installed_backwards;
+
+    enabled = false;
+
     motor_init();
 }
 
@@ -41,7 +44,13 @@ Direction motor::adjusted_direction() {
 
 void motor::stop() {
 
-    PWMGenDisable(pwm_base, pwm_gen);
+    if (direction == BACKWARD) {
+        set(100);
+    } else {
+        set(0);
+    }
+    enabled = false;
+    /* PWMGenDisable(pwm_base, pwm_gen); */
 }
 
 void motor::set(percent_t speed, Direction dir) {
@@ -72,7 +81,9 @@ void motor::set(percent_t speed) {
     default: while(1) {}
     }
 
-    PWMPulseWidthSet(pwm_base, pwm_out, speed);
+    if (enabled == true) {
+        PWMPulseWidthSet(pwm_base, pwm_out, speed);
+    }
 }
 
 void motor::motor_init() {
@@ -84,6 +95,7 @@ void motor::motor_init() {
 
 void motor::start() {
 
+    enabled = true;
     PWMGenEnable(pwm_base, pwm_gen);
 }
 
