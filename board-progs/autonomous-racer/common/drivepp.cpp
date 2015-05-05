@@ -2,6 +2,8 @@
 #include "drivepp.hpp"
 #include "math.hpp"
 #include "ir.hpp"
+#include "driverlib/gpio.h"
+#include "inc/hw_memmap.h"
 
 drive::drive() {}
 
@@ -52,6 +54,33 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     Direction dir = FORWARD;
 
+    if (last_counter >= steps_to_wait) {
+        last_counter = 0;
+
+        if (abs(last_left_sens - left_sens) > reset_thresh) {
+            integral_oblique_error = 0;
+            integral_side_error = 0;
+            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
+        } else if(abs(last_left_front_sens - left_front_sens) > reset_thresh) {
+            integral_oblique_error = 0;
+            integral_side_error = 0;
+            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
+        } else if(abs(last_right_sens - right_sens) > reset_thresh) {
+            integral_oblique_error = 0;
+            integral_side_error = 0;
+            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
+        } else if(abs(last_right_front_sens - right_front_sens) > reset_thresh) {
+            integral_oblique_error = 0;
+            integral_side_error = 0;
+            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
+        }
+
+        last_left_sens = left_sens;
+        last_left_front_sens = left_front_sens;
+        last_right_sens = right_sens;
+        last_right_front_sens = right_front_sens;
+    }
+
     int32_t left_speed = left->pwm_max_period/2;
     int32_t right_speed = right->pwm_max_period/2;
 
@@ -68,10 +97,10 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     left_speed += oblique_error*kp_oblique_num/kp_oblique_denom +
         (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
-        (integral_oblique_error*ki_num/ki_denom);
+        (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
     right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom +
         (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
-        (integral_oblique_error*ki_num/ki_denom);
+        (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
 
     /* left_speed = (should_slow_down * left_speed * 5)/10; */
     /* right_speed = (should_slow_down * right_speed * 5)/10; */
@@ -81,6 +110,14 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     left->set(left_speed, dir);
     right->set(right_speed, dir);
+
+    ++last_counter;
+}
+
+void drive::reset_history() {
+
+    integral_oblique_error = 0;
+    integral_side_error = 0;
 }
 
 /* Local Variables: */

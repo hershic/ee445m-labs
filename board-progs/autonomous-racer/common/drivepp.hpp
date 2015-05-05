@@ -7,14 +7,7 @@
 #include "motorpp.hpp"
 #include "direction.hpp"
 
-/* As much precision as we can get with uint32_t's. With these two
- * 31-bit numbers, the difference between sqrt(2) and SQRT_2 is
- * -3.0950797e-12.  */
-#define SQRT_2 (1855077841/1311738121)
-
-/* This is implemented as a #define for accuracy -- no loss of
- * precision during the sandwiching into a return value */
-#define delta(d, df) (d*SQRT_2/df)
+#define steps_to_wait 200
 
 /*! \addtogroup Drive
  * @{
@@ -31,13 +24,25 @@ private:
     int32_t integral_side_error;
 
     static const int32_t kp_oblique_denom = 2;
-    static const int32_t kp_oblique_num = 15;
+    static const int32_t kp_oblique_num = 14;
 
-    static const int32_t kp_side_denom = 1;
-    static const int32_t kp_side_num = 10;
+    static const int32_t kp_side_denom = 2;
+    static const int32_t kp_side_num = 14;
 
-    static const int32_t ki_denom = 100000;
-    static const int32_t ki_num = 1;
+    static const int32_t ki_oblique_denom = 10000;
+    static const int32_t ki_oblique_num = 1;
+
+    static const int32_t ki_side_denom = 10000;
+    static const int32_t ki_side_num = 1;
+
+    static const int32_t reset_thresh = 200;
+
+    int32_t last_left_sens;
+    int32_t last_left_front_sens;
+    int32_t last_right_sens;
+    int32_t last_right_front_sens;
+    int32_t last_front_sens;
+    uint32_t last_counter;
 
 public:
     drive();
@@ -62,7 +67,9 @@ public:
     /*! Feed the autonomous driver sensor inputs. */
     void steer(uint32_t left_sens, uint32_t left_front_sens,
                uint32_t right_sens, uint32_t right_front_sens,
-               uint32_t back_sens);
+               uint32_t front_sens);
+
+    void reset_history();
 };
 
 #endif

@@ -24,3 +24,10 @@ int32_t max(int32_t v1, int32_t v2) {
     if (v1 > v2) return v1;
     return v2;
 }
+
+int32_t abs(int32_t val) {
+    if (val > 0) {
+        return val;
+    }
+    return -val;
+}
