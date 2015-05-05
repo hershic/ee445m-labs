@@ -2,6 +2,8 @@
 #include "drivepp.hpp"
 #include "math.hpp"
 #include "ir.hpp"
+#include "motorpp.hpp"
+
 #include "driverlib/gpio.h"
 #include "inc/hw_memmap.h"
 
@@ -85,10 +87,11 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     int32_t right_speed = right->pwm_max_period/2;
 
     int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens);
-    integral_oblique_error += oblique_error;
+    integral_oblique_error = clamp(integral_oblique_error + oblique_error,
+                                   -motor::pwm_max_period/4, motor::pwm_max_period/4);
 
     int32_t side_error = ((int32_t)clamp(left_sens, 0, 380) - (int32_t)clamp(right_sens, 0, 380));
-    integral_side_error += side_error;
+    integral_side_error = clamp(integral_side_error + side_error, -motor::pwm_max_period/4, motor::pwm_max_period/4);
 
     int32_t should_slow_down = (oblique_error < 200 && oblique_error > -200) &&
         (left_front_sens < 300) && (right_front_sens < 300);

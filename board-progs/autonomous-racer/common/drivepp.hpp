@@ -24,15 +24,15 @@ private:
     int32_t integral_side_error;
 
     static const int32_t kp_oblique_denom = 2;
-    static const int32_t kp_oblique_num = 14;
+    static const int32_t kp_oblique_num = 9;
 
     static const int32_t kp_side_denom = 2;
-    static const int32_t kp_side_num = 14;
+    static const int32_t kp_side_num = 9;
 
-    static const int32_t ki_oblique_denom = 10000;
+    static const int32_t ki_oblique_denom = 8000;
     static const int32_t ki_oblique_num = 1;
 
-    static const int32_t ki_side_denom = 10000;
+    static const int32_t ki_side_denom = 8000;
     static const int32_t ki_side_num = 1;
 
     static const int32_t reset_thresh = 200;
