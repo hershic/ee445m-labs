@@ -9,6 +9,7 @@ drive::drive(motor* left, motor* right, percent_t speed, Direction direction) {
     this->left = left;
     this->right = right;
     set(speed, direction);
+    integral_oblique_error = 0;
 }
 
 void drive::stop() {
@@ -59,8 +60,19 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens);
     integral_oblique_error += oblique_error;
 
-    left_speed += oblique_error*kp_num/kp_denom;
-    right_speed -= oblique_error*kp_num/kp_denom;
+    int32_t side_error = ((int32_t)left_sens - (int32_t)right_sens);
+    integral_side_error += side_error;
+
+    int32_t should_use_side_sensors = (left_front_sens < use_side_sensor_threshold) ||
+        (right_front_sens < use_side_sensor_threshold);
+
+    left_speed += oblique_error*kp_oblique_num/kp_oblique_denom +
+        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom);
+    right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom +
+        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom);
+
+    /* left_speed += oblique_error*kp_num/kp_denom + integral_oblique_error*ki_num/ki_denom; */
+    /* right_speed -= oblique_error*kp_num/kp_denom + integral_oblique_error*ki_num/ki_denom; */
 
     left->set(left_speed, dir);
     right->set(right_speed, dir);

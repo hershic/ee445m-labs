@@ -27,9 +27,19 @@ class drive {
 private:
     motor* left;
     motor* right;
+    int32_t integral_oblique_error;
+    int32_t integral_side_error;
 
-    static const int32_t kp_denom = 1;
-    static const int32_t kp_num = 10;
+    static const int32_t kp_oblique_denom = 1;
+    static const int32_t kp_oblique_num = 10;
+
+    static const int32_t kp_side_denom = 1;
+    static const int32_t kp_side_num = 5;
+
+    static const int32_t ki_denom = 100000;
+    static const int32_t ki_num = 1;
+
+    static const int32_t use_side_sensor_threshold = 150;
 
 public:
     drive();
