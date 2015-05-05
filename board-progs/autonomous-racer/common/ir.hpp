@@ -53,10 +53,6 @@ private:
     adc* assoc_adc;
 
     int32_t cached_average;
-
-    static const int32_t max_distance = 600;
-    static const int32_t min_distance = 0;
-
 public:
     ir();
     /* the default calibration is ideal as per the GP2Y0A21YK spec sheet*/
@@ -66,6 +62,9 @@ public:
     void sample(void);
     int32_t average();
     int32_t distance();
+
+    static const int32_t max_distance = 500;
+    static const int32_t min_distance = 0;
 };
 
 #endif  /* __IR__ */
