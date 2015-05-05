@@ -288,10 +288,10 @@ int main(void) {
     adc0.configure_timer_interrupt(&timer0a);
     adc0.start();
 
-    ir0 = ir(0, &adc0, 284013, 22, 7);         /* PE3 */
-    ir1 = ir(1, &adc0);         /* PE2 */
-    ir2 = ir(2, &adc0, 307042, -200, 14);         /* PE1 */
-    ir3 = ir(3, &adc0, 302703, -198, 11);         /* PE0 */
+    ir0 = ir(0, &adc0, 307042, -200, 14);    /* PE3 */
+    ir1 = ir(1, &adc0, 284013, 22, 7); /* PE2 */
+    ir2 = ir(2, &adc0, 361103, -13, 22);  /* PE1 */
+    ir3 = ir(3, &adc0, 302703, -198, 11); /* PE0 */
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
 
