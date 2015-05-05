@@ -1,6 +1,7 @@
 /* -*- mode: c++; c-basic-offset: 4; -*- */
 #include "drivepp.hpp"
 #include "math.hpp"
+#include "ir.hpp"
 
 drive::drive() {}
 
@@ -44,15 +45,12 @@ void drive::set(percent_t speed, Direction dir) {
 
 void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
                   uint32_t right_sens, uint32_t right_front_sens,
-                  uint32_t back_sens) {
+                  uint32_t front_sens) {
 
     /* todo: feed the lf/f, rf/r data here for porportional control of
      * the motors. the side with the larger coefficient slows more */
 
     Direction dir = FORWARD;
-
-    /* int32_t left_speed = left->get(); */
-    /* int32_t right_speed = right->get(); */
 
     int32_t left_speed = left->pwm_max_period/2;
     int32_t right_speed = right->pwm_max_period/2;
@@ -60,16 +58,23 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens);
     integral_oblique_error += oblique_error;
 
-    int32_t side_error = ((int32_t)left_sens - (int32_t)right_sens);
+    int32_t side_error = ((int32_t)clamp(left_sens, 0, 380) - (int32_t)clamp(right_sens, 0, 380));
     integral_side_error += side_error;
 
-    int32_t should_use_side_sensors = (left_front_sens < use_side_sensor_threshold) ||
-        (right_front_sens < use_side_sensor_threshold);
+    int32_t should_slow_down = (oblique_error < 200 && oblique_error > -200) &&
+        (left_front_sens < 300) && (right_front_sens < 300);
+    int32_t should_use_side_sensors = (left_sens < 200 && left_front_sens < 280) ||
+        (right_sens < 200 && right_front_sens < 280);
 
     left_speed += oblique_error*kp_oblique_num/kp_oblique_denom +
-        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom);
+        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
+        (integral_oblique_error*ki_num/ki_denom);
     right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom +
-        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom);
+        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
+        (integral_oblique_error*ki_num/ki_denom);
+
+    /* left_speed = (should_slow_down * left_speed * 5)/10; */
+    /* right_speed = (should_slow_down * right_speed * 5)/10; */
 
     /* left_speed += oblique_error*kp_num/kp_denom + integral_oblique_error*ki_num/ki_denom; */
     /* right_speed -= oblique_error*kp_num/kp_denom + integral_oblique_error*ki_num/ki_denom; */
