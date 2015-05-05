@@ -42,8 +42,9 @@ int32_t ir::distance() {
     cached_average = average();
 
     if ((cached_average + calibration.b) <= 0) {
-        return 600;
+        return max_distance;
     }
 
-    return clamp(calibration.a / (cached_average + calibration.b) - calibration.k, 0, 600);
+    return clamp(calibration.a / (cached_average + calibration.b) - calibration.k,
+                 min_distance, max_distance);
 }
