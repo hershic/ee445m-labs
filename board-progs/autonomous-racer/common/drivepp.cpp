@@ -56,60 +56,54 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     Direction dir = FORWARD;
 
-    if (last_counter >= steps_to_wait) {
-        last_counter = 0;
+    /* if (last_counter >= steps_to_wait) { */
+    /*     last_counter = 0; */
 
-        if (abs(last_left_sens - left_sens) > reset_thresh) {
-            integral_oblique_error = 0;
-            integral_side_error = 0;
-            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
-        } else if(abs(last_left_front_sens - left_front_sens) > reset_thresh) {
-            integral_oblique_error = 0;
-            integral_side_error = 0;
-            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
-        } else if(abs(last_right_sens - right_sens) > reset_thresh) {
-            integral_oblique_error = 0;
-            integral_side_error = 0;
-            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
-        } else if(abs(last_right_front_sens - right_front_sens) > reset_thresh) {
-            integral_oblique_error = 0;
-            integral_side_error = 0;
-            GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED));
-        }
+    /*     if (abs(last_left_sens - left_sens) > reset_thresh) { */
+    /*         integral_oblique_error = 0; */
+    /*         integral_side_error = 0; */
+    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
+    /*     } else if(abs(last_left_front_sens - left_front_sens) > reset_thresh) { */
+    /*         integral_oblique_error = 0; */
+    /*         integral_side_error = 0; */
+    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
+    /*     } else if(abs(last_right_sens - right_sens) > reset_thresh) { */
+    /*         integral_oblique_error = 0; */
+    /*         integral_side_error = 0; */
+    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
+    /*     } else if(abs(last_right_front_sens - right_front_sens) > reset_thresh) { */
+    /*         integral_oblique_error = 0; */
+    /*         integral_side_error = 0; */
+    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
+    /*     } */
 
-        last_left_sens = left_sens;
-        last_left_front_sens = left_front_sens;
-        last_right_sens = right_sens;
-        last_right_front_sens = right_front_sens;
-    }
+    /*     last_left_sens = left_sens; */
+    /*     last_left_front_sens = left_front_sens; */
+    /*     last_right_sens = right_sens; */
+    /*     last_right_front_sens = right_front_sens; */
+    /* } */
 
     int32_t left_speed = left->pwm_max_period/2;
     int32_t right_speed = right->pwm_max_period/2;
 
     int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens);
-    integral_oblique_error = clamp(integral_oblique_error + oblique_error,
-                                   -motor::pwm_max_period/4, motor::pwm_max_period/4);
+    integral_oblique_error = clamp(integral_oblique_error + oblique_error, -motor::pwm_max_period/4, motor::pwm_max_period/4);
 
-    int32_t side_error = ((int32_t)clamp(left_sens, 0, 380) - (int32_t)clamp(right_sens, 0, 380));
-    integral_side_error = clamp(integral_side_error + side_error, -motor::pwm_max_period/4, motor::pwm_max_period/4);
+    int32_t side_error = ((int32_t)left_sens - (int32_t)right_sens);
+    integral_side_error = clamp(integral_side_error + side_error, -motor::pwm_max_period/8, motor::pwm_max_period/8);
 
-    int32_t should_slow_down = (oblique_error < 200 && oblique_error > -200) &&
-        (left_front_sens < 300) && (right_front_sens < 300);
-    int32_t should_use_side_sensors = (left_sens < 200 && left_front_sens < 280) ||
-        (right_sens < 200 && right_front_sens < 280);
+    int32_t should_use_side_sensors = front_sens < 200;
+    should_use_side_sensors = 0;
 
     left_speed += oblique_error*kp_oblique_num/kp_oblique_denom +
         (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
         (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
     right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom +
-        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
-        (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
+         (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
+         (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
 
-    /* left_speed = (should_slow_down * left_speed * 5)/10; */
-    /* right_speed = (should_slow_down * right_speed * 5)/10; */
-
-    /* left_speed += oblique_error*kp_num/kp_denom + integral_oblique_error*ki_num/ki_denom; */
-    /* right_speed -= oblique_error*kp_num/kp_denom + integral_oblique_error*ki_num/ki_denom; */
+    /* left_speed += oblique_error*kp_oblique_num/kp_oblique_denom + (integral_oblique_error*ki_oblique_num/ki_oblique_denom); */
+    /* right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom + (integral_oblique_error*ki_oblique_num/ki_oblique_denom); */
 
     left->set(left_speed, dir);
     right->set(right_speed, dir);

@@ -23,26 +23,17 @@ private:
     int32_t integral_oblique_error;
     int32_t integral_side_error;
 
-    static const int32_t kp_oblique_denom = 2;
-    static const int32_t kp_oblique_num = 9;
+    static const int32_t kp_oblique_num = 10;
+    static const int32_t kp_oblique_denom = 1;
 
+    static const int32_t kp_side_num = 5;
     static const int32_t kp_side_denom = 2;
-    static const int32_t kp_side_num = 9;
 
-    static const int32_t ki_oblique_denom = 8000;
     static const int32_t ki_oblique_num = 1;
+    static const int32_t ki_oblique_denom = 8000;
 
-    static const int32_t ki_side_denom = 8000;
     static const int32_t ki_side_num = 1;
-
-    static const int32_t reset_thresh = 200;
-
-    int32_t last_left_sens;
-    int32_t last_left_front_sens;
-    int32_t last_right_sens;
-    int32_t last_right_front_sens;
-    int32_t last_front_sens;
-    uint32_t last_counter;
+    static const int32_t ki_side_denom = 2000;
 
 public:
     drive();
