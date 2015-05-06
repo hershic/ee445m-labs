@@ -311,8 +311,8 @@ int main(void) {
     adc0.start();
 
     ir0 = ir(1, &adc0, 307042, -200, 14); /* PE3 */
-    ir1 = ir(0, &adc0, 267697, -276, 10); /* PE2 */
-    ir2 = ir(3, &adc0, 249113, -408, 0);  /* PE1 */
+    ir1 = ir(0, &adc0, 300147, -153, 11); /* PE2 */
+    ir2 = ir(3, &adc0, 279094, -295, 8);  /* PE1 */
     ir3 = ir(2, &adc0, 302703, -198, 11); /* PE0 */
 
     UART0_RX_BUFFER = buffer<char, UART0_RX_BUFFER_SIZE>(&UART0_RX_SEM);
