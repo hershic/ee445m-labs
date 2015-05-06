@@ -212,23 +212,30 @@ void switch_responder() {
 
 void can_handler(void) {
 
+    uint16_t can_msg_id;
+
     while(1) {
         if(can0.recv_sem.guard()) {
 
             can0.get(can_data);
             blink.toggle(PIN_BLUE);
 
-            sens_ir_left = (can_data[1] << 8) | (can_data[0]);
-            sens_ir_left_front = (can_data[3] << 8) | (can_data[2]);
-            sens_ir_right = (can_data[5] << 8) | (can_data[4]);
-            sens_ir_right_front = (can_data[7] << 8) | (can_data[6]);
-            sens_ping_front = (can_data[9] << 8) | (can_data[8]);
+            can_msg_id = (can_data[1] << 8) | (can_data[0]);
 
-            /* uart0.atomic_printf("                                                \r"); */
-            /* uart0.atomic_printf("l: %u lf: %u r: %u rf: %u pf: %u\r", */
-            /*                     sens_ir_left, sens_ir_left_front, */
-            /*                     sens_ir_right, sens_ir_right_front, */
-            /*                     sens_ping_front); */
+            if (can_msg_id == 0) {
+                sens_ir_left = (can_data[3] << 8) | (can_data[2]);
+                sens_ir_left_front = (can_data[5] << 8) | (can_data[4]);
+                sens_ir_right = (can_data[7] << 8) | (can_data[4]);
+            } else {
+                sens_ir_right_front = (can_data[3] << 8) | (can_data[2]);
+                sens_ping_front = (can_data[5] << 8) | (can_data[4]);
+            }
+
+            uart0.atomic_printf("                                                \r");
+            uart0.atomic_printf("l: %u lf: %u r: %u rf: %u pf: %u\r",
+                                sens_ir_left, sens_ir_left_front,
+                                sens_ir_right, sens_ir_right_front,
+                                sens_ping_front);
 
             /* uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X \n", */
             /*                     can_data[0], can_data[1], can_data[2], can_data[3], */

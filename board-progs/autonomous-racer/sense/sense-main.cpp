@@ -197,43 +197,65 @@ void can_transmitter(void) {
     uint16_t sens_ir_right_front;
     uint16_t sens_ping_front;
 
+
+    /* 0 is left, left_front, right */
+    /* 1 is right_front, front_ping */
+    uint16_t can_msg_id = 0;
+
     uint8_t* ir_left_ptr;
     uint8_t* ir_left_front_ptr;
     uint8_t* ir_right_ptr;
     uint8_t* ir_right_front_ptr;
     uint8_t* ping_front_ptr;
+    uint8_t* can_msg_id_ptr;
 
     ir_left_ptr = (uint8_t*)(&sens_ir_left);
     ir_left_front_ptr = (uint8_t*)(&sens_ir_left_front);
     ir_right_ptr = (uint8_t*)(&sens_ir_right);
     ir_right_front_ptr = (uint8_t*)(&sens_ir_right_front);
     ping_front_ptr = (uint8_t*)(&sens_ping_front);
+    can_msg_id_ptr = (uint8_t*)(&can_msg_id);
 
     while(1) {
 
-        sens_ir_left = ir0.distance(); /* PE3 */
-        sens_ir_left_front = ir1.distance(); /* PE2 */
-        sens_ir_right = ir2.distance();      /* PE1 */
-        sens_ir_right_front = ir3.distance(); /* PE0 */
-        sens_ping_front = ping0.distance();
+        if (can_msg_id == 0) {
+            sens_ir_left = ir0.distance(); /* PE3 */
+            sens_ir_left_front = ir1.distance(); /* PE2 */
+            sens_ir_right = ir2.distance();      /* PE1 */
 
-        can_data[0] = ir_left_ptr[0];
-        can_data[1] = ir_left_ptr[1];
+            can_data[0] = can_msg_id_ptr[0];
+            can_data[1] = can_msg_id_ptr[1];
 
-        can_data[2] = ir_left_front_ptr[0];
-        can_data[3] = ir_left_front_ptr[1];
+            can_data[2] = ir_left_ptr[0];
+            can_data[3] = ir_left_ptr[1];
 
-        can_data[4] = ir_right_ptr[0];
-        can_data[5] = ir_right_ptr[1];
+            can_data[4] = ir_left_front_ptr[0];
+            can_data[5] = ir_left_front_ptr[1];
 
-        can_data[6] = ir_right_front_ptr[0];
-        can_data[7] = ir_right_front_ptr[1];
+            can_data[6] = ir_right_ptr[0];
+            can_data[7] = ir_right_ptr[1];
 
-        can_data[8] = ping_front_ptr[0];
-        can_data[9] = ping_front_ptr[1];
+            can0.transmit(can_data, can_data_length);
+            can_msg_id = 1;
+        } else {
+            sens_ping_front = ping0.distance();
+            sens_ir_right_front = ir3.distance(); /* PE0 */
 
-        can0.transmit(can_data, can_data_length);
+            can_data[0] = can_msg_id_ptr[0];
+            can_data[1] = can_msg_id_ptr[1];
 
+            can_data[2] = ir_right_front_ptr[0];
+            can_data[3] = ir_right_front_ptr[1];
+
+            can_data[4] = ping_front_ptr[0];
+            can_data[5] = ping_front_ptr[1];
+
+            can_data[6] = 0;
+            can_data[7] = 0;
+
+            can0.transmit(can_data, can_data_length);
+            can_msg_id = 0;
+        }
         uart0.printf("l: %u lf: %u r: %u rf: %u pf: %u\r\n",
                             sens_ir_left, sens_ir_left_front,
                             sens_ir_right, sens_ir_right_front,
