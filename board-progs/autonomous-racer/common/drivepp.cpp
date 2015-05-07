@@ -56,6 +56,11 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     Direction dir = FORWARD;
 
+
+    left_sens = 0;
+    right_sens = 0;
+    front_sens = 0;
+
     /* if (last_counter >= steps_to_wait) { */
     /*     last_counter = 0; */
 
@@ -95,15 +100,18 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     int32_t should_use_side_sensors = front_sens < 200;
     should_use_side_sensors = 0;
 
-    left_speed += oblique_error*kp_oblique_num/kp_oblique_denom +
-        (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
-        (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
-    right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom +
-         (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
-         (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
+    int32_t should_slow_down = front_sens < 200;
 
-    /* left_speed += oblique_error*kp_oblique_num/kp_oblique_denom + (integral_oblique_error*ki_oblique_num/ki_oblique_denom); */
-    /* right_speed -= oblique_error*kp_oblique_num/kp_oblique_denom + (integral_oblique_error*ki_oblique_num/ki_oblique_denom); */
+    //int32_t delta = oblique_error*kp_oblique_num/kp_oblique_denom +
+    //     (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
+                                                   //    (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
+    int32_t delta = oblique_error*kp_oblique_num/kp_oblique_denom;
+    //+ (integral_oblique_error*ki_oblique_num/ki_oblique_denom);
+
+    if (should_slow_down > 0) { delta /= 2; }
+
+    left_speed +=  delta;
+    right_speed -= delta;
 
     left->set(left_speed, dir);
     right->set(right_speed, dir);

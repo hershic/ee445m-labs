@@ -30,10 +30,12 @@ private:
     static const int32_t kp_side_denom = 2;
 
     static const int32_t ki_oblique_num = 1;
-    static const int32_t ki_oblique_denom = 8000;
+    static const int32_t ki_oblique_denom = 10000;
 
     static const int32_t ki_side_num = 1;
     static const int32_t ki_side_denom = 2000;
+
+    int32_t last_counter;
 
 public:
     drive();
