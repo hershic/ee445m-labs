@@ -183,7 +183,7 @@ extern "C" void GPIOPortE_Handler() {
 
 void switch_responder() {
 
-    const uint32_t counter_max = SysCtlClockGet()/50;
+    const uint32_t counter_max = SysCtlClockGet()/25;
     uint32_t pins, counter;
     percent_t left_speed, right_speed;
 
