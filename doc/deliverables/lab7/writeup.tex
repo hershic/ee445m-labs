@@ -67,7 +67,7 @@
 
 \begin{itemize}
 \item Design a robot that can move forward/backward, and turn left/right,
-\item Interface motors, and sensors to two microcontrollers,
+\item Interface motors, agnd sensors to two microcontrollers,
 \item Implement pulse-width modulation using output compare to adjust power to the motors
 \item Employ input capture interrupts to measure distance,
 \item Write low-level device drivers for the motors and sensors,
@@ -77,27 +77,27 @@
 
 \section{Hardware Design}
 
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}[b]{0.45\textwidth}
-    % \includegraphics[width=\textwidth]{./img/mechanical-sketch.png}
-    \caption{Mechanical sketch of the robot}
-    \label{fig:mechanical-sketch}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.45\textwidth}
-    % \includegraphics[width=\textwidth]{./img/motor-interface.png}
-    \caption{Electrical circuit diagram for the motor interfaces}
-    \label{fig:motor-interface}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.45\textwidth}
-    % \includegraphics[width=\textwidth]{./img/motor-interface.png}
-    \caption{Power supply circuit}
-    \label{fig:power-supply}
-  \end{subfigure}
-  % \includegraphics[width=\textwidth]{./img/motor-interface.png}
-  \caption{Electrical circuit diagram for the sensor interfaces}
-  \label{fig:sensor-interface}
-\end{figure}
+% \begin{figure}[H]
+%   \centering
+%   \begin{subfigure}[b]
+%     % \includegraphics[width=\textwidth]{./img/mechanical-sketch.png}
+%     \caption{Mechanical sketch of the robot}
+%     \label{fig:mechanical-sketch}
+%   \end{subfigure}
+%   \begin{subfigure}[b]
+%     % \includegraphics[width=\textwidth]{./img/motor-interface.png}
+%     \caption{Electrical circuit diagram for the motor interfaces}
+%     \label{fig:motor-interface}
+%   \end{subfigure}
+%   \begin{subfigure}[b]
+%     % \includegraphics[width=\textwidth]{./img/motor-interface.png}
+%     \caption{Power supply circuit}
+%     \label{fig:power-supply}
+%   \end{subfigure}
+%   % \includegraphics[width=\textwidth]{./img/motor-interface.png}
+%   \caption{Electrical circuit diagram for the sensor interfaces}
+%   \label{fig:sensor-interface}
+% \end{figure}
 
 \section{Software Design}
 Reference \cref{sec:code}.
@@ -145,5 +145,44 @@ Reference \cref{sec:code}.
 \newpage
 \section{Code}
 \label{sec:code}
+\lstinputlisting[language=C++,label=lst:motorcpp,caption=\texttt{motorpp.cpp}]{@doc-staging-area@/motorpp.cpp}
+\lstinputlisting[language=C++,label=lst:motorhpp,caption=\texttt{motorpp.hpp}]{@doc-staging-area@/motorpp.hpp}
+\lstinputlisting[language=C++,label=lst:switchcpp,caption=\texttt{switccpp.cpp}]{@doc-staging-area@/switchpp.cpp}
+\lstinputlisting[language=C++,label=lst:switchpp,caption=\texttt{switchpp.hpp}]{@doc-staging-area@/switchpp.hpp}
+
+\lstinputlisting[language=C++,label=lst:move,caption=\texttt{move-main.cpp}]{@doc-staging-area@/move-main.cpp}
+\lstinputlisting[language=C++,label=lst:sense,caption=\texttt{sense-main.cpp}]{@doc-staging-area@/sense-main.cpp}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/motor_can_handler.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/switch_responder.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/shell_handler.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/sensor_can_transmitter.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/sense_main.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/ping_handler.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/move_main.png}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{./img/motor_control.png}
+\end{figure}
 
 \end{document}
