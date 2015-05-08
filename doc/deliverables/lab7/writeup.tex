@@ -76,31 +76,39 @@
 \end{itemize}
 
 \section{Hardware Design}
+Reference \cref{fig:mechanical-sketch-profile,fig:mechanical-sketch-top-bottom,fig:motor-interface,fig:power-supply,fig:sensor-circuit}
 
-% \begin{figure}[H]
-%   \centering
-%   \begin{subfigure}[b]
-%     % \includegraphics[width=\textwidth]{./img/mechanical-sketch.png}
-%     \caption{Mechanical sketch of the robot}
-%     \label{fig:mechanical-sketch}
-%   \end{subfigure}
-%   \begin{subfigure}[b]
-%     % \includegraphics[width=\textwidth]{./img/motor-interface.png}
-%     \caption{Electrical circuit diagram for the motor interfaces}
-%     \label{fig:motor-interface}
-%   \end{subfigure}
-%   \begin{subfigure}[b]
-%     % \includegraphics[width=\textwidth]{./img/motor-interface.png}
-%     \caption{Power supply circuit}
-%     \label{fig:power-supply}
-%   \end{subfigure}
-%   % \includegraphics[width=\textwidth]{./img/motor-interface.png}
-%   \caption{Electrical circuit diagram for the sensor interfaces}
-%   \label{fig:sensor-interface}
-% \end{figure}
+  \begin{figure}[b]
+    \includegraphics[width=0.95\textwidth]{./img/mechanical-sketch-profile.jpg}
+    \caption{Mechanical sketch of the robot, profile view}
+    \label{fig:mechanical-sketch-profile}
+  \end{figure}
+  \begin{figure}[b]
+    \includegraphics[width=0.95\textwidth]{./img/mechanical-sketch-top-bottom.jpg}
+    \caption{Mechanical sketch of the robot, top/bottom view}
+    \label{fig:mechanical-sketch-top-bottom}
+  \end{figure}
+  \begin{figure}[b]
+    \includegraphics[width=0.95\textwidth]{./img/h-bridge.png}
+    \caption{Electrical circuit diagram for the motor interfaces}
+    \label{fig:motor-interface}
+  \end{figure}
+  \begin{figure}[b]
+    \includegraphics[width=0.95\textwidth]{./img/power-supply-circuit.jpg}
+    \caption{Power supply circuit}
+    \label{fig:power-supply}
+  \end{figure}
+  \begin{figure}[b]
+    \includegraphics[width=0.95\textwidth]{./img/sensor-circuit.jpg}
+    \caption{Sensor circuit}
+    \label{fig:sensor-circuit}
+  \end{figure}
+
 
 \section{Software Design}
-Reference \cref{sec:code}.
+Reference
+% \cref{lst:motorcpp,lst:motorhpp,lst:switchcpp,lst:switchpp,lst:drivepp,lst:move,lst:sense}.
+\cref{sec:code}.
 
 \section{Measurement Data}
 \begin{enumerate}
@@ -149,6 +157,7 @@ Reference \cref{sec:code}.
 \lstinputlisting[language=C++,label=lst:motorhpp,caption=\texttt{motorpp.hpp}]{@doc-staging-area@/motorpp.hpp}
 \lstinputlisting[language=C++,label=lst:switchcpp,caption=\texttt{switccpp.cpp}]{@doc-staging-area@/switchpp.cpp}
 \lstinputlisting[language=C++,label=lst:switchpp,caption=\texttt{switchpp.hpp}]{@doc-staging-area@/switchpp.hpp}
+\lstinputlisting[language=C++,label=lst:drivepp,caption=\texttt{drivepp.hpp}]{@doc-staging-area@/drivepp.hpp}
 
 \lstinputlisting[language=C++,label=lst:move,caption=\texttt{move-main.cpp}]{@doc-staging-area@/move-main.cpp}
 \lstinputlisting[language=C++,label=lst:sense,caption=\texttt{sense-main.cpp}]{@doc-staging-area@/sense-main.cpp}

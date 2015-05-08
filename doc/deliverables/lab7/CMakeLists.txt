@@ -12,6 +12,7 @@ add_custom_command (
     COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/autonomous-racer/common/motorpp.hpp ${doc-staging-area}/motorpp.hpp
   COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/autonomous-racer/common/switchpp.cpp ${doc-staging-area}/switchpp.cpp
     COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/autonomous-racer/common/switchpp.hpp ${doc-staging-area}/switchpp.hpp
+    COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/autonomous-racer/common/drivepp.hpp ${doc-staging-area}/drivepp.hpp
     COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/autonomous-racer/move/move-main.cpp ${doc-staging-area}/move-main.cpp
     COMMAND ${CMAKE_COMMAND} -E copy ../../../../board-progs/autonomous-racer/sense/sense-main.cpp ${doc-staging-area}/sense-main.cpp
 
