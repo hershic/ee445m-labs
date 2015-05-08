@@ -1,3 +1,6 @@
 <map id="inc/hw_gpio.h" name="inc/hw_gpio.h">
-<area shape="rect" id="node2" href="$gpio_8c.html" title="driverlib/gpio.c" alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node2" href="$test-button_8c.html" title="board&#45;progs/test&#45;button\l/test&#45;button.c" alt="" coords="5,80,181,121"/>
+<area shape="rect" id="node3" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="205,80,403,121"/>
+<area shape="rect" id="node4" href="$gpio_8c.html" title="driverlib/gpio.c" alt="" coords="427,87,541,114"/>
+<area shape="rect" id="node5" href="$libbutton_2button_8c.html" title="lib/libbutton/button.c" alt="" coords="566,87,719,114"/>
 </map>

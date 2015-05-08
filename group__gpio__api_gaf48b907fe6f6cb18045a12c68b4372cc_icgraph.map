@@ -1,9 +1,26 @@
 <map id="GPIOPinRead" name="GPIOPinRead">
-<area shape="rect" id="node2" href="$lib_2libadc_2adc_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="307,5,455,32"/>
-<area shape="rect" id="node4" href="$lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="156,31,259,57"/>
-<area shape="rect" id="node5" href="$heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle the heart twice. " alt="" coords="161,132,253,159"/>
-<area shape="rect" id="node8" href="$heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle the heart once. " alt="" coords="156,81,259,108"/>
-<area shape="rect" id="node3" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="503,69,608,96"/>
-<area shape="rect" id="node6" href="$test-timer_8c.html#a08e9ca8d337b256ff66bf838eb68ecd4" title="Blink the onboard LED three times to show activity. " alt="" coords="312,81,449,108"/>
-<area shape="rect" id="node7" href="$test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="321,132,441,159"/>
+<area shape="rect" id="node2" href="$test-combination_8c.html#a43b97cd2f559195abe2cdb02f0406af7" title="button_debounce_end" alt="" coords="156,62,321,89"/>
+<area shape="rect" id="node3" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="369,12,540,38"/>
+<area shape="rect" id="node5" href="$hardware_8c.html#a73aa1a5b083f31ee3546edc843b15d61" title="GPIOPortF_Handler" alt="" coords="167,113,310,140"/>
+<area shape="rect" id="node7" href="$heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f" title="Return the status of . " alt="" coords="187,214,290,241"/>
+<area shape="rect" id="node12" href="$test-adc_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623" title="led_blink_blue" alt="" coords="183,417,294,444"/>
+<area shape="rect" id="node14" href="$test-adc_8c.html#a222d45b9e4999c84a7113b56a2733887" title="led_blink_green" alt="" coords="178,265,299,292"/>
+<area shape="rect" id="node15" href="$test-adc_8c.html#acbd0a67d4b214af8305bdb9795b7b93f" title="led_blink_red" alt="" coords="186,316,291,342"/>
+<area shape="rect" id="node16" href="$test-combination_8c.html#af4e67a7cd91a7237b4b1930c08ff2ee0" title="led_single_blink_blue" alt="" coords="161,366,316,393"/>
+<area shape="rect" id="node17" href="$test-combination_8c.html#a61459f4f1c98d049b45f5604da93bb22" title="led_single_blink_green" alt="" coords="156,164,321,190"/>
+<area shape="rect" id="node19" href="$test-combination_8c.html#a675f16f8fd8633c8a4438e4e2c727f00" title="led_single_blink_red" alt="" coords="164,468,313,494"/>
+<area shape="rect" id="node20" href="$test-edf_8c.html#abf09b613449d8953e9c36a9248ababa8" title="postpone_suicide" alt="" coords="172,518,305,545"/>
+<area shape="rect" id="node22" href="$test-os_8c.html#aa6a5934c17552cfc95b7f3f824e944cc" title="Thread1" alt="" coords="201,569,276,596"/>
+<area shape="rect" id="node24" href="$test-os_8c.html#ac1c9ffaf76fceb3cc9abf8bdab04c0df" title="Thread2" alt="" coords="201,620,276,646"/>
+<area shape="rect" id="node25" href="$test-os_8c.html#ab313785f5ce0c6067436d2e8bc479c60" title="uart_consumer" alt="" coords="179,670,298,697"/>
+<area shape="rect" id="node4" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="589,113,644,140"/>
+<area shape="rect" id="node6" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="402,113,507,140"/>
+<area shape="rect" id="node8" href="$heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle &#160;twice. " alt="" coords="409,214,501,241"/>
+<area shape="rect" id="node9" href="$heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle &#160;once. " alt="" coords="403,265,506,292"/>
+<area shape="rect" id="node10" href="$test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336" title="Task1" alt="" coords="588,265,645,292"/>
+<area shape="rect" id="node11" href="$test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="693,265,748,292"/>
+<area shape="rect" id="node13" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="427,316,482,342"/>
+<area shape="rect" id="node18" href="$test-combination_8c.html#abf09b613449d8953e9c36a9248ababa8" title="postpone_suicide" alt="" coords="388,164,521,190"/>
+<area shape="rect" id="node21" href="$test-edf_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="427,518,482,545"/>
+<area shape="rect" id="node23" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="427,594,482,621"/>
 </map>

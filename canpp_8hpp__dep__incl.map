@@ -1,0 +1,7 @@
+<map id="board&#45;progs/autonomous&#45;racer/common/canpp.hpp" name="board&#45;progs/autonomous&#45;racer/common/canpp.hpp">
+<area shape="rect" id="node2" href="$canpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/canpp.cpp" alt="" coords="5,102,196,143"/>
+<area shape="rect" id="node3" href="$move-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/move/move&#45;main.cpp" alt="" coords="220,102,424,143"/>
+<area shape="rect" id="node4" href="$sense-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/sense/sense&#45;main.cpp" alt="" coords="449,102,657,143"/>
+<area shape="rect" id="node5" href="$test-countdown_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;countdown\l/test&#45;countdown.cpp" alt="" coords="681,95,867,151"/>
+<area shape="rect" id="node6" href="$test-ping_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;ping/test\l&#45;ping.cpp" alt="" coords="891,95,1076,151"/>
+</map>

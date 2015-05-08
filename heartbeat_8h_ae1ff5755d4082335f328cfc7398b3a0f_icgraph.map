@@ -1,0 +1,6 @@
+<map id="heart_status" name="heart_status">
+<area shape="rect" id="node2" href="$heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle &#160;twice. " alt="" coords="161,5,253,32"/>
+<area shape="rect" id="node3" href="$heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle &#160;once. " alt="" coords="156,56,259,83"/>
+<area shape="rect" id="node4" href="$test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336" title="Task1" alt="" coords="307,56,364,83"/>
+<area shape="rect" id="node5" href="$test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="412,56,467,83"/>
+</map>

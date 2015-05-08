@@ -1,0 +1,4 @@
+<map id="hw_adc_metadata" name="hw_adc_metadata">
+<area shape="rect" id="node2" href="$unionadc__trigger__metadata.html" title="{adc_trigger_metadata\n||}" alt="" coords="12,189,176,267"/>
+<area shape="rect" id="node3" href="$structhw__timer__metadata.html" title="{hw_timer_metadata\n|+ base\l+ frequency\l+ interrupt\l+ periodic\l|}" alt="" coords="19,5,169,127"/>
+</map>

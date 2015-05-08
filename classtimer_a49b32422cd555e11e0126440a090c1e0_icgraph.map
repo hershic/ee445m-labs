@@ -1,0 +1,6 @@
+<map id="timer::load" name="timer::load">
+<area shape="rect" id="node2" href="$classping.html#adacb411de375d58683ca6f1e265810cc" title="ping::handle_gpio" alt="" coords="296,5,431,32"/>
+<area shape="rect" id="node4" href="$classtimer.html#a3ebac59dc8c4f71c7542ec1eecb178b9" title="timer::reload" alt="" coords="144,56,248,83"/>
+<area shape="rect" id="node3" href="$sense-main_8cpp.html#a40e662d79bfc379880a53a463479b1d7" title="GPIOPortD_Handler" alt="" coords="479,5,625,32"/>
+<area shape="rect" id="node5" href="$classtimer.html#a51d800864ae9fd1a0428bd37f4e48167" title="timer::timer" alt="" coords="314,56,413,83"/>
+</map>

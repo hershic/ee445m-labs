@@ -1,0 +1,5 @@
+<map id="system_exec" name="system_exec">
+<area shape="rect" id="node2" href="$group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="160,5,389,32"/>
+<area shape="rect" id="node3" href="$nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="437,5,504,32"/>
+<area shape="rect" id="node4" href="$nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="552,5,635,32"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kbd_5fscan_5fcodes',['KBD_SCAN_CODES',['../kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7',1,'kbd.h']]]
+  ['initrflags',['initRFlags',['../_s_t7735_8h.html#a9568e103412377d5867f1f367ac7f424',1,'ST7735.h']]]
 ];

@@ -99,6 +99,12 @@ $(document).ready(function(){initNavTree('group___o_s.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Operating system routines</div>  </div>
 </div><!--header-->
@@ -106,20 +112,1218 @@ $(document).ready(function(){initNavTree('group___o_s.html','');});
 
 <p>Operating system routines.  
 <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhwcontext.html">hwcontext</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswcontext.html">swcontext</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga68883b3b2b4c500bb62f7f40246beeb1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:ga68883b3b2b4c500bb62f7f40246beeb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9fdcaeee2ac8d68ac5fbbcd450fd08da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga9fdcaeee2ac8d68ac5fbbcd450fd08da">OS_STACK_SIZE</a>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:ga9fdcaeee2ac8d68ac5fbbcd450fd08da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a68e5b5d1fb6b77f60bbdb91f2b43dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga7a68e5b5d1fb6b77f60bbdb91f2b43dd">OS_NUM_POOLS</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ga7a68e5b5d1fb6b77f60bbdb91f2b43dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0dae01dd5614c886c6ab50a0c2d20361"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga0dae01dd5614c886c6ab50a0c2d20361">OS_SYSTEM_POOL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ga0dae01dd5614c886c6ab50a0c2d20361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5a0560ce4c7841846467a042b9a43f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gab5a0560ce4c7841846467a042b9a43f2">OS_REAL_TIME_POOL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:gab5a0560ce4c7841846467a042b9a43f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8860efdb5e691947f0ce4ac835552c66"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga8860efdb5e691947f0ce4ac835552c66">OS_INTERACTIVE_POOL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ga8860efdb5e691947f0ce4ac835552c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga74d5d2da0adc0283d5b86ef7798f9529"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga74d5d2da0adc0283d5b86ef7798f9529">os_spawn_thread</a>(_thread,  _priority)&#160;&#160;&#160;<a class="el" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os_add_thread</a>(_thread, priority)</td></tr>
+<tr class="separator:ga74d5d2da0adc0283d5b86ef7798f9529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f27760cbd9e46cf9aa72192c194559c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga0f27760cbd9e46cf9aa72192c194559c">os_kill_thread</a>(_thread)&#160;&#160;&#160;<a class="el" href="group___o_s.html#ga6a4a8d9342ab5086b475617637830d9d">os_remove_thread</a>(_thread)</td></tr>
+<tr class="separator:ga0f27760cbd9e46cf9aa72192c194559c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga950493083c42b9fc7a7252112a941c3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a>()&#160;&#160;&#160;<a class="el" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9">os_suspend</a>()</td></tr>
+<tr class="separator:ga950493083c42b9fc7a7252112a941c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga85a0c75139d80cb3206ff4e5fb0d5977"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structhwcontext.html">hwcontext</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga85a0c75139d80cb3206ff4e5fb0d5977">hwcontext_t</a></td></tr>
+<tr class="separator:ga85a0c75139d80cb3206ff4e5fb0d5977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaccb207c1e3ec1f58a56f4d211a616a53"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structswcontext.html">swcontext</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gaccb207c1e3ec1f58a56f4d211a616a53">swcontext_t</a></td></tr>
+<tr class="separator:gaccb207c1e3ec1f58a56f4d211a616a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga06513ac83e1bda73ae23b5a4b82074f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga06513ac83e1bda73ae23b5a4b82074f4">pidwork_increment</a> ()</td></tr>
+<tr class="separator:ga06513ac83e1bda73ae23b5a4b82074f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab19c893863e065dc8a21c344e63eefdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gab19c893863e065dc8a21c344e63eefdf">pidwork_record</a> ()</td></tr>
+<tr class="separator:gab19c893863e065dc8a21c344e63eefdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae54705fc84d831fc8689cbd51c9714e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a> (void)</td></tr>
+<tr class="separator:gae54705fc84d831fc8689cbd51c9714e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga753ce24080e7c2b9cb0a49f15651556a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a">_os_reset_thread_stack</a> (<a class="el" href="structtcb__t.html">tcb_t</a> *tcb, <a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a> task)</td></tr>
+<tr class="separator:ga753ce24080e7c2b9cb0a49f15651556a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga281f68f2a7a6a0f2ae9fda1ffbfa3912"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga281f68f2a7a6a0f2ae9fda1ffbfa3912">get_os_num_threads</a> ()</td></tr>
+<tr class="separator:ga281f68f2a7a6a0f2ae9fda1ffbfa3912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3321517db0bac2bb29669d5c87283b5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os_add_thread</a> (<a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>)</td></tr>
+<tr class="separator:ga3321517db0bac2bb29669d5c87283b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6a4a8d9342ab5086b475617637830d9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga6a4a8d9342ab5086b475617637830d9d">os_remove_thread</a> (<a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>)</td></tr>
+<tr class="separator:ga6a4a8d9342ab5086b475617637830d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabafc3b0c6f80522488ad93121204ec71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gabafc3b0c6f80522488ad93121204ec71">os_tcb_of</a> (<a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>)</td></tr>
+<tr class="separator:gabafc3b0c6f80522488ad93121204ec71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga594af89f0433ef0ec728549f9c34905f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga594af89f0433ef0ec728549f9c34905f">_os_next_dead_thread</a> ()</td></tr>
+<tr class="separator:ga594af89f0433ef0ec728549f9c34905f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac6d47d69d51f6858745a56eadcc662bd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gac6d47d69d51f6858745a56eadcc662bd">os_running_thread_id</a> ()</td></tr>
+<tr class="separator:gac6d47d69d51f6858745a56eadcc662bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafde304ef5313ffa073cea003547b33eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a> ()</td></tr>
+<tr class="separator:gafde304ef5313ffa073cea003547b33eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e88fee294920ba7cb0881765825b5b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9">os_suspend</a> ()</td></tr>
+<tr class="separator:ga6e88fee294920ba7cb0881765825b5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:gaf388642f1db6af25cce9ce623e31b649"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a></td></tr>
+<tr class="separator:gaf388642f1db6af25cce9ce623e31b649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac541102eb6f16b8534194bff297b55a0"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gac541102eb6f16b8534194bff297b55a0">HIGHEST_PIDWORK</a></td></tr>
+<tr class="separator:gac541102eb6f16b8534194bff297b55a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf3325ccf572f201c6f6a43977daa33b"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gacf3325ccf572f201c6f6a43977daa33b">LOWEST_PIDWORK</a></td></tr>
+<tr class="separator:gacf3325ccf572f201c6f6a43977daa33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02ab609a4b1aacd1de03f6645ade2a6b"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga02ab609a4b1aacd1de03f6645ade2a6b">PIDWORK_IDX</a></td></tr>
+<tr class="separator:ga02ab609a4b1aacd1de03f6645ade2a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43ae72aa8bb840cb65a90589d8409bb3"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga43ae72aa8bb840cb65a90589d8409bb3">PIDWORK_BUFFER</a> [32]</td></tr>
+<tr class="separator:ga43ae72aa8bb840cb65a90589d8409bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86fe39fffc85cbcbfab58910a8a8c9a8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a> = <a class="el" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:ga86fe39fffc85cbcbfab58910a8a8c9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a8a9e5408c7d2a76362ef4b492038c7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a> = <a class="el" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:ga5a8a9e5408c7d2a76362ef4b492038c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf885bdaa059f201c08d621a5bde29033"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gaf885bdaa059f201c08d621a5bde29033">OS_NEXT_THREAD</a></td></tr>
+<tr class="separator:gaf885bdaa059f201c08d621a5bde29033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3e203273abe5bff2094b57fe8a25ef7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structtcb__t.html">tcb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a> [<a class="el" href="schedule_8h.html#ada1620b62343c42fddb919f3a21c6a9b">SCHEDULER_MAX_THREADS</a>]</td></tr>
+<tr class="separator:gac3e203273abe5bff2094b57fe8a25ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga969c9368ba08304bcc9c5b34d402b1ac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_s.html#ga969c9368ba08304bcc9c5b34d402b1ac">OS_THREAD_POOL</a> [2]</td></tr>
+<tr class="separator:ga969c9368ba08304bcc9c5b34d402b1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Operating system routines. </p>
+<p>''</p>
 <dl class="section author"><dt>Author</dt><dd>Hershal Bhave </dd>
 <dd>
 Eric Crosson </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2014 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015 </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>None </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ga8860efdb5e691947f0ce4ac835552c66"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OS_INTERACTIVE_POOL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Second highest priority thread pool alias </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00032">32</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga0f27760cbd9e46cf9aa72192c194559c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define os_kill_thread</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_thread</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="group___o_s.html#ga6a4a8d9342ab5086b475617637830d9d">os_remove_thread</a>(_thread)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>An alias to . Feels like home sweet home. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00039">39</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga7a68e5b5d1fb6b77f60bbdb91f2b43dd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OS_NUM_POOLS&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Static number of thread pools of distinct priority in use </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00025">25</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab5a0560ce4c7841846467a042b9a43f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OS_REAL_TIME_POOL&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Highest priority thread pool alias </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00030">30</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga74d5d2da0adc0283d5b86ef7798f9529"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define os_spawn_thread</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_thread, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_priority&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os_add_thread</a>(_thread, priority)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>An alias to . Feels like home sweet home. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00035">35</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga9fdcaeee2ac8d68ac5fbbcd450fd08da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OS_STACK_SIZE&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Maximum number of 32-bit values allowed in each thread's stack </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00022">22</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00197">_os_reset_thread_stack()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga950493083c42b9fc7a7252112a941c3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define os_surrender_context</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9">os_suspend</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A convenience alias to  to circumnavigate the naming conventions chosen by the couse Administrators. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00142">142</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00172">hw_daemon()</a>, <a class="el" href="test-adc_8c_source.html#l00056">led_blink_blue()</a>, <a class="el" href="test-adc_8c_source.html#l00044">led_blink_green()</a>, <a class="el" href="test-adc_8c_source.html#l00035">led_blink_red()</a>, and <a class="el" href="test-combination_8c_source.html#l00075">postpone_suicide()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga0dae01dd5614c886c6ab50a0c2d20361"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define OS_SYSTEM_POOL&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Highest priority thread pool alias </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00028">28</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="test-priority-scheduler_8c_source.html#l00077">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga68883b3b2b4c500bb62f7f40246beeb1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PIDWORK_BUFFER_SIZE&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8h_source.html#l00014">14</a> of file <a class="el" href="jitter_8h_source.html">jitter.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="ga85a0c75139d80cb3206ff4e5fb0d5977"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structhwcontext.html">hwcontext</a>  <a class="el" href="group___o_s.html#ga85a0c75139d80cb3206ff4e5fb0d5977">hwcontext_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The contents of the stack immediately after a function call. </p>
+
+</div>
+</div>
+<a class="anchor" id="gaccb207c1e3ec1f58a56f4d211a616a53"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structswcontext.html">swcontext</a>  <a class="el" href="group___o_s.html#gaccb207c1e3ec1f58a56f4d211a616a53">swcontext_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The contents of the stack during a context switch. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ga594af89f0433ef0ec728549f9c34905f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* _os_next_dead_thread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the next dead thread in the dead thread circle. If the length of the dead thread circle is greater than 1, then the current dead thread is removed and the circle is relinked with the next dead thread. If the circle contains only one dead thread, then that thread is removed and the current dead thread is set to null. If there is no thread in the dead thread circle, then it retuns null. </p><dl class="section return"><dt>Returns</dt><dd>The first thread removed from the dead thread circle, or null if the dead thread circle is empty. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga753ce24080e7c2b9cb0a49f15651556a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _os_reset_thread_stack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtcb__t.html">tcb_t</a> *&#160;</td>
+          <td class="paramname"><em>tcb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>&#160;</td>
+          <td class="paramname"><em>task</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Resets the thread stack for a given tcb to run a given task. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>the thread whose stack is to be reset </td></tr>
+    <tr><td class="paramname">the</td><td>task for which the thread should run </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00197">197</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="thread__structures_8h_source.html#l00115">tcb_t::id</a>, <a class="el" href="os_8h_source.html#l00072">swcontext::lr</a>, <a class="el" href="os_8c_source.html#l00016">OS_PROGRAM_STACKS</a>, <a class="el" href="os_8h_source.html#l00022">OS_STACK_SIZE</a>, <a class="el" href="os_8h_source.html#l00058">hwcontext::pc</a>, <a class="el" href="os_8h_source.html#l00059">hwcontext::psr</a>, <a class="el" href="os_8h_source.html#l00052">hwcontext::r0</a>, <a class="el" href="os_8h_source.html#l00053">hwcontext::r1</a>, <a class="el" href="os_8h_source.html#l00070">swcontext::r10</a>, <a class="el" href="os_8h_source.html#l00071">swcontext::r11</a>, <a class="el" href="os_8h_source.html#l00054">hwcontext::r2</a>, <a class="el" href="os_8h_source.html#l00055">hwcontext::r3</a>, <a class="el" href="os_8h_source.html#l00064">swcontext::r4</a>, <a class="el" href="os_8h_source.html#l00065">swcontext::r5</a>, <a class="el" href="os_8h_source.html#l00066">swcontext::r6</a>, <a class="el" href="os_8h_source.html#l00067">swcontext::r7</a>, <a class="el" href="os_8h_source.html#l00068">swcontext::r8</a>, <a class="el" href="os_8h_source.html#l00069">swcontext::r9</a>, and <a class="el" href="thread__structures_8h_source.html#l00107">tcb_t::sp</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00072">os_add_thread()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                                                     {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <a class="code" href="structhwcontext.html">hwcontext_t</a>* <a class="code" href="structhwcontext.html">hwcontext</a> = (<a class="code" href="structhwcontext.html">hwcontext_t</a>*)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        (((uint32_t)<a class="code" href="os_8c.html#a0cfad81afdec04d5eb3090b769deae5f">OS_PROGRAM_STACKS</a>[tcb-&gt;<a class="code" href="structtcb__t.html#a6335eef24188312a71e7558083d2a441">id</a>]) +</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;         <span class="keyword">sizeof</span>(uint32_t)*<a class="code" href="group___o_s.html#ga9fdcaeee2ac8d68ac5fbbcd450fd08da">OS_STACK_SIZE</a> - <span class="keyword">sizeof</span>(<a class="code" href="structhwcontext.html">hwcontext_t</a>));</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="structswcontext.html">swcontext_t</a>* <a class="code" href="structswcontext.html">swcontext</a> = (<a class="code" href="structswcontext.html">swcontext_t</a>*)</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        (((uint32_t)hwcontext) - <span class="keyword">sizeof</span>(<a class="code" href="structswcontext.html">swcontext_t</a>));</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    hwcontext-&gt;<a class="code" href="structhwcontext.html#a50f98f801ed417529e78e6f00f0a40d2">pc</a> = (uint32_t)(task);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    hwcontext-&gt;<a class="code" href="structhwcontext.html#ab8ef842b72d033b740bc5d7b63668a7f">psr</a> = 0x01000000;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#aff003065cbe0c593e3d29631a47d7695">lr</a> = 0xfffffff9;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">    #ifdef OS_REGISTER_DEBUGGING_ENABLED</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    hwcontext-&gt;<a class="code" href="structhwcontext.html#a65407fe41de053b48e9e826ed3c638e6">r0</a> = 0x00000000;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    hwcontext-&gt;<a class="code" href="structhwcontext.html#af5bf976e4a863698625aaf109b4f4922">r1</a> = 0x01010101;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    hwcontext-&gt;<a class="code" href="structhwcontext.html#ae7e9f9364072144b854b18188576baf5">r2</a> = 0x02020202;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    hwcontext-&gt;<a class="code" href="structhwcontext.html#aebbb22c13f9911fb942fb5fea9adb9ec">r3</a> = 0x03030303;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#adca79d8d458b4c055463355a7295e2c5">r4</a> = 0x04040404;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#a3d1731647adbe72b2cd79b112057d8c8">r5</a> = 0x05050505;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#a5cf1f3ca2e14e1aa14deb100734e1c30">r6</a> = 0x06060606;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#a9844679f105ad367c9f89f2811a38397">r7</a> = 0x07070707;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#a6da50c233eaf9dc50cc65fc7ebabb68d">r8</a> = 0x08080808;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#a2f4f0d3b6c09829e666bf45f39b942eb">r9</a> = 0x09090909;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#a7347ef967115a508e699a2cc0f29fa34">r10</a> = 0x10101010;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    swcontext-&gt;<a class="code" href="structswcontext.html#ade09026c0a2d7a6409f192a7f2e9ccb9">r11</a> = 0x11111111;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">    #endif  </span><span class="comment">/* OS_REGISTER_DEBUGGING_ENABLED */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    tcb-&gt;<a class="code" href="structtcb__t.html#aee70423957f1dc78fc261295c146a4e0">sp</a> = (uint32_t*)(((uint32_t)hwcontext) - <span class="keyword">sizeof</span>(<a class="code" href="structswcontext.html">swcontext_t</a>));</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;PUSH {R9, R10, R11, R12}&quot;</span>);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;mrs     r12, msp&quot;</span> );</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;mrs     r11, msp&quot;</span> );</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span> ( <span class="stringliteral">&quot;mrs     r10, control&quot;</span> );</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;POP {R9, R10, R11, R12}&quot;</span>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}</div>
+<div class="ttc" id="structswcontext_html_ade09026c0a2d7a6409f192a7f2e9ccb9"><div class="ttname"><a href="structswcontext.html#ade09026c0a2d7a6409f192a7f2e9ccb9">swcontext::r11</a></div><div class="ttdeci">uint32_t r11</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00071">os.h:71</a></div></div>
+<div class="ttc" id="structtcb__t_html_a6335eef24188312a71e7558083d2a441"><div class="ttname"><a href="structtcb__t.html#a6335eef24188312a71e7558083d2a441">tcb_t::id</a></div><div class="ttdeci">immutable int32_t id</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00115">thread_structures.h:115</a></div></div>
+<div class="ttc" id="structhwcontext_html_ae7e9f9364072144b854b18188576baf5"><div class="ttname"><a href="structhwcontext.html#ae7e9f9364072144b854b18188576baf5">hwcontext::r2</a></div><div class="ttdeci">uint32_t r2</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00054">os.h:54</a></div></div>
+<div class="ttc" id="structswcontext_html_a5cf1f3ca2e14e1aa14deb100734e1c30"><div class="ttname"><a href="structswcontext.html#a5cf1f3ca2e14e1aa14deb100734e1c30">swcontext::r6</a></div><div class="ttdeci">uint32_t r6</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00066">os.h:66</a></div></div>
+<div class="ttc" id="structswcontext_html_adca79d8d458b4c055463355a7295e2c5"><div class="ttname"><a href="structswcontext.html#adca79d8d458b4c055463355a7295e2c5">swcontext::r4</a></div><div class="ttdeci">uint32_t r4</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00064">os.h:64</a></div></div>
+<div class="ttc" id="os_8c_html_a0cfad81afdec04d5eb3090b769deae5f"><div class="ttname"><a href="os_8c.html#a0cfad81afdec04d5eb3090b769deae5f">OS_PROGRAM_STACKS</a></div><div class="ttdeci">static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][100]</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00016">os.c:16</a></div></div>
+<div class="ttc" id="structhwcontext_html_aebbb22c13f9911fb942fb5fea9adb9ec"><div class="ttname"><a href="structhwcontext.html#aebbb22c13f9911fb942fb5fea9adb9ec">hwcontext::r3</a></div><div class="ttdeci">uint32_t r3</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00055">os.h:55</a></div></div>
+<div class="ttc" id="structhwcontext_html_a50f98f801ed417529e78e6f00f0a40d2"><div class="ttname"><a href="structhwcontext.html#a50f98f801ed417529e78e6f00f0a40d2">hwcontext::pc</a></div><div class="ttdeci">uint32_t pc</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00058">os.h:58</a></div></div>
+<div class="ttc" id="structswcontext_html_a6da50c233eaf9dc50cc65fc7ebabb68d"><div class="ttname"><a href="structswcontext.html#a6da50c233eaf9dc50cc65fc7ebabb68d">swcontext::r8</a></div><div class="ttdeci">uint32_t r8</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00068">os.h:68</a></div></div>
+<div class="ttc" id="structhwcontext_html_af5bf976e4a863698625aaf109b4f4922"><div class="ttname"><a href="structhwcontext.html#af5bf976e4a863698625aaf109b4f4922">hwcontext::r1</a></div><div class="ttdeci">uint32_t r1</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00053">os.h:53</a></div></div>
+<div class="ttc" id="structswcontext_html_a3d1731647adbe72b2cd79b112057d8c8"><div class="ttname"><a href="structswcontext.html#a3d1731647adbe72b2cd79b112057d8c8">swcontext::r5</a></div><div class="ttdeci">uint32_t r5</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00065">os.h:65</a></div></div>
+<div class="ttc" id="structhwcontext_html_ab8ef842b72d033b740bc5d7b63668a7f"><div class="ttname"><a href="structhwcontext.html#ab8ef842b72d033b740bc5d7b63668a7f">hwcontext::psr</a></div><div class="ttdeci">uint32_t psr</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00059">os.h:59</a></div></div>
+<div class="ttc" id="structswcontext_html_aff003065cbe0c593e3d29631a47d7695"><div class="ttname"><a href="structswcontext.html#aff003065cbe0c593e3d29631a47d7695">swcontext::lr</a></div><div class="ttdeci">uint32_t lr</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00072">os.h:72</a></div></div>
+<div class="ttc" id="structtcb__t_html_aee70423957f1dc78fc261295c146a4e0"><div class="ttname"><a href="structtcb__t.html#aee70423957f1dc78fc261295c146a4e0">tcb_t::sp</a></div><div class="ttdeci">int32_t * sp</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00107">thread_structures.h:107</a></div></div>
+<div class="ttc" id="structswcontext_html_a9844679f105ad367c9f89f2811a38397"><div class="ttname"><a href="structswcontext.html#a9844679f105ad367c9f89f2811a38397">swcontext::r7</a></div><div class="ttdeci">uint32_t r7</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00067">os.h:67</a></div></div>
+<div class="ttc" id="group___o_s_html_ga9fdcaeee2ac8d68ac5fbbcd450fd08da"><div class="ttname"><a href="group___o_s.html#ga9fdcaeee2ac8d68ac5fbbcd450fd08da">OS_STACK_SIZE</a></div><div class="ttdeci">#define OS_STACK_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00022">os.h:22</a></div></div>
+<div class="ttc" id="structswcontext_html"><div class="ttname"><a href="structswcontext.html">swcontext</a></div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00063">os.h:63</a></div></div>
+<div class="ttc" id="structhwcontext_html"><div class="ttname"><a href="structhwcontext.html">hwcontext</a></div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00051">os.h:51</a></div></div>
+<div class="ttc" id="structswcontext_html_a7347ef967115a508e699a2cc0f29fa34"><div class="ttname"><a href="structswcontext.html#a7347ef967115a508e699a2cc0f29fa34">swcontext::r10</a></div><div class="ttdeci">uint32_t r10</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00070">os.h:70</a></div></div>
+<div class="ttc" id="structswcontext_html_a2f4f0d3b6c09829e666bf45f39b942eb"><div class="ttname"><a href="structswcontext.html#a2f4f0d3b6c09829e666bf45f39b942eb">swcontext::r9</a></div><div class="ttdeci">uint32_t r9</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00069">os.h:69</a></div></div>
+<div class="ttc" id="structhwcontext_html_a65407fe41de053b48e9e826ed3c638e6"><div class="ttname"><a href="structhwcontext.html#a65407fe41de053b48e9e826ed3c638e6">hwcontext::r0</a></div><div class="ttdeci">uint32_t r0</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00052">os.h:52</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_ga753ce24080e7c2b9cb0a49f15651556a_icgraph.png" border="0" usemap="#group___o_s_ga753ce24080e7c2b9cb0a49f15651556a_icgraph" alt=""/></div>
+<map name="group___o_s_ga753ce24080e7c2b9cb0a49f15651556a_icgraph" id="group___o_s_ga753ce24080e7c2b9cb0a49f15651556a_icgraph">
+<area shape="rect" id="node2" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f" title="os_add_thread" alt="" coords="228,56,345,83"/><area shape="rect" id="node3" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="429,5,483,32"/><area shape="rect" id="node4" href="hardware_8h.html#a5d013da6453c4d162f665f6a59419889" title="hw_init_daemon" alt="" coords="393,56,519,83"/><area shape="rect" id="node5" href="schedule_8h.html#ac7b1d866daadf5ea1d7f56090df99443" title="schedule" alt="" coords="417,107,495,133"/><area shape="rect" id="node6" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="567,107,621,133"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ga281f68f2a7a6a0f2ae9fda1ffbfa3912"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t get_os_num_threads </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00068">68</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="os_8c_source.html#l00032">OS_NUM_THREADS</a>.</p>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                            {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="os_8c.html#aae13131cda987efa319fb05266f8709b">OS_NUM_THREADS</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="ttc" id="os_8c_html_aae13131cda987efa319fb05266f8709b"><div class="ttname"><a href="os_8c.html#aae13131cda987efa319fb05266f8709b">OS_NUM_THREADS</a></div><div class="ttdeci">uint8_t OS_NUM_THREADS</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00032">os.c:32</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ga3321517db0bac2bb29669d5c87283b5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* os_add_thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a new thread with the specified task. </p><dl class="section return"><dt>Returns</dt><dd>the TCB of the newly added thread, null if the addition was not possible for some reason. </dd></dl>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00072">72</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="os_8c_source.html#l00197">_os_reset_thread_stack()</a>, <a class="el" href="nexus_8h_source.html#l00025">atomic_end</a>, <a class="el" href="nexus_8h_source.html#l00020">atomic_start</a>, <a class="el" href="utlist_8h_source.html#l00705">CDL_DELETE</a>, <a class="el" href="thread__structures_8h_source.html#l00122">tcb_t::entry_point</a>, and <a class="el" href="os_8h_source.html#l00048">os_dead_threads</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00054">hw_init_daemon()</a>, <a class="el" href="test-os_8c_source.html#l00093">main()</a>, and <a class="el" href="os_8c_source.html#l00386">schedule()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                  {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    int32_t status;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="structtcb__t.html">tcb_t</a>* thread_to_add;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/* 1. Disable interrupts and save the priority mask */</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="nexus_8h.html#a15a1eb4eec18bee3a35969166997db75">atomic_start</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">/* 2. Pop the task from the dead_thread pile */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    thread_to_add = <a class="code" href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a>(<a class="code" href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a>, thread_to_add);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">/* 3. Add the thread to the appropriate priority pool. */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">/* CDL_APPEND(os_running_threads, thread_to_add); */</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">/* CDL_APPEND(OS_THREAD_POOL[priority], thread_to_add); */</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">/* 4. Set the initial stack contents for the new thread. */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a">_os_reset_thread_stack</a>(thread_to_add, task);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">/* 5. Set metadata for this thread&#39;s TCB. */</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">/* TODO: Remove this from semaphore. The scheduler manages</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">     * this. */</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">/* thread_to_add-&gt;status = THREAD_RUNNING; */</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    thread_to_add-&gt;<a class="code" href="structtcb__t.html#ae15353c682a902c682b154aec06d40c8">entry_point</a> = task;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">/* thread_to_add-&gt;priority = priority; */</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">/* thread_to_add-&gt;sleep_timer = 0; */</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="nexus_8h.html#a9a8befd1d71e25716f1a2e5754c7bc33">atomic_end</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">/* 5. Return. */</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> thread_to_add;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="ttc" id="nexus_8h_html_a15a1eb4eec18bee3a35969166997db75"><div class="ttname"><a href="nexus_8h.html#a15a1eb4eec18bee3a35969166997db75">atomic_start</a></div><div class="ttdeci">#define atomic_start()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00020">nexus.h:20</a></div></div>
+<div class="ttc" id="group___o_s_html_ga753ce24080e7c2b9cb0a49f15651556a"><div class="ttname"><a href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a">_os_reset_thread_stack</a></div><div class="ttdeci">always void _os_reset_thread_stack(tcb_t *tcb, task_t task)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00197">os.c:197</a></div></div>
+<div class="ttc" id="structtcb__t_html"><div class="ttname"><a href="structtcb__t.html">tcb_t</a></div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00104">thread_structures.h:104</a></div></div>
+<div class="ttc" id="group___o_s_html_ga5a8a9e5408c7d2a76362ef4b492038c7"><div class="ttname"><a href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a></div><div class="ttdeci">static tcb_t * os_dead_threads</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00048">os.h:48</a></div></div>
+<div class="ttc" id="utlist_8h_html_a60fd7696c4d0865f53a07579a7b08235"><div class="ttname"><a href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a></div><div class="ttdeci">#define CDL_DELETE(head, del)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00705">utlist.h:705</a></div></div>
+<div class="ttc" id="structtcb__t_html_ae15353c682a902c682b154aec06d40c8"><div class="ttname"><a href="structtcb__t.html#ae15353c682a902c682b154aec06d40c8">tcb_t::entry_point</a></div><div class="ttdeci">task_t entry_point</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00122">thread_structures.h:122</a></div></div>
+<div class="ttc" id="nexus_8h_html_a9a8befd1d71e25716f1a2e5754c7bc33"><div class="ttname"><a href="nexus_8h.html#a9a8befd1d71e25716f1a2e5754c7bc33">atomic_end</a></div><div class="ttdeci">#define atomic_end()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00025">nexus.h:25</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_ga3321517db0bac2bb29669d5c87283b5f_cgraph.png" border="0" usemap="#group___o_s_ga3321517db0bac2bb29669d5c87283b5f_cgraph" alt=""/></div>
+<map name="group___o_s_ga3321517db0bac2bb29669d5c87283b5f_cgraph" id="group___o_s_ga3321517db0bac2bb29669d5c87283b5f_cgraph">
+<area shape="rect" id="node2" href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a" title="_os_reset_thread_stack" alt="" coords="171,5,345,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_ga3321517db0bac2bb29669d5c87283b5f_icgraph.png" border="0" usemap="#group___o_s_ga3321517db0bac2bb29669d5c87283b5f_icgraph" alt=""/></div>
+<map name="group___o_s_ga3321517db0bac2bb29669d5c87283b5f_icgraph" id="group___o_s_ga3321517db0bac2bb29669d5c87283b5f_icgraph">
+<area shape="rect" id="node2" href="hardware_8h.html#a5d013da6453c4d162f665f6a59419889" title="hw_init_daemon" alt="" coords="171,5,296,32"/><area shape="rect" id="node3" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="206,56,261,83"/><area shape="rect" id="node4" href="schedule_8h.html#ac7b1d866daadf5ea1d7f56090df99443" title="schedule" alt="" coords="194,107,273,133"/><area shape="rect" id="node5" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="344,107,399,133"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gafde304ef5313ffa073cea003547b33eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_launch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Launches the operating system. </p><dl class="section note"><dt>Note</dt><dd>This function drastically changes the execution paradigm of the machine; do not expect to call it and be able to return to the previous context. </dd></dl>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00161">161</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="os_8c_source.html#l00544">_os_choose_next_thread()</a>, <a class="el" href="os_8c_source.html#l00475">edf_init()</a>, <a class="el" href="os_8h_source.html#l00078">OS_NEXT_THREAD</a>, and <a class="el" href="os_8h_source.html#l00045">os_running_threads</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                 {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="os_8c.html#a9c501e25b473053fd85e419016865d81">edf_init</a>();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="os_8c.html#a82b7c0ca4a9b2f972d971f4316109ea4">_os_choose_next_thread</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a> = <a class="code" href="group___o_s.html#gaf885bdaa059f201c08d621a5bde29033">OS_NEXT_THREAD</a>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">/* acquire the pointer to the stack pointer here */</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;LDR     R0, =OS_NEXT_THREAD&quot;</span>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="comment">/* acquire the current value of the stack pointer */</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;LDR R0, [R0]&quot;</span>);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;LDR R0, [R0]&quot;</span>);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="comment">/* set the process stack value */</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;MSR MSP, R0&quot;</span>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="comment">/* change EXC_RETURN for return on MSP */</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="comment">/* asm volatile(&quot;ORR LR, LR, #4&quot;); */</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="comment">/* change the active stack to use msp */</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="comment">/* asm volatile(&quot;MRS R0, CONTROL&quot;); */</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="comment">/* asm volatile(&quot;ORR R0, R0, #2&quot;); */</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="comment">/* asm volatile(&quot;MSR CONTROL, R0&quot;); */</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;POP     {R4-R11}&quot;</span>);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;POP     {LR}&quot;</span>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;POP     {R0-R3}&quot;</span>);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;pop {r12, lr}&quot;</span>);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;pop {pc}&quot;</span>);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">asm</span> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;BX LR&quot;</span>);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
+<div class="ttc" id="group___o_s_html_ga86fe39fffc85cbcbfab58910a8a8c9a8"><div class="ttname"><a href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a></div><div class="ttdeci">static tcb_t * os_running_threads</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00045">os.h:45</a></div></div>
+<div class="ttc" id="group___o_s_html_gaf885bdaa059f201c08d621a5bde29033"><div class="ttname"><a href="group___o_s.html#gaf885bdaa059f201c08d621a5bde29033">OS_NEXT_THREAD</a></div><div class="ttdeci">static tcb_t * OS_NEXT_THREAD</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00078">os.h:78</a></div></div>
+<div class="ttc" id="os_8c_html_a82b7c0ca4a9b2f972d971f4316109ea4"><div class="ttname"><a href="os_8c.html#a82b7c0ca4a9b2f972d971f4316109ea4">_os_choose_next_thread</a></div><div class="ttdeci">void _os_choose_next_thread()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00544">os.c:544</a></div></div>
+<div class="ttc" id="os_8c_html_a9c501e25b473053fd85e419016865d81"><div class="ttname"><a href="os_8c.html#a9c501e25b473053fd85e419016865d81">edf_init</a></div><div class="ttdeci">void edf_init()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00475">os.c:475</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_gafde304ef5313ffa073cea003547b33eb_cgraph.png" border="0" usemap="#group___o_s_gafde304ef5313ffa073cea003547b33eb_cgraph" alt=""/></div>
+<map name="group___o_s_gafde304ef5313ffa073cea003547b33eb_cgraph" id="group___o_s_gafde304ef5313ffa073cea003547b33eb_cgraph">
+<area shape="rect" id="node2" href="os_8c.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="140,132,321,159"/><area shape="rect" id="node11" href="os_8c.html#a9c501e25b473053fd85e419016865d81" title="edf_init" alt="" coords="416,31,484,57"/><area shape="rect" id="node3" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="369,132,531,159"/><area shape="rect" id="node4" href="os_8c.html#a9e60608a8e73ad2b74d172acd369999e" title="edf_insert" alt="" coords="601,5,687,32"/><area shape="rect" id="node5" href="group__interrupt__api.html#gafe17b56764bff1bcb95bd53acde4ac98" title="IntPendSet" alt="" coords="598,56,690,83"/><area shape="rect" id="node6" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="585,107,703,133"/><area shape="rect" id="node7" href="group__systick__api.html#ga0b993bfbd72abac7286c4f54369576f2" title="SysTickDisable" alt="" coords="586,157,702,184"/><area shape="rect" id="node8" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="588,208,700,235"/><area shape="rect" id="node9" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="580,259,708,285"/><area shape="rect" id="node10" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="579,309,709,336"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_gafde304ef5313ffa073cea003547b33eb_icgraph.png" border="0" usemap="#group___o_s_gafde304ef5313ffa073cea003547b33eb_icgraph" alt=""/></div>
+<map name="group___o_s_gafde304ef5313ffa073cea003547b33eb_icgraph" id="group___o_s_gafde304ef5313ffa073cea003547b33eb_icgraph">
+<area shape="rect" id="node2" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="140,5,195,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ga6a4a8d9342ab5086b475617637830d9d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* os_remove_thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove a thread from the queue the schedule will choose from. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>task to kill. This should be the task that was used to start the thread to remove via . </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly released tcb </dd></dl>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00106">106</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="utlist_8h_source.html#l00688">CDL_APPEND</a>, <a class="el" href="utlist_8h_source.html#l00705">CDL_DELETE</a>, <a class="el" href="thread__structures_8h_source.html#l00122">tcb_t::entry_point</a>, <a class="el" href="thread__structures_8h_source.html#l00110">tcb_t::next</a>, <a class="el" href="defines_8h_source.html#l00032">NULL</a>, <a class="el" href="os_8h_source.html#l00048">os_dead_threads</a>, <a class="el" href="os_8c_source.html#l00032">OS_NUM_THREADS</a>, <a class="el" href="os_8c_source.html#l00147">os_tcb_of()</a>, <a class="el" href="os_8h_source.html#l00084">OS_THREAD_POOL</a>, <a class="el" href="thread__structures_8h_source.html#l00112">tcb_t::prev</a>, and <a class="el" href="thread__structures_8h_source.html#l00117">tcb_t::priority</a>.</p>
+<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                                     {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    int32_t status;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="structtcb__t.html">tcb_t</a>* thread_to_remove;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">/* 1. Disable interrupts and save the priority mask */</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">/* TODO: clean this up, make uniform */</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    status = StartCritical();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">/* 2. Pop the task from the running_thread pile and add it to the</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">     * list of dead threads. */</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    thread_to_remove = <a class="code" href="group___o_s.html#gabafc3b0c6f80522488ad93121204ec71">os_tcb_of</a>(task);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a>(<a class="code" href="group___o_s.html#ga969c9368ba08304bcc9c5b34d402b1ac">OS_THREAD_POOL</a>[thread_to_remove-&gt;<a class="code" href="structtcb__t.html#a4f626a4d6824b7d35e5c40057a00c177">priority</a>], thread_to_remove);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">/* Append means low tcb_t memory reusability. Prepend means high */</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="utlist_8h.html#accdaa1a2854add161af9525eb458cf23">CDL_APPEND</a>(<a class="code" href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a>, thread_to_remove);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">/* OPTIONAL TODO: do the check for overwritten stacks as long as</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">     * we kill every thread in our testing we&#39;ll get valuable yet</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">     * unobtrusive debugging data. also consider a check on the</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">     * immutable fields, using the offset from the array base as</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">     * verification. */</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="comment">/* 3. Reset metadata for this thread&#39;s TCB. */</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="comment">/* thread_to_remove-&gt;status = THREAD_DEAD; */</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    thread_to_remove-&gt;<a class="code" href="structtcb__t.html#ae15353c682a902c682b154aec06d40c8">entry_point</a> = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    thread_to_remove-&gt;<a class="code" href="structtcb__t.html#a9c47a6e53a12b6082a7a24b885ad70d1">next</a> = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    thread_to_remove-&gt;<a class="code" href="structtcb__t.html#a6ec45e0bd0b5a9188778db0784b90d79">prev</a> = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">/* 4. Return. */</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="comment">/* TODO: clean this up, make uniform */</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    --<a class="code" href="os_8c.html#aae13131cda987efa319fb05266f8709b">OS_NUM_THREADS</a>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    EndCritical(status);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">return</span> thread_to_remove;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+<div class="ttc" id="structtcb__t_html"><div class="ttname"><a href="structtcb__t.html">tcb_t</a></div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00104">thread_structures.h:104</a></div></div>
+<div class="ttc" id="group___o_s_html_ga969c9368ba08304bcc9c5b34d402b1ac"><div class="ttname"><a href="group___o_s.html#ga969c9368ba08304bcc9c5b34d402b1ac">OS_THREAD_POOL</a></div><div class="ttdeci">static tcb_t * OS_THREAD_POOL[2]</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00084">os.h:84</a></div></div>
+<div class="ttc" id="group___o_s_html_ga5a8a9e5408c7d2a76362ef4b492038c7"><div class="ttname"><a href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a></div><div class="ttdeci">static tcb_t * os_dead_threads</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00048">os.h:48</a></div></div>
+<div class="ttc" id="utlist_8h_html_a60fd7696c4d0865f53a07579a7b08235"><div class="ttname"><a href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a></div><div class="ttdeci">#define CDL_DELETE(head, del)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00705">utlist.h:705</a></div></div>
+<div class="ttc" id="structtcb__t_html_a6ec45e0bd0b5a9188778db0784b90d79"><div class="ttname"><a href="structtcb__t.html#a6ec45e0bd0b5a9188778db0784b90d79">tcb_t::prev</a></div><div class="ttdeci">struct tcb_t * prev</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00112">thread_structures.h:112</a></div></div>
+<div class="ttc" id="structtcb__t_html_a4f626a4d6824b7d35e5c40057a00c177"><div class="ttname"><a href="structtcb__t.html#a4f626a4d6824b7d35e5c40057a00c177">tcb_t::priority</a></div><div class="ttdeci">priority_t priority</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00117">thread_structures.h:117</a></div></div>
+<div class="ttc" id="structtcb__t_html_ae15353c682a902c682b154aec06d40c8"><div class="ttname"><a href="structtcb__t.html#ae15353c682a902c682b154aec06d40c8">tcb_t::entry_point</a></div><div class="ttdeci">task_t entry_point</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00122">thread_structures.h:122</a></div></div>
+<div class="ttc" id="group___o_s_html_gabafc3b0c6f80522488ad93121204ec71"><div class="ttname"><a href="group___o_s.html#gabafc3b0c6f80522488ad93121204ec71">os_tcb_of</a></div><div class="ttdeci">tcb_t * os_tcb_of(const task_t task)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00147">os.c:147</a></div></div>
+<div class="ttc" id="structtcb__t_html_a9c47a6e53a12b6082a7a24b885ad70d1"><div class="ttname"><a href="structtcb__t.html#a9c47a6e53a12b6082a7a24b885ad70d1">tcb_t::next</a></div><div class="ttdeci">struct tcb_t * next</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00110">thread_structures.h:110</a></div></div>
+<div class="ttc" id="os_8c_html_aae13131cda987efa319fb05266f8709b"><div class="ttname"><a href="os_8c.html#aae13131cda987efa319fb05266f8709b">OS_NUM_THREADS</a></div><div class="ttdeci">uint8_t OS_NUM_THREADS</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00032">os.c:32</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
+<div class="ttc" id="utlist_8h_html_accdaa1a2854add161af9525eb458cf23"><div class="ttname"><a href="utlist_8h.html#accdaa1a2854add161af9525eb458cf23">CDL_APPEND</a></div><div class="ttdeci">#define CDL_APPEND(head, add)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00688">utlist.h:688</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_ga6a4a8d9342ab5086b475617637830d9d_cgraph.png" border="0" usemap="#group___o_s_ga6a4a8d9342ab5086b475617637830d9d_cgraph" alt=""/></div>
+<map name="group___o_s_ga6a4a8d9342ab5086b475617637830d9d_cgraph" id="group___o_s_ga6a4a8d9342ab5086b475617637830d9d_cgraph">
+<area shape="rect" id="node2" href="group___o_s.html#gabafc3b0c6f80522488ad93121204ec71" title="os_tcb_of" alt="" coords="196,5,279,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gac6d47d69d51f6858745a56eadcc662bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t os_running_thread_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00142">142</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="thread__structures_8h_source.html#l00115">tcb_t::id</a>, and <a class="el" href="os_8h_source.html#l00045">os_running_threads</a>.</p>
+<div class="fragment"><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                               {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a>-&gt;<a class="code" href="structtcb__t.html#a6335eef24188312a71e7558083d2a441">id</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
+<div class="ttc" id="structtcb__t_html_a6335eef24188312a71e7558083d2a441"><div class="ttname"><a href="structtcb__t.html#a6335eef24188312a71e7558083d2a441">tcb_t::id</a></div><div class="ttdeci">immutable int32_t id</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00115">thread_structures.h:115</a></div></div>
+<div class="ttc" id="group___o_s_html_ga86fe39fffc85cbcbfab58910a8a8c9a8"><div class="ttname"><a href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a></div><div class="ttdeci">static tcb_t * os_running_threads</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00045">os.h:45</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ga6e88fee294920ba7cb0881765825b5b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_suspend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Put the invoking thread to sleep and let another thread take over. This s another way to say "set the interrupt bit of the
+\PendSV_Handler". </p>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00380">380</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="os_8c_source.html#l00237">scheduler_reschedule()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                  {</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <a class="code" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1">scheduler_reschedule</a>();</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;}</div>
+<div class="ttc" id="os_8c_html_a3a22ce900ef726a4c4da3aee85a5c3d1"><div class="ttname"><a href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1">scheduler_reschedule</a></div><div class="ttdeci">always void scheduler_reschedule(void)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00237">os.c:237</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_ga6e88fee294920ba7cb0881765825b5b9_cgraph.png" border="0" usemap="#group___o_s_ga6e88fee294920ba7cb0881765825b5b9_cgraph" alt=""/></div>
+<map name="group___o_s_ga6e88fee294920ba7cb0881765825b5b9_cgraph" id="group___o_s_ga6e88fee294920ba7cb0881765825b5b9_cgraph">
+<area shape="rect" id="node2" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="152,157,313,184"/><area shape="rect" id="node3" href="os_8c.html#a9e60608a8e73ad2b74d172acd369999e" title="edf_insert" alt="" coords="384,5,469,32"/><area shape="rect" id="node4" href="group__interrupt__api.html#gafe17b56764bff1bcb95bd53acde4ac98" title="IntPendSet" alt="" coords="381,56,473,83"/><area shape="rect" id="node5" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="367,107,486,133"/><area shape="rect" id="node6" href="group__systick__api.html#ga0b993bfbd72abac7286c4f54369576f2" title="SysTickDisable" alt="" coords="369,157,485,184"/><area shape="rect" id="node7" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="371,208,483,235"/><area shape="rect" id="node8" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="363,259,491,285"/><area shape="rect" id="node9" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="361,309,492,336"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gabafc3b0c6f80522488ad93121204ec71"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* os_tcb_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the tcb used to control the specified task_t. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>task to lookup the tcb of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The tcb of the specified task_t </dd></dl>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00147">147</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="defines_8h_source.html#l00032">NULL</a>, <a class="el" href="os_8h_source.html#l00081">OS_THREADS</a>, <a class="el" href="nexus_8h_source.html#l00040">postpone_death</a>, and <a class="el" href="test-combination_8c_source.html#l00026">SCHEDULER_MAX_THREADS</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00106">os_remove_thread()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                                    {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    int32_t i;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;<a class="code" href="test-combination_8c.html#ada1620b62343c42fddb919f3a21c6a9b">SCHEDULER_MAX_THREADS</a>; ++i) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">if</span> (task == <a class="code" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a>[i].entry_point) {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">return</span> &amp;<a class="code" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a>[i];</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#ifndef DANGER_ZONE</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a>();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div>
+<div class="ttc" id="nexus_8h_html_a44bf220a6c5c7c38df76ced96b0bd515"><div class="ttname"><a href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a></div><div class="ttdeci">#define postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00040">nexus.h:40</a></div></div>
+<div class="ttc" id="test-combination_8c_html_ada1620b62343c42fddb919f3a21c6a9b"><div class="ttname"><a href="test-combination_8c.html#ada1620b62343c42fddb919f3a21c6a9b">SCHEDULER_MAX_THREADS</a></div><div class="ttdeci">#define SCHEDULER_MAX_THREADS</div><div class="ttdef"><b>Definition:</b> <a href="test-combination_8c_source.html#l00026">test-combination.c:26</a></div></div>
+<div class="ttc" id="group___o_s_html_gac3e203273abe5bff2094b57fe8a25ef7"><div class="ttname"><a href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a></div><div class="ttdeci">static tcb_t OS_THREADS[SCHEDULER_MAX_THREADS]</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00081">os.h:81</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_gabafc3b0c6f80522488ad93121204ec71_icgraph.png" border="0" usemap="#group___o_s_gabafc3b0c6f80522488ad93121204ec71_icgraph" alt=""/></div>
+<map name="group___o_s_gabafc3b0c6f80522488ad93121204ec71_icgraph" id="group___o_s_gabafc3b0c6f80522488ad93121204ec71_icgraph">
+<area shape="rect" id="node2" href="group___o_s.html#ga6a4a8d9342ab5086b475617637830d9d" title="os_remove_thread" alt="" coords="136,5,279,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gae54705fc84d831fc8689cbd51c9714e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_threading_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialize the threading engine, setting all threads to dead. This initializes the dead thread circle appropriately and sets the running thread circle to null. </p>
+
+<p>Definition at line <a class="el" href="os_8c_source.html#l00034">34</a> of file <a class="el" href="os_8c_source.html">os.c</a>.</p>
+
+<p>References <a class="el" href="utlist_8h_source.html#l00688">CDL_APPEND</a>, <a class="el" href="thread__structures_8h_source.html#l00122">tcb_t::entry_point</a>, <a class="el" href="thread__structures_8h_source.html#l00115">tcb_t::id</a>, <a class="el" href="defines_8h_source.html#l00032">NULL</a>, <a class="el" href="os_8h_source.html#l00048">os_dead_threads</a>, <a class="el" href="os_8h_source.html#l00025">OS_NUM_POOLS</a>, <a class="el" href="os_8c_source.html#l00016">OS_PROGRAM_STACKS</a>, <a class="el" href="os_8h_source.html#l00045">os_running_threads</a>, <a class="el" href="os_8h_source.html#l00084">OS_THREAD_POOL</a>, <a class="el" href="os_8c_source.html#l00031">OS_THREADING_INITIALIZED</a>, <a class="el" href="os_8h_source.html#l00081">OS_THREADS</a>, <a class="el" href="os_8c_source.html#l00445">schedule_init()</a>, <a class="el" href="test-combination_8c_source.html#l00026">SCHEDULER_MAX_THREADS</a>, and <a class="el" href="thread__structures_8h_source.html#l00107">tcb_t::sp</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                         {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    uint32_t i;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">/* This check exists so libraries may call os_threading_init</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">     * without breaking everything. We dont&#39; want to contribute to the</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">     * black magic that is the specific initialization of TI</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">     * libraries, do we? */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="os_8c.html#a0c3209198d9c6a984fd863700778a757">OS_THREADING_INITIALIZED</a>) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a> = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/* Initialize thread metadata */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">for</span> (i=0; i&lt;<a class="code" href="test-combination_8c.html#ada1620b62343c42fddb919f3a21c6a9b">SCHEDULER_MAX_THREADS</a>; ++i) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="utlist_8h.html#accdaa1a2854add161af9525eb458cf23">CDL_APPEND</a>(<a class="code" href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a>, &amp;<a class="code" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a>[i]);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a>[i].<a class="code" href="structtcb__t.html#aee70423957f1dc78fc261295c146a4e0">sp</a> = <a class="code" href="os_8c.html#a0cfad81afdec04d5eb3090b769deae5f">OS_PROGRAM_STACKS</a>[i];</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a>[i].<a class="code" href="structtcb__t.html#a6335eef24188312a71e7558083d2a441">id</a> = i;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a>[i].<a class="code" href="structtcb__t.html#ae15353c682a902c682b154aec06d40c8">entry_point</a> = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">/* OS_THREADS[i].status = THREAD_DEAD; */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">/* OS_THREADS[i].sleep_timer = 0; */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">/* Initialize thread pool metadata */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">for</span> (i=0; i&lt;<a class="code" href="group___o_s.html#ga7a68e5b5d1fb6b77f60bbdb91f2b43dd">OS_NUM_POOLS</a>; ++i) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="group___o_s.html#ga969c9368ba08304bcc9c5b34d402b1ac">OS_THREAD_POOL</a>[i] = (<a class="code" href="structtcb__t.html">tcb_t</a>*) <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="os_8c.html#a0c3209198d9c6a984fd863700778a757">OS_THREADING_INITIALIZED</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="os_8c.html#abf76f28d35f214c1654de5c356f1bee1">schedule_init</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="ttc" id="group___o_s_html_ga7a68e5b5d1fb6b77f60bbdb91f2b43dd"><div class="ttname"><a href="group___o_s.html#ga7a68e5b5d1fb6b77f60bbdb91f2b43dd">OS_NUM_POOLS</a></div><div class="ttdeci">#define OS_NUM_POOLS</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00025">os.h:25</a></div></div>
+<div class="ttc" id="structtcb__t_html_a6335eef24188312a71e7558083d2a441"><div class="ttname"><a href="structtcb__t.html#a6335eef24188312a71e7558083d2a441">tcb_t::id</a></div><div class="ttdeci">immutable int32_t id</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00115">thread_structures.h:115</a></div></div>
+<div class="ttc" id="os_8c_html_a0cfad81afdec04d5eb3090b769deae5f"><div class="ttname"><a href="os_8c.html#a0cfad81afdec04d5eb3090b769deae5f">OS_PROGRAM_STACKS</a></div><div class="ttdeci">static int32_t OS_PROGRAM_STACKS[SCHEDULER_MAX_THREADS][100]</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00016">os.c:16</a></div></div>
+<div class="ttc" id="structtcb__t_html"><div class="ttname"><a href="structtcb__t.html">tcb_t</a></div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00104">thread_structures.h:104</a></div></div>
+<div class="ttc" id="group___o_s_html_ga969c9368ba08304bcc9c5b34d402b1ac"><div class="ttname"><a href="group___o_s.html#ga969c9368ba08304bcc9c5b34d402b1ac">OS_THREAD_POOL</a></div><div class="ttdeci">static tcb_t * OS_THREAD_POOL[2]</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00084">os.h:84</a></div></div>
+<div class="ttc" id="group___o_s_html_ga86fe39fffc85cbcbfab58910a8a8c9a8"><div class="ttname"><a href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os_running_threads</a></div><div class="ttdeci">static tcb_t * os_running_threads</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00045">os.h:45</a></div></div>
+<div class="ttc" id="os_8c_html_abf76f28d35f214c1654de5c356f1bee1"><div class="ttname"><a href="os_8c.html#abf76f28d35f214c1654de5c356f1bee1">schedule_init</a></div><div class="ttdeci">void schedule_init()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00445">os.c:445</a></div></div>
+<div class="ttc" id="group___o_s_html_ga5a8a9e5408c7d2a76362ef4b492038c7"><div class="ttname"><a href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os_dead_threads</a></div><div class="ttdeci">static tcb_t * os_dead_threads</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00048">os.h:48</a></div></div>
+<div class="ttc" id="os_8c_html_a0c3209198d9c6a984fd863700778a757"><div class="ttname"><a href="os_8c.html#a0c3209198d9c6a984fd863700778a757">OS_THREADING_INITIALIZED</a></div><div class="ttdeci">bool OS_THREADING_INITIALIZED</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00031">os.c:31</a></div></div>
+<div class="ttc" id="structtcb__t_html_aee70423957f1dc78fc261295c146a4e0"><div class="ttname"><a href="structtcb__t.html#aee70423957f1dc78fc261295c146a4e0">tcb_t::sp</a></div><div class="ttdeci">int32_t * sp</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00107">thread_structures.h:107</a></div></div>
+<div class="ttc" id="test-combination_8c_html_ada1620b62343c42fddb919f3a21c6a9b"><div class="ttname"><a href="test-combination_8c.html#ada1620b62343c42fddb919f3a21c6a9b">SCHEDULER_MAX_THREADS</a></div><div class="ttdeci">#define SCHEDULER_MAX_THREADS</div><div class="ttdef"><b>Definition:</b> <a href="test-combination_8c_source.html#l00026">test-combination.c:26</a></div></div>
+<div class="ttc" id="group___o_s_html_gac3e203273abe5bff2094b57fe8a25ef7"><div class="ttname"><a href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">OS_THREADS</a></div><div class="ttdeci">static tcb_t OS_THREADS[SCHEDULER_MAX_THREADS]</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00081">os.h:81</a></div></div>
+<div class="ttc" id="structtcb__t_html_ae15353c682a902c682b154aec06d40c8"><div class="ttname"><a href="structtcb__t.html#ae15353c682a902c682b154aec06d40c8">tcb_t::entry_point</a></div><div class="ttdeci">task_t entry_point</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00122">thread_structures.h:122</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
+<div class="ttc" id="utlist_8h_html_accdaa1a2854add161af9525eb458cf23"><div class="ttname"><a href="utlist_8h.html#accdaa1a2854add161af9525eb458cf23">CDL_APPEND</a></div><div class="ttdeci">#define CDL_APPEND(head, add)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00688">utlist.h:688</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_gae54705fc84d831fc8689cbd51c9714e0_cgraph.png" border="0" usemap="#group___o_s_gae54705fc84d831fc8689cbd51c9714e0_cgraph" alt=""/></div>
+<map name="group___o_s_gae54705fc84d831fc8689cbd51c9714e0_cgraph" id="group___o_s_gae54705fc84d831fc8689cbd51c9714e0_cgraph">
+<area shape="rect" id="node2" href="os_8c.html#abf76f28d35f214c1654de5c356f1bee1" title="schedule_init" alt="" coords="184,5,289,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___o_s_gae54705fc84d831fc8689cbd51c9714e0_icgraph.png" border="0" usemap="#group___o_s_gae54705fc84d831fc8689cbd51c9714e0_icgraph" alt=""/></div>
+<map name="group___o_s_gae54705fc84d831fc8689cbd51c9714e0_icgraph" id="group___o_s_gae54705fc84d831fc8689cbd51c9714e0_icgraph">
+<area shape="rect" id="node2" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="184,5,239,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ga06513ac83e1bda73ae23b5a4b82074f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pidwork_increment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8c_source.html#l00015">15</a> of file <a class="el" href="jitter_8c_source.html">jitter.c</a>.</p>
+
+<p>References <a class="el" href="jitter_8h_source.html#l00016">PIDWORK</a>.</p>
+<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                         {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">while</span>(1) {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;CPSID  I&quot;</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        ++<a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;CPSIE  I&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<div class="ttc" id="group___o_s_html_gaf388642f1db6af25cce9ce623e31b649"><div class="ttname"><a href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a></div><div class="ttdeci">static volatile uint32_t PIDWORK</div><div class="ttdef"><b>Definition:</b> <a href="jitter_8h_source.html#l00016">jitter.h:16</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="gab19c893863e065dc8a21c344e63eefdf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pidwork_record </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. </p>
+
+<p>Definition at line <a class="el" href="jitter_8c_source.html#l00025">25</a> of file <a class="el" href="jitter_8c_source.html">jitter.c</a>.</p>
+
+<p>References <a class="el" href="jitter_8h_source.html#l00017">HIGHEST_PIDWORK</a>, <a class="el" href="jitter_8h_source.html#l00018">LOWEST_PIDWORK</a>, <a class="el" href="jitter_8h_source.html#l00016">PIDWORK</a>, <a class="el" href="jitter_8h_source.html#l00020">PIDWORK_BUFFER</a>, <a class="el" href="test-os_8c_source.html#l00032">PIDWORK_BUFFER_SIZE</a>, and <a class="el" href="jitter_8h_source.html#l00019">PIDWORK_IDX</a>.</p>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                      {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">while</span>(1) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a> != 0) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group___o_s.html#gac541102eb6f16b8534194bff297b55a0">HIGHEST_PIDWORK</a> &lt; <a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a>) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <a class="code" href="group___o_s.html#gac541102eb6f16b8534194bff297b55a0">HIGHEST_PIDWORK</a> = <a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group___o_s.html#gacf3325ccf572f201c6f6a43977daa33b">LOWEST_PIDWORK</a> &gt; <a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a>) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="group___o_s.html#gacf3325ccf572f201c6f6a43977daa33b">LOWEST_PIDWORK</a> = <a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <a class="code" href="group___o_s.html#ga43ae72aa8bb840cb65a90589d8409bb3">PIDWORK_BUFFER</a>[<a class="code" href="group___o_s.html#ga02ab609a4b1aacd1de03f6645ade2a6b">PIDWORK_IDX</a>] = <a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="group___o_s.html#ga02ab609a4b1aacd1de03f6645ade2a6b">PIDWORK_IDX</a> = (<a class="code" href="group___o_s.html#ga02ab609a4b1aacd1de03f6645ade2a6b">PIDWORK_IDX</a> + 1) &amp; <a class="code" href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a> = 0;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="ttc" id="group___o_s_html_ga02ab609a4b1aacd1de03f6645ade2a6b"><div class="ttname"><a href="group___o_s.html#ga02ab609a4b1aacd1de03f6645ade2a6b">PIDWORK_IDX</a></div><div class="ttdeci">static volatile uint32_t PIDWORK_IDX</div><div class="ttdef"><b>Definition:</b> <a href="jitter_8h_source.html#l00019">jitter.h:19</a></div></div>
+<div class="ttc" id="test-os_8c_html_a68883b3b2b4c500bb62f7f40246beeb1"><div class="ttname"><a href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a></div><div class="ttdeci">#define PIDWORK_BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00032">test-os.c:32</a></div></div>
+<div class="ttc" id="group___o_s_html_gaf388642f1db6af25cce9ce623e31b649"><div class="ttname"><a href="group___o_s.html#gaf388642f1db6af25cce9ce623e31b649">PIDWORK</a></div><div class="ttdeci">static volatile uint32_t PIDWORK</div><div class="ttdef"><b>Definition:</b> <a href="jitter_8h_source.html#l00016">jitter.h:16</a></div></div>
+<div class="ttc" id="group___o_s_html_gacf3325ccf572f201c6f6a43977daa33b"><div class="ttname"><a href="group___o_s.html#gacf3325ccf572f201c6f6a43977daa33b">LOWEST_PIDWORK</a></div><div class="ttdeci">static volatile uint32_t LOWEST_PIDWORK</div><div class="ttdef"><b>Definition:</b> <a href="jitter_8h_source.html#l00018">jitter.h:18</a></div></div>
+<div class="ttc" id="group___o_s_html_ga43ae72aa8bb840cb65a90589d8409bb3"><div class="ttname"><a href="group___o_s.html#ga43ae72aa8bb840cb65a90589d8409bb3">PIDWORK_BUFFER</a></div><div class="ttdeci">static volatile uint32_t PIDWORK_BUFFER[32]</div><div class="ttdef"><b>Definition:</b> <a href="jitter_8h_source.html#l00020">jitter.h:20</a></div></div>
+<div class="ttc" id="group___o_s_html_gac541102eb6f16b8534194bff297b55a0"><div class="ttname"><a href="group___o_s.html#gac541102eb6f16b8534194bff297b55a0">HIGHEST_PIDWORK</a></div><div class="ttdeci">static volatile uint32_t HIGHEST_PIDWORK</div><div class="ttdef"><b>Definition:</b> <a href="jitter_8h_source.html#l00017">jitter.h:17</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="gac541102eb6f16b8534194bff297b55a0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t HIGHEST_PIDWORK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8h_source.html#l00017">17</a> of file <a class="el" href="jitter_8h_source.html">jitter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="jitter_8c_source.html#l00006">pidwork_init()</a>, and <a class="el" href="jitter_8c_source.html#l00025">pidwork_record()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gacf3325ccf572f201c6f6a43977daa33b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t LOWEST_PIDWORK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8h_source.html#l00018">18</a> of file <a class="el" href="jitter_8h_source.html">jitter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="jitter_8c_source.html#l00006">pidwork_init()</a>, and <a class="el" href="jitter_8c_source.html#l00025">pidwork_record()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga5a8a9e5408c7d2a76362ef4b492038c7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* os_dead_threads = <a class="el" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A circular doubly linked list of currently dead threads. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00048">48</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00072">os_add_thread()</a>, <a class="el" href="os_8c_source.html#l00106">os_remove_thread()</a>, and <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf885bdaa059f201c08d621a5bde29033"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* OS_NEXT_THREAD</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Communication mailbox from the SysTick_Handler to the PendSV_Handler; will contain the tcb_t* of the next thread to execute come PendSV_Handler execution time. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00078">78</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00161">os_launch()</a>, and <a class="el" href="os_8c_source.html#l00237">scheduler_reschedule()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga86fe39fffc85cbcbfab58910a8a8c9a8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* os_running_threads = <a class="el" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A circular doubly linked list of currently running threads. </p><dl class="section note"><dt>Note</dt><dd>The head of this list is 'os_current_running_thread' </dd></dl>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00045">45</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00161">os_launch()</a>, <a class="el" href="os_8c_source.html#l00142">os_running_thread_id()</a>, <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>, and <a class="el" href="os_8c_source.html#l00291">PendSV_Handler()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga969c9368ba08304bcc9c5b34d402b1ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a>* OS_THREAD_POOL[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>An array of thread pools to place OS_THREADS into. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00084">84</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00106">os_remove_thread()</a>, and <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gac3e203273abe5bff2094b57fe8a25ef7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtcb__t.html">tcb_t</a> OS_THREADS[<a class="el" href="schedule_8h.html#ada1620b62343c42fddb919f3a21c6a9b">SCHEDULER_MAX_THREADS</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>An array of statically allocated threads. </p>
+
+<p>Definition at line <a class="el" href="os_8h_source.html#l00081">81</a> of file <a class="el" href="os_8h_source.html">os.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00147">os_tcb_of()</a>, and <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf388642f1db6af25cce9ce623e31b649"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t PIDWORK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8h_source.html#l00016">16</a> of file <a class="el" href="jitter_8h_source.html">jitter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="jitter_8c_source.html#l00015">pidwork_increment()</a>, <a class="el" href="jitter_8c_source.html#l00006">pidwork_init()</a>, and <a class="el" href="jitter_8c_source.html#l00025">pidwork_record()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga43ae72aa8bb840cb65a90589d8409bb3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t PIDWORK_BUFFER[32]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8h_source.html#l00020">20</a> of file <a class="el" href="jitter_8h_source.html">jitter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="jitter_8c_source.html#l00025">pidwork_record()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga02ab609a4b1aacd1de03f6645ade2a6b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t PIDWORK_IDX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="jitter_8h_source.html#l00019">19</a> of file <a class="el" href="jitter_8h_source.html">jitter.h</a>.</p>
+
+<p>Referenced by <a class="el" href="jitter_8c_source.html#l00006">pidwork_init()</a>, and <a class="el" href="jitter_8c_source.html#l00025">pidwork_record()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:44 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

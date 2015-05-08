@@ -9,7 +9,5 @@ var searchData=
   ['os_5fint_5fenable',['OS_INT_ENABLE',['../rtos__bindings_8h.html#a2195c762b22990b37a48c61cf133b223',1,'rtos_bindings.h']]],
   ['os_5fint_5fmaster_5fdisable',['OS_INT_MASTER_DISABLE',['../rtos__bindings_8h.html#a8c25015b82b94bbc61860ddf8f37c950',1,'rtos_bindings.h']]],
   ['os_5fint_5fmaster_5fenable',['OS_INT_MASTER_ENABLE',['../rtos__bindings_8h.html#ab4d115bda46791e5fd4937fd766a8eb0',1,'rtos_bindings.h']]],
-  ['os_5fmax_5fthreads',['OS_MAX_THREADS',['../os_8h.html#a42d66a999c19e795c22714a54fc2b6b2',1,'os.h']]],
-  ['os_5fstack_5fsize',['OS_STACK_SIZE',['../os_8h.html#a9fdcaeee2ac8d68ac5fbbcd450fd08da',1,'os.h']]],
   ['os_5fyield',['OS_YIELD',['../rtos__bindings_8h.html#a2e73224ddee698ddf68c9e6d87e9ddf9',1,'rtos_bindings.h']]]
 ];

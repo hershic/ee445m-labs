@@ -1,0 +1,4 @@
+<map id="led_blink_green" name="led_blink_green">
+<area shape="rect" id="node2" href="$test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8" title="uart_handler" alt="" coords="175,5,277,32"/>
+<area shape="rect" id="node3" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="325,5,380,32"/>
+</map>

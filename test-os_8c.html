@@ -106,15 +106,15 @@ $(document).ready(function(){initNavTree('test-os_8c.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">test-os.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="hw__ints_8h_source.html">inc/hw_ints.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hw__memmap_8h_source.html">inc/hw_memmap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="debug_8h_source.html">driverlib/debug.h</a>&quot;</code><br />
@@ -122,29 +122,111 @@ $(document).ready(function(){initNavTree('test-os_8c.html','');});
 <code>#include &quot;<a class="el" href="interrupt_8h_source.html">driverlib/interrupt.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pin__map_8h_source.html">driverlib/pin_map.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sysctl_8h_source.html">driverlib/sysctl.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="systick_8h_source.html">driverlib/systick.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="rom_8h_source.html">driverlib/rom.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="driverlib_2systick_8h_source.html">driverlib/systick.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="driverlib_2uart_8h_source.html">driverlib/uart.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="os_8h_source.html">libos/os.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="heartbeat_8h_source.html">libheart/heartbeat.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hardware_8h_source.html">libhw/hardware.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="nexus_8h_source.html">libstd/nexus.h</a>&quot;</code><br />
 <code>#include &lt;sys/stat.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test-os.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="test-os_8c__incl.png" border="0" usemap="#board-progs_2test-os_2test-os_8c" alt=""/></div>
 <map name="board-progs_2test-os_2test-os_8c" id="board-progs_2test-os_2test-os_8c">
-<area shape="rect" id="node6" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="209,169,311,196"/><area shape="rect" id="node7" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="427,95,570,121"/><area shape="rect" id="node8" href="debug_8h.html" title="driverlib/debug.h" alt="" coords="595,95,723,121"/><area shape="rect" id="node9" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="747,95,861,121"/><area shape="rect" id="node10" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="886,95,1029,121"/><area shape="rect" id="node11" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1053,95,1195,121"/><area shape="rect" id="node12" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1219,95,1343,121"/><area shape="rect" id="node13" href="systick_8h.html" title="driverlib/systick.h" alt="" coords="1367,95,1497,121"/><area shape="rect" id="node14" href="rom_8h.html" title="driverlib/rom.h" alt="" coords="1521,95,1636,121"/><area shape="rect" id="node15" href="os_8h.html" title="libos/os.h" alt="" coords="36,95,119,121"/><area shape="rect" id="node16" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="22,169,133,196"/><area shape="rect" id="node17" href="defines_8h.html" title="defines.h" alt="" coords="33,244,113,271"/></map>
+<area shape="rect" id="node4" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="894,319,997,345"/><area shape="rect" id="node5" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="513,169,655,196"/><area shape="rect" id="node6" href="debug_8h.html" title="driverlib/debug.h" alt="" coords="680,169,808,196"/><area shape="rect" id="node7" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="832,169,947,196"/><area shape="rect" id="node8" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1679,169,1822,196"/><area shape="rect" id="node9" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1846,169,1989,196"/><area shape="rect" id="node10" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="2013,169,2137,196"/><area shape="rect" id="node11" href="driverlib_2systick_8h.html" title="driverlib/systick.h" alt="" coords="2117,95,2248,121"/><area shape="rect" id="node12" href="driverlib_2uart_8h.html" title="driverlib/uart.h" alt="" coords="2272,95,2387,121"/><area shape="rect" id="node13" href="os_8h.html" title="libos/os.h" alt="" coords="315,244,397,271"/><area shape="rect" id="node14" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="221,543,331,569"/><area shape="rect" id="node23" href="heartbeat_8h.html" title="libheart/heartbeat.h" alt="" coords="1105,95,1255,121"/><area shape="rect" id="node28" href="hardware_8h.html" title="libhw/hardware.h" alt="" coords="201,95,329,121"/><area shape="rect" id="node16" href="edf_8h.html" title="libschedule/edf.h" alt="" coords="393,319,521,345"/><area shape="rect" id="node17" href="thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="573,468,755,495"/><area shape="rect" id="node15" href="defines_8h.html" title="defines.h" alt="" coords="501,617,581,644"/><area shape="rect" id="node18" href="priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="350,393,565,420"/><area shape="rect" id="node19" href="notify_8h.html" title="libnotify/notify.h" alt="" coords="296,468,416,495"/><area shape="rect" id="node20" href="uthash_8h.html" title="libut/uthash.h" alt="" coords="440,468,549,495"/><area shape="rect" id="node25" href="fpu_8h.html" title="driverlib/fpu.h" alt="" coords="1402,169,1510,196"/><area shape="rect" id="node26" href="driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1534,169,1655,196"/><area shape="rect" id="node27" href="rom_8h.html" title="driverlib/rom.h" alt="" coords="1123,169,1237,196"/><area shape="rect" id="node29" href="semaphore_8h.html" title="libos/semaphore.h" alt="" coords="195,169,335,196"/></map>
 </div>
 </div>
 <p><a href="test-os_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a891f824aafc47ef989ca5d6c88131d2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a891f824aafc47ef989ca5d6c88131d2c">HEARTBEAT_MODAL</a></td></tr>
+<tr class="separator:a891f824aafc47ef989ca5d6c88131d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f4803a40e343548aa008ac082923900"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a3f4803a40e343548aa008ac082923900">UART_FIFO_SIZE</a>&#160;&#160;&#160;0x7f</td></tr>
+<tr class="separator:a3f4803a40e343548aa008ac082923900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68883b3b2b4c500bb62f7f40246beeb1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a>&#160;&#160;&#160;0x7f</td></tr>
+<tr class="separator:a68883b3b2b4c500bb62f7f40246beeb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa240b970ac6a5d3f98844732b3af1b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c">turn_on_led</a> ()</td></tr>
-<tr class="separator:aa240b970ac6a5d3f98844732b3af1b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a283ef3a0b61a95b0825962d8312efc33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33">turn_off_led</a> ()</td></tr>
-<tr class="separator:a283ef3a0b61a95b0825962d8312efc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6a5934c17552cfc95b7f3f824e944cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#aa6a5934c17552cfc95b7f3f824e944cc">Thread1</a> (void)</td></tr>
+<tr class="separator:aa6a5934c17552cfc95b7f3f824e944cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c9ffaf76fceb3cc9abf8bdab04c0df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#ac1c9ffaf76fceb3cc9abf8bdab04c0df">Thread2</a> (void)</td></tr>
+<tr class="separator:ac1c9ffaf76fceb3cc9abf8bdab04c0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab313785f5ce0c6067436d2e8bc479c60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#ab313785f5ce0c6067436d2e8bc479c60">uart_consumer</a> (void)</td></tr>
+<tr class="separator:ab313785f5ce0c6067436d2e8bc479c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af2a81fabc26202a81cfc525805029e18"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a></td></tr>
+<tr class="separator:af2a81fabc26202a81cfc525805029e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a39ab44840b404ea140fccdd70c61e"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a08a39ab44840b404ea140fccdd70c61e">highest_pidwork</a></td></tr>
+<tr class="separator:a08a39ab44840b404ea140fccdd70c61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1dfa4b453ed3518501313ee4eec128"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a4e1dfa4b453ed3518501313ee4eec128">lowest_pidwork</a></td></tr>
+<tr class="separator:a4e1dfa4b453ed3518501313ee4eec128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81230c6103aaa86604a9800ce6504dc1"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a></td></tr>
+<tr class="separator:a81230c6103aaa86604a9800ce6504dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd3aa05f91584a58aa366d014bcce6e3"><td class="memItemLeft" align="right" valign="top">volatile uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#acd3aa05f91584a58aa366d014bcce6e3">pidwork_buffer</a></td></tr>
+<tr class="separator:acd3aa05f91584a58aa366d014bcce6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d055859f76aa7a36d357fb4b27d277e"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a8d055859f76aa7a36d357fb4b27d277e">uart_producer_idx</a></td></tr>
+<tr class="separator:a8d055859f76aa7a36d357fb4b27d277e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea91951ad0cb1b1c49fc1cb66c01950e"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#aea91951ad0cb1b1c49fc1cb66c01950e">uart_consumer_idx</a></td></tr>
+<tr class="separator:aea91951ad0cb1b1c49fc1cb66c01950e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f37c4750bbb7331c21130b50825e61"><td class="memItemLeft" align="right" valign="top">volatile char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a34f37c4750bbb7331c21130b50825e61">uart_fifo</a></td></tr>
+<tr class="separator:a34f37c4750bbb7331c21130b50825e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab7131462a423c777984afd11ad6d70"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-os_8c.html#a5ab7131462a423c777984afd11ad6d70">uart_dropped_chars</a></td></tr>
+<tr class="separator:a5ab7131462a423c777984afd11ad6d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a891f824aafc47ef989ca5d6c88131d2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEARTBEAT_MODAL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00022">22</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a68883b3b2b4c500bb62f7f40246beeb1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PIDWORK_BUFFER_SIZE&#160;&#160;&#160;0x7f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00032">32</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, <a class="el" href="jitter_8c_source.html#l00025">pidwork_record()</a>, and <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f4803a40e343548aa008ac082923900"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UART_FIFO_SIZE&#160;&#160;&#160;0x7f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00031">31</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, and <a class="el" href="test-os_8c_source.html#l00079">uart_consumer()</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
 <div class="memitem">
@@ -159,59 +241,102 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>A thread that continuously toggles GPIO pin 3 on GPIO_PORT_F. </p>
 
-<p>Definition at line <a class="el" href="test-os_8c_source.html#l00040">40</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00093">93</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01427">GPIOPinTypeGPIOOutput()</a>, <a class="el" href="interrupt_8c_source.html#l00249">IntMasterDisable()</a>, <a class="el" href="os_8c_source.html#l00041">os_add_thread()</a>, <a class="el" href="os_8c_source.html#l00105">os_launch()</a>, <a class="el" href="os_8c_source.html#l00021">os_threading_init()</a>, <a class="el" href="sysctl_8h_source.html#l00378">SYSCTL_OSC_MAIN</a>, <a class="el" href="sysctl_8h_source.html#l00076">SYSCTL_PERIPH_GPIOF</a>, <a class="el" href="sysctl_8h_source.html#l00221">SYSCTL_SYSDIV_1</a>, <a class="el" href="sysctl_8h_source.html#l00350">SYSCTL_USE_OSC</a>, <a class="el" href="sysctl_8h_source.html#l00372">SYSCTL_XTAL_16MHZ</a>, <a class="el" href="sysctl_8c_source.html#l02727">SysCtlClockGet()</a>, <a class="el" href="sysctl_8c_source.html#l02532">SysCtlClockSet()</a>, <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>, <a class="el" href="systick_8c_source.html#l00075">SysTickEnable()</a>, <a class="el" href="systick_8c_source.html#l00174">SysTickIntEnable()</a>, <a class="el" href="systick_8c_source.html#l00221">SysTickPeriodSet()</a>, <a class="el" href="test-os_8c_source.html#l00034">turn_off_led()</a>, and <a class="el" href="test-os_8c_source.html#l00028">turn_on_led()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;           {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="os_8c.html#a21e9322255bb20b29229f675078d42b4">os_threading_init</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd">os_add_thread</a>(<a class="code" href="test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c">turn_on_led</a>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd">os_add_thread</a>(<a class="code" href="test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33">turn_off_led</a>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">/* Load and enable the systick timer */</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d">SysTickPeriodSet</a>(<a class="code" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a>() / 10);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd">SysTickEnable</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc">SysTickIntEnable</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="os_8c.html#afde304ef5313ffa073cea003547b33eb">os_launch</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* Don&#39;t get here yet, still testing if everything else works! */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">/* os_launch(0); */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">/* And we&#39;re done; this should never execute */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">while</span> (1) {}</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
-<div class="ttc" id="os_8c_html_a2bb573a559f90989a49a4338d08203bd"><div class="ttname"><a href="os_8c.html#a2bb573a559f90989a49a4338d08203bd">os_add_thread</a></div><div class="ttdeci">tcb_t * os_add_thread(task_t task)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00041">os.c:41</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a2222c3af2259930587efcb2a33c74fcc"><div class="ttname"><a href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a></div><div class="ttdeci">#define SYSCTL_PERIPH_GPIOF</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00076">sysctl.h:76</a></div></div>
-<div class="ttc" id="os_8c_html_afde304ef5313ffa073cea003547b33eb"><div class="ttname"><a href="os_8c.html#afde304ef5313ffa073cea003547b33eb">os_launch</a></div><div class="ttdeci">void os_launch()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00105">os.c:105</a></div></div>
+<p>References <a class="el" href="gpio_8h_source.html#l00060">GPIO_PIN_0</a>, <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="gpio_8h_source.html#l00063">GPIO_PIN_3</a>, <a class="el" href="hw__memmap_8h_source.html#l00053">GPIO_PORTA_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l02509">GPIOPinConfigure()</a>, <a class="el" href="gpio_8c_source.html#l02031">GPIOPinTypeUART()</a>, <a class="el" href="heartbeat_8h_source.html#l00049">heart_init()</a>, <a class="el" href="test-os_8c_source.html#l00035">highest_pidwork</a>, <a class="el" href="nexus_8h_source.html#l00045">Hz</a>, <a class="el" href="interrupt_8c_source.html#l00249">IntMasterDisable()</a>, <a class="el" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable()</a>, <a class="el" href="test-os_8c_source.html#l00036">lowest_pidwork</a>, <a class="el" href="os_8c_source.html#l00072">os_add_thread()</a>, <a class="el" href="os_8h_source.html#l00032">OS_INTERACTIVE_POOL</a>, <a class="el" href="os_8c_source.html#l00161">os_launch()</a>, <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>, <a class="el" href="test-os_8c_source.html#l00034">pidwork</a>, <a class="el" href="test-os_8c_source.html#l00038">pidwork_buffer</a>, <a class="el" href="test-os_8c_source.html#l00032">PIDWORK_BUFFER_SIZE</a>, <a class="el" href="test-os_8c_source.html#l00037">pidwork_idx</a>, <a class="el" href="nexus_8h_source.html#l00040">postpone_death</a>, <a class="el" href="sysctl_8h_source.html#l00378">SYSCTL_OSC_MAIN</a>, <a class="el" href="sysctl_8h_source.html#l00071">SYSCTL_PERIPH_GPIOA</a>, <a class="el" href="sysctl_8h_source.html#l00122">SYSCTL_PERIPH_UART0</a>, <a class="el" href="sysctl_8h_source.html#l00221">SYSCTL_SYSDIV_1</a>, <a class="el" href="sysctl_8h_source.html#l00350">SYSCTL_USE_OSC</a>, <a class="el" href="sysctl_8h_source.html#l00372">SYSCTL_XTAL_16MHZ</a>, <a class="el" href="sysctl_8c_source.html#l02727">SysCtlClockGet()</a>, <a class="el" href="sysctl_8c_source.html#l02532">SysCtlClockSet()</a>, <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>, <a class="el" href="test-os_8c_source.html#l00046">Thread1()</a>, <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>, <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>, <a class="el" href="driverlib_2uart_8h_source.html#l00093">UART_CONFIG_PAR_NONE</a>, <a class="el" href="driverlib_2uart_8h_source.html#l00090">UART_CONFIG_STOP_ONE</a>, <a class="el" href="driverlib_2uart_8h_source.html#l00085">UART_CONFIG_WLEN_8</a>, <a class="el" href="test-os_8c_source.html#l00031">UART_FIFO_SIZE</a>, and <a class="el" href="driverlib_2uart_8c_source.html#l00368">UARTConfigSetExpClk()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;           {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">char</span> uart_fifo_raw[<a class="code" href="test-os_8c.html#a3f4803a40e343548aa008ac082923900">UART_FIFO_SIZE</a>];</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    uint32_t pidwork_buffer_raw[<a class="code" href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a>];</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">/* Initialize global variables */</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a> = 0;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="test-os_8c.html#a08a39ab44840b404ea140fccdd70c61e">highest_pidwork</a> = 0;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="test-os_8c.html#a4e1dfa4b453ed3518501313ee4eec128">lowest_pidwork</a> = (uint32_t)(-1);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="test-os_8c.html#acd3aa05f91584a58aa366d014bcce6e3">pidwork_buffer</a> = pidwork_buffer_raw;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a> = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">/* Enable the UART */</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#ab2846864081777c1962e95ad86c9af03">SYSCTL_PERIPH_UART0</a>);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#aea621e9fcb42501468c5d42aa08972c8">SYSCTL_PERIPH_GPIOA</a>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640">GPIOPinConfigure</a>(GPIO_PA0_U0RX);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640">GPIOPinConfigure</a>(GPIO_PA1_U0TX);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="group__gpio__api.html#ga9f6bf578f3159dc41626a84108d006b8">GPIOPinTypeUART</a>(<a class="code" href="hw__memmap_8h.html#a6c61187ea27529365f33309d4529c653">GPIO_PORTA_BASE</a>, <a class="code" href="gpio_8h.html#a176efbf43a259b7bb0a85a47401505be">GPIO_PIN_0</a> | <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b">UARTConfigSetExpClk</a>(<a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>, <a class="code" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a>(),</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                        115200, (<a class="code" href="driverlib_2uart_8h.html#a00030434646d741635d32f955eb9460c">UART_CONFIG_WLEN_8</a> | <a class="code" href="driverlib_2uart_8h.html#af7c4abbd28a43e145c39404aeba2043c">UART_CONFIG_STOP_ONE</a> |</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                 <a class="code" href="driverlib_2uart_8h.html#a195d4b28a36df1b8588ca5380a442174">UART_CONFIG_PAR_NONE</a>));</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">/* Enable the UART interrupt. */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">/* IntEnable(INT_UART0); */</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">/* UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT); */</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">/* uart_fifo = uart_fifo_raw; */</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="comment">/* uart_producer_idx = 0; */</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">/* uart_consumer_idx = UART_FIFO_SIZE - 1; */</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a>(100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os_add_thread</a>(<a class="code" href="test-os_8c.html#aa6a5934c17552cfc95b7f3f824e944cc">Thread1</a>, <a class="code" href="group___o_s.html#ga8860efdb5e691947f0ce4ac835552c66">OS_INTERACTIVE_POOL</a>);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os_add_thread</a>(<a class="code" href="test-os_8c.html#ac1c9ffaf76fceb3cc9abf8bdab04c0df">Thread2</a>, <a class="code" href="group___o_s.html#ga8860efdb5e691947f0ce4ac835552c66">OS_INTERACTIVE_POOL</a>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="comment">/* os_add_thread(hw_daemon, OS_SYSTEM_POOL); */</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a>();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="comment">/* os_trap_ */</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a>();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">/* PONDER: why do interrupts fire without this? */</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
+<div class="ttc" id="group___o_s_html_ga3321517db0bac2bb29669d5c87283b5f"><div class="ttname"><a href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os_add_thread</a></div><div class="ttdeci">tcb_t * os_add_thread(task_t task)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00072">os.c:72</a></div></div>
+<div class="ttc" id="group__gpio__api_html_ga9f6bf578f3159dc41626a84108d006b8"><div class="ttname"><a href="group__gpio__api.html#ga9f6bf578f3159dc41626a84108d006b8">GPIOPinTypeUART</a></div><div class="ttdeci">void GPIOPinTypeUART(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l02031">gpio.c:2031</a></div></div>
+<div class="ttc" id="gpio_8h_html_a176efbf43a259b7bb0a85a47401505be"><div class="ttname"><a href="gpio_8h.html#a176efbf43a259b7bb0a85a47401505be">GPIO_PIN_0</a></div><div class="ttdeci">#define GPIO_PIN_0</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00060">gpio.h:60</a></div></div>
+<div class="ttc" id="group__uart__api_html_gaacfccbb6fb7e3e3138573bfc4835250b"><div class="ttname"><a href="group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b">UARTConfigSetExpClk</a></div><div class="ttdeci">void UARTConfigSetExpClk(uint32_t ui32Base, uint32_t ui32UARTClk, uint32_t ui32Baud, uint32_t ui32Config)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2uart_8c_source.html#l00368">uart.c:368</a></div></div>
+<div class="ttc" id="test-os_8c_html_a68883b3b2b4c500bb62f7f40246beeb1"><div class="ttname"><a href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a></div><div class="ttdeci">#define PIDWORK_BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00032">test-os.c:32</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a8c78f8e9ba8e9829e93824ec5dc90cc9"><div class="ttname"><a href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a></div><div class="ttdeci">#define SYSCTL_OSC_MAIN</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00378">sysctl.h:378</a></div></div>
-<div class="ttc" id="test-os_8c_html_a283ef3a0b61a95b0825962d8312efc33"><div class="ttname"><a href="test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33">turn_off_led</a></div><div class="ttdeci">void turn_off_led()</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00034">test-os.c:34</a></div></div>
+<div class="ttc" id="test-os_8c_html_a81230c6103aaa86604a9800ce6504dc1"><div class="ttname"><a href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a></div><div class="ttdeci">volatile uint32_t pidwork_idx</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00037">test-os.c:37</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a0626a3210d8069dfd85a6ba94b4af45c"><div class="ttname"><a href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a></div><div class="ttdeci">#define SYSCTL_USE_OSC</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00350">sysctl.h:350</a></div></div>
 <div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_ga97d96b02b249a16354577bde88ece728"><div class="ttname"><a href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a></div><div class="ttdeci">uint32_t SysCtlClockGet(void)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02727">sysctl.c:2727</a></div></div>
 <div class="ttc" id="sysctl_8h_html_aa28940746d2ba2b251b11043dd8bc2fe"><div class="ttname"><a href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a></div><div class="ttdeci">#define SYSCTL_XTAL_16MHZ</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00372">sysctl.h:372</a></div></div>
-<div class="ttc" id="test-os_8c_html_aa240b970ac6a5d3f98844732b3af1b9c"><div class="ttname"><a href="test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c">turn_on_led</a></div><div class="ttdeci">void turn_on_led()</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00028">test-os.c:28</a></div></div>
-<div class="ttc" id="os_8c_html_a21e9322255bb20b29229f675078d42b4"><div class="ttname"><a href="os_8c.html#a21e9322255bb20b29229f675078d42b4">os_threading_init</a></div><div class="ttdeci">void os_threading_init()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00021">os.c:21</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="sysctl_8h_html_ab2846864081777c1962e95ad86c9af03"><div class="ttname"><a href="sysctl_8h.html#ab2846864081777c1962e95ad86c9af03">SYSCTL_PERIPH_UART0</a></div><div class="ttdeci">#define SYSCTL_PERIPH_UART0</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00122">sysctl.h:122</a></div></div>
+<div class="ttc" id="group___o_s_html_gae54705fc84d831fc8689cbd51c9714e0"><div class="ttname"><a href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a></div><div class="ttdeci">void os_threading_init()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00034">os.c:34</a></div></div>
+<div class="ttc" id="driverlib_2uart_8h_html_af7c4abbd28a43e145c39404aeba2043c"><div class="ttname"><a href="driverlib_2uart_8h.html#af7c4abbd28a43e145c39404aeba2043c">UART_CONFIG_STOP_ONE</a></div><div class="ttdeci">#define UART_CONFIG_STOP_ONE</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2uart_8h_source.html#l00090">uart.h:90</a></div></div>
+<div class="ttc" id="test-os_8c_html_a4e1dfa4b453ed3518501313ee4eec128"><div class="ttname"><a href="test-os_8c.html#a4e1dfa4b453ed3518501313ee4eec128">lowest_pidwork</a></div><div class="ttdeci">volatile uint32_t lowest_pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00036">test-os.c:36</a></div></div>
+<div class="ttc" id="driverlib_2uart_8h_html_a00030434646d741635d32f955eb9460c"><div class="ttname"><a href="driverlib_2uart_8h.html#a00030434646d741635d32f955eb9460c">UART_CONFIG_WLEN_8</a></div><div class="ttdeci">#define UART_CONFIG_WLEN_8</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2uart_8h_source.html#l00085">uart.h:85</a></div></div>
+<div class="ttc" id="sysctl_8h_html_aea621e9fcb42501468c5d42aa08972c8"><div class="ttname"><a href="sysctl_8h.html#aea621e9fcb42501468c5d42aa08972c8">SYSCTL_PERIPH_GPIOA</a></div><div class="ttdeci">#define SYSCTL_PERIPH_GPIOA</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00071">sysctl.h:71</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a32aede06bdbbb7d5f923442f8e726615"><div class="ttname"><a href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a></div><div class="ttdeci">void heart_init()</div><div class="ttdoc">Initialize  for visible transformation. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00049">heartbeat.h:49</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a6c61187ea27529365f33309d4529c653"><div class="ttname"><a href="hw__memmap_8h.html#a6c61187ea27529365f33309d4529c653">GPIO_PORTA_BASE</a></div><div class="ttdeci">#define GPIO_PORTA_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00053">hw_memmap.h:53</a></div></div>
+<div class="ttc" id="test-os_8c_html_aa6a5934c17552cfc95b7f3f824e944cc"><div class="ttname"><a href="test-os_8c.html#aa6a5934c17552cfc95b7f3f824e944cc">Thread1</a></div><div class="ttdeci">void Thread1(void)</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00046">test-os.c:46</a></div></div>
+<div class="ttc" id="group___o_s_html_gafde304ef5313ffa073cea003547b33eb"><div class="ttname"><a href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a></div><div class="ttdeci">void os_launch()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00161">os.c:161</a></div></div>
+<div class="ttc" id="nexus_8h_html_a44bf220a6c5c7c38df76ced96b0bd515"><div class="ttname"><a href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a></div><div class="ttdeci">#define postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00040">nexus.h:40</a></div></div>
+<div class="ttc" id="test-os_8c_html_af2a81fabc26202a81cfc525805029e18"><div class="ttname"><a href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a></div><div class="ttdeci">volatile uint32_t pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00034">test-os.c:34</a></div></div>
+<div class="ttc" id="group___o_s_html_ga8860efdb5e691947f0ce4ac835552c66"><div class="ttname"><a href="group___o_s.html#ga8860efdb5e691947f0ce4ac835552c66">OS_INTERACTIVE_POOL</a></div><div class="ttdeci">#define OS_INTERACTIVE_POOL</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00032">os.h:32</a></div></div>
 <div class="ttc" id="group__interrupt__api_html_gae3724c6b65b8461cf0441f09b13fadf5"><div class="ttname"><a href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a></div><div class="ttdeci">bool IntMasterDisable(void)</div><div class="ttdef"><b>Definition:</b> <a href="interrupt_8c_source.html#l00249">interrupt.c:249</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_ga2fbae61db465e1d861a62785d28e3ad6"><div class="ttname"><a href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a></div><div class="ttdeci">void SysCtlPeripheralEnable(uint32_t ui32Peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l00841">sysctl.c:841</a></div></div>
-<div class="ttc" id="group__gpio__api_html_gac962b2917f42452a32c1fea0d050e52e"><div class="ttname"><a href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a></div><div class="ttdeci">void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01427">gpio.c:1427</a></div></div>
-<div class="ttc" id="group__systick__api_html_gae9621f9d2bcf0cfe021cd5b7ff98edcc"><div class="ttname"><a href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc">SysTickIntEnable</a></div><div class="ttdeci">void SysTickIntEnable(void)</div><div class="ttdef"><b>Definition:</b> <a href="systick_8c_source.html#l00174">systick.c:174</a></div></div>
-<div class="ttc" id="group__systick__api_html_ga6fa7e44c447e4f861e63a2bf4d175afd"><div class="ttname"><a href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd">SysTickEnable</a></div><div class="ttdeci">void SysTickEnable(void)</div><div class="ttdef"><b>Definition:</b> <a href="systick_8c_source.html#l00075">systick.c:75</a></div></div>
+<div class="ttc" id="gpio_8h_html_adcaf899c018a0dde572b5af783565c62"><div class="ttname"><a href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></div><div class="ttdeci">#define GPIO_PIN_3</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00063">gpio.h:63</a></div></div>
+<div class="ttc" id="interrupt_8h_html_a8321cf21088e200350d36827ecc6dad3"><div class="ttname"><a href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a></div><div class="ttdeci">bool IntMasterEnable(void)</div></div>
+<div class="ttc" id="test-os_8c_html_acd3aa05f91584a58aa366d014bcce6e3"><div class="ttname"><a href="test-os_8c.html#acd3aa05f91584a58aa366d014bcce6e3">pidwork_buffer</a></div><div class="ttdeci">volatile uint32_t * pidwork_buffer</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00038">test-os.c:38</a></div></div>
+<div class="ttc" id="group__gpio__api_html_ga4258289b116f814ebe85ff2d8db0b640"><div class="ttname"><a href="group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640">GPIOPinConfigure</a></div><div class="ttdeci">void GPIOPinConfigure(uint32_t ui32PinConfig)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l02509">gpio.c:2509</a></div></div>
+<div class="ttc" id="test-os_8c_html_a3f4803a40e343548aa008ac082923900"><div class="ttname"><a href="test-os_8c.html#a3f4803a40e343548aa008ac082923900">UART_FIFO_SIZE</a></div><div class="ttdeci">#define UART_FIFO_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00031">test-os.c:31</a></div></div>
+<div class="ttc" id="test-os_8c_html_ac1c9ffaf76fceb3cc9abf8bdab04c0df"><div class="ttname"><a href="test-os_8c.html#ac1c9ffaf76fceb3cc9abf8bdab04c0df">Thread2</a></div><div class="ttdeci">void Thread2(void)</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00060">test-os.c:60</a></div></div>
+<div class="ttc" id="nexus_8h_html_a2344d042b01c5e206dc80d736560cda0"><div class="ttname"><a href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a></div><div class="ttdeci">#define Hz</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00045">nexus.h:45</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a7a07348b4332ff6b88abf6092347deba"><div class="ttname"><a href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a></div><div class="ttdeci">#define UART0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00061">hw_memmap.h:61</a></div></div>
+<div class="ttc" id="test-os_8c_html_a08a39ab44840b404ea140fccdd70c61e"><div class="ttname"><a href="test-os_8c.html#a08a39ab44840b404ea140fccdd70c61e">highest_pidwork</a></div><div class="ttdeci">volatile uint32_t highest_pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00035">test-os.c:35</a></div></div>
 <div class="ttc" id="sysctl_8h_html_af260fa5184c1a3211ce39d09786ccc71"><div class="ttname"><a href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a></div><div class="ttdeci">#define SYSCTL_SYSDIV_1</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00221">sysctl.h:221</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_gab9c9f4e4588e1e9c5b42e3c3b109e5c1"><div class="ttname"><a href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a></div><div class="ttdeci">void SysCtlClockSet(uint32_t ui32Config)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02532">sysctl.c:2532</a></div></div>
-<div class="ttc" id="group__systick__api_html_ga5892f33d986c614769aa4cfe20bfc80d"><div class="ttname"><a href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d">SysTickPeriodSet</a></div><div class="ttdeci">void SysTickPeriodSet(uint32_t ui32Period)</div><div class="ttdef"><b>Definition:</b> <a href="systick_8c_source.html#l00221">systick.c:221</a></div></div>
+<div class="ttc" id="driverlib_2uart_8h_html_a195d4b28a36df1b8588ca5380a442174"><div class="ttname"><a href="driverlib_2uart_8h.html#a195d4b28a36df1b8588ca5380a442174">UART_CONFIG_PAR_NONE</a></div><div class="ttdeci">#define UART_CONFIG_PAR_NONE</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2uart_8h_source.html#l00093">uart.h:93</a></div></div>
 <div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
@@ -219,103 +344,335 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="test-os_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph.png" border="0" usemap="#test-os_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" alt=""/></div>
 <map name="test-os_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" id="test-os_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph">
-<area shape="rect" id="node2" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="108,56,283,83"/><area shape="rect" id="node5" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5" title="IntMasterDisable" alt="" coords="131,119,260,145"/><area shape="rect" id="node7" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd" title="os_add_thread" alt="" coords="137,195,254,221"/><area shape="rect" id="node12" href="os_8c.html#afde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="152,245,239,272"/><area shape="rect" id="node13" href="os_8c.html#a21e9322255bb20b29229f675078d42b4" title="os_threading_init" alt="" coords="130,296,261,323"/><area shape="rect" id="node14" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="136,347,255,373"/><area shape="rect" id="node15" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="136,397,255,424"/><area shape="rect" id="node17" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="111,448,280,475"/><area shape="rect" id="node18" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="139,499,251,525"/><area shape="rect" id="node19" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="131,549,259,576"/><area shape="rect" id="node20" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="130,600,261,627"/><area shape="rect" id="node21" href="test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33" title="turn_off_led" alt="" coords="147,651,244,677"/><area shape="rect" id="node23" href="test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c" title="turn_on_led" alt="" coords="147,701,244,728"/><area shape="rect" id="node3" href="group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="345,5,483,32"/><area shape="rect" id="node4" href="group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="350,56,478,83"/><area shape="rect" id="node6" href="cpu_8h.html#a491d851c4f7fff1f9f66aa778b0671b0" title="CPUcpsid" alt="" coords="373,107,455,133"/><area shape="rect" id="node8" href="nexus_8c.html#a025505fff239e04c19c67f2ff72e9a73" title="StartCritical" alt="" coords="365,157,463,184"/><area shape="rect" id="node9" href="os_8c.html#a911e62c4d8226477d0274c2416e47f9c" title="os_next_dead_thread" alt="" coords="334,208,494,235"/><area shape="rect" id="node10" href="nexus_8c.html#acac2b8577facf88812937428e6ab9bf8" title="EndCritical" alt="" coords="369,259,459,285"/><area shape="rect" id="node11" href="os_8c.html#aaa82962ea069b6011927f9e2ef893128" title="os_reset_thread_stack" alt="" coords="331,309,497,336"/><area shape="rect" id="node16" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="365,397,463,424"/><area shape="rect" id="node22" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="363,676,465,703"/></map>
+<area shape="rect" id="node2" href="group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640" title="GPIOPinConfigure" alt="" coords="121,5,254,32"/><area shape="rect" id="node3" href="group__gpio__api.html#ga9f6bf578f3159dc41626a84108d006b8" title="GPIOPinTypeUART" alt="" coords="339,56,472,83"/><area shape="rect" id="node6" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615" title="Initialize &#160;for visible transformation. " alt="" coords="146,107,229,133"/><area shape="rect" id="node7" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="321,157,490,184"/><area shape="rect" id="node9" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5" title="IntMasterDisable" alt="" coords="123,208,252,235"/><area shape="rect" id="node11" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="125,259,250,285"/><area shape="rect" id="node12" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f" title="os_add_thread" alt="" coords="129,309,246,336"/><area shape="rect" id="node14" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="144,360,231,387"/><area shape="rect" id="node23" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="759,512,878,539"/><area shape="rect" id="node25" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0" title="os_threading_init" alt="" coords="122,461,253,488"/><area shape="rect" id="node27" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="128,512,247,539"/><area shape="rect" id="node29" href="test-os_8c.html#aa6a5934c17552cfc95b7f3f824e944cc" title="Thread1" alt="" coords="150,563,225,589"/><area shape="rect" id="node32" href="test-os_8c.html#ac1c9ffaf76fceb3cc9abf8bdab04c0df" title="Thread2" alt="" coords="150,613,225,640"/><area shape="rect" id="node33" href="group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b" title="UARTConfigSetExpClk" alt="" coords="108,664,267,691"/><area shape="rect" id="node4" href="group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="561,107,689,133"/><area shape="rect" id="node5" href="group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="555,56,694,83"/><area shape="rect" id="node8" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="318,107,493,133"/><area shape="rect" id="node10" href="cpu_8h.html#a491d851c4f7fff1f9f66aa778b0671b0" title="CPUcpsid" alt="" coords="364,208,447,235"/><area shape="rect" id="node13" href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a" title="_os_reset_thread_stack" alt="" coords="318,259,493,285"/><area shape="rect" id="node15" href="os_8c.html#a9c501e25b473053fd85e419016865d81" title="edf_init" alt="" coords="591,259,659,285"/><area shape="rect" id="node17" href="os_8c.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="315,360,496,387"/><area shape="rect" id="node16" href="os_8c.html#a9e60608a8e73ad2b74d172acd369999e" title="edf_insert" alt="" coords="776,208,861,235"/><area shape="rect" id="node18" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="544,360,705,387"/><area shape="rect" id="node19" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="763,309,875,336"/><area shape="rect" id="node20" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="755,360,883,387"/><area shape="rect" id="node21" href="group__systick__api.html#ga0b993bfbd72abac7286c4f54369576f2" title="SysTickDisable" alt="" coords="761,411,877,437"/><area shape="rect" id="node22" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="753,461,884,488"/><area shape="rect" id="node24" href="group__interrupt__api.html#gafe17b56764bff1bcb95bd53acde4ac98" title="IntPendSet" alt="" coords="773,259,865,285"/><area shape="rect" id="node26" href="os_8c.html#abf76f28d35f214c1654de5c356f1bee1" title="schedule_init" alt="" coords="353,461,458,488"/><area shape="rect" id="node28" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="356,512,455,539"/><area shape="rect" id="node30" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="354,563,457,589"/><area shape="rect" id="node31" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="354,613,457,640"/><area shape="rect" id="node34" href="group__uart__api.html#ga24b7349b5fd44c56e552d2d3fa2e4057" title="UARTDisable" alt="" coords="354,664,457,691"/><area shape="rect" id="node35" href="group__uart__api.html#ga93ba793d082da8ceb2ddab3ddc650a35" title="UARTEnable" alt="" coords="356,715,455,741"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a283ef3a0b61a95b0825962d8312efc33"></a>
+<a class="anchor" id="aa6a5934c17552cfc95b7f3f824e944cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void turn_off_led </td>
+          <td class="memname">void Thread1 </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A thread that continuously toggles GPIO pin 1 on GPIO_PORT_F. </p>
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00046">46</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>References <a class="el" href="nexus_8h_source.html#l00032">atomic</a>, <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, and <a class="el" href="test-os_8c_source.html#l00034">pidwork</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                  {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">while</span>(1) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">/* BEGIN CRITICAL SECTION */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="nexus_8h.html#a59d32e9f94c4de38e42338dce8cbf5ba">atomic</a> (</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        ++<a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        );</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">/* END CRITICAL SECTION */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a> | <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                     <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">/* os_surrender_context(); */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="nexus_8h_html_a59d32e9f94c4de38e42338dce8cbf5ba"><div class="ttname"><a href="nexus_8h.html#a59d32e9f94c4de38e42338dce8cbf5ba">atomic</a></div><div class="ttdeci">#define atomic(x)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00032">nexus.h:32</a></div></div>
+<div class="ttc" id="test-os_8c_html_af2a81fabc26202a81cfc525805029e18"><div class="ttname"><a href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a></div><div class="ttdeci">volatile uint32_t pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00034">test-os.c:34</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_cgraph.png" border="0" usemap="#test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_cgraph" alt=""/></div>
+<map name="test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_cgraph" id="test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="128,5,231,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="128,56,231,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_icgraph.png" border="0" usemap="#test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_icgraph" alt=""/></div>
+<map name="test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_icgraph" id="test-os_8c_aa6a5934c17552cfc95b7f3f824e944cc_icgraph">
+<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="128,5,183,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac1c9ffaf76fceb3cc9abf8bdab04c0df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thread2 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A thread that continuously toggles GPIO pin 2 on GPIO_PORT_F. </p>
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00060">60</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>References <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="test-os_8c_source.html#l00035">highest_pidwork</a>, <a class="el" href="test-os_8c_source.html#l00036">lowest_pidwork</a>, <a class="el" href="test-os_8c_source.html#l00034">pidwork</a>, <a class="el" href="test-os_8c_source.html#l00038">pidwork_buffer</a>, <a class="el" href="test-os_8c_source.html#l00032">PIDWORK_BUFFER_SIZE</a>, and <a class="el" href="test-os_8c_source.html#l00037">pidwork_idx</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                  {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">while</span>(1) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a> | <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                     <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a> != 0) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="test-os_8c.html#a08a39ab44840b404ea140fccdd70c61e">highest_pidwork</a> &lt; <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a>) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <a class="code" href="test-os_8c.html#a08a39ab44840b404ea140fccdd70c61e">highest_pidwork</a> = <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="test-os_8c.html#a4e1dfa4b453ed3518501313ee4eec128">lowest_pidwork</a> &gt; <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a>) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <a class="code" href="test-os_8c.html#a4e1dfa4b453ed3518501313ee4eec128">lowest_pidwork</a> = <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="test-os_8c.html#acd3aa05f91584a58aa366d014bcce6e3">pidwork_buffer</a>[<a class="code" href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a>] = <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a> = (<a class="code" href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a> + 1) &amp; <a class="code" href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a> = 0;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">/* os_surrender_context(); */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="test-os_8c_html_a68883b3b2b4c500bb62f7f40246beeb1"><div class="ttname"><a href="test-os_8c.html#a68883b3b2b4c500bb62f7f40246beeb1">PIDWORK_BUFFER_SIZE</a></div><div class="ttdeci">#define PIDWORK_BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00032">test-os.c:32</a></div></div>
+<div class="ttc" id="test-os_8c_html_a81230c6103aaa86604a9800ce6504dc1"><div class="ttname"><a href="test-os_8c.html#a81230c6103aaa86604a9800ce6504dc1">pidwork_idx</a></div><div class="ttdeci">volatile uint32_t pidwork_idx</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00037">test-os.c:37</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="test-os_8c_html_a4e1dfa4b453ed3518501313ee4eec128"><div class="ttname"><a href="test-os_8c.html#a4e1dfa4b453ed3518501313ee4eec128">lowest_pidwork</a></div><div class="ttdeci">volatile uint32_t lowest_pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00036">test-os.c:36</a></div></div>
+<div class="ttc" id="test-os_8c_html_af2a81fabc26202a81cfc525805029e18"><div class="ttname"><a href="test-os_8c.html#af2a81fabc26202a81cfc525805029e18">pidwork</a></div><div class="ttdeci">volatile uint32_t pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00034">test-os.c:34</a></div></div>
+<div class="ttc" id="test-os_8c_html_acd3aa05f91584a58aa366d014bcce6e3"><div class="ttname"><a href="test-os_8c.html#acd3aa05f91584a58aa366d014bcce6e3">pidwork_buffer</a></div><div class="ttdeci">volatile uint32_t * pidwork_buffer</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00038">test-os.c:38</a></div></div>
+<div class="ttc" id="test-os_8c_html_a08a39ab44840b404ea140fccdd70c61e"><div class="ttname"><a href="test-os_8c.html#a08a39ab44840b404ea140fccdd70c61e">highest_pidwork</a></div><div class="ttdeci">volatile uint32_t highest_pidwork</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00035">test-os.c:35</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_cgraph.png" border="0" usemap="#test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_cgraph" alt=""/></div>
+<map name="test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_cgraph" id="test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="128,5,231,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="128,56,231,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_icgraph.png" border="0" usemap="#test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_icgraph" alt=""/></div>
+<map name="test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_icgraph" id="test-os_8c_ac1c9ffaf76fceb3cc9abf8bdab04c0df_icgraph">
+<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="128,5,183,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab313785f5ce0c6067436d2e8bc479c60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_consumer </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00079">79</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>References <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="gpio_8h_source.html#l00063">GPIO_PIN_3</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>, <a class="el" href="test-os_8c_source.html#l00041">uart_consumer_idx</a>, <a class="el" href="test-os_8c_source.html#l00042">uart_fifo</a>, <a class="el" href="test-os_8c_source.html#l00031">UART_FIFO_SIZE</a>, <a class="el" href="test-os_8c_source.html#l00040">uart_producer_idx</a>, and <a class="el" href="driverlib_2uart_8c_source.html#l01268">UARTCharPut()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                         {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">while</span> (((<a class="code" href="test-os_8c.html#aea91951ad0cb1b1c49fc1cb66c01950e">uart_consumer_idx</a>+1) &amp; <a class="code" href="test-os_8c.html#a3f4803a40e343548aa008ac082923900">UART_FIFO_SIZE</a>) != <a class="code" href="test-os_8c.html#a8d055859f76aa7a36d357fb4b27d277e">uart_producer_idx</a>) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <a class="code" href="test-os_8c.html#aea91951ad0cb1b1c49fc1cb66c01950e">uart_consumer_idx</a> = (<a class="code" href="test-os_8c.html#aea91951ad0cb1b1c49fc1cb66c01950e">uart_consumer_idx</a>+1) &amp; <a class="code" href="test-os_8c.html#a3f4803a40e343548aa008ac082923900">UART_FIFO_SIZE</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a> | <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a> | <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                         <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>));</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <a class="code" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb">UARTCharPut</a>(<a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>, <a class="code" href="test-os_8c.html#a34f37c4750bbb7331c21130b50825e61">uart_fifo</a>[<a class="code" href="test-os_8c.html#aea91951ad0cb1b1c49fc1cb66c01950e">uart_consumer_idx</a>]);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="test-os_8c_html_a8d055859f76aa7a36d357fb4b27d277e"><div class="ttname"><a href="test-os_8c.html#a8d055859f76aa7a36d357fb4b27d277e">uart_producer_idx</a></div><div class="ttdeci">volatile uint32_t uart_producer_idx</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00040">test-os.c:40</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="gpio_8h_html_adcaf899c018a0dde572b5af783565c62"><div class="ttname"><a href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></div><div class="ttdeci">#define GPIO_PIN_3</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00063">gpio.h:63</a></div></div>
+<div class="ttc" id="test-os_8c_html_a34f37c4750bbb7331c21130b50825e61"><div class="ttname"><a href="test-os_8c.html#a34f37c4750bbb7331c21130b50825e61">uart_fifo</a></div><div class="ttdeci">volatile char * uart_fifo</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00042">test-os.c:42</a></div></div>
+<div class="ttc" id="test-os_8c_html_a3f4803a40e343548aa008ac082923900"><div class="ttname"><a href="test-os_8c.html#a3f4803a40e343548aa008ac082923900">UART_FIFO_SIZE</a></div><div class="ttdeci">#define UART_FIFO_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00031">test-os.c:31</a></div></div>
+<div class="ttc" id="test-os_8c_html_aea91951ad0cb1b1c49fc1cb66c01950e"><div class="ttname"><a href="test-os_8c.html#aea91951ad0cb1b1c49fc1cb66c01950e">uart_consumer_idx</a></div><div class="ttdeci">volatile uint32_t uart_consumer_idx</div><div class="ttdef"><b>Definition:</b> <a href="test-os_8c_source.html#l00041">test-os.c:41</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a7a07348b4332ff6b88abf6092347deba"><div class="ttname"><a href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a></div><div class="ttdeci">#define UART0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00061">hw_memmap.h:61</a></div></div>
+<div class="ttc" id="group__uart__api_html_ga583652831f505f339f62b13d4b4b31fb"><div class="ttname"><a href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb">UARTCharPut</a></div><div class="ttdeci">void UARTCharPut(uint32_t ui32Base, unsigned char ucData)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2uart_8c_source.html#l01268">uart.c:1268</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-os_8c_ab313785f5ce0c6067436d2e8bc479c60_cgraph.png" border="0" usemap="#test-os_8c_ab313785f5ce0c6067436d2e8bc479c60_cgraph" alt=""/></div>
+<map name="test-os_8c_ab313785f5ce0c6067436d2e8bc479c60_cgraph" id="test-os_8c_ab313785f5ce0c6067436d2e8bc479c60_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="173,5,276,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="173,56,276,83"/><area shape="rect" id="node4" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="172,107,277,133"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a08a39ab44840b404ea140fccdd70c61e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t highest_pidwork</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00035">35</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, and <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4e1dfa4b453ed3518501313ee4eec128"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t lowest_pidwork</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00036">36</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, and <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af2a81fabc26202a81cfc525805029e18"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t pidwork</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="test-os_8c_source.html#l00034">34</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, and <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>.</p>
-
-<p>Referenced by <a class="el" href="test-os_8c_source.html#l00040">main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>, 0);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
-<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="test-os_8c_a283ef3a0b61a95b0825962d8312efc33_cgraph.png" border="0" usemap="#test-os_8c_a283ef3a0b61a95b0825962d8312efc33_cgraph" alt=""/></div>
-<map name="test-os_8c_a283ef3a0b61a95b0825962d8312efc33_cgraph" id="test-os_8c_a283ef3a0b61a95b0825962d8312efc33_cgraph">
-<area shape="rect" id="node2" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="151,5,253,32"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="test-os_8c_a283ef3a0b61a95b0825962d8312efc33_icgraph.png" border="0" usemap="#test-os_8c_a283ef3a0b61a95b0825962d8312efc33_icgraph" alt=""/></div>
-<map name="test-os_8c_a283ef3a0b61a95b0825962d8312efc33_icgraph" id="test-os_8c_a283ef3a0b61a95b0825962d8312efc33_icgraph">
-<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="151,5,205,32"/></map>
-</div>
-</p>
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, <a class="el" href="test-os_8c_source.html#l00046">Thread1()</a>, and <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa240b970ac6a5d3f98844732b3af1b9c"></a>
+<a class="anchor" id="acd3aa05f91584a58aa366d014bcce6e3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void turn_on_led </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">volatile uint32_t* pidwork_buffer</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test-os_8c_source.html#l00028">28</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00038">38</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, and <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>.</p>
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, and <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>.</p>
 
-<p>Referenced by <a class="el" href="test-os_8c_source.html#l00040">main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                   {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
-<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_cgraph.png" border="0" usemap="#test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_cgraph" alt=""/></div>
-<map name="test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_cgraph" id="test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_cgraph">
-<area shape="rect" id="node2" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="151,5,253,32"/></map>
 </div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_icgraph.png" border="0" usemap="#test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_icgraph" alt=""/></div>
-<map name="test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_icgraph" id="test-os_8c_aa240b970ac6a5d3f98844732b3af1b9c_icgraph">
-<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="151,5,205,32"/></map>
 </div>
-</p>
+<a class="anchor" id="a81230c6103aaa86604a9800ce6504dc1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t pidwork_idx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00037">37</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00093">main()</a>, and <a class="el" href="test-os_8c_source.html#l00060">Thread2()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea91951ad0cb1b1c49fc1cb66c01950e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t uart_consumer_idx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00041">41</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00079">uart_consumer()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ab7131462a423c777984afd11ad6d70"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t uart_dropped_chars</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00043">43</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34f37c4750bbb7331c21130b50825e61"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile char* uart_fifo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00042">42</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00079">uart_consumer()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d055859f76aa7a36d357fb4b27d277e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t uart_producer_idx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-os_8c_source.html#l00040">40</a> of file <a class="el" href="test-os_8c_source.html">test-os.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-os_8c_source.html#l00079">uart_consumer()</a>.</p>
 
 </div>
 </div>
@@ -325,7 +682,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_8f4eebbc5be43a6e6baf1c6b1e65cd8a.html">board-progs</a></li><li class="navelem"><a class="el" href="dir_bdfaaf4074136889213f10274b402646.html">test-os</a></li><li class="navelem"><a class="el" href="test-os_8c.html">test-os.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:38 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -1,0 +1,6 @@
+<map id="blinker::turn_off" name="blinker::turn_off">
+<area shape="rect" id="node2" href="$classping.html#a0f635a0fc75b5c6078475215aa29080b" title="ping::sample" alt="" coords="175,5,279,32"/>
+<area shape="rect" id="node5" href="$classmotor.html#a8cb5ce239d3eadf16a929bccf9a04c25" title="motor::set" alt="" coords="182,56,271,83"/>
+<area shape="rect" id="node3" href="$sense-main_8cpp.html#a961eb4272ced40d34c70a8f3ef94268e" title="ping_handler" alt="" coords="327,5,431,32"/>
+<area shape="rect" id="node4" href="$sense-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="479,5,533,32"/>
+</map>

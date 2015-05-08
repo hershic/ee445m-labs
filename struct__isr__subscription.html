@@ -124,18 +124,49 @@ Collaboration diagram for _isr_subscription:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:acd3b21d6bde6cc2a2f4ac7e95a00f00f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__isr__subscription.html#acd3b21d6bde6cc2a2f4ac7e95a00f00f">valid</a></td></tr>
-<tr class="separator:acd3b21d6bde6cc2a2f4ac7e95a00f00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab70ebbe180ca38327c121f36c6a4c7f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__isr__subscription.html#ab70ebbe180ca38327c121f36c6a4c7f8">single_shot_subscription</a></td></tr>
 <tr class="separator:ab70ebbe180ca38327c121f36c6a4c7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d3c20adf98cf7920f8f52366166e961"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__isr__subscription.html#a2d3c20adf98cf7920f8f52366166e961">slot</a> )(<a class="el" href="unionhw__notification.html">hw_notification</a>)</td></tr>
-<tr class="separator:a2d3c20adf98cf7920f8f52366166e961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a598a4178f7ee660c2b16e4c84431ca07"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__isr__subscription.html#a598a4178f7ee660c2b16e4c84431ca07">slot</a> )(<a class="el" href="unionnotification.html">notification</a>)</td></tr>
+<tr class="separator:a598a4178f7ee660c2b16e4c84431ca07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd5a2dff2d0dd9b47ca99457e51fef12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__isr__subscription.html#afd5a2dff2d0dd9b47ca99457e51fef12">next</a></td></tr>
+<tr class="separator:afd5a2dff2d0dd9b47ca99457e51fef12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2296c97274e9b4da7533c28f343ceaad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__isr__subscription.html#a2296c97274e9b4da7533c28f343ceaad">prev</a></td></tr>
+<tr class="separator:a2296c97274e9b4da7533c28f343ceaad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Each peripheral channel needs to be able to notify  subscribers about incoming hardware events </p>
-
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00054">54</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00122">122</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="afd5a2dff2d0dd9b47ca99457e51fef12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a>* _isr_subscription::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00125">125</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2296c97274e9b4da7533c28f343ceaad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a>* _isr_subscription::prev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00126">126</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab70ebbe180ca38327c121f36c6a4c7f8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -146,41 +177,25 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00057">57</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00123">123</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 
-<p>Referenced by <a class="el" href="hardware_8c_source.html#l00098">hw_connect()</a>, <a class="el" href="hardware_8c_source.html#l00112">hw_connect_single_shot()</a>, <a class="el" href="hardware_8c_source.html#l00131">hw_disconnect()</a>, and <a class="el" href="hardware_8c_source.html#l00208">hw_notify()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00121">_hw_subscribe()</a>, and <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2d3c20adf98cf7920f8f52366166e961"></a>
+<a class="anchor" id="a598a4178f7ee660c2b16e4c84431ca07"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* _isr_subscription::slot) (<a class="el" href="unionhw__notification.html">hw_notification</a>)</td>
+          <td class="memname">void(* _isr_subscription::slot) (<a class="el" href="unionnotification.html">notification</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00058">58</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00124">124</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 
-<p>Referenced by <a class="el" href="hardware_8c_source.html#l00098">hw_connect()</a>, <a class="el" href="hardware_8c_source.html#l00112">hw_connect_single_shot()</a>, <a class="el" href="hardware_8c_source.html#l00131">hw_disconnect()</a>, and <a class="el" href="hardware_8c_source.html#l00208">hw_notify()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acd3b21d6bde6cc2a2f4ac7e95a00f00f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool _isr_subscription::valid</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00056">56</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
-
-<p>Referenced by <a class="el" href="hardware_8c_source.html#l00235">_hw_first_available_subscription()</a>, <a class="el" href="hardware_8c_source.html#l00071">hw_channel_init()</a>, <a class="el" href="hardware_8c_source.html#l00098">hw_connect()</a>, <a class="el" href="hardware_8c_source.html#l00112">hw_connect_single_shot()</a>, <a class="el" href="hardware_8c_source.html#l00131">hw_disconnect()</a>, and <a class="el" href="hardware_8c_source.html#l00208">hw_notify()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00121">_hw_subscribe()</a>, and <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>.</p>
 
 </div>
 </div>
@@ -193,7 +208,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:44 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

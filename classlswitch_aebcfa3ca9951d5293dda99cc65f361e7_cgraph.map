@@ -1,0 +1,7 @@
+<map id="lswitch::lswitch" name="lswitch::lswitch">
+<area shape="rect" id="node2" href="$group___cpp_test.html#ga2f6a1135d37afd9955a16efbd901b2c2" title="ctlsys::enable_periph" alt="" coords="169,31,325,57"/>
+<area shape="rect" id="node5" href="$classlswitch.html#a5f5f42046d62f6ba712f88cf89c77c97" title="lswitch::start" alt="" coords="195,81,298,108"/>
+<area shape="rect" id="node6" href="$group___cpp_test.html#ga1e70bdef00f5e665cacfe14f5a434b96" title="ctlsys::timer_timeout\l_from_subtimer" alt="" coords="168,133,325,174"/>
+<area shape="rect" id="node3" href="$classcritical.html#a55a80f7c8c33aec8acb01c76e9dcf0bd" title="critical::static_EndCritical" alt="" coords="377,5,557,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#a462ecb751e5e7572f587f3fb3f7e8fd4" title="critical::static_StartCritical" alt="" coords="373,56,561,83"/>
+</map>

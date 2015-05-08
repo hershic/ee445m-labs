@@ -1,0 +1,8 @@
+<map id="motor::start" name="motor::start">
+<area shape="rect" id="node2" href="$classmotor.html#a8194b04c23d3f3d638aff1bc05aef134" title="motor::pwm_init" alt="" coords="152,5,277,32"/>
+<area shape="rect" id="node5" href="$classdrive.html#ac4aeb9d6207c62e1212e65d113664bf0" title="drive::start" alt="" coords="169,56,260,83"/>
+<area shape="rect" id="node3" href="$classmotor.html#ad93e31c83b8a3d0f97c29478d2089212" title="motor::motor_init" alt="" coords="325,5,460,32"/>
+<area shape="rect" id="node4" href="$classmotor.html#a1558350ea08d9c56f460c4ff928e1dba" title="motor::motor" alt="" coords="508,5,616,32"/>
+<area shape="rect" id="node6" href="$move-main_8cpp.html#a2174d1f65988a9a74094c1027c14bcfa" title="motor_control" alt="" coords="337,56,449,83"/>
+<area shape="rect" id="node7" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="535,56,589,83"/>
+</map>

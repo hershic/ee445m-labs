@@ -1,0 +1,6 @@
+<map id="shell_execute_command" name="shell_execute_command">
+<area shape="rect" id="node2" href="$group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="235,31,373,57"/>
+<area shape="rect" id="node3" href="$group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="421,5,520,32"/>
+<area shape="rect" id="node5" href="$group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="433,56,508,83"/>
+<area shape="rect" id="node4" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="568,5,623,32"/>
+</map>

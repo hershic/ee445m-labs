@@ -1,0 +1,4 @@
+<map id="uart_get_char_" name="uart_get_char_">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#ga36116526b4c84562aec19bca46a0827e" title="Read a char from the active uart channel. " alt="" coords="172,5,283,32"/>
+<area shape="rect" id="node3" href="$bin_2lisp_2templates_2uart_8c.html#aa2bf234de924b535e157a1ff33c08747" title="s_Handler" alt="" coords="331,5,417,32"/>
+</map>

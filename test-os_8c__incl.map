@@ -1,14 +1,25 @@
 <map id="board&#45;progs/test&#45;os/test&#45;os.c" name="board&#45;progs/test&#45;os/test&#45;os.c">
-<area shape="rect" id="node6" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="209,169,311,196"/>
-<area shape="rect" id="node7" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="427,95,570,121"/>
-<area shape="rect" id="node8" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="595,95,723,121"/>
-<area shape="rect" id="node9" href="$gpio_8h.html" title="driverlib/gpio.h" alt="" coords="747,95,861,121"/>
-<area shape="rect" id="node10" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="886,95,1029,121"/>
-<area shape="rect" id="node11" href="$pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1053,95,1195,121"/>
-<area shape="rect" id="node12" href="$sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1219,95,1343,121"/>
-<area shape="rect" id="node13" href="$systick_8h.html" title="driverlib/systick.h" alt="" coords="1367,95,1497,121"/>
-<area shape="rect" id="node14" href="$rom_8h.html" title="driverlib/rom.h" alt="" coords="1521,95,1636,121"/>
-<area shape="rect" id="node15" href="$os_8h.html" title="libos/os.h" alt="" coords="36,95,119,121"/>
-<area shape="rect" id="node16" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="22,169,133,196"/>
-<area shape="rect" id="node17" href="$defines_8h.html" title="defines.h" alt="" coords="33,244,113,271"/>
+<area shape="rect" id="node4" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="894,319,997,345"/>
+<area shape="rect" id="node5" href="$hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="513,169,655,196"/>
+<area shape="rect" id="node6" href="$debug_8h.html" title="driverlib/debug.h" alt="" coords="680,169,808,196"/>
+<area shape="rect" id="node7" href="$gpio_8h.html" title="driverlib/gpio.h" alt="" coords="832,169,947,196"/>
+<area shape="rect" id="node8" href="$interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1679,169,1822,196"/>
+<area shape="rect" id="node9" href="$pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1846,169,1989,196"/>
+<area shape="rect" id="node10" href="$sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="2013,169,2137,196"/>
+<area shape="rect" id="node11" href="$driverlib_2systick_8h.html" title="driverlib/systick.h" alt="" coords="2117,95,2248,121"/>
+<area shape="rect" id="node12" href="$driverlib_2uart_8h.html" title="driverlib/uart.h" alt="" coords="2272,95,2387,121"/>
+<area shape="rect" id="node13" href="$os_8h.html" title="libos/os.h" alt="" coords="315,244,397,271"/>
+<area shape="rect" id="node14" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="221,543,331,569"/>
+<area shape="rect" id="node23" href="$heartbeat_8h.html" title="libheart/heartbeat.h" alt="" coords="1105,95,1255,121"/>
+<area shape="rect" id="node28" href="$hardware_8h.html" title="libhw/hardware.h" alt="" coords="201,95,329,121"/>
+<area shape="rect" id="node16" href="$edf_8h.html" title="libschedule/edf.h" alt="" coords="393,319,521,345"/>
+<area shape="rect" id="node17" href="$thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="573,468,755,495"/>
+<area shape="rect" id="node15" href="$defines_8h.html" title="defines.h" alt="" coords="501,617,581,644"/>
+<area shape="rect" id="node18" href="$priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="350,393,565,420"/>
+<area shape="rect" id="node19" href="$notify_8h.html" title="libnotify/notify.h" alt="" coords="296,468,416,495"/>
+<area shape="rect" id="node20" href="$uthash_8h.html" title="libut/uthash.h" alt="" coords="440,468,549,495"/>
+<area shape="rect" id="node25" href="$fpu_8h.html" title="driverlib/fpu.h" alt="" coords="1402,169,1510,196"/>
+<area shape="rect" id="node26" href="$driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1534,169,1655,196"/>
+<area shape="rect" id="node27" href="$rom_8h.html" title="driverlib/rom.h" alt="" coords="1123,169,1237,196"/>
+<area shape="rect" id="node29" href="$semaphore_8h.html" title="libos/semaphore.h" alt="" coords="195,169,335,196"/>
 </map>

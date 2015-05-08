@@ -124,26 +124,63 @@ Collaboration diagram for hw_uart_metadata:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a960b3694930353f684e0ff967d29d962"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__uart__metadata.html#a960b3694930353f684e0ff967d29d962">UART_BAUD_RATE</a></td></tr>
-<tr class="separator:a960b3694930353f684e0ff967d29d962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6580c9b8d7f4f435b8707f83f57b47b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__uart__metadata.html#ad6580c9b8d7f4f435b8707f83f57b47b">baud_rate</a></td></tr>
+<tr class="separator:ad6580c9b8d7f4f435b8707f83f57b47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9a83f3ad4ad0e5a484051462d50f4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nexus_8h.html#ac227902e4f2e6d64f7807cb692643d13">memory_address_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__uart__metadata.html#a6a9a83f3ad4ad0e5a484051462d50f4f">channel</a></td></tr>
+<tr class="separator:a6a9a83f3ad4ad0e5a484051462d50f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b4cc80d9ab948c9c219d69d8faf0ceb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__uart__metadata.html#a6b4cc80d9ab948c9c219d69d8faf0ceb">interrupt</a></td></tr>
+<tr class="separator:a6b4cc80d9ab948c9c219d69d8faf0ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00085">85</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<div class="textblock"><p>UART properties </p>
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00054">54</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="a960b3694930353f684e0ff967d29d962"></a>
+<a class="anchor" id="ad6580c9b8d7f4f435b8707f83f57b47b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t hw_uart_metadata::UART_BAUD_RATE</td>
+          <td class="memname">uint32_t hw_uart_metadata::baud_rate</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00087">87</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00055">55</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 
-<p>Referenced by <a class="el" href="test-shell_8c_source.html#l00041">main()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2libuart_2uart_8c_source.html#l00039">uart_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a9a83f3ad4ad0e5a484051462d50f4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="nexus_8h.html#ac227902e4f2e6d64f7807cb692643d13">memory_address_t</a> hw_uart_metadata::channel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00056">56</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00203">_hw_get_channel()</a>, <a class="el" href="hardware_8c_source.html#l00062">hw_driver_init()</a>, <a class="el" href="bin_2lisp_2templates_2uart_8c_source.html#l00007">s_Handler()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00092">uart_get_char_()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00111">uart_get_string_()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00039">uart_init()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00065">uart_send_char_()</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00076">uart_send_string_()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6b4cc80d9ab948c9c219d69d8faf0ceb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t hw_uart_metadata::interrupt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00057">57</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2libuart_2uart_8c_source.html#l00039">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -156,7 +193,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structhw__uart__metadata.html">hw_uart_metadata</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:44 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

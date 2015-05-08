@@ -1,4 +1,5 @@
 <map id="lib/libshell/shell.h" name="lib/libshell/shell.h">
-<area shape="rect" id="node2" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,80,168,121"/>
-<area shape="rect" id="node3" href="$shell_8c.html" title="lib/libshell/shell.c" alt="" coords="193,87,319,114"/>
+<area shape="rect" id="node2" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="5,80,203,121"/>
+<area shape="rect" id="node3" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="227,80,389,121"/>
+<area shape="rect" id="node4" href="$shell_8c.html" title="lib/libshell/shell.c" alt="" coords="414,87,541,114"/>
 </map>

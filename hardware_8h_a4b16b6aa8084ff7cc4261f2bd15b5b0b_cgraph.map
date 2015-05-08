@@ -1,0 +1,6 @@
+<map id="hw_daemon" name="hw_daemon">
+<area shape="rect" id="node2" href="$hardware_8c.html#aeec040621fb93a935c8f3aaf2037d6cd" title="hw_notify_uart" alt="" coords="152,5,267,32"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#a1aac20922af64474d68eb42c09f79535" title="hw_notify" alt="" coords="315,5,396,32"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="444,5,575,32"/>
+<area shape="rect" id="node5" href="$hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="623,5,769,32"/>
+</map>

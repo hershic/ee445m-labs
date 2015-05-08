@@ -132,41 +132,41 @@ $(document).ready(function(){initNavTree('test-display_8c_source.html','');});
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sysctl_8h.html">driverlib/sysctl.h</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rom_8h.html">driverlib/rom.h</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_s_t7735_8h.html">libdisplay/ST7735.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;sys/stat.h&gt;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;sys/stat.h&gt;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   31</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span> j;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6">FPUEnable</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">/* Enable the timer for display driver timings */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2bec12e520ecd4068f3d6155c9856b29">SYSCTL_PERIPH_TIMER0</a>);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">/* Enable processor interrupts. */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="_s_t7735_8c.html#a204a442207d7367ace616bd6bfd79348">ST7735_InitR</a>(<a class="code" href="_s_t7735_8h.html#a9568e103412377d5867f1f367ac7f424a95e1d38bf9ef71e0615a062372a2b40c">INITR_REDTAB</a>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="_s_t7735_8c.html#aea99df5526df38c772f90da2f1fa8655">ST7735_OutString</a>(<span class="stringliteral">&quot;test on screen 0\n&quot;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_s_t7735_8h.html">libdisplay/ST7735.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nexus_8h.html">libstd/nexus.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   32</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">int</span> j;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6">FPUEnable</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">/* Enable the timer for display driver timings */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2bec12e520ecd4068f3d6155c9856b29">SYSCTL_PERIPH_TIMER0</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/* Enable processor interrupts. */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="_s_t7735_8c.html#a204a442207d7367ace616bd6bfd79348">ST7735_InitR</a>(<a class="code" href="_s_t7735_8h.html#a9568e103412377d5867f1f367ac7f424a95e1d38bf9ef71e0615a062372a2b40c">INITR_REDTAB</a>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="_s_t7735_8c.html#aea99df5526df38c772f90da2f1fa8655">ST7735_OutString</a>(<span class="stringliteral">&quot;test on screen 0\n&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="_s_t7735_8c.html#a05c18aa8dd363fe991d5bc73a02e7abc">ST7735_DrawFastHLine</a>(0, 70, 128, <a class="code" href="_s_t7735_8h.html#ab45f6510169efe9c541a881c8ed56f1c">ST7735_YELLOW</a>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51">ST7735_OutString2</a>(<span class="stringliteral">&quot;test on screen 1\n&quot;</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="_s_t7735_8c.html#aea99df5526df38c772f90da2f1fa8655">ST7735_OutString</a>(<span class="stringliteral">&quot;test on screen 0\n&quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="_s_t7735_8c.html#a05c18aa8dd363fe991d5bc73a02e7abc">ST7735_DrawFastHLine</a>(0, 70, 128, <a class="code" href="_s_t7735_8h.html#ab45f6510169efe9c541a881c8ed56f1c">ST7735_YELLOW</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51">ST7735_OutString2</a>(<span class="stringliteral">&quot;test on screen 1\n&quot;</span>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">/* Postpone death */</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">while</span> (1) {}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51">ST7735_OutString2</a>(<span class="stringliteral">&quot;test on screen 1\n&quot;</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a>();</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 <div class="ttc" id="hw__memmap_8h_html"><div class="ttname"><a href="hw__memmap_8h.html">hw_memmap.h</a></div></div>
 <div class="ttc" id="debug_8h_html"><div class="ttname"><a href="debug_8h.html">debug.h</a></div></div>
@@ -180,8 +180,9 @@ $(document).ready(function(){initNavTree('test-display_8c_source.html','');});
 <div class="ttc" id="pin__map_8h_html"><div class="ttname"><a href="pin__map_8h.html">pin_map.h</a></div></div>
 <div class="ttc" id="_s_t7735_8c_html_a204a442207d7367ace616bd6bfd79348"><div class="ttname"><a href="_s_t7735_8c.html#a204a442207d7367ace616bd6bfd79348">ST7735_InitR</a></div><div class="ttdeci">void ST7735_InitR(enum initRFlags option)</div><div class="ttdef"><b>Definition:</b> <a href="_s_t7735_8c_source.html#l00741">ST7735.c:741</a></div></div>
 <div class="ttc" id="_s_t7735_8c_html_a24baab918efa9202f1801fdf794d3f51"><div class="ttname"><a href="_s_t7735_8c.html#a24baab918efa9202f1801fdf794d3f51">ST7735_OutString2</a></div><div class="ttdeci">void ST7735_OutString2(uint8_t *ptr)</div><div class="ttdef"><b>Definition:</b> <a href="_s_t7735_8c_source.html#l01542">ST7735.c:1542</a></div></div>
-<div class="ttc" id="test-display_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="test-display_8c_source.html#l00031">test-display.c:31</a></div></div>
+<div class="ttc" id="test-display_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="test-display_8c_source.html#l00032">test-display.c:32</a></div></div>
 <div class="ttc" id="hw__ints_8h_html"><div class="ttname"><a href="hw__ints_8h.html">hw_ints.h</a></div></div>
+<div class="ttc" id="nexus_8h_html_a44bf220a6c5c7c38df76ced96b0bd515"><div class="ttname"><a href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a></div><div class="ttdeci">#define postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00040">nexus.h:40</a></div></div>
 <div class="ttc" id="_s_t7735_8c_html_aea99df5526df38c772f90da2f1fa8655"><div class="ttname"><a href="_s_t7735_8c.html#aea99df5526df38c772f90da2f1fa8655">ST7735_OutString</a></div><div class="ttdeci">void ST7735_OutString(uint8_t *ptr)</div><div class="ttdef"><b>Definition:</b> <a href="_s_t7735_8c_source.html#l01535">ST7735.c:1535</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a2bec12e520ecd4068f3d6155c9856b29"><div class="ttname"><a href="sysctl_8h.html#a2bec12e520ecd4068f3d6155c9856b29">SYSCTL_PERIPH_TIMER0</a></div><div class="ttdeci">#define SYSCTL_PERIPH_TIMER0</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00114">sysctl.h:114</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_ga2fbae61db465e1d861a62785d28e3ad6"><div class="ttname"><a href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a></div><div class="ttdeci">void SysCtlPeripheralEnable(uint32_t ui32Peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l00841">sysctl.c:841</a></div></div>
@@ -197,6 +198,7 @@ $(document).ready(function(){initNavTree('test-display_8c_source.html','');});
 <div class="ttc" id="sysctl_8h_html"><div class="ttname"><a href="sysctl_8h.html">sysctl.h</a></div></div>
 <div class="ttc" id="sysctl_8h_html_af260fa5184c1a3211ce39d09786ccc71"><div class="ttname"><a href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a></div><div class="ttdeci">#define SYSCTL_SYSDIV_1</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00221">sysctl.h:221</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_gab9c9f4e4588e1e9c5b42e3c3b109e5c1"><div class="ttname"><a href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a></div><div class="ttdeci">void SysCtlClockSet(uint32_t ui32Config)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02532">sysctl.c:2532</a></div></div>
+<div class="ttc" id="nexus_8h_html"><div class="ttname"><a href="nexus_8h.html">nexus.h</a></div></div>
 <div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -204,7 +206,7 @@ $(document).ready(function(){initNavTree('test-display_8c_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_8f4eebbc5be43a6e6baf1c6b1e65cd8a.html">board-progs</a></li><li class="navelem"><a class="el" href="dir_3d27ec02128c0e3cf0247ad224753f23.html">test-display</a></li><li class="navelem"><a class="el" href="test-display_8c.html">test-display.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:07 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:36 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

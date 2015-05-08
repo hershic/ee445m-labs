@@ -1,0 +1,6 @@
+<map id="motor::set" name="motor::set">
+<area shape="rect" id="node2" href="$classmotor.html#a727b50d42de63105af2a7df209c8ce40" title="motor::adjusted_direction" alt="" coords="143,5,329,32"/>
+<area shape="rect" id="node4" href="$group__math.html#ga7b3ff1805d7e50020363b0fbb296430b" title="clamp" alt="" coords="205,56,267,83"/>
+<area shape="rect" id="node3" href="$classnav.html#ac95eb00f0732946144fff3d98f243104" title="nav::opposite" alt="" coords="377,5,484,32"/>
+<area shape="rect" id="node5" href="$group__math.html#ga6ae8adad8e6df7d8e1b66e3e50f1e293" title="max" alt="" coords="405,56,456,83"/>
+</map>

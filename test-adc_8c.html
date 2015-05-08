@@ -118,54 +118,237 @@ $(document).ready(function(){initNavTree('test-adc_8c.html','');});
 <code>#include &quot;<a class="el" href="hw__ints_8h_source.html">inc/hw_ints.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hw__memmap_8h_source.html">inc/hw_memmap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="debug_8h_source.html">driverlib/debug.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="fpu_8h_source.html">driverlib/fpu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="driverlib_2adc_8h_source.html">driverlib/adc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="gpio_8h_source.html">driverlib/gpio.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="interrupt_8h_source.html">driverlib/interrupt.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pin__map_8h_source.html">driverlib/pin_map.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sysctl_8h_source.html">driverlib/sysctl.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="rom_8h_source.html">driverlib/rom.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="lib_2libadc_2adc_8h_source.html">libadc/adc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="nexus_8h_source.html">libstd/nexus.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="heartbeat_8h_source.html">libheart/heartbeat.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test-adc.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="test-adc_8c__incl.png" border="0" usemap="#board-progs_2test-adc_2test-adc_8c" alt=""/></div>
 <map name="board-progs_2test-adc_2test-adc_8c" id="board-progs_2test-adc_2test-adc_8c">
-<area shape="rect" id="node4" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="158,95,261,121"/><area shape="rect" id="node5" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="285,95,427,121"/><area shape="rect" id="node6" href="debug_8h.html" title="driverlib/debug.h" alt="" coords="452,95,580,121"/><area shape="rect" id="node7" href="fpu_8h.html" title="driverlib/fpu.h" alt="" coords="605,95,713,121"/><area shape="rect" id="node8" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="737,95,852,121"/><area shape="rect" id="node9" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="877,95,1019,121"/><area shape="rect" id="node10" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1043,95,1186,121"/><area shape="rect" id="node11" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1210,95,1334,121"/><area shape="rect" id="node12" href="rom_8h.html" title="driverlib/rom.h" alt="" coords="1359,95,1473,121"/><area shape="rect" id="node13" href="lib_2libadc_2adc_8h.html" title="libadc/adc.h" alt="" coords="35,95,133,121"/><area shape="rect" id="node14" href="lib_2libtimer_2timer_8h.html" title="libtimer/timer.h" alt="" coords="86,169,205,196"/></map>
+<area shape="rect" id="node4" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="982,393,1085,420"/><area shape="rect" id="node5" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="590,169,733,196"/><area shape="rect" id="node6" href="debug_8h.html" title="driverlib/debug.h" alt="" coords="757,169,885,196"/><area shape="rect" id="node7" href="driverlib_2adc_8h.html" title="driverlib/adc.h" alt="" coords="1557,95,1667,121"/><area shape="rect" id="node8" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="909,169,1024,196"/><area shape="rect" id="node9" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1049,169,1191,196"/><area shape="rect" id="node10" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1786,169,1929,196"/><area shape="rect" id="node11" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1953,169,2077,196"/><area shape="rect" id="node12" href="rom_8h.html" title="driverlib/rom.h" alt="" coords="2101,169,2216,196"/><area shape="rect" id="node13" href="lib_2libadc_2adc_8h.html" title="libadc/adc.h" alt="" coords="333,95,432,121"/><area shape="rect" id="node16" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="203,617,314,644"/><area shape="rect" id="node26" href="heartbeat_8h.html" title="libheart/heartbeat.h" alt="" coords="1231,95,1380,121"/><area shape="rect" id="node14" href="hardware_8h.html" title="libhw/hardware.h" alt="" coords="285,169,413,196"/><area shape="rect" id="node15" href="notify_8h.html" title="libnotify/notify.h" alt="" coords="296,543,416,569"/><area shape="rect" id="node18" href="semaphore_8h.html" title="libos/semaphore.h" alt="" coords="454,244,594,271"/><area shape="rect" id="node17" href="defines_8h.html" title="defines.h" alt="" coords="501,692,581,719"/><area shape="rect" id="node19" href="os_8h.html" title="os.h" alt="" coords="565,319,614,345"/><area shape="rect" id="node20" href="edf_8h.html" title="libschedule/edf.h" alt="" coords="525,393,653,420"/><area shape="rect" id="node21" href="thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="573,543,755,569"/><area shape="rect" id="node22" href="priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="387,468,602,495"/><area shape="rect" id="node23" href="uthash_8h.html" title="libut/uthash.h" alt="" coords="440,543,549,569"/><area shape="rect" id="node28" href="fpu_8h.html" title="driverlib/fpu.h" alt="" coords="1509,169,1617,196"/><area shape="rect" id="node29" href="driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1641,169,1762,196"/></map>
 </div>
 </div>
 <p><a href="test-adc_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ad8a53d08b0b09909489eba5eeb5d40a6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#ad8a53d08b0b09909489eba5eeb5d40a6">ADC_DATA_BUFFER_LEN</a>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:ad8a53d08b0b09909489eba5eeb5d40a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a891f824aafc47ef989ca5d6c88131d2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a891f824aafc47ef989ca5d6c88131d2c">HEARTBEAT_MODAL</a></td></tr>
+<tr class="separator:a891f824aafc47ef989ca5d6c88131d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:acbd0a67d4b214af8305bdb9795b7b93f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#acbd0a67d4b214af8305bdb9795b7b93f">led_blink_red</a> ()</td></tr>
+<tr class="separator:acbd0a67d4b214af8305bdb9795b7b93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a222d45b9e4999c84a7113b56a2733887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a222d45b9e4999c84a7113b56a2733887">led_blink_green</a> ()</td></tr>
+<tr class="separator:a222d45b9e4999c84a7113b56a2733887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2cc2f63a3682fc058f6b3b8dfd9e623"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623">led_blink_blue</a> ()</td></tr>
+<tr class="separator:ab2cc2f63a3682fc058f6b3b8dfd9e623"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:add8c54cffbf32d1c839e8551d2b4d900"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#add8c54cffbf32d1c839e8551d2b4d900">adc_data_buffer</a> [3]</td></tr>
-<tr class="separator:add8c54cffbf32d1c839e8551d2b4d900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c6d2c6c20d24b1d078fb81e38ec329f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread__structures_8h.html#a0728eadd5945479c8950f248b5d35a75">semaphore_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a6c6d2c6c20d24b1d078fb81e38ec329f">HW_ADC_SEQ2_SEM</a></td></tr>
+<tr class="separator:a6c6d2c6c20d24b1d078fb81e38ec329f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0be85b4a7246daacb08858ff337c3f6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#ab0be85b4a7246daacb08858ff337c3f6">ADC0_SEQ2_SAMPLES</a> [4]</td></tr>
+<tr class="separator:ab0be85b4a7246daacb08858ff337c3f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20861150f9df641965b6b1c7b8c966f0"><td class="memItemLeft" align="right" valign="top">uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a20861150f9df641965b6b1c7b8c966f0">adc_data_buffer</a></td></tr>
+<tr class="separator:a20861150f9df641965b6b1c7b8c966f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb0a9095d6e39c67dcb2d28fc1f5473b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#aeb0a9095d6e39c67dcb2d28fc1f5473b">red_work</a> = 0</td></tr>
+<tr class="separator:aeb0a9095d6e39c67dcb2d28fc1f5473b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a858f35dd4dd8f48f10a9df3054ae2186"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a858f35dd4dd8f48f10a9df3054ae2186">blue_work</a> = 0</td></tr>
+<tr class="separator:a858f35dd4dd8f48f10a9df3054ae2186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b37793c5cf800da09c2f6df8282c7f6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-adc_8c.html#a4b37793c5cf800da09c2f6df8282c7f6">green_work</a> = 0</td></tr>
+<tr class="separator:a4b37793c5cf800da09c2f6df8282c7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ad8a53d08b0b09909489eba5eeb5d40a6"></a>
+<a class="anchor" id="a891f824aafc47ef989ca5d6c88131d2c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ADC_DATA_BUFFER_LEN&#160;&#160;&#160;3</td>
+          <td class="memname">#define HEARTBEAT_MODAL</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00023">23</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00024">24</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ab2cc2f63a3682fc058f6b3b8dfd9e623"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void led_blink_blue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00056">56</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>References <a class="el" href="test-adc_8c_source.html#l00032">blue_work</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, and <a class="el" href="os_8h_source.html#l00142">os_surrender_context</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                      {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        ++<a class="code" href="test-adc_8c.html#a858f35dd4dd8f48f10a9df3054ae2186">blue_work</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                     <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="test-adc_8c_html_a858f35dd4dd8f48f10a9df3054ae2186"><div class="ttname"><a href="test-adc_8c.html#a858f35dd4dd8f48f10a9df3054ae2186">blue_work</a></div><div class="ttdeci">uint32_t blue_work</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00032">test-adc.c:32</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
+<div class="ttc" id="group___o_s_html_ga950493083c42b9fc7a7252112a941c3d"><div class="ttname"><a href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a></div><div class="ttdeci">#define os_surrender_context()</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00142">os.h:142</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph.png" border="0" usemap="#test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph" alt=""/></div>
+<map name="test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph" id="test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="164,5,267,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="164,56,267,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph.png" border="0" usemap="#test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph" alt=""/></div>
+<map name="test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph" id="test-adc_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph">
+<area shape="rect" id="node2" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="164,5,219,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a222d45b9e4999c84a7113b56a2733887"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void led_blink_green </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00044">44</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>References <a class="el" href="gpio_8h_source.html#l00063">GPIO_PIN_3</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="test-adc_8c_source.html#l00033">green_work</a>, <a class="el" href="hardware_8c_source.html#l00049">HW_ADC_SEQ2_SEM</a>, <a class="el" href="os_8h_source.html#l00142">os_surrender_context</a>, <a class="el" href="thread__structures_8h_source.html#l00036">sem_guard</a>, and <a class="el" href="thread__structures_8h_source.html#l00041">sem_take</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                       {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="thread__structures_8h.html#acad9dc671d0e22093bc58ebc11a56829">sem_guard</a>(<a class="code" href="test-adc_8c.html#a6c6d2c6c20d24b1d078fb81e38ec329f">HW_ADC_SEQ2_SEM</a>) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="thread__structures_8h.html#a2d834a21ca7f40cdb5177d43701bf085">sem_take</a>(<a class="code" href="test-adc_8c.html#a6c6d2c6c20d24b1d078fb81e38ec329f">HW_ADC_SEQ2_SEM</a>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            ++<a class="code" href="test-adc_8c.html#a4b37793c5cf800da09c2f6df8282c7f6">green_work</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                         <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="test-adc_8c_html_a6c6d2c6c20d24b1d078fb81e38ec329f"><div class="ttname"><a href="test-adc_8c.html#a6c6d2c6c20d24b1d078fb81e38ec329f">HW_ADC_SEQ2_SEM</a></div><div class="ttdeci">semaphore_t HW_ADC_SEQ2_SEM</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8c_source.html#l00049">hardware.c:49</a></div></div>
+<div class="ttc" id="test-adc_8c_html_a4b37793c5cf800da09c2f6df8282c7f6"><div class="ttname"><a href="test-adc_8c.html#a4b37793c5cf800da09c2f6df8282c7f6">green_work</a></div><div class="ttdeci">uint32_t green_work</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00033">test-adc.c:33</a></div></div>
+<div class="ttc" id="thread__structures_8h_html_a2d834a21ca7f40cdb5177d43701bf085"><div class="ttname"><a href="thread__structures_8h.html#a2d834a21ca7f40cdb5177d43701bf085">sem_take</a></div><div class="ttdeci">#define sem_take(sem)</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00041">thread_structures.h:41</a></div></div>
+<div class="ttc" id="gpio_8h_html_adcaf899c018a0dde572b5af783565c62"><div class="ttname"><a href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></div><div class="ttdeci">#define GPIO_PIN_3</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00063">gpio.h:63</a></div></div>
+<div class="ttc" id="thread__structures_8h_html_acad9dc671d0e22093bc58ebc11a56829"><div class="ttname"><a href="thread__structures_8h.html#acad9dc671d0e22093bc58ebc11a56829">sem_guard</a></div><div class="ttdeci">#define sem_guard(sem)</div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00036">thread_structures.h:36</a></div></div>
+<div class="ttc" id="group___o_s_html_ga950493083c42b9fc7a7252112a941c3d"><div class="ttname"><a href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a></div><div class="ttdeci">#define os_surrender_context()</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00142">os.h:142</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-adc_8c_a222d45b9e4999c84a7113b56a2733887_cgraph.png" border="0" usemap="#test-adc_8c_a222d45b9e4999c84a7113b56a2733887_cgraph" alt=""/></div>
+<map name="test-adc_8c_a222d45b9e4999c84a7113b56a2733887_cgraph" id="test-adc_8c_a222d45b9e4999c84a7113b56a2733887_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="175,5,277,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="175,56,277,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-adc_8c_a222d45b9e4999c84a7113b56a2733887_icgraph.png" border="0" usemap="#test-adc_8c_a222d45b9e4999c84a7113b56a2733887_icgraph" alt=""/></div>
+<map name="test-adc_8c_a222d45b9e4999c84a7113b56a2733887_icgraph" id="test-adc_8c_a222d45b9e4999c84a7113b56a2733887_icgraph">
+<area shape="rect" id="node2" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="175,5,229,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acbd0a67d4b214af8305bdb9795b7b93f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void led_blink_red </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00035">35</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>References <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="os_8h_source.html#l00142">os_surrender_context</a>, and <a class="el" href="test-adc_8c_source.html#l00031">red_work</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                     {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        ++<a class="code" href="test-adc_8c.html#aeb0a9095d6e39c67dcb2d28fc1f5473b">red_work</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                     <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="test-adc_8c_html_aeb0a9095d6e39c67dcb2d28fc1f5473b"><div class="ttname"><a href="test-adc_8c.html#aeb0a9095d6e39c67dcb2d28fc1f5473b">red_work</a></div><div class="ttdeci">uint32_t red_work</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00031">test-adc.c:31</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="group___o_s_html_ga950493083c42b9fc7a7252112a941c3d"><div class="ttname"><a href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a></div><div class="ttdeci">#define os_surrender_context()</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00142">os.h:142</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph.png" border="0" usemap="#test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph" alt=""/></div>
+<map name="test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph" id="test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="159,5,261,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="159,56,261,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph.png" border="0" usemap="#test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph" alt=""/></div>
+<map name="test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph" id="test-adc_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph">
+<area shape="rect" id="node2" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="159,5,213,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a840291bc02cba5474a4cb46a9b9566fe"></a>
 <div class="memitem">
 <div class="memproto">
@@ -180,60 +363,100 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00026">26</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00065">65</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
 
-<p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00114">adc_collect()</a>, <a class="el" href="test-adc_8c_source.html#l00024">adc_data_buffer</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00025">adc_init()</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00058">adc_open()</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00884">ADCProcessorTrigger()</a>, <a class="el" href="fpu_8c_source.html#l00066">FPUEnable()</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01427">GPIOPinTypeGPIOOutput()</a>, <a class="el" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable()</a>, <a class="el" href="sysctl_8h_source.html#l00378">SYSCTL_OSC_MAIN</a>, <a class="el" href="sysctl_8h_source.html#l00076">SYSCTL_PERIPH_GPIOF</a>, <a class="el" href="sysctl_8h_source.html#l00116">SYSCTL_PERIPH_TIMER2</a>, <a class="el" href="sysctl_8h_source.html#l00221">SYSCTL_SYSDIV_1</a>, <a class="el" href="sysctl_8h_source.html#l00350">SYSCTL_USE_OSC</a>, <a class="el" href="sysctl_8h_source.html#l00372">SYSCTL_XTAL_16MHZ</a>, <a class="el" href="sysctl_8c_source.html#l02532">SysCtlClockSet()</a>, <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>, and <a class="el" href="hw__memmap_8h_source.html#l00081">TIMER0_BASE</a>.</p>
-<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;               {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6">FPUEnable</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">/* Enable TIMER2 (we are using) */</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2e20530c746e8845eee6e18ae701d422">SYSCTL_PERIPH_TIMER2</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">/* Enable processor interrupts. */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">/* Activate the ADC on PE1, 2, and 3 (AIN0-2). */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="lib_2libadc_2adc_8c.html#a2b815e6730e8723a6d1d06d9ef8f31c0">adc_init</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="lib_2libadc_2adc_8c.html#a366f67aa472a6eec29a0ee1049a5ad82">adc_open</a>(0);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="lib_2libadc_2adc_8c.html#a643156335942afa7ab62e0cee890fbd5">adc_collect</a>(0, 10, &amp;<a class="code" href="test-adc_8c.html#add8c54cffbf32d1c839e8551d2b4d900">adc_data_buffer</a>[0], <a class="code" href="hw__memmap_8h.html#a7a5c55fc79dee34c91502b0503404375">TIMER0_BASE</a>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">/* Trigger an initial ADC sequence. As far as I know this is</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">       required for proper init. */</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="group__adc__api.html#ga440fa9e04a1f5ebb18233e317159652d">ADCProcessorTrigger</a>(<a class="code" href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a>, 0);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">/* Do nothing */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">while</span> (1) {}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
-<div class="ttc" id="hw__memmap_8h_html_a7a5c55fc79dee34c91502b0503404375"><div class="ttname"><a href="hw__memmap_8h.html#a7a5c55fc79dee34c91502b0503404375">TIMER0_BASE</a></div><div class="ttdeci">#define TIMER0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00081">hw_memmap.h:81</a></div></div>
-<div class="ttc" id="lib_2libadc_2adc_8c_html_a643156335942afa7ab62e0cee890fbd5"><div class="ttname"><a href="lib_2libadc_2adc_8c.html#a643156335942afa7ab62e0cee890fbd5">adc_collect</a></div><div class="ttdeci">uint32_t adc_collect(uint32_t channel, uint32_t frequency, unsigned long buffer[], uint32_t timer_peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libadc_2adc_8c_source.html#l00114">adc.c:114</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a2222c3af2259930587efcb2a33c74fcc"><div class="ttname"><a href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a></div><div class="ttdeci">#define SYSCTL_PERIPH_GPIOF</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00076">sysctl.h:76</a></div></div>
+<p>References <a class="el" href="hardware_8h_source.html#l00100">hw_metadata::adc</a>, <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hardware_8c_source.html#l00046">ADC0_SEQ2_SAMPLES</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00085">ADC_CTL_CH0</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00083">ADC_CTL_END</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00082">ADC_CTL_IE</a>, <a class="el" href="test-adc_8c_source.html#l00030">adc_data_buffer</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00016">adc_init()</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00067">adc_interrupt_init()</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00065">ADC_TRIGGER_TIMER</a>, <a class="el" href="hardware_8h_source.html#l00063">hw_timer_metadata::base</a>, <a class="el" href="hardware_8h_source.html#l00086">hw_adc_metadata::base</a>, <a class="el" href="hardware_8h_source.html#l00089">hw_adc_metadata::channel</a>, <a class="el" href="hardware_8h_source.html#l00090">hw_adc_metadata::channel_configuration</a>, <a class="el" href="thread__structures_8h_source.html#l00100">DL_SOFT</a>, <a class="el" href="hardware_8h_source.html#l00064">hw_timer_metadata::frequency</a>, <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="gpio_8h_source.html#l00063">GPIO_PIN_3</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="heartbeat_8h_source.html#l00049">heart_init()</a>, <a class="el" href="nexus_8h_source.html#l00045">Hz</a>, <a class="el" href="hw__ints_8h_source.html#l00437">INT_TIMER1A</a>, <a class="el" href="hardware_8h_source.html#l00065">hw_timer_metadata::interrupt</a>, <a class="el" href="interrupt_8c_source.html#l00249">IntMasterDisable()</a>, <a class="el" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable()</a>, <a class="el" href="test-adc_8c_source.html#l00056">led_blink_blue()</a>, <a class="el" href="test-adc_8c_source.html#l00044">led_blink_green()</a>, <a class="el" href="test-adc_8c_source.html#l00035">led_blink_red()</a>, <a class="el" href="os_8c_source.html#l00161">os_launch()</a>, <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>, <a class="el" href="hardware_8h_source.html#l00066">hw_timer_metadata::periodic</a>, <a class="el" href="hardware_8h_source.html#l00088">hw_adc_metadata::sample_sequence</a>, <a class="el" href="os_8c_source.html#l00386">schedule()</a>, <a class="el" href="sysctl_8h_source.html#l00378">SYSCTL_OSC_MAIN</a>, <a class="el" href="sysctl_8h_source.html#l00221">SYSCTL_SYSDIV_1</a>, <a class="el" href="sysctl_8h_source.html#l00350">SYSCTL_USE_OSC</a>, <a class="el" href="sysctl_8h_source.html#l00372">SYSCTL_XTAL_16MHZ</a>, <a class="el" href="sysctl_8c_source.html#l02532">SysCtlClockSet()</a>, <a class="el" href="hardware_8h_source.html#l00079">adc_trigger_metadata::timer</a>, <a class="el" href="hw__memmap_8h_source.html#l00082">TIMER1_BASE</a>, <a class="el" href="driverlib_2timer_8h_source.html#l00062">TIMER_CFG_PERIODIC</a>, <a class="el" href="hardware_8h_source.html#l00091">hw_adc_metadata::trigger_metadata</a>, and <a class="el" href="hardware_8h_source.html#l00087">hw_adc_metadata::trigger_source</a>.</p>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;               {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">/* Enable processor interrupts. */</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">/* Activate the ADC on PE1, 2, and 3 (AIN0-2). */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">/* start adc init */</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="unionhw__metadata.html">hw_metadata</a> metadata;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a52c81864434d4cabfdb27a6386096d80">base</a> = <a class="code" href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a8ed7bc2f66447dc73b435bd8ca93a42e">trigger_source</a> = <a class="code" href="driverlib_2adc_8h.html#a4d3b233bd3d8bf3fe24e8b12c69ab51b">ADC_TRIGGER_TIMER</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a12cacaba47ec26b17d1f3a986358222a">sample_sequence</a> = 2;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a184a9eab85124a324907885a000cf696">channel</a> = 0;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a1bb65663080b5ff05e4404e0a804b903">channel_configuration</a> =</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="driverlib_2adc_8h.html#a1d9bb0edea889e50f498bed9f3d0d56d">ADC_CTL_CH0</a> | <a class="code" href="driverlib_2adc_8h.html#aa9d89137e6e59d20a829a2f5e75c5bb0">ADC_CTL_IE</a> | <a class="code" href="driverlib_2adc_8h.html#abf61d0d7cedaef76b823c83beb0a1e01">ADC_CTL_END</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a0cf3f38237c809e5c9d738ef8fa3eb78">trigger_metadata</a>.<a class="code" href="unionadc__trigger__metadata.html#a2eae09b8ddccf538355b20c0f7bba608">timer</a>.<a class="code" href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">base</a> = <a class="code" href="hw__memmap_8h.html#a7a4bd01d91a70285f0bec70f4e9e88bb">TIMER1_BASE</a>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a0cf3f38237c809e5c9d738ef8fa3eb78">trigger_metadata</a>.<a class="code" href="unionadc__trigger__metadata.html#a2eae09b8ddccf538355b20c0f7bba608">timer</a>.<a class="code" href="structhw__timer__metadata.html#a6dc2603e26981f3382fcb5d8d0222347">frequency</a> = 2 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a0cf3f38237c809e5c9d738ef8fa3eb78">trigger_metadata</a>.<a class="code" href="unionadc__trigger__metadata.html#a2eae09b8ddccf538355b20c0f7bba608">timer</a>.<a class="code" href="structhw__timer__metadata.html#ae806255a94fc0bd8574a057d8a121973">interrupt</a> = <a class="code" href="hw__ints_8h.html#a6892773550bab5f40261dc94d9a2f4fd">INT_TIMER1A</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    metadata.<a class="code" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a>.<a class="code" href="structhw__adc__metadata.html#a0cf3f38237c809e5c9d738ef8fa3eb78">trigger_metadata</a>.<a class="code" href="unionadc__trigger__metadata.html#a2eae09b8ddccf538355b20c0f7bba608">timer</a>.<a class="code" href="structhw__timer__metadata.html#a984b08462710210578e190c376d1ff77">periodic</a> = <a class="code" href="driverlib_2timer_8h.html#ab1cbfa3c9bc642108f8f2265541df7f4">TIMER_CFG_PERIODIC</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="lib_2libadc_2adc_8c.html#aa67c6db02c5779013fd326b77e30d9e6">adc_init</a>(metadata);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="lib_2libadc_2adc_8c.html#a2a0192f7421b57fffd79fa410131824e">adc_channel_init</a>(metadata);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="lib_2libadc_2adc_8c.html#af25a4123b6a3a85c67676b87c3eeaae7">adc_interrupt_init</a>(metadata);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="test-adc_8c.html#a20861150f9df641965b6b1c7b8c966f0">adc_data_buffer</a> = <a class="code" href="test-adc_8c.html#ab0be85b4a7246daacb08858ff337c3f6">ADC0_SEQ2_SAMPLES</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">/* end adc init */</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a>();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a>(<a class="code" href="test-adc_8c.html#acbd0a67d4b214af8305bdb9795b7b93f">led_blink_red</a>, 100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>, <a class="code" href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a>(<a class="code" href="test-adc_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623">led_blink_blue</a>, 100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>, <a class="code" href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a>(<a class="code" href="test-adc_8c.html#a222d45b9e4999c84a7113b56a2733887">led_blink_green</a>, 100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>, <a class="code" href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a>();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="ttc" id="test-adc_8c_html_a20861150f9df641965b6b1c7b8c966f0"><div class="ttname"><a href="test-adc_8c.html#a20861150f9df641965b6b1c7b8c966f0">adc_data_buffer</a></div><div class="ttdeci">uint32_t * adc_data_buffer</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00030">test-adc.c:30</a></div></div>
+<div class="ttc" id="structhw__adc__metadata_html_a12cacaba47ec26b17d1f3a986358222a"><div class="ttname"><a href="structhw__adc__metadata.html#a12cacaba47ec26b17d1f3a986358222a">hw_adc_metadata::sample_sequence</a></div><div class="ttdeci">uint32_t sample_sequence</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00088">hardware.h:88</a></div></div>
+<div class="ttc" id="driverlib_2timer_8h_html_ab1cbfa3c9bc642108f8f2265541df7f4"><div class="ttname"><a href="driverlib_2timer_8h.html#ab1cbfa3c9bc642108f8f2265541df7f4">TIMER_CFG_PERIODIC</a></div><div class="ttdeci">#define TIMER_CFG_PERIODIC</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8h_source.html#l00062">timer.h:62</a></div></div>
+<div class="ttc" id="structhw__adc__metadata_html_a52c81864434d4cabfdb27a6386096d80"><div class="ttname"><a href="structhw__adc__metadata.html#a52c81864434d4cabfdb27a6386096d80">hw_adc_metadata::base</a></div><div class="ttdeci">memory_address_t base</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00086">hardware.h:86</a></div></div>
+<div class="ttc" id="structhw__adc__metadata_html_a0cf3f38237c809e5c9d738ef8fa3eb78"><div class="ttname"><a href="structhw__adc__metadata.html#a0cf3f38237c809e5c9d738ef8fa3eb78">hw_adc_metadata::trigger_metadata</a></div><div class="ttdeci">adc_trigger_metadata trigger_metadata</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00091">hardware.h:91</a></div></div>
+<div class="ttc" id="test-adc_8c_html_ab2cc2f63a3682fc058f6b3b8dfd9e623"><div class="ttname"><a href="test-adc_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623">led_blink_blue</a></div><div class="ttdeci">void led_blink_blue()</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00056">test-adc.c:56</a></div></div>
+<div class="ttc" id="hw__ints_8h_html_a6892773550bab5f40261dc94d9a2f4fd"><div class="ttname"><a href="hw__ints_8h.html#a6892773550bab5f40261dc94d9a2f4fd">INT_TIMER1A</a></div><div class="ttdeci">#define INT_TIMER1A</div><div class="ttdef"><b>Definition:</b> <a href="hw__ints_8h_source.html#l00437">hw_ints.h:437</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a8c78f8e9ba8e9829e93824ec5dc90cc9"><div class="ttname"><a href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a></div><div class="ttdeci">#define SYSCTL_OSC_MAIN</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00378">sysctl.h:378</a></div></div>
-<div class="ttc" id="group__fpu__api_html_ga0ffddb189b5bae534eb10ca3f26f5cf6"><div class="ttname"><a href="group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6">FPUEnable</a></div><div class="ttdeci">void FPUEnable(void)</div><div class="ttdef"><b>Definition:</b> <a href="fpu_8c_source.html#l00066">fpu.c:66</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a0626a3210d8069dfd85a6ba94b4af45c"><div class="ttname"><a href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a></div><div class="ttdeci">#define SYSCTL_USE_OSC</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00350">sysctl.h:350</a></div></div>
+<div class="ttc" id="unionadc__trigger__metadata_html_a2eae09b8ddccf538355b20c0f7bba608"><div class="ttname"><a href="unionadc__trigger__metadata.html#a2eae09b8ddccf538355b20c0f7bba608">adc_trigger_metadata::timer</a></div><div class="ttdeci">hw_timer_metadata timer</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00079">hardware.h:79</a></div></div>
 <div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a2e20530c746e8845eee6e18ae701d422"><div class="ttname"><a href="sysctl_8h.html#a2e20530c746e8845eee6e18ae701d422">SYSCTL_PERIPH_TIMER2</a></div><div class="ttdeci">#define SYSCTL_PERIPH_TIMER2</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00116">sysctl.h:116</a></div></div>
 <div class="ttc" id="sysctl_8h_html_aa28940746d2ba2b251b11043dd8bc2fe"><div class="ttname"><a href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a></div><div class="ttdeci">#define SYSCTL_XTAL_16MHZ</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00372">sysctl.h:372</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_a6dc2603e26981f3382fcb5d8d0222347"><div class="ttname"><a href="structhw__timer__metadata.html#a6dc2603e26981f3382fcb5d8d0222347">hw_timer_metadata::frequency</a></div><div class="ttdeci">frequency_t frequency</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00064">hardware.h:64</a></div></div>
+<div class="ttc" id="lib_2libadc_2adc_8c_html_a2a0192f7421b57fffd79fa410131824e"><div class="ttname"><a href="lib_2libadc_2adc_8c.html#a2a0192f7421b57fffd79fa410131824e">adc_channel_init</a></div><div class="ttdeci">void adc_channel_init(hw_metadata metadata)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libadc_2adc_8c_source.html#l00036">adc.c:36</a></div></div>
+<div class="ttc" id="driverlib_2adc_8h_html_a1d9bb0edea889e50f498bed9f3d0d56d"><div class="ttname"><a href="driverlib_2adc_8h.html#a1d9bb0edea889e50f498bed9f3d0d56d">ADC_CTL_CH0</a></div><div class="ttdeci">#define ADC_CTL_CH0</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2adc_8h_source.html#l00085">adc.h:85</a></div></div>
+<div class="ttc" id="group___o_s_html_gae54705fc84d831fc8689cbd51c9714e0"><div class="ttname"><a href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a></div><div class="ttdeci">void os_threading_init()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00034">os.c:34</a></div></div>
+<div class="ttc" id="structhw__adc__metadata_html_a8ed7bc2f66447dc73b435bd8ca93a42e"><div class="ttname"><a href="structhw__adc__metadata.html#a8ed7bc2f66447dc73b435bd8ca93a42e">hw_adc_metadata::trigger_source</a></div><div class="ttdeci">uint32_t trigger_source</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00087">hardware.h:87</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_ae806255a94fc0bd8574a057d8a121973"><div class="ttname"><a href="structhw__timer__metadata.html#ae806255a94fc0bd8574a057d8a121973">hw_timer_metadata::interrupt</a></div><div class="ttdeci">uint32_t interrupt</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00065">hardware.h:65</a></div></div>
+<div class="ttc" id="os_8c_html_aa4b97ba3cbe3f6ef9decafcab1c1dc61"><div class="ttname"><a href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a></div><div class="ttdeci">void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00386">os.c:386</a></div></div>
 <div class="ttc" id="hw__memmap_8h_html_a0aa6c0c068af7a61c770bc6d4322d63e"><div class="ttname"><a href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a></div><div class="ttdeci">#define ADC0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00089">hw_memmap.h:89</a></div></div>
-<div class="ttc" id="lib_2libadc_2adc_8c_html_a2b815e6730e8723a6d1d06d9ef8f31c0"><div class="ttname"><a href="lib_2libadc_2adc_8c.html#a2b815e6730e8723a6d1d06d9ef8f31c0">adc_init</a></div><div class="ttdeci">void adc_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libadc_2adc_8c_source.html#l00025">adc.c:25</a></div></div>
-<div class="ttc" id="lib_2libadc_2adc_8c_html_a366f67aa472a6eec29a0ee1049a5ad82"><div class="ttname"><a href="lib_2libadc_2adc_8c.html#a366f67aa472a6eec29a0ee1049a5ad82">adc_open</a></div><div class="ttdeci">uint32_t adc_open(uint32_t channel)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libadc_2adc_8c_source.html#l00058">adc.c:58</a></div></div>
-<div class="ttc" id="group__sysctl__api_html_ga2fbae61db465e1d861a62785d28e3ad6"><div class="ttname"><a href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a></div><div class="ttdeci">void SysCtlPeripheralEnable(uint32_t ui32Peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l00841">sysctl.c:841</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_a7c062bb98a4a1124b1866ecfeda0245b"><div class="ttname"><a href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">hw_timer_metadata::base</a></div><div class="ttdeci">memory_address_t base</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00063">hardware.h:63</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a32aede06bdbbb7d5f923442f8e726615"><div class="ttname"><a href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a></div><div class="ttdeci">void heart_init()</div><div class="ttdoc">Initialize  for visible transformation. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00049">heartbeat.h:49</a></div></div>
+<div class="ttc" id="group___o_s_html_gafde304ef5313ffa073cea003547b33eb"><div class="ttname"><a href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a></div><div class="ttdeci">void os_launch()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00161">os.c:161</a></div></div>
+<div class="ttc" id="test-adc_8c_html_acbd0a67d4b214af8305bdb9795b7b93f"><div class="ttname"><a href="test-adc_8c.html#acbd0a67d4b214af8305bdb9795b7b93f">led_blink_red</a></div><div class="ttdeci">void led_blink_red()</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00035">test-adc.c:35</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a7a4bd01d91a70285f0bec70f4e9e88bb"><div class="ttname"><a href="hw__memmap_8h.html#a7a4bd01d91a70285f0bec70f4e9e88bb">TIMER1_BASE</a></div><div class="ttdeci">#define TIMER1_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00082">hw_memmap.h:82</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_a984b08462710210578e190c376d1ff77"><div class="ttname"><a href="structhw__timer__metadata.html#a984b08462710210578e190c376d1ff77">hw_timer_metadata::periodic</a></div><div class="ttdeci">uint32_t periodic</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00066">hardware.h:66</a></div></div>
+<div class="ttc" id="structhw__adc__metadata_html_a184a9eab85124a324907885a000cf696"><div class="ttname"><a href="structhw__adc__metadata.html#a184a9eab85124a324907885a000cf696">hw_adc_metadata::channel</a></div><div class="ttdeci">uint32_t channel</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00089">hardware.h:89</a></div></div>
+<div class="ttc" id="group__interrupt__api_html_gae3724c6b65b8461cf0441f09b13fadf5"><div class="ttname"><a href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a></div><div class="ttdeci">bool IntMasterDisable(void)</div><div class="ttdef"><b>Definition:</b> <a href="interrupt_8c_source.html#l00249">interrupt.c:249</a></div></div>
+<div class="ttc" id="gpio_8h_html_adcaf899c018a0dde572b5af783565c62"><div class="ttname"><a href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></div><div class="ttdeci">#define GPIO_PIN_3</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00063">gpio.h:63</a></div></div>
 <div class="ttc" id="interrupt_8h_html_a8321cf21088e200350d36827ecc6dad3"><div class="ttname"><a href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a></div><div class="ttdeci">bool IntMasterEnable(void)</div></div>
-<div class="ttc" id="group__gpio__api_html_gac962b2917f42452a32c1fea0d050e52e"><div class="ttname"><a href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a></div><div class="ttdeci">void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01427">gpio.c:1427</a></div></div>
-<div class="ttc" id="test-adc_8c_html_add8c54cffbf32d1c839e8551d2b4d900"><div class="ttname"><a href="test-adc_8c.html#add8c54cffbf32d1c839e8551d2b4d900">adc_data_buffer</a></div><div class="ttdeci">static uint32_t adc_data_buffer[3]</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00024">test-adc.c:24</a></div></div>
+<div class="ttc" id="unionhw__metadata_html"><div class="ttname"><a href="unionhw__metadata.html">hw_metadata</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00096">hardware.h:96</a></div></div>
+<div class="ttc" id="test-adc_8c_html_ab0be85b4a7246daacb08858ff337c3f6"><div class="ttname"><a href="test-adc_8c.html#ab0be85b4a7246daacb08858ff337c3f6">ADC0_SEQ2_SAMPLES</a></div><div class="ttdeci">uint32_t ADC0_SEQ2_SAMPLES[4]</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8c_source.html#l00046">hardware.c:46</a></div></div>
+<div class="ttc" id="thread__structures_8h_html_a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28"><div class="ttname"><a href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a></div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00100">thread_structures.h:100</a></div></div>
+<div class="ttc" id="unionhw__metadata_html_a48d53acfbaa9fcdd9c9891394535c1d8"><div class="ttname"><a href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">hw_metadata::adc</a></div><div class="ttdeci">hw_adc_metadata adc</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00100">hardware.h:100</a></div></div>
+<div class="ttc" id="driverlib_2adc_8h_html_abf61d0d7cedaef76b823c83beb0a1e01"><div class="ttname"><a href="driverlib_2adc_8h.html#abf61d0d7cedaef76b823c83beb0a1e01">ADC_CTL_END</a></div><div class="ttdeci">#define ADC_CTL_END</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2adc_8h_source.html#l00083">adc.h:83</a></div></div>
+<div class="ttc" id="driverlib_2adc_8h_html_a4d3b233bd3d8bf3fe24e8b12c69ab51b"><div class="ttname"><a href="driverlib_2adc_8h.html#a4d3b233bd3d8bf3fe24e8b12c69ab51b">ADC_TRIGGER_TIMER</a></div><div class="ttdeci">#define ADC_TRIGGER_TIMER</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2adc_8h_source.html#l00065">adc.h:65</a></div></div>
+<div class="ttc" id="lib_2libadc_2adc_8c_html_aa67c6db02c5779013fd326b77e30d9e6"><div class="ttname"><a href="lib_2libadc_2adc_8c.html#aa67c6db02c5779013fd326b77e30d9e6">adc_init</a></div><div class="ttdeci">void adc_init(hw_metadata metadata)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libadc_2adc_8c_source.html#l00016">adc.c:16</a></div></div>
+<div class="ttc" id="lib_2libadc_2adc_8c_html_af25a4123b6a3a85c67676b87c3eeaae7"><div class="ttname"><a href="lib_2libadc_2adc_8c.html#af25a4123b6a3a85c67676b87c3eeaae7">adc_interrupt_init</a></div><div class="ttdeci">void adc_interrupt_init(hw_metadata metadata)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libadc_2adc_8c_source.html#l00067">adc.c:67</a></div></div>
+<div class="ttc" id="test-adc_8c_html_a222d45b9e4999c84a7113b56a2733887"><div class="ttname"><a href="test-adc_8c.html#a222d45b9e4999c84a7113b56a2733887">led_blink_green</a></div><div class="ttdeci">void led_blink_green()</div><div class="ttdef"><b>Definition:</b> <a href="test-adc_8c_source.html#l00044">test-adc.c:44</a></div></div>
+<div class="ttc" id="nexus_8h_html_a2344d042b01c5e206dc80d736560cda0"><div class="ttname"><a href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a></div><div class="ttdeci">#define Hz</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00045">nexus.h:45</a></div></div>
 <div class="ttc" id="sysctl_8h_html_af260fa5184c1a3211ce39d09786ccc71"><div class="ttname"><a href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a></div><div class="ttdeci">#define SYSCTL_SYSDIV_1</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00221">sysctl.h:221</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_gab9c9f4e4588e1e9c5b42e3c3b109e5c1"><div class="ttname"><a href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a></div><div class="ttdeci">void SysCtlClockSet(uint32_t ui32Config)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02532">sysctl.c:2532</a></div></div>
-<div class="ttc" id="group__adc__api_html_ga440fa9e04a1f5ebb18233e317159652d"><div class="ttname"><a href="group__adc__api.html#ga440fa9e04a1f5ebb18233e317159652d">ADCProcessorTrigger</a></div><div class="ttdeci">void ADCProcessorTrigger(uint32_t ui32Base, uint32_t ui32SequenceNum)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2adc_8c_source.html#l00884">adc.c:884</a></div></div>
+<div class="ttc" id="driverlib_2adc_8h_html_aa9d89137e6e59d20a829a2f5e75c5bb0"><div class="ttname"><a href="driverlib_2adc_8h.html#aa9d89137e6e59d20a829a2f5e75c5bb0">ADC_CTL_IE</a></div><div class="ttdeci">#define ADC_CTL_IE</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2adc_8h_source.html#l00082">adc.h:82</a></div></div>
+<div class="ttc" id="structhw__adc__metadata_html_a1bb65663080b5ff05e4404e0a804b903"><div class="ttname"><a href="structhw__adc__metadata.html#a1bb65663080b5ff05e4404e0a804b903">hw_adc_metadata::channel_configuration</a></div><div class="ttdeci">uint32_t channel_configuration</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00090">hardware.h:90</a></div></div>
 <div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
@@ -241,34 +464,106 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="test-adc_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#test-adc_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
 <map name="test-adc_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="test-adc_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8c.html#a643156335942afa7ab62e0cee890fbd5" title="adc_collect" alt="" coords="139,31,232,57"/><area shape="rect" id="node4" href="lib_2libadc_2adc_8c.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="150,309,221,336"/><area shape="rect" id="node5" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="329,259,498,285"/><area shape="rect" id="node14" href="lib_2libadc_2adc_8c.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="143,132,227,159"/><area shape="rect" id="node17" href="group__adc__api.html#ga440fa9e04a1f5ebb18233e317159652d" title="ADCProcessorTrigger" alt="" coords="108,411,263,437"/><area shape="rect" id="node18" href="group__fpu__api.html#ga0ffddb189b5bae534eb10ca3f26f5cf6" title="FPUEnable" alt="" coords="140,461,231,488"/><area shape="rect" id="node19" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="326,512,501,539"/><area shape="rect" id="node20" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="123,512,248,539"/><area shape="rect" id="node21" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="126,563,245,589"/><area shape="rect" id="node3" href="lib_2libadc_2adc_8c.html#a7f489e79e99d187601565b91433406e5" title="encode_adc_channel" alt="" coords="335,5,491,32"/><area shape="rect" id="node6" href="group__sysctl__api.html#gadf2447348f48b339b8e7a73ed5e80afd" title="SysCtlGPIOAHBEnable" alt="" coords="331,309,495,336"/><area shape="rect" id="node7" href="group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="333,360,494,387"/><area shape="rect" id="node8" href="group__adc__api.html#ga810a79075c912e3079a0eadfcffa9446" title="ADCReferenceSet" alt="" coords="346,411,481,437"/><area shape="rect" id="node9" href="group__gpio__api.html#ga98f6b21513d01c1f2f755c6ff94ebe84" title="GPIOPinTypeADC" alt="" coords="349,461,477,488"/><area shape="rect" id="node12" href="group__adc__api.html#ga1771f99a5228971b923b336d1bdbb4cd" title="ADCSequenceStepConfigure" alt="" coords="311,157,516,184"/><area shape="rect" id="node13" href="group__adc__api.html#ga3d9afeb0aeb2726e1713b936229bb412" title="ADCSequenceEnable" alt="" coords="335,208,492,235"/><area shape="rect" id="node10" href="group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="569,461,697,488"/><area shape="rect" id="node11" href="group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="564,512,703,539"/><area shape="rect" id="node15" href="group__adc__api.html#gad8ad8b940627697b2efddbf01f771d76" title="ADCSequenceConfigure" alt="" coords="326,56,501,83"/><area shape="rect" id="node16" href="group__adc__api.html#ga207d2cf2a807efe846f15200462166b0" title="ADCIntClear" alt="" coords="364,107,463,133"/><area shape="rect" id="node22" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="364,563,463,589"/></map>
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8c.html#a2a0192f7421b57fffd79fa410131824e" title="adc_channel_init" alt="" coords="111,309,239,336"/><area shape="rect" id="node8" href="lib_2libadc_2adc_8c.html#aa67c6db02c5779013fd326b77e30d9e6" title="adc_init" alt="" coords="595,132,665,159"/><area shape="rect" id="node16" href="lib_2libadc_2adc_8c.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="108,639,241,665"/><area shape="rect" id="node40" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615" title="Initialize &#160;for visible transformation. " alt="" coords="589,259,671,285"/><area shape="rect" id="node42" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5" title="IntMasterDisable" alt="" coords="110,777,239,804"/><area shape="rect" id="node44" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="112,828,237,855"/><area shape="rect" id="node45" href="test-adc_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623" title="led_blink_blue" alt="" coords="119,929,230,956"/><area shape="rect" id="node48" href="test-adc_8c.html#a222d45b9e4999c84a7113b56a2733887" title="led_blink_green" alt="" coords="114,980,235,1007"/><area shape="rect" id="node49" href="test-adc_8c.html#acbd0a67d4b214af8305bdb9795b7b93f" title="led_blink_red" alt="" coords="122,879,227,905"/><area shape="rect" id="node50" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="131,727,218,753"/><area shape="rect" id="node60" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0" title="os_threading_init" alt="" coords="109,1031,240,1057"/><area shape="rect" id="node62" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61" title="schedule" alt="" coords="135,1081,214,1108"/><area shape="rect" id="node66" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="115,1157,234,1184"/><area shape="rect" id="node3" href="group__adc__api.html#gafe10a7ac89541fa4824b923b1a1ae770" title="ADCSequenceDisable" alt="" coords="311,183,473,209"/><area shape="rect" id="node4" href="group__adc__api.html#gad8ad8b940627697b2efddbf01f771d76" title="ADCSequenceConfigure" alt="" coords="305,233,479,260"/><area shape="rect" id="node5" href="group__adc__api.html#ga1771f99a5228971b923b336d1bdbb4cd" title="ADCSequenceStepConfigure" alt="" coords="289,284,495,311"/><area shape="rect" id="node6" href="group__adc__api.html#ga2ce4cfdfe4e47c998872215490121973" title="ADCIntEnable" alt="" coords="337,335,447,361"/><area shape="rect" id="node7" href="group__adc__api.html#ga3d9afeb0aeb2726e1713b936229bb412" title="ADCSequenceEnable" alt="" coords="313,385,471,412"/><area shape="rect" id="node9" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="776,208,945,235"/><area shape="rect" id="node10" href="group__sysctl__api.html#gadf2447348f48b339b8e7a73ed5e80afd" title="SysCtlGPIOAHBEnable" alt="" coords="779,107,943,133"/><area shape="rect" id="node11" href="group__gpio__api.html#ga98f6b21513d01c1f2f755c6ff94ebe84" title="GPIOPinTypeADC" alt="" coords="797,157,925,184"/><area shape="rect" id="node14" href="group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="780,5,941,32"/><area shape="rect" id="node15" href="group__adc__api.html#ga810a79075c912e3079a0eadfcffa9446" title="ADCReferenceSet" alt="" coords="793,56,928,83"/><area shape="rect" id="node12" href="group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="1009,284,1137,311"/><area shape="rect" id="node13" href="group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="1004,233,1143,260"/><area shape="rect" id="node17" href="group__timer__api.html#gaf4ae82873e7e2940b136302d4f6404bb" title="TimerControlTrigger" alt="" coords="319,639,465,665"/><area shape="rect" id="node18" href="hardware_8c.html#a4377b4060f0e1b1d66289a800dd8cfd5" title="hw_channel_init" alt="" coords="331,588,453,615"/><area shape="rect" id="node29" href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="820,411,901,437"/><area shape="rect" id="node39" href="group__adc__api.html#ga207d2cf2a807efe846f15200462166b0" title="ADCIntClear" alt="" coords="343,689,441,716"/><area shape="rect" id="node19" href="hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="565,892,695,919"/><area shape="rect" id="node21" href="group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f" title="uart_init" alt="" coords="593,588,667,615"/><area shape="rect" id="node31" href="lib_2libtimer_2timer_8c.html#a2eeca9a71be3572b1bf0148e62466989" title="timer_add_interrupt" alt="" coords="555,765,705,792"/><area shape="rect" id="node36" href="group___button.html#ga0b6f1ae2e51bbb9ca38f170a530e693f" title="button_set_interrupt" alt="" coords="553,385,707,412"/><area shape="rect" id="node20" href="hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="787,968,934,995"/><area shape="rect" id="node22" href="group___u_a_r_t.html#ga51e29ff163cc0fb5ab3f0417029fcb45" title="uart_set_active_metadata" alt="" coords="765,664,956,691"/><area shape="rect" id="node23" href="group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640" title="GPIOPinConfigure" alt="" coords="794,512,927,539"/><area shape="rect" id="node24" href="group__gpio__api.html#ga9f6bf578f3159dc41626a84108d006b8" title="GPIOPinTypeUART" alt="" coords="794,461,927,488"/><area shape="rect" id="node25" href="group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b" title="UARTConfigSetExpClk" alt="" coords="781,613,940,640"/><area shape="rect" id="node28" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="801,917,920,944"/><area shape="rect" id="node30" href="group__uart__api.html#ga2348192170cdf1bb031fa4ce88c35495" title="UARTIntEnable" alt="" coords="803,563,918,589"/><area shape="rect" id="node26" href="group__uart__api.html#ga24b7349b5fd44c56e552d2d3fa2e4057" title="UARTDisable" alt="" coords="1022,588,1125,615"/><area shape="rect" id="node27" href="group__uart__api.html#ga93ba793d082da8ceb2ddab3ddc650a35" title="UARTEnable" alt="" coords="1024,639,1123,665"/><area shape="rect" id="node32" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8" title="TimerConfigure" alt="" coords="801,765,920,792"/><area shape="rect" id="node33" href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c" title="TimerEnable" alt="" coords="810,816,911,843"/><area shape="rect" id="node34" href="group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf" title="TimerIntEnable" alt="" coords="802,867,919,893"/><area shape="rect" id="node35" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613" title="TimerLoadSet" alt="" coords="805,715,916,741"/><area shape="rect" id="node37" href="group__gpio__api.html#gad98083fe7f4ce6c4e7daf004768dec1d" title="GPIOIntTypeSet" alt="" coords="801,309,920,336"/><area shape="rect" id="node38" href="group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="818,360,903,387"/><area shape="rect" id="node41" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="773,259,948,285"/><area shape="rect" id="node43" href="cpu_8h.html#a491d851c4f7fff1f9f66aa778b0671b0" title="CPUcpsid" alt="" coords="351,841,433,868"/><area shape="rect" id="node46" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="341,955,443,981"/><area shape="rect" id="node47" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="341,904,443,931"/><area shape="rect" id="node51" href="os_8c.html#a9c501e25b473053fd85e419016865d81" title="edf_init" alt="" coords="596,981,664,1008"/><area shape="rect" id="node53" href="os_8c.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="301,791,483,817"/><area shape="rect" id="node52" href="os_8c.html#a9e60608a8e73ad2b74d172acd369999e" title="edf_insert" alt="" coords="818,1019,903,1045"/><area shape="rect" id="node54" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="549,1069,711,1096"/><area shape="rect" id="node55" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="805,1120,917,1147"/><area shape="rect" id="node56" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="797,1171,925,1197"/><area shape="rect" id="node57" href="group__systick__api.html#ga0b993bfbd72abac7286c4f54369576f2" title="SysTickDisable" alt="" coords="803,1221,919,1248"/><area shape="rect" id="node58" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="795,1272,926,1299"/><area shape="rect" id="node59" href="group__interrupt__api.html#gafe17b56764bff1bcb95bd53acde4ac98" title="IntPendSet" alt="" coords="815,1069,907,1096"/><area shape="rect" id="node61" href="os_8c.html#abf76f28d35f214c1654de5c356f1bee1" title="schedule_init" alt="" coords="339,1031,445,1057"/><area shape="rect" id="node63" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f" title="os_add_thread" alt="" coords="333,1081,451,1108"/><area shape="rect" id="node65" href="os_8c.html#a2e06c0d5b44dc2b4733dfbff30142519" title="schedule_hash_find_int" alt="" coords="307,1132,477,1159"/><area shape="rect" id="node64" href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a" title="_os_reset_thread_stack" alt="" coords="543,1120,717,1147"/><area shape="rect" id="node67" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="343,1183,441,1209"/></map>
 </div>
 </p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="add8c54cffbf32d1c839e8551d2b4d900"></a>
+<a class="anchor" id="ab0be85b4a7246daacb08858ff337c3f6"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t adc_data_buffer[3]</td>
+          <td class="memname">uint32_t ADC0_SEQ2_SAMPLES[4]</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00024">24</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8c_source.html#l00046">46</a> of file <a class="el" href="hardware_8c_source.html">hardware.c</a>.</p>
 
-<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00026">main()</a>.</p>
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a20861150f9df641965b6b1c7b8c966f0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t* adc_data_buffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00030">30</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a858f35dd4dd8f48f10a9df3054ae2186"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t blue_work = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00032">32</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00056">led_blink_blue()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b37793c5cf800da09c2f6df8282c7f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t green_work = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00033">33</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00044">led_blink_green()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c6d2c6c20d24b1d078fb81e38ec329f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="thread__structures_8h.html#a0728eadd5945479c8950f248b5d35a75">semaphore_t</a> HW_ADC_SEQ2_SEM</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8c_source.html#l00049">49</a> of file <a class="el" href="hardware_8c_source.html">hardware.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00044">led_blink_green()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeb0a9095d6e39c67dcb2d28fc1f5473b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t red_work = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-adc_8c_source.html#l00031">31</a> of file <a class="el" href="test-adc_8c_source.html">test-adc.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00035">led_blink_red()</a>.</p>
 
 </div>
 </div>
@@ -278,7 +573,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_8f4eebbc5be43a6e6baf1c6b1e65cd8a.html">board-progs</a></li><li class="navelem"><a class="el" href="dir_f1c24b5bbc1cbb28bda5f9fa51dbca15.html">test-adc</a></li><li class="navelem"><a class="el" href="test-adc_8c.html">test-adc.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:38 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

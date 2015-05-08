@@ -1,0 +1,9 @@
+<map id="board&#45;progs/autonomous&#45;racer/common/uartpp.hpp" name="board&#45;progs/autonomous&#45;racer/common/uartpp.hpp">
+<area shape="rect" id="node2" href="$shellpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/shellpp.hpp" alt="" coords="465,95,664,136"/>
+<area shape="rect" id="node4" href="$move-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/move/move&#45;main.cpp" alt="" coords="5,191,209,233"/>
+<area shape="rect" id="node5" href="$sense-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/sense/sense&#45;main.cpp" alt="" coords="234,191,442,233"/>
+<area shape="rect" id="node6" href="$test-countdown_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;countdown\l/test&#45;countdown.cpp" alt="" coords="688,184,873,240"/>
+<area shape="rect" id="node7" href="$test-ping_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;ping/test\l&#45;ping.cpp" alt="" coords="897,184,1083,240"/>
+<area shape="rect" id="node8" href="$uartpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/uartpp.cpp" alt="" coords="789,95,983,136"/>
+<area shape="rect" id="node3" href="$shellpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/shellpp.cpp" alt="" coords="466,191,663,233"/>
+</map>

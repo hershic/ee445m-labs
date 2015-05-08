@@ -1,0 +1,9 @@
+<map id="shell::type" name="shell::type">
+<area shape="rect" id="node2" href="$classbuffer.html#a03c8b5052e929db91e4936acedc36858" title="buffer::add" alt="" coords="165,5,255,32"/>
+<area shape="rect" id="node3" href="$classuart.html#adeebcadf1fef9e48ad79b246d2ee21e4" title="uart::atomic_printf" alt="" coords="140,56,280,83"/>
+<area shape="rect" id="node8" href="$classbuffer.html#a03aa138f8463dbab76bf563f31272f64" title="buffer::full" alt="" coords="167,107,253,133"/>
+<area shape="rect" id="node4" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="328,5,475,32"/>
+<area shape="rect" id="node5" href="$classuart.html#abc16bbe576600cb436dac853566779e9" title="uart::vprintf" alt="" coords="353,56,449,83"/>
+<area shape="rect" id="node7" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="332,107,471,133"/>
+<area shape="rect" id="node6" href="$uartpp_8cpp.html#aa3ccf12f132efb18693ee7c504e0c7ad" title="UARTwrite" alt="" coords="523,56,605,83"/>
+</map>

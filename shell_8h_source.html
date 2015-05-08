@@ -118,50 +118,53 @@ $(document).ready(function(){initNavTree('shell_8h_source.html','');});
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nexus_8h.html">libstd/nexus.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="system_8h.html">libos/system.h</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="kbd_8h.html">libio/kbd.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* PS1 properties */</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="shell_8h.html#ae4c3fe3e7a0fd7c35fc49a7c2f63e58a">   12</a></span>&#160;<span class="preprocessor">#define SHELL_MAX_PS1_LENGTH 4</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="shell_8h.html#ae5cb86cac9f0df08b20fc87a38a7153b">   15</a></span>&#160;<span class="preprocessor">#define SHELL_BUFFER_LENGTH 64</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/********************** Obey the `thread` interface **********************/</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="shell_8h.html#a49dea7b7117069659519b1e5edbcc5b7">shell_represent</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/*************************************************************************/</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e">shell_uart0_handler</a>(<span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="notify_8h.html">libnotify/notify.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="group___shell.html#gae4c3fe3e7a0fd7c35fc49a7c2f63e58a">   17</a></span>&#160;<span class="preprocessor">#define SHELL_MAX_PS1_LENGTH 4</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="group___shell.html#gae5cb86cac9f0df08b20fc87a38a7153b">   20</a></span>&#160;<span class="preprocessor">#define SHELL_BUFFER_LENGTH 64</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/********************** Obey the `thread` interface **********************/</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="group___shell.html#ga49dea7b7117069659519b1e5edbcc5b7">shell_represent</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/*************************************************************************/</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shell_8h.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shell_8h.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shell_8h.html#a0404283fc68cfc12299c9f5a57b2e791">shell_set_ps1</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="system_8h.html#aa140689245c747167ae46f5dab0d48d5">exit_status_t</a> <a class="code" href="shell_8h.html#ab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___shell.html#gaec52690701ae80176644c9f0178f895c">shell_uart_handler</a>(<a class="code" href="unionnotification.html">notification</a>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___shell.html#ga2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___shell.html#ga2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___shell.html#ga0404283fc68cfc12299c9f5a57b2e791">shell_set_ps1</a>();</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="shell_8h_html_a0404283fc68cfc12299c9f5a57b2e791"><div class="ttname"><a href="shell_8h.html#a0404283fc68cfc12299c9f5a57b2e791">shell_set_ps1</a></div><div class="ttdeci">void shell_set_ps1()</div></div>
-<div class="ttc" id="shell_8h_html_a49dea7b7117069659519b1e5edbcc5b7"><div class="ttname"><a href="shell_8h.html#a49dea7b7117069659519b1e5edbcc5b7">shell_represent</a></div><div class="ttdeci">char * shell_represent()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00035">shell.c:35</a></div></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<a class="code" href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a> <a class="code" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="ttc" id="notify_8h_html"><div class="ttname"><a href="notify_8h.html">notify.h</a></div></div>
+<div class="ttc" id="group___shell_html_ga2eedbe4e196101938ff65d3ba7fc788a"><div class="ttname"><a href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a></div><div class="ttdeci">void shell_kill()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00044">shell.c:44</a></div></div>
+<div class="ttc" id="group___shell_html_ga44f2d49f37741178da7a3c0e86c5c1db"><div class="ttname"><a href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a></div><div class="ttdeci">void shell_spawn()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00026">shell.c:26</a></div></div>
 <div class="ttc" id="kbd_8h_html"><div class="ttname"><a href="kbd_8h.html">kbd.h</a></div></div>
-<div class="ttc" id="shell_8h_html_a44f2d49f37741178da7a3c0e86c5c1db"><div class="ttname"><a href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a></div><div class="ttdeci">void shell_spawn()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00023">shell.c:23</a></div></div>
-<div class="ttc" id="system_8h_html_aa140689245c747167ae46f5dab0d48d5"><div class="ttname"><a href="system_8h.html#aa140689245c747167ae46f5dab0d48d5">exit_status_t</a></div><div class="ttdeci">uint8_t exit_status_t</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00019">system.h:19</a></div></div>
-<div class="ttc" id="shell_8h_html_ab1d2819a7bd745c8de3853ed4526fb70"><div class="ttname"><a href="shell_8h.html#ab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a></div><div class="ttdeci">exit_status_t shell_execute_command()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00091">shell.c:91</a></div></div>
-<div class="ttc" id="shell_8h_html_a2c27dcedd94d65632369ca4dda2cfbfb"><div class="ttname"><a href="shell_8h.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a></div><div class="ttdeci">void shell_print_ps1()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00086">shell.c:86</a></div></div>
+<div class="ttc" id="group___shell_html_ga49dea7b7117069659519b1e5edbcc5b7"><div class="ttname"><a href="group___shell.html#ga49dea7b7117069659519b1e5edbcc5b7">shell_represent</a></div><div class="ttdeci">char * shell_represent()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00038">shell.c:38</a></div></div>
+<div class="ttc" id="group___shell_html_ga0404283fc68cfc12299c9f5a57b2e791"><div class="ttname"><a href="group___shell.html#ga0404283fc68cfc12299c9f5a57b2e791">shell_set_ps1</a></div><div class="ttdeci">void shell_set_ps1()</div></div>
+<div class="ttc" id="group___shell_html_ga2cd508ee7e1311f95244ccf1aa80ee11"><div class="ttname"><a href="group___shell.html#ga2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a></div><div class="ttdeci">void shell_clear_shell_buffer()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00088">shell.c:88</a></div></div>
+<div class="ttc" id="group___shell_html_gab1d2819a7bd745c8de3853ed4526fb70"><div class="ttname"><a href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a></div><div class="ttdeci">exit_status_t shell_execute_command()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00099">shell.c:99</a></div></div>
+<div class="ttc" id="group___system_html_gaa140689245c747167ae46f5dab0d48d5"><div class="ttname"><a href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a></div><div class="ttdeci">uint8_t exit_status_t</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00024">system.h:24</a></div></div>
+<div class="ttc" id="group___shell_html_ga2c27dcedd94d65632369ca4dda2cfbfb"><div class="ttname"><a href="group___shell.html#ga2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a></div><div class="ttdeci">void shell_print_ps1()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00094">shell.c:94</a></div></div>
 <div class="ttc" id="system_8h_html"><div class="ttname"><a href="system_8h.html">system.h</a></div></div>
-<div class="ttc" id="shell_8h_html_a2cd508ee7e1311f95244ccf1aa80ee11"><div class="ttname"><a href="shell_8h.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a></div><div class="ttdeci">void shell_clear_shell_buffer()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00080">shell.c:80</a></div></div>
-<div class="ttc" id="shell_8h_html_a51e2ae976e37f2523278e11886675f7e"><div class="ttname"><a href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e">shell_uart0_handler</a></div><div class="ttdeci">void shell_uart0_handler(char)</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00046">shell.c:46</a></div></div>
-<div class="ttc" id="shell_8h_html_a2eedbe4e196101938ff65d3ba7fc788a"><div class="ttname"><a href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a></div><div class="ttdeci">void shell_kill()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00041">shell.c:41</a></div></div>
+<div class="ttc" id="group___shell_html_gaec52690701ae80176644c9f0178f895c"><div class="ttname"><a href="group___shell.html#gaec52690701ae80176644c9f0178f895c">shell_uart_handler</a></div><div class="ttdeci">void shell_uart_handler(notification)</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00051">shell.c:51</a></div></div>
 <div class="ttc" id="nexus_8h_html"><div class="ttname"><a href="nexus_8h.html">nexus.h</a></div></div>
+<div class="ttc" id="unionnotification_html"><div class="ttname"><a href="unionnotification.html">notification</a></div><div class="ttdef"><b>Definition:</b> <a href="notify_8h_source.html#l00022">notify.h:22</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_41c591045f1a87da6484e28b04fa7ec4.html">libshell</a></li><li class="navelem"><a class="el" href="shell_8h.html">shell.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:37 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -117,7 +117,7 @@ Include dependency graph for nexus.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="nexus_8c__incl.png" border="0" usemap="#lib_2libstd_2nexus_8c" alt=""/></div>
 <map name="lib_2libstd_2nexus_8c" id="lib_2libstd_2nexus_8c">
-<area shape="rect" id="node2" href="nexus_8h.html" title="nexus.h" alt="" coords="59,80,131,107"/><area shape="rect" id="node3" href="defines_8h.html" title="defines.h" alt="" coords="6,155,86,181"/></map>
+<area shape="rect" id="node2" href="nexus_8h.html" title="nexus.h" alt="" coords="43,80,115,107"/><area shape="rect" id="node3" href="defines_8h.html" title="defines.h" alt="" coords="78,155,158,181"/></map>
 </div>
 </div>
 <p><a href="nexus_8c_source.html">Go to the source code of this file.</a></p>
@@ -126,6 +126,8 @@ Include dependency graph for nexus.c:</div>
 Functions</h2></td></tr>
 <tr class="memitem:a7bcdacdb9ea762dccdd9f6de4292f9ee"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee">memset</a> (void *b, int c, int len)</td></tr>
 <tr class="separator:a7bcdacdb9ea762dccdd9f6de4292f9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45fd60d576394d7c39c9e584afd449ae"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a45fd60d576394d7c39c9e584afd449ae">ustrlen</a> (const char *s)</td></tr>
+<tr class="separator:a45fd60d576394d7c39c9e584afd449ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac13fcce69aa4b6f7aa32c9081a69c75d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d">memcpy</a> (void *str1, const void *str2, long n)</td></tr>
 <tr class="separator:ac13fcce69aa4b6f7aa32c9081a69c75d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11bd144d7d44914099a3aeddf1c8567d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d">strcmp</a> (const char *s1, const char *s2)</td></tr>
@@ -134,50 +136,8 @@ Functions</h2></td></tr>
 <tr class="separator:a40a26471038e995e0f16f3d4d9ae02eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a869cbd940970e2864d1181640b665445"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a869cbd940970e2864d1181640b665445">ustrcpy</a> (char *dest, const char *source)</td></tr>
 <tr class="separator:a869cbd940970e2864d1181640b665445"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a025505fff239e04c19c67f2ff72e9a73"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#a025505fff239e04c19c67f2ff72e9a73">StartCritical</a> ()</td></tr>
-<tr class="separator:a025505fff239e04c19c67f2ff72e9a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acac2b8577facf88812937428e6ab9bf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nexus_8c.html#acac2b8577facf88812937428e6ab9bf8">EndCritical</a> (int32_t primask)</td></tr>
-<tr class="separator:acac2b8577facf88812937428e6ab9bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="acac2b8577facf88812937428e6ab9bf8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void EndCritical </td>
-          <td>(</td>
-          <td class="paramtype">int32_t&#160;</td>
-          <td class="paramname"><em>primask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>End a non-interruptable critical section which restores the priority mask </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">primask</td><td>the priority mask to restore </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="nexus_8c_source.html#l00076">76</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
-
-<p>Referenced by <a class="el" href="os_8c_source.html#l00041">os_add_thread()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                  {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">asm</span>(<span class="stringliteral">&quot;MSR    PRIMASK, R0\n&quot;</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph.png" border="0" usemap="#nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph" alt=""/></div>
-<map name="nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph" id="nexus_8c_acac2b8577facf88812937428e6ab9bf8_icgraph">
-<area shape="rect" id="node2" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd" title="os_add_thread" alt="" coords="143,5,260,32"/><area shape="rect" id="node3" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="308,5,363,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
 <a class="anchor" id="ac13fcce69aa4b6f7aa32c9081a69c75d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -209,25 +169,25 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>A duplicate of the c standard memcpy function. </p>
 
-<p>Definition at line <a class="el" href="nexus_8c_source.html#l00019">19</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00025">25</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00074">shell_set_ps1()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                                   {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">long</span> i = 0;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    uint8_t *dest8 = (uint8_t*)str1;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    uint8_t *source8 = (uint8_t*)str2;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">for</span> (i=0; i&lt;n; ++i) {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        dest8[i] = source8[i];</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00082">shell_set_ps1()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                                   {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">long</span> i = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint8_t *dest8 = (uint8_t*)str1;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    uint8_t *source8 = (uint8_t*)str2;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">for</span> (i=0; i&lt;n; ++i) {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        dest8[i] = source8[i];</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="nexus_8c_ac13fcce69aa4b6f7aa32c9081a69c75d_icgraph.png" border="0" usemap="#nexus_8c_ac13fcce69aa4b6f7aa32c9081a69c75d_icgraph" alt=""/></div>
 <map name="nexus_8c_ac13fcce69aa4b6f7aa32c9081a69c75d_icgraph" id="nexus_8c_ac13fcce69aa4b6f7aa32c9081a69c75d_icgraph">
-<area shape="rect" id="node2" href="shell_8c.html#a82067f3bc8231ce612155160452ddac2" title="shell_set_ps1" alt="" coords="132,5,240,32"/><area shape="rect" id="node3" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="288,5,387,32"/><area shape="rect" id="node4" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="435,5,489,32"/></map>
+<area shape="rect" id="node2" href="shell_8c.html#a82067f3bc8231ce612155160452ddac2" title="shell_set_ps1" alt="" coords="132,5,240,32"/><area shape="rect" id="node3" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="288,5,387,32"/><area shape="rect" id="node4" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="435,5,489,32"/></map>
 </div>
 </p>
 
@@ -266,7 +226,7 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="nexus_8c_source.html#l00004">4</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00080">shell_clear_shell_buffer()</a>, <a class="el" href="softuart_8c_source.html#l00156">SoftUARTInit()</a>, and <a class="el" href="system_8c_source.html#l00027">system_register_command()</a>.</p>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00088">shell_clear_shell_buffer()</a>, and <a class="el" href="system_8c_source.html#l00029">system_register_command()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;                                      {</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">int</span> i;</div>
@@ -285,40 +245,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph.png" border="0" usemap="#nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph" alt=""/></div>
 <map name="nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph" id="nexus_8c_a7bcdacdb9ea762dccdd9f6de4292f9ee_icgraph">
-<area shape="rect" id="node2" href="shell_8h.html#a2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="129,5,299,32"/><area shape="rect" id="node7" href="group__softuart__api.html#ga67de09a828f666bfcf91942a1caca842" title="SoftUARTInit" alt="" coords="164,56,264,83"/><area shape="rect" id="node8" href="system_8h.html#af7853b2b79407221baa96df8374fbd5b" title="system_register_command" alt="" coords="347,107,544,133"/><area shape="rect" id="node3" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="592,5,691,32"/><area shape="rect" id="node5" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="372,56,519,83"/><area shape="rect" id="node4" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="739,56,793,83"/><area shape="rect" id="node6" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="604,56,679,83"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a025505fff239e04c19c67f2ff72e9a73"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t StartCritical </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Begin a non-interruptable critical section which preserves the priority mask </p><dl class="section return"><dt>Returns</dt><dd>the current priority mask </dd></dl>
-
-<p>Definition at line <a class="el" href="nexus_8c_source.html#l00071">71</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
-
-<p>Referenced by <a class="el" href="os_8c_source.html#l00041">os_add_thread()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">asm</span>(<span class="stringliteral">&quot;MRS    R0, PRIMASK  ;// save old status\n&quot;</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="stringliteral">&quot;CPSID  I            ;// mask all (except faults)\n&quot;</span>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph.png" border="0" usemap="#nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph" alt=""/></div>
-<map name="nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph" id="nexus_8c_a025505fff239e04c19c67f2ff72e9a73_icgraph">
-<area shape="rect" id="node2" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd" title="os_add_thread" alt="" coords="151,5,268,32"/><area shape="rect" id="node3" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="316,5,371,32"/></map>
+<area shape="rect" id="node2" href="group___shell.html#ga2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="129,56,299,83"/><area shape="rect" id="node7" href="group___system.html#gaf7853b2b79407221baa96df8374fbd5b" title="system_register_command" alt="" coords="347,107,544,133"/><area shape="rect" id="node3" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="592,5,691,32"/><area shape="rect" id="node5" href="group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="376,56,515,83"/><area shape="rect" id="node4" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="739,56,793,83"/><area shape="rect" id="node6" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="604,56,679,83"/></map>
 </div>
 </p>
 
@@ -349,16 +276,16 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>A duplicate of the c standard strcmp function. </p>
 
-<p>Definition at line <a class="el" href="nexus_8c_source.html#l00029">29</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00035">35</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
 
-<p>References <a class="el" href="nexus_8c_source.html#l00034">ustrncmp()</a>.</p>
+<p>References <a class="el" href="nexus_8c_source.html#l00040">ustrncmp()</a>.</p>
 
-<p>Referenced by <a class="el" href="system_8c_source.html#l00056">_system_command_from_name()</a>, and <a class="el" href="cmdline_8c_source.html#l00077">CmdLineProcess()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                           {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">return</span>(<a class="code" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb">ustrncmp</a>(s1, s2, (uint32_t)-1));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
-<div class="ttc" id="nexus_8c_html_a40a26471038e995e0f16f3d4d9ae02eb"><div class="ttname"><a href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb">ustrncmp</a></div><div class="ttdeci">int ustrncmp(const char *s1, const char *s2, uint32_t n)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00034">nexus.c:34</a></div></div>
+<p>Referenced by <a class="el" href="system_8c_source.html#l00058">_system_command_from_name()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                                           {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">return</span>(<a class="code" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb">ustrncmp</a>(s1, s2, (uint32_t)-1));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="ttc" id="nexus_8c_html_a40a26471038e995e0f16f3d4d9ae02eb"><div class="ttname"><a href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb">ustrncmp</a></div><div class="ttdeci">int ustrncmp(const char *s1, const char *s2, uint32_t n)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00040">nexus.c:40</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -374,7 +301,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="nexus_8c_a11bd144d7d44914099a3aeddf1c8567d_icgraph.png" border="0" usemap="#nexus_8c_a11bd144d7d44914099a3aeddf1c8567d_icgraph" alt=""/></div>
 <map name="nexus_8c_a11bd144d7d44914099a3aeddf1c8567d_icgraph" id="nexus_8c_a11bd144d7d44914099a3aeddf1c8567d_icgraph">
-<area shape="rect" id="node2" href="system_8h.html#ac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="120,31,349,57"/><area shape="rect" id="node10" href="group__cmdline__api.html#ga12a9baf85cb76825f7bfc20d79bd0b19" title="CmdLineProcess" alt="" coords="171,81,299,108"/><area shape="rect" id="node3" href="system_8h.html#afe0463ce5dac9471aada75540b62c9e2" title="system_deregister_command" alt="" coords="397,5,611,32"/><area shape="rect" id="node4" href="system_8h.html#abf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="451,56,557,83"/><area shape="rect" id="node5" href="shell_8h.html#ab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="659,56,840,83"/><area shape="rect" id="node6" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="888,56,1035,83"/><area shape="rect" id="node7" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="1095,31,1169,57"/><area shape="rect" id="node8" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="1083,81,1181,108"/><area shape="rect" id="node9" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1229,81,1284,108"/></map>
+<area shape="rect" id="node2" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="120,31,349,57"/><area shape="rect" id="node3" href="group___system.html#gafe0463ce5dac9471aada75540b62c9e2" title="system_deregister_command" alt="" coords="397,5,611,32"/><area shape="rect" id="node4" href="group___system.html#gabf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="451,56,557,83"/><area shape="rect" id="node5" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="659,56,840,83"/><area shape="rect" id="node6" href="group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="888,56,1027,83"/><area shape="rect" id="node7" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="1075,31,1173,57"/><area shape="rect" id="node9" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="1087,81,1161,108"/><area shape="rect" id="node8" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="1221,31,1276,57"/></map>
 </div>
 </p>
 
@@ -405,23 +332,58 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>A duplicate of the c standard strcpy function. </p>
 
-<p>Definition at line <a class="el" href="nexus_8c_source.html#l00063">63</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00069">69</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
 
-<p>Referenced by <a class="el" href="system_8c_source.html#l00027">system_register_command()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                             {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    uint32_t i = 0;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    dest[i] = source[i];</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (dest[i++] == <span class="charliteral">&#39;\0&#39;</span>) { <span class="keywordflow">break</span>; }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<p>Referenced by <a class="el" href="system_8c_source.html#l00029">system_register_command()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                             {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    uint32_t i = 0;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    dest[i] = source[i];</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span> (dest[i++] == <span class="charliteral">&#39;\0&#39;</span>) { <span class="keywordflow">break</span>; }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="nexus_8c_a869cbd940970e2864d1181640b665445_icgraph.png" border="0" usemap="#nexus_8c_a869cbd940970e2864d1181640b665445_icgraph" alt=""/></div>
 <map name="nexus_8c_a869cbd940970e2864d1181640b665445_icgraph" id="nexus_8c_a869cbd940970e2864d1181640b665445_icgraph">
-<area shape="rect" id="node2" href="system_8h.html#af7853b2b79407221baa96df8374fbd5b" title="system_register_command" alt="" coords="123,5,320,32"/><area shape="rect" id="node3" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="368,5,423,32"/></map>
+<area shape="rect" id="node2" href="group___system.html#gaf7853b2b79407221baa96df8374fbd5b" title="system_register_command" alt="" coords="123,5,320,32"/><area shape="rect" id="node3" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="368,5,423,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a45fd60d576394d7c39c9e584afd449ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t ustrlen </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A duplicate of the c standard strlen function. </p>
+
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00017">17</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00082">shell_set_ps1()</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00076">uart_send_string_()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    uint32_t len = 0;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">while</span>(s[len]) { ++len; }</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">return</span>(len);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="nexus_8c_a45fd60d576394d7c39c9e584afd449ae_icgraph.png" border="0" usemap="#nexus_8c_a45fd60d576394d7c39c9e584afd449ae_icgraph" alt=""/></div>
+<map name="nexus_8c_a45fd60d576394d7c39c9e584afd449ae_icgraph" id="nexus_8c_a45fd60d576394d7c39c9e584afd449ae_icgraph">
+<area shape="rect" id="node2" href="shell_8c.html#a82067f3bc8231ce612155160452ddac2" title="shell_set_ps1" alt="" coords="315,8,423,35"/><area shape="rect" id="node5" href="group___u_a_r_t.html#ga5f75da55771fa18535ad7e1dee1e621b" title="uart_send_string_" alt="" coords="120,78,256,104"/><area shape="rect" id="node3" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="833,103,932,130"/><area shape="rect" id="node4" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="980,103,1035,130"/><area shape="rect" id="node6" href="group___u_a_r_t.html#ga6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="304,103,433,130"/><area shape="rect" id="node7" href="test-shell_8c.html#abe6be31ccbdfd6d1835d986a030b4dcf" title="witch" alt="" coords="513,52,567,79"/><area shape="rect" id="node9" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="513,154,567,180"/><area shape="rect" id="node10" href="group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="647,154,785,180"/><area shape="rect" id="node12" href="group___shell.html#ga2c27dcedd94d65632369ca4dda2cfbfb" title="shell_print_ps1" alt="" coords="481,103,599,130"/><area shape="rect" id="node8" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="689,52,743,79"/><area shape="rect" id="node11" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="845,154,920,180"/></map>
 </div>
 </p>
 
@@ -458,44 +420,44 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>A duplicate of the c standard strncmp function. </p>
 
-<p>Definition at line <a class="el" href="nexus_8c_source.html#l00034">34</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
+<p>Definition at line <a class="el" href="nexus_8c_source.html#l00040">40</a> of file <a class="el" href="nexus_8c_source.html">nexus.c</a>.</p>
 
-<p>Referenced by <a class="el" href="nexus_8c_source.html#l00029">strcmp()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                                         {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">/* Loop while there are more characters. */</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">while</span>(n) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">/* If we reached a NULL in both strings, they must be equal so</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">     * we end the comparison and return 0 */</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span>(!*s1 &amp;&amp; !*s2) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">/* Compare the two characters and, if different, return the</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">     * relevant return code. */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span>(*s2 &lt; *s1) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span>(1);</div>
+<p>Referenced by <a class="el" href="nexus_8c_source.html#l00035">strcmp()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                         {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">/* Loop while there are more characters. */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">while</span>(n) {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">/* If we reached a NULL in both strings, they must be equal so</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">     * we end the comparison and return 0 */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span>(!*s1 &amp;&amp; !*s2) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span>(0);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span>(*s1 &lt; *s2) {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">/* Move on to the next character. */</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        s1++;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        s2++;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        n--;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">/* If we fall out, the strings must be equal for at least the</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     * first n characters so return 0 to indicate this. */</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">/* Compare the two characters and, if different, return the</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">     * relevant return code. */</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span>(*s2 &lt; *s1) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">return</span>(1);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span>(*s1 &lt; *s2) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">/* Move on to the next character. */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        s1++;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        s2++;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        n--;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* If we fall out, the strings must be equal for at least the</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">     * first n characters so return 0 to indicate this. */</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="nexus_8c_a40a26471038e995e0f16f3d4d9ae02eb_icgraph.png" border="0" usemap="#nexus_8c_a40a26471038e995e0f16f3d4d9ae02eb_icgraph" alt=""/></div>
 <map name="nexus_8c_a40a26471038e995e0f16f3d4d9ae02eb_icgraph" id="nexus_8c_a40a26471038e995e0f16f3d4d9ae02eb_icgraph">
-<area shape="rect" id="node2" href="nexus_8h.html#a21e4788b4a0ae39b11aa32e9a1079f98" title="strcmp" alt="" coords="136,56,203,83"/><area shape="rect" id="node3" href="system_8h.html#ac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="251,31,480,57"/><area shape="rect" id="node11" href="group__cmdline__api.html#ga12a9baf85cb76825f7bfc20d79bd0b19" title="CmdLineProcess" alt="" coords="301,81,429,108"/><area shape="rect" id="node4" href="system_8h.html#afe0463ce5dac9471aada75540b62c9e2" title="system_deregister_command" alt="" coords="528,5,741,32"/><area shape="rect" id="node5" href="system_8h.html#abf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="581,56,688,83"/><area shape="rect" id="node6" href="shell_8h.html#ab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="789,56,971,83"/><area shape="rect" id="node7" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="1019,56,1165,83"/><area shape="rect" id="node8" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="1225,31,1300,57"/><area shape="rect" id="node9" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="1213,81,1312,108"/><area shape="rect" id="node10" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1360,81,1415,108"/></map>
+<area shape="rect" id="node2" href="nexus_8h.html#a21e4788b4a0ae39b11aa32e9a1079f98" title="strcmp" alt="" coords="136,31,203,57"/><area shape="rect" id="node3" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="251,31,480,57"/><area shape="rect" id="node4" href="group___system.html#gafe0463ce5dac9471aada75540b62c9e2" title="system_deregister_command" alt="" coords="528,5,741,32"/><area shape="rect" id="node5" href="group___system.html#gabf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="581,56,688,83"/><area shape="rect" id="node6" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="789,56,971,83"/><area shape="rect" id="node7" href="group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="1019,56,1157,83"/><area shape="rect" id="node8" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="1205,31,1304,57"/><area shape="rect" id="node10" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="1217,81,1292,108"/><area shape="rect" id="node9" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="1352,31,1407,57"/></map>
 </div>
 </p>
 
@@ -507,7 +469,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_8abf0dd83f466419d031c235a073d3af.html">libstd</a></li><li class="navelem"><a class="el" href="nexus_8c.html">nexus.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

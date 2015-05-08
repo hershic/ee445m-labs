@@ -1,0 +1,7 @@
+<map id="nav::opposite" name="nav::opposite">
+<area shape="rect" id="node2" href="$classmotor.html#a727b50d42de63105af2a7df209c8ce40" title="motor::adjusted_direction" alt="" coords="160,5,347,32"/>
+<area shape="rect" id="node4" href="$classmotor.html#a4c75033e798997e8cd920b81a9534388" title="motor::reverse" alt="" coords="195,56,312,83"/>
+<area shape="rect" id="node3" href="$classmotor.html#a8cb5ce239d3eadf16a929bccf9a04c25" title="motor::set" alt="" coords="417,5,506,32"/>
+<area shape="rect" id="node5" href="$move-main_8cpp.html#ae131b00322d1c477f4f8b8d1dc5dec73" title="switch_responder" alt="" coords="395,56,528,83"/>
+<area shape="rect" id="node6" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="576,56,631,83"/>
+</map>

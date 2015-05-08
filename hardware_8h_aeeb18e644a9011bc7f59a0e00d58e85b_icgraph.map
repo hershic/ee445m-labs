@@ -1,0 +1,25 @@
+<map id="hw_driver_singleton" name="hw_driver_singleton">
+<area shape="rect" id="node2" href="$hardware_8h.html#adb1189c68da3a466870d9112ab57775a" title="_hw_get_channel" alt="" coords="200,233,331,260"/>
+<area shape="rect" id="node3" href="$hardware_8h.html#a9b9397c03e19aa35159fa09be5093f35" title="_hw_subscribe" alt="" coords="383,31,497,57"/>
+<area shape="rect" id="node5" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="379,132,501,159"/>
+<area shape="rect" id="node10" href="$hardware_8h.html#ad61d1a70607ad1c35689e26d539a2263" title="hw_notify" alt="" coords="399,335,481,361"/>
+<area shape="rect" id="node23" href="$hardware_8h.html#a25e0d0313d0aaa23163eef896723f7a9" title="hw_unsubscribe" alt="" coords="379,461,501,488"/>
+<area shape="rect" id="node4" href="$schedule_8h.html#a7935711a9a4beb9abe859b59d2ebc297" title="schedule_aperiodic" alt="" coords="563,5,707,32"/>
+<area shape="rect" id="node6" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="568,56,701,83"/>
+<area shape="rect" id="node8" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="549,107,720,133"/>
+<area shape="rect" id="node9" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="607,157,662,184"/>
+<area shape="rect" id="node7" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="793,56,848,83"/>
+<area shape="rect" id="node11" href="$bin_2lisp_2templates_2timer_8c.html#aec685be57a66e1f720aea28e147f46c3" title="sA_Handler" alt="" coords="587,208,682,235"/>
+<area shape="rect" id="node12" href="$bin_2lisp_2templates_2uart_8c.html#aa2bf234de924b535e157a1ff33c08747" title="s_Handler" alt="" coords="591,259,678,285"/>
+<area shape="rect" id="node13" href="$hardware_8h.html#aeec040621fb93a935c8f3aaf2037d6cd" title="hw_notify_uart" alt="" coords="577,309,692,336"/>
+<area shape="rect" id="node17" href="$hardware_8c.html#a73aa1a5b083f31ee3546edc843b15d61" title="GPIOPortF_Handler" alt="" coords="563,360,706,387"/>
+<area shape="rect" id="node19" href="$hardware_8c.html#a7cf3556922afce598f7d6d87386ee792" title="TIMER0A_Handler" alt="" coords="568,411,701,437"/>
+<area shape="rect" id="node20" href="$hardware_8c.html#a68c2e9604c3b7d054c6ed937d26f848a" title="TIMER1A_Handler" alt="" coords="568,461,701,488"/>
+<area shape="rect" id="node22" href="$hardware_8c.html#ad99df5c82702ac79690512465e499d88" title="TIMER2A_Handler" alt="" coords="568,512,701,539"/>
+<area shape="rect" id="node14" href="$hardware_8h.html#a4b16b6aa8084ff7cc4261f2bd15b5b0b" title="hw_daemon" alt="" coords="771,309,870,336"/>
+<area shape="rect" id="node15" href="$hardware_8h.html#a5d013da6453c4d162f665f6a59419889" title="hw_init_daemon" alt="" coords="921,284,1047,311"/>
+<area shape="rect" id="node16" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="957,335,1011,361"/>
+<area shape="rect" id="node18" href="$blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="768,360,873,387"/>
+<area shape="rect" id="node21" href="$test-adc_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="768,487,873,513"/>
+<area shape="rect" id="node24" href="$group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="597,563,672,589"/>
+</map>

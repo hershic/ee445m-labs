@@ -1,0 +1,7 @@
+<map id="ADC0Seq0_Handler" name="ADC0Seq0_Handler">
+<area shape="rect" id="node2" href="$classadc.html#a5c7b9e7ba4c4a9e58b9fc6447cdbc307" title="adc::ack" alt="" coords="214,5,289,32"/>
+<area shape="rect" id="node3" href="$classadc.html#a012c09d8e66a9cf2c77638be7715979d" title="adc::sample" alt="" coords="201,56,301,83"/>
+<area shape="rect" id="node4" href="$classir.html#a0125343778788f16105ff46323eacf27" title="ir::sample" alt="" coords="209,107,294,133"/>
+<area shape="rect" id="node5" href="$classcircularbuffer.html#ae4e55fc946f2a87e240dbc1881a24be3" title="circularbuffer::add" alt="" coords="349,81,487,108"/>
+<area shape="rect" id="node6" href="$classadc.html#adf86ec7f49162f6fe4b3a28d87124b92" title="adc::get_sample" alt="" coords="354,132,482,159"/>
+</map>

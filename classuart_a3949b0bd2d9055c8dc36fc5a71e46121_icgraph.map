@@ -1,0 +1,4 @@
+<map id="uart::send_char" name="uart::send_char">
+<area shape="rect" id="node2" href="$classuart.html#a9b202c3aaaf336a6abb0b3659db7d56c" title="uart::send_string" alt="" coords="176,5,307,32"/>
+<area shape="rect" id="node3" href="$classuart.html#a1ffaf15bc4c8556a3b2cdf15abf46f88" title="uart::send_newline" alt="" coords="355,5,496,32"/>
+</map>

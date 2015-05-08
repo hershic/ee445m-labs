@@ -99,25 +99,434 @@ $(document).ready(function(){initNavTree('group___system.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">System-interaction calls</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Invoke system calls  Every language offers a 'system' call &ndash; pass it a string and the system interprets it. This is that library for this RTOS.  
+<p>Invoke system calls.  
 <a href="#details">More...</a></p>
-<p>Invoke system calls  Every language offers a 'system' call &ndash; pass it a string and the system interprets it. This is that library for this RTOS. </p>
-<dl class="section author"><dt>Author</dt><dd>Eric Crosson </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsystem__command.html">system_command</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga34f1ddaee6a32c600fc443a66187e960"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#ga34f1ddaee6a32c600fc443a66187e960">SYSTEM_MAX_COMMAND_NAME_LENGTH</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:ga34f1ddaee6a32c600fc443a66187e960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga538f8a68c04cc42f462931a852a65dea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:ga538f8a68c04cc42f462931a852a65dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga78fc44c0b2641082d5c1ce00649b499a"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#ga78fc44c0b2641082d5c1ce00649b499a">system_iterator</a></td></tr>
+<tr class="separator:ga78fc44c0b2641082d5c1ce00649b499a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa140689245c747167ae46f5dab0d48d5"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a></td></tr>
+<tr class="separator:gaa140689245c747167ae46f5dab0d48d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8abd2c92de53bc0bb90cd6f5d180aa91"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structsystem__command.html">system_command</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#ga8abd2c92de53bc0bb90cd6f5d180aa91">system_command</a></td></tr>
+<tr class="separator:ga8abd2c92de53bc0bb90cd6f5d180aa91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga5e845e4be7ca0fd9d41d58b774045f71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#ga5e845e4be7ca0fd9d41d58b774045f71">system_init</a> ()</td></tr>
+<tr class="separator:ga5e845e4be7ca0fd9d41d58b774045f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf7853b2b79407221baa96df8374fbd5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#gaf7853b2b79407221baa96df8374fbd5b">system_register_command</a> (const char *, int(*)())</td></tr>
+<tr class="separator:gaf7853b2b79407221baa96df8374fbd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe0463ce5dac9471aada75540b62c9e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#gafe0463ce5dac9471aada75540b62c9e2">system_deregister_command</a> (const char *)</td></tr>
+<tr class="separator:gafe0463ce5dac9471aada75540b62c9e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf61e582e309546744891e3135f0aa81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#gabf61e582e309546744891e3135f0aa81">system_exec</a> (const char *, const char **)</td></tr>
+<tr class="separator:gabf61e582e309546744891e3135f0aa81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3eeb8757f4c8ce4479f6cc19cecb401"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsystem__command.html">system_command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401">_system_command_from_name</a> (const char *command_name)</td></tr>
+<tr class="separator:gac3eeb8757f4c8ce4479f6cc19cecb401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Invoke system calls. </p>
+<p>Every language offers a 'system' call &ndash; pass it a string and the system interprets it. This is that library for this RTOS. </p><dl class="section author"><dt>Author</dt><dd>Eric Crosson </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2014 </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>None </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License </dd></dl>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ga34f1ddaee6a32c600fc443a66187e960"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYSTEM_MAX_COMMAND_NAME_LENGTH&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Maximum length of a callable command. </p>
+
+<p>Definition at line <a class="el" href="system_8h_source.html#l00014">14</a> of file <a class="el" href="system_8h_source.html">system.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga538f8a68c04cc42f462931a852a65dea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYSTEM_MAX_COMMANDS&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Maximum number of commands supported by the system. </p>
+
+<p>Definition at line <a class="el" href="system_8h_source.html#l00017">17</a> of file <a class="el" href="system_8h_source.html">system.h</a>.</p>
+
+<p>Referenced by <a class="el" href="system_8c_source.html#l00058">_system_command_from_name()</a>, <a class="el" href="system_8c_source.html#l00019">system_init()</a>, and <a class="el" href="system_8c_source.html#l00029">system_register_command()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="gaa140689245c747167ae46f5dab0d48d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint8_t <a class="el" href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type definition of an exit code. </p>
+
+<p>Definition at line <a class="el" href="system_8h_source.html#l00024">24</a> of file <a class="el" href="system_8h_source.html">system.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8abd2c92de53bc0bb90cd6f5d180aa91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structsystem__command.html">system_command</a>  <a class="el" href="structsystem__command.html">system_command</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ga78fc44c0b2641082d5c1ce00649b499a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint8_t <a class="el" href="group___system.html#ga78fc44c0b2641082d5c1ce00649b499a">system_iterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Iterator optimized for size that is guaranteed to be able to iterate over . </p>
+
+<p>Definition at line <a class="el" href="system_8h_source.html#l00021">21</a> of file <a class="el" href="system_8h_source.html">system.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="gac3eeb8757f4c8ce4479f6cc19cecb401"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsystem__command.html">system_command</a>* _system_command_from_name </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>command_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>For internal use only. This function returns a pointer to the  registered to the command name . </p>
+
+<p>Definition at line <a class="el" href="system_8c_source.html#l00058">58</a> of file <a class="el" href="system_8c_source.html">system.c</a>.</p>
+
+<p>References <a class="el" href="nexus_8c_source.html#l00035">strcmp()</a>, and <a class="el" href="system_8h_source.html#l00017">SYSTEM_MAX_COMMANDS</a>.</p>
+
+<p>Referenced by <a class="el" href="system_8c_source.html#l00045">system_deregister_command()</a>, and <a class="el" href="system_8c_source.html#l00069">system_exec()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                                    {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="group___system.html#ga78fc44c0b2641082d5c1ce00649b499a">system_iterator</a> i=0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">while</span>(i&lt;<a class="code" href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a> &amp;&amp;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;          0 != <a class="code" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d">strcmp</a>(<a class="code" href="system_8c.html#a27881fc9bdf0fe8767ebcf76809b18e3">SYSTEM_COMMANDS</a>[i].name, command_name)) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        ++i;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> &amp;<a class="code" href="system_8c.html#a27881fc9bdf0fe8767ebcf76809b18e3">SYSTEM_COMMANDS</a>[i];</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="ttc" id="group___system_html_ga538f8a68c04cc42f462931a852a65dea"><div class="ttname"><a href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a></div><div class="ttdeci">#define SYSTEM_MAX_COMMANDS</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00017">system.h:17</a></div></div>
+<div class="ttc" id="nexus_8c_html_a11bd144d7d44914099a3aeddf1c8567d"><div class="ttname"><a href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d">strcmp</a></div><div class="ttdeci">int strcmp(const char *s1, const char *s2)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00035">nexus.c:35</a></div></div>
+<div class="ttc" id="group___system_html_ga78fc44c0b2641082d5c1ce00649b499a"><div class="ttname"><a href="group___system.html#ga78fc44c0b2641082d5c1ce00649b499a">system_iterator</a></div><div class="ttdeci">uint8_t system_iterator</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00021">system.h:21</a></div></div>
+<div class="ttc" id="system_8c_html_a27881fc9bdf0fe8767ebcf76809b18e3"><div class="ttname"><a href="system_8c.html#a27881fc9bdf0fe8767ebcf76809b18e3">SYSTEM_COMMANDS</a></div><div class="ttdeci">static system_command SYSTEM_COMMANDS[16]</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00011">system.c:11</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_cgraph.png" border="0" usemap="#group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_cgraph" alt=""/></div>
+<map name="group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_cgraph" id="group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_cgraph">
+<area shape="rect" id="node2" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="283,5,349,32"/><area shape="rect" id="node3" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="397,5,480,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_icgraph.png" border="0" usemap="#group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_icgraph" alt=""/></div>
+<map name="group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_icgraph" id="group___system_gac3eeb8757f4c8ce4479f6cc19cecb401_icgraph">
+<area shape="rect" id="node2" href="group___system.html#gafe0463ce5dac9471aada75540b62c9e2" title="system_deregister_command" alt="" coords="283,5,496,32"/><area shape="rect" id="node3" href="group___system.html#gabf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="336,56,443,83"/><area shape="rect" id="node4" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="544,56,725,83"/><area shape="rect" id="node5" href="group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="773,56,912,83"/><area shape="rect" id="node6" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="960,31,1059,57"/><area shape="rect" id="node8" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="972,81,1047,108"/><area shape="rect" id="node7" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="1107,31,1161,57"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gafe0463ce5dac9471aada75540b62c9e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool system_deregister_command </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove a command from the index of executable system commands. </p><dl class="section return"><dt>Returns</dt><dd>True if command was successfully deregistered. </dd></dl>
+
+<p>Definition at line <a class="el" href="system_8c_source.html#l00045">45</a> of file <a class="el" href="system_8c_source.html">system.c</a>.</p>
+
+<p>References <a class="el" href="system_8c_source.html#l00058">_system_command_from_name()</a>, <a class="el" href="utlist_8h_source.html#l00705">CDL_DELETE</a>, <a class="el" href="utlist_8h_source.html#l00671">CDL_PREPEND</a>, and <a class="el" href="system_8h_source.html#l00031">system_command::valid</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                                         {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">/* Grab the structure of the command to deregister and invaldiate</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     * the metadata. Move it from the registered to the unregistered</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     * pile. */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structsystem__command.html">system_command</a>* command = <a class="code" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401">_system_command_from_name</a>(command_name);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    command-&gt;<a class="code" href="structsystem__command.html#abdff21714780acc91f5abf137d7533da">valid</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a>(<a class="code" href="system_8c.html#a1e4da8030429e806facd6e81d2344ba5">registered_commands</a>, command);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="utlist_8h.html#a6c6a7232d281eab4b18563b92e5653bd">CDL_PREPEND</a>(<a class="code" href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a>, command);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="ttc" id="structsystem__command_html"><div class="ttname"><a href="structsystem__command.html">system_command</a></div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00028">system.h:28</a></div></div>
+<div class="ttc" id="group___system_html_gac3eeb8757f4c8ce4479f6cc19cecb401"><div class="ttname"><a href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401">_system_command_from_name</a></div><div class="ttdeci">system_command * _system_command_from_name(const char *command_name)</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00058">system.c:58</a></div></div>
+<div class="ttc" id="utlist_8h_html_a60fd7696c4d0865f53a07579a7b08235"><div class="ttname"><a href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a></div><div class="ttdeci">#define CDL_DELETE(head, del)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00705">utlist.h:705</a></div></div>
+<div class="ttc" id="structsystem__command_html_abdff21714780acc91f5abf137d7533da"><div class="ttname"><a href="structsystem__command.html#abdff21714780acc91f5abf137d7533da">system_command::valid</a></div><div class="ttdeci">bool valid</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00031">system.h:31</a></div></div>
+<div class="ttc" id="system_8c_html_adba094d5149e603a923976c69880e641"><div class="ttname"><a href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a></div><div class="ttdeci">system_command * unregistered_commands</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00017">system.c:17</a></div></div>
+<div class="ttc" id="system_8c_html_a1e4da8030429e806facd6e81d2344ba5"><div class="ttname"><a href="system_8c.html#a1e4da8030429e806facd6e81d2344ba5">registered_commands</a></div><div class="ttdeci">system_command * registered_commands</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00014">system.c:14</a></div></div>
+<div class="ttc" id="utlist_8h_html_a6c6a7232d281eab4b18563b92e5653bd"><div class="ttname"><a href="utlist_8h.html#a6c6a7232d281eab4b18563b92e5653bd">CDL_PREPEND</a></div><div class="ttdeci">#define CDL_PREPEND(head, add)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00671">utlist.h:671</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gafe0463ce5dac9471aada75540b62c9e2_cgraph.png" border="0" usemap="#group___system_gafe0463ce5dac9471aada75540b62c9e2_cgraph" alt=""/></div>
+<map name="group___system_gafe0463ce5dac9471aada75540b62c9e2_cgraph" id="group___system_gafe0463ce5dac9471aada75540b62c9e2_cgraph">
+<area shape="rect" id="node2" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="267,5,496,32"/><area shape="rect" id="node3" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="544,5,611,32"/><area shape="rect" id="node4" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="659,5,741,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gabf61e582e309546744891e3135f0aa81"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a> system_exec </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char **&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Execute a system command. </p><dl class="section return"><dt>Returns</dt><dd>The exit code of the executed command. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000006">Bug:</a></b></dt><dd>Currently argument passing is not supported. </dd></dl>
+
+<p>Definition at line <a class="el" href="system_8c_source.html#l00069">69</a> of file <a class="el" href="system_8c_source.html">system.c</a>.</p>
+
+<p>References <a class="el" href="system_8c_source.html#l00058">_system_command_from_name()</a>, <a class="el" href="system_8h_source.html#l00033">system_command::command</a>, <a class="el" href="nexus_8h_source.html#l00040">postpone_death</a>, and <a class="el" href="system_8h_source.html#l00031">system_command::valid</a>.</p>
+
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00099">shell_execute_command()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                                                       {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structsystem__command.html">system_command</a>* sys_command = <a class="code" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401">_system_command_from_name</a>(command);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (sys_command-&gt;<a class="code" href="structsystem__command.html#abdff21714780acc91f5abf137d7533da">valid</a>) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">return</span> sys_command-&gt;<a class="code" href="structsystem__command.html#a36cbf7895d55b3768c8f4ca052c17584">command</a>(<span class="comment">/*arguments*/</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">/* TODO: determine what to do here */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a>();       <span class="comment">/* plan a */</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> EXIT_FAILURE;    <span class="comment">/* plan b */</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="ttc" id="structsystem__command_html"><div class="ttname"><a href="structsystem__command.html">system_command</a></div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00028">system.h:28</a></div></div>
+<div class="ttc" id="group___system_html_gac3eeb8757f4c8ce4479f6cc19cecb401"><div class="ttname"><a href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401">_system_command_from_name</a></div><div class="ttdeci">system_command * _system_command_from_name(const char *command_name)</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00058">system.c:58</a></div></div>
+<div class="ttc" id="nexus_8h_html_a44bf220a6c5c7c38df76ced96b0bd515"><div class="ttname"><a href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a></div><div class="ttdeci">#define postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00040">nexus.h:40</a></div></div>
+<div class="ttc" id="structsystem__command_html_a36cbf7895d55b3768c8f4ca052c17584"><div class="ttname"><a href="structsystem__command.html#a36cbf7895d55b3768c8f4ca052c17584">system_command::command</a></div><div class="ttdeci">int(* command)()</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00033">system.h:33</a></div></div>
+<div class="ttc" id="structsystem__command_html_abdff21714780acc91f5abf137d7533da"><div class="ttname"><a href="structsystem__command.html#abdff21714780acc91f5abf137d7533da">system_command::valid</a></div><div class="ttdeci">bool valid</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00031">system.h:31</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gabf61e582e309546744891e3135f0aa81_cgraph.png" border="0" usemap="#group___system_gabf61e582e309546744891e3135f0aa81_cgraph" alt=""/></div>
+<map name="group___system_gabf61e582e309546744891e3135f0aa81_cgraph" id="group___system_gabf61e582e309546744891e3135f0aa81_cgraph">
+<area shape="rect" id="node2" href="group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="160,5,389,32"/><area shape="rect" id="node3" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="437,5,504,32"/><area shape="rect" id="node4" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="552,5,635,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gabf61e582e309546744891e3135f0aa81_icgraph.png" border="0" usemap="#group___system_gabf61e582e309546744891e3135f0aa81_icgraph" alt=""/></div>
+<map name="group___system_gabf61e582e309546744891e3135f0aa81_icgraph" id="group___system_gabf61e582e309546744891e3135f0aa81_icgraph">
+<area shape="rect" id="node2" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="160,31,341,57"/><area shape="rect" id="node3" href="group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="389,31,528,57"/><area shape="rect" id="node4" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="576,5,675,32"/><area shape="rect" id="node6" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="588,56,663,83"/><area shape="rect" id="node5" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="723,5,777,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ga5e845e4be7ca0fd9d41d58b774045f71"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void system_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initialize internal data structures. </p><dl class="section note"><dt>Note</dt><dd>Ensure this method is called before any commands are registered. </dd></dl>
+
+<p>Definition at line <a class="el" href="system_8c_source.html#l00019">19</a> of file <a class="el" href="system_8c_source.html">system.c</a>.</p>
+
+<p>References <a class="el" href="utlist_8h_source.html#l00671">CDL_PREPEND</a>, and <a class="el" href="system_8h_source.html#l00017">SYSTEM_MAX_COMMANDS</a>.</p>
+
+<p>Referenced by <a class="el" href="test-combination_8c_source.html#l00173">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                   {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="group___system.html#ga78fc44c0b2641082d5c1ce00649b499a">system_iterator</a> i;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">/* All commands begin in the unregistered state */</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">for</span>(i=0; i&lt;<a class="code" href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a>; ++i) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="utlist_8h.html#a6c6a7232d281eab4b18563b92e5653bd">CDL_PREPEND</a>(<a class="code" href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a>, &amp;<a class="code" href="system_8c.html#a27881fc9bdf0fe8767ebcf76809b18e3">SYSTEM_COMMANDS</a>[i]);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="ttc" id="group___system_html_ga538f8a68c04cc42f462931a852a65dea"><div class="ttname"><a href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a></div><div class="ttdeci">#define SYSTEM_MAX_COMMANDS</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00017">system.h:17</a></div></div>
+<div class="ttc" id="group___system_html_ga78fc44c0b2641082d5c1ce00649b499a"><div class="ttname"><a href="group___system.html#ga78fc44c0b2641082d5c1ce00649b499a">system_iterator</a></div><div class="ttdeci">uint8_t system_iterator</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00021">system.h:21</a></div></div>
+<div class="ttc" id="system_8c_html_adba094d5149e603a923976c69880e641"><div class="ttname"><a href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a></div><div class="ttdeci">system_command * unregistered_commands</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00017">system.c:17</a></div></div>
+<div class="ttc" id="system_8c_html_a27881fc9bdf0fe8767ebcf76809b18e3"><div class="ttname"><a href="system_8c.html#a27881fc9bdf0fe8767ebcf76809b18e3">SYSTEM_COMMANDS</a></div><div class="ttdeci">static system_command SYSTEM_COMMANDS[16]</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00011">system.c:11</a></div></div>
+<div class="ttc" id="utlist_8h_html_a6c6a7232d281eab4b18563b92e5653bd"><div class="ttname"><a href="utlist_8h.html#a6c6a7232d281eab4b18563b92e5653bd">CDL_PREPEND</a></div><div class="ttdeci">#define CDL_PREPEND(head, add)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00671">utlist.h:671</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_ga5e845e4be7ca0fd9d41d58b774045f71_icgraph.png" border="0" usemap="#group___system_ga5e845e4be7ca0fd9d41d58b774045f71_icgraph" alt=""/></div>
+<map name="group___system_ga5e845e4be7ca0fd9d41d58b774045f71_icgraph" id="group___system_ga5e845e4be7ca0fd9d41d58b774045f71_icgraph">
+<area shape="rect" id="node2" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="148,5,203,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf7853b2b79407221baa96df8374fbd5b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool system_register_command </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)()&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Register a command for later execution. </p><dl class="section return"><dt>Returns</dt><dd>True if command was successfully registered. </dd></dl>
+
+<p>Definition at line <a class="el" href="system_8c_source.html#l00029">29</a> of file <a class="el" href="system_8c_source.html">system.c</a>.</p>
+
+<p>References <a class="el" href="utlist_8h_source.html#l00705">CDL_DELETE</a>, <a class="el" href="utlist_8h_source.html#l00671">CDL_PREPEND</a>, <a class="el" href="system_8h_source.html#l00033">system_command::command</a>, <a class="el" href="nexus_8c_source.html#l00004">memset()</a>, <a class="el" href="system_8h_source.html#l00032">system_command::name</a>, <a class="el" href="system_8h_source.html#l00017">SYSTEM_MAX_COMMANDS</a>, <a class="el" href="system_8c_source.html#l00017">unregistered_commands</a>, <a class="el" href="nexus_8c_source.html#l00069">ustrcpy()</a>, and <a class="el" href="system_8h_source.html#l00031">system_command::valid</a>.</p>
+
+<p>Referenced by <a class="el" href="test-combination_8c_source.html#l00173">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                                        {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">/* Grab the first free command, move it from the unregisted to the</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">     * registered pile, and populate it with this function&#39;s</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">     * arguments */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="structsystem__command.html">system_command</a>* sys_command = <a class="code" href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a>(<a class="code" href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a>, sys_command);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="utlist_8h.html#a6c6a7232d281eab4b18563b92e5653bd">CDL_PREPEND</a>(<a class="code" href="system_8c.html#a1e4da8030429e806facd6e81d2344ba5">registered_commands</a>, sys_command);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    sys_command-&gt;<a class="code" href="structsystem__command.html#abdff21714780acc91f5abf137d7533da">valid</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee">memset</a>(sys_command-&gt;<a class="code" href="structsystem__command.html#a1b3a632492b2226a1f385a1dd53e718d">name</a>, 0, <a class="code" href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="nexus_8c.html#a869cbd940970e2864d1181640b665445">ustrcpy</a>(sys_command-&gt;<a class="code" href="structsystem__command.html#a1b3a632492b2226a1f385a1dd53e718d">name</a>, command_name);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    sys_command-&gt;<a class="code" href="structsystem__command.html#a36cbf7895d55b3768c8f4ca052c17584">command</a> = command;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<div class="ttc" id="structsystem__command_html_a1b3a632492b2226a1f385a1dd53e718d"><div class="ttname"><a href="structsystem__command.html#a1b3a632492b2226a1f385a1dd53e718d">system_command::name</a></div><div class="ttdeci">char name[16]</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00032">system.h:32</a></div></div>
+<div class="ttc" id="nexus_8c_html_a869cbd940970e2864d1181640b665445"><div class="ttname"><a href="nexus_8c.html#a869cbd940970e2864d1181640b665445">ustrcpy</a></div><div class="ttdeci">void ustrcpy(char *dest, const char *source)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00069">nexus.c:69</a></div></div>
+<div class="ttc" id="structsystem__command_html"><div class="ttname"><a href="structsystem__command.html">system_command</a></div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00028">system.h:28</a></div></div>
+<div class="ttc" id="group___system_html_ga538f8a68c04cc42f462931a852a65dea"><div class="ttname"><a href="group___system.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a></div><div class="ttdeci">#define SYSTEM_MAX_COMMANDS</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00017">system.h:17</a></div></div>
+<div class="ttc" id="utlist_8h_html_a60fd7696c4d0865f53a07579a7b08235"><div class="ttname"><a href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a></div><div class="ttdeci">#define CDL_DELETE(head, del)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00705">utlist.h:705</a></div></div>
+<div class="ttc" id="structsystem__command_html_a36cbf7895d55b3768c8f4ca052c17584"><div class="ttname"><a href="structsystem__command.html#a36cbf7895d55b3768c8f4ca052c17584">system_command::command</a></div><div class="ttdeci">int(* command)()</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00033">system.h:33</a></div></div>
+<div class="ttc" id="structsystem__command_html_abdff21714780acc91f5abf137d7533da"><div class="ttname"><a href="structsystem__command.html#abdff21714780acc91f5abf137d7533da">system_command::valid</a></div><div class="ttdeci">bool valid</div><div class="ttdef"><b>Definition:</b> <a href="system_8h_source.html#l00031">system.h:31</a></div></div>
+<div class="ttc" id="nexus_8c_html_a7bcdacdb9ea762dccdd9f6de4292f9ee"><div class="ttname"><a href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee">memset</a></div><div class="ttdeci">void * memset(void *b, int c, int len)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00004">nexus.c:4</a></div></div>
+<div class="ttc" id="system_8c_html_adba094d5149e603a923976c69880e641"><div class="ttname"><a href="system_8c.html#adba094d5149e603a923976c69880e641">unregistered_commands</a></div><div class="ttdeci">system_command * unregistered_commands</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00017">system.c:17</a></div></div>
+<div class="ttc" id="system_8c_html_a1e4da8030429e806facd6e81d2344ba5"><div class="ttname"><a href="system_8c.html#a1e4da8030429e806facd6e81d2344ba5">registered_commands</a></div><div class="ttdeci">system_command * registered_commands</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00014">system.c:14</a></div></div>
+<div class="ttc" id="utlist_8h_html_a6c6a7232d281eab4b18563b92e5653bd"><div class="ttname"><a href="utlist_8h.html#a6c6a7232d281eab4b18563b92e5653bd">CDL_PREPEND</a></div><div class="ttdeci">#define CDL_PREPEND(head, add)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00671">utlist.h:671</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gaf7853b2b79407221baa96df8374fbd5b_cgraph.png" border="0" usemap="#group___system_gaf7853b2b79407221baa96df8374fbd5b_cgraph" alt=""/></div>
+<map name="group___system_gaf7853b2b79407221baa96df8374fbd5b_cgraph" id="group___system_gaf7853b2b79407221baa96df8374fbd5b_cgraph">
+<area shape="rect" id="node2" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee" title="memset" alt="" coords="251,5,327,32"/><area shape="rect" id="node3" href="nexus_8c.html#a869cbd940970e2864d1181640b665445" title="ustrcpy" alt="" coords="254,56,323,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group___system_gaf7853b2b79407221baa96df8374fbd5b_icgraph.png" border="0" usemap="#group___system_gaf7853b2b79407221baa96df8374fbd5b_icgraph" alt=""/></div>
+<map name="group___system_gaf7853b2b79407221baa96df8374fbd5b_icgraph" id="group___system_gaf7853b2b79407221baa96df8374fbd5b_icgraph">
+<area shape="rect" id="node2" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="251,5,305,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:44 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -1,0 +1,6 @@
+<map id="can::init" name="can::init">
+<area shape="rect" id="node2" href="$group___cpp_test.html#ga2f6a1135d37afd9955a16efbd901b2c2" title="ctlsys::enable_periph" alt="" coords="125,31,281,57"/>
+<area shape="rect" id="node5" href="$classcan.html#afce4d222edb62f54a93c8ba28edc7d91" title="can::start" alt="" coords="162,81,245,108"/>
+<area shape="rect" id="node3" href="$classcritical.html#a55a80f7c8c33aec8acb01c76e9dcf0bd" title="critical::static_EndCritical" alt="" coords="333,5,513,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#a462ecb751e5e7572f587f3fb3f7e8fd4" title="critical::static_StartCritical" alt="" coords="329,56,517,83"/>
+</map>

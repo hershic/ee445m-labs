@@ -1,0 +1,5 @@
+<map id="ping::stop" name="ping::stop">
+<area shape="rect" id="node2" href="$group__semaphore.html#ga0087878f7dfe15c313c0718811f6ec2f" title="semaphore::reset" alt="" coords="139,31,275,57"/>
+<area shape="rect" id="node3" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="327,5,465,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="323,56,469,83"/>
+</map>

@@ -1,0 +1,24 @@
+<map id="hw_channel_init" name="hw_channel_init">
+<area shape="rect" id="node2" href="$hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="187,56,318,83"/>
+<area shape="rect" id="node4" href="$group___button.html#ga0b6f1ae2e51bbb9ca38f170a530e693f" title="button_set_interrupt" alt="" coords="176,157,329,184"/>
+<area shape="rect" id="node8" href="$lib_2libtimer_2timer_8c.html#a2eeca9a71be3572b1bf0148e62466989" title="timer_add_interrupt" alt="" coords="178,259,327,285"/>
+<area shape="rect" id="node14" href="$group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f" title="uart_init" alt="" coords="215,487,290,513"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="399,5,546,32"/>
+<area shape="rect" id="node5" href="$group__gpio__api.html#gad98083fe7f4ce6c4e7daf004768dec1d" title="GPIOIntTypeSet" alt="" coords="413,56,532,83"/>
+<area shape="rect" id="node6" href="$group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="432,309,513,336"/>
+<area shape="rect" id="node7" href="$group__interrupt__api.html#ga9af6b00884dc44e92b3d05ff821b5334" title="IntDisable" alt="" coords="430,107,515,133"/>
+<area shape="rect" id="node9" href="$group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="413,411,532,437"/>
+<area shape="rect" id="node10" href="$group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8" title="TimerConfigure" alt="" coords="413,259,532,285"/>
+<area shape="rect" id="node11" href="$group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c" title="TimerEnable" alt="" coords="422,360,523,387"/>
+<area shape="rect" id="node12" href="$group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf" title="TimerIntEnable" alt="" coords="414,157,531,184"/>
+<area shape="rect" id="node13" href="$group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613" title="TimerLoadSet" alt="" coords="417,208,528,235"/>
+<area shape="rect" id="node15" href="$group___u_a_r_t.html#ga51e29ff163cc0fb5ab3f0417029fcb45" title="uart_set_active_metadata" alt="" coords="377,563,568,589"/>
+<area shape="rect" id="node16" href="$group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640" title="GPIOPinConfigure" alt="" coords="406,613,539,640"/>
+<area shape="rect" id="node17" href="$group__gpio__api.html#ga9f6bf578f3159dc41626a84108d006b8" title="GPIOPinTypeUART" alt="" coords="406,664,539,691"/>
+<area shape="rect" id="node20" href="$group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b" title="UARTConfigSetExpClk" alt="" coords="393,461,552,488"/>
+<area shape="rect" id="node23" href="$group__uart__api.html#ga2348192170cdf1bb031fa4ce88c35495" title="UARTIntEnable" alt="" coords="415,512,530,539"/>
+<area shape="rect" id="node18" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="621,639,749,665"/>
+<area shape="rect" id="node19" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="616,689,755,716"/>
+<area shape="rect" id="node21" href="$group__uart__api.html#ga24b7349b5fd44c56e552d2d3fa2e4057" title="UARTDisable" alt="" coords="634,436,737,463"/>
+<area shape="rect" id="node22" href="$group__uart__api.html#ga93ba793d082da8ceb2ddab3ddc650a35" title="UARTEnable" alt="" coords="636,487,735,513"/>
+</map>

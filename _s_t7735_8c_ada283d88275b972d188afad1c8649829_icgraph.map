@@ -1,7 +1,7 @@
 <map id="ST7735_FillRect" name="ST7735_FillRect">
 <area shape="rect" id="node2" href="$_s_t7735_8h.html#af2c6dc3b5834eff0d45e6e15ac340abf" title="ST7735_DrawCharS" alt="" coords="172,107,320,133"/>
 <area shape="rect" id="node11" href="$_s_t7735_8h.html#a3a14506207ab49aee2c40700b5036271" title="ST7735_FillScreen" alt="" coords="177,259,315,285"/>
-<area shape="rect" id="node18" href="$_s_t7735_8h.html#affbb292ebbf7082c331ab6195da3385c" title="ST7735_PlotClear" alt="" coords="179,309,313,336"/>
+<area shape="rect" id="node19" href="$_s_t7735_8h.html#affbb292ebbf7082c331ab6195da3385c" title="ST7735_PlotClear" alt="" coords="179,309,313,336"/>
 <area shape="rect" id="node3" href="$_s_t7735_8h.html#a04cac5a318b3e0515fad06fa00cdd3b9" title="ST7735_DrawString" alt="" coords="368,56,515,83"/>
 <area shape="rect" id="node4" href="$_s_t7735_8h.html#a072f5f963df6e48f5985977526d2466c" title="ST7735_OutUDec" alt="" coords="565,5,699,32"/>
 <area shape="rect" id="node5" href="$_s_t7735_8h.html#a5da33584211f118b7acfc1e5c0c7fee7" title="ST7735_OutChar" alt="" coords="567,132,697,159"/>
@@ -13,7 +13,8 @@
 <area shape="rect" id="node12" href="$_s_t7735_8h.html#aec8e637c759ad0adde0758c0935f383a" title="ST7735_InitB" alt="" coords="389,309,494,336"/>
 <area shape="rect" id="node13" href="$_s_t7735_8h.html#a204a442207d7367ace616bd6bfd79348" title="ST7735_InitR" alt="" coords="389,208,493,235"/>
 <area shape="rect" id="node14" href="$_s_t7735_8h.html#a8c197f8fb3fd2b2da459e71b44978d53" title="Output_Init" alt="" coords="586,259,678,285"/>
-<area shape="rect" id="node16" href="$_s_t7735_8h.html#a991e9f71a35a1f6ec9d857ca0e01868a" title="Output_Clear" alt="" coords="388,360,495,387"/>
+<area shape="rect" id="node17" href="$_s_t7735_8h.html#a991e9f71a35a1f6ec9d857ca0e01868a" title="Output_Clear" alt="" coords="388,360,495,387"/>
 <area shape="rect" id="node15" href="$_s_t7735_8h.html#a7e57930cfb2d70ead5a1686d9f36a734" title="Output_On" alt="" coords="777,259,868,285"/>
-<area shape="rect" id="node17" href="$_s_t7735_8h.html#a4ff293d693c5298110cf8a170e9b9165" title="Output_Off" alt="" coords="587,360,677,387"/>
+<area shape="rect" id="node16" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="944,259,999,285"/>
+<area shape="rect" id="node18" href="$_s_t7735_8h.html#a4ff293d693c5298110cf8a170e9b9165" title="Output_Off" alt="" coords="587,360,677,387"/>
 </map>

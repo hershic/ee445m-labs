@@ -1,0 +1,11 @@
+<map id="ir" name="ir">
+<area shape="rect" id="node2" href="$classcircularbuffer.html" title="{circularbuffer\&lt; int16\l_t, 32 \&gt;\n||+ circularbuffer()\l+ increment_ptr()\l+ add()\l+ peek()\l+ get()\l}" alt="" coords="159,1205,311,1355"/>
+<area shape="rect" id="node3" href="$classbuffer.html" title="{buffer\&lt; int16_t, N \&gt;\n|+ pos\l+ len\l+ buf\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="190,779,341,1061"/>
+<area shape="rect" id="node4" href="$classsemaphore.html" title="{semaphore\n|&#45; value\l&#45; total_posts\l|+ semaphore()\l+ semaphore()\l+ init()\l+ post()\l+ wait()\l+ take()\l+ guard()\l+ blocked()\l+ reset()\l}" alt="" coords="192,176,312,385"/>
+<area shape="rect" id="node6" href="$classbuffer.html" title="{buffer\&lt; T, N \&gt;\n|+ pos\l+ len\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="71,448,207,716"/>
+<area shape="rect" id="node5" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="170,5,334,127"/>
+<area shape="rect" id="node8" href="$classcircularbuffer.html" title="{circularbuffer\&lt; T, N \&gt;\n||+ circularbuffer()\l+ increment_ptr()\l+ add()\l+ peek()\l+ get()\l}" alt="" coords="5,852,165,988"/>
+<area shape="rect" id="node9" href="$classadc.html" title="{adc\n|+ base\l+ sequencer\l+ channel_count\l+ configuration\l+ trigger_source\l+ sequencer_data\l&#45; default_priority\l&#45; max_num_sequencer_steps\l|+ adc()\l+ adc()\l+ configure_sequence()\l+ configure_timer_interrupt()\l+ configure_timer_interrupt()\l+ start()\l+ stop()\l+ ack()\l+ sample()\l+ get_sample()\l}" alt="" coords="335,1124,545,1436"/>
+<area shape="rect" id="node10" href="$classinterruptable.html" title="{interruptable\n||+ interruptable()\l+ start()\l+ stop()\l+ ack()\l}" alt="" coords="375,859,505,981"/>
+<area shape="rect" id="node11" href="$structir_1_1calibration__data.html" title="{ir::calibration_data\n|+ a\l+ b\l+ k\l|}" alt="" coords="570,1227,710,1333"/>
+</map>

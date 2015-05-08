@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pwm_5fapi',['Pwm_api',['../group__pwm__api.html',1,'']]]
+  ['operating_20system_20routines',['Operating system routines',['../group___o_s.html',1,'']]]
 ];

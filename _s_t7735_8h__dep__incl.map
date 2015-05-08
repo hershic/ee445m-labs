@@ -1,4 +1,5 @@
 <map id="lib/libdisplay/ST7735.h" name="lib/libdisplay/ST7735.h">
-<area shape="rect" id="node2" href="$test-display_8c.html" title="board&#45;progs/test&#45;display\l/test&#45;display.c" alt="" coords="5,80,184,121"/>
-<area shape="rect" id="node3" href="$_s_t7735_8c.html" title="lib/libdisplay/ST7735.c" alt="" coords="209,87,370,114"/>
+<area shape="rect" id="node2" href="$test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="5,80,219,121"/>
+<area shape="rect" id="node3" href="$test-display_8c.html" title="board&#45;progs/test&#45;display\l/test&#45;display.c" alt="" coords="243,80,421,121"/>
+<area shape="rect" id="node4" href="$_s_t7735_8c.html" title="lib/libdisplay/ST7735.c" alt="" coords="446,87,607,114"/>
 </map>

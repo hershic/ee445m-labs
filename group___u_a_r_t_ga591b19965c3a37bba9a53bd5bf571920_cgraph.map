@@ -1,0 +1,7 @@
+<map id="uart_get_string" name="uart_get_string">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#ga96ed99003d43e816bdff6b5d0ed29de9" title="Read a char array from the active uart channel. " alt="" coords="172,81,299,108"/>
+<area shape="rect" id="node3" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="350,5,463,32"/>
+<area shape="rect" id="node4" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="355,56,459,83"/>
+<area shape="rect" id="node5" href="$group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="347,107,467,133"/>
+<area shape="rect" id="node6" href="$group__uart__api.html#gafc065333d747a8f71331c4fa2b5ace9e" title="UARTCharGet" alt="" coords="353,157,460,184"/>
+</map>

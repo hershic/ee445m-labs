@@ -116,7 +116,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="kbd_8h__dep__incl.png" border="0" usemap="#lib_2libio_2kbd_8hdep" alt=""/></div>
 <map name="lib_2libio_2kbd_8hdep" id="lib_2libio_2kbd_8hdep">
-<area shape="rect" id="node2" href="shell_8h.html" title="lib/libshell/shell.h" alt="" coords="107,80,235,107"/><area shape="rect" id="node3" href="test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,155,168,196"/><area shape="rect" id="node4" href="shell_8c.html" title="lib/libshell/shell.c" alt="" coords="193,162,319,189"/></map>
+<area shape="rect" id="node2" href="shell_8h.html" title="lib/libshell/shell.h" alt="" coords="244,80,372,107"/><area shape="rect" id="node3" href="test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="5,155,203,196"/><area shape="rect" id="node4" href="test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="227,155,389,196"/><area shape="rect" id="node5" href="shell_8c.html" title="lib/libshell/shell.c" alt="" coords="414,162,541,189"/></map>
 </div>
 </div>
 <p><a href="kbd_8h_source.html">Go to the source code of this file.</a></p>
@@ -138,6 +138,7 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Contains key scan codes corresponding to a standard US keyboard. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5"></a>SC_BACKSPACE&#160;</td><td class="fielddoc">
 </td></tr>
@@ -145,15 +146,15 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="kbd_8h_source.html#l00004">4</a> of file <a class="el" href="kbd_8h_source.html">kbd.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;             {</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;  <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5">SC_BACKSPACE</a> = 8,</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;  <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc">SC_CR</a> = 13,</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;} <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7">KBD_SCAN_CODES</a>;</div>
-<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7">KBD_SCAN_CODES</a></div><div class="ttdeci">KBD_SCAN_CODES</div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00004">kbd.h:4</a></div></div>
-<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5">SC_BACKSPACE</a></div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00006">kbd.h:6</a></div></div>
-<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc">SC_CR</a></div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00007">kbd.h:7</a></div></div>
+<p>Definition at line <a class="el" href="kbd_8h_source.html#l00006">6</a> of file <a class="el" href="kbd_8h_source.html">kbd.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;             {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;  <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5">SC_BACKSPACE</a> = 8,</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc">SC_CR</a> = 13,</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;} <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7">KBD_SCAN_CODES</a>;</div>
+<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7">KBD_SCAN_CODES</a></div><div class="ttdeci">KBD_SCAN_CODES</div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00006">kbd.h:6</a></div></div>
+<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5">SC_BACKSPACE</a></div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00008">kbd.h:8</a></div></div>
+<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc">SC_CR</a></div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00009">kbd.h:9</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -163,7 +164,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_56fcd7f077d972027c5ac435e25f5a2a.html">libio</a></li><li class="navelem"><a class="el" href="kbd_8h.html">kbd.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

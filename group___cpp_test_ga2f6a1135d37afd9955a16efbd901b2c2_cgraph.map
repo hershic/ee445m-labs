@@ -1,0 +1,4 @@
+<map id="ctlsys::enable_periph" name="ctlsys::enable_periph">
+<area shape="rect" id="node2" href="$classcritical.html#a55a80f7c8c33aec8acb01c76e9dcf0bd" title="critical::static_EndCritical" alt="" coords="213,5,393,32"/>
+<area shape="rect" id="node3" href="$classcritical.html#a462ecb751e5e7572f587f3fb3f7e8fd4" title="critical::static_StartCritical" alt="" coords="209,56,397,83"/>
+</map>

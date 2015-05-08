@@ -1,20 +1,16 @@
 var lib_2libuart_2uart_8c =
 [
-    [ "NDEBUG", "lib_2libuart_2uart_8c.html#a8de3ed741dadc9c979a4ff17c0a9116e", null ],
-    [ "uart_clear_active_channel", "lib_2libuart_2uart_8c.html#a7e15c433cb1770aa074691a174a0d1de", null ],
-    [ "uart_get_char", "lib_2libuart_2uart_8c.html#a36116526b4c84562aec19bca46a0827e", null ],
-    [ "uart_get_char_", "lib_2libuart_2uart_8c.html#a0ef7b9a5605bcb31bc764e1144bf2bc4", null ],
-    [ "uart_get_string", "lib_2libuart_2uart_8c.html#a780b7f7bacc02a2af95f84284c74e6e5", null ],
-    [ "uart_get_string_", "lib_2libuart_2uart_8c.html#ac52beb7a5ff4686ca04cf9a1edf3b713", null ],
-    [ "uart_has_active_channel", "lib_2libuart_2uart_8c.html#a1c73bdbf6ca4b547e5388ba557b1d46b", null ],
-    [ "uart_init", "lib_2libuart_2uart_8c.html#a01f5996cfbcef121abc486e732b208c7", null ],
-    [ "uart_init_", "lib_2libuart_2uart_8c.html#ac720323e085cb349e70d972a0f6fe261", null ],
-    [ "uart_send_char", "lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca", null ],
-    [ "uart_send_char_", "lib_2libuart_2uart_8c.html#a3b741ddac856f7b11678ce853b77fa08", null ],
-    [ "uart_send_string", "lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979", null ],
-    [ "uart_send_string_", "lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07", null ],
-    [ "uart_set_active_channel", "lib_2libuart_2uart_8c.html#ad880ffa037ecb14b4571aee5d6f53acd", null ],
-    [ "ustrlen", "lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae", null ],
-    [ "uart_active_channel", "lib_2libuart_2uart_8c.html#ab8459d8f15a47416a6234aeefa0237af", null ],
-    [ "UART_BUFFER", "lib_2libuart_2uart_8c.html#a8d80ff30a035806180f1ffcf4f61f330", null ]
+    [ "UART_BUFFER_LEN", "group___u_a_r_t.html#ga27a85f92b349a5d68d5cc6a333afa7e5", null ],
+    [ "uart_get_char", "group___u_a_r_t.html#ga36116526b4c84562aec19bca46a0827e", null ],
+    [ "uart_get_char_", "group___u_a_r_t.html#ga0593e5b14ac9f3f08558d7eda7e0be48", null ],
+    [ "uart_get_string", "group___u_a_r_t.html#ga591b19965c3a37bba9a53bd5bf571920", null ],
+    [ "uart_get_string_", "group___u_a_r_t.html#ga96ed99003d43e816bdff6b5d0ed29de9", null ],
+    [ "uart_init", "group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f", null ],
+    [ "uart_send_char", "group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca", null ],
+    [ "uart_send_char_", "group___u_a_r_t.html#ga1b09d796a7f93a651ecd7241868f0e16", null ],
+    [ "uart_send_string", "group___u_a_r_t.html#ga6663854cc5f46b64a624589faacd8979", null ],
+    [ "uart_send_string_", "group___u_a_r_t.html#ga5f75da55771fa18535ad7e1dee1e621b", null ],
+    [ "uart_set_active_metadata", "group___u_a_r_t.html#ga51e29ff163cc0fb5ab3f0417029fcb45", null ],
+    [ "uart_active_metadata", "group___u_a_r_t.html#ga29900e4970faf900cf137059441b43ec", null ],
+    [ "UART_BUFFER", "group___u_a_r_t.html#ga8d80ff30a035806180f1ffcf4f61f330", null ]
 ];

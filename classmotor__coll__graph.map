@@ -1,0 +1,5 @@
+<map id="motor" name="motor">
+<area shape="rect" id="node2" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="5,249,169,371"/>
+<area shape="rect" id="node3" href="$classblinker.html" title="{blinker\n|&#45; port_base\l|+ blinker()\l+ blinker()\l+ blinker()\l+ set_base()\l+ turn_on()\l+ turn_off()\l+ toggle()\l+ blink()\l}" alt="" coords="193,220,299,400"/>
+<area shape="rect" id="node4" href="$classgpio__twiddler.html" title="{gpio_twiddler\n||+ gpio_twiddler()\l+ gpio_twiddler()\l+ set_base()\l+ turn_on()\l+ turn_off()\l+ toggle()\l+ blink()\l}" alt="" coords="181,5,311,171"/>
+</map>

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['flashexecuteonly',['FlashExecuteOnly',['../flash_8h.html#adc37523740e95a78e9c797cef3913d69a89688aa46f7fbe896237cd1ae93378d6',1,'flash.h']]],
-  ['flashreadonly',['FlashReadOnly',['../flash_8h.html#adc37523740e95a78e9c797cef3913d69ad97d8551ef6a697d415040f23547f879',1,'flash.h']]],
-  ['flashreadwrite',['FlashReadWrite',['../flash_8h.html#adc37523740e95a78e9c797cef3913d69a5bf698d8f7f06bc2fba40bedee6267ac',1,'flash.h']]]
+  ['forward',['FORWARD',['../group___direction.html#gga224b9163917ac32fc95a60d8c1eec3aaaa26736999186daf8146f809e863712a1',1,'direction.hpp']]]
 ];

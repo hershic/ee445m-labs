@@ -1,5 +1,3 @@
 <map id="inc/hw_uart.h" name="inc/hw_uart.h">
 <area shape="rect" id="node2" href="$driverlib_2uart_8c.html" title="driverlib/uart.c" alt="" coords="5,80,119,107"/>
-<area shape="rect" id="node3" href="$softuart_8c.html" title="utils/softuart.c" alt="" coords="143,80,256,107"/>
-<area shape="rect" id="node4" href="$uartstdio_8c.html" title="utils/uartstdio.c" alt="" coords="281,80,401,107"/>
 </map>

@@ -1,0 +1,10 @@
+<map id="board&#45;progs/autonomous&#45;racer/common/pingpp.hpp" name="board&#45;progs/autonomous&#45;racer/common/pingpp.hpp">
+<area shape="rect" id="node2" href="$circularbuffer_8hpp.html" title="circularbuffer.hpp" alt="" coords="65,95,197,121"/>
+<area shape="rect" id="node5" href="$semaphorepp_8hpp.html" title="semaphorepp.hpp" alt="" coords="144,244,283,271"/>
+<area shape="rect" id="node6" href="$criticalpp_8hpp.html" title="criticalpp.hpp" alt="" coords="448,319,555,345"/>
+<area shape="rect" id="node8" href="$interruptable_8hpp.html" title="interruptable.hpp" alt="" coords="721,169,853,196"/>
+<area shape="rect" id="node9" href="$blinker_8hpp.html" title="blinker.hpp" alt="" coords="408,95,499,121"/>
+<area shape="rect" id="node12" href="$timerpp_8hpp.html" title="timerpp.hpp" alt="" coords="891,95,991,121"/>
+<area shape="rect" id="node4" href="$bufferpp_8hpp.html" title="bufferpp.hpp" alt="" coords="94,169,197,196"/>
+<area shape="rect" id="node10" href="$gpio__twiddler_8hpp.html" title="gpio_twiddler.hpp" alt="" coords="462,169,594,196"/>
+</map>

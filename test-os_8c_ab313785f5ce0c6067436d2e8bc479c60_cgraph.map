@@ -1,0 +1,5 @@
+<map id="uart_consumer" name="uart_consumer">
+<area shape="rect" id="node2" href="$group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="173,5,276,32"/>
+<area shape="rect" id="node3" href="$group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="173,56,276,83"/>
+<area shape="rect" id="node4" href="$group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="172,107,277,133"/>
+</map>

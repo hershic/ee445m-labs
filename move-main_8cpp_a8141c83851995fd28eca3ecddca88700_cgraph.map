@@ -1,0 +1,6 @@
+<map id="thread_blink_red" name="thread_blink_red">
+<area shape="rect" id="node2" href="$group__semaphore.html#gabf0cab4b7d34f7dc03b3e8bea35ad76a" title="semaphore::guard" alt="" coords="181,31,321,57"/>
+<area shape="rect" id="node5" href="$group___cpp_test.html#gabb1d14e9073bf7393a708c53a7d41fcd" title="blinker::toggle" alt="" coords="195,81,307,108"/>
+<area shape="rect" id="node3" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="369,5,516,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="373,56,512,83"/>
+</map>

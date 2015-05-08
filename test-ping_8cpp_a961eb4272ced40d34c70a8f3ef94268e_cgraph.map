@@ -1,0 +1,20 @@
+<map id="ping_handler" name="ping_handler">
+<area shape="rect" id="node2" href="$classping.html#a4e78a196f1b46cc86ca9a1eeb44eb4cc" title="ping::average" alt="" coords="157,5,267,32"/>
+<area shape="rect" id="node3" href="$group__semaphore.html#gabf0cab4b7d34f7dc03b3e8bea35ad76a" title="semaphore::guard" alt="" coords="315,31,455,57"/>
+<area shape="rect" id="node6" href="$classuart.html#ac929d5b86cdad232bd6f9ee1efa4cb83" title="uart::printf" alt="" coords="167,259,257,285"/>
+<area shape="rect" id="node9" href="$classping.html#a0f635a0fc75b5c6078475215aa29080b" title="ping::sample" alt="" coords="333,157,437,184"/>
+<area shape="rect" id="node18" href="$classping.html#ab5263f630ea8b7790a6f3c687044faa6" title="ping::start" alt="" coords="169,107,255,133"/>
+<area shape="rect" id="node4" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="513,56,659,83"/>
+<area shape="rect" id="node5" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="517,5,655,32"/>
+<area shape="rect" id="node7" href="$classuart.html#abc16bbe576600cb436dac853566779e9" title="uart::vprintf" alt="" coords="337,309,433,336"/>
+<area shape="rect" id="node8" href="$uartpp_8cpp.html#aa3ccf12f132efb18693ee7c504e0c7ad" title="UARTwrite" alt="" coords="545,411,627,437"/>
+<area shape="rect" id="node10" href="$group___cpp_test.html#gafaecbf92872d1d3fd1a9508c9ff4d1fb" title="ctlsys::gpio_int_disable" alt="" coords="717,259,885,285"/>
+<area shape="rect" id="node12" href="$group___cpp_test.html#ga429c851816a147f5e4265c68612f5b47" title="ctlsys::periph_to_int" alt="" coords="511,360,661,387"/>
+<area shape="rect" id="node13" href="$group___cpp_test.html#ga493c4641dcbd6452e90933b9536297ec" title="blinker::turn_on" alt="" coords="525,107,647,133"/>
+<area shape="rect" id="node14" href="$classdelay.html#af483ef01bbc699edbf82eac691a49c62" title="delay::count" alt="" coords="537,157,635,184"/>
+<area shape="rect" id="node15" href="$group___cpp_test.html#ga1f62582227974d0a51db579032fa055d" title="blinker::turn_off" alt="" coords="525,208,647,235"/>
+<area shape="rect" id="node16" href="$group___cpp_test.html#ga5419d221d86a47bf26e9681056795869" title="ctlsys::gpio_int_enable" alt="" coords="503,309,669,336"/>
+<area shape="rect" id="node11" href="$group___cpp_test.html#ga214ec98d389c618e09416298dc7755cb" title="ctlsys::gpio_pin_to_int" alt="" coords="933,309,1096,336"/>
+<area shape="rect" id="node17" href="$group___cpp_test.html#ga5d05e41c06825a9e058dd4303e33739c" title="ctlsys::gpio_int_clear" alt="" coords="724,309,879,336"/>
+<area shape="rect" id="node19" href="$group__semaphore.html#ga14c3b9f4312c43d9400905c938752665" title="semaphore::post" alt="" coords="319,81,450,108"/>
+</map>

@@ -1,4 +1,5 @@
 <map id="GPIOIntEnable" name="GPIOIntEnable">
-<area shape="rect" id="node2" href="$group__softuart__api.html#ga4ed76a849c91c4be00609ad1ff9e5299" title="SoftUARTConfigSet" alt="" coords="165,5,308,32"/>
-<area shape="rect" id="node3" href="$group__softuart__api.html#ga0ead647599114b07f0005e03d01460d6" title="SoftUARTRxTick" alt="" coords="177,56,297,83"/>
+<area shape="rect" id="node2" href="$group___button.html#ga7430c9efaada4254a89b9aea1c627dfb" title="button_init" alt="" coords="165,5,256,32"/>
+<area shape="rect" id="node3" href="$hardware_8h.html#aa5516d4dee186a189d2d62be05f4ba10" title="hw_driver_init" alt="" coords="304,5,412,32"/>
+<area shape="rect" id="node4" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="460,5,515,32"/>
 </map>

@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classcritical.html" title="critical" alt="" coords="26,107,89,133"/>
+<area shape="rect" id="node2" href="$classctlsys.html" title="ctlsys" alt="" coords="175,5,234,32"/>
+<area shape="rect" id="node3" href="$classmotor.html" title="motor" alt="" coords="174,56,235,83"/>
+<area shape="rect" id="node4" href="$classping.html" title="ping" alt="" coords="180,107,229,133"/>
+<area shape="rect" id="node5" href="$classsemaphore.html" title="semaphore" alt="" coords="157,157,252,184"/>
+<area shape="rect" id="node6" href="$classuart.html" title="uart" alt="" coords="181,208,229,235"/>
+<area shape="rect" id="node7" href="$classinterruptable.html" title="interruptable" alt="" coords="5,309,109,336"/>
+<area shape="rect" id="node8" href="$classadc.html" title="adc" alt="" coords="182,259,227,285"/>
+<area shape="rect" id="node9" href="$classcan.html" title="can" alt="" coords="182,309,227,336"/>
+<area shape="rect" id="node10" href="$classlswitch.html" title="lswitch" alt="" coords="173,360,237,387"/>
+<area shape="rect" id="node11" href="$classtimer.html" title="timer" alt="" coords="177,411,233,437"/>
+</map>

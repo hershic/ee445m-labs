@@ -1,0 +1,9 @@
+<map id="adc_init" name="adc_init">
+<area shape="rect" id="node2" href="$group__adc__api.html#ga810a79075c912e3079a0eadfcffa9446" title="ADCReferenceSet" alt="" coords="141,5,276,32"/>
+<area shape="rect" id="node3" href="$group__gpio__api.html#ga98f6b21513d01c1f2f755c6ff94ebe84" title="GPIOPinTypeADC" alt="" coords="145,56,273,83"/>
+<area shape="rect" id="node6" href="$group__sysctl__api.html#gadf2447348f48b339b8e7a73ed5e80afd" title="SysCtlGPIOAHBEnable" alt="" coords="127,107,291,133"/>
+<area shape="rect" id="node7" href="$group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="124,157,293,184"/>
+<area shape="rect" id="node8" href="$group__sysctl__api.html#gab8c537abe40caacd5dfa7ffdedefb6b9" title="SysCtlPeripheralReset" alt="" coords="128,208,289,235"/>
+<area shape="rect" id="node4" href="$group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="347,31,475,57"/>
+<area shape="rect" id="node5" href="$group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="341,81,480,108"/>
+</map>

@@ -111,20 +111,12 @@ $(document).ready(function(){initNavTree('utlist_8h.html','');});
 <div class="title">utlist.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;assert.h&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for utlist.h:</div>
-<div class="dyncontent">
-<div class="center"><img src="utlist_8h__incl.png" border="0" usemap="#lib_2libut_2utlist_8h" alt=""/></div>
-<map name="lib_2libut_2utlist_8h" id="lib_2libut_2utlist_8h">
-</map>
-</div>
-</div><div class="textblock"><div class="dynheader">
+<div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="utlist_8h__dep__incl.png" border="0" usemap="#lib_2libut_2utlist_8hdep" alt=""/></div>
 <map name="lib_2libut_2utlist_8hdep" id="lib_2libut_2utlist_8hdep">
-<area shape="rect" id="node2" href="system_8c.html" title="lib/libos/system.c" alt="" coords="5,80,136,107"/></map>
+<area shape="rect" id="node2" href="hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="5,80,151,107"/><area shape="rect" id="node3" href="os_8c.html" title="lib/libos/os.c" alt="" coords="175,80,274,107"/><area shape="rect" id="node4" href="system_8c.html" title="lib/libos/system.c" alt="" coords="298,80,429,107"/></map>
 </div>
 </div>
 <p><a href="utlist_8h_source.html">Go to the source code of this file.</a></p>
@@ -161,6 +153,8 @@ Macros</h2></td></tr>
 <tr class="separator:ac4c600b3d7ca043e54692ff4bc143dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a851fb4b583b0dc000097eeee6dd551d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a851fb4b583b0dc000097eeee6dd551d4">LL_PREPEND</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#ab2de55837ec70d7e467caee1ebe33b9a">LL_PREPEND2</a>(head,add,next)</td></tr>
 <tr class="separator:a851fb4b583b0dc000097eeee6dd551d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99c635f039eea147ee98f2dad29481e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a99c635f039eea147ee98f2dad29481e6">LL_EDF_PREPEND</a>(head,  add)</td></tr>
+<tr class="separator:a99c635f039eea147ee98f2dad29481e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2de55837ec70d7e467caee1ebe33b9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#ab2de55837ec70d7e467caee1ebe33b9a">LL_PREPEND2</a>(head,  add,  next)</td></tr>
 <tr class="separator:ab2de55837ec70d7e467caee1ebe33b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a404c4c80c250fc09c7a1a62b039efce7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a404c4c80c250fc09c7a1a62b039efce7">LL_CONCAT</a>(head1,  head2)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#aee8b209eb2ba3131a09d3e28e873dbd7">LL_CONCAT2</a>(head1,head2,next)</td></tr>
@@ -169,10 +163,14 @@ Macros</h2></td></tr>
 <tr class="separator:aee8b209eb2ba3131a09d3e28e873dbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace33c571c3df78e721a99a4494983855"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#ace33c571c3df78e721a99a4494983855">LL_APPEND</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a7e96b16a0e2dd86c8529fd794bbdbbb4">LL_APPEND2</a>(head,add,next)</td></tr>
 <tr class="separator:ace33c571c3df78e721a99a4494983855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec4e162ede9067bf635e3f665f9aa72"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a6ec4e162ede9067bf635e3f665f9aa72">LL_EDF_APPEND</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a7e96b16a0e2dd86c8529fd794bbdbbb4">LL_APPEND2</a>(head,add,pri_next)</td></tr>
+<tr class="separator:a6ec4e162ede9067bf635e3f665f9aa72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e96b16a0e2dd86c8529fd794bbdbbb4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a7e96b16a0e2dd86c8529fd794bbdbbb4">LL_APPEND2</a>(head,  add,  next)</td></tr>
 <tr class="separator:a7e96b16a0e2dd86c8529fd794bbdbbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34a4e54d488753465f6e87bb63b93c0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a34a4e54d488753465f6e87bb63b93c0e">LL_DELETE</a>(head,  del)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a2737a45962b8f6e79a7dda26f7ef50d8">LL_DELETE2</a>(head,del,next)</td></tr>
 <tr class="separator:a34a4e54d488753465f6e87bb63b93c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b781bfab8417ab72d4b1a54f41c94e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a65b781bfab8417ab72d4b1a54f41c94e">LL_EDF_DELETE</a>(head,  del)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a2737a45962b8f6e79a7dda26f7ef50d8">LL_DELETE2</a>(head,del,pri_next)</td></tr>
+<tr class="separator:a65b781bfab8417ab72d4b1a54f41c94e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2737a45962b8f6e79a7dda26f7ef50d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a2737a45962b8f6e79a7dda26f7ef50d8">LL_DELETE2</a>(head,  del,  next)</td></tr>
 <tr class="separator:a2737a45962b8f6e79a7dda26f7ef50d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c301ddde2cfd8c32df4137c902b66f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a3c301ddde2cfd8c32df4137c902b66f3">LL_APPEND_VS2008</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#acf275657ac7590615cd930f975b8472b">LL_APPEND2_VS2008</a>(head,add,next)</td></tr>
@@ -209,10 +207,14 @@ Macros</h2></td></tr>
 <tr class="separator:a77713cebaee4dc6bec6405e092854c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78be4dea3344ba1b1c7fe1b893c0fdfa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a78be4dea3344ba1b1c7fe1b893c0fdfa">DL_PREPEND</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#afefdf797fe1e3e3a48a8ff9b4afc8b50">DL_PREPEND2</a>(head,add,prev,next)</td></tr>
 <tr class="separator:a78be4dea3344ba1b1c7fe1b893c0fdfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c4210a9bf158ffdbeef1802b8c8d5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a31c4210a9bf158ffdbeef1802b8c8d5f">DL_EDF_PREPEND</a>(head,  add)</td></tr>
+<tr class="separator:a31c4210a9bf158ffdbeef1802b8c8d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afefdf797fe1e3e3a48a8ff9b4afc8b50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#afefdf797fe1e3e3a48a8ff9b4afc8b50">DL_PREPEND2</a>(head,  add,  prev,  next)</td></tr>
 <tr class="separator:afefdf797fe1e3e3a48a8ff9b4afc8b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17d40c945e1dc55490feb2fe160670c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a17d40c945e1dc55490feb2fe160670c8">DL_APPEND</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#af1aa0473f0cf2a976eb9c2ef18f29531">DL_APPEND2</a>(head,add,prev,next)</td></tr>
 <tr class="separator:a17d40c945e1dc55490feb2fe160670c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a431f5b78c5556bcab347602c23b85d10"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a431f5b78c5556bcab347602c23b85d10">DL_EDF_INSERT</a>(head,  add)</td></tr>
+<tr class="separator:a431f5b78c5556bcab347602c23b85d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1aa0473f0cf2a976eb9c2ef18f29531"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#af1aa0473f0cf2a976eb9c2ef18f29531">DL_APPEND2</a>(head,  add,  prev,  next)</td></tr>
 <tr class="separator:af1aa0473f0cf2a976eb9c2ef18f29531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae46c0b5fd5a59cd5f889db7a0e6989bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#ae46c0b5fd5a59cd5f889db7a0e6989bb">DL_CONCAT</a>(head1,  head2)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#aa910e66e69c6d7a0738682c6d6d22764">DL_CONCAT2</a>(head1,head2,prev,next)</td></tr>
@@ -251,6 +253,10 @@ Macros</h2></td></tr>
 <tr class="separator:a6c6a7232d281eab4b18563b92e5653bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb32a87bf2738eb64394e8d2eebfacab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#aeb32a87bf2738eb64394e8d2eebfacab">CDL_PREPEND2</a>(head,  add,  prev,  next)</td></tr>
 <tr class="separator:aeb32a87bf2738eb64394e8d2eebfacab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accdaa1a2854add161af9525eb458cf23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#accdaa1a2854add161af9525eb458cf23">CDL_APPEND</a>(head,  add)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a5966ec17beb64f9fb5153307fbb6017d">CDL_APPEND2</a>(head,add,prev,next)</td></tr>
+<tr class="separator:accdaa1a2854add161af9525eb458cf23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5966ec17beb64f9fb5153307fbb6017d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a5966ec17beb64f9fb5153307fbb6017d">CDL_APPEND2</a>(head,  add,  prev,  next)</td></tr>
+<tr class="separator:a5966ec17beb64f9fb5153307fbb6017d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60fd7696c4d0865f53a07579a7b08235"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a60fd7696c4d0865f53a07579a7b08235">CDL_DELETE</a>(head,  del)&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a3c74342dfb410c3b8847a0752609ab3a">CDL_DELETE2</a>(head,del,prev,next)</td></tr>
 <tr class="separator:a60fd7696c4d0865f53a07579a7b08235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c74342dfb410c3b8847a0752609ab3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utlist_8h.html#a3c74342dfb410c3b8847a0752609ab3a">CDL_DELETE2</a>(head,  del,  prev,  next)</td></tr>
@@ -469,6 +475,88 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="accdaa1a2854add161af9525eb458cf23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDL_APPEND</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">add&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a5966ec17beb64f9fb5153307fbb6017d">CDL_APPEND2</a>(head,add,prev,next)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00688">688</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00106">os_remove_thread()</a>, <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>, and <a class="el" href="os_8c_source.html#l00386">schedule()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5966ec17beb64f9fb5153307fbb6017d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDL_APPEND2</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">add, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">prev, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">next&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
+<div class="line"> if (head) {                                                                                   \</div>
+<div class="line">   (add)-&gt;prev = (head)-&gt;prev;                                                                 \</div>
+<div class="line">   (add)-&gt;next = (head);                                                                       \</div>
+<div class="line">   (head)-&gt;prev = (add);                                                                       \</div>
+<div class="line">   (add)-&gt;prev-&gt;next = (add);                                                                  \</div>
+<div class="line"> } <span class="keywordflow">else</span> {                                                                                      \</div>
+<div class="line">   (add)-&gt;prev = (add);                                                                        \</div>
+<div class="line">   (add)-&gt;next = (add);                                                                        \</div>
+<div class="line">   (head)=(add);                                                        \</div>
+<div class="line"> }                                                                                             \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00691">691</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a62aadb45076ea124d2ed269d6cbf39cb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -499,7 +587,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00679">679</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00719">719</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -542,9 +630,9 @@ Macros</h2></td></tr>
 <div class="line">    counter = 0;                                                                               <a class="code" href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">\</a></div>
 <div class="line"><a class="code" href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">    CDL_FOREACH2</a>(head,el,next){ ++counter; }                                                   \</div>
 <div class="line">}</div>
-<div class="ttc" id="utlist_8h_html_a1cb1a7ba8af85112bd9080f2e5bc3989"><div class="ttname"><a href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">CDL_FOREACH2</a></div><div class="ttdeci">#define CDL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00691">utlist.h:691</a></div></div>
+<div class="ttc" id="utlist_8h_html_a1cb1a7ba8af85112bd9080f2e5bc3989"><div class="ttname"><a href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">CDL_FOREACH2</a></div><div class="ttdeci">#define CDL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00731">utlist.h:731</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00682">682</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00722">722</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -572,9 +660,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00665">665</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00705">705</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
-<p>Referenced by <a class="el" href="system_8c_source.html#l00043">system_deregister_command()</a>, and <a class="el" href="system_8c_source.html#l00027">system_register_command()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00121">_hw_subscribe()</a>, <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>, <a class="el" href="hardware_8c_source.html#l00137">hw_unsubscribe()</a>, <a class="el" href="os_8c_source.html#l00072">os_add_thread()</a>, <a class="el" href="os_8c_source.html#l00106">os_remove_thread()</a>, <a class="el" href="os_8c_source.html#l00386">schedule()</a>, <a class="el" href="system_8c_source.html#l00045">system_deregister_command()</a>, and <a class="el" href="system_8c_source.html#l00029">system_register_command()</a>.</p>
 
 </div>
 </div>
@@ -623,7 +711,7 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00668">668</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00708">708</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +739,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00688">688</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00728">728</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +773,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00691">691</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00731">731</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -725,7 +813,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00694">694</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00734">734</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -779,9 +867,9 @@ Macros</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">for</span>((el)=(head), ((tmp1)=(head)?((head)-&gt;prev):<a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                        \</div>
 <div class="line">      (el) &amp;&amp; ((tmp2)=(el)-&gt;next, 1);                                                          \</div>
 <div class="line">      ((el) = (((el)==(tmp1)) ? 0L : (tmp2))))</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00697">697</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00737">737</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -809,9 +897,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00648">648</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00671">671</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
-<p>Referenced by <a class="el" href="system_8c_source.html#l00043">system_deregister_command()</a>, <a class="el" href="system_8c_source.html#l00017">system_init()</a>, and <a class="el" href="system_8c_source.html#l00027">system_register_command()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00121">_hw_subscribe()</a>, <a class="el" href="hardware_8c_source.html#l00094">hw_channel_init()</a>, <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>, <a class="el" href="hardware_8c_source.html#l00137">hw_unsubscribe()</a>, <a class="el" href="os_8c_source.html#l00386">schedule()</a>, <a class="el" href="system_8c_source.html#l00045">system_deregister_command()</a>, <a class="el" href="system_8c_source.html#l00019">system_init()</a>, and <a class="el" href="system_8c_source.html#l00029">system_register_command()</a>.</p>
 
 </div>
 </div>
@@ -863,7 +951,7 @@ Macros</h2></td></tr>
 <div class="line">(head)=(add);                                                                                  \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00651">651</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00674">674</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -897,9 +985,6 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
-<div class="line"> assert(head != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                         \</div>
-<div class="line"> assert(el != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                           \</div>
-<div class="line"> assert(add != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                          \</div>
 <div class="line"> (add)-&gt;next = (el);                                                                           \</div>
 <div class="line"> (add)-&gt;prev = (el)-&gt;prev;                                                                     \</div>
 <div class="line"> (el)-&gt;prev = (add);                                                                           \</div>
@@ -908,9 +993,8 @@ Macros</h2></td></tr>
 <div class="line">  (head) = (add);                                                                              \</div>
 <div class="line"> }                                                                                             \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)                                                                                    \</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00742">742</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00779">779</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -944,9 +1028,6 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
-<div class="line"> assert(head != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                         \</div>
-<div class="line"> assert(el != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                           \</div>
-<div class="line"> assert(add != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                          \</div>
 <div class="line"> if ((el)-&gt;next == (el)) {                                                                     \</div>
 <div class="line">  (add)-&gt;next = (add);                                                                         \</div>
 <div class="line">  (add)-&gt;prev = (add);                                                                         \</div>
@@ -961,9 +1042,8 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line"> }                                                                                             \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00722">722</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00762">762</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1003,7 +1083,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00712">712</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00752">752</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1053,9 +1133,9 @@ Macros</h2></td></tr>
 <div class="line">      if ((cmp(out,elt))==0) break;                                                            \</div>
 <div class="line">    }                                                                                          \</div>
 <div class="line">} while(0)</div>
-<div class="ttc" id="utlist_8h_html_a1cb1a7ba8af85112bd9080f2e5bc3989"><div class="ttname"><a href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">CDL_FOREACH2</a></div><div class="ttdeci">#define CDL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00691">utlist.h:691</a></div></div>
+<div class="ttc" id="utlist_8h_html_a1cb1a7ba8af85112bd9080f2e5bc3989"><div class="ttname"><a href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">CDL_FOREACH2</a></div><div class="ttdeci">#define CDL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00731">utlist.h:731</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00715">715</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00755">755</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1095,7 +1175,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00702">702</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00742">742</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1145,9 +1225,9 @@ Macros</h2></td></tr>
 <div class="line">      if ((out)-&gt;field == (val)) break;                                                        \</div>
 <div class="line">    }                                                                                          \</div>
 <div class="line">} while(0)</div>
-<div class="ttc" id="utlist_8h_html_a1cb1a7ba8af85112bd9080f2e5bc3989"><div class="ttname"><a href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">CDL_FOREACH2</a></div><div class="ttdeci">#define CDL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00691">utlist.h:691</a></div></div>
+<div class="ttc" id="utlist_8h_html_a1cb1a7ba8af85112bd9080f2e5bc3989"><div class="ttname"><a href="utlist_8h.html#a1cb1a7ba8af85112bd9080f2e5bc3989">CDL_FOREACH2</a></div><div class="ttdeci">#define CDL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00731">utlist.h:731</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00705">705</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00745">745</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1243,7 +1323,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00519">519</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00535">535</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1294,9 +1374,9 @@ Macros</h2></td></tr>
 <div class="line">      (head)-&gt;next = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;                                                                     \</div>
 <div class="line">  }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00522">522</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00552">552</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1324,7 +1404,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00536">536</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00566">566</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1378,7 +1458,7 @@ Macros</h2></td></tr>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 <div class="ttc" id="utlist_8h_html_ae8c9864192170d02fd996abaa1589611"><div class="ttname"><a href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">LDECLTYPE</a></div><div class="ttdeci">#define LDECLTYPE(x)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00077">utlist.h:77</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00539">539</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00569">569</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1412,7 +1492,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00575">575</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00604">604</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1455,9 +1535,9 @@ Macros</h2></td></tr>
 <div class="line">    counter = 0;                                                                               <a class="code" href="utlist_8h.html#afa552d80a0e24c462756e5c7d714b590">\</a></div>
 <div class="line"><a class="code" href="utlist_8h.html#afa552d80a0e24c462756e5c7d714b590">    DL_FOREACH2</a>(head,el,next){ ++counter; }                                                    \</div>
 <div class="line">}</div>
-<div class="ttc" id="utlist_8h_html_afa552d80a0e24c462756e5c7d714b590"><div class="ttname"><a href="utlist_8h.html#afa552d80a0e24c462756e5c7d714b590">DL_FOREACH2</a></div><div class="ttdeci">#define DL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00587">utlist.h:587</a></div></div>
+<div class="ttc" id="utlist_8h_html_afa552d80a0e24c462756e5c7d714b590"><div class="ttname"><a href="utlist_8h.html#afa552d80a0e24c462756e5c7d714b590">DL_FOREACH2</a></div><div class="ttdeci">#define DL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00616">utlist.h:616</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00578">578</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00607">607</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1485,7 +1565,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00554">554</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00584">584</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1525,7 +1605,6 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
-<div class="line">  assert((del)-&gt;prev != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                 \</div>
 <div class="line">  if ((del)-&gt;prev == (del)) {                                                                  \</div>
 <div class="line">      (head)=<a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;                                                                             \</div>
 <div class="line">  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((del)==(head)) {                                                                  \</div>
@@ -1540,9 +1619,90 @@ Macros</h2></td></tr>
 <div class="line">      }                                                                                        \</div>
 <div class="line">  }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00557">557</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00587">587</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a431f5b78c5556bcab347602c23b85d10"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DL_EDF_INSERT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">add&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
+<div class="line">  if (head) {                                                                                  \</div>
+<div class="line">      (add)-&gt;pri_next = (head)-&gt;pri_next;                               \</div>
+<div class="line">      (head)-&gt;pri_next-&gt;pri_prev = (add);                               \</div>
+<div class="line">      (head)-&gt;pri_next = (add);                                         \</div>
+<div class="line">      (add)-&gt;pri_prev = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;                                           \</div>
+<div class="line">  } <span class="keywordflow">else</span> {                                                              \</div>
+<div class="line">      (head)=(add);                                                     \</div>
+<div class="line">      (head)-&gt;pri_prev = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;                                          \</div>
+<div class="line">      (head)-&gt;pri_next = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;                                          \</div>
+<div class="line">  }                                                                                            \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00538">538</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00475">edf_init()</a>, and <a class="el" href="os_8c_source.html#l00491">edf_insert()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a31c4210a9bf158ffdbeef1802b8c8d5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DL_EDF_PREPEND</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">add&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
+<div class="line">    (add)-&gt;pri_next = head;                                             \</div>
+<div class="line"> if (head) {                                                            \</div>
+<div class="line">   (add)-&gt;pri_prev = (head)-&gt;pri_prev;                                \</div>
+<div class="line">   (head)-&gt;pri_prev = (add);                                          \</div>
+<div class="line"> }                                                                                             \</div>
+<div class="line"> (head) = (add);                                                                               \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00513">513</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00491">edf_insert()</a>.</p>
 
 </div>
 </div>
@@ -1570,7 +1730,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00584">584</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00613">613</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1604,7 +1764,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00587">587</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00616">616</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1638,7 +1798,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00591">591</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00620">620</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1678,7 +1838,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00594">594</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00623">623</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1706,7 +1866,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00504">504</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00510">510</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00445">schedule_init()</a>.</p>
 
 </div>
 </div>
@@ -1756,7 +1918,7 @@ Macros</h2></td></tr>
 <div class="line"> (head) = (add);                                                                               \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00507">507</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00523">523</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1790,9 +1952,6 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
-<div class="line"> assert(head != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                         \</div>
-<div class="line"> assert(el != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                           \</div>
-<div class="line"> assert(add != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                          \</div>
 <div class="line"> (add)-&gt;next = (el);                                                                           \</div>
 <div class="line"> (add)-&gt;prev = (el)-&gt;prev;                                                                     \</div>
 <div class="line"> (el)-&gt;prev = (add);                                                                           \</div>
@@ -1802,9 +1961,8 @@ Macros</h2></td></tr>
 <div class="line">  (add)-&gt;prev-&gt;next = (add);                                                                   \</div>
 <div class="line"> }                                                                                             \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)                                                                                    \</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00629">629</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00655">655</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1838,9 +1996,6 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
-<div class="line"> assert(head != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                         \</div>
-<div class="line"> assert(el != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                           \</div>
-<div class="line"> assert(add != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                          \</div>
 <div class="line"> if ((head) == (el)) {                                                                         \</div>
 <div class="line">  (head) = (add);                                                                              \</div>
 <div class="line">  (add)-&gt;next = (el)-&gt;next;                                                                    \</div>
@@ -1861,9 +2016,9 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line"> }                                                                                             \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00603">603</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00632">632</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1877,7 +2032,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00599">599</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00628">628</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1891,7 +2046,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00601">601</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00630">630</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1905,7 +2060,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00598">598</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00627">627</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -1919,7 +2074,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00600">600</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00629">629</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2033,7 +2188,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00333">333</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00339">339</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2077,10 +2232,10 @@ Macros</h2></td></tr>
 <div class="line">    (head)=(add);                                                                              \</div>
 <div class="line">  }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
 <div class="ttc" id="utlist_8h_html_ae8c9864192170d02fd996abaa1589611"><div class="ttname"><a href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">LDECLTYPE</a></div><div class="ttdeci">#define LDECLTYPE(x)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00077">utlist.h:77</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00336">336</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00345">345</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2123,9 +2278,9 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line">  (add)-&gt;next=<a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
+<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00032">defines.h:32</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00372">372</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00384">384</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2153,7 +2308,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00369">369</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00381">381</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2181,7 +2336,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00318">318</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00324">324</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2226,7 +2381,7 @@ Macros</h2></td></tr>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 <div class="ttc" id="utlist_8h_html_ae8c9864192170d02fd996abaa1589611"><div class="ttname"><a href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">LDECLTYPE</a></div><div class="ttdeci">#define LDECLTYPE(x)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00077">utlist.h:77</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00321">321</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00327">327</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2260,7 +2415,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00419">419</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00431">431</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2303,9 +2458,9 @@ Macros</h2></td></tr>
 <div class="line">    counter = 0;                                                                               <a class="code" href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">\</a></div>
 <div class="line"><a class="code" href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">    LL_FOREACH2</a>(head,el,next){ ++counter; }                                                    \</div>
 <div class="line">}</div>
-<div class="ttc" id="utlist_8h_html_a02e4d427da9697e0c8200850972f9a17"><div class="ttname"><a href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">LL_FOREACH2</a></div><div class="ttdeci">#define LL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00431">utlist.h:431</a></div></div>
+<div class="ttc" id="utlist_8h_html_a02e4d427da9697e0c8200850972f9a17"><div class="ttname"><a href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">LL_FOREACH2</a></div><div class="ttdeci">#define LL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00443">utlist.h:443</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00422">422</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00434">434</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2333,7 +2488,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00349">349</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00358">358</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2382,7 +2537,7 @@ Macros</h2></td></tr>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 <div class="ttc" id="utlist_8h_html_ae8c9864192170d02fd996abaa1589611"><div class="ttname"><a href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">LDECLTYPE</a></div><div class="ttdeci">#define LDECLTYPE(x)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00077">utlist.h:77</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00352">352</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00364">364</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2433,7 +2588,7 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00387">387</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00399">399</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2461,7 +2616,95 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00384">384</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00396">396</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ec4e162ede9067bf635e3f665f9aa72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LL_EDF_APPEND</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">add&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a7e96b16a0e2dd86c8529fd794bbdbbb4">LL_APPEND2</a>(head,add,pri_next)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00342">342</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a65b781bfab8417ab72d4b1a54f41c94e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LL_EDF_DELETE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">del&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="utlist_8h.html#a2737a45962b8f6e79a7dda26f7ef50d8">LL_DELETE2</a>(head,del,pri_next)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00361">361</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a99c635f039eea147ee98f2dad29481e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LL_EDF_PREPEND</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">head, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">add&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
+<div class="line">  (add)-&gt;next = head;                                                                          \</div>
+<div class="line">  head = add;                                                                                  \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00312">312</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2489,7 +2732,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00428">428</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00440">440</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2523,7 +2766,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00431">431</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00443">443</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2557,7 +2800,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00434">434</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00446">446</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2597,7 +2840,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00437">437</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00449">449</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2663,7 +2906,7 @@ Macros</h2></td></tr>
 <div class="line">  head = add;                                                                                  \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00312">312</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00318">318</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2698,9 +2941,6 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           <a class="code" href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">\</a></div>
 <div class="line"><a class="code" href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611"> LDECLTYPE</a>(head) _tmp;                                                                         \</div>
-<div class="line"> assert(head != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                         \</div>
-<div class="line"> assert(el != NULL);                                                                           \</div>
-<div class="line"> assert(add != NULL);                                                                          \</div>
 <div class="line"> (add)-&gt;next = (el);                                                                           \</div>
 <div class="line"> if ((head) == (el)) {                                                                         \</div>
 <div class="line">  (head) = (add);                                                                              \</div>
@@ -2714,10 +2954,9 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line"> }                                                                                             \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)                                                                                    \</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
 <div class="ttc" id="utlist_8h_html_ae8c9864192170d02fd996abaa1589611"><div class="ttname"><a href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">LDECLTYPE</a></div><div class="ttdeci">#define LDECLTYPE(x)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00077">utlist.h:77</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00480">480</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00489">489</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2752,9 +2991,6 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           <a class="code" href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">\</a></div>
 <div class="line"><a class="code" href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611"> LDECLTYPE</a>(head) _tmp;                                                                         \</div>
-<div class="line"> assert(head != <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);                                                                         \</div>
-<div class="line"> assert(el != NULL);                                                                           \</div>
-<div class="line"> assert(add != NULL);                                                                          \</div>
 <div class="line"> (add)-&gt;next = (el)-&gt;next;                                                                     \</div>
 <div class="line"> if ((head) == (el)) {                                                                         \</div>
 <div class="line">  (head) = (add);                                                                              \</div>
@@ -2768,10 +3004,9 @@ Macros</h2></td></tr>
 <div class="line">  }                                                                                            \</div>
 <div class="line"> }                                                                                             \</div>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
 <div class="ttc" id="utlist_8h_html_ae8c9864192170d02fd996abaa1589611"><div class="ttname"><a href="utlist_8h.html#ae8c9864192170d02fd996abaa1589611">LDECLTYPE</a></div><div class="ttdeci">#define LDECLTYPE(x)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00077">utlist.h:77</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00460">460</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00472">472</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2811,7 +3046,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00450">450</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00462">462</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2861,9 +3096,9 @@ Macros</h2></td></tr>
 <div class="line">      if ((cmp(out,elt))==0) break;                                                            \</div>
 <div class="line">    }                                                                                          \</div>
 <div class="line">} while(0)</div>
-<div class="ttc" id="utlist_8h_html_a02e4d427da9697e0c8200850972f9a17"><div class="ttname"><a href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">LL_FOREACH2</a></div><div class="ttdeci">#define LL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00431">utlist.h:431</a></div></div>
+<div class="ttc" id="utlist_8h_html_a02e4d427da9697e0c8200850972f9a17"><div class="ttname"><a href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">LL_FOREACH2</a></div><div class="ttdeci">#define LL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00443">utlist.h:443</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00453">453</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00465">465</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2903,7 +3138,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00440">440</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00452">452</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -2953,9 +3188,9 @@ Macros</h2></td></tr>
 <div class="line">      if ((out)-&gt;field == (val)) break;                                                        \</div>
 <div class="line">    }                                                                                          \</div>
 <div class="line">} while(0)</div>
-<div class="ttc" id="utlist_8h_html_a02e4d427da9697e0c8200850972f9a17"><div class="ttname"><a href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">LL_FOREACH2</a></div><div class="ttdeci">#define LL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00431">utlist.h:431</a></div></div>
+<div class="ttc" id="utlist_8h_html_a02e4d427da9697e0c8200850972f9a17"><div class="ttname"><a href="utlist_8h.html#a02e4d427da9697e0c8200850972f9a17">LL_FOREACH2</a></div><div class="ttdeci">#define LL_FOREACH2(head, el, next)</div><div class="ttdef"><b>Definition:</b> <a href="utlist_8h_source.html#l00443">utlist.h:443</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="utlist_8h_source.html#l00443">443</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
+<p>Definition at line <a class="el" href="utlist_8h_source.html#l00455">455</a> of file <a class="el" href="utlist_8h_source.html">utlist.h</a>.</p>
 
 </div>
 </div>
@@ -3041,7 +3276,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_b050cae0f8a8d00fbdea960a0dd86871.html">libut</a></li><li class="navelem"><a class="el" href="utlist_8h.html">utlist.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -1,0 +1,9 @@
+<map id="uart_send_char_" name="uart_send_char_">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="181,81,303,108"/>
+<area shape="rect" id="node3" href="$group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="351,56,489,83"/>
+<area shape="rect" id="node7" href="$test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8" title="uart_handler" alt="" coords="369,107,471,133"/>
+<area shape="rect" id="node4" href="$group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="549,5,624,32"/>
+<area shape="rect" id="node5" href="$group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="537,56,636,83"/>
+<area shape="rect" id="node6" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="684,56,739,83"/>
+<area shape="rect" id="node8" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="559,107,614,133"/>
+</map>

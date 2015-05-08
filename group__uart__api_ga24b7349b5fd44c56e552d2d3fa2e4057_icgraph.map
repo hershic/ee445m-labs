@@ -1,8 +1,10 @@
 <map id="UARTDisable" name="UARTDisable">
-<area shape="rect" id="node2" href="$group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b" title="UARTConfigSetExpClk" alt="" coords="156,31,315,57"/>
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8h.html#ac720323e085cb349e70d972a0f6fe261" title="uart_init_" alt="" coords="363,31,444,57"/>
-<area shape="rect" id="node4" href="$lib_2libuart_2uart_8h.html#a01f5996cfbcef121abc486e732b208c7" title="uart_init" alt="" coords="492,31,567,57"/>
-<area shape="rect" id="node5" href="$hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="615,5,737,32"/>
-<area shape="rect" id="node7" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="649,56,703,83"/>
-<area shape="rect" id="node6" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="785,5,840,32"/>
+<area shape="rect" id="node2" href="$group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b" title="UARTConfigSetExpClk" alt="" coords="156,81,315,108"/>
+<area shape="rect" id="node3" href="$group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f" title="uart_init" alt="" coords="363,56,437,83"/>
+<area shape="rect" id="node9" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="373,107,427,133"/>
+<area shape="rect" id="node4" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="485,56,608,83"/>
+<area shape="rect" id="node5" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="675,5,808,32"/>
+<area shape="rect" id="node7" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="656,56,827,83"/>
+<area shape="rect" id="node8" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="714,107,769,133"/>
+<area shape="rect" id="node6" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="875,5,929,32"/>
 </map>

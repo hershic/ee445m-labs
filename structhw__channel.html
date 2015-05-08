@@ -119,19 +119,55 @@ Collaboration diagram for hw_channel:</div>
 <div class="dyncontent">
 <div class="center"><img src="structhw__channel__coll__graph.png" border="0" usemap="#hw__channel_coll__map" alt="Collaboration graph"/></div>
 <map name="hw__channel_coll__map" id="hw__channel_coll__map">
-<area shape="rect" id="node2" href="struct__isr__subscription.html" title="{_isr_subscription\n|+ valid\l+ single_shot_subscription\l+ slot\l|}" alt="" coords="5,5,199,112"/></map>
+<area shape="rect" id="node2" href="struct__isr__subscription.html" title="{_isr_subscription\n|+ single_shot_subscription\l+ slot\l|}" alt="" coords="5,5,199,97"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a0f5f5ffb7deee3f562ce14f81d860d0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__channel.html#a0f5f5ffb7deee3f562ce14f81d860d0b">isr_subscriptions</a> [8]</td></tr>
 <tr class="separator:a0f5f5ffb7deee3f562ce14f81d860d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f5c7f8321e829dd6c53fe3a4928ec49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__channel.html#a1f5c7f8321e829dd6c53fe3a4928ec49">free_slots</a></td></tr>
+<tr class="separator:a1f5c7f8321e829dd6c53fe3a4928ec49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5361b592fc2e466d015db8db8452bd6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhw__channel.html#a5361b592fc2e466d015db8db8452bd6a">full_slots</a></td></tr>
+<tr class="separator:a5361b592fc2e466d015db8db8452bd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A hardware driver manages multiple peripheral channels </p>
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00062">62</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00130">130</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a1f5c7f8321e829dd6c53fe3a4928ec49"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a>* hw_channel::free_slots</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00132">132</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00121">_hw_subscribe()</a>, <a class="el" href="hardware_8c_source.html#l00094">hw_channel_init()</a>, <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>, and <a class="el" href="hardware_8c_source.html#l00137">hw_unsubscribe()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5361b592fc2e466d015db8db8452bd6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__isr__subscription.html">_isr_subscription</a>* hw_channel::full_slots</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00133">133</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00121">_hw_subscribe()</a>, <a class="el" href="hardware_8c_source.html#l00094">hw_channel_init()</a>, <a class="el" href="hardware_8c_source.html#l00149">hw_notify()</a>, and <a class="el" href="hardware_8c_source.html#l00137">hw_unsubscribe()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a0f5f5ffb7deee3f562ce14f81d860d0b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -142,9 +178,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00064">64</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00131">131</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 
-<p>Referenced by <a class="el" href="hardware_8c_source.html#l00235">_hw_first_available_subscription()</a>, <a class="el" href="hardware_8c_source.html#l00071">hw_channel_init()</a>, <a class="el" href="hardware_8c_source.html#l00098">hw_connect()</a>, <a class="el" href="hardware_8c_source.html#l00112">hw_connect_single_shot()</a>, <a class="el" href="hardware_8c_source.html#l00131">hw_disconnect()</a>, and <a class="el" href="hardware_8c_source.html#l00208">hw_notify()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00094">hw_channel_init()</a>.</p>
 
 </div>
 </div>
@@ -157,7 +193,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structhw__channel.html">hw_channel</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:44 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -56,7 +56,7 @@ var dir_ccfc45fba3c59d28434cf038780bfc66 =
     [ "sysexc.c", "sysexc_8c.html", "sysexc_8c" ],
     [ "sysexc.h", "sysexc_8h.html", "sysexc_8h" ],
     [ "systick.c", "systick_8c.html", "systick_8c" ],
-    [ "systick.h", "systick_8h.html", "systick_8h" ],
+    [ "systick.h", "driverlib_2systick_8h.html", "driverlib_2systick_8h" ],
     [ "timer.c", "driverlib_2timer_8c.html", "driverlib_2timer_8c" ],
     [ "timer.h", "driverlib_2timer_8h.html", "driverlib_2timer_8h" ],
     [ "uart.c", "driverlib_2uart_8c.html", "driverlib_2uart_8c" ],

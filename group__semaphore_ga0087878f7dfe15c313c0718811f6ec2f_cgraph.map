@@ -1,0 +1,4 @@
+<map id="semaphore::reset" name="semaphore::reset">
+<area shape="rect" id="node2" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="193,5,332,32"/>
+<area shape="rect" id="node3" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="189,56,336,83"/>
+</map>

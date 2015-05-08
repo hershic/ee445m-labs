@@ -1,0 +1,9 @@
+<map id="_system_command_from_name" name="_system_command_from_name">
+<area shape="rect" id="node2" href="$group___system.html#gafe0463ce5dac9471aada75540b62c9e2" title="system_deregister_command" alt="" coords="283,5,496,32"/>
+<area shape="rect" id="node3" href="$group___system.html#gabf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="336,56,443,83"/>
+<area shape="rect" id="node4" href="$group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="544,56,725,83"/>
+<area shape="rect" id="node5" href="$group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="773,56,912,83"/>
+<area shape="rect" id="node6" href="$group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="960,31,1059,57"/>
+<area shape="rect" id="node8" href="$group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="972,81,1047,108"/>
+<area shape="rect" id="node7" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="1107,31,1161,57"/>
+</map>

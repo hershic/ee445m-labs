@@ -1,0 +1,9 @@
+<map id="hw_init_daemon" name="hw_init_daemon">
+<area shape="rect" id="node2" href="$hardware_8c.html#a4b16b6aa8084ff7cc4261f2bd15b5b0b" title="hw_daemon" alt="" coords="188,5,287,32"/>
+<area shape="rect" id="node7" href="$group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f" title="os_add_thread" alt="" coords="179,56,296,83"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#aeec040621fb93a935c8f3aaf2037d6cd" title="hw_notify_uart" alt="" coords="374,5,489,32"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a1aac20922af64474d68eb42c09f79535" title="hw_notify" alt="" coords="567,5,648,32"/>
+<area shape="rect" id="node5" href="$hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="696,5,827,32"/>
+<area shape="rect" id="node6" href="$hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="875,5,1021,32"/>
+<area shape="rect" id="node8" href="$group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a" title="_os_reset_thread_stack" alt="" coords="344,56,519,83"/>
+</map>

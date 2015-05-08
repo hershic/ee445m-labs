@@ -1,0 +1,23 @@
+<map id="clamp" name="clamp">
+<area shape="rect" id="node2" href="$classir.html#a83479e498ca3d6bb19c2fcecddab884d" title="ir::distance" alt="" coords="115,5,207,32"/>
+<area shape="rect" id="node5" href="$classmotor.html#a7d422d0ff4f2d93b31fa7f4a567c4daa" title="motor::set" alt="" coords="116,208,205,235"/>
+<area shape="rect" id="node10" href="$classdrive.html#a78f824d06d180251f21dde7d7b5e7e9e" title="drive::steer" alt="" coords="270,56,365,83"/>
+<area shape="rect" id="node3" href="$sense-main_8cpp.html#a3cb6923ca20bc9de241cece290a2e74b" title="can_transmitter" alt="" coords="255,5,379,32"/>
+<area shape="rect" id="node4" href="$sense-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="468,5,523,32"/>
+<area shape="rect" id="node6" href="$classdrive.html#ab277a275beb07bbc6ee033696a45221b" title="drive::forward" alt="" coords="263,157,371,184"/>
+<area shape="rect" id="node7" href="$classdrive.html#a202466062796cc4c74fcb65533826df7" title="drive::backward" alt="" coords="257,208,378,235"/>
+<area shape="rect" id="node8" href="$classdrive.html#a49ff57aa7d62954a7c1fff05250063c6" title="drive::set" alt="" coords="277,259,358,285"/>
+<area shape="rect" id="node13" href="$classmotor.html#acbcea523aac48de7d1640904d3c70791" title="motor::stop" alt="" coords="269,360,366,387"/>
+<area shape="rect" id="node17" href="$classmotor.html#a8cb5ce239d3eadf16a929bccf9a04c25" title="motor::set" alt="" coords="273,411,362,437"/>
+<area shape="rect" id="node18" href="$classmotor.html#a8194b04c23d3f3d638aff1bc05aef134" title="motor::pwm_init" alt="" coords="255,107,380,133"/>
+<area shape="rect" id="node21" href="$classmotor.html#a4c75033e798997e8cd920b81a9534388" title="motor::reverse" alt="" coords="437,309,554,336"/>
+<area shape="rect" id="node9" href="$classdrive.html#ad97b24c0b7bc964c6c5b65a55d95b9c3" title="drive::drive" alt="" coords="449,259,541,285"/>
+<area shape="rect" id="node11" href="$move-main_8cpp.html#a7580da90a74ef53253f7e69f1c68474d" title="driver" alt="" coords="648,56,707,83"/>
+<area shape="rect" id="node12" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="792,284,847,311"/>
+<area shape="rect" id="node14" href="$classdrive.html#a544bace6cc9a43b7f39d58fe36fddb74" title="drive::stop" alt="" coords="451,360,540,387"/>
+<area shape="rect" id="node15" href="$move-main_8cpp.html#a2174d1f65988a9a74094c1027c14bcfa" title="motor_control" alt="" coords="621,385,733,412"/>
+<area shape="rect" id="node16" href="$move-main_8cpp.html#ac6104727fdf18a236bf0cbc40c3e5f11" title="Timer0A_Handler" alt="" coords="611,335,743,361"/>
+<area shape="rect" id="node19" href="$classmotor.html#ad93e31c83b8a3d0f97c29478d2089212" title="motor::motor_init" alt="" coords="428,107,563,133"/>
+<area shape="rect" id="node20" href="$classmotor.html#a1558350ea08d9c56f460c4ff928e1dba" title="motor::motor" alt="" coords="623,107,731,133"/>
+<area shape="rect" id="node22" href="$move-main_8cpp.html#ae131b00322d1c477f4f8b8d1dc5dec73" title="switch_responder" alt="" coords="611,284,744,311"/>
+</map>

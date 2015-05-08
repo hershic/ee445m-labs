@@ -1306,7 +1306,7 @@ on these values.  </pre>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00051">ADC_O_ISC</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00150">ADC0Seq0_Handler()</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00058">adc_open()</a>, and <a class="el" href="lib_2libadc_2adc_8c_source.html#l00129">do_adc_func()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00378">ADC0Seq0_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00385">ADC0Seq1_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00392">ADC0Seq2_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00402">ADC0Seq3_Handler()</a>, and <a class="el" href="lib_2libadc_2adc_8c_source.html#l00067">adc_interrupt_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;{</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -1330,7 +1330,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__adc__api_ga207d2cf2a807efe846f15200462166b0_icgraph.png" border="0" usemap="#group__adc__api_ga207d2cf2a807efe846f15200462166b0_icgraph" alt=""/></div>
 <map name="group__adc__api_ga207d2cf2a807efe846f15200462166b0_icgraph" id="group__adc__api_ga207d2cf2a807efe846f15200462166b0_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="152,5,300,32"/><area shape="rect" id="node4" href="lib_2libadc_2adc_8h.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="184,56,268,83"/><area shape="rect" id="node6" href="lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="175,107,277,133"/><area shape="rect" id="node3" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="348,5,453,32"/><area shape="rect" id="node5" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="373,56,428,83"/></map>
+<area shape="rect" id="node2" href="hardware_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="152,5,300,32"/><area shape="rect" id="node4" href="hardware_8c.html#a1a2f34caa5b32ab969b9fb7d4c0b1d6b" title="ADC0Seq1_Handler" alt="" coords="152,56,300,83"/><area shape="rect" id="node5" href="hardware_8c.html#ae8d554822fd2041b8a2366ced9c0ec61" title="ADC0Seq2_Handler" alt="" coords="152,107,300,133"/><area shape="rect" id="node6" href="hardware_8c.html#a532438ab848632da93412a0c51c229d4" title="ADC0Seq3_Handler" alt="" coords="152,157,300,184"/><area shape="rect" id="node7" href="lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="159,208,293,235"/><area shape="rect" id="node3" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="348,81,453,108"/><area shape="rect" id="node8" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="373,208,428,235"/></map>
 </div>
 </p>
 
@@ -1548,6 +1548,8 @@ Here is the caller graph for this function:</div>
 <p>Definition at line <a class="el" href="driverlib_2adc_8c_source.html#l00263">263</a> of file <a class="el" href="driverlib_2adc_8c_source.html">adc.c</a>.</p>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00050">ADC_O_IM</a>, <a class="el" href="hw__adc_8h_source.html#l00051">ADC_O_ISC</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;{</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -1572,6 +1574,15 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="hw__memmap_8h_html_a0aa6c0c068af7a61c770bc6d4322d63e"><div class="ttname"><a href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a></div><div class="ttdeci">#define ADC0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00089">hw_memmap.h:89</a></div></div>
 <div class="ttc" id="hw__adc_8h_html_a1e8864cc8bcb12e8294cfd0cc93d036c"><div class="ttname"><a href="hw__adc_8h.html#a1e8864cc8bcb12e8294cfd0cc93d036c">ADC_O_ISC</a></div><div class="ttdeci">#define ADC_O_ISC</div><div class="ttdef"><b>Definition:</b> <a href="hw__adc_8h_source.html#l00051">hw_adc.h:51</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__adc__api_ga2ce4cfdfe4e47c998872215490121973_icgraph.png" border="0" usemap="#group__adc__api_ga2ce4cfdfe4e47c998872215490121973_icgraph" alt=""/></div>
+<map name="group__adc__api_ga2ce4cfdfe4e47c998872215490121973_icgraph" id="group__adc__api_ga2ce4cfdfe4e47c998872215490121973_icgraph">
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2a0192f7421b57fffd79fa410131824e" title="adc_channel_init" alt="" coords="163,5,291,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="339,5,393,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="gae1acb71806ec0cec55290c938fa8cc02"></a>
@@ -1777,8 +1788,6 @@ Here is the call graph for this function:</div>
 <p>Definition at line <a class="el" href="driverlib_2adc_8c_source.html#l00299">299</a> of file <a class="el" href="driverlib_2adc_8c_source.html">adc.c</a>.</p>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00051">ADC_O_ISC</a>, <a class="el" href="hw__adc_8h_source.html#l00049">ADC_O_RIS</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
-
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00129">do_adc_func()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;{</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    uint32_t ui32Temp;</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
@@ -1824,15 +1833,6 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="hw__memmap_8h_html_a0aa6c0c068af7a61c770bc6d4322d63e"><div class="ttname"><a href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a></div><div class="ttdeci">#define ADC0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00089">hw_memmap.h:89</a></div></div>
 <div class="ttc" id="hw__adc_8h_html_a1e8864cc8bcb12e8294cfd0cc93d036c"><div class="ttname"><a href="hw__adc_8h.html#a1e8864cc8bcb12e8294cfd0cc93d036c">ADC_O_ISC</a></div><div class="ttdeci">#define ADC_O_ISC</div><div class="ttdef"><b>Definition:</b> <a href="hw__adc_8h_source.html#l00051">hw_adc.h:51</a></div></div>
 </div><!-- fragment -->
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="group__adc__api_ga10cececc7f912630401a2f0f6f90446f_icgraph.png" border="0" usemap="#group__adc__api_ga10cececc7f912630401a2f0f6f90446f_icgraph" alt=""/></div>
-<map name="group__adc__api_ga10cececc7f912630401a2f0f6f90446f_icgraph" id="group__adc__api_ga10cececc7f912630401a2f0f6f90446f_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="161,5,264,32"/></map>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="ga5b4057750e87ecd70611a0f4d1892656"></a>
@@ -2170,8 +2170,6 @@ Here is the call graph for this function:</div>
 <p>Definition at line <a class="el" href="driverlib_2adc_8c_source.html#l00884">884</a> of file <a class="el" href="driverlib_2adc_8c_source.html">adc.c</a>.</p>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00058">ADC_O_PSSI</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
-
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00129">do_adc_func()</a>, and <a class="el" href="test-adc_8c_source.html#l00026">main()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;{</div>
 <div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -2191,15 +2189,6 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="hw__memmap_8h_html_a0aa6c0c068af7a61c770bc6d4322d63e"><div class="ttname"><a href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a></div><div class="ttdeci">#define ADC0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00089">hw_memmap.h:89</a></div></div>
 <div class="ttc" id="hw__adc_8h_html_a0c82b106743b5adbf0bd61483fa9dae0"><div class="ttname"><a href="hw__adc_8h.html#a0c82b106743b5adbf0bd61483fa9dae0">ADC_O_PSSI</a></div><div class="ttdeci">#define ADC_O_PSSI</div><div class="ttdef"><b>Definition:</b> <a href="hw__adc_8h_source.html#l00058">hw_adc.h:58</a></div></div>
 </div><!-- fragment -->
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="group__adc__api_ga440fa9e04a1f5ebb18233e317159652d_icgraph.png" border="0" usemap="#group__adc__api_ga440fa9e04a1f5ebb18233e317159652d_icgraph" alt=""/></div>
-<map name="group__adc__api_ga440fa9e04a1f5ebb18233e317159652d_icgraph" id="group__adc__api_ga440fa9e04a1f5ebb18233e317159652d_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="208,5,311,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="232,56,287,83"/></map>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="gadfa7722bfa1c34b88125b1c4dafc2005"></a>
@@ -2288,7 +2277,7 @@ Here is the caller graph for this function:</div>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00416">ADC_CTL_VREF_M</a>, <a class="el" href="hw__adc_8h_source.html#l00063">ADC_O_CTL</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00209">ADC_REF_EXT_1V</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00208">ADC_REF_EXT_3V</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00207">ADC_REF_INT</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00025">adc_init()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00016">adc_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l01635"></a><span class="lineno"> 1635</span>&#160;{</div>
 <div class="line"><a name="l01636"></a><span class="lineno"> 1636</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01637"></a><span class="lineno"> 1637</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -2318,7 +2307,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__adc__api_ga810a79075c912e3079a0eadfcffa9446_icgraph.png" border="0" usemap="#group__adc__api_ga810a79075c912e3079a0eadfcffa9446_icgraph" alt=""/></div>
 <map name="group__adc__api_ga810a79075c912e3079a0eadfcffa9446_icgraph" id="group__adc__api_ga810a79075c912e3079a0eadfcffa9446_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="188,5,259,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="307,5,361,32"/></map>
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#aa67c6db02c5779013fd326b77e30d9e6" title="adc_init" alt="" coords="188,5,259,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="307,5,361,32"/></map>
 </div>
 </p>
 
@@ -2397,7 +2386,7 @@ Here is the caller graph for this function:</div>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00053">ADC_O_EMUX</a>, <a class="el" href="hw__adc_8h_source.html#l00056">ADC_O_SSPRI</a>, <a class="el" href="hw__adc_8h_source.html#l00055">ADC_O_TSSEL</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00071">ADC_TRIGGER_ALWAYS</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00061">ADC_TRIGGER_COMP0</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00062">ADC_TRIGGER_COMP1</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00063">ADC_TRIGGER_COMP2</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00064">ADC_TRIGGER_EXTERNAL</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00060">ADC_TRIGGER_PROCESSOR</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00066">ADC_TRIGGER_PWM0</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00067">ADC_TRIGGER_PWM1</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00068">ADC_TRIGGER_PWM2</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00069">ADC_TRIGGER_PWM3</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00072">ADC_TRIGGER_PWM_MOD0</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00073">ADC_TRIGGER_PWM_MOD1</a>, <a class="el" href="driverlib_2adc_8h_source.html#l00065">ADC_TRIGGER_TIMER</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00058">adc_open()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;{</div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    <span class="comment">// Check the arugments.</span></div>
@@ -2474,7 +2463,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__adc__api_gad8ad8b940627697b2efddbf01f771d76_icgraph.png" border="0" usemap="#group__adc__api_gad8ad8b940627697b2efddbf01f771d76_icgraph" alt=""/></div>
 <map name="group__adc__api_gad8ad8b940627697b2efddbf01f771d76_icgraph" id="group__adc__api_gad8ad8b940627697b2efddbf01f771d76_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="228,5,312,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="360,5,415,32"/></map>
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2a0192f7421b57fffd79fa410131824e" title="adc_channel_init" alt="" coords="228,5,356,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="404,5,459,32"/></map>
 </div>
 </p>
 
@@ -2525,7 +2514,7 @@ Here is the caller graph for this function:</div>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00064">ADC_SEQ</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00065">ADC_SEQ_STEP</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00069">ADC_SSFIFO</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00070">ADC_SSFSTAT</a>, <a class="el" href="hw__adc_8h_source.html#l00505">ADC_SSFSTAT0_EMPTY</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00150">ADC0Seq0_Handler()</a>, and <a class="el" href="lib_2libadc_2adc_8c_source.html#l00129">do_adc_func()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00378">ADC0Seq0_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00385">ADC0Seq1_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00392">ADC0Seq2_Handler()</a>, and <a class="el" href="hardware_8c_source.html#l00402">ADC0Seq3_Handler()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;{</div>
 <div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    uint32_t ui32Count;</div>
 <div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;</div>
@@ -2578,7 +2567,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__adc__api_gab6fb9d66d42093d8cf3a9ab58419fa38_icgraph.png" border="0" usemap="#group__adc__api_gab6fb9d66d42093d8cf3a9ab58419fa38_icgraph" alt=""/></div>
 <map name="group__adc__api_gab6fb9d66d42093d8cf3a9ab58419fa38_icgraph" id="group__adc__api_gab6fb9d66d42093d8cf3a9ab58419fa38_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="221,5,369,32"/><area shape="rect" id="node4" href="lib_2libadc_2adc_8h.html#a3bc69aad3cefd58175ede94336f15597" title="do_adc_func" alt="" coords="244,56,347,83"/><area shape="rect" id="node3" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="417,5,523,32"/></map>
+<area shape="rect" id="node2" href="hardware_8c.html#adeb759e76d3bfdf9c7735d4e1ca2ab1b" title="ADC0Seq0_Handler" alt="" coords="221,5,369,32"/><area shape="rect" id="node4" href="hardware_8c.html#a1a2f34caa5b32ab969b9fb7d4c0b1d6b" title="ADC0Seq1_Handler" alt="" coords="221,56,369,83"/><area shape="rect" id="node5" href="hardware_8c.html#ae8d554822fd2041b8a2366ced9c0ec61" title="ADC0Seq2_Handler" alt="" coords="221,107,369,133"/><area shape="rect" id="node6" href="hardware_8c.html#a532438ab848632da93412a0c51c229d4" title="ADC0Seq3_Handler" alt="" coords="221,157,369,184"/><area shape="rect" id="node3" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="417,81,523,108"/></map>
 </div>
 </p>
 
@@ -2621,6 +2610,8 @@ Here is the caller graph for this function:</div>
 <p>Definition at line <a class="el" href="driverlib_2adc_8c_source.html#l00419">419</a> of file <a class="el" href="driverlib_2adc_8c_source.html">adc.c</a>.</p>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00048">ADC_O_ACTSS</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;{</div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -2639,6 +2630,15 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="hw__memmap_8h_html_a0aa6c0c068af7a61c770bc6d4322d63e"><div class="ttname"><a href="hw__memmap_8h.html#a0aa6c0c068af7a61c770bc6d4322d63e">ADC0_BASE</a></div><div class="ttdeci">#define ADC0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00089">hw_memmap.h:89</a></div></div>
 <div class="ttc" id="hw__adc_8h_html_a4b3f2d53ff70607a421ae8b689fc28fb"><div class="ttname"><a href="hw__adc_8h.html#a4b3f2d53ff70607a421ae8b689fc28fb">ADC_O_ACTSS</a></div><div class="ttdeci">#define ADC_O_ACTSS</div><div class="ttdef"><b>Definition:</b> <a href="hw__adc_8h_source.html#l00048">hw_adc.h:48</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__adc__api_gafe10a7ac89541fa4824b923b1a1ae770_icgraph.png" border="0" usemap="#group__adc__api_gafe10a7ac89541fa4824b923b1a1ae770_icgraph" alt=""/></div>
+<map name="group__adc__api_gafe10a7ac89541fa4824b923b1a1ae770_icgraph" id="group__adc__api_gafe10a7ac89541fa4824b923b1a1ae770_icgraph">
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2a0192f7421b57fffd79fa410131824e" title="adc_channel_init" alt="" coords="215,5,343,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="391,5,445,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ga24631384a7a5f00bc8640170e7ed863b"></a>
@@ -2793,7 +2793,7 @@ Here is the caller graph for this function:</div>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="hw__adc_8h_source.html#l00048">ADC_O_ACTSS</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00025">adc_init()</a>, and <a class="el" href="lib_2libadc_2adc_8c_source.html#l00058">adc_open()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;{</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -2817,7 +2817,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__adc__api_ga3d9afeb0aeb2726e1713b936229bb412_icgraph.png" border="0" usemap="#group__adc__api_ga3d9afeb0aeb2726e1713b936229bb412_icgraph" alt=""/></div>
 <map name="group__adc__api_ga3d9afeb0aeb2726e1713b936229bb412_icgraph" id="group__adc__api_ga3d9afeb0aeb2726e1713b936229bb412_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="217,5,288,32"/><area shape="rect" id="node4" href="lib_2libadc_2adc_8h.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="211,56,295,83"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="343,31,397,57"/></map>
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2a0192f7421b57fffd79fa410131824e" title="adc_channel_init" alt="" coords="211,5,339,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="387,5,441,32"/></map>
 </div>
 </p>
 
@@ -2993,7 +2993,7 @@ Here is the caller graph for this function:</div>
 
 <p>References <a class="el" href="hw__memmap_8h_source.html#l00089">ADC0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00090">ADC1_BASE</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00064">ADC_SEQ</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00065">ADC_SEQ_STEP</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00068">ADC_SSCTL</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00072">ADC_SSDC</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00067">ADC_SSEMUX</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00066">ADC_SSMUX</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00071">ADC_SSOP</a>, <a class="el" href="driverlib_2adc_8c_source.html#l00073">ADC_SSTSH</a>, <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, and <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>.</p>
 
-<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00025">adc_init()</a>, and <a class="el" href="lib_2libadc_2adc_8c_source.html#l00058">adc_open()</a>.</p>
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;{</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;    uint32_t ui32Temp;</div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;</div>
@@ -3092,7 +3092,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__adc__api_ga1771f99a5228971b923b336d1bdbb4cd_icgraph.png" border="0" usemap="#group__adc__api_ga1771f99a5228971b923b336d1bdbb4cd_icgraph" alt=""/></div>
 <map name="group__adc__api_ga1771f99a5228971b923b336d1bdbb4cd_icgraph" id="group__adc__api_ga1771f99a5228971b923b336d1bdbb4cd_icgraph">
-<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="265,5,336,32"/><area shape="rect" id="node4" href="lib_2libadc_2adc_8h.html#a366f67aa472a6eec29a0ee1049a5ad82" title="adc_open" alt="" coords="259,56,343,83"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="391,31,445,57"/></map>
+<area shape="rect" id="node2" href="lib_2libadc_2adc_8h.html#a2a0192f7421b57fffd79fa410131824e" title="adc_channel_init" alt="" coords="259,5,387,32"/><area shape="rect" id="node3" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="435,5,489,32"/></map>
 </div>
 </p>
 
@@ -3548,7 +3548,7 @@ Here is the caller graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

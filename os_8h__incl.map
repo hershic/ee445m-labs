@@ -1,5 +1,10 @@
 <map id="lib/libos/os.h" name="lib/libos/os.h">
-<area shape="rect" id="node2" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="19,80,130,107"/>
-<area shape="rect" id="node6" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="257,80,359,107"/>
-<area shape="rect" id="node3" href="$defines_8h.html" title="defines.h" alt="" coords="5,155,85,181"/>
+<area shape="rect" id="node4" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="643,80,746,107"/>
+<area shape="rect" id="node5" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="283,304,394,331"/>
+<area shape="rect" id="node7" href="$edf_8h.html" title="libschedule/edf.h" alt="" coords="384,80,512,107"/>
+<area shape="rect" id="node8" href="$thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="387,229,568,256"/>
+<area shape="rect" id="node6" href="$defines_8h.html" title="defines.h" alt="" coords="356,379,436,405"/>
+<area shape="rect" id="node9" href="$priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="243,155,458,181"/>
+<area shape="rect" id="node10" href="$notify_8h.html" title="libnotify/notify.h" alt="" coords="243,229,363,256"/>
+<area shape="rect" id="node11" href="$uthash_8h.html" title="libut/uthash.h" alt="" coords="59,229,168,256"/>
 </map>

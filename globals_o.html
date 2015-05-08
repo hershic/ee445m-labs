@@ -98,6 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_g.html#index_g"><span>g</span></a></li>
       <li><a href="globals_h.html#index_h"><span>h</span></a></li>
       <li><a href="globals_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_j.html#index_j"><span>j</span></a></li>
       <li><a href="globals_k.html#index_k"><span>k</span></a></li>
       <li><a href="globals_l.html#index_l"><span>l</span></a></li>
       <li><a href="globals_m.html#index_m"><span>m</span></a></li>
@@ -165,17 +166,17 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 , <a class="el" href="utstring_8h.html#ab012ce14774deb45e0f0a576e216f41d">utstring.h</a>
 </li>
 <li>os_add_thread()
-: <a class="el" href="os_8h.html#af1d10faa6e058db5fcc41780ead8a063">os.h</a>
-, <a class="el" href="os_8c.html#a2bb573a559f90989a49a4338d08203bd">os.c</a>
+: <a class="el" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os.h</a>
+, <a class="el" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f">os.c</a>
 </li>
-<li>os_current_dead_thread
-: <a class="el" href="os_8c.html#a308367a2be95b095dc6ea1e9d4a825ff">os.c</a>
-</li>
-<li>os_current_running_thread
-: <a class="el" href="os_8c.html#ae9949c077f4331066f07d5a0a89db0f5">os.c</a>
+<li>os_dead_threads
+: <a class="el" href="group___o_s.html#ga5a8a9e5408c7d2a76362ef4b492038c7">os.h</a>
 </li>
 <li>OS_DELAY
 : <a class="el" href="rtos__bindings_8h.html#a1c36936a73df943e131b8c69ffb4a289">rtos_bindings.h</a>
+</li>
+<li>OS_FIRST_RUN
+: <a class="el" href="os_8c.html#ac1427b75439e6c56532060cae6b91c1d">os.c</a>
 </li>
 <li>OS_INT_DISABLE
 : <a class="el" href="rtos__bindings_8h.html#a1bdf24952617a3bfcc37138b25c8bd39">rtos_bindings.h</a>
@@ -189,33 +190,74 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 <li>OS_INT_MASTER_ENABLE
 : <a class="el" href="rtos__bindings_8h.html#ab4d115bda46791e5fd4937fd766a8eb0">rtos_bindings.h</a>
 </li>
+<li>OS_INTERACTIVE_POOL
+: <a class="el" href="group___o_s.html#ga8860efdb5e691947f0ce4ac835552c66">os.h</a>
+</li>
+<li>os_kill_thread
+: <a class="el" href="group___o_s.html#ga0f27760cbd9e46cf9aa72192c194559c">os.h</a>
+</li>
 <li>os_launch()
-: <a class="el" href="os_8c.html#afde304ef5313ffa073cea003547b33eb">os.c</a>
-, <a class="el" href="os_8h.html#afde304ef5313ffa073cea003547b33eb">os.h</a>
+: <a class="el" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os.c</a>
+, <a class="el" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os.h</a>
 </li>
-<li>OS_MAX_THREADS
-: <a class="el" href="os_8h.html#a42d66a999c19e795c22714a54fc2b6b2">os.h</a>
+<li>OS_NEXT_THREAD
+: <a class="el" href="group___o_s.html#gaf885bdaa059f201c08d621a5bde29033">os.h</a>
 </li>
-<li>os_next_dead_thread()
-: <a class="el" href="os_8c.html#a911e62c4d8226477d0274c2416e47f9c">os.c</a>
-, <a class="el" href="os_8h.html#a911e62c4d8226477d0274c2416e47f9c">os.h</a>
+<li>OS_NUM_POOLS
+: <a class="el" href="group___o_s.html#ga7a68e5b5d1fb6b77f60bbdb91f2b43dd">os.h</a>
+</li>
+<li>OS_NUM_THREADS
+: <a class="el" href="os_8c.html#aae13131cda987efa319fb05266f8709b">os.c</a>
 </li>
 <li>OS_PROGRAM_STACKS
-: <a class="el" href="os_8c.html#a9c939f75fdcc34e027493b93efd6523d">os.c</a>
+: <a class="el" href="os_8c.html#a0cfad81afdec04d5eb3090b769deae5f">os.c</a>
 </li>
-<li>os_reset_thread_stack()
-: <a class="el" href="os_8h.html#aaa82962ea069b6011927f9e2ef893128">os.h</a>
-, <a class="el" href="os_8c.html#aaa82962ea069b6011927f9e2ef893128">os.c</a>
+<li>OS_REAL_TIME_POOL
+: <a class="el" href="group___o_s.html#gab5a0560ce4c7841846467a042b9a43f2">os.h</a>
+</li>
+<li>os_remove_thread()
+: <a class="el" href="group___o_s.html#ga6a4a8d9342ab5086b475617637830d9d">os.c</a>
+, <a class="el" href="group___o_s.html#ga6a4a8d9342ab5086b475617637830d9d">os.h</a>
+</li>
+<li>os_running_thread_id()
+: <a class="el" href="group___o_s.html#gac6d47d69d51f6858745a56eadcc662bd">os.c</a>
+, <a class="el" href="group___o_s.html#gac6d47d69d51f6858745a56eadcc662bd">os.h</a>
+</li>
+<li>os_running_threads
+: <a class="el" href="group___o_s.html#ga86fe39fffc85cbcbfab58910a8a8c9a8">os.h</a>
+</li>
+<li>os_spawn_thread
+: <a class="el" href="group___o_s.html#ga74d5d2da0adc0283d5b86ef7798f9529">os.h</a>
 </li>
 <li>OS_STACK_SIZE
-: <a class="el" href="os_8h.html#a9fdcaeee2ac8d68ac5fbbcd450fd08da">os.h</a>
+: <a class="el" href="group___o_s.html#ga9fdcaeee2ac8d68ac5fbbcd450fd08da">os.h</a>
+</li>
+<li>os_surrender_context
+: <a class="el" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os.h</a>
+</li>
+<li>os_suspend()
+: <a class="el" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9">os.c</a>
+, <a class="el" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9">os.h</a>
+</li>
+<li>OS_SYSTEM_POOL
+: <a class="el" href="group___o_s.html#ga0dae01dd5614c886c6ab50a0c2d20361">os.h</a>
+</li>
+<li>os_tcb_of()
+: <a class="el" href="group___o_s.html#gabafc3b0c6f80522488ad93121204ec71">os.c</a>
+, <a class="el" href="group___o_s.html#gabafc3b0c6f80522488ad93121204ec71">os.h</a>
+</li>
+<li>OS_THREAD_POOL
+: <a class="el" href="group___o_s.html#ga969c9368ba08304bcc9c5b34d402b1ac">os.h</a>
 </li>
 <li>os_threading_init()
-: <a class="el" href="os_8c.html#a21e9322255bb20b29229f675078d42b4">os.c</a>
-, <a class="el" href="os_8h.html#a21e9322255bb20b29229f675078d42b4">os.h</a>
+: <a class="el" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os.c</a>
+, <a class="el" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os.h</a>
+</li>
+<li>OS_THREADING_INITIALIZED
+: <a class="el" href="os_8c.html#a0c3209198d9c6a984fd863700778a757">os.c</a>
 </li>
 <li>OS_THREADS
-: <a class="el" href="os_8c.html#a1b190933b985631f9a5a1f33afdd749e">os.c</a>
+: <a class="el" href="group___o_s.html#gac3e203273abe5bff2094b57fe8a25ef7">os.h</a>
 </li>
 <li>OS_YIELD
 : <a class="el" href="rtos__bindings_8h.html#a2e73224ddee698ddf68c9e6d87e9ddf9">rtos_bindings.h</a>
@@ -225,20 +267,20 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 , <a class="el" href="_s_t7735_8h.html#a991e9f71a35a1f6ec9d857ca0e01868a">ST7735.h</a>
 </li>
 <li>Output_Color()
-: <a class="el" href="_s_t7735_8h.html#a1719f525285902712d14efeab76cedcd">ST7735.h</a>
-, <a class="el" href="_s_t7735_8c.html#a1719f525285902712d14efeab76cedcd">ST7735.c</a>
+: <a class="el" href="_s_t7735_8c.html#a1719f525285902712d14efeab76cedcd">ST7735.c</a>
+, <a class="el" href="_s_t7735_8h.html#a1719f525285902712d14efeab76cedcd">ST7735.h</a>
 </li>
 <li>Output_Init()
 : <a class="el" href="_s_t7735_8c.html#a8c197f8fb3fd2b2da459e71b44978d53">ST7735.c</a>
 , <a class="el" href="_s_t7735_8h.html#a8c197f8fb3fd2b2da459e71b44978d53">ST7735.h</a>
 </li>
 <li>Output_Off()
-: <a class="el" href="_s_t7735_8h.html#a4ff293d693c5298110cf8a170e9b9165">ST7735.h</a>
-, <a class="el" href="_s_t7735_8c.html#a4ff293d693c5298110cf8a170e9b9165">ST7735.c</a>
+: <a class="el" href="_s_t7735_8c.html#a4ff293d693c5298110cf8a170e9b9165">ST7735.c</a>
+, <a class="el" href="_s_t7735_8h.html#a4ff293d693c5298110cf8a170e9b9165">ST7735.h</a>
 </li>
 <li>Output_On()
-: <a class="el" href="_s_t7735_8h.html#a7e57930cfb2d70ead5a1686d9f36a734">ST7735.h</a>
-, <a class="el" href="_s_t7735_8c.html#a7e57930cfb2d70ead5a1686d9f36a734">ST7735.c</a>
+: <a class="el" href="_s_t7735_8c.html#a7e57930cfb2d70ead5a1686d9f36a734">ST7735.c</a>
+, <a class="el" href="_s_t7735_8h.html#a7e57930cfb2d70ead5a1686d9f36a734">ST7735.h</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -246,7 +288,7 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:45 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

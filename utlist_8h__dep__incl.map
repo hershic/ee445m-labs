@@ -1,3 +1,5 @@
 <map id="lib/libut/utlist.h" name="lib/libut/utlist.h">
-<area shape="rect" id="node2" href="$system_8c.html" title="lib/libos/system.c" alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node2" href="$hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="5,80,151,107"/>
+<area shape="rect" id="node3" href="$os_8c.html" title="lib/libos/os.c" alt="" coords="175,80,274,107"/>
+<area shape="rect" id="node4" href="$system_8c.html" title="lib/libos/system.c" alt="" coords="298,80,429,107"/>
 </map>

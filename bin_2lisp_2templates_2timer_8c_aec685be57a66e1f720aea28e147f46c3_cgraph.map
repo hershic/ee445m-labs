@@ -1,0 +1,6 @@
+<map id="sA_Handler" name="sA_Handler">
+<area shape="rect" id="node2" href="$hardware_8c.html#a1aac20922af64474d68eb42c09f79535" title="hw_notify" alt="" coords="161,5,242,32"/>
+<area shape="rect" id="node5" href="$group__timer__api.html#ga57384a0128e97c9059b9a6b5152486c6" title="TimerIntClear" alt="" coords="148,56,255,83"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="303,5,433,32"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="481,5,628,32"/>
+</map>

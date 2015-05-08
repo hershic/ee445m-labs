@@ -1,5 +1,4 @@
 <map id="driverlib/flash.h" name="driverlib/flash.h">
 <area shape="rect" id="node2" href="$eeprom_8c.html" title="driverlib/eeprom.c" alt="" coords="5,80,143,107"/>
 <area shape="rect" id="node3" href="$flash_8c.html" title="driverlib/flash.c" alt="" coords="167,80,285,107"/>
-<area shape="rect" id="node4" href="$flash__pb_8c.html" title="utils/flash_pb.c" alt="" coords="309,80,425,107"/>
 </map>

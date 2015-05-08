@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>EE445M RTOS: Command line interpreter</title>
+<title>EE445M RTOS: Shell</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,9 +47,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,24 +98,165 @@ $(document).ready(function(){initNavTree('group___shell.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
-<div class="title">Command line interpreter</div>  </div>
+<div class="title">Shell</div>  </div>
 </div><!--header-->
 <div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classshell.html">shell</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga5d86218a9e25205a820cce1262f69aaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga5d86218a9e25205a820cce1262f69aaa">SHELL_COMMANDS</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ga5d86218a9e25205a820cce1262f69aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0d21bf8b748ffc956cb1c1c8b30bd99"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gae0d21bf8b748ffc956cb1c1c8b30bd99">SYSTEM_MAX_NAME_LENGTH</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:gae0d21bf8b748ffc956cb1c1c8b30bd99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga538f8a68c04cc42f462931a852a65dea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga538f8a68c04cc42f462931a852a65dea">SYSTEM_MAX_COMMANDS</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:ga538f8a68c04cc42f462931a852a65dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4c3fe3e7a0fd7c35fc49a7c2f63e58a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gae4c3fe3e7a0fd7c35fc49a7c2f63e58a">SHELL_MAX_PS1_LENGTH</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:gae4c3fe3e7a0fd7c35fc49a7c2f63e58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae5cb86cac9f0df08b20fc87a38a7153b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gae5cb86cac9f0df08b20fc87a38a7153b">SHELL_BUFFER_LENGTH</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:gae5cb86cac9f0df08b20fc87a38a7153b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga287a29289dd8b43b17aac655e42e5aa6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga287a29289dd8b43b17aac655e42e5aa6">UART_VERBOSE</a>&#160;&#160;&#160;true</td></tr>
+<tr class="separator:ga287a29289dd8b43b17aac655e42e5aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gaa140689245c747167ae46f5dab0d48d5"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a></td></tr>
+<tr class="separator:gaa140689245c747167ae46f5dab0d48d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab8b2106bfee5e8cddabc4ca326854dba"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group___shell.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gab8b2106bfee5e8cddabc4ca326854dba">sys_cmd</a>) (const char *)</td></tr>
+<tr class="separator:gab8b2106bfee5e8cddabc4ca326854dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="gae5cb86cac9f0df08b20fc87a38a7153b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHELL_BUFFER_LENGTH&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Maximum length of shell input per command </p>
 
-<p>Provides a shell interpreter.  
-<a href="#details">More...</a></p>
-<p>Provides a shell interpreter. </p>
-<p>This interpreter invokes function pointers from the global namespace. This task is entirely interrupt-driven; that is to say it does not consume any system resources while idling. </p><dl class="section author"><dt>Author</dt><dd>Eric Crosson </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2014 </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>GNU Public License. </dd></dl>
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00024">24</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga5d86218a9e25205a820cce1262f69aaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHELL_COMMANDS&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00015">15</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gae4c3fe3e7a0fd7c35fc49a7c2f63e58a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHELL_MAX_PS1_LENGTH&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PS1 maximum length </p>
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00021">21</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga538f8a68c04cc42f462931a852a65dea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYSTEM_MAX_COMMANDS&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00018">18</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gae0d21bf8b748ffc956cb1c1c8b30bd99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYSTEM_MAX_NAME_LENGTH&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00017">17</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga287a29289dd8b43b17aac655e42e5aa6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UART_VERBOSE&#160;&#160;&#160;true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00026">26</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="gaa140689245c747167ae46f5dab0d48d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint8_t <a class="el" href="group___shell.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00028">28</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab8b2106bfee5e8cddabc4ca326854dba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="group___shell.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a>(* sys_cmd) (const char *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="shellpp_8hpp_source.html#l00029">29</a> of file <a class="el" href="shellpp_8hpp_source.html">shellpp.hpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri May 8 2015 15:22:13 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

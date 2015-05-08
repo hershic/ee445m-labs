@@ -1,7 +1,9 @@
 <map id="UARTConfigSetExpClk" name="UARTConfigSetExpClk">
-<area shape="rect" id="node2" href="$lib_2libuart_2uart_8h.html#ac720323e085cb349e70d972a0f6fe261" title="uart_init_" alt="" coords="212,31,293,57"/>
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8h.html#a01f5996cfbcef121abc486e732b208c7" title="uart_init" alt="" coords="341,31,416,57"/>
-<area shape="rect" id="node4" href="$hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="464,5,587,32"/>
-<area shape="rect" id="node6" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="498,56,553,83"/>
-<area shape="rect" id="node5" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="635,5,689,32"/>
+<area shape="rect" id="node2" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="222,5,277,32"/>
+<area shape="rect" id="node3" href="$group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f" title="uart_init" alt="" coords="212,56,287,83"/>
+<area shape="rect" id="node4" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="335,56,457,83"/>
+<area shape="rect" id="node5" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="524,5,657,32"/>
+<area shape="rect" id="node7" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="505,56,676,83"/>
+<area shape="rect" id="node8" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="563,107,618,133"/>
+<area shape="rect" id="node6" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="724,5,779,32"/>
 </map>

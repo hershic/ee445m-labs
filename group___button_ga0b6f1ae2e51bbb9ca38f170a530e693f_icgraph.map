@@ -1,0 +1,7 @@
+<map id="button_set_interrupt" name="button_set_interrupt">
+<area shape="rect" id="node2" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="207,56,329,83"/>
+<area shape="rect" id="node3" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="396,5,529,32"/>
+<area shape="rect" id="node5" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="377,56,548,83"/>
+<area shape="rect" id="node6" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="435,107,490,133"/>
+<area shape="rect" id="node4" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="596,5,651,32"/>
+</map>

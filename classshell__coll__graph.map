@@ -1,0 +1,8 @@
+<map id="shell" name="shell">
+<area shape="rect" id="node2" href="$classbuffer.html" title="{buffer\&lt; char, 32 \&gt;\n|+ pos\l+ len\l+ buf\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="162,896,303,1179"/>
+<area shape="rect" id="node3" href="$classsemaphore.html" title="{semaphore\n|&#45; value\l&#45; total_posts\l|+ semaphore()\l+ semaphore()\l+ init()\l+ post()\l+ wait()\l+ take()\l+ guard()\l+ blocked()\l+ reset()\l}" alt="" coords="235,227,355,437"/>
+<area shape="rect" id="node5" href="$classbuffer.html" title="{buffer\&lt; T, N \&gt;\n|+ pos\l+ len\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="119,551,255,819"/>
+<area shape="rect" id="node4" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="185,5,349,127"/>
+<area shape="rect" id="node7" href="$classuart.html" title="{uart\n|+ buffer\l+ LAST_WAS_CR\l&#45; baud_rate\l&#45; channel\l&#45; interrupt\l|+ uart()\l+ uart()\l+ start()\l+ stop()\l+ ack()\l+ send_char()\l+ send_string()\l+ send_newline()\l+ get_char()\l+ get_string()\l+ printf()\l+ atomic_printf()\l&#45; vprintf()\l}" alt="" coords="5,176,137,488"/>
+<area shape="rect" id="node8" href="$classinterruptable.html" title="{interruptable\n||+ interruptable()\l+ start()\l+ stop()\l+ ack()\l}" alt="" coords="7,5,136,127"/>
+</map>

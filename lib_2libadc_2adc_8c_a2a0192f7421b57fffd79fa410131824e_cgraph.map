@@ -1,0 +1,7 @@
+<map id="adc_channel_init" name="adc_channel_init">
+<area shape="rect" id="node2" href="$group__adc__api.html#ga2ce4cfdfe4e47c998872215490121973" title="ADCIntEnable" alt="" coords="229,5,339,32"/>
+<area shape="rect" id="node3" href="$group__adc__api.html#gad8ad8b940627697b2efddbf01f771d76" title="ADCSequenceConfigure" alt="" coords="197,56,371,83"/>
+<area shape="rect" id="node4" href="$group__adc__api.html#gafe10a7ac89541fa4824b923b1a1ae770" title="ADCSequenceDisable" alt="" coords="203,107,365,133"/>
+<area shape="rect" id="node5" href="$group__adc__api.html#ga3d9afeb0aeb2726e1713b936229bb412" title="ADCSequenceEnable" alt="" coords="205,157,363,184"/>
+<area shape="rect" id="node6" href="$group__adc__api.html#ga1771f99a5228971b923b336d1bdbb4cd" title="ADCSequenceStepConfigure" alt="" coords="181,208,387,235"/>
+</map>

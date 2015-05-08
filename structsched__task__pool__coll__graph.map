@@ -1,0 +1,4 @@
+<map id="sched_task_pool" name="sched_task_pool">
+<area shape="rect" id="node2" href="$structsched__task.html" title="{sched_task\n|+ task\l+ seriousness\l+ absolute_deadline\l+ pool\l+ id\l|}" alt="" coords="5,204,159,340"/>
+<area shape="rect" id="node3" href="$structtcb__t.html" title="{tcb_t\n|+ sp\l+ id\l+ priority\l+ entry_point\l+ sem\l|}" alt="" coords="27,5,137,141"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="drive::forward" name="drive::forward">
+<area shape="rect" id="node2" href="$classmotor.html#a7d422d0ff4f2d93b31fa7f4a567c4daa" title="motor::set" alt="" coords="161,31,251,57"/>
+<area shape="rect" id="node3" href="$group__math.html#ga7b3ff1805d7e50020363b0fbb296430b" title="clamp" alt="" coords="361,5,423,32"/>
+<area shape="rect" id="node5" href="$classmotor.html#a727b50d42de63105af2a7df209c8ce40" title="motor::adjusted_direction" alt="" coords="299,56,485,83"/>
+<area shape="rect" id="node4" href="$group__math.html#ga6ae8adad8e6df7d8e1b66e3e50f1e293" title="max" alt="" coords="561,5,612,32"/>
+<area shape="rect" id="node6" href="$classnav.html#ac95eb00f0732946144fff3d98f243104" title="nav::opposite" alt="" coords="533,56,640,83"/>
+</map>

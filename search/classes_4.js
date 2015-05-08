@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['point',['point',['../structpoint.html',1,'']]]
+  ['gpio_5ftwiddler',['gpio_twiddler',['../classgpio__twiddler.html',1,'']]]
 ];

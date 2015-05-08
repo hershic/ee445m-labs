@@ -1,0 +1,5 @@
+<map id="can" name="can">
+<area shape="rect" id="node2" href="$classinterruptable.html" title="{interruptable\n||+ interruptable()\l+ start()\l+ stop()\l+ ack()\l}" alt="" coords="5,220,135,341"/>
+<area shape="rect" id="node3" href="$classsemaphore.html" title="{semaphore\n|&#45; value\l&#45; total_posts\l|+ semaphore()\l+ semaphore()\l+ init()\l+ post()\l+ wait()\l+ take()\l+ guard()\l+ blocked()\l+ reset()\l}" alt="" coords="159,176,279,385"/>
+<area shape="rect" id="node4" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="137,5,301,127"/>
+</map>

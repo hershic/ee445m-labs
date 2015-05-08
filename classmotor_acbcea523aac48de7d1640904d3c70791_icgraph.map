@@ -1,0 +1,6 @@
+<map id="motor::stop" name="motor::stop">
+<area shape="rect" id="node2" href="$classdrive.html#a544bace6cc9a43b7f39d58fe36fddb74" title="drive::stop" alt="" coords="151,31,240,57"/>
+<area shape="rect" id="node3" href="$move-main_8cpp.html#a2174d1f65988a9a74094c1027c14bcfa" title="motor_control" alt="" coords="298,5,410,32"/>
+<area shape="rect" id="node5" href="$move-main_8cpp.html#ac6104727fdf18a236bf0cbc40c3e5f11" title="Timer0A_Handler" alt="" coords="288,56,420,83"/>
+<area shape="rect" id="node4" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="468,5,523,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="adc::configure_timer_interrupt" name="adc::configure_timer_interrupt">
+<area shape="rect" id="node2" href="$classtimer.html#a8a112d29a916ce8ff25b198f26b2980e" title="timer::get_base" alt="" coords="220,5,343,32"/>
+<area shape="rect" id="node3" href="$classtimer.html#ab5fb19f4b2d5adf473b481e6a84c6b55" title="timer::get_subtimer" alt="" coords="207,56,356,83"/>
+</map>

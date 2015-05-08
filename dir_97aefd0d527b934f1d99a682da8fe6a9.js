@@ -1,6 +1,8 @@
 var dir_97aefd0d527b934f1d99a682da8fe6a9 =
 [
     [ "libadc", "dir_8460ad94f0aca93ac527f29ff11ab3b2.html", "dir_8460ad94f0aca93ac527f29ff11ab3b2" ],
+    [ "libbuffer", "dir_f145d5ef5f52901c1cd3030d70a21de7.html", "dir_f145d5ef5f52901c1cd3030d70a21de7" ],
+    [ "libbutton", "dir_1280c55e4cb51eda4a761a74010c5a6e.html", "dir_1280c55e4cb51eda4a761a74010c5a6e" ],
     [ "libclock", "dir_54aec398b3d2692eddeaaf9baffc0794.html", "dir_54aec398b3d2692eddeaaf9baffc0794" ],
     [ "libconsole", "dir_d8d976b7011a6a30ef621f88b7f7bab3.html", "dir_d8d976b7011a6a30ef621f88b7f7bab3" ],
     [ "libdisplay", "dir_07b17b9125d5f1032392f0a7f2704a87.html", "dir_07b17b9125d5f1032392f0a7f2704a87" ],
@@ -14,8 +16,10 @@ var dir_97aefd0d527b934f1d99a682da8fe6a9 =
     [ "libnotify", "dir_c13a3a6fbb294df5f6cf46256f727fc9.html", "dir_c13a3a6fbb294df5f6cf46256f727fc9" ],
     [ "libos", "dir_9e7e095887a2dd3b6af8e37d880530c8.html", "dir_9e7e095887a2dd3b6af8e37d880530c8" ],
     [ "liboscope-grapher", "dir_725eb19c83d435c59b33da55720120fe.html", "dir_725eb19c83d435c59b33da55720120fe" ],
+    [ "libschedule", "dir_69ddb47bd9902513855279619f04cc95.html", "dir_69ddb47bd9902513855279619f04cc95" ],
     [ "libshell", "dir_41c591045f1a87da6484e28b04fa7ec4.html", "dir_41c591045f1a87da6484e28b04fa7ec4" ],
     [ "libstd", "dir_8abf0dd83f466419d031c235a073d3af.html", "dir_8abf0dd83f466419d031c235a073d3af" ],
+    [ "libsystick", "dir_a113575e99541350dc1f7580c85d7508.html", "dir_a113575e99541350dc1f7580c85d7508" ],
     [ "libthread", "dir_21da84ec182d29878c8a9aacee25d4fb.html", "dir_21da84ec182d29878c8a9aacee25d4fb" ],
     [ "libtimekit", "dir_656d281fff66007aeb332503b52f3c8e.html", "dir_656d281fff66007aeb332503b52f3c8e" ],
     [ "libtimer", "dir_f8c5a451f8cbfcc7ed1f49a8a4087dcf.html", "dir_f8c5a451f8cbfcc7ed1f49a8a4087dcf" ],

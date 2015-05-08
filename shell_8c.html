@@ -113,7 +113,10 @@ $(document).ready(function(){initNavTree('shell_8c.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="shell_8h_source.html">shell.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lib_2libuart_2uart_8h_source.html">libuart/uart.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hardware_8h_source.html">libhw/hardware.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="semaphore_8h_source.html">libos/semaphore.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="os_8h_source.html">libos/os.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hw__memmap_8h_source.html">inc/hw_memmap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hw__ints_8h_source.html">inc/hw_ints.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
@@ -127,29 +130,29 @@ Include dependency graph for shell.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="shell_8c__incl.png" border="0" usemap="#lib_2libshell_2shell_8c" alt=""/></div>
 <map name="lib_2libshell_2shell_8c" id="lib_2libshell_2shell_8c">
-<area shape="rect" id="node2" href="shell_8h.html" title="shell.h" alt="" coords="153,80,215,107"/><area shape="rect" id="node9" href="hardware_8h.html" title="libhw/hardware.h" alt="" coords="427,80,555,107"/><area shape="rect" id="node11" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="630,80,773,107"/><area shape="rect" id="node12" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="797,80,899,107"/><area shape="rect" id="node13" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="923,80,1066,107"/><area shape="rect" id="node14" href="driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1090,80,1211,107"/><area shape="rect" id="node15" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1235,80,1359,107"/><area shape="rect" id="node16" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="1384,80,1499,107"/><area shape="rect" id="node4" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="129,229,239,256"/><area shape="rect" id="node7" href="system_8h.html" title="libos/system.h" alt="" coords="32,155,147,181"/><area shape="rect" id="node8" href="kbd_8h.html" title="libio/kbd.h" alt="" coords="222,155,309,181"/><area shape="rect" id="node5" href="defines_8h.html" title="defines.h" alt="" coords="144,304,224,331"/><area shape="rect" id="node10" href="notify_8h.html" title="libnotify/notify.h" alt="" coords="384,155,504,181"/></map>
+<area shape="rect" id="node2" href="shell_8h.html" title="shell.h" alt="" coords="282,453,345,480"/><area shape="rect" id="node10" href="lib_2libuart_2uart_8h.html" title="libuart/uart.h" alt="" coords="609,80,713,107"/><area shape="rect" id="node11" href="hardware_8h.html" title="libhw/hardware.h" alt="" coords="597,155,725,181"/><area shape="rect" id="node12" href="semaphore_8h.html" title="libos/semaphore.h" alt="" coords="699,229,839,256"/><area shape="rect" id="node13" href="os_8h.html" title="os.h" alt="" coords="815,304,865,331"/><area shape="rect" id="node14" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="1233,379,1335,405"/><area shape="rect" id="node21" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="966,80,1109,107"/><area shape="rect" id="node22" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1133,80,1275,107"/><area shape="rect" id="node23" href="driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1299,80,1421,107"/><area shape="rect" id="node24" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1445,80,1569,107"/><area shape="rect" id="node25" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="1593,80,1708,107"/><area shape="rect" id="node4" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="625,603,735,629"/><area shape="rect" id="node7" href="system_8h.html" title="libos/system.h" alt="" coords="256,528,371,555"/><area shape="rect" id="node8" href="kbd_8h.html" title="libio/kbd.h" alt="" coords="94,528,181,555"/><area shape="rect" id="node9" href="notify_8h.html" title="libnotify/notify.h" alt="" coords="648,528,768,555"/><area shape="rect" id="node5" href="defines_8h.html" title="defines.h" alt="" coords="717,677,797,704"/><area shape="rect" id="node15" href="edf_8h.html" title="libschedule/edf.h" alt="" coords="763,379,891,405"/><area shape="rect" id="node16" href="thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="792,528,973,555"/><area shape="rect" id="node17" href="priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="801,453,1015,480"/><area shape="rect" id="node18" href="uthash_8h.html" title="libut/uthash.h" alt="" coords="1048,528,1157,555"/></map>
 </div>
 </div>
 <p><a href="shell_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a44f2d49f37741178da7a3c0e86c5c1db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a> ()</td></tr>
-<tr class="separator:a44f2d49f37741178da7a3c0e86c5c1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49dea7b7117069659519b1e5edbcc5b7"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a49dea7b7117069659519b1e5edbcc5b7">shell_represent</a> ()</td></tr>
-<tr class="separator:a49dea7b7117069659519b1e5edbcc5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eedbe4e196101938ff65d3ba7fc788a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a> ()</td></tr>
-<tr class="separator:a2eedbe4e196101938ff65d3ba7fc788a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f520801ac2b249c4771b53cf89f155b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b">shell_uart0_handler</a> (char recv)</td></tr>
-<tr class="separator:a0f520801ac2b249c4771b53cf89f155b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44f2d49f37741178da7a3c0e86c5c1db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a> ()</td></tr>
+<tr class="separator:ga44f2d49f37741178da7a3c0e86c5c1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga49dea7b7117069659519b1e5edbcc5b7"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga49dea7b7117069659519b1e5edbcc5b7">shell_represent</a> ()</td></tr>
+<tr class="separator:ga49dea7b7117069659519b1e5edbcc5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2eedbe4e196101938ff65d3ba7fc788a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a> ()</td></tr>
+<tr class="separator:ga2eedbe4e196101938ff65d3ba7fc788a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaec52690701ae80176644c9f0178f895c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gaec52690701ae80176644c9f0178f895c">shell_uart_handler</a> (<a class="el" href="unionnotification.html">notification</a> note)</td></tr>
+<tr class="separator:gaec52690701ae80176644c9f0178f895c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82067f3bc8231ce612155160452ddac2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a82067f3bc8231ce612155160452ddac2">shell_set_ps1</a> (char *new_ps1)</td></tr>
 <tr class="separator:a82067f3bc8231ce612155160452ddac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cd508ee7e1311f95244ccf1aa80ee11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a> ()</td></tr>
-<tr class="separator:a2cd508ee7e1311f95244ccf1aa80ee11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c27dcedd94d65632369ca4dda2cfbfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a> ()</td></tr>
-<tr class="separator:a2c27dcedd94d65632369ca4dda2cfbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1d2819a7bd745c8de3853ed4526fb70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="system_8h.html#aa140689245c747167ae46f5dab0d48d5">exit_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#ab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a> ()</td></tr>
-<tr class="separator:ab1d2819a7bd745c8de3853ed4526fb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2cd508ee7e1311f95244ccf1aa80ee11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a> ()</td></tr>
+<tr class="separator:ga2cd508ee7e1311f95244ccf1aa80ee11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c27dcedd94d65632369ca4dda2cfbfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#ga2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a> ()</td></tr>
+<tr class="separator:ga2c27dcedd94d65632369ca4dda2cfbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1d2819a7bd745c8de3853ed4526fb70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___system.html#gaa140689245c747167ae46f5dab0d48d5">exit_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a> ()</td></tr>
+<tr class="separator:gab1d2819a7bd745c8de3853ed4526fb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -159,218 +162,10 @@ Variables</h2></td></tr>
 <tr class="separator:ad4eb0fba0625f09ba35622195831cd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f43b4bd2b5dee47f8eb0efbe9158d8a"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a> [4]</td></tr>
 <tr class="separator:a2f43b4bd2b5dee47f8eb0efbe9158d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5de3e629c7b8307edcf5e66a554f440"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#ad5de3e629c7b8307edcf5e66a554f440">SHELL_DEFAULT_PS1</a> = &quot;\n&gt; &quot;</td></tr>
+<tr class="memitem:ad5de3e629c7b8307edcf5e66a554f440"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell_8c.html#ad5de3e629c7b8307edcf5e66a554f440">SHELL_DEFAULT_PS1</a> = &quot;\r\n&gt; &quot;</td></tr>
 <tr class="separator:ad5de3e629c7b8307edcf5e66a554f440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a2cd508ee7e1311f95244ccf1aa80ee11"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void shell_clear_shell_buffer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Clear  and reset  </p>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00080">80</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="nexus_8c_source.html#l00004">memset()</a>, <a class="el" href="shell_8c_source.html#l00018">SHELL_BUFFER</a>, and <a class="el" href="shell_8c_source.html#l00017">SHELL_BUFFER_POSITION</a>.</p>
-
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00023">shell_spawn()</a>, and <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee">memset</a>(<a class="code" href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a>, 0, <span class="keyword">sizeof</span>(<a class="code" href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a>));</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454">SHELL_BUFFER_POSITION</a> = 0;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
-<div class="ttc" id="shell_8c_html_ad4eb0fba0625f09ba35622195831cd70"><div class="ttname"><a href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a></div><div class="ttdeci">static char SHELL_BUFFER[64]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00018">shell.c:18</a></div></div>
-<div class="ttc" id="nexus_8c_html_a7bcdacdb9ea762dccdd9f6de4292f9ee"><div class="ttname"><a href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee">memset</a></div><div class="ttdeci">void * memset(void *b, int c, int len)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00004">nexus.c:4</a></div></div>
-<div class="ttc" id="shell_8c_html_a0ecfd5ba22af974d1bf0391e3678b454"><div class="ttname"><a href="shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454">SHELL_BUFFER_POSITION</a></div><div class="ttdeci">static unsigned short SHELL_BUFFER_POSITION</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00017">shell.c:17</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_cgraph.png" border="0" usemap="#shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_cgraph" alt=""/></div>
-<map name="shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_cgraph" id="shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_cgraph">
-<area shape="rect" id="node2" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee" title="memset" alt="" coords="223,5,299,32"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_icgraph.png" border="0" usemap="#shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_icgraph" alt=""/></div>
-<map name="shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_icgraph" id="shell_8c_a2cd508ee7e1311f95244ccf1aa80ee11_icgraph">
-<area shape="rect" id="node2" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="417,5,516,32"/><area shape="rect" id="node4" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="223,56,369,83"/><area shape="rect" id="node3" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="564,5,619,32"/><area shape="rect" id="node5" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="429,56,504,83"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ab1d2819a7bd745c8de3853ed4526fb70"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="system_8h.html#aa140689245c747167ae46f5dab0d48d5">exit_status_t</a> shell_execute_command </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Execute the command contained in . </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000010">Bug:</a></b></dt><dd>This function does not allow the passing of arguments </dd></dl>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00091">91</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="defines_8h_source.html#l00022">NULL</a>, <a class="el" href="shell_8c_source.html#l00018">SHELL_BUFFER</a>, and <a class="el" href="system_8c_source.html#l00067">system_exec()</a>.</p>
-
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                                      {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>** arguments = <a class="code" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="system_8c.html#a4c1378dd721607974dd56ef72614c06f">system_exec</a>(<a class="code" href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a>, arguments);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="ttc" id="shell_8c_html_ad4eb0fba0625f09ba35622195831cd70"><div class="ttname"><a href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a></div><div class="ttdeci">static char SHELL_BUFFER[64]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00018">shell.c:18</a></div></div>
-<div class="ttc" id="system_8c_html_a4c1378dd721607974dd56ef72614c06f"><div class="ttname"><a href="system_8c.html#a4c1378dd721607974dd56ef72614c06f">system_exec</a></div><div class="ttdeci">exit_status_t system_exec(const char *command, const char **arguments)</div><div class="ttdef"><b>Definition:</b> <a href="system_8c_source.html#l00067">system.c:67</a></div></div>
-<div class="ttc" id="defines_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00022">defines.h:22</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_cgraph.png" border="0" usemap="#shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_cgraph" alt=""/></div>
-<map name="shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_cgraph" id="shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_cgraph">
-<area shape="rect" id="node2" href="system_8c.html#a4c1378dd721607974dd56ef72614c06f" title="system_exec" alt="" coords="235,31,341,57"/><area shape="rect" id="node3" href="system_8c.html#ac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="389,5,619,32"/><area shape="rect" id="node6" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc" title="postpone_death" alt="" coords="441,56,567,83"/><area shape="rect" id="node4" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="667,5,733,32"/><area shape="rect" id="node5" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="781,5,864,32"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_icgraph.png" border="0" usemap="#shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_icgraph" alt=""/></div>
-<map name="shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_icgraph" id="shell_8c_ab1d2819a7bd745c8de3853ed4526fb70_icgraph">
-<area shape="rect" id="node2" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="235,31,381,57"/><area shape="rect" id="node3" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="429,5,528,32"/><area shape="rect" id="node5" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="441,56,516,83"/><area shape="rect" id="node4" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="576,5,631,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a2eedbe4e196101938ff65d3ba7fc788a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void shell_kill </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Kill the current shell process. This involves disconnecting from the hardware driver but not clearing internal data structures. The behavior of killing a non-spawned shell is undetermined. </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000007">Bug:</a></b></dt><dd>The behavior of killing a non-spawned shell is undetermined. </dd></dl>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00041">41</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="hardware_8c_source.html#l00131">hw_disconnect()</a>, <a class="el" href="hardware_8h_source.html#l00076">HW_UART</a>, <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>, and <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                  {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="hardware_8c.html#a3333cfbbd64f2579ae9eb551cf52064a">hw_disconnect</a>(<a class="code" href="hardware_8h.html#ad0fba1e791dc47d463539310af64be36acc74a6bf0e29d5b754d68676b10dd8f2">HW_UART</a>, <a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>, <a class="code" href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b">shell_uart0_handler</a>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="ttc" id="hardware_8c_html_a3333cfbbd64f2579ae9eb551cf52064a"><div class="ttname"><a href="hardware_8c.html#a3333cfbbd64f2579ae9eb551cf52064a">hw_disconnect</a></div><div class="ttdeci">bool hw_disconnect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void *isr)</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8c_source.html#l00131">hardware.c:131</a></div></div>
-<div class="ttc" id="hardware_8h_html_ad0fba1e791dc47d463539310af64be36acc74a6bf0e29d5b754d68676b10dd8f2"><div class="ttname"><a href="hardware_8h.html#ad0fba1e791dc47d463539310af64be36acc74a6bf0e29d5b754d68676b10dd8f2">HW_UART</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00076">hardware.h:76</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a7a07348b4332ff6b88abf6092347deba"><div class="ttname"><a href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a></div><div class="ttdeci">#define UART0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00061">hw_memmap.h:61</a></div></div>
-<div class="ttc" id="shell_8c_html_a0f520801ac2b249c4771b53cf89f155b"><div class="ttname"><a href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b">shell_uart0_handler</a></div><div class="ttdeci">void shell_uart0_handler(char recv)</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00046">shell.c:46</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a2eedbe4e196101938ff65d3ba7fc788a_cgraph.png" border="0" usemap="#shell_8c_a2eedbe4e196101938ff65d3ba7fc788a_cgraph" alt=""/></div>
-<map name="shell_8c_a2eedbe4e196101938ff65d3ba7fc788a_cgraph" id="shell_8c_a2eedbe4e196101938ff65d3ba7fc788a_cgraph">
-<area shape="rect" id="node2" href="hardware_8c.html#a3333cfbbd64f2579ae9eb551cf52064a" title="hw_disconnect" alt="" coords="144,81,259,108"/><area shape="rect" id="node7" href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b" title="shell_uart0_handler" alt="" coords="128,183,275,209"/><area shape="rect" id="node3" href="hardware_8c.html#a4b839b7dc1f738e15ec7fbaf9e849ae9" title="_hw_get_channel" alt="" coords="348,56,479,83"/><area shape="rect" id="node4" href="hardware_8c.html#a880e43f5c05a25126e5f47136886bc39" title="_hw_channel_to_index" alt="" coords="552,5,716,32"/><area shape="rect" id="node6" href="hardware_8c.html#aa34d97b72da27a519047195c030c9775" title="hw_driver_singleton" alt="" coords="561,56,707,83"/><area shape="rect" id="node5" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc" title="postpone_death" alt="" coords="815,56,942,83"/><area shape="rect" id="node8" href="shell_8c.html#ab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="323,107,504,133"/><area shape="rect" id="node13" href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="329,157,498,184"/><area shape="rect" id="node15" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="569,259,699,285"/><area shape="rect" id="node19" href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb" title="shell_print_ps1" alt="" coords="355,259,472,285"/><area shape="rect" id="node20" href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="353,309,474,336"/><area shape="rect" id="node9" href="system_8c.html#a4c1378dd721607974dd56ef72614c06f" title="system_exec" alt="" coords="581,107,687,133"/><area shape="rect" id="node10" href="system_8c.html#ac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="764,107,993,133"/><area shape="rect" id="node11" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="1061,107,1127,133"/><area shape="rect" id="node12" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="1195,107,1277,133"/><area shape="rect" id="node14" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee" title="memset" alt="" coords="596,157,672,184"/><area shape="rect" id="node16" href="lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="811,259,947,285"/><area shape="rect" id="node17" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="1041,309,1147,336"/><area shape="rect" id="node18" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="1061,259,1127,285"/><area shape="rect" id="node21" href="lib_2libuart_2uart_8c.html#a3b741ddac856f7b11678ce853b77fa08" title="uart_send_char_" alt="" coords="815,309,943,336"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a2c27dcedd94d65632369ca4dda2cfbfb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void shell_print_ps1 </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Print the PS1. </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000009">Bug:</a></b></dt><dd>Ambiguity on which uart channel is used for terminal communication. <dl class="section note"><dt>Note</dt><dd>This just displays to stdout, not a uart channel, which can be picked up by a display entity driver or whatever they're going to be called. </dd></dl>
-</dd></dl>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00086">86</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="shell_8c_source.html#l00020">SHELL_PS1</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00084">uart_send_string()</a>.</p>
-
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00023">shell_spawn()</a>, and <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                       {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979">uart_send_string</a>(<a class="code" href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_a6663854cc5f46b64a624589faacd8979"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979">uart_send_string</a></div><div class="ttdeci">void uart_send_string(const char *text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00084">uart.c:84</a></div></div>
-<div class="ttc" id="shell_8c_html_a2f43b4bd2b5dee47f8eb0efbe9158d8a"><div class="ttname"><a href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a></div><div class="ttdeci">static char * SHELL_PS1[4]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00020">shell.c:20</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_cgraph.png" border="0" usemap="#shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_cgraph" alt=""/></div>
-<map name="shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_cgraph" id="shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_cgraph">
-<area shape="rect" id="node2" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="171,31,300,57"/><area shape="rect" id="node3" href="lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="348,31,484,57"/><area shape="rect" id="node4" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="532,5,637,32"/><area shape="rect" id="node5" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="551,56,618,83"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_icgraph.png" border="0" usemap="#shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_icgraph" alt=""/></div>
-<map name="shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_icgraph" id="shell_8c_a2c27dcedd94d65632369ca4dda2cfbfb_icgraph">
-<area shape="rect" id="node2" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="365,5,464,32"/><area shape="rect" id="node4" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e" title="shell_uart0_handler" alt="" coords="171,56,317,83"/><area shape="rect" id="node3" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="512,5,567,32"/><area shape="rect" id="node5" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="377,56,452,83"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a49dea7b7117069659519b1e5edbcc5b7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* shell_represent </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Display the current state of the shell process. The behavior of representing a non-spawned shell is undetermined. </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000006">Bug:</a></b></dt><dd><p class="startdd">This is not the sole method of displaying this process - it should be. </p>
-<p class="enddd">The behavior of representing a non-spawned shell is undetermined. </p>
-</dd></dl>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00035">35</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="shell_8c_source.html#l00018">SHELL_BUFFER</a>.</p>
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                        {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">/* TODO: improve */</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="ttc" id="shell_8c_html_ad4eb0fba0625f09ba35622195831cd70"><div class="ttname"><a href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a></div><div class="ttdeci">static char SHELL_BUFFER[64]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00018">shell.c:18</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="a82067f3bc8231ce612155160452ddac2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -385,26 +180,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00074">74</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
+<p>Definition at line <a class="el" href="shell_8c_source.html#l00082">82</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
 
-<p>References <a class="el" href="nexus_8c_source.html#l00019">memcpy()</a>, <a class="el" href="shell_8c_source.html#l00020">SHELL_PS1</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00027">ustrlen()</a>.</p>
+<p>References <a class="el" href="nexus_8c_source.html#l00025">memcpy()</a>, <a class="el" href="shell_8c_source.html#l00023">SHELL_PS1</a>, and <a class="el" href="nexus_8c_source.html#l00017">ustrlen()</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00023">shell_spawn()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                  {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">/* TODO: ensure this copies a null terminator */</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d">memcpy</a>(<a class="code" href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a>, new_ps1, <a class="code" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae">ustrlen</a>(new_ps1));</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_a45fd60d576394d7c39c9e584afd449ae"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae">ustrlen</a></div><div class="ttdeci">uint32_t ustrlen(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00027">uart.c:27</a></div></div>
-<div class="ttc" id="shell_8c_html_a2f43b4bd2b5dee47f8eb0efbe9158d8a"><div class="ttname"><a href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a></div><div class="ttdeci">static char * SHELL_PS1[4]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00020">shell.c:20</a></div></div>
-<div class="ttc" id="nexus_8c_html_ac13fcce69aa4b6f7aa32c9081a69c75d"><div class="ttname"><a href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d">memcpy</a></div><div class="ttdeci">void * memcpy(void *str1, const void *str2, long n)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00019">nexus.c:19</a></div></div>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00026">shell_spawn()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                  {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">/* TODO: ensure this copies a null terminator */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d">memcpy</a>(<a class="code" href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a>, new_ps1, <a class="code" href="nexus_8c.html#a45fd60d576394d7c39c9e584afd449ae">ustrlen</a>(new_ps1));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="ttc" id="shell_8c_html_a2f43b4bd2b5dee47f8eb0efbe9158d8a"><div class="ttname"><a href="shell_8c.html#a2f43b4bd2b5dee47f8eb0efbe9158d8a">SHELL_PS1</a></div><div class="ttdeci">static char * SHELL_PS1[4]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00023">shell.c:23</a></div></div>
+<div class="ttc" id="nexus_8c_html_a45fd60d576394d7c39c9e584afd449ae"><div class="ttname"><a href="nexus_8c.html#a45fd60d576394d7c39c9e584afd449ae">ustrlen</a></div><div class="ttdeci">uint32_t ustrlen(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00017">nexus.c:17</a></div></div>
+<div class="ttc" id="nexus_8c_html_ac13fcce69aa4b6f7aa32c9081a69c75d"><div class="ttname"><a href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d">memcpy</a></div><div class="ttdeci">void * memcpy(void *str1, const void *str2, long n)</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8c_source.html#l00025">nexus.c:25</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="shell_8c_a82067f3bc8231ce612155160452ddac2_cgraph.png" border="0" usemap="#shell_8c_a82067f3bc8231ce612155160452ddac2_cgraph" alt=""/></div>
 <map name="shell_8c_a82067f3bc8231ce612155160452ddac2_cgraph" id="shell_8c_a82067f3bc8231ce612155160452ddac2_cgraph">
-<area shape="rect" id="node2" href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d" title="memcpy" alt="" coords="161,5,240,32"/><area shape="rect" id="node3" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="167,56,234,83"/></map>
+<area shape="rect" id="node2" href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d" title="memcpy" alt="" coords="161,5,240,32"/><area shape="rect" id="node3" href="nexus_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="167,56,234,83"/></map>
 </div>
 </p>
 
@@ -413,144 +208,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="shell_8c_a82067f3bc8231ce612155160452ddac2_icgraph.png" border="0" usemap="#shell_8c_a82067f3bc8231ce612155160452ddac2_icgraph" alt=""/></div>
 <map name="shell_8c_a82067f3bc8231ce612155160452ddac2_icgraph" id="shell_8c_a82067f3bc8231ce612155160452ddac2_icgraph">
-<area shape="rect" id="node2" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="161,5,260,32"/><area shape="rect" id="node3" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="308,5,363,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a44f2d49f37741178da7a3c0e86c5c1db"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void shell_spawn </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Spawn a shell. Enable necessary peripherals, initialize internal data structures. </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000005">Bug:</a></b></dt><dd>No scoreboard prevents multiple shells from spawning - better trust the init'ing dev </dd></dl>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00023">23</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="hardware_8c_source.html#l00098">hw_connect()</a>, <a class="el" href="hardware_8h_source.html#l00076">HW_UART</a>, <a class="el" href="shell_8c_source.html#l00080">shell_clear_shell_buffer()</a>, <a class="el" href="shell_8c_source.html#l00021">SHELL_DEFAULT_PS1</a>, <a class="el" href="shell_8c_source.html#l00086">shell_print_ps1()</a>, <a class="el" href="shell_8c_source.html#l00074">shell_set_ps1()</a>, <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>, and <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>.</p>
-
-<p>Referenced by <a class="el" href="test-shell_8c_source.html#l00041">main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                   {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">/* TODO: have this handled by hw_connect (look at the scoreboard,</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     * see what HAS been used (don&#39;t need to initialize), what IS</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     * being used (blocked)) */</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">/* SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0); */</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="hardware_8c.html#aed9271234d346f6a00371b8a8fa87d63">hw_connect</a>(<a class="code" href="hardware_8h.html#ad0fba1e791dc47d463539310af64be36acc74a6bf0e29d5b754d68676b10dd8f2">HW_UART</a>, <a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>, <a class="code" href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b">shell_uart0_handler</a>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="shell_8c.html#a82067f3bc8231ce612155160452ddac2">shell_set_ps1</a>(<a class="code" href="shell_8c.html#ad5de3e629c7b8307edcf5e66a554f440">SHELL_DEFAULT_PS1</a>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
-<div class="ttc" id="hardware_8c_html_aed9271234d346f6a00371b8a8fa87d63"><div class="ttname"><a href="hardware_8c.html#aed9271234d346f6a00371b8a8fa87d63">hw_connect</a></div><div class="ttdeci">bool hw_connect(HW_DEVICES hw_group, raw_hw_channel raw_channel, const void *isr)</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8c_source.html#l00098">hardware.c:98</a></div></div>
-<div class="ttc" id="shell_8c_html_a2c27dcedd94d65632369ca4dda2cfbfb"><div class="ttname"><a href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a></div><div class="ttdeci">void shell_print_ps1()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00086">shell.c:86</a></div></div>
-<div class="ttc" id="shell_8c_html_ad5de3e629c7b8307edcf5e66a554f440"><div class="ttname"><a href="shell_8c.html#ad5de3e629c7b8307edcf5e66a554f440">SHELL_DEFAULT_PS1</a></div><div class="ttdeci">static char * SHELL_DEFAULT_PS1</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00021">shell.c:21</a></div></div>
-<div class="ttc" id="shell_8c_html_a82067f3bc8231ce612155160452ddac2"><div class="ttname"><a href="shell_8c.html#a82067f3bc8231ce612155160452ddac2">shell_set_ps1</a></div><div class="ttdeci">void shell_set_ps1(char *new_ps1)</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00074">shell.c:74</a></div></div>
-<div class="ttc" id="hardware_8h_html_ad0fba1e791dc47d463539310af64be36acc74a6bf0e29d5b754d68676b10dd8f2"><div class="ttname"><a href="hardware_8h.html#ad0fba1e791dc47d463539310af64be36acc74a6bf0e29d5b754d68676b10dd8f2">HW_UART</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00076">hardware.h:76</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a7a07348b4332ff6b88abf6092347deba"><div class="ttname"><a href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a></div><div class="ttdeci">#define UART0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00061">hw_memmap.h:61</a></div></div>
-<div class="ttc" id="shell_8c_html_a0f520801ac2b249c4771b53cf89f155b"><div class="ttname"><a href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b">shell_uart0_handler</a></div><div class="ttdeci">void shell_uart0_handler(char recv)</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00046">shell.c:46</a></div></div>
-<div class="ttc" id="shell_8c_html_a2cd508ee7e1311f95244ccf1aa80ee11"><div class="ttname"><a href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a></div><div class="ttdeci">void shell_clear_shell_buffer()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00080">shell.c:80</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_cgraph.png" border="0" usemap="#shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_cgraph" alt=""/></div>
-<map name="shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_cgraph" id="shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_cgraph">
-<area shape="rect" id="node2" href="hardware_8c.html#aed9271234d346f6a00371b8a8fa87d63" title="hw_connect" alt="" coords="177,107,274,134"/><area shape="rect" id="node8" href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="353,173,522,199"/><area shape="rect" id="node10" href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb" title="shell_print_ps1" alt="" coords="379,375,496,402"/><area shape="rect" id="node15" href="shell_8c.html#a82067f3bc8231ce612155160452ddac2" title="shell_set_ps1" alt="" coords="171,426,279,453"/><area shape="rect" id="node17" href="shell_8c.html#a0f520801ac2b249c4771b53cf89f155b" title="shell_uart0_handler" alt="" coords="152,274,299,301"/><area shape="rect" id="node3" href="hardware_8c.html#aeeaefdcaa85795637f0da08d497ec740" title="_hw_first_available\l_subscription" alt="" coords="588,5,728,47"/><area shape="rect" id="node5" href="hardware_8c.html#a4b839b7dc1f738e15ec7fbaf9e849ae9" title="_hw_get_channel" alt="" coords="372,107,503,134"/><area shape="rect" id="node4" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc" title="postpone_death" alt="" coords="839,97,966,123"/><area shape="rect" id="node6" href="hardware_8c.html#a880e43f5c05a25126e5f47136886bc39" title="_hw_channel_to_index" alt="" coords="576,122,740,149"/><area shape="rect" id="node7" href="hardware_8c.html#aa34d97b72da27a519047195c030c9775" title="hw_driver_singleton" alt="" coords="585,71,731,98"/><area shape="rect" id="node9" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee" title="memset" alt="" coords="620,173,696,199"/><area shape="rect" id="node11" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="593,363,723,390"/><area shape="rect" id="node12" href="lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="835,363,971,390"/><area shape="rect" id="node13" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="1065,326,1171,353"/><area shape="rect" id="node14" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="1085,402,1151,429"/><area shape="rect" id="node16" href="nexus_8c.html#ac13fcce69aa4b6f7aa32c9081a69c75d" title="memcpy" alt="" coords="398,426,477,453"/><area shape="rect" id="node18" href="shell_8c.html#ab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="347,223,528,250"/><area shape="rect" id="node23" href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="377,274,498,301"/><area shape="rect" id="node19" href="system_8c.html#a4c1378dd721607974dd56ef72614c06f" title="system_exec" alt="" coords="605,223,711,250"/><area shape="rect" id="node20" href="system_8c.html#ac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="788,223,1017,250"/><area shape="rect" id="node21" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="1085,223,1151,250"/><area shape="rect" id="node22" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="1219,223,1301,250"/><area shape="rect" id="node24" href="lib_2libuart_2uart_8c.html#a3b741ddac856f7b11678ce853b77fa08" title="uart_send_char_" alt="" coords="839,299,967,326"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_icgraph.png" border="0" usemap="#shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_icgraph" alt=""/></div>
-<map name="shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_icgraph" id="shell_8c_a44f2d49f37741178da7a3c0e86c5c1db_icgraph">
-<area shape="rect" id="node2" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="152,5,207,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a0f520801ac2b249c4771b53cf89f155b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void shell_uart0_handler </td>
-          <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Pseudo-ISR used to handle incoming chars from a user over UART. </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000008">Bug:</a></b></dt><dd>Ambiguity on which uart channel is used for terminal communication. </dd></dl>
-
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00046">46</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
-
-<p>References <a class="el" href="kbd_8h_source.html#l00006">SC_BACKSPACE</a>, <a class="el" href="kbd_8h_source.html#l00007">SC_CR</a>, <a class="el" href="shell_8c_source.html#l00018">SHELL_BUFFER</a>, <a class="el" href="shell_8h_source.html#l00015">SHELL_BUFFER_LENGTH</a>, <a class="el" href="shell_8c_source.html#l00017">SHELL_BUFFER_POSITION</a>, <a class="el" href="shell_8c_source.html#l00080">shell_clear_shell_buffer()</a>, <a class="el" href="shell_8c_source.html#l00091">shell_execute_command()</a>, <a class="el" href="shell_8c_source.html#l00086">shell_print_ps1()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00073">uart_send_char()</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00084">uart_send_string()</a>.</p>
-
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00041">shell_kill()</a>, and <a class="el" href="shell_8c_source.html#l00023">shell_spawn()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">switch</span>(recv) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc">SC_CR</a>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {   <span class="comment">/* TODO: schedule */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="shell_8c.html#ab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979">uart_send_string</a>(<span class="stringliteral">&quot;\r\n&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">/* TODO: why doesn&#39;t PS1 print twice? */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5">SC_BACKSPACE</a>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a>[<a class="code" href="shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454">SHELL_BUFFER_POSITION</a>--] = (char) 0;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">/* TODO: represent at all, with shell_represent */</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="shell_8h.html#ae5cb86cac9f0df08b20fc87a38a7153b">SHELL_BUFFER_LENGTH</a> &gt; <a class="code" href="shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454">SHELL_BUFFER_POSITION</a>) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a>[<a class="code" href="shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454">SHELL_BUFFER_POSITION</a>++] = recv;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">/* Echo char to terminal for user */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca">uart_send_char</a>(recv);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_a6663854cc5f46b64a624589faacd8979"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979">uart_send_string</a></div><div class="ttdeci">void uart_send_string(const char *text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00084">uart.c:84</a></div></div>
-<div class="ttc" id="shell_8c_html_a2c27dcedd94d65632369ca4dda2cfbfb"><div class="ttname"><a href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a></div><div class="ttdeci">void shell_print_ps1()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00086">shell.c:86</a></div></div>
-<div class="ttc" id="shell_8h_html_ae5cb86cac9f0df08b20fc87a38a7153b"><div class="ttname"><a href="shell_8h.html#ae5cb86cac9f0df08b20fc87a38a7153b">SHELL_BUFFER_LENGTH</a></div><div class="ttdeci">#define SHELL_BUFFER_LENGTH</div><div class="ttdef"><b>Definition:</b> <a href="shell_8h_source.html#l00015">shell.h:15</a></div></div>
-<div class="ttc" id="shell_8c_html_ad4eb0fba0625f09ba35622195831cd70"><div class="ttname"><a href="shell_8c.html#ad4eb0fba0625f09ba35622195831cd70">SHELL_BUFFER</a></div><div class="ttdeci">static char SHELL_BUFFER[64]</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00018">shell.c:18</a></div></div>
-<div class="ttc" id="shell_8c_html_ab1d2819a7bd745c8de3853ed4526fb70"><div class="ttname"><a href="shell_8c.html#ab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a></div><div class="ttdeci">exit_status_t shell_execute_command()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00091">shell.c:91</a></div></div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_ae628f67337f847a32fe8cfb2127007ca"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca">uart_send_char</a></div><div class="ttdeci">void uart_send_char(const char text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00073">uart.c:73</a></div></div>
-<div class="ttc" id="shell_8c_html_a0ecfd5ba22af974d1bf0391e3678b454"><div class="ttname"><a href="shell_8c.html#a0ecfd5ba22af974d1bf0391e3678b454">SHELL_BUFFER_POSITION</a></div><div class="ttdeci">static unsigned short SHELL_BUFFER_POSITION</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00017">shell.c:17</a></div></div>
-<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7acd51b3045cd8c98b8202b5768cc360a5">SC_BACKSPACE</a></div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00006">kbd.h:6</a></div></div>
-<div class="ttc" id="kbd_8h_html_ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc"><div class="ttname"><a href="kbd_8h.html#ab752beb27398dbcf54b3a4ed226106c7ab468805d667d2b0e4e45ae024e7529cc">SC_CR</a></div><div class="ttdef"><b>Definition:</b> <a href="kbd_8h_source.html#l00007">kbd.h:7</a></div></div>
-<div class="ttc" id="shell_8c_html_a2cd508ee7e1311f95244ccf1aa80ee11"><div class="ttname"><a href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11">shell_clear_shell_buffer</a></div><div class="ttdeci">void shell_clear_shell_buffer()</div><div class="ttdef"><b>Definition:</b> <a href="shell_8c_source.html#l00080">shell.c:80</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a0f520801ac2b249c4771b53cf89f155b_cgraph.png" border="0" usemap="#shell_8c_a0f520801ac2b249c4771b53cf89f155b_cgraph" alt=""/></div>
-<map name="shell_8c_a0f520801ac2b249c4771b53cf89f155b_cgraph" id="shell_8c_a0f520801ac2b249c4771b53cf89f155b_cgraph">
-<area shape="rect" id="node2" href="shell_8c.html#a2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="206,5,375,32"/><area shape="rect" id="node4" href="shell_8c.html#ab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="200,56,381,83"/><area shape="rect" id="node10" href="shell_8c.html#a2c27dcedd94d65632369ca4dda2cfbfb" title="shell_print_ps1" alt="" coords="232,107,349,133"/><area shape="rect" id="node11" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="429,157,559,184"/><area shape="rect" id="node15" href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="433,208,555,235"/><area shape="rect" id="node3" href="nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee" title="memset" alt="" coords="456,5,532,32"/><area shape="rect" id="node5" href="system_8c.html#a4c1378dd721607974dd56ef72614c06f" title="system_exec" alt="" coords="441,56,547,83"/><area shape="rect" id="node6" href="system_8c.html#ac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="607,31,836,57"/><area shape="rect" id="node9" href="nexus_8h.html#a282f1b8afad5a4e29b16def076fd68dc" title="postpone_death" alt="" coords="658,81,785,108"/><area shape="rect" id="node7" href="nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="903,31,970,57"/><area shape="rect" id="node8" href="nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="1037,31,1120,57"/><area shape="rect" id="node12" href="lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="653,157,789,184"/><area shape="rect" id="node13" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="884,208,989,235"/><area shape="rect" id="node14" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="903,157,970,184"/><area shape="rect" id="node16" href="lib_2libuart_2uart_8c.html#a3b741ddac856f7b11678ce853b77fa08" title="uart_send_char_" alt="" coords="657,208,785,235"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="shell_8c_a0f520801ac2b249c4771b53cf89f155b_icgraph.png" border="0" usemap="#shell_8c_a0f520801ac2b249c4771b53cf89f155b_icgraph" alt=""/></div>
-<map name="shell_8c_a0f520801ac2b249c4771b53cf89f155b_icgraph" id="shell_8c_a0f520801ac2b249c4771b53cf89f155b_icgraph">
-<area shape="rect" id="node2" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a" title="shell_kill" alt="" coords="212,5,287,32"/><area shape="rect" id="node3" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="200,56,299,83"/><area shape="rect" id="node4" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="347,56,401,83"/></map>
+<area shape="rect" id="node2" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db" title="shell_spawn" alt="" coords="161,5,260,32"/><area shape="rect" id="node3" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="308,5,363,32"/></map>
 </div>
 </p>
 
@@ -575,9 +233,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00018">18</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
+<p>Definition at line <a class="el" href="shell_8c_source.html#l00021">21</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00080">shell_clear_shell_buffer()</a>, <a class="el" href="shell_8c_source.html#l00091">shell_execute_command()</a>, <a class="el" href="shell_8c_source.html#l00035">shell_represent()</a>, and <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>.</p>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00088">shell_clear_shell_buffer()</a>, <a class="el" href="shell_8c_source.html#l00099">shell_execute_command()</a>, <a class="el" href="shell_8c_source.html#l00038">shell_represent()</a>, and <a class="el" href="shell_8c_source.html#l00051">shell_uart_handler()</a>.</p>
 
 </div>
 </div>
@@ -599,9 +257,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00017">17</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
+<p>Definition at line <a class="el" href="shell_8c_source.html#l00020">20</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00080">shell_clear_shell_buffer()</a>, and <a class="el" href="shell_8c_source.html#l00046">shell_uart0_handler()</a>.</p>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00088">shell_clear_shell_buffer()</a>, and <a class="el" href="shell_8c_source.html#l00051">shell_uart_handler()</a>.</p>
 
 </div>
 </div>
@@ -613,7 +271,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">char* SHELL_DEFAULT_PS1 = &quot;\n&gt; &quot;</td>
+          <td class="memname">char* SHELL_DEFAULT_PS1 = &quot;\r\n&gt; &quot;</td>
         </tr>
       </table>
   </td>
@@ -623,9 +281,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00021">21</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
+<p>Definition at line <a class="el" href="shell_8c_source.html#l00024">24</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00023">shell_spawn()</a>.</p>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00026">shell_spawn()</a>.</p>
 
 </div>
 </div>
@@ -647,9 +305,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="shell_8c_source.html#l00020">20</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
+<p>Definition at line <a class="el" href="shell_8c_source.html#l00023">23</a> of file <a class="el" href="shell_8c_source.html">shell.c</a>.</p>
 
-<p>Referenced by <a class="el" href="shell_8c_source.html#l00086">shell_print_ps1()</a>, and <a class="el" href="shell_8c_source.html#l00074">shell_set_ps1()</a>.</p>
+<p>Referenced by <a class="el" href="shell_8c_source.html#l00094">shell_print_ps1()</a>, and <a class="el" href="shell_8c_source.html#l00082">shell_set_ps1()</a>.</p>
 
 </div>
 </div>
@@ -659,7 +317,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_41c591045f1a87da6484e28b04fa7ec4.html">libshell</a></li><li class="navelem"><a class="el" href="shell_8c.html">shell.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

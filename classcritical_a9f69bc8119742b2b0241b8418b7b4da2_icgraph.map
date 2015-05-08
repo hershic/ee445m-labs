@@ -1,0 +1,42 @@
+<map id="critical::StartCritical" name="critical::StartCritical">
+<area shape="rect" id="node2" href="$classuart.html#adeebcadf1fef9e48ad79b246d2ee21e4" title="uart::atomic_printf" alt="" coords="218,141,358,168"/>
+<area shape="rect" id="node15" href="$group__semaphore.html#gabf0cab4b7d34f7dc03b3e8bea35ad76a" title="semaphore::guard" alt="" coords="879,395,1019,421"/>
+<area shape="rect" id="node23" href="$group__semaphore.html#ga14c3b9f4312c43d9400905c938752665" title="semaphore::post" alt="" coords="223,537,353,564"/>
+<area shape="rect" id="node33" href="$classmotor.html#a8194b04c23d3f3d638aff1bc05aef134" title="motor::pwm_init" alt="" coords="225,765,351,792"/>
+<area shape="rect" id="node36" href="$group__semaphore.html#ga0087878f7dfe15c313c0718811f6ec2f" title="semaphore::reset" alt="" coords="220,816,356,843"/>
+<area shape="rect" id="node39" href="$classping.html#a0f635a0fc75b5c6078475215aa29080b" title="ping::sample" alt="" coords="897,672,1001,699"/>
+<area shape="rect" id="node40" href="$group__semaphore.html#ga5e360562d361fee35b1ddb37ce070a1d" title="semaphore::semaphore" alt="" coords="200,867,376,893"/>
+<area shape="rect" id="node41" href="$group__semaphore.html#gaf0e430d192c44be1d65f5a4fd8cb91a4" title="semaphore::wait" alt="" coords="224,917,352,944"/>
+<area shape="rect" id="node3" href="$classshell.html#a4bbc8e63b2a36877cf13d1bd2196a214" title="shell::print_ps1" alt="" coords="453,40,571,67"/>
+<area shape="rect" id="node7" href="$classshell.html#abc8aa0b3a30e5213f44e14a2b0bb2918" title="shell::execute_command" alt="" coords="648,192,831,219"/>
+<area shape="rect" id="node11" href="$classshell.html#ae3e275ca3dca4896aabd128209bf538b" title="shell::type" alt="" coords="696,91,783,117"/>
+<area shape="rect" id="node12" href="$classshell.html#a4818d9798adb2f72fca6b030a49ae196" title="shell::backspace" alt="" coords="676,141,803,168"/>
+<area shape="rect" id="node13" href="$move-main_8cpp.html#a119c88d96e41a68552db0b7c1da7e0ca" title="thread_uart_update" alt="" coords="437,91,587,117"/>
+<area shape="rect" id="node14" href="$move-main_8cpp.html#af7b345f5bff7b52e42729f33249546d8" title="can_handler" alt="" coords="1089,284,1189,311"/>
+<area shape="rect" id="node4" href="$classshell.html#a1e4abdc9a23dd7ac1b8cca04e2f3da1f" title="shell::init_ps1" alt="" coords="685,40,793,67"/>
+<area shape="rect" id="node5" href="$classshell.html#add12112c75df5dad11b6a002a0e7b16e" title="shell::init" alt="" coords="909,40,988,67"/>
+<area shape="rect" id="node6" href="$classshell.html#adf87c8815d4fc682d83eaa5ae4fa7083" title="shell::shell" alt="" coords="1095,40,1183,67"/>
+<area shape="rect" id="node8" href="$classshell.html#a02dc63d453efec7549b5b9e621e14187" title="shell::accept" alt="" coords="897,167,1000,193"/>
+<area shape="rect" id="node9" href="$move-main_8cpp.html#a459dda223a13ec840d5fdc0a77950ff4" title="shell_handler" alt="" coords="1085,233,1192,260"/>
+<area shape="rect" id="node10" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1259,385,1313,412"/>
+<area shape="rect" id="node16" href="$move-main_8cpp.html#a2174d1f65988a9a74094c1027c14bcfa" title="motor_control" alt="" coords="1083,537,1195,564"/>
+<area shape="rect" id="node17" href="$sense-main_8cpp.html#a961eb4272ced40d34c70a8f3ef94268e" title="ping_handler" alt="" coords="1087,588,1191,615"/>
+<area shape="rect" id="node19" href="$move-main_8cpp.html#ae131b00322d1c477f4f8b8d1dc5dec73" title="switch_responder" alt="" coords="1072,335,1205,361"/>
+<area shape="rect" id="node20" href="$move-main_8cpp.html#a00a2a9ce1f6468e9f6f8096cea6bd2ee" title="thread_blink_blue" alt="" coords="1071,385,1206,412"/>
+<area shape="rect" id="node21" href="$move-main_8cpp.html#a296a125b0f0e4263894a428ff341d7ec" title="thread_blink_green" alt="" coords="1067,436,1211,463"/>
+<area shape="rect" id="node22" href="$move-main_8cpp.html#a8141c83851995fd28eca3ecddca88700" title="thread_blink_red" alt="" coords="1075,487,1203,513"/>
+<area shape="rect" id="node18" href="$sense-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1259,588,1313,615"/>
+<area shape="rect" id="node24" href="$move-main_8cpp.html#aa0f30c571420d42057d28b7b243e3b3e" title="CAN0_Handler" alt="" coords="455,613,569,640"/>
+<area shape="rect" id="node25" href="$classlswitch.html#a12e13c6396b45a856dc089e198983a0d" title="lswitch::end_debounce" alt="" coords="429,664,595,691"/>
+<area shape="rect" id="node27" href="$classping.html#af410e283315932eb9ac8ce85d6970a0c" title="ping::handle_timer" alt="" coords="441,512,583,539"/>
+<area shape="rect" id="node29" href="$classshell.html#a2d0c286c256fbdfa6b2f986c7507ebb8" title="shell::motor_start" alt="" coords="445,344,579,371"/>
+<area shape="rect" id="node30" href="$classshell.html#adb6b4e5352b36681b80c4a10f3c73cf1" title="shell::motor_stop" alt="" coords="445,243,579,269"/>
+<area shape="rect" id="node31" href="$classbuffer.html#abadd94f83518c22487f57dce710a0b77" title="buffer\&lt; int32_t, N\l \&gt;::notify" alt="" coords="444,446,580,487"/>
+<area shape="rect" id="node32" href="$classping.html#ab5263f630ea8b7790a6f3c687044faa6" title="ping::start" alt="" coords="905,571,992,597"/>
+<area shape="rect" id="node26" href="$move-main_8cpp.html#a42f34e143823775dbe5281486aba94f0" title="Timer1A_Handler" alt="" coords="673,664,805,691"/>
+<area shape="rect" id="node28" href="$sense-main_8cpp.html#a42f34e143823775dbe5281486aba94f0" title="Timer1A_Handler" alt="" coords="673,512,805,539"/>
+<area shape="rect" id="node34" href="$classmotor.html#ad93e31c83b8a3d0f97c29478d2089212" title="motor::motor_init" alt="" coords="445,765,579,792"/>
+<area shape="rect" id="node35" href="$classmotor.html#a1558350ea08d9c56f460c4ff928e1dba" title="motor::motor" alt="" coords="685,765,793,792"/>
+<area shape="rect" id="node37" href="$group__semaphore.html#gaf47a689406925dcc8fd27712cd262f58" title="semaphore::semaphore" alt="" coords="424,816,600,843"/>
+<area shape="rect" id="node38" href="$classping.html#a912b23c9f88bc4e09771260ff4e6580b" title="ping::stop" alt="" coords="469,867,555,893"/>
+</map>

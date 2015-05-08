@@ -1,0 +1,5 @@
+<map id="semaphore::semaphore" name="semaphore::semaphore">
+<area shape="rect" id="node2" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="233,5,372,32"/>
+<area shape="rect" id="node3" href="$group__semaphore.html#ga7d4d0b41a441f498ccf7a28973a6b79a" title="semaphore::init" alt="" coords="241,56,364,83"/>
+<area shape="rect" id="node4" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="229,107,376,133"/>
+</map>

@@ -1,9 +1,8 @@
 <map id="SysCtlPeripheralEnable" name="SysCtlPeripheralEnable">
-<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="259,5,330,32"/>
-<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="449,31,503,57"/>
-<area shape="rect" id="node4" href="$heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615" title="Initialize the heart for visible transformation. " alt="" coords="435,107,517,133"/>
-<area shape="rect" id="node6" href="$hardware_8h.html#a17cea770be46f9f9a389a57078171248" title="hw_driver_init" alt="" coords="241,157,349,184"/>
-<area shape="rect" id="node7" href="$lib_2libtimer_2timer_8h.html#a704234a42b3ec7054f5e2bf8c8ddd364" title="timer_add_periodic\l_interrupt" alt="" coords="223,209,367,250"/>
-<area shape="rect" id="node5" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="585,157,640,184"/>
-<area shape="rect" id="node8" href="$hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="415,212,537,239"/>
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#aa67c6db02c5779013fd326b77e30d9e6" title="adc_init" alt="" coords="241,5,312,32"/>
+<area shape="rect" id="node4" href="$heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615" title="Initialize &#160;for visible transformation. " alt="" coords="235,56,318,83"/>
+<area shape="rect" id="node5" href="$hardware_8h.html#aa5516d4dee186a189d2d62be05f4ba10" title="hw_driver_init" alt="" coords="223,107,331,133"/>
+<area shape="rect" id="node7" href="$test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="249,157,304,184"/>
+<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="379,31,433,57"/>
+<area shape="rect" id="node6" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="379,107,433,133"/>
 </map>

@@ -1,0 +1,15 @@
+<map id="motor::motor" name="motor::motor">
+<area shape="rect" id="node2" href="$group___cpp_test.html#ga2f6a1135d37afd9955a16efbd901b2c2" title="ctlsys::enable_periph" alt="" coords="517,43,673,69"/>
+<area shape="rect" id="node5" href="$classmotor.html#ad93e31c83b8a3d0f97c29478d2089212" title="motor::motor_init" alt="" coords="161,112,296,139"/>
+<area shape="rect" id="node3" href="$classcritical.html#a55a80f7c8c33aec8acb01c76e9dcf0bd" title="critical::static_EndCritical" alt="" coords="725,5,905,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#a462ecb751e5e7572f587f3fb3f7e8fd4" title="critical::static_StartCritical" alt="" coords="721,56,909,83"/>
+<area shape="rect" id="node6" href="$classmotor.html#a8194b04c23d3f3d638aff1bc05aef134" title="motor::pwm_init" alt="" coords="344,137,469,164"/>
+<area shape="rect" id="node7" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="522,93,669,120"/>
+<area shape="rect" id="node8" href="$classmotor.html#a7d422d0ff4f2d93b31fa7f4a567c4daa" title="motor::set" alt="" coords="551,144,640,171"/>
+<area shape="rect" id="node13" href="$classmotor.html#a709d452133e06472c68689da00baa8d5" title="motor::start" alt="" coords="546,195,645,221"/>
+<area shape="rect" id="node14" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="526,245,665,272"/>
+<area shape="rect" id="node9" href="$group__math.html#ga7b3ff1805d7e50020363b0fbb296430b" title="clamp" alt="" coords="785,132,846,159"/>
+<area shape="rect" id="node11" href="$classmotor.html#a727b50d42de63105af2a7df209c8ce40" title="motor::adjusted_direction" alt="" coords="722,183,909,209"/>
+<area shape="rect" id="node10" href="$group__math.html#ga6ae8adad8e6df7d8e1b66e3e50f1e293" title="max" alt="" coords="985,132,1036,159"/>
+<area shape="rect" id="node12" href="$classnav.html#ac95eb00f0732946144fff3d98f243104" title="nav::opposite" alt="" coords="957,183,1064,209"/>
+</map>

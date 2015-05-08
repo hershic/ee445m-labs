@@ -1,0 +1,10 @@
+<map id="lib/libschedule/priority_schedule_structures.h" name="lib/libschedule/priority_schedule_structures.h">
+<area shape="rect" id="node2" href="$os_8h.html" title="libos/os.h" alt="" coords="231,95,314,121"/>
+<area shape="rect" id="node9" href="$thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="255,244,437,271"/>
+<area shape="rect" id="node10" href="$notify_8h.html" title="libnotify/notify.h" alt="" coords="526,95,646,121"/>
+<area shape="rect" id="node11" href="$uthash_8h.html" title="libut/uthash.h" alt="" coords="670,95,779,121"/>
+<area shape="rect" id="node5" href="$hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="5,169,108,196"/>
+<area shape="rect" id="node6" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="461,244,572,271"/>
+<area shape="rect" id="node8" href="$edf_8h.html" title="libschedule/edf.h" alt="" coords="335,169,463,196"/>
+<area shape="rect" id="node7" href="$defines_8h.html" title="defines.h" alt="" coords="329,319,409,345"/>
+</map>

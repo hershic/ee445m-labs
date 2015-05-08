@@ -1,0 +1,5 @@
+<map id="hw_notify_uart" name="hw_notify_uart">
+<area shape="rect" id="node2" href="$hardware_8h.html#a4b16b6aa8084ff7cc4261f2bd15b5b0b" title="hw_daemon" alt="" coords="168,31,267,57"/>
+<area shape="rect" id="node3" href="$test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="350,5,405,32"/>
+<area shape="rect" id="node4" href="$hardware_8h.html#a5d013da6453c4d162f665f6a59419889" title="hw_init_daemon" alt="" coords="315,56,440,83"/>
+</map>

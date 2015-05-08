@@ -112,116 +112,127 @@ $(document).ready(function(){initNavTree('defines_8h_source.html','');});
 <a href="defines_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* TODO: Doxygenize better */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef __G2D_DEFINES__</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define __G2D_DEFINES__</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef __DEFINES__</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define __DEFINES__</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/*** Custom data types ***/</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/* swiss army knife data types */</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef null</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="defines_8h.html#ac97b8ee753e4405397a42ad5799b0f9e">   19</a></span>&#160;<span class="preprocessor">#define null 0x00</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">   22</a></span>&#160;<span class="preprocessor">#define NULL 0x00</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc">   24</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69">   25</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69">ushort</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">   26</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">ulong</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/* shape.h data types */</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="defines_8h.html#acb6cc4d9a365661694f8ca4024c857e3">   31</a></span>&#160;<span class="preprocessor">#define shade_t           unsigned char</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="defines_8h.html#abb8be29571043061bd78e7bb10f73c8c">   32</a></span>&#160;<span class="preprocessor">#define mu_fields_t       unsigned char</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="defines_8h.html#a6e013d651e82da0eff0f1d27465406d5">   33</a></span>&#160;<span class="preprocessor">#define mu_input_event_t  unsigned char</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/* OLED data types */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="defines_8h.html#a8587b22bd56b380164bf3a0d44b13eb5">   36</a></span>&#160;<span class="preprocessor">#define pixel_t    unsigned char</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="defines_8h.html#aba76358f9ded4e5d705892985704383d">   37</a></span>&#160;<span class="preprocessor">#define x_pixel_t  pixel_t</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="defines_8h.html#a63f3b32712c80ed2ffc02e8474987293">   38</a></span>&#160;<span class="preprocessor">#define y_pixel_t  pixel_t</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/* os/task defines */</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">   21</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a>)();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="defines_8h.html#a5078d4c812298229dc1952cf9fc994d9">   23</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="defines_8h.html#a5078d4c812298229dc1952cf9fc994d9">isr_t</a>)();        <span class="comment">/* isr capable of hw_notifying */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="defines_8h.html#a0ed2dce7e14c65de6dca847479629276">   24</a></span>&#160;<span class="keyword">typedef</span> int32_t <a class="code" href="defines_8h.html#a0ed2dce7e14c65de6dca847479629276">frequency_t</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">/*** Custom data types ***/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/* swiss army knife data types */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifndef null</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="defines_8h.html#ac97b8ee753e4405397a42ad5799b0f9e">   29</a></span>&#160;<span class="preprocessor">#define null 0x00</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="defines_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">   32</a></span>&#160;<span class="preprocessor">#define NULL 0x00</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc">   34</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69">   35</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69">ushort</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">   36</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">ulong</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/* Graphlib data types */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="defines_8h.html#af577aec6dd423bbf9aad5ccb048e5061">   41</a></span>&#160;<span class="preprocessor">#define y_range_t</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="defines_8h.html#a4ff1206831ffe829beaa8b79caec05c9">   42</a></span>&#160;<span class="preprocessor">#define x_range_t</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* adc data types */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="defines_8h.html#acf8716411d3253a2dfe224df7ccf6c09">   45</a></span>&#160;<span class="preprocessor">#define adc_t          unsigned short</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="defines_8h.html#a5beb97836b9cf7b7a9938ed6779eb1c5">   46</a></span>&#160;<span class="preprocessor">#define temperature_t  long</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/*** End custom data types ***/</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/*** Syntactic sugar ***/</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="defines_8h.html#a6fc4b191242c5490eab83c9a5b415b50">   50</a></span>&#160;<span class="preprocessor">#define when(cond) if(true == (cond))</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="defines_8h.html#a6a1d6e1a12975a4e9a0b5b952e79eaad">   51</a></span>&#160;<span class="preprocessor">#define private</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="defines_8h.html#a9b06159f783a7975eccfa27e90dff1c2">   52</a></span>&#160;<span class="preprocessor">#define public</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/* shape.h data types */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="defines_8h.html#acb6cc4d9a365661694f8ca4024c857e3">   41</a></span>&#160;<span class="preprocessor">#define shade_t           unsigned char</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="defines_8h.html#abb8be29571043061bd78e7bb10f73c8c">   42</a></span>&#160;<span class="preprocessor">#define mu_fields_t       unsigned char</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="defines_8h.html#a6e013d651e82da0eff0f1d27465406d5">   43</a></span>&#160;<span class="preprocessor">#define mu_input_event_t  unsigned char</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* OLED data types */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="defines_8h.html#a8587b22bd56b380164bf3a0d44b13eb5">   46</a></span>&#160;<span class="preprocessor">#define pixel_t    unsigned char</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="defines_8h.html#aba76358f9ded4e5d705892985704383d">   47</a></span>&#160;<span class="preprocessor">#define x_pixel_t  pixel_t</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="defines_8h.html#a63f3b32712c80ed2ffc02e8474987293">   48</a></span>&#160;<span class="preprocessor">#define y_pixel_t  pixel_t</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">/* Graphlib data types */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="defines_8h.html#af577aec6dd423bbf9aad5ccb048e5061">   51</a></span>&#160;<span class="preprocessor">#define y_range_t</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="defines_8h.html#a4ff1206831ffe829beaa8b79caec05c9">   52</a></span>&#160;<span class="preprocessor">#define x_range_t</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/* colorized output through gcc */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="defines_8h.html#a34995b955465f6bbb37c359173d50477">   55</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_RED     &quot;\x1b[31m&quot;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="defines_8h.html#a966c72d8d733c7734c6c784753d894c7">   56</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_GREEN   &quot;\x1b[32m&quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="defines_8h.html#a5a123b382640b3aa65dd5db386002fbc">   57</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_YELLOW  &quot;\x1b[33m&quot;</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="defines_8h.html#aca16e6a49eb51333c5fd3eee19487315">   58</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_BLUE    &quot;\x1b[34m&quot;</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="defines_8h.html#acb30614ba1535da5b9d0c490b3c10515">   59</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_MAGENTA &quot;\x1b[35m&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="defines_8h.html#a8d0b0043e152438bb39b918a1f98c65f">   60</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_CYAN    &quot;\x1b[36m&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="defines_8h.html#a92a364c2b863dde1a024a77eac2a5b3b">   61</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_RESET   &quot;\x1b[0m&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">/* mnemonics for framebuffer shades */</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="defines_8h.html#af406c6a33ce26973f1746600a08b0868">   64</a></span>&#160;<span class="preprocessor">#define FB_SHADE_ERASE  ((shade_t) 0)</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="defines_8h.html#a1812a4c273ff7b7d962b902186210a91">   65</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MIN    ((shade_t) 1)</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="defines_8h.html#a27668370e258cf1caab89c2c97b6faaa">   66</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MINOR  ((shade_t) 4)</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="defines_8h.html#ae03d2093f9c4f810fe4fc49b0f53b16a">   67</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MID    ((shade_t) 7)</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="defines_8h.html#ad8a024f0dd6e464b17d79e27cc9cc445">   68</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MUCH   ((shade_t) 11)</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="defines_8h.html#a740d27fb7ff5f9d3ee68aa4a2f66eadd">   69</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MAX    ((shade_t) 15)</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">/* whoops..  backwards compatability */</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="defines_8h.html#a36d6af6881216bf1290e041d2ada436b">   71</a></span>&#160;<span class="preprocessor">#define FB_COLOR_ERASE  ((shade_t) 0)</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="defines_8h.html#aa8b7af51cc46cdc9b01bb3be2d13b203">   72</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MIN    ((shade_t) 1)</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="defines_8h.html#aaa063eb75eec2730ad4604b7b5bb1d41">   73</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MINOR  ((shade_t) 4)</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="defines_8h.html#a573599181ff30dffc3747bc09ceda4ac">   74</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MID    ((shade_t) 7)</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="defines_8h.html#a76c718f5cfb1b17ea5cf024ecb1dbbf9">   75</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MUCH   ((shade_t) 11)</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="defines_8h.html#a42035af425af33adff20f8721eacbb64">   76</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MAX    ((shade_t) 15)</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">/* custom shading through terminal */</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="defines_8h.html#a019855cb0a28322b67ba0c74b9cecadd">   79</a></span>&#160;<span class="preprocessor">#define SHADE_0 &#39;.&#39;</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="defines_8h.html#ad104eda86d94122d7345ceb1b3940733">   80</a></span>&#160;<span class="preprocessor">#define SHADE_1 &#39;-&#39;</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="defines_8h.html#aaaf308ddd3368d7211c98fdbeddb75bb">   81</a></span>&#160;<span class="preprocessor">#define SHADE_2 &#39;*&#39;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="defines_8h.html#a2f68579dc6e70341eeaf68b9c8aaf9f8">   82</a></span>&#160;<span class="preprocessor">#define SHADE_3 &#39;#&#39;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="defines_8h.html#a26340d029c19f429e686f73c87daa0c6">   83</a></span>&#160;<span class="preprocessor">#define SHADE_SIZE 4 </span><span class="comment">/* bits necessary to represent different shades */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">/* would be in framebuffer.h but we had scoping issues... */</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="defines_8h.html#a6719a71d403c9ffcd1ac1d55cbdf1106">   86</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_HEIGHT   ((pixel_t) 8)</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="defines_8h.html#ab0c597fd7b7e386d10cab1acb622724b">   87</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_WIDTH    ((pixel_t) 5)</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="defines_8h.html#ac6ae1dfa041da75ae0eb029141feda0e">   88</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_KERNING  ((pixel_t) 2)</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">/* vertical space between lines      */</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="defines_8h.html#a6dc376624810d0024d7883109c5976f6">   91</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_LINE_SPACING  ((pixel_t) 2)</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/* vertical space between paragraphs */</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="defines_8h.html#ad9d8af03461a9896f4193e16d4d61760">   93</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_PARAGRAPH_SPACING  (FONT_VALVANO_LINE_SPACING+3)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/* adc data types */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="defines_8h.html#acf8716411d3253a2dfe224df7ccf6c09">   55</a></span>&#160;<span class="preprocessor">#define adc_t          unsigned short</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="defines_8h.html#a5beb97836b9cf7b7a9938ed6779eb1c5">   56</a></span>&#160;<span class="preprocessor">#define temperature_t  long</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/*** End custom data types ***/</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/*** Syntactic sugar ***/</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="defines_8h.html#a6fc4b191242c5490eab83c9a5b415b50">   60</a></span>&#160;<span class="preprocessor">#define when(cond) if(true == (cond))</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="defines_8h.html#a6a1d6e1a12975a4e9a0b5b952e79eaad">   61</a></span>&#160;<span class="preprocessor">#define private</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="defines_8h.html#a9b06159f783a7975eccfa27e90dff1c2">   62</a></span>&#160;<span class="preprocessor">#define public</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">/* colorized output through gcc */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="defines_8h.html#a34995b955465f6bbb37c359173d50477">   65</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_RED     &quot;\x1b[31m&quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="defines_8h.html#a966c72d8d733c7734c6c784753d894c7">   66</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_GREEN   &quot;\x1b[32m&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="defines_8h.html#a5a123b382640b3aa65dd5db386002fbc">   67</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_YELLOW  &quot;\x1b[33m&quot;</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="defines_8h.html#aca16e6a49eb51333c5fd3eee19487315">   68</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_BLUE    &quot;\x1b[34m&quot;</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="defines_8h.html#acb30614ba1535da5b9d0c490b3c10515">   69</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_MAGENTA &quot;\x1b[35m&quot;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="defines_8h.html#a8d0b0043e152438bb39b918a1f98c65f">   70</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_CYAN    &quot;\x1b[36m&quot;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="defines_8h.html#a92a364c2b863dde1a024a77eac2a5b3b">   71</a></span>&#160;<span class="preprocessor">#define ANSI_COLOR_RESET   &quot;\x1b[0m&quot;</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">/* mnemonics for framebuffer shades */</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="defines_8h.html#af406c6a33ce26973f1746600a08b0868">   74</a></span>&#160;<span class="preprocessor">#define FB_SHADE_ERASE  ((shade_t) 0)</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="defines_8h.html#a1812a4c273ff7b7d962b902186210a91">   75</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MIN    ((shade_t) 1)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="defines_8h.html#a27668370e258cf1caab89c2c97b6faaa">   76</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MINOR  ((shade_t) 4)</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="defines_8h.html#ae03d2093f9c4f810fe4fc49b0f53b16a">   77</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MID    ((shade_t) 7)</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="defines_8h.html#ad8a024f0dd6e464b17d79e27cc9cc445">   78</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MUCH   ((shade_t) 11)</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="defines_8h.html#a740d27fb7ff5f9d3ee68aa4a2f66eadd">   79</a></span>&#160;<span class="preprocessor">#define FB_SHADE_MAX    ((shade_t) 15)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">/* whoops..  backwards compatability */</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="defines_8h.html#a36d6af6881216bf1290e041d2ada436b">   81</a></span>&#160;<span class="preprocessor">#define FB_COLOR_ERASE  ((shade_t) 0)</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="defines_8h.html#aa8b7af51cc46cdc9b01bb3be2d13b203">   82</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MIN    ((shade_t) 1)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="defines_8h.html#aaa063eb75eec2730ad4604b7b5bb1d41">   83</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MINOR  ((shade_t) 4)</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="defines_8h.html#a573599181ff30dffc3747bc09ceda4ac">   84</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MID    ((shade_t) 7)</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="defines_8h.html#a76c718f5cfb1b17ea5cf024ecb1dbbf9">   85</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MUCH   ((shade_t) 11)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="defines_8h.html#a42035af425af33adff20f8721eacbb64">   86</a></span>&#160;<span class="preprocessor">#define FB_COLOR_MAX    ((shade_t) 15)</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/* custom shading through terminal */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="defines_8h.html#a019855cb0a28322b67ba0c74b9cecadd">   89</a></span>&#160;<span class="preprocessor">#define SHADE_0 &#39;.&#39;</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="defines_8h.html#ad104eda86d94122d7345ceb1b3940733">   90</a></span>&#160;<span class="preprocessor">#define SHADE_1 &#39;-&#39;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="defines_8h.html#aaaf308ddd3368d7211c98fdbeddb75bb">   91</a></span>&#160;<span class="preprocessor">#define SHADE_2 &#39;*&#39;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="defines_8h.html#a2f68579dc6e70341eeaf68b9c8aaf9f8">   92</a></span>&#160;<span class="preprocessor">#define SHADE_3 &#39;#&#39;</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="defines_8h.html#a26340d029c19f429e686f73c87daa0c6">   93</a></span>&#160;<span class="preprocessor">#define SHADE_SIZE 4 </span><span class="comment">/* bits necessary to represent different shades */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/* OLED screen dimensions */</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="defines_8h.html#a149f081665424602c8c0f90a6e935f3b">   96</a></span>&#160;<span class="preprocessor">#define OLED_HEIGHT    ((pixel_t) 96)</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="defines_8h.html#a9885a007def27c91dd1720fb65d55f87">   97</a></span>&#160;<span class="preprocessor">#define OLED_WIDTH     ((pixel_t) 128)</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">/* synonyms used in different contexts */</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="defines_8h.html#aadd55f4daf676943c450981019c926ee">   99</a></span>&#160;<span class="preprocessor">#define RIT_FB_HEIGHT  ((pixel_t) OLED_HEIGHT)</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="defines_8h.html#a33479cc96f76c594b9e83c1ba67b33e7">  100</a></span>&#160;<span class="preprocessor">#define RIT_FB_WIDTH   ((pixel_t) OLED_WIDTH/2)</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">/* synonyms make for happy developers */</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="defines_8h.html#a236a38ee8e68626b58af38c3ceb89201">  102</a></span>&#160;<span class="preprocessor">#define FB_HEIGHT      ((pixel_t) 96)</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="defines_8h.html#adb332beeba32707916c63d02fd15e6ac">  103</a></span>&#160;<span class="preprocessor">#define FB_WIDTH       ((pixel_t) 128)</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/* would be in framebuffer.h but we had scoping issues... */</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="defines_8h.html#a6719a71d403c9ffcd1ac1d55cbdf1106">   96</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_HEIGHT   ((pixel_t) 8)</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="defines_8h.html#ab0c597fd7b7e386d10cab1acb622724b">   97</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_WIDTH    ((pixel_t) 5)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="defines_8h.html#ac6ae1dfa041da75ae0eb029141feda0e">   98</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_KERNING  ((pixel_t) 2)</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">/* vertical space between lines      */</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="defines_8h.html#a6dc376624810d0024d7883109c5976f6">  101</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_LINE_SPACING  ((pixel_t) 2)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">/* vertical space between paragraphs */</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="defines_8h.html#ad9d8af03461a9896f4193e16d4d61760">  103</a></span>&#160;<span class="preprocessor">#define FONT_VALVANO_PARAGRAPH_SPACING  (FONT_VALVANO_LINE_SPACING+3)</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">/* framebuffer constants */</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="defines_8h.html#a2cb2ce9298ee622bae38bb93262fce0d">  106</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_TEXT_ROW      ((pixel_t) 45)</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="defines_8h.html#a1aebf7f550f44c3577d4a01ec23a4d70">  107</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_DIGITS_ROW    ((pixel_t) 55)</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="defines_8h.html#a80411385fe9a55e1c7d1beac9f602d9b">  108</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_HOUR_COLUMN   ((pixel_t) 47)</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="defines_8h.html#a2dd1eef8dab1a5b2bd3019df131ea846">  109</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_COLON_COLUMN  ((pixel_t) 61)</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="defines_8h.html#afe1911fca63f80a043e5773d9bdd8606">  110</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_MIN_COLUMN    ((pixel_t) 66)</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="defines_8h_html_a718b4eb2652c286f4d42dc18a8e71a1a"><div class="ttname"><a href="defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
-<div class="ttc" id="defines_8h_html_ab95f123a6c9bcfee6a343170ef8c5f69"><div class="ttname"><a href="defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69">ushort</a></div><div class="ttdeci">unsigned short ushort</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00025">defines.h:25</a></div></div>
-<div class="ttc" id="defines_8h_html_a65f85814a8290f9797005d3b28e7e5fc"><div class="ttname"><a href="defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a></div><div class="ttdeci">unsigned char uchar</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00024">defines.h:24</a></div></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">/* OLED screen dimensions */</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="defines_8h.html#a149f081665424602c8c0f90a6e935f3b">  106</a></span>&#160;<span class="preprocessor">#define OLED_HEIGHT    ((pixel_t) 96)</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="defines_8h.html#a9885a007def27c91dd1720fb65d55f87">  107</a></span>&#160;<span class="preprocessor">#define OLED_WIDTH     ((pixel_t) 128)</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">/* synonyms used in different contexts */</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="defines_8h.html#aadd55f4daf676943c450981019c926ee">  109</a></span>&#160;<span class="preprocessor">#define RIT_FB_HEIGHT  ((pixel_t) OLED_HEIGHT)</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="defines_8h.html#a33479cc96f76c594b9e83c1ba67b33e7">  110</a></span>&#160;<span class="preprocessor">#define RIT_FB_WIDTH   ((pixel_t) OLED_WIDTH/2)</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">/* synonyms make for happy developers */</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="defines_8h.html#a236a38ee8e68626b58af38c3ceb89201">  112</a></span>&#160;<span class="preprocessor">#define FB_HEIGHT      ((pixel_t) 96)</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="defines_8h.html#adb332beeba32707916c63d02fd15e6ac">  113</a></span>&#160;<span class="preprocessor">#define FB_WIDTH       ((pixel_t) 128)</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">/* framebuffer constants */</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="defines_8h.html#a2cb2ce9298ee622bae38bb93262fce0d">  116</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_TEXT_ROW      ((pixel_t) 45)</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="defines_8h.html#a1aebf7f550f44c3577d4a01ec23a4d70">  117</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_DIGITS_ROW    ((pixel_t) 55)</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="defines_8h.html#a80411385fe9a55e1c7d1beac9f602d9b">  118</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_HOUR_COLUMN   ((pixel_t) 47)</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="defines_8h.html#a2dd1eef8dab1a5b2bd3019df131ea846">  119</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_COLON_COLUMN  ((pixel_t) 61)</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="defines_8h.html#afe1911fca63f80a043e5773d9bdd8606">  120</a></span>&#160;<span class="preprocessor">#define FB_CLOCK_SET_MIN_COLUMN    ((pixel_t) 66)</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="defines_8h_html_a718b4eb2652c286f4d42dc18a8e71a1a"><div class="ttname"><a href="defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a">ulong</a></div><div class="ttdeci">unsigned long ulong</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00036">defines.h:36</a></div></div>
+<div class="ttc" id="defines_8h_html_a5078d4c812298229dc1952cf9fc994d9"><div class="ttname"><a href="defines_8h.html#a5078d4c812298229dc1952cf9fc994d9">isr_t</a></div><div class="ttdeci">void(* isr_t)()</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
+<div class="ttc" id="defines_8h_html_a78a55c2ac757b7addb3150081812288b"><div class="ttname"><a href="defines_8h.html#a78a55c2ac757b7addb3150081812288b">task_t</a></div><div class="ttdeci">void(* task_t)()</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00021">defines.h:21</a></div></div>
+<div class="ttc" id="defines_8h_html_ab95f123a6c9bcfee6a343170ef8c5f69"><div class="ttname"><a href="defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69">ushort</a></div><div class="ttdeci">unsigned short ushort</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00035">defines.h:35</a></div></div>
+<div class="ttc" id="defines_8h_html_a65f85814a8290f9797005d3b28e7e5fc"><div class="ttname"><a href="defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc">uchar</a></div><div class="ttdeci">unsigned char uchar</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00034">defines.h:34</a></div></div>
+<div class="ttc" id="defines_8h_html_a0ed2dce7e14c65de6dca847479629276"><div class="ttname"><a href="defines_8h.html#a0ed2dce7e14c65de6dca847479629276">frequency_t</a></div><div class="ttdeci">int32_t frequency_t</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00024">defines.h:24</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_8abf0dd83f466419d031c235a073d3af.html">libstd</a></li><li class="navelem"><a class="el" href="defines_8h.html">defines.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:37 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

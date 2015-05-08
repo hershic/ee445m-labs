@@ -1,0 +1,30 @@
+<map id="board&#45;progs/autonomous&#45;racer/common/criticalpp.hpp" name="board&#45;progs/autonomous&#45;racer/common/criticalpp.hpp">
+<area shape="rect" id="node2" href="$semaphorepp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/semaphorepp.hpp" alt="" coords="1609,95,1851,136"/>
+<area shape="rect" id="node14" href="$pingpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/pingpp.hpp" alt="" coords="2448,363,2644,404"/>
+<area shape="rect" id="node20" href="$semaphorepp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/semaphorepp.cpp" alt="" coords="2491,184,2732,225"/>
+<area shape="rect" id="node23" href="$ctlsysctl_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/ctlsysctl.hpp" alt="" coords="2668,363,2872,404"/>
+<area shape="rect" id="node26" href="$motorpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/motorpp.hpp" alt="" coords="1079,273,1287,315"/>
+<area shape="rect" id="node28" href="$uartpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/uartpp.hpp" alt="" coords="1474,273,1669,315"/>
+<area shape="rect" id="node3" href="$adcpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/adcpp.hpp" alt="" coords="605,273,797,315"/>
+<area shape="rect" id="node5" href="$ir_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/ir.hpp" alt="" coords="48,363,233,404"/>
+<area shape="rect" id="node8" href="$sense-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/sense/sense&#45;main.cpp" alt="" coords="502,459,710,501"/>
+<area shape="rect" id="node9" href="$move-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/move/move&#45;main.cpp" alt="" coords="799,459,1003,501"/>
+<area shape="rect" id="node10" href="$test-countdown_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;countdown\l/test&#45;countdown.cpp" alt="" coords="1437,452,1623,508"/>
+<area shape="rect" id="node11" href="$test-ping_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;ping/test\l&#45;ping.cpp" alt="" coords="1805,452,1991,508"/>
+<area shape="rect" id="node12" href="$bufferpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/bufferpp.hpp" alt="" coords="1207,184,1413,225"/>
+<area shape="rect" id="node16" href="$shellpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/shellpp.hpp" alt="" coords="1255,363,1453,404"/>
+<area shape="rect" id="node18" href="$canpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/canpp.hpp" alt="" coords="1527,363,1719,404"/>
+<area shape="rect" id="node21" href="$switchpp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/switchpp.hpp" alt="" coords="1794,363,2002,404"/>
+<area shape="rect" id="node4" href="$adcpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/adcpp.cpp" alt="" coords="989,363,1180,404"/>
+<area shape="rect" id="node6" href="$drivepp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/drivepp.cpp" alt="" coords="215,459,413,501"/>
+<area shape="rect" id="node7" href="$ir_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/ir.cpp" alt="" coords="5,459,191,501"/>
+<area shape="rect" id="node13" href="$circularbuffer_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/circularbuffer.hpp" alt="" coords="821,273,1055,315"/>
+<area shape="rect" id="node15" href="$pingpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/pingpp.cpp" alt="" coords="2461,459,2655,501"/>
+<area shape="rect" id="node17" href="$shellpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/shellpp.cpp" alt="" coords="1215,459,1413,501"/>
+<area shape="rect" id="node19" href="$canpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/canpp.cpp" alt="" coords="2015,459,2205,501"/>
+<area shape="rect" id="node22" href="$switchpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/switchpp.cpp" alt="" coords="2229,459,2436,501"/>
+<area shape="rect" id="node24" href="$blinker_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/blinker.cpp" alt="" coords="2680,459,2873,501"/>
+<area shape="rect" id="node25" href="$motorpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/motorpp.cpp" alt="" coords="2897,459,3104,501"/>
+<area shape="rect" id="node27" href="$drivepp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/drivepp.hpp" alt="" coords="613,363,813,404"/>
+<area shape="rect" id="node29" href="$uartpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/uartpp.cpp" alt="" coords="2178,363,2373,404"/>
+</map>

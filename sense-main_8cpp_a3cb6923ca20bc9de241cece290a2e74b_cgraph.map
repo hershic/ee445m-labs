@@ -1,0 +1,13 @@
+<map id="can_transmitter" name="can_transmitter">
+<area shape="rect" id="node2" href="$classping.html#a1357671ec5d6b4e0a0ef8e430a91040e" title="ping::distance" alt="" coords="178,31,289,57"/>
+<area shape="rect" id="node4" href="$classir.html#a83479e498ca3d6bb19c2fcecddab884d" title="ir::distance" alt="" coords="187,93,279,120"/>
+<area shape="rect" id="node8" href="$classuart.html#ac929d5b86cdad232bd6f9ee1efa4cb83" title="uart::printf" alt="" coords="189,144,278,171"/>
+<area shape="rect" id="node11" href="$group___cpp_test.html#gabb1d14e9073bf7393a708c53a7d41fcd" title="blinker::toggle" alt="" coords="177,195,289,221"/>
+<area shape="rect" id="node12" href="$classcan.html#a4550b98147dcfa0176ec5095105ae4ad" title="can::transmit" alt="" coords="180,245,287,272"/>
+<area shape="rect" id="node3" href="$classping.html#a4e78a196f1b46cc86ca9a1eeb44eb4cc" title="ping::average" alt="" coords="337,5,447,32"/>
+<area shape="rect" id="node5" href="$classir.html#afb340ee27bc72dc462b329a9553237cf" title="ir::average" alt="" coords="347,56,437,83"/>
+<area shape="rect" id="node6" href="$group__math.html#ga7b3ff1805d7e50020363b0fbb296430b" title="clamp" alt="" coords="361,107,423,133"/>
+<area shape="rect" id="node7" href="$group__math.html#ga6ae8adad8e6df7d8e1b66e3e50f1e293" title="max" alt="" coords="511,107,561,133"/>
+<area shape="rect" id="node9" href="$classuart.html#abc16bbe576600cb436dac853566779e9" title="uart::vprintf" alt="" coords="344,157,440,184"/>
+<area shape="rect" id="node10" href="$uartpp_8cpp.html#aa3ccf12f132efb18693ee7c504e0c7ad" title="UARTwrite" alt="" coords="495,157,577,184"/>
+</map>

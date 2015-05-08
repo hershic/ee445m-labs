@@ -1,0 +1,12 @@
+<map id="semaphore::guard" name="semaphore::guard">
+<area shape="rect" id="node2" href="$move-main_8cpp.html#af7b345f5bff7b52e42729f33249546d8" title="can_handler" alt="" coords="215,56,315,83"/>
+<area shape="rect" id="node4" href="$move-main_8cpp.html#a2174d1f65988a9a74094c1027c14bcfa" title="motor_control" alt="" coords="209,107,321,133"/>
+<area shape="rect" id="node5" href="$sense-main_8cpp.html#a961eb4272ced40d34c70a8f3ef94268e" title="ping_handler" alt="" coords="213,5,317,32"/>
+<area shape="rect" id="node7" href="$move-main_8cpp.html#a459dda223a13ec840d5fdc0a77950ff4" title="shell_handler" alt="" coords="212,157,319,184"/>
+<area shape="rect" id="node8" href="$move-main_8cpp.html#ae131b00322d1c477f4f8b8d1dc5dec73" title="switch_responder" alt="" coords="199,208,332,235"/>
+<area shape="rect" id="node9" href="$move-main_8cpp.html#a00a2a9ce1f6468e9f6f8096cea6bd2ee" title="thread_blink_blue" alt="" coords="198,259,333,285"/>
+<area shape="rect" id="node10" href="$move-main_8cpp.html#a296a125b0f0e4263894a428ff341d7ec" title="thread_blink_green" alt="" coords="193,309,337,336"/>
+<area shape="rect" id="node11" href="$move-main_8cpp.html#a8141c83851995fd28eca3ecddca88700" title="thread_blink_red" alt="" coords="201,360,329,387"/>
+<area shape="rect" id="node3" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="385,208,440,235"/>
+<area shape="rect" id="node6" href="$sense-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="385,5,440,32"/>
+</map>

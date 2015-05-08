@@ -1,0 +1,6 @@
+<map id="ping::handle_timer" name="ping::handle_timer">
+<area shape="rect" id="node2" href="$classtimer.html#a68a9a30c02c73d8bb1e572d3d199597b" title="timer::ack" alt="" coords="217,5,303,32"/>
+<area shape="rect" id="node3" href="$group__semaphore.html#ga14c3b9f4312c43d9400905c938752665" title="semaphore::post" alt="" coords="195,56,325,83"/>
+<area shape="rect" id="node4" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="377,31,516,57"/>
+<area shape="rect" id="node5" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="373,81,520,108"/>
+</map>

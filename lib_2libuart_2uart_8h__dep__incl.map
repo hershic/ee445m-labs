@@ -1,5 +1,9 @@
 <map id="lib/libuart/uart.h" name="lib/libuart/uart.h">
-<area shape="rect" id="node2" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,80,168,121"/>
-<area shape="rect" id="node3" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="192,80,352,121"/>
-<area shape="rect" id="node4" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="377,87,498,114"/>
+<area shape="rect" id="node2" href="$test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="5,80,219,121"/>
+<area shape="rect" id="node3" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="243,80,440,121"/>
+<area shape="rect" id="node4" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="464,80,627,121"/>
+<area shape="rect" id="node5" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="651,80,811,121"/>
+<area shape="rect" id="node6" href="$hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="835,87,981,114"/>
+<area shape="rect" id="node7" href="$shell_8c.html" title="lib/libshell/shell.c" alt="" coords="1005,87,1131,114"/>
+<area shape="rect" id="node8" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="1155,87,1277,114"/>
 </map>

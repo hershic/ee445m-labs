@@ -327,7 +327,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a343770585eeeabee4360207d19df1d65">ST7735_DrawChar</a>(int16_t x, int16_t y, uint8_t c, int16_t textColor, int16_t bgColor, uint8_t size);</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">//------------ST7735_DrawString------------</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">// String draw function.  </span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">// String draw function.</span></div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">// 16 rows (0 to 15) and 21 characters (0 to 20)</span></div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">// Requires (11 + size*size*6*8) bytes of transmission for each character</span></div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">// Input: x         columns from the left edge (0 to 20)</span></div>
@@ -336,7 +336,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">//        textColor 16-bit color of the characters</span></div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">// bgColor is Black and size is 1</span></div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">// Output: number of characters printed</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;uint32_t <a class="code" href="_s_t7735_8h.html#a04cac5a318b3e0515fad06fa00cdd3b9">ST7735_DrawString</a>(uint16_t x, uint16_t y, uint8_t *pt, int16_t textColor);;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;uint32_t <a class="code" href="_s_t7735_8h.html#a04cac5a318b3e0515fad06fa00cdd3b9">ST7735_DrawString</a>(uint16_t x, uint16_t y, uint8_t *pt, int16_t textColor);</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
@@ -381,28 +381,28 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">// *************** ST7735_PlotClear ********************</span></div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="comment">// Clear the graphics buffer, set X coordinate to 0</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">// This routine clears the display </span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">// This routine clears the display</span></div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">// Inputs: ymin and ymax are range of the plot</span></div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="comment">// Outputs: none</span></div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#affbb292ebbf7082c331ab6195da3385c">ST7735_PlotClear</a>(int32_t ymin, int32_t ymax);</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">// *************** ST7735_PlotPoint ********************</span></div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">// Used in the voltage versus time plot, plot one point at y</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">// It does output to display </span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">// It does output to display</span></div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment">// Inputs: y is the y coordinate of the point plotted</span></div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment">// Outputs: none</span></div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a1ae5c293f7cf004c66ca1c0f0d365fcd">ST7735_PlotPoint</a>(int32_t y);</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">// *************** ST7735_PlotLine ********************</span></div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">// Used in the voltage versus time plot, plot line to new point</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">// It does output to display </span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">// It does output to display</span></div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">// Inputs: y is the y coordinate of the point plotted</span></div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment">// Outputs: none</span></div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a3b19f449b1072070e3dd7f92ce8150fa">ST7735_PlotLine</a>(int32_t y);</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment">// *************** ST7735_PlotPoints ********************</span></div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">// Used in the voltage versus time plot, plot two points at y1, y2</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">// It does output to display </span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">// It does output to display</span></div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment">// Inputs: y1 is the y coordinate of the first point plotted</span></div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment">//         y2 is the y coordinate of the second point plotted</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">// Outputs: none</span></div>
@@ -418,7 +418,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">// *************** ST7735_PlotdBfs ********************</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment">// Used in the amplitude versus frequency plot, plot bar point at y</span></div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">// 0 to 0.625V scaled on a log plot from min to max</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">// It does output to display </span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">// It does output to display</span></div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">// Inputs: y is the y ADC value of the bar plotted</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">// Outputs: none</span></div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a179ccebd4bfe4529903a02ce797e78ea">ST7735_PlotdBfs</a>(int32_t y);</div>
@@ -426,7 +426,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">// *************** ST7735_PlotNext ********************</span></div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">// Used in all the plots to step the X coordinate one pixel</span></div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">// X steps from 0 to 127, then back to 0 again</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">// It does not output to display </span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">// It does not output to display</span></div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">// Inputs: none</span></div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">// Outputs: none</span></div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#afc91fa494b54f542c2d7cc7ef1fed3e9">ST7735_PlotNext</a>(<span class="keywordtype">void</span>);</div>
@@ -434,7 +434,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">// *************** ST7735_PlotNextErase ********************</span></div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">// Used in all the plots to step the X coordinate one pixel</span></div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">// X steps from 0 to 127, then back to 0 again</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">// It clears the vertical space into which the next pixel will be drawn </span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">// It clears the vertical space into which the next pixel will be drawn</span></div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">// Inputs: none</span></div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">// Outputs: none</span></div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a3c7b330d12b052f9334781dba849aa0e">ST7735_PlotNextErase</a>(<span class="keywordtype">void</span>);</div>
@@ -449,7 +449,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">//    {   for(j=0;j&lt;N;j++){</span></div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment">//          ST7735_PlotPoint(data[i++]); // called N times</span></div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">//        }</span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">//        ST7735_PlotNext(); </span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">//        ST7735_PlotNext();</span></div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">//    }   // called 128 times</span></div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">// Example 2b Voltage versus time (N data points/pixel, time scale)</span></div>
@@ -457,7 +457,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">//    {   for(j=0;j&lt;N;j++){</span></div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">//          ST7735_PlotLine(data[i++]); // called N times</span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">//        }</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">//        ST7735_PlotNext(); </span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">//        ST7735_PlotNext();</span></div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment">//    }   // called 128 times</span></div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="comment">// Example 3 Voltage versus frequency (512 points)</span></div>
@@ -465,10 +465,10 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="comment">//    ST7735_PlotClear(0,1023);  // clip large magnitudes</span></div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment">//    {</span></div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]); // called 4 times</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]); </span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]); </span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]); </span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">//        ST7735_PlotNext(); </span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]);</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]);</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">//        ST7735_PlotBar(mag[i++]);</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">//        ST7735_PlotNext();</span></div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">//    }   // called 128 times</span></div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment">// Example 4 Voltage versus frequency (512 points), dB scale</span></div>
@@ -476,10 +476,10 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">//    ST7735_PlotClear(0,511);  // parameters ignored</span></div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">//    {</span></div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]); // called 4 times</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]); </span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]); </span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]); </span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">//        ST7735_PlotNext(); </span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]);</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]);</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">//        ST7735_PlotdBfs(mag[i++]);</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">//        ST7735_PlotNext();</span></div>
 <div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="comment">//    }   // called 128 times</span></div>
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">// *************** ST7735_OutChar ********************</span></div>
@@ -500,7 +500,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#aea99df5526df38c772f90da2f1fa8655">ST7735_OutString</a>(uint8_t *ptr);</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">// ************** ST7735_SetTextColor ************************</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">// Sets the color in which the characters will be printed </span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">// Sets the color in which the characters will be printed</span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">// Background color is fixed at black</span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">// Input:  16-bit packed color</span></div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">// Output: none</span></div>
@@ -527,7 +527,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="comment">// Background color is fixed at black</span></div>
 <div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="comment">// Input:  16-bit packed color</span></div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="comment">// Output: none</span></div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a1719f525285902712d14efeab76cedcd">Output_Color</a>(uint32_t newColor); </div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_s_t7735_8h.html#a1719f525285902712d14efeab76cedcd">Output_Color</a>(uint32_t newColor);</div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;</div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="_s_t7735_8h_html_aec8e637c759ad0adde0758c0935f383a"><div class="ttname"><a href="_s_t7735_8h.html#aec8e637c759ad0adde0758c0935f383a">ST7735_InitB</a></div><div class="ttdeci">void ST7735_InitB(void)</div><div class="ttdef"><b>Definition:</b> <a href="_s_t7735_8c_source.html#l00729">ST7735.c:729</a></div></div>
@@ -574,7 +574,7 @@ $(document).ready(function(){initNavTree('_s_t7735_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_07b17b9125d5f1032392f0a7f2704a87.html">libdisplay</a></li><li class="navelem"><a class="el" href="_s_t7735_8h.html">ST7735.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:07 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:37 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

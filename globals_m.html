@@ -98,6 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_g.html#index_g"><span>g</span></a></li>
       <li><a href="globals_h.html#index_h"><span>h</span></a></li>
       <li><a href="globals_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_j.html#index_j"><span>j</span></a></li>
       <li><a href="globals_k.html#index_k"><span>k</span></a></li>
       <li><a href="globals_l.html#index_l"><span>l</span></a></li>
       <li class="current"><a href="globals_m.html#index_m"><span>m</span></a></li>
@@ -173,16 +174,22 @@ $(document).ready(function(){initNavTree('globals_m.html','');});
 : <a class="el" href="_s_t7735_8c.html#acc1e55b52f8a56b7719ab147308a1668">ST7735.c</a>
 </li>
 <li>main()
-: <a class="el" href="console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe">console-fb.c</a>
-, <a class="el" href="console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">console-grapher.c</a>
+: <a class="el" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">test-os.c</a>
+, <a class="el" href="test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667">test-priority-scheduler.c</a>
 , <a class="el" href="blinky_8c.html#a840291bc02cba5474a4cb46a9b9566fe">blinky.c</a>
-, <a class="el" href="tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe">tk_tb.c</a>
-, <a class="el" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-adc.c</a>
-, <a class="el" href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-display.c</a>
-, <a class="el" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">test-os.c</a>
+, <a class="el" href="test-semaphore_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667">test-semaphore.c</a>
 , <a class="el" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-shell.c</a>
+, <a class="el" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-adc.c</a>
 , <a class="el" href="test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-timer.c</a>
 , <a class="el" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-uart.c</a>
+, <a class="el" href="test-button_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">test-button.c</a>
+, <a class="el" href="console-fb_8c.html#a840291bc02cba5474a4cb46a9b9566fe">console-fb.c</a>
+, <a class="el" href="console-grapher_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">console-grapher.c</a>
+, <a class="el" href="test-combination_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667">test-combination.c</a>
+, <a class="el" href="tk__tb_8c.html#a840291bc02cba5474a4cb46a9b9566fe">tk_tb.c</a>
+, <a class="el" href="test-debounce_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">test-debounce.c</a>
+, <a class="el" href="test-display_8c.html#a840291bc02cba5474a4cb46a9b9566fe">test-display.c</a>
+, <a class="el" href="test-edf_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667">test-edf.c</a>
 </li>
 <li>MAP_ADCBusy
 : <a class="el" href="rom__map_8h.html#ae583852f5f93ac76450e32bfbe69928d">rom_map.h</a>
@@ -2833,11 +2840,11 @@ $(document).ready(function(){initNavTree('globals_m.html','');});
 <li>MAX_NAK_LIMIT
 : <a class="el" href="usb_8h.html#a0156f796460a70cd6732d1ba5ffe1f2f">usb.h</a>
 </li>
-<li>MAX_NUM_SAMPLES
-: <a class="el" href="lib_2libadc_2adc_8c.html#aef40d6fd76a720e83aa328bfc080cb0a">adc.c</a>
-</li>
 <li>MAX_PACKET_SIZE_EP0
 : <a class="el" href="usb_8h.html#aedacda81f11d0edfeb1ea25467c4554d">usb.h</a>
+</li>
+<li>MAX_SYSTICKS_PER_HZ
+: <a class="el" href="schedule_8h.html#adda792b1dbf87120fbf9181c5373e540">schedule.h</a>
 </li>
 <li>max_uc()
 : <a class="el" href="graph__framebuffer_8c.html#ac8d734428edf8539a410fe5643eae060">graph_framebuffer.c</a>
@@ -2853,7 +2860,10 @@ $(document).ready(function(){initNavTree('globals_m.html','');});
 , <a class="el" href="nexus_8h.html#a24d653f7e815fdbe4bdf6f154021b1f5">nexus.h</a>
 </li>
 <li>MemManage_Handler()
-: <a class="el" href="blinky_2startup__gcc_8c.html#a0eae9a43c8f8fa646a018e9b0a64f30f">startup_gcc.c</a>
+: <a class="el" href="test-display_2startup__gcc_8c.html#a0eae9a43c8f8fa646a018e9b0a64f30f">startup_gcc.c</a>
+</li>
+<li>memory_address_t
+: <a class="el" href="nexus_8h.html#ac227902e4f2e6d64f7807cb692643d13">nexus.h</a>
 </li>
 <li>memset()
 : <a class="el" href="nexus_8h.html#a6850f0750b366cba67ec227cd1b418a2">nexus.h</a>
@@ -2864,6 +2874,9 @@ $(document).ready(function(){initNavTree('globals_m.html','');});
 </li>
 <li>Messageindex
 : <a class="el" href="_s_t7735_8c.html#af0e2dbcad30fb44bc546a43768a463e1">ST7735.c</a>
+</li>
+<li>microseconds_t
+: <a class="el" href="thread__structures_8h.html#a2a69fe062d92f8f4bc1aae8e4409afc0">thread_structures.h</a>
 </li>
 <li>mockCheckout()
 : <a class="el" href="console-fb_8c.html#a870a7d2465c018cb83b2f9e940f2230a">console-fb.c</a>
@@ -3020,8 +3033,8 @@ $(document).ready(function(){initNavTree('globals_m.html','');});
 , <a class="el" href="group__mpu__api.html#gae98f222992a05f9a0feae96f933dd69d">mpu.h</a>
 </li>
 <li>MPUEnable()
-: <a class="el" href="group__mpu__api.html#ga16c52787707bbfe428269741396cd79d">mpu.h</a>
-, <a class="el" href="group__mpu__api.html#ga16c52787707bbfe428269741396cd79d">mpu.c</a>
+: <a class="el" href="group__mpu__api.html#ga16c52787707bbfe428269741396cd79d">mpu.c</a>
+, <a class="el" href="group__mpu__api.html#ga16c52787707bbfe428269741396cd79d">mpu.h</a>
 </li>
 <li>MPUIntRegister()
 : <a class="el" href="group__mpu__api.html#ga5f391e2bed9919c3e98ee744d76a5a03">mpu.c</a>
@@ -3114,7 +3127,7 @@ $(document).ready(function(){initNavTree('globals_m.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:45 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -144,25 +144,42 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 &#160;
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
-<li>Timer0A_Handler()
-: <a class="el" href="hardware_8c.html#a4a83c7ba14a5aa9a8b0d1b00e81d9176">hardware.c</a>
+<li>Task1()
+: <a class="el" href="test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336">test-priority-scheduler.c</a>
+, <a class="el" href="test-semaphore_8c.html#a981008700b24339f2f3510a01188a336">test-semaphore.c</a>
 </li>
-<li>Timer1A_Handler()
-: <a class="el" href="hardware_8c.html#a362d0eccdbb2b411a2c72659068af5e0">hardware.c</a>
+<li>Task2()
+: <a class="el" href="test-semaphore_8c.html#a48ca17e52cd2a385f36d93d00e135083">test-semaphore.c</a>
+, <a class="el" href="test-priority-scheduler_8c.html#a48ca17e52cd2a385f36d93d00e135083">test-priority-scheduler.c</a>
 </li>
-<li>Timer2A_Handler()
-: <a class="el" href="hardware_8c.html#a91bdb959d635f02af7821fc7e628895b">hardware.c</a>
+<li>Thread1()
+: <a class="el" href="test-os_8c.html#aa6a5934c17552cfc95b7f3f824e944cc">test-os.c</a>
 </li>
-<li>timer_add_periodic_interrupt()
-: <a class="el" href="lib_2libtimer_2timer_8c.html#a704234a42b3ec7054f5e2bf8c8ddd364">timer.c</a>
-, <a class="el" href="lib_2libtimer_2timer_8h.html#a704234a42b3ec7054f5e2bf8c8ddd364">timer.h</a>
+<li>Thread2()
+: <a class="el" href="test-os_8c.html#ac1c9ffaf76fceb3cc9abf8bdab04c0df">test-os.c</a>
 </li>
-<li>timer_remove_periodic_thread()
-: <a class="el" href="lib_2libtimer_2timer_8c.html#a061fef98ff9f4271fcaee43afb0583da">timer.c</a>
+<li>TIMER0A_Handler()
+: <a class="el" href="test-semaphore_8c.html#a7cf3556922afce598f7d6d87386ee792">test-semaphore.c</a>
+, <a class="el" href="hardware_8c.html#a7cf3556922afce598f7d6d87386ee792">hardware.c</a>
+, <a class="el" href="test-priority-scheduler_8c.html#a7cf3556922afce598f7d6d87386ee792">test-priority-scheduler.c</a>
+</li>
+<li>TIMER1A_Handler()
+: <a class="el" href="hardware_8c.html#a68c2e9604c3b7d054c6ed937d26f848a">hardware.c</a>
+</li>
+<li>TIMER2A_Handler()
+: <a class="el" href="hardware_8c.html#ad99df5c82702ac79690512465e499d88">hardware.c</a>
+</li>
+<li>timer_add_interrupt()
+: <a class="el" href="lib_2libtimer_2timer_8c.html#a2eeca9a71be3572b1bf0148e62466989">timer.c</a>
+, <a class="el" href="lib_2libtimer_2timer_8h.html#a2eeca9a71be3572b1bf0148e62466989">timer.h</a>
+</li>
+<li>timer_task()
+: <a class="el" href="test-priority-scheduler_8c.html#a9c1ed82dd9397ef4499969deedf06a05">test-priority-scheduler.c</a>
+, <a class="el" href="test-semaphore_8c.html#a9c1ed82dd9397ef4499969deedf06a05">test-semaphore.c</a>
 </li>
 <li>TimerADCEventGet()
-: <a class="el" href="group__timer__api.html#ga476763757ae7744c45f7bc56c69d04b1">timer.h</a>
-, <a class="el" href="group__timer__api.html#ga476763757ae7744c45f7bc56c69d04b1">timer.c</a>
+: <a class="el" href="group__timer__api.html#ga476763757ae7744c45f7bc56c69d04b1">timer.c</a>
+, <a class="el" href="group__timer__api.html#ga476763757ae7744c45f7bc56c69d04b1">timer.h</a>
 </li>
 <li>TimerADCEventSet()
 : <a class="el" href="group__timer__api.html#gaa15798459fdf5491a91a610e53d9728a">timer.c</a>
@@ -177,8 +194,8 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 , <a class="el" href="group__timer__api.html#ga2ade8cf9928ca5dd2403740dce1775a0">timer.h</a>
 </li>
 <li>TimerConfigure()
-: <a class="el" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">timer.h</a>
-, <a class="el" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">timer.c</a>
+: <a class="el" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">timer.c</a>
+, <a class="el" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">timer.h</a>
 </li>
 <li>TimerControlEvent()
 : <a class="el" href="group__timer__api.html#gaadd54928a2d2b06ea1ddccc440dd2d8b">timer.c</a>
@@ -209,8 +226,8 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 , <a class="el" href="group__timer__api.html#ga9615f8799173f33d8d3d2a02c0cb9219">timer.h</a>
 </li>
 <li>TimerDMAEventSet()
-: <a class="el" href="group__timer__api.html#ga0a1151dbb3fc8e4c4950841bcf1b4476">timer.h</a>
-, <a class="el" href="group__timer__api.html#ga0a1151dbb3fc8e4c4950841bcf1b4476">timer.c</a>
+: <a class="el" href="group__timer__api.html#ga0a1151dbb3fc8e4c4950841bcf1b4476">timer.c</a>
+, <a class="el" href="group__timer__api.html#ga0a1151dbb3fc8e4c4950841bcf1b4476">timer.h</a>
 </li>
 <li>TimerEnable()
 : <a class="el" href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c">timer.c</a>
@@ -245,16 +262,16 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 , <a class="el" href="group__timer__api.html#ga6f98f47c976fcc5aa4940f4cd13bca9b">timer.h</a>
 </li>
 <li>TimerLoadGet64()
-: <a class="el" href="group__timer__api.html#gaa0636000e4c79553f5c1384a9dd72e27">timer.c</a>
-, <a class="el" href="group__timer__api.html#gaa0636000e4c79553f5c1384a9dd72e27">timer.h</a>
+: <a class="el" href="group__timer__api.html#gaa0636000e4c79553f5c1384a9dd72e27">timer.h</a>
+, <a class="el" href="group__timer__api.html#gaa0636000e4c79553f5c1384a9dd72e27">timer.c</a>
 </li>
 <li>TimerLoadSet()
 : <a class="el" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613">timer.c</a>
 , <a class="el" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613">timer.h</a>
 </li>
 <li>TimerLoadSet64()
-: <a class="el" href="group__timer__api.html#gad33fc9d6fd1b079547a4a51c4754b5b1">timer.c</a>
-, <a class="el" href="group__timer__api.html#gad33fc9d6fd1b079547a4a51c4754b5b1">timer.h</a>
+: <a class="el" href="group__timer__api.html#gad33fc9d6fd1b079547a4a51c4754b5b1">timer.h</a>
+, <a class="el" href="group__timer__api.html#gad33fc9d6fd1b079547a4a51c4754b5b1">timer.c</a>
 </li>
 <li>TimerMatchGet()
 : <a class="el" href="group__timer__api.html#gab1fb1ab94aa50aebee303767db637129">timer.c</a>
@@ -273,64 +290,64 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 , <a class="el" href="group__timer__api.html#ga60bf284e4cdee5fae0f3eece82b3f97a">timer.h</a>
 </li>
 <li>TimerPrescaleGet()
-: <a class="el" href="group__timer__api.html#ga322c688af7424a3228f17745f6c01697">timer.h</a>
-, <a class="el" href="group__timer__api.html#ga322c688af7424a3228f17745f6c01697">timer.c</a>
+: <a class="el" href="group__timer__api.html#ga322c688af7424a3228f17745f6c01697">timer.c</a>
+, <a class="el" href="group__timer__api.html#ga322c688af7424a3228f17745f6c01697">timer.h</a>
 </li>
 <li>TimerPrescaleMatchGet()
 : <a class="el" href="group__timer__api.html#ga308ed5bb13bf4084ffa99a4088e95607">timer.c</a>
 , <a class="el" href="group__timer__api.html#ga308ed5bb13bf4084ffa99a4088e95607">timer.h</a>
 </li>
 <li>TimerPrescaleMatchSet()
-: <a class="el" href="group__timer__api.html#ga98dab011e13fb097bbf6b4747150cef5">timer.c</a>
-, <a class="el" href="group__timer__api.html#ga98dab011e13fb097bbf6b4747150cef5">timer.h</a>
+: <a class="el" href="group__timer__api.html#ga98dab011e13fb097bbf6b4747150cef5">timer.h</a>
+, <a class="el" href="group__timer__api.html#ga98dab011e13fb097bbf6b4747150cef5">timer.c</a>
 </li>
 <li>TimerPrescaleSet()
-: <a class="el" href="group__timer__api.html#gae04b6c4b5cd25c58910cd6789b359ae8">timer.c</a>
-, <a class="el" href="group__timer__api.html#gae04b6c4b5cd25c58910cd6789b359ae8">timer.h</a>
+: <a class="el" href="group__timer__api.html#gae04b6c4b5cd25c58910cd6789b359ae8">timer.h</a>
+, <a class="el" href="group__timer__api.html#gae04b6c4b5cd25c58910cd6789b359ae8">timer.c</a>
 </li>
 <li>TimerRTCDisable()
-: <a class="el" href="group__timer__api.html#ga1e3eff01a91c67b3934cfffd63ba1d64">timer.h</a>
-, <a class="el" href="group__timer__api.html#ga1e3eff01a91c67b3934cfffd63ba1d64">timer.c</a>
+: <a class="el" href="group__timer__api.html#ga1e3eff01a91c67b3934cfffd63ba1d64">timer.c</a>
+, <a class="el" href="group__timer__api.html#ga1e3eff01a91c67b3934cfffd63ba1d64">timer.h</a>
 </li>
 <li>TimerRTCEnable()
 : <a class="el" href="group__timer__api.html#gaabc88016711729ff40fe67fb36b2aca0">timer.c</a>
 , <a class="el" href="group__timer__api.html#gaabc88016711729ff40fe67fb36b2aca0">timer.h</a>
 </li>
 <li>TimerSynchronize()
-: <a class="el" href="group__timer__api.html#ga22ba9db9e3e01445e9d9be881ff3bba6">timer.h</a>
-, <a class="el" href="group__timer__api.html#ga22ba9db9e3e01445e9d9be881ff3bba6">timer.c</a>
+: <a class="el" href="group__timer__api.html#ga22ba9db9e3e01445e9d9be881ff3bba6">timer.c</a>
+, <a class="el" href="group__timer__api.html#ga22ba9db9e3e01445e9d9be881ff3bba6">timer.h</a>
 </li>
 <li>TimerUpdateMode()
-: <a class="el" href="group__timer__api.html#ga980b40d766c159638fb3535f0658f16f">timer.c</a>
-, <a class="el" href="group__timer__api.html#ga980b40d766c159638fb3535f0658f16f">timer.h</a>
+: <a class="el" href="group__timer__api.html#ga980b40d766c159638fb3535f0658f16f">timer.h</a>
+, <a class="el" href="group__timer__api.html#ga980b40d766c159638fb3535f0658f16f">timer.c</a>
 </li>
 <li>TimerValueGet()
-: <a class="el" href="group__timer__api.html#gae2e97500dde91c8c2818d67579928bdd">timer.h</a>
-, <a class="el" href="group__timer__api.html#gae2e97500dde91c8c2818d67579928bdd">timer.c</a>
+: <a class="el" href="group__timer__api.html#gae2e97500dde91c8c2818d67579928bdd">timer.c</a>
+, <a class="el" href="group__timer__api.html#gae2e97500dde91c8c2818d67579928bdd">timer.h</a>
 </li>
 <li>TimerValueGet64()
-: <a class="el" href="group__timer__api.html#gaa65ffa8e7fdfca67ba79562449aa3b85">timer.h</a>
-, <a class="el" href="group__timer__api.html#gaa65ffa8e7fdfca67ba79562449aa3b85">timer.c</a>
+: <a class="el" href="group__timer__api.html#gaa65ffa8e7fdfca67ba79562449aa3b85">timer.c</a>
+, <a class="el" href="group__timer__api.html#gaa65ffa8e7fdfca67ba79562449aa3b85">timer.h</a>
 </li>
 <li>TKCleanupTime()
-: <a class="el" href="timekit_8c.html#a60dc21e27ab7ed5bca5a05c3370b4244">timekit.c</a>
-, <a class="el" href="timekit_8h.html#a60dc21e27ab7ed5bca5a05c3370b4244">timekit.h</a>
+: <a class="el" href="timekit_8h.html#a60dc21e27ab7ed5bca5a05c3370b4244">timekit.h</a>
+, <a class="el" href="timekit_8c.html#a60dc21e27ab7ed5bca5a05c3370b4244">timekit.c</a>
 </li>
 <li>TKCreateTimeHandle()
-: <a class="el" href="timekit_8c.html#afd4a71d6317f51982b8b77e5c9fb378c">timekit.c</a>
-, <a class="el" href="timekit_8h.html#afd4a71d6317f51982b8b77e5c9fb378c">timekit.h</a>
+: <a class="el" href="timekit_8h.html#afd4a71d6317f51982b8b77e5c9fb378c">timekit.h</a>
+, <a class="el" href="timekit_8c.html#afd4a71d6317f51982b8b77e5c9fb378c">timekit.c</a>
 </li>
 <li>TKDestroy()
-: <a class="el" href="timekit_8c.html#a6c8a15594ba42dde5ab3c1334fba8a61">timekit.c</a>
-, <a class="el" href="timekit_8h.html#a6c8a15594ba42dde5ab3c1334fba8a61">timekit.h</a>
+: <a class="el" href="timekit_8h.html#a6c8a15594ba42dde5ab3c1334fba8a61">timekit.h</a>
+, <a class="el" href="timekit_8c.html#a6c8a15594ba42dde5ab3c1334fba8a61">timekit.c</a>
 </li>
 <li>TKDuplicateTimeHandle()
 : <a class="el" href="timekit_8c.html#a3a54603bed070ab21f18185d0f0b9c38">timekit.c</a>
 , <a class="el" href="timekit_8h.html#a3a54603bed070ab21f18185d0f0b9c38">timekit.h</a>
 </li>
 <li>TKIncrementHours()
-: <a class="el" href="timekit_8c.html#a0bf7ac612277a46f706c05e5cc6ffa01">timekit.c</a>
-, <a class="el" href="timekit_8h.html#a0bf7ac612277a46f706c05e5cc6ffa01">timekit.h</a>
+: <a class="el" href="timekit_8h.html#a0bf7ac612277a46f706c05e5cc6ffa01">timekit.h</a>
+, <a class="el" href="timekit_8c.html#a0bf7ac612277a46f706c05e5cc6ffa01">timekit.c</a>
 </li>
 <li>TKIncrementMinutes()
 : <a class="el" href="timekit_8c.html#a0648bf2808c0bdaca69be00c10d00021">timekit.c</a>
@@ -341,8 +358,8 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 , <a class="el" href="timekit_8c.html#a79b0633e06d4dd083602517a13d6dd41">timekit.c</a>
 </li>
 <li>TKIncrementSeconds()
-: <a class="el" href="timekit_8h.html#afd0611daffa420c0aa7eb693d2cd61e6">timekit.h</a>
-, <a class="el" href="timekit_8c.html#afd0611daffa420c0aa7eb693d2cd61e6">timekit.c</a>
+: <a class="el" href="timekit_8c.html#afd0611daffa420c0aa7eb693d2cd61e6">timekit.c</a>
+, <a class="el" href="timekit_8h.html#afd0611daffa420c0aa7eb693d2cd61e6">timekit.h</a>
 </li>
 <li>TKToString()
 : <a class="el" href="timekit_8h.html#a67cecf45b96e615dd32707cf944a5735">timekit.h</a>
@@ -352,19 +369,13 @@ $(document).ready(function(){initNavTree('globals_func_t.html','');});
 : <a class="el" href="timekit_8h.html#a406e6394ad6b4b3d7d1e511bcb69d8c1">timekit.h</a>
 , <a class="el" href="timekit_8c.html#a406e6394ad6b4b3d7d1e511bcb69d8c1">timekit.c</a>
 </li>
-<li>turn_off_led()
-: <a class="el" href="test-os_8c.html#a283ef3a0b61a95b0825962d8312efc33">test-os.c</a>
-</li>
-<li>turn_on_led()
-: <a class="el" href="test-os_8c.html#aa240b970ac6a5d3f98844732b3af1b9c">test-os.c</a>
-</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:45 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

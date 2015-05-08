@@ -1,0 +1,5 @@
+<map id="uart_get_char_" name="uart_get_char_">
+<area shape="rect" id="node2" href="$group__uart__api.html#gaad338221fc820412b005653855cedaf7" title="UARTCharGetNonBlocking" alt="" coords="172,5,359,32"/>
+<area shape="rect" id="node3" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="213,56,317,83"/>
+<area shape="rect" id="node4" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="209,107,322,133"/>
+</map>

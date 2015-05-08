@@ -1,0 +1,6 @@
+<map id="drive" name="drive">
+<area shape="rect" id="node2" href="$classmotor.html" title="{motor\n|+ pwm_max_period\l&#45; ctrl_base\l&#45; ctrl_pin\l&#45; pwm_base\l&#45; pwm_pin\l&#45; pwm_gen\l&#45; pwm_out\l&#45; motor_installed_backwards\l&#45; pwm_period\l&#45; duty_period\l&#45; direction\l&#45; current_speed\l&#45; enabled\l|+ motor()\l+ motor()\l+ set_motor_installed\l_backwards()\l+ stop()\l+ start()\l+ set()\l+ set()\l+ get()\l+ reverse()\l&#45; motor_init()\l&#45; pwm_init()\l&#45; adjusted_direction()\l}" alt="" coords="36,477,240,907"/>
+<area shape="rect" id="node3" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="5,249,169,371"/>
+<area shape="rect" id="node4" href="$classblinker.html" title="{blinker\n|&#45; port_base\l|+ blinker()\l+ blinker()\l+ blinker()\l+ set_base()\l+ turn_on()\l+ turn_off()\l+ toggle()\l+ blink()\l}" alt="" coords="193,220,299,400"/>
+<area shape="rect" id="node5" href="$classgpio__twiddler.html" title="{gpio_twiddler\n||+ gpio_twiddler()\l+ gpio_twiddler()\l+ set_base()\l+ turn_on()\l+ turn_off()\l+ toggle()\l+ blink()\l}" alt="" coords="181,5,311,171"/>
+</map>

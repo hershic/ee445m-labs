@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['hw_5fchannel',['hw_channel',['../hardware_8h.html#a8dfefba1f8326f74a45dd428d9f94ac5',1,'hardware.h']]],
-  ['hw_5fdriver',['hw_driver',['../hardware_8h.html#ad77d309ffa4a0238bef12b0eba9e5e51',1,'hardware.h']]],
-  ['hw_5fiterator',['hw_iterator',['../hardware_8h.html#a9f7c32f40e7ab9c998856a245c85ffbd',1,'hardware.h']]],
-  ['hw_5ftimer_5fmetadata',['hw_timer_metadata',['../hardware_8h.html#a1dffbdc22720acdf90316a816cd0faf8',1,'hardware.h']]],
-  ['hw_5fuart_5fmetadata',['hw_uart_metadata',['../hardware_8h.html#ace1df903ce1a5ded4953b2adfd3d1ce3',1,'hardware.h']]],
-  ['hwcontext_5ft',['hwcontext_t',['../os_8h.html#a85a0c75139d80cb3206ff4e5fb0d5977',1,'os.h']]]
+  ['percent_5ft',['percent_t',['../group___motor.html#gae8db9df9e3a56241bb5ba43f810ecd24',1,'motorpp.hpp']]],
+  ['pin_5ft',['pin_t',['../group___g_p_i_o___twiddler.html#ga94e218f5d5920837ebe2e5445fd0921d',1,'pin_t():&#160;gpio_twiddler.hpp'],['../group___interruptable.html#ga94e218f5d5920837ebe2e5445fd0921d',1,'pin_t():&#160;interruptable.hpp']]],
+  ['ping_5fstatus_5ft',['ping_status_t',['../pingpp_8hpp.html#ad5cf8262b2d8b34578d431a9cd86f659',1,'pingpp.hpp']]],
+  ['port_5ft',['port_t',['../group___g_p_i_o___twiddler.html#ga5e406304afb6ff4c65f19737b6ad37ec',1,'port_t():&#160;gpio_twiddler.hpp'],['../group___interruptable.html#ga5e406304afb6ff4c65f19737b6ad37ec',1,'port_t():&#160;interruptable.hpp']]]
 ];

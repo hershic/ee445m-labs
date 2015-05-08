@@ -1,0 +1,6 @@
+<map id="hw_channel_init" name="hw_channel_init">
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="195,5,328,32"/>
+<area shape="rect" id="node4" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="176,56,347,83"/>
+<area shape="rect" id="node5" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="234,107,289,133"/>
+<area shape="rect" id="node3" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="395,5,449,32"/>
+</map>

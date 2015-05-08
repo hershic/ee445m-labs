@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['initr_5fblacktab',['INITR_BLACKTAB',['../_s_t7735_8h.html#a9568e103412377d5867f1f367ac7f424a34a4beb654362e116f07fa2d4714a16d',1,'ST7735.h']]],
-  ['initr_5fgreentab',['INITR_GREENTAB',['../_s_t7735_8h.html#a9568e103412377d5867f1f367ac7f424a96fde15f33420fc298a8938c48fca4d1',1,'ST7735.h']]],
-  ['initr_5fredtab',['INITR_REDTAB',['../_s_t7735_8h.html#a9568e103412377d5867f1f367ac7f424a95e1d38bf9ef71e0615a062372a2b40c',1,'ST7735.h']]]
+  ['ping_5fnot_5factive',['ping_not_active',['../pingpp_8hpp.html#a85e61c7a20afc17cc180f6ce5cb6cb3bae3ff29a09002566db93a75de5c264091',1,'pingpp.hpp']]],
+  ['ping_5fresponse',['ping_response',['../pingpp_8hpp.html#a85e61c7a20afc17cc180f6ce5cb6cb3baa917420ab31dbd4779eda82e0dd5c841',1,'pingpp.hpp']]],
+  ['ping_5fsample_5fdelay',['ping_sample_delay',['../pingpp_8hpp.html#a85e61c7a20afc17cc180f6ce5cb6cb3ba2124d637492711c1a021420cfcd3fca8',1,'pingpp.hpp']]],
+  ['ping_5fsignal',['ping_signal',['../pingpp_8hpp.html#a85e61c7a20afc17cc180f6ce5cb6cb3ba686a7e3f14cb69f709fe611a59d6062c',1,'pingpp.hpp']]]
 ];

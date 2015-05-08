@@ -1,3 +1,4 @@
 <map id="heart_toggle" name="heart_toggle">
-<area shape="rect" id="node2" href="$test-timer_8c.html#a08e9ca8d337b256ff66bf838eb68ecd4" title="Blink the onboard LED three times to show activity. " alt="" coords="156,5,293,32"/>
+<area shape="rect" id="node2" href="$test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336" title="Task1" alt="" coords="156,5,213,32"/>
+<area shape="rect" id="node3" href="$test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="261,5,316,32"/>
 </map>

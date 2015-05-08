@@ -1,0 +1,6 @@
+<map id="lswitch" name="lswitch">
+<area shape="rect" id="node2" href="$classinterruptable.html" title="{interruptable\n||+ interruptable()\l+ start()\l+ stop()\l+ ack()\l}" alt="" coords="5,5,135,127"/>
+<area shape="rect" id="node5" href="$classtimer.html" title="{timer\n|&#45; id\l&#45; base\l&#45; subtimer\l&#45; reload_value\l&#45; configuration\l&#45; interrupt\l|+ timer()\l+ timer()\l+ start()\l+ stop()\l+ ack()\l+ get()\l+ get_subtimer()\l+ get_base()\l+ reload()\l+ load()\l}" alt="" coords="53,176,185,459"/>
+<area shape="rect" id="node3" href="$classsemaphore.html" title="{semaphore\n|&#45; value\l&#45; total_posts\l|+ semaphore()\l+ semaphore()\l+ init()\l+ post()\l+ wait()\l+ take()\l+ guard()\l+ blocked()\l+ reset()\l}" alt="" coords="210,213,330,422"/>
+<area shape="rect" id="node4" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="188,5,352,127"/>
+</map>

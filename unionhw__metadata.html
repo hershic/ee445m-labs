@@ -119,7 +119,7 @@ Collaboration diagram for hw_metadata:</div>
 <div class="dyncontent">
 <div class="center"><img src="unionhw__metadata__coll__graph.png" border="0" usemap="#hw__metadata_coll__map" alt="Collaboration graph"/></div>
 <map name="hw__metadata_coll__map" id="hw__metadata_coll__map">
-<area shape="rect" id="node2" href="structhw__uart__metadata.html" title="{hw_uart_metadata\n|+ UART_BAUD_RATE\l|}" alt="" coords="5,5,157,83"/><area shape="rect" id="node3" href="structhw__timer__metadata.html" title="{hw_timer_metadata\n|+ TIMER_FREQUENCY\l|}" alt="" coords="182,5,341,83"/></map>
+<area shape="rect" id="node2" href="structhw__adc__metadata.html" title="{hw_adc_metadata\n|+ base\l+ trigger_source\l+ sample_sequence\l+ channel\l+ channel_configuration\l|}" alt="" coords="77,329,255,465"/><area shape="rect" id="node3" href="unionadc__trigger__metadata.html" title="{adc_trigger_metadata\n||}" alt="" coords="79,189,243,267"/><area shape="rect" id="node4" href="structhw__timer__metadata.html" title="{hw_timer_metadata\n|+ base\l+ frequency\l+ interrupt\l+ periodic\l|}" alt="" coords="5,5,156,127"/><area shape="rect" id="node5" href="structhw__uart__metadata.html" title="{hw_uart_metadata\n|+ baud_rate\l+ channel\l+ interrupt\l|}" alt="" coords="279,344,421,451"/><area shape="rect" id="node6" href="structhw__button__metadata.html" title="{hw_button_metadata\n|+ base\l+ pin\l+ interrupt\l|}" alt="" coords="445,344,604,451"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -128,12 +128,48 @@ Data Fields</h2></td></tr>
 <tr class="separator:ac84285f4f759dff6c90bd0aaeaf7e053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae835490cd4d8a87138f19783e142b984"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhw__timer__metadata.html">hw_timer_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a></td></tr>
 <tr class="separator:ae835490cd4d8a87138f19783e142b984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba784feb3dcd318ea6f39370a6352bca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhw__button__metadata.html">hw_button_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionhw__metadata.html#aba784feb3dcd318ea6f39370a6352bca">button</a></td></tr>
+<tr class="separator:aba784feb3dcd318ea6f39370a6352bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48d53acfbaa9fcdd9c9891394535c1d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhw__adc__metadata.html">hw_adc_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionhw__metadata.html#a48d53acfbaa9fcdd9c9891394535c1d8">adc</a></td></tr>
+<tr class="separator:a48d53acfbaa9fcdd9c9891394535c1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Initialization information comes in many shapes and sizes. Here is one convenient container. </p>
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00098">98</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00096">96</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a48d53acfbaa9fcdd9c9891394535c1d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhw__adc__metadata.html">hw_adc_metadata</a> hw_metadata::adc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00100">100</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="lib_2libadc_2adc_8c_source.html#l00036">adc_channel_init()</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00016">adc_init()</a>, <a class="el" href="lib_2libadc_2adc_8c_source.html#l00067">adc_interrupt_init()</a>, and <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba784feb3dcd318ea6f39370a6352bca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhw__button__metadata.html">hw_button_metadata</a> hw_metadata::button</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00099">99</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00203">_hw_get_channel()</a>, <a class="el" href="libbutton_2button_8c_source.html#l00022">button_init()</a>, and <a class="el" href="libbutton_2button_8c_source.html#l00035">button_set_interrupt()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae835490cd4d8a87138f19783e142b984"></a>
 <div class="memitem">
 <div class="memproto">
@@ -144,9 +180,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00101">101</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00098">98</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 
-<p>Referenced by <a class="el" href="hardware_8c_source.html#l00071">hw_channel_init()</a>, and <a class="el" href="test-timer_8c_source.html#l00039">main()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00203">_hw_get_channel()</a>, <a class="el" href="hardware_8c_source.html#l00062">hw_driver_init()</a>, and <a class="el" href="lib_2libtimer_2timer_8c_source.html#l00018">timer_add_interrupt()</a>.</p>
 
 </div>
 </div>
@@ -160,9 +196,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hardware_8h_source.html#l00100">100</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
+<p>Definition at line <a class="el" href="hardware_8h_source.html#l00097">97</a> of file <a class="el" href="hardware_8h_source.html">hardware.h</a>.</p>
 
-<p>Referenced by <a class="el" href="test-shell_8c_source.html#l00041">main()</a>.</p>
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00203">_hw_get_channel()</a>, <a class="el" href="hardware_8c_source.html#l00062">hw_driver_init()</a>, <a class="el" href="bin_2lisp_2templates_2uart_8c_source.html#l00007">s_Handler()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00092">uart_get_char_()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00111">uart_get_string_()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00039">uart_init()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00065">uart_send_char_()</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00076">uart_send_string_()</a>.</p>
 
 </div>
 </div>
@@ -175,7 +211,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="unionhw__metadata.html">hw_metadata</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:14 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:44 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

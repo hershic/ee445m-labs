@@ -1,0 +1,6 @@
+<map id="blinker::blinker" name="blinker::blinker">
+<area shape="rect" id="node2" href="$group___cpp_test.html#ga2f6a1135d37afd9955a16efbd901b2c2" title="ctlsys::enable_periph" alt="" coords="168,31,324,57"/>
+<area shape="rect" id="node5" href="$group___cpp_test.html#gaf64c27ece264ebcef0962090e4b5f9ef" title="blinker::set_base" alt="" coords="181,81,311,108"/>
+<area shape="rect" id="node3" href="$classcritical.html#a462ecb751e5e7572f587f3fb3f7e8fd4" title="critical::static_StartCritical" alt="" coords="372,5,560,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#a55a80f7c8c33aec8acb01c76e9dcf0bd" title="critical::static_EndCritical" alt="" coords="376,56,556,83"/>
+</map>

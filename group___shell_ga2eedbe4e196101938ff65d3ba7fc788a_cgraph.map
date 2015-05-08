@@ -1,0 +1,20 @@
+<map id="shell_kill" name="shell_kill">
+<area shape="rect" id="node2" href="$hardware_8c.html#afdc6f601c1698c857151a4ce7c0411c7" title="hw_unsubscribe" alt="" coords="136,31,259,57"/>
+<area shape="rect" id="node5" href="$group___shell.html#gaec52690701ae80176644c9f0178f895c" title="shell_uart_handler" alt="" coords="128,132,267,159"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="340,5,471,32"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="544,5,691,32"/>
+<area shape="rect" id="node6" href="$group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70" title="shell_execute_command" alt="" coords="315,56,496,83"/>
+<area shape="rect" id="node11" href="$group___shell.html#ga2cd508ee7e1311f95244ccf1aa80ee11" title="shell_clear_shell_buffer" alt="" coords="321,107,490,133"/>
+<area shape="rect" id="node13" href="$group___u_a_r_t.html#ga6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="553,208,682,235"/>
+<area shape="rect" id="node17" href="$group___shell.html#ga2c27dcedd94d65632369ca4dda2cfbfb" title="shell_print_ps1" alt="" coords="347,208,464,235"/>
+<area shape="rect" id="node18" href="$group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="557,259,678,285"/>
+<area shape="rect" id="node7" href="$group___system.html#gabf61e582e309546744891e3135f0aa81" title="system_exec" alt="" coords="564,56,671,83"/>
+<area shape="rect" id="node8" href="$group___system.html#gac3eeb8757f4c8ce4479f6cc19cecb401" title="_system_command_from_name" alt="" coords="739,56,968,83"/>
+<area shape="rect" id="node9" href="$nexus_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="1035,56,1102,83"/>
+<area shape="rect" id="node10" href="$nexus_8c.html#a40a26471038e995e0f16f3d4d9ae02eb" title="ustrncmp" alt="" coords="1169,56,1252,83"/>
+<area shape="rect" id="node12" href="$nexus_8c.html#a7bcdacdb9ea762dccdd9f6de4292f9ee" title="memset" alt="" coords="579,107,655,133"/>
+<area shape="rect" id="node14" href="$group___u_a_r_t.html#ga5f75da55771fa18535ad7e1dee1e621b" title="uart_send_string_" alt="" coords="785,208,921,235"/>
+<area shape="rect" id="node15" href="$nexus_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="1035,208,1102,235"/>
+<area shape="rect" id="node16" href="$group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="1016,259,1121,285"/>
+<area shape="rect" id="node19" href="$group___u_a_r_t.html#ga1b09d796a7f93a651ecd7241868f0e16" title="uart_send_char_" alt="" coords="789,259,917,285"/>
+</map>

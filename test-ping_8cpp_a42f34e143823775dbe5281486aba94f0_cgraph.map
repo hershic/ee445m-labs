@@ -1,0 +1,7 @@
+<map id="Timer1A_Handler" name="Timer1A_Handler">
+<area shape="rect" id="node2" href="$classping.html#af410e283315932eb9ac8ce85d6970a0c" title="ping::handle_timer" alt="" coords="185,31,327,57"/>
+<area shape="rect" id="node3" href="$classtimer.html#a68a9a30c02c73d8bb1e572d3d199597b" title="timer::ack" alt="" coords="397,5,483,32"/>
+<area shape="rect" id="node4" href="$group__semaphore.html#ga14c3b9f4312c43d9400905c938752665" title="semaphore::post" alt="" coords="375,56,505,83"/>
+<area shape="rect" id="node5" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="553,31,700,57"/>
+<area shape="rect" id="node6" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="557,81,696,108"/>
+</map>

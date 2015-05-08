@@ -1,0 +1,8 @@
+<map id="buffer&lt; T, N &gt;" name="buffer&lt; T, N &gt;">
+<area shape="rect" id="node2" href="$classcircularbuffer.html" title="{circularbuffer\&lt; T, N \&gt;\n||+ circularbuffer()\l+ increment_ptr()\l+ add()\l+ peek()\l+ get()\l}" alt="" coords="181,446,341,582"/>
+<area shape="rect" id="node5" href="$classbuffer.html" title="{buffer\&lt; int16_t, N \&gt;\n|+ pos\l+ len\l+ sem\l+ buf\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="531,365,681,663"/>
+<area shape="rect" id="node6" href="$classbuffer.html" title="{buffer\&lt; char, 32 \&gt;\n|+ pos\l+ len\l+ sem\l+ buf\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="365,365,506,663"/>
+<area shape="rect" id="node7" href="$classbuffer.html" title="{buffer\&lt; int32_t, N \&gt;\n|+ pos\l+ len\l+ sem\l+ buf\l+ error_overflow\l+ error_underflow\l|+ buffer()\l+ buffer()\l+ clear()\l+ init()\l+ notify()\l+ add()\l+ peek()\l+ get()\l+ full()\l+ empty()\l+ length()\l}" alt="" coords="5,365,156,663"/>
+<area shape="rect" id="node3" href="$classcircularbuffer.html" title="{circularbuffer\&lt; int32\l_t, 5 \&gt;\n||+ circularbuffer()\l+ increment_ptr()\l+ add()\l+ peek()\l+ get()\l}" alt="" coords="90,725,242,876"/>
+<area shape="rect" id="node4" href="$classcircularbuffer.html" title="{circularbuffer\&lt; int16\l_t, 32 \&gt;\n||+ circularbuffer()\l+ increment_ptr()\l+ add()\l+ peek()\l+ get()\l}" alt="" coords="370,725,522,876"/>
+</map>

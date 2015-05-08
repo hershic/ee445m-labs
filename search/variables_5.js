@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['expand_5fmult',['expand_mult',['../struct_u_t__hash__bucket.html#a9b739c1b69c141e8198c0c64af643b2b',1,'UT_hash_bucket']]]
+  ['g_5fpchex',['g_pcHex',['../uartpp_8cpp.html#ae2ac426587be82ba1a5b5eed7067fd0c',1,'uartpp.cpp']]],
+  ['g_5fui32base',['g_ui32Base',['../uartpp_8cpp.html#adb8aca9d8f50bc3c8dda7f7060702336',1,'uartpp.cpp']]]
 ];

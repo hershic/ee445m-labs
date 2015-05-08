@@ -1,17 +1,21 @@
 <map id="inc/hw_nvic.h" name="inc/hw_nvic.h">
 <area shape="rect" id="node2" href="$blinky_2startup__gcc_8c.html" title="board&#45;progs/blinky\l/startup_gcc.c" alt="" coords="5,80,145,121"/>
 <area shape="rect" id="node3" href="$test-adc_2startup__gcc_8c.html" title="board&#45;progs/test&#45;adc\l/startup_gcc.c" alt="" coords="170,80,327,121"/>
-<area shape="rect" id="node4" href="$test-display_2startup__gcc_8c.html" title="board&#45;progs/test&#45;display\l/startup_gcc.c" alt="" coords="351,80,530,121"/>
-<area shape="rect" id="node5" href="$test-os_2startup__gcc_8c.html" title="board&#45;progs/test&#45;os\l/startup_gcc.c" alt="" coords="554,80,703,121"/>
-<area shape="rect" id="node6" href="$test-shell_2startup__gcc_8c.html" title="board&#45;progs/test&#45;shell\l/startup_gcc.c" alt="" coords="727,80,890,121"/>
-<area shape="rect" id="node7" href="$test-timer_2startup__gcc_8c.html" title="board&#45;progs/test&#45;timer\l/startup_gcc.c" alt="" coords="914,80,1082,121"/>
-<area shape="rect" id="node8" href="$test-uart_2startup__gcc_8c.html" title="board&#45;progs/test&#45;uart\l/startup_gcc.c" alt="" coords="1106,80,1266,121"/>
-<area shape="rect" id="node9" href="$aes_8c.html" title="driverlib/aes.c" alt="" coords="1291,87,1401,114"/>
-<area shape="rect" id="node10" href="$can_8c.html" title="driverlib/can.c" alt="" coords="1425,87,1536,114"/>
-<area shape="rect" id="node11" href="$fpu_8c.html" title="driverlib/fpu.c" alt="" coords="1561,87,1667,114"/>
-<area shape="rect" id="node12" href="$interrupt_8c.html" title="driverlib/interrupt.c" alt="" coords="1692,87,1835,114"/>
-<area shape="rect" id="node13" href="$mpu_8c.html" title="driverlib/mpu.c" alt="" coords="1859,87,1975,114"/>
-<area shape="rect" id="node14" href="$shamd5_8c.html" title="driverlib/shamd5.c" alt="" coords="1999,87,2138,114"/>
-<area shape="rect" id="node15" href="$sysctl_8c.html" title="driverlib/sysctl.c" alt="" coords="2162,87,2285,114"/>
-<area shape="rect" id="node16" href="$systick_8c.html" title="driverlib/systick.c" alt="" coords="2309,87,2439,114"/>
+<area shape="rect" id="node4" href="$test-button_2startup__gcc_8c.html" title="board&#45;progs/test&#45;button\l/startup_gcc.c" alt="" coords="351,80,527,121"/>
+<area shape="rect" id="node5" href="$test-display_2startup__gcc_8c.html" title="board&#45;progs/test&#45;display\l/startup_gcc.c" alt="" coords="551,80,730,121"/>
+<area shape="rect" id="node6" href="$test-edf_2startup__gcc_8c.html" title="board&#45;progs/test&#45;edf\l/startup_gcc.c" alt="" coords="754,80,909,121"/>
+<area shape="rect" id="node7" href="$test-os_2startup__gcc_8c.html" title="board&#45;progs/test&#45;os\l/startup_gcc.c" alt="" coords="933,80,1082,121"/>
+<area shape="rect" id="node8" href="$test-priority-scheduler_2startup__gcc_8c.html" title="board&#45;progs/test&#45;priority\l&#45;scheduler/startup_gcc.c" alt="" coords="1106,80,1285,121"/>
+<area shape="rect" id="node9" href="$test-semaphore_2startup__gcc_8c.html" title="board&#45;progs/test&#45;semaphore\l/startup_gcc.c" alt="" coords="1309,80,1516,121"/>
+<area shape="rect" id="node10" href="$test-timer_2startup__gcc_8c.html" title="board&#45;progs/test&#45;timer\l/startup_gcc.c" alt="" coords="1541,80,1709,121"/>
+<area shape="rect" id="node11" href="$aes_8c.html" title="driverlib/aes.c" alt="" coords="1733,87,1844,114"/>
+<area shape="rect" id="node12" href="$can_8c.html" title="driverlib/can.c" alt="" coords="1868,87,1979,114"/>
+<area shape="rect" id="node13" href="$fpu_8c.html" title="driverlib/fpu.c" alt="" coords="2003,87,2110,114"/>
+<area shape="rect" id="node14" href="$interrupt_8c.html" title="driverlib/interrupt.c" alt="" coords="2135,87,2277,114"/>
+<area shape="rect" id="node15" href="$mpu_8c.html" title="driverlib/mpu.c" alt="" coords="2301,87,2417,114"/>
+<area shape="rect" id="node16" href="$shamd5_8c.html" title="driverlib/shamd5.c" alt="" coords="2442,87,2581,114"/>
+<area shape="rect" id="node17" href="$sysctl_8c.html" title="driverlib/sysctl.c" alt="" coords="2605,87,2727,114"/>
+<area shape="rect" id="node18" href="$systick_8c.html" title="driverlib/systick.c" alt="" coords="2751,87,2882,114"/>
+<area shape="rect" id="node19" href="$hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="2907,87,3052,114"/>
+<area shape="rect" id="node20" href="$os_8c.html" title="lib/libos/os.c" alt="" coords="3077,87,3175,114"/>
 </map>

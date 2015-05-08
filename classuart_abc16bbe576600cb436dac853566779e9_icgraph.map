@@ -1,0 +1,24 @@
+<map id="uart::vprintf" name="uart::vprintf">
+<area shape="rect" id="node2" href="$classuart.html#adeebcadf1fef9e48ad79b246d2ee21e4" title="uart::atomic_printf" alt="" coords="149,157,289,184"/>
+<area shape="rect" id="node15" href="$classuart.html#ac929d5b86cdad232bd6f9ee1efa4cb83" title="uart::printf" alt="" coords="175,385,264,412"/>
+<area shape="rect" id="node3" href="$classshell.html#a4818d9798adb2f72fca6b030a49ae196" title="shell::backspace" alt="" coords="563,56,689,83"/>
+<area shape="rect" id="node7" href="$move-main_8cpp.html#af7b345f5bff7b52e42729f33249546d8" title="can_handler" alt="" coords="767,259,867,285"/>
+<area shape="rect" id="node8" href="$classshell.html#abc8aa0b3a30e5213f44e14a2b0bb2918" title="shell::execute_command" alt="" coords="535,107,717,133"/>
+<area shape="rect" id="node9" href="$classshell.html#a4bbc8e63b2a36877cf13d1bd2196a214" title="shell::print_ps1" alt="" coords="353,208,471,235"/>
+<area shape="rect" id="node13" href="$move-main_8cpp.html#a119c88d96e41a68552db0b7c1da7e0ca" title="thread_uart_update" alt="" coords="337,157,487,184"/>
+<area shape="rect" id="node14" href="$classshell.html#ae3e275ca3dca4896aabd128209bf538b" title="shell::type" alt="" coords="583,5,669,32"/>
+<area shape="rect" id="node4" href="$classshell.html#a02dc63d453efec7549b5b9e621e14187" title="shell::accept" alt="" coords="765,81,868,108"/>
+<area shape="rect" id="node5" href="$move-main_8cpp.html#a459dda223a13ec840d5fdc0a77950ff4" title="shell_handler" alt="" coords="916,120,1023,147"/>
+<area shape="rect" id="node6" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="1071,189,1125,216"/>
+<area shape="rect" id="node10" href="$classshell.html#a1e4abdc9a23dd7ac1b8cca04e2f3da1f" title="shell::init_ps1" alt="" coords="572,208,680,235"/>
+<area shape="rect" id="node11" href="$classshell.html#add12112c75df5dad11b6a002a0e7b16e" title="shell::init" alt="" coords="777,208,856,235"/>
+<area shape="rect" id="node12" href="$classshell.html#adf87c8815d4fc682d83eaa5ae4fa7083" title="shell::shell" alt="" coords="925,208,1013,235"/>
+<area shape="rect" id="node16" href="$sense-main_8cpp.html#af7b345f5bff7b52e42729f33249546d8" title="can_handler" alt="" coords="362,411,462,437"/>
+<area shape="rect" id="node18" href="$sense-main_8cpp.html#a3cb6923ca20bc9de241cece290a2e74b" title="can_transmitter" alt="" coords="350,360,474,387"/>
+<area shape="rect" id="node19" href="$test-ping_8cpp.html#a961eb4272ced40d34c70a8f3ef94268e" title="ping_handler" alt="" coords="360,461,464,488"/>
+<area shape="rect" id="node21" href="$test-countdown_8cpp.html#a5c3d58300cdf2c98b3ed3c67bc234f13" title="timer_updater" alt="" coords="355,512,469,539"/>
+<area shape="rect" id="node23" href="$classuart.html#a639a8241bb76931a72b00b04ddb4476d" title="uart::uart" alt="" coords="371,309,453,336"/>
+<area shape="rect" id="node17" href="$sense-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="599,385,653,412"/>
+<area shape="rect" id="node20" href="$test-ping_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="599,461,653,488"/>
+<area shape="rect" id="node22" href="$test-countdown_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="599,512,653,539"/>
+</map>

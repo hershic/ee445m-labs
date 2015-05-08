@@ -1,0 +1,12 @@
+<map id="ping::sample" name="ping::sample">
+<area shape="rect" id="node2" href="$classdelay.html#af483ef01bbc699edbf82eac691a49c62" title="delay::count" alt="" coords="191,5,290,32"/>
+<area shape="rect" id="node3" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="171,56,310,83"/>
+<area shape="rect" id="node4" href="$group___cpp_test.html#gafaecbf92872d1d3fd1a9508c9ff4d1fb" title="ctlsys::gpio_int_disable" alt="" coords="372,107,540,133"/>
+<area shape="rect" id="node6" href="$group___cpp_test.html#ga5419d221d86a47bf26e9681056795869" title="ctlsys::gpio_int_enable" alt="" coords="157,157,324,184"/>
+<area shape="rect" id="node8" href="$group___cpp_test.html#ga429c851816a147f5e4265c68612f5b47" title="ctlsys::periph_to_int" alt="" coords="166,208,315,235"/>
+<area shape="rect" id="node9" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="167,259,314,285"/>
+<area shape="rect" id="node10" href="$group___cpp_test.html#ga1f62582227974d0a51db579032fa055d" title="blinker::turn_off" alt="" coords="180,309,301,336"/>
+<area shape="rect" id="node11" href="$group___cpp_test.html#ga493c4641dcbd6452e90933b9536297ec" title="blinker::turn_on" alt="" coords="180,360,301,387"/>
+<area shape="rect" id="node5" href="$group___cpp_test.html#ga214ec98d389c618e09416298dc7755cb" title="ctlsys::gpio_pin_to_int" alt="" coords="588,157,751,184"/>
+<area shape="rect" id="node7" href="$group___cpp_test.html#ga5d05e41c06825a9e058dd4303e33739c" title="ctlsys::gpio_int_clear" alt="" coords="379,208,533,235"/>
+</map>

@@ -1,29 +1,4 @@
 var searchData=
 [
-  ['pc',['pc',['../structhwcontext.html#a50f98f801ed417529e78e6f00f0a40d2',1,'hwcontext']]],
-  ['pccmd',['pcCmd',['../structt_cmd_line_entry.html#aa4710d1d4c835f8e74a09c523aab1f7f',1,'tCmdLineEntry']]],
-  ['pchelp',['pcHelp',['../structt_cmd_line_entry.html#a7b75776c6850fb721a263dc91798e485',1,'tCmdLineEntry']]],
-  ['pfncmd',['pfnCmd',['../structt_cmd_line_entry.html#ae934a335b9a1f86f86d8ba9cccc17292',1,'tCmdLineEntry']]],
-  ['pfnfunction',['pfnFunction',['../structt_scheduler_task.html#a92e99d5bf059d2b2600977cbd5bcf9eb',1,'tSchedulerTask']]],
-  ['pfnintcallback',['pfnIntCallback',['../structt_soft_s_s_i.html#a1321c7a6ed3df7481a5d10ffec69e2e5',1,'tSoftSSI::pfnIntCallback()'],['../structt_soft_u_a_r_t.html#a4519b637a3a75ae6c1d889a4662bb4bb',1,'tSoftUART::pfnIntCallback()']]],
-  ['plink',['pLink',['../uniont_e_m_a_c_d_e_s3.html#a82521a4d7650c70ae17601031b5ad48f',1,'tEMACDES3']]],
-  ['pointoncircumference',['pointOnCircumference',['../structclockhand.html#ac07e7140b8375ed3508606ed3e642fdc',1,'clockhand']]],
-  ['points',['points',['../structshape.html#a957e8ce8b3db5bb58ec3c5776c260c7a',1,'shape']]],
-  ['prev',['prev',['../structtcb.html#ae43b694dc3ba3934276a74c412120111',1,'tcb::prev()'],['../structsystem__command.html#a89b11acd9ad970e923f2a622413738cd',1,'system_command::prev()'],['../struct_u_t__hash__handle.html#abaf54a69367933df2d45575f48ca6a58',1,'UT_hash_handle::prev()']]],
-  ['printbuffer',['printBuffer',['../structclocktime.html#abd64a20cede421bbc297c70904cda352',1,'clocktime']]],
-  ['psr',['psr',['../structhwcontext.html#ab8ef842b72d033b740bc5d7b63668a7f',1,'hwcontext']]],
-  ['pui16crc',['pui16CRC',['../structt_e_m_a_c_wake_up_frame_filter.html#a28793c742b2dd27445c1cacf4bbb7d82',1,'tEMACWakeUpFrameFilter']]],
-  ['pui16rxbuffer',['pui16RxBuffer',['../structt_soft_s_s_i.html#ad8377ba657ed7d389365471e7bb04ac8',1,'tSoftSSI::pui16RxBuffer()'],['../structt_soft_u_a_r_t.html#ac1471703be863e05fd876a7f5d4259f2',1,'tSoftUART::pui16RxBuffer()']]],
-  ['pui16txbuffer',['pui16TxBuffer',['../structt_soft_s_s_i.html#a93bfc672de6566dc3e4c301a8980ecb2',1,'tSoftSSI']]],
-  ['pui32bytemask',['pui32ByteMask',['../structt_e_m_a_c_wake_up_frame_filter.html#a38823c7f5ea9c7b7c425c15c456408dd',1,'tEMACWakeUpFrameFilter']]],
-  ['pui8buffer',['pui8Buffer',['../structt_s_p_i_flash_state.html#a2bc8ac2fab0bc4c2a47f207c976ba875',1,'tSPIFlashState']]],
-  ['pui8command',['pui8Command',['../structt_e_m_a_c_wake_up_frame_filter.html#a3a89f5f638cd3166ce46b4226ce27247',1,'tEMACWakeUpFrameFilter']]],
-  ['pui8msgdata',['pui8MsgData',['../structt_c_a_n_msg_object.html#af7a37948b3b1a02549e2d303e1a9e6b5',1,'tCANMsgObject']]],
-  ['pui8offset',['pui8Offset',['../structt_e_m_a_c_wake_up_frame_filter.html#a9727bc0a331b4651e17c79f2506c475e',1,'tEMACWakeUpFrameFilter']]],
-  ['pui8txbuffer',['pui8TxBuffer',['../structt_soft_u_a_r_t.html#a387388250b6a0a3583253a23389878a4',1,'tSoftUART']]],
-  ['pvbuffer1',['pvBuffer1',['../structt_e_m_a_c_d_m_a_descriptor.html#a3ed5cea55d842be241b697c4a3bad663',1,'tEMACDMADescriptor']]],
-  ['pvbuffer2',['pvBuffer2',['../uniont_e_m_a_c_d_e_s3.html#a560456e8c7e9d0d0a224e6d67af6f34c',1,'tEMACDES3']]],
-  ['pvdstendaddr',['pvDstEndAddr',['../structt_d_m_a_control_table.html#a7346504231dcaa51e6da47bb82256c8f',1,'tDMAControlTable']]],
-  ['pvparam',['pvParam',['../structt_scheduler_task.html#a83923e9d1c3a022f865d0018a5e51f66',1,'tSchedulerTask']]],
-  ['pvsrcendaddr',['pvSrcEndAddr',['../structt_d_m_a_control_table.html#a211c562f9f14e09e84cd8c215e69c7a5',1,'tDMAControlTable']]]
+  ['value',['value',['../group__semaphore.html#gaa536484a6328bf17d606fb95fb498a55',1,'semaphore']]]
 ];

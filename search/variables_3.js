@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['center',['center',['../structclockhand.html#a0c7a602a69c7f1261d3f14b6d2150214',1,'clockhand::center()'],['../structcircle.html#a0c83b61b074e4167eb2c901f0ea1af87',1,'circle::center()']]],
-  ['channels',['channels',['../structhw__driver.html#a9f9f5c13f4a42a1d0d6cb586d16e144e',1,'hw_driver']]],
-  ['colstart',['ColStart',['../_s_t7735_8c.html#a067b865df1471c76d1c05e5e92cefe00',1,'ST7735.c']]],
-  ['command',['command',['../structsystem__command.html#a36cbf7895d55b3768c8f4ca052c17584',1,'system_command']]],
-  ['copy',['copy',['../struct_u_t__icd.html#af58b65eb0c3c21a99dc31c61f996408b',1,'UT_icd']]],
-  ['count',['count',['../struct_u_t__hash__bucket.html#a5d20cc12bdcbde360398910eefb45634',1,'UT_hash_bucket']]]
+  ['debounced_5fdata',['debounced_data',['../classlswitch.html#a90a513eb0373819616bc20b50ba37dc7',1,'lswitch']]],
+  ['default_5fpriority',['default_priority',['../classadc.html#a03968bdcf6dcf36abd89f2602a310a73',1,'adc']]],
+  ['direction',['direction',['../classmotor.html#a057aff010e04656003c4c130ea17d3c0',1,'motor']]],
+  ['drive0',['drive0',['../move-main_8cpp.html#ab9574a6e900f88f9312d288792f25c95',1,'move-main.cpp']]],
+  ['duty_5fperiod',['duty_period',['../classmotor.html#af0b22b1053140530f558a75b95d973db',1,'motor']]]
 ];

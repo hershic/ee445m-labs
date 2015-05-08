@@ -1,0 +1,11 @@
+<map id="critical::static_EndCritical" name="critical::static_EndCritical">
+<area shape="rect" id="node2" href="$group___cpp_test.html#ga2f6a1135d37afd9955a16efbd901b2c2" title="ctlsys::enable_periph" alt="" coords="233,132,389,159"/>
+<area shape="rect" id="node3" href="$group___cpp_test.html#ga7ddfb6eca6cc96b47445b182f665808a" title="blinker::blinker" alt="" coords="443,5,557,32"/>
+<area shape="rect" id="node4" href="$classcan.html#a6ff4af2fe6081c68c37c96300011d219" title="can::init" alt="" coords="464,56,536,83"/>
+<area shape="rect" id="node6" href="$classlswitch.html#aebcfa3ca9951d5293dda99cc65f361e7" title="lswitch::lswitch" alt="" coords="443,107,557,133"/>
+<area shape="rect" id="node7" href="$classmotor.html#a1558350ea08d9c56f460c4ff928e1dba" title="motor::motor" alt="" coords="793,196,901,223"/>
+<area shape="rect" id="node8" href="$classping.html#a3086424710941445f676a081fc6f9e49" title="ping::ping" alt="" coords="458,208,542,235"/>
+<area shape="rect" id="node9" href="$classmotor.html#a8194b04c23d3f3d638aff1bc05aef134" title="motor::pwm_init" alt="" coords="437,259,563,285"/>
+<area shape="rect" id="node5" href="$classcan.html#a05efed270e31acbd90d460439a4366c2" title="can::can" alt="" coords="640,56,716,83"/>
+<area shape="rect" id="node10" href="$classmotor.html#ad93e31c83b8a3d0f97c29478d2089212" title="motor::motor_init" alt="" coords="611,233,745,260"/>
+</map>

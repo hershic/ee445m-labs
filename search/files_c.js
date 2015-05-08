@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['nexus_2ec',['nexus.c',['../nexus_8c.html',1,'']]],
-  ['nexus_2eh',['nexus.h',['../nexus_8h.html',1,'']]],
-  ['notify_2edox',['notify.dox',['../notify_8dox.html',1,'']]],
-  ['notify_2eh',['notify.h',['../notify_8h.html',1,'']]]
+  ['search_2ecss',['search.css',['.././bin/html/search_8css.html',1,'']]],
+  ['search_2ejs',['search.js',['.././bin/html/search_8js.html',1,'']]],
+  ['search_5fl_2epng',['search_l.png',['.././bin/html/search__l_8png.html',1,'']]],
+  ['search_5fm_2epng',['search_m.png',['.././bin/html/search__m_8png.html',1,'']]],
+  ['search_5fr_2epng',['search_r.png',['.././bin/html/search__r_8png.html',1,'']]],
+  ['searchdata_2ejs',['searchdata.js',['.././bin/html/searchdata_8js.html',1,'']]],
+  ['semaphorepp_2ecpp',['semaphorepp.cpp',['../semaphorepp_8cpp.html',1,'']]],
+  ['semaphorepp_2ehpp',['semaphorepp.hpp',['../semaphorepp_8hpp.html',1,'']]],
+  ['sense_2dmain_2ecpp',['sense-main.cpp',['../sense-main_8cpp.html',1,'']]],
+  ['setenv',['setenv',['.././bin/html/setenv.html',1,'']]],
+  ['shellpp_2ecpp',['shellpp.cpp',['../shellpp_8cpp.html',1,'']]],
+  ['shellpp_2ehpp',['shellpp.hpp',['../shellpp_8hpp.html',1,'']]],
+  ['splitbar_2epng',['splitbar.png',['.././bin/html/splitbar_8png.html',1,'']]],
+  ['switchpp_2ecpp',['switchpp.cpp',['../switchpp_8cpp.html',1,'']]],
+  ['switchpp_2ehpp',['switchpp.hpp',['../switchpp_8hpp.html',1,'']]],
+  ['sync_5foff_2epng',['sync_off.png',['.././bin/html/sync__off_8png.html',1,'']]],
+  ['sync_5fon_2epng',['sync_on.png',['.././bin/html/sync__on_8png.html',1,'']]]
 ];

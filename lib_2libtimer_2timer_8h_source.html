@@ -110,24 +110,39 @@ $(document).ready(function(){initNavTree('lib_2libtimer_2timer_8h_source.html','
 </div><!--header-->
 <div class="contents">
 <a href="lib_2libtimer_2timer_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* -*- mode: c; c-basic-offset: 4; -*- */</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/* TODO: allow subscribers */</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef __TIMER__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define __TIMER__</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="hardware_8h.html">libhw/hardware.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="lib_2libtimer_2timer_8h.html#a245e0a3a87cc3f1718f060a485fed1d4">   11</a></span>&#160;<span class="preprocessor">#define timer_metadata_init_(_name, _base, _frequency, _interrupt, _periodic) \</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">    hw_metadata _name;                          \</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">    _name.timer = (hw_timer_metadata) {                 \</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">        .base      = (memory_address_t) _base,              \</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">        .frequency = (uint32_t)  _frequency,                \</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">        .interrupt = (uint32_t)  _interrupt,                \</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">        .periodic  = (uint32_t)  _periodic              \</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="lib_2libtimer_2timer_8h.html#a5407ddd40746962057f9ee037cbe0828">   21</a></span>&#160;<span class="preprocessor">#define timer_metadata_init(_base, _frequency, _interrupt, _periodic) \</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">    timer_metadata_init_(timer_metadata, _base, _frequency, _interrupt, _periodic)</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="lib_2libtimer_2timer_8h.html#a2344d042b01c5e206dc80d736560cda0">   24</a></span>&#160;<span class="preprocessor">#define Hz </span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="lib_2libtimer_2timer_8h.html#a704234a42b3ec7054f5e2bf8c8ddd364">timer_add_periodic_interrupt</a>(uint32_t frequency,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                  uint32_t timer_peripheral);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="lib_2libtimer_2timer_8h.html#a2eeca9a71be3572b1bf0148e62466989">timer_add_interrupt</a>(<a class="code" href="unionhw__metadata.html">hw_metadata</a> metadata);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="ttc" id="lib_2libtimer_2timer_8h_html_a704234a42b3ec7054f5e2bf8c8ddd364"><div class="ttname"><a href="lib_2libtimer_2timer_8h.html#a704234a42b3ec7054f5e2bf8c8ddd364">timer_add_periodic_interrupt</a></div><div class="ttdeci">bool timer_add_periodic_interrupt(uint32_t frequency, uint32_t timer_peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libtimer_2timer_8c_source.html#l00016">timer.c:16</a></div></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* __TIMER__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="lib_2libtimer_2timer_8h_html_a2eeca9a71be3572b1bf0148e62466989"><div class="ttname"><a href="lib_2libtimer_2timer_8h.html#a2eeca9a71be3572b1bf0148e62466989">timer_add_interrupt</a></div><div class="ttdeci">void timer_add_interrupt(hw_metadata metadata)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libtimer_2timer_8c_source.html#l00018">timer.c:18</a></div></div>
+<div class="ttc" id="hardware_8h_html"><div class="ttname"><a href="hardware_8h.html">hardware.h</a></div></div>
+<div class="ttc" id="unionhw__metadata_html"><div class="ttname"><a href="unionhw__metadata.html">hw_metadata</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00096">hardware.h:96</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_f8c5a451f8cbfcc7ed1f49a8a4087dcf.html">libtimer</a></li><li class="navelem"><a class="el" href="lib_2libtimer_2timer_8h.html">timer.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:07 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:37 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

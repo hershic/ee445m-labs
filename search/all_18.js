@@ -1,14 +1,13 @@
 var searchData=
 [
-  ['y',['y',['../structpoint.html#a03a348c9204e6964c253ee54aa9b11f1',1,'point']]],
-  ['y_5fmax',['y_max',['../structgraph.html#aea52395d18537278fb68cfd6347108b8',1,'graph']]],
-  ['y_5fmin',['y_min',['../structgraph.html#afae93ee499d60677924741df8a77b051',1,'graph']]],
-  ['y_5fpixel_5fend',['y_pixel_end',['../structgraph.html#ab78f268a880c1b30025f3149c223c9c1',1,'graph']]],
-  ['y_5fpixel_5fstart',['y_pixel_start',['../structgraph.html#a310e819fda01c9c6f3af334e2dd1ea12',1,'graph']]],
-  ['y_5fpixel_5ft',['y_pixel_t',['../defines_8h.html#a63f3b32712c80ed2ffc02e8474987293',1,'defines.h']]],
-  ['y_5frange_5ft',['y_range_t',['../defines_8h.html#af577aec6dd423bbf9aad5ccb048e5061',1,'defines.h']]],
-  ['y_5ftitle',['y_title',['../structgraph.html#a765eb1e8885f4c6f119dd31d3426e890',1,'graph']]],
-  ['ymax',['Ymax',['../_s_t7735_8c.html#adc46792c701a9db3dfc4b22c6719a40a',1,'ST7735.c']]],
-  ['ymin',['Ymin',['../_s_t7735_8c.html#abbb1c91a16b8ff3330a89a93336fd584',1,'ST7735.c']]],
-  ['yrange',['Yrange',['../_s_t7735_8c.html#ae7ced052ed82d5ee75f9c69c6beb6cb4',1,'ST7735.c']]]
+  ['x',['x',['../structpoint.html#a59587122413cecacd5901138144f08bb',1,'point::x()'],['../_s_t7735_8c.html#a15a78e2c6057c34f33a3e3ba9d4a2655',1,'X():&#160;ST7735.c']]],
+  ['x_5findex',['x_index',['../structgraph.html#a119961df8fb1aa9d680ce10ffd7592d5',1,'graph']]],
+  ['x_5findex_5fmax',['x_index_max',['../structgraph.html#a6968dd51f2c588b52242383be4c3d5ea',1,'graph']]],
+  ['x_5fmax',['x_max',['../structgraph.html#a219697fa51d6b601e8df86ebca914755',1,'graph']]],
+  ['x_5fmin',['x_min',['../structgraph.html#ae40ac3ee3064343cf5167666a5264067',1,'graph']]],
+  ['x_5fpixel_5fend',['x_pixel_end',['../structgraph.html#a2a86d01ed2dab814f33fc8bc35cf648d',1,'graph']]],
+  ['x_5fpixel_5fstart',['x_pixel_start',['../structgraph.html#a721c9987bb136f9527b4c5f5e679b607',1,'graph']]],
+  ['x_5fpixel_5ft',['x_pixel_t',['../defines_8h.html#aba76358f9ded4e5d705892985704383d',1,'defines.h']]],
+  ['x_5frange_5ft',['x_range_t',['../defines_8h.html#a4ff1206831ffe829beaa8b79caec05c9',1,'defines.h']]],
+  ['x_5ftitle',['x_title',['../structgraph.html#aed5e438c709ac0279c47734e1b4c0af5',1,'graph']]]
 ];

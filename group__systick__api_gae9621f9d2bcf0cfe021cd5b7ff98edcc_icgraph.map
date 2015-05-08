@@ -1,4 +1,10 @@
 <map id="SysTickIntEnable" name="SysTickIntEnable">
-<area shape="rect" id="node2" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="207,5,261,32"/>
-<area shape="rect" id="node3" href="$group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="181,56,287,83"/>
+<area shape="rect" id="node2" href="$os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="181,56,343,83"/>
+<area shape="rect" id="node9" href="$lib_2libsystick_2systick_8h.html#a61e0e39074284f88a1ebf53aa2342ea0" title="systick_init" alt="" coords="217,107,307,133"/>
+<area shape="rect" id="node3" href="$schedule_8h.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="391,5,572,32"/>
+<area shape="rect" id="node6" href="$group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9" title="os_suspend" alt="" coords="432,56,531,83"/>
+<area shape="rect" id="node7" href="$os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="418,107,545,133"/>
+<area shape="rect" id="node4" href="$group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="629,5,716,32"/>
+<area shape="rect" id="node5" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="773,5,828,32"/>
+<area shape="rect" id="node8" href="$test-button_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="620,107,725,133"/>
 </map>

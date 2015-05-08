@@ -106,7 +106,9 @@ $(document).ready(function(){initNavTree('test-uart_8c.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">test-uart.c File Reference</div>  </div>
 </div><!--header-->
@@ -120,25 +122,219 @@ $(document).ready(function(){initNavTree('test-uart_8c.html','');});
 <code>#include &quot;<a class="el" href="pin__map_8h_source.html">driverlib/pin_map.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sysctl_8h_source.html">driverlib/sysctl.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="lib_2libuart_2uart_8h_source.html">libuart/uart.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hardware_8h_source.html">libhw/hardware.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="heartbeat_8h_source.html">libheart/heartbeat.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for test-uart.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="test-uart_8c__incl.png" border="0" usemap="#board-progs_2test-uart_2test-uart_8c" alt=""/></div>
 <map name="board-progs_2test-uart_2test-uart_8c" id="board-progs_2test-uart_2test-uart_8c">
-<area shape="rect" id="node4" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="152,95,255,121"/><area shape="rect" id="node5" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="279,95,421,121"/><area shape="rect" id="node6" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="446,95,561,121"/><area shape="rect" id="node7" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="585,95,728,121"/><area shape="rect" id="node8" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="752,95,895,121"/><area shape="rect" id="node9" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="919,95,1043,121"/><area shape="rect" id="node10" href="lib_2libuart_2uart_8h.html" title="libuart/uart.h" alt="" coords="1067,95,1171,121"/><area shape="rect" id="node11" href="heartbeat_8h.html" title="libheart/heartbeat.h" alt="" coords="1195,95,1345,121"/></map>
+<area shape="rect" id="node4" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="870,393,973,420"/><area shape="rect" id="node5" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="306,169,449,196"/><area shape="rect" id="node6" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="473,169,588,196"/><area shape="rect" id="node7" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="613,169,755,196"/><area shape="rect" id="node8" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="779,169,922,196"/><area shape="rect" id="node9" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1810,169,1934,196"/><area shape="rect" id="node10" href="lib_2libuart_2uart_8h.html" title="libuart/uart.h" alt="" coords="140,95,244,121"/><area shape="rect" id="node11" href="hardware_8h.html" title="libhw/hardware.h" alt="" coords="52,169,180,196"/><area shape="rect" id="node23" href="heartbeat_8h.html" title="libheart/heartbeat.h" alt="" coords="987,95,1136,121"/><area shape="rect" id="node12" href="notify_8h.html" title="libnotify/notify.h" alt="" coords="195,543,315,569"/><area shape="rect" id="node13" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="171,617,282,644"/><area shape="rect" id="node15" href="semaphore_8h.html" title="libos/semaphore.h" alt="" coords="341,244,481,271"/><area shape="rect" id="node14" href="defines_8h.html" title="defines.h" alt="" coords="440,692,520,719"/><area shape="rect" id="node16" href="os_8h.html" title="os.h" alt="" coords="454,319,503,345"/><area shape="rect" id="node17" href="edf_8h.html" title="libschedule/edf.h" alt="" coords="415,393,543,420"/><area shape="rect" id="node18" href="thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="472,543,653,569"/><area shape="rect" id="node19" href="priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="277,468,491,495"/><area shape="rect" id="node20" href="uthash_8h.html" title="libut/uthash.h" alt="" coords="339,543,448,569"/><area shape="rect" id="node25" href="debug_8h.html" title="driverlib/debug.h" alt="" coords="1189,169,1317,196"/><area shape="rect" id="node26" href="fpu_8h.html" title="driverlib/fpu.h" alt="" coords="1342,169,1450,196"/><area shape="rect" id="node27" href="driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1474,169,1595,196"/><area shape="rect" id="node28" href="rom_8h.html" title="driverlib/rom.h" alt="" coords="1620,169,1735,196"/></map>
 </div>
 </div>
 <p><a href="test-uart_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a891f824aafc47ef989ca5d6c88131d2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a891f824aafc47ef989ca5d6c88131d2c">HEARTBEAT_MODAL</a></td></tr>
+<tr class="separator:a891f824aafc47ef989ca5d6c88131d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a82b7b0fba46f37a99898682733d4c73f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f">UART0_Handler</a> (void)</td></tr>
-<tr class="separator:a82b7b0fba46f37a99898682733d4c73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd0a67d4b214af8305bdb9795b7b93f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#acbd0a67d4b214af8305bdb9795b7b93f">led_blink_red</a> ()</td></tr>
+<tr class="separator:acbd0a67d4b214af8305bdb9795b7b93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a222d45b9e4999c84a7113b56a2733887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a222d45b9e4999c84a7113b56a2733887">led_blink_green</a> ()</td></tr>
+<tr class="separator:a222d45b9e4999c84a7113b56a2733887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2cc2f63a3682fc058f6b3b8dfd9e623"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623">led_blink_blue</a> ()</td></tr>
+<tr class="separator:ab2cc2f63a3682fc058f6b3b8dfd9e623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c1f2d67904f5337df4eb923622a5ac8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8">uart_handler</a> (<a class="el" href="unionnotification.html">notification</a> note)</td></tr>
+<tr class="separator:a7c1f2d67904f5337df4eb923622a5ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aeb0a9095d6e39c67dcb2d28fc1f5473b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#aeb0a9095d6e39c67dcb2d28fc1f5473b">red_work</a> = 0</td></tr>
+<tr class="separator:aeb0a9095d6e39c67dcb2d28fc1f5473b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a858f35dd4dd8f48f10a9df3054ae2186"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a858f35dd4dd8f48f10a9df3054ae2186">blue_work</a> = 0</td></tr>
+<tr class="separator:a858f35dd4dd8f48f10a9df3054ae2186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b37793c5cf800da09c2f6df8282c7f6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test-uart_8c.html#a4b37793c5cf800da09c2f6df8282c7f6">green_work</a> = 0</td></tr>
+<tr class="separator:a4b37793c5cf800da09c2f6df8282c7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a891f824aafc47ef989ca5d6c88131d2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEARTBEAT_MODAL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00022">22</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ab2cc2f63a3682fc058f6b3b8dfd9e623"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void led_blink_blue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00047">47</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+<p>References <a class="el" href="test-uart_8c_source.html#l00026">blue_work</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, and <a class="el" href="os_8h_source.html#l00142">os_surrender_context</a>.</p>
+
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00070">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                      {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        ++<a class="code" href="test-uart_8c.html#a858f35dd4dd8f48f10a9df3054ae2186">blue_work</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                     <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
+<div class="ttc" id="test-uart_8c_html_a858f35dd4dd8f48f10a9df3054ae2186"><div class="ttname"><a href="test-uart_8c.html#a858f35dd4dd8f48f10a9df3054ae2186">blue_work</a></div><div class="ttdeci">uint32_t blue_work</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00026">test-uart.c:26</a></div></div>
+<div class="ttc" id="group___o_s_html_ga950493083c42b9fc7a7252112a941c3d"><div class="ttname"><a href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a></div><div class="ttdeci">#define os_surrender_context()</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00142">os.h:142</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph.png" border="0" usemap="#test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph" alt=""/></div>
+<map name="test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph" id="test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="164,5,267,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="164,56,267,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph.png" border="0" usemap="#test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph" alt=""/></div>
+<map name="test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph" id="test-uart_8c_ab2cc2f63a3682fc058f6b3b8dfd9e623_icgraph">
+<area shape="rect" id="node2" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="164,5,219,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a222d45b9e4999c84a7113b56a2733887"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void led_blink_green </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00038">38</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+<p>References <a class="el" href="gpio_8h_source.html#l00063">GPIO_PIN_3</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, and <a class="el" href="test-uart_8c_source.html#l00027">green_work</a>.</p>
+
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00059">uart_handler()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                       {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">/* while (1) { */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        ++<a class="code" href="test-uart_8c.html#a4b37793c5cf800da09c2f6df8282c7f6">green_work</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                     <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">/* os_surrender_context(); */</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">/* } */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="gpio_8h_html_adcaf899c018a0dde572b5af783565c62"><div class="ttname"><a href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></div><div class="ttdeci">#define GPIO_PIN_3</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00063">gpio.h:63</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="test-uart_8c_html_a4b37793c5cf800da09c2f6df8282c7f6"><div class="ttname"><a href="test-uart_8c.html#a4b37793c5cf800da09c2f6df8282c7f6">green_work</a></div><div class="ttdeci">uint32_t green_work</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00027">test-uart.c:27</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-uart_8c_a222d45b9e4999c84a7113b56a2733887_cgraph.png" border="0" usemap="#test-uart_8c_a222d45b9e4999c84a7113b56a2733887_cgraph" alt=""/></div>
+<map name="test-uart_8c_a222d45b9e4999c84a7113b56a2733887_cgraph" id="test-uart_8c_a222d45b9e4999c84a7113b56a2733887_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="175,5,277,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="175,56,277,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-uart_8c_a222d45b9e4999c84a7113b56a2733887_icgraph.png" border="0" usemap="#test-uart_8c_a222d45b9e4999c84a7113b56a2733887_icgraph" alt=""/></div>
+<map name="test-uart_8c_a222d45b9e4999c84a7113b56a2733887_icgraph" id="test-uart_8c_a222d45b9e4999c84a7113b56a2733887_icgraph">
+<area shape="rect" id="node2" href="test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8" title="uart_handler" alt="" coords="175,5,277,32"/><area shape="rect" id="node3" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="325,5,380,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acbd0a67d4b214af8305bdb9795b7b93f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void led_blink_red </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00029">29</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+<p>References <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="os_8h_source.html#l00142">os_surrender_context</a>, and <a class="el" href="test-uart_8c_source.html#l00025">red_work</a>.</p>
+
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00070">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                     {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        ++<a class="code" href="test-uart_8c.html#aeb0a9095d6e39c67dcb2d28fc1f5473b">red_work</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                     <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a> ^ <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="test-uart_8c_html_aeb0a9095d6e39c67dcb2d28fc1f5473b"><div class="ttname"><a href="test-uart_8c.html#aeb0a9095d6e39c67dcb2d28fc1f5473b">red_work</a></div><div class="ttdeci">uint32_t red_work</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00025">test-uart.c:25</a></div></div>
+<div class="ttc" id="group___o_s_html_ga950493083c42b9fc7a7252112a941c3d"><div class="ttname"><a href="group___o_s.html#ga950493083c42b9fc7a7252112a941c3d">os_surrender_context</a></div><div class="ttdeci">#define os_surrender_context()</div><div class="ttdef"><b>Definition:</b> <a href="os_8h_source.html#l00142">os.h:142</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph.png" border="0" usemap="#test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph" alt=""/></div>
+<map name="test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph" id="test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="159,5,261,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="159,56,261,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph.png" border="0" usemap="#test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph" alt=""/></div>
+<map name="test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph" id="test-uart_8c_acbd0a67d4b214af8305bdb9795b7b93f_icgraph">
+<area shape="rect" id="node2" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="159,5,213,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a840291bc02cba5474a4cb46a9b9566fe"></a>
 <div class="memitem">
 <div class="memproto">
@@ -154,55 +350,64 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Accept input on UART 0, and parrot input back out to UART 0. </p><dl class="section return"><dt>Returns</dt><dd>Exit status </dd></dl>
 
-<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00051">51</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00070">70</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01427">GPIOPinTypeGPIOOutput()</a>, <a class="el" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable()</a>, <a class="el" href="sysctl_8h_source.html#l00378">SYSCTL_OSC_MAIN</a>, <a class="el" href="sysctl_8h_source.html#l00071">SYSCTL_PERIPH_GPIOA</a>, <a class="el" href="sysctl_8h_source.html#l00076">SYSCTL_PERIPH_GPIOF</a>, <a class="el" href="sysctl_8h_source.html#l00122">SYSCTL_PERIPH_UART0</a>, <a class="el" href="sysctl_8h_source.html#l00221">SYSCTL_SYSDIV_1</a>, <a class="el" href="sysctl_8h_source.html#l00350">SYSCTL_USE_OSC</a>, <a class="el" href="sysctl_8h_source.html#l00372">SYSCTL_XTAL_16MHZ</a>, <a class="el" href="sysctl_8c_source.html#l02532">SysCtlClockSet()</a>, <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>, <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00048">uart_init()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00084">uart_send_string()</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00033">uart_set_active_channel()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;               {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">/* Enable the peripherals used by this example. */</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#ab2846864081777c1962e95ad86c9af03">SYSCTL_PERIPH_UART0</a>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#aea621e9fcb42501468c5d42aa08972c8">SYSCTL_PERIPH_GPIOA</a>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">/* Enable processor interrupts. */</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/* Set the active uart channel */</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="lib_2libuart_2uart_8c.html#ad880ffa037ecb14b4571aee5d6f53acd">uart_set_active_channel</a>(<a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>);</div>
+<p>References <a class="el" href="thread__structures_8h_source.html#l00100">DL_SOFT</a>, <a class="el" href="gpio_8h_source.html#l00061">GPIO_PIN_1</a>, <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="gpio_8h_source.html#l00063">GPIO_PIN_3</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="heartbeat_8h_source.html#l00049">heart_init()</a>, <a class="el" href="hardware_8c_source.html#l00172">hw_daemon()</a>, <a class="el" href="hardware_8h_source.html#l00149">hw_init_and_subscribe</a>, <a class="el" href="hardware_8h_source.html#l00047">HW_UART</a>, <a class="el" href="nexus_8h_source.html#l00045">Hz</a>, <a class="el" href="hw__ints_8h_source.html#l00451">INT_UART0</a>, <a class="el" href="interrupt_8c_source.html#l00249">IntMasterDisable()</a>, <a class="el" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable()</a>, <a class="el" href="test-uart_8c_source.html#l00047">led_blink_blue()</a>, <a class="el" href="test-uart_8c_source.html#l00029">led_blink_red()</a>, <a class="el" href="os_8c_source.html#l00161">os_launch()</a>, <a class="el" href="os_8c_source.html#l00034">os_threading_init()</a>, <a class="el" href="nexus_8h_source.html#l00040">postpone_death</a>, <a class="el" href="os_8c_source.html#l00386">schedule()</a>, <a class="el" href="sysctl_8h_source.html#l00378">SYSCTL_OSC_MAIN</a>, <a class="el" href="sysctl_8h_source.html#l00221">SYSCTL_SYSDIV_1</a>, <a class="el" href="sysctl_8h_source.html#l00350">SYSCTL_USE_OSC</a>, <a class="el" href="sysctl_8h_source.html#l00372">SYSCTL_XTAL_16MHZ</a>, <a class="el" href="sysctl_8c_source.html#l02532">SysCtlClockSet()</a>, <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>, <a class="el" href="lib_2libuart_2uart_8h_source.html#l00014">UART_DEFAULT_BAUD_RATE</a>, <a class="el" href="test-uart_8c_source.html#l00059">uart_handler()</a>, <a class="el" href="lib_2libuart_2uart_8h_source.html#l00029">uart_metadata_init</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00071">uart_send_string()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;               {</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">/* Set GPIO A0 and A1 as UART pins. */</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="lib_2libuart_2uart_8c.html#a01f5996cfbcef121abc486e732b208c7">uart_init</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a>(<a class="code" href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a> | <a class="code" href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a> | <a class="code" href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a> |</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                   <a class="code" href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a>);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">/* Prompt for text to be entered. */</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979">uart_send_string</a>(<span class="stringliteral">&quot;Enter text:&quot;</span>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;   <span class="comment">/* Postpone death */</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">while</span> (1) {}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_a6663854cc5f46b64a624589faacd8979"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979">uart_send_string</a></div><div class="ttdeci">void uart_send_string(const char *text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00084">uart.c:84</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a2222c3af2259930587efcb2a33c74fcc"><div class="ttname"><a href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a></div><div class="ttdeci">#define SYSCTL_PERIPH_GPIOF</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00076">sysctl.h:76</a></div></div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_ad880ffa037ecb14b4571aee5d6f53acd"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#ad880ffa037ecb14b4571aee5d6f53acd">uart_set_active_channel</a></div><div class="ttdeci">void uart_set_active_channel(const long channel)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00033">uart.c:33</a></div></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    heart_init_(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="group___u_a_r_t.html#ga5b7cac26db323bc074daa0e9a6502689">uart_metadata_init</a>(<a class="code" href="group___u_a_r_t.html#ga695ad4d27f59bb03b44bdaa55b17c7b5">UART_DEFAULT_BAUD_RATE</a>, <a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>, <a class="code" href="hw__ints_8h.html#a8625252972b3e98e500d36c67df3dbd2">INT_UART0</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="hardware_8h.html#a5c7154f0cc168d8a8eac18c3c7de0f54">hw_init_and_subscribe</a>(<a class="code" href="hardware_8h.html#a581fec073a43bb639c5adfec550b30f7acc74a6bf0e29d5b754d68676b10dd8f2">HW_UART</a>, uart_metadata, <a class="code" href="test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8">uart_handler</a>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a>(<a class="code" href="test-uart_8c.html#acbd0a67d4b214af8305bdb9795b7b93f">led_blink_red</a>, 100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>, <a class="code" href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a>(<a class="code" href="test-uart_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623">led_blink_blue</a>, 100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>, <a class="code" href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a>(<a class="code" href="hardware_8c.html#a4b16b6aa8084ff7cc4261f2bd15b5b0b">hw_daemon</a>, 100 <a class="code" href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a>, <a class="code" href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">/* Prompt for text to be entered. */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="group___u_a_r_t.html#ga6663854cc5f46b64a624589faacd8979">uart_send_string</a>(<span class="stringliteral">&quot;Enter text:&quot;</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="ttc" id="group___u_a_r_t_html_ga6663854cc5f46b64a624589faacd8979"><div class="ttname"><a href="group___u_a_r_t.html#ga6663854cc5f46b64a624589faacd8979">uart_send_string</a></div><div class="ttdeci">void uart_send_string(const char *text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00071">uart.c:71</a></div></div>
+<div class="ttc" id="test-uart_8c_html_acbd0a67d4b214af8305bdb9795b7b93f"><div class="ttname"><a href="test-uart_8c.html#acbd0a67d4b214af8305bdb9795b7b93f">led_blink_red</a></div><div class="ttdeci">void led_blink_red()</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00029">test-uart.c:29</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a8c78f8e9ba8e9829e93824ec5dc90cc9"><div class="ttname"><a href="sysctl_8h.html#a8c78f8e9ba8e9829e93824ec5dc90cc9">SYSCTL_OSC_MAIN</a></div><div class="ttdeci">#define SYSCTL_OSC_MAIN</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00378">sysctl.h:378</a></div></div>
 <div class="ttc" id="sysctl_8h_html_a0626a3210d8069dfd85a6ba94b4af45c"><div class="ttname"><a href="sysctl_8h.html#a0626a3210d8069dfd85a6ba94b4af45c">SYSCTL_USE_OSC</a></div><div class="ttdeci">#define SYSCTL_USE_OSC</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00350">sysctl.h:350</a></div></div>
 <div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_a01f5996cfbcef121abc486e732b208c7"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#a01f5996cfbcef121abc486e732b208c7">uart_init</a></div><div class="ttdeci">void uart_init()</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00048">uart.c:48</a></div></div>
 <div class="ttc" id="sysctl_8h_html_aa28940746d2ba2b251b11043dd8bc2fe"><div class="ttname"><a href="sysctl_8h.html#aa28940746d2ba2b251b11043dd8bc2fe">SYSCTL_XTAL_16MHZ</a></div><div class="ttdeci">#define SYSCTL_XTAL_16MHZ</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00372">sysctl.h:372</a></div></div>
-<div class="ttc" id="sysctl_8h_html_ab2846864081777c1962e95ad86c9af03"><div class="ttname"><a href="sysctl_8h.html#ab2846864081777c1962e95ad86c9af03">SYSCTL_PERIPH_UART0</a></div><div class="ttdeci">#define SYSCTL_PERIPH_UART0</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00122">sysctl.h:122</a></div></div>
-<div class="ttc" id="sysctl_8h_html_aea621e9fcb42501468c5d42aa08972c8"><div class="ttname"><a href="sysctl_8h.html#aea621e9fcb42501468c5d42aa08972c8">SYSCTL_PERIPH_GPIOA</a></div><div class="ttdeci">#define SYSCTL_PERIPH_GPIOA</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00071">sysctl.h:71</a></div></div>
-<div class="ttc" id="group__sysctl__api_html_ga2fbae61db465e1d861a62785d28e3ad6"><div class="ttname"><a href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a></div><div class="ttdeci">void SysCtlPeripheralEnable(uint32_t ui32Peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l00841">sysctl.c:841</a></div></div>
+<div class="ttc" id="gpio_8h_html_a6c35af4e75c3cb57bb650feaa7a136b5"><div class="ttname"><a href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></div><div class="ttdeci">#define GPIO_PIN_1</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00061">gpio.h:61</a></div></div>
+<div class="ttc" id="group___u_a_r_t_html_ga695ad4d27f59bb03b44bdaa55b17c7b5"><div class="ttname"><a href="group___u_a_r_t.html#ga695ad4d27f59bb03b44bdaa55b17c7b5">UART_DEFAULT_BAUD_RATE</a></div><div class="ttdeci">#define UART_DEFAULT_BAUD_RATE</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8h_source.html#l00014">uart.h:14</a></div></div>
+<div class="ttc" id="group___o_s_html_gae54705fc84d831fc8689cbd51c9714e0"><div class="ttname"><a href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0">os_threading_init</a></div><div class="ttdeci">void os_threading_init()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00034">os.c:34</a></div></div>
+<div class="ttc" id="os_8c_html_aa4b97ba3cbe3f6ef9decafcab1c1dc61"><div class="ttname"><a href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61">schedule</a></div><div class="ttdeci">void schedule(task_t task, frequency_t frequency, DEADLINE_TYPE seriousness)</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00386">os.c:386</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a32aede06bdbbb7d5f923442f8e726615"><div class="ttname"><a href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a></div><div class="ttdeci">void heart_init()</div><div class="ttdoc">Initialize  for visible transformation. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00049">heartbeat.h:49</a></div></div>
+<div class="ttc" id="group___o_s_html_gafde304ef5313ffa073cea003547b33eb"><div class="ttname"><a href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb">os_launch</a></div><div class="ttdeci">void os_launch()</div><div class="ttdef"><b>Definition:</b> <a href="os_8c_source.html#l00161">os.c:161</a></div></div>
+<div class="ttc" id="nexus_8h_html_a44bf220a6c5c7c38df76ced96b0bd515"><div class="ttname"><a href="nexus_8h.html#a44bf220a6c5c7c38df76ced96b0bd515">postpone_death</a></div><div class="ttdeci">#define postpone_death()</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00040">nexus.h:40</a></div></div>
+<div class="ttc" id="hw__ints_8h_html_a8625252972b3e98e500d36c67df3dbd2"><div class="ttname"><a href="hw__ints_8h.html#a8625252972b3e98e500d36c67df3dbd2">INT_UART0</a></div><div class="ttdeci">#define INT_UART0</div><div class="ttdef"><b>Definition:</b> <a href="hw__ints_8h_source.html#l00451">hw_ints.h:451</a></div></div>
+<div class="ttc" id="group__interrupt__api_html_gae3724c6b65b8461cf0441f09b13fadf5"><div class="ttname"><a href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5">IntMasterDisable</a></div><div class="ttdeci">bool IntMasterDisable(void)</div><div class="ttdef"><b>Definition:</b> <a href="interrupt_8c_source.html#l00249">interrupt.c:249</a></div></div>
+<div class="ttc" id="group___u_a_r_t_html_ga5b7cac26db323bc074daa0e9a6502689"><div class="ttname"><a href="group___u_a_r_t.html#ga5b7cac26db323bc074daa0e9a6502689">uart_metadata_init</a></div><div class="ttdeci">#define uart_metadata_init(_baud_rate, _channel, _interrupt)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8h_source.html#l00029">uart.h:29</a></div></div>
+<div class="ttc" id="gpio_8h_html_adcaf899c018a0dde572b5af783565c62"><div class="ttname"><a href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></div><div class="ttdeci">#define GPIO_PIN_3</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00063">gpio.h:63</a></div></div>
 <div class="ttc" id="interrupt_8h_html_a8321cf21088e200350d36827ecc6dad3"><div class="ttname"><a href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3">IntMasterEnable</a></div><div class="ttdeci">bool IntMasterEnable(void)</div></div>
-<div class="ttc" id="group__gpio__api_html_gac962b2917f42452a32c1fea0d050e52e"><div class="ttname"><a href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a></div><div class="ttdeci">void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01427">gpio.c:1427</a></div></div>
+<div class="ttc" id="thread__structures_8h_html_a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28"><div class="ttname"><a href="thread__structures_8h.html#a930759cec98a9372ee6b92c4c20223fea0bf5491dfe40437ed0feaff617404d28">DL_SOFT</a></div><div class="ttdef"><b>Definition:</b> <a href="thread__structures_8h_source.html#l00100">thread_structures.h:100</a></div></div>
+<div class="ttc" id="hardware_8h_html_a5c7154f0cc168d8a8eac18c3c7de0f54"><div class="ttname"><a href="hardware_8h.html#a5c7154f0cc168d8a8eac18c3c7de0f54">hw_init_and_subscribe</a></div><div class="ttdeci">#define hw_init_and_subscribe(type, metadata, pseudo_isr)</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00149">hardware.h:149</a></div></div>
+<div class="ttc" id="test-uart_8c_html_a7c1f2d67904f5337df4eb923622a5ac8"><div class="ttname"><a href="test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8">uart_handler</a></div><div class="ttdeci">void uart_handler(notification note)</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00059">test-uart.c:59</a></div></div>
+<div class="ttc" id="nexus_8h_html_a2344d042b01c5e206dc80d736560cda0"><div class="ttname"><a href="nexus_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a></div><div class="ttdeci">#define Hz</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00045">nexus.h:45</a></div></div>
 <div class="ttc" id="hw__memmap_8h_html_a7a07348b4332ff6b88abf6092347deba"><div class="ttname"><a href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a></div><div class="ttdeci">#define UART0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00061">hw_memmap.h:61</a></div></div>
 <div class="ttc" id="sysctl_8h_html_af260fa5184c1a3211ce39d09786ccc71"><div class="ttname"><a href="sysctl_8h.html#af260fa5184c1a3211ce39d09786ccc71">SYSCTL_SYSDIV_1</a></div><div class="ttdeci">#define SYSCTL_SYSDIV_1</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00221">sysctl.h:221</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_gab9c9f4e4588e1e9c5b42e3c3b109e5c1"><div class="ttname"><a href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1">SysCtlClockSet</a></div><div class="ttdeci">void SysCtlClockSet(uint32_t ui32Config)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02532">sysctl.c:2532</a></div></div>
+<div class="ttc" id="hardware_8h_html_a581fec073a43bb639c5adfec550b30f7acc74a6bf0e29d5b754d68676b10dd8f2"><div class="ttname"><a href="hardware_8h.html#a581fec073a43bb639c5adfec550b30f7acc74a6bf0e29d5b754d68676b10dd8f2">HW_UART</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00047">hardware.h:47</a></div></div>
+<div class="ttc" id="test-uart_8c_html_ab2cc2f63a3682fc058f6b3b8dfd9e623"><div class="ttname"><a href="test-uart_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623">led_blink_blue</a></div><div class="ttdeci">void led_blink_blue()</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00047">test-uart.c:47</a></div></div>
+<div class="ttc" id="hardware_8c_html_a4b16b6aa8084ff7cc4261f2bd15b5b0b"><div class="ttname"><a href="hardware_8c.html#a4b16b6aa8084ff7cc4261f2bd15b5b0b">hw_daemon</a></div><div class="ttdeci">void hw_daemon(void)</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8c_source.html#l00172">hardware.c:172</a></div></div>
 <div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
@@ -210,80 +415,109 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="test-uart_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#test-uart_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
 <map name="test-uart_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="test-uart_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
-<area shape="rect" id="node2" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="517,5,692,32"/><area shape="rect" id="node5" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="134,208,259,235"/><area shape="rect" id="node6" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="137,259,256,285"/><area shape="rect" id="node8" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="112,309,281,336"/><area shape="rect" id="node9" href="lib_2libuart_2uart_8c.html#a01f5996cfbcef121abc486e732b208c7" title="uart_init" alt="" coords="159,157,234,184"/><area shape="rect" id="node19" href="lib_2libuart_2uart_8c.html#a6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="132,360,261,387"/><area shape="rect" id="node23" href="lib_2libuart_2uart_8c.html#ad880ffa037ecb14b4571aee5d6f53acd" title="uart_set_active_channel" alt="" coords="108,411,285,437"/><area shape="rect" id="node3" href="group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="740,44,879,71"/><area shape="rect" id="node4" href="group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="745,171,873,197"/><area shape="rect" id="node7" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="352,259,451,285"/><area shape="rect" id="node10" href="lib_2libuart_2uart_8c.html#ac720323e085cb349e70d972a0f6fe261" title="uart_init_" alt="" coords="361,157,442,184"/><area shape="rect" id="node11" href="group__gpio__api.html#ga4258289b116f814ebe85ff2d8db0b640" title="GPIOPinConfigure" alt="" coords="538,259,671,285"/><area shape="rect" id="node12" href="group__gpio__api.html#ga9f6bf578f3159dc41626a84108d006b8" title="GPIOPinTypeUART" alt="" coords="538,208,671,235"/><area shape="rect" id="node13" href="group__uart__api.html#gaacfccbb6fb7e3e3138573bfc4835250b" title="UARTConfigSetExpClk" alt="" coords="525,309,684,336"/><area shape="rect" id="node16" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="545,56,664,83"/><area shape="rect" id="node17" href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="564,107,645,133"/><area shape="rect" id="node18" href="group__uart__api.html#ga2348192170cdf1bb031fa4ce88c35495" title="UARTIntEnable" alt="" coords="547,157,662,184"/><area shape="rect" id="node14" href="group__uart__api.html#ga24b7349b5fd44c56e552d2d3fa2e4057" title="UARTDisable" alt="" coords="758,284,861,311"/><area shape="rect" id="node15" href="group__uart__api.html#ga93ba793d082da8ceb2ddab3ddc650a35" title="UARTEnable" alt="" coords="760,335,859,361"/><area shape="rect" id="node20" href="lib_2libuart_2uart_8c.html#a511e841b613337d3f818786891074f07" title="uart_send_string_" alt="" coords="333,360,469,387"/><area shape="rect" id="node21" href="lib_2libuart_2uart_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="571,411,638,437"/><area shape="rect" id="node22" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="552,360,657,387"/></map>
+<area shape="rect" id="node2" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615" title="Initialize &#160;for visible transformation. " alt="" coords="132,56,215,83"/><area shape="rect" id="node7" href="hardware_8c.html#a4b16b6aa8084ff7cc4261f2bd15b5b0b" title="hw_daemon" alt="" coords="124,107,223,133"/><area shape="rect" id="node12" href="group__interrupt__api.html#gae3724c6b65b8461cf0441f09b13fadf5" title="IntMasterDisable" alt="" coords="109,157,238,184"/><area shape="rect" id="node14" href="interrupt_8h.html#a8321cf21088e200350d36827ecc6dad3" title="IntMasterEnable" alt="" coords="111,208,236,235"/><area shape="rect" id="node15" href="test-uart_8c.html#ab2cc2f63a3682fc058f6b3b8dfd9e623" title="led_blink_blue" alt="" coords="322,208,433,235"/><area shape="rect" id="node18" href="test-uart_8c.html#acbd0a67d4b214af8305bdb9795b7b93f" title="led_blink_red" alt="" coords="325,259,430,285"/><area shape="rect" id="node19" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="130,461,217,488"/><area shape="rect" id="node30" href="group___o_s.html#gae54705fc84d831fc8689cbd51c9714e0" title="os_threading_init" alt="" coords="108,537,239,564"/><area shape="rect" id="node32" href="os_8c.html#aa4b97ba3cbe3f6ef9decafcab1c1dc61" title="schedule" alt="" coords="134,613,213,640"/><area shape="rect" id="node36" href="group__sysctl__api.html#gab9c9f4e4588e1e9c5b42e3c3b109e5c1" title="SysCtlClockSet" alt="" coords="114,689,233,716"/><area shape="rect" id="node38" href="test-uart_8c.html#a7c1f2d67904f5337df4eb923622a5ac8" title="uart_handler" alt="" coords="122,360,225,387"/><area shape="rect" id="node43" href="group___u_a_r_t.html#ga6663854cc5f46b64a624589faacd8979" title="uart_send_string" alt="" coords="109,411,238,437"/><area shape="rect" id="node3" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="293,56,462,83"/><area shape="rect" id="node4" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e" title="GPIOPinTypeGPIOOutput" alt="" coords="290,5,465,32"/><area shape="rect" id="node5" href="group__gpio__api.html#ga6b21eaa7924fc53cbe721f5cb68f345c" title="GPIOPadConfigSet" alt="" coords="534,56,673,83"/><area shape="rect" id="node6" href="group__gpio__api.html#ga18dc54943796485c7298abd8fdcdcec3" title="GPIODirModeSet" alt="" coords="539,5,667,32"/><area shape="rect" id="node8" href="hardware_8c.html#aeec040621fb93a935c8f3aaf2037d6cd" title="hw_notify_uart" alt="" coords="320,107,435,133"/><area shape="rect" id="node9" href="hardware_8c.html#a1aac20922af64474d68eb42c09f79535" title="hw_notify" alt="" coords="563,107,644,133"/><area shape="rect" id="node10" href="hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="739,107,869,133"/><area shape="rect" id="node11" href="hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="917,107,1064,133"/><area shape="rect" id="node13" href="cpu_8h.html#a491d851c4f7fff1f9f66aa778b0671b0" title="CPUcpsid" alt="" coords="336,157,419,184"/><area shape="rect" id="node16" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="552,259,655,285"/><area shape="rect" id="node17" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="552,208,655,235"/><area shape="rect" id="node20" href="os_8c.html#a9c501e25b473053fd85e419016865d81" title="edf_init" alt="" coords="569,563,637,589"/><area shape="rect" id="node22" href="os_8c.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="287,461,468,488"/><area shape="rect" id="node21" href="os_8c.html#a9e60608a8e73ad2b74d172acd369999e" title="edf_insert" alt="" coords="761,651,847,677"/><area shape="rect" id="node23" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="523,487,684,513"/><area shape="rect" id="node24" href="group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="748,448,860,475"/><area shape="rect" id="node25" href="group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="740,499,868,525"/><area shape="rect" id="node26" href="group__systick__api.html#ga0b993bfbd72abac7286c4f54369576f2" title="SysTickDisable" alt="" coords="746,549,862,576"/><area shape="rect" id="node27" href="group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="739,600,869,627"/><area shape="rect" id="node28" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="745,347,863,373"/><area shape="rect" id="node29" href="group__interrupt__api.html#gafe17b56764bff1bcb95bd53acde4ac98" title="IntPendSet" alt="" coords="758,397,850,424"/><area shape="rect" id="node31" href="os_8c.html#abf76f28d35f214c1654de5c356f1bee1" title="schedule_init" alt="" coords="325,563,430,589"/><area shape="rect" id="node33" href="group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f" title="os_add_thread" alt="" coords="319,664,436,691"/><area shape="rect" id="node35" href="os_8c.html#a2e06c0d5b44dc2b4733dfbff30142519" title="schedule_hash_find_int" alt="" coords="292,613,463,640"/><area shape="rect" id="node34" href="group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a" title="_os_reset_thread_stack" alt="" coords="516,664,691,691"/><area shape="rect" id="node37" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="328,715,427,741"/><area shape="rect" id="node39" href="group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="317,360,438,387"/><area shape="rect" id="node42" href="test-uart_8c.html#a222d45b9e4999c84a7113b56a2733887" title="led_blink_green" alt="" coords="317,309,438,336"/><area shape="rect" id="node40" href="group___u_a_r_t.html#ga1b09d796a7f93a651ecd7241868f0e16" title="uart_send_char_" alt="" coords="539,309,667,336"/><area shape="rect" id="node41" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="751,296,857,323"/><area shape="rect" id="node44" href="group___u_a_r_t.html#ga5f75da55771fa18535ad7e1dee1e621b" title="uart_send_string_" alt="" coords="309,411,445,437"/><area shape="rect" id="node45" href="nexus_8c.html#a45fd60d576394d7c39c9e584afd449ae" title="ustrlen" alt="" coords="570,411,637,437"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a82b7b0fba46f37a99898682733d4c73f"></a>
+<a class="anchor" id="a7c1f2d67904f5337df4eb923622a5ac8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UART0_Handler </td>
+          <td class="memname">void uart_handler </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="unionnotification.html">notification</a>&#160;</td>
+          <td class="paramname"><em>note</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Read the next character from the UART and write it back to the UART. </p><dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00025">25</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00059">59</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
 
-<p>References <a class="el" href="heartbeat_8h_source.html#l00062">heart_beat()</a>, <a class="el" href="heartbeat_8h_source.html#l00026">heart_off()</a>, <a class="el" href="sysctl_8c_source.html#l02727">SysCtlClockGet()</a>, <a class="el" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042">SysCtlDelay()</a>, <a class="el" href="hw__memmap_8h_source.html#l00061">UART0_BASE</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00099">uart_get_char()</a>, <a class="el" href="lib_2libuart_2uart_8c_source.html#l00073">uart_send_char()</a>, and <a class="el" href="driverlib_2uart_8c_source.html#l01087">UARTCharsAvail()</a>.</p>
+<p>References <a class="el" href="notify_8h_source.html#l00025">notification::_char</a>, <a class="el" href="test-uart_8c_source.html#l00038">led_blink_green()</a>, and <a class="el" href="lib_2libuart_2uart_8c_source.html#l00059">uart_send_char()</a>.</p>
 
-<p>Referenced by <a class="el" href="blinky_2startup__gcc_8c_source.html#l00050">__attribute__()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                         {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint32_t ui32Status;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">/* Loop while there are characters in the receive FIFO. */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">while</span>(<a class="code" href="group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6">UARTCharsAvail</a>(<a class="code" href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a>)) {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">/* Read the next character from the UART and write it back to the UART. */</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca">uart_send_char</a>(<a class="code" href="lib_2libuart_2uart_8c.html#a36116526b4c84562aec19bca46a0827e">uart_get_char</a>());</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">/* char* received_string = uart_get_string(1); */</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">/* uart_send_char(received_string[0]); */</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">/* free(received_string); */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">/* Blink the LED to show a character transfer is occuring. */</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384">heart_beat</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">/* Delay for 1 millisecond.  Each SysCtlDelay is about 3 clocks. */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042">SysCtlDelay</a>(<a class="code" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a>() / (1000 * 3));</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">/* Turn off the LED */</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="heartbeat_8h.html#ac4e09294b286f9c177f810f1d9257b71">heart_off</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="ttc" id="group__uart__api_html_ga4ef85e7bc642ef7169d6641cfa5265c6"><div class="ttname"><a href="group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6">UARTCharsAvail</a></div><div class="ttdeci">bool UARTCharsAvail(uint32_t ui32Base)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2uart_8c_source.html#l01087">uart.c:1087</a></div></div>
-<div class="ttc" id="heartbeat_8h_html_ac6da9e44029c67ea80ffa494d9328384"><div class="ttname"><a href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384">heart_beat</a></div><div class="ttdeci">void heart_beat()</div><div class="ttdoc">Toggle the heart twice. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00062">heartbeat.h:62</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a992a7493f587384e949178cdc4063042"><div class="ttname"><a href="sysctl_8h.html#a992a7493f587384e949178cdc4063042">SysCtlDelay</a></div><div class="ttdeci">void SysCtlDelay(uint32_t ui32Count)</div></div>
-<div class="ttc" id="group__sysctl__api_html_ga97d96b02b249a16354577bde88ece728"><div class="ttname"><a href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a></div><div class="ttdeci">uint32_t SysCtlClockGet(void)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02727">sysctl.c:2727</a></div></div>
-<div class="ttc" id="heartbeat_8h_html_ac4e09294b286f9c177f810f1d9257b71"><div class="ttname"><a href="heartbeat_8h.html#ac4e09294b286f9c177f810f1d9257b71">heart_off</a></div><div class="ttdeci">void heart_off()</div><div class="ttdoc">Turn the heart off. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00026">heartbeat.h:26</a></div></div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_a36116526b4c84562aec19bca46a0827e"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#a36116526b4c84562aec19bca46a0827e">uart_get_char</a></div><div class="ttdeci">char uart_get_char()</div><div class="ttdoc">Read a char from the active uart channel. </div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00099">uart.c:99</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a7a07348b4332ff6b88abf6092347deba"><div class="ttname"><a href="hw__memmap_8h.html#a7a07348b4332ff6b88abf6092347deba">UART0_BASE</a></div><div class="ttdeci">#define UART0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00061">hw_memmap.h:61</a></div></div>
-<div class="ttc" id="lib_2libuart_2uart_8c_html_ae628f67337f847a32fe8cfb2127007ca"><div class="ttname"><a href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca">uart_send_char</a></div><div class="ttdeci">void uart_send_char(const char text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00073">uart.c:73</a></div></div>
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00070">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                     {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">char</span> recv = note.<a class="code" href="unionnotification.html#a232861a319c9f1002abfe32e1c04726b">_char</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca">uart_send_char</a>(recv);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="test-uart_8c.html#a222d45b9e4999c84a7113b56a2733887">led_blink_green</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="ttc" id="test-uart_8c_html_a222d45b9e4999c84a7113b56a2733887"><div class="ttname"><a href="test-uart_8c.html#a222d45b9e4999c84a7113b56a2733887">led_blink_green</a></div><div class="ttdeci">void led_blink_green()</div><div class="ttdef"><b>Definition:</b> <a href="test-uart_8c_source.html#l00038">test-uart.c:38</a></div></div>
+<div class="ttc" id="group___u_a_r_t_html_gae628f67337f847a32fe8cfb2127007ca"><div class="ttname"><a href="group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca">uart_send_char</a></div><div class="ttdeci">void uart_send_char(const char text)</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libuart_2uart_8c_source.html#l00059">uart.c:59</a></div></div>
+<div class="ttc" id="unionnotification_html_a232861a319c9f1002abfe32e1c04726b"><div class="ttname"><a href="unionnotification.html#a232861a319c9f1002abfe32e1c04726b">notification::_char</a></div><div class="ttdeci">char _char</div><div class="ttdef"><b>Definition:</b> <a href="notify_8h_source.html#l00025">notify.h:25</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_cgraph.png" border="0" usemap="#test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_cgraph" alt=""/></div>
-<map name="test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_cgraph" id="test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_cgraph">
-<area shape="rect" id="node2" href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle the heart twice. " alt="" coords="188,56,280,83"/><area shape="rect" id="node5" href="heartbeat_8h.html#ac4e09294b286f9c177f810f1d9257b71" title="Turn the heart off. " alt="" coords="195,5,273,32"/><area shape="rect" id="node6" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="175,107,293,133"/><area shape="rect" id="node7" href="sysctl_8h.html#a992a7493f587384e949178cdc4063042" title="SysCtlDelay" alt="" coords="185,157,283,184"/><area shape="rect" id="node8" href="lib_2libuart_2uart_8c.html#a36116526b4c84562aec19bca46a0827e" title="Read a char from the active uart channel. " alt="" coords="179,208,289,235"/><area shape="rect" id="node13" href="lib_2libuart_2uart_8c.html#ae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="173,259,295,285"/><area shape="rect" id="node16" href="group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="174,309,294,336"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="355,5,458,32"/><area shape="rect" id="node4" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="355,56,458,83"/><area shape="rect" id="node9" href="lib_2libuart_2uart_8c.html#a0ef7b9a5605bcb31bc764e1144bf2bc4" title="Read a char from the specified uart channel. " alt="" coords="347,196,466,223"/><area shape="rect" id="node10" href="group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="555,139,669,165"/><area shape="rect" id="node11" href="group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="560,189,664,216"/><area shape="rect" id="node12" href="group__uart__api.html#gaad338221fc820412b005653855cedaf7" title="UARTCharGetNonBlocking" alt="" coords="519,240,705,267"/><area shape="rect" id="node14" href="lib_2libuart_2uart_8c.html#a3b741ddac856f7b11678ce853b77fa08" title="uart_send_char_" alt="" coords="343,265,471,292"/><area shape="rect" id="node15" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="559,291,665,317"/></map>
+<div class="center"><img src="test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_cgraph.png" border="0" usemap="#test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_cgraph" alt=""/></div>
+<map name="test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_cgraph" id="test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_cgraph">
+<area shape="rect" id="node2" href="test-uart_8c.html#a222d45b9e4999c84a7113b56a2733887" title="led_blink_green" alt="" coords="156,56,277,83"/><area shape="rect" id="node5" href="group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="156,107,277,133"/><area shape="rect" id="node3" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="338,5,441,32"/><area shape="rect" id="node4" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="338,56,441,83"/><area shape="rect" id="node6" href="group___u_a_r_t.html#ga1b09d796a7f93a651ecd7241868f0e16" title="uart_send_char_" alt="" coords="325,107,453,133"/><area shape="rect" id="node7" href="group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="501,107,607,133"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_icgraph.png" border="0" usemap="#test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_icgraph" alt=""/></div>
-<map name="test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_icgraph" id="test-uart_8c_a82b7b0fba46f37a99898682733d4c73f_icgraph">
-<area shape="rect" id="node2" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="173,5,279,32"/></map>
+<div class="center"><img src="test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_icgraph.png" border="0" usemap="#test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_icgraph" alt=""/></div>
+<map name="test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_icgraph" id="test-uart_8c_a7c1f2d67904f5337df4eb923622a5ac8_icgraph">
+<area shape="rect" id="node2" href="test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="156,5,211,32"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a858f35dd4dd8f48f10a9df3054ae2186"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t blue_work = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00026">26</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00047">led_blink_blue()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b37793c5cf800da09c2f6df8282c7f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t green_work = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00027">27</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00038">led_blink_green()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeb0a9095d6e39c67dcb2d28fc1f5473b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t red_work = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="test-uart_8c_source.html#l00025">25</a> of file <a class="el" href="test-uart_8c_source.html">test-uart.c</a>.</p>
+
+<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00029">led_blink_red()</a>.</p>
 
 </div>
 </div>
@@ -293,7 +527,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_8f4eebbc5be43a6e6baf1c6b1e65cd8a.html">board-progs</a></li><li class="navelem"><a class="el" href="dir_7ef2121786ed840aee5994886009dd1a.html">test-uart</a></li><li class="navelem"><a class="el" href="test-uart_8c.html">test-uart.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:38 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

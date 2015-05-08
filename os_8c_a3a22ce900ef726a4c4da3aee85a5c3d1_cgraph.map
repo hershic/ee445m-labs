@@ -1,0 +1,9 @@
+<map id="scheduler_reschedule" name="scheduler_reschedule">
+<area shape="rect" id="node2" href="$os_8c.html#a9e60608a8e73ad2b74d172acd369999e" title="edf_insert" alt="" coords="237,5,323,32"/>
+<area shape="rect" id="node3" href="$group__interrupt__api.html#gafe17b56764bff1bcb95bd53acde4ac98" title="IntPendSet" alt="" coords="234,56,326,83"/>
+<area shape="rect" id="node4" href="$group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="221,107,339,133"/>
+<area shape="rect" id="node5" href="$group__systick__api.html#ga0b993bfbd72abac7286c4f54369576f2" title="SysTickDisable" alt="" coords="222,157,338,184"/>
+<area shape="rect" id="node6" href="$group__systick__api.html#ga6fa7e44c447e4f861e63a2bf4d175afd" title="SysTickEnable" alt="" coords="224,208,336,235"/>
+<area shape="rect" id="node7" href="$group__systick__api.html#gae9621f9d2bcf0cfe021cd5b7ff98edcc" title="SysTickIntEnable" alt="" coords="216,259,344,285"/>
+<area shape="rect" id="node8" href="$group__systick__api.html#ga5892f33d986c614769aa4cfe20bfc80d" title="SysTickPeriodSet" alt="" coords="215,309,345,336"/>
+</map>

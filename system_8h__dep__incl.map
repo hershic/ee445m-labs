@@ -1,6 +1,7 @@
 <map id="lib/libos/system.h" name="lib/libos/system.h">
 <area shape="rect" id="node2" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,155,168,196"/>
-<area shape="rect" id="node3" href="$system_8c.html" title="lib/libos/system.c" alt="" coords="81,80,212,107"/>
-<area shape="rect" id="node4" href="$shell_8h.html" title="lib/libshell/shell.h" alt="" coords="236,80,364,107"/>
-<area shape="rect" id="node5" href="$shell_8c.html" title="lib/libshell/shell.c" alt="" coords="237,162,363,189"/>
+<area shape="rect" id="node3" href="$system_8c.html" title="lib/libos/system.c" alt="" coords="99,80,229,107"/>
+<area shape="rect" id="node4" href="$shell_8h.html" title="lib/libshell/shell.h" alt="" coords="253,80,381,107"/>
+<area shape="rect" id="node5" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="205,155,403,196"/>
+<area shape="rect" id="node6" href="$shell_8c.html" title="lib/libshell/shell.c" alt="" coords="427,162,554,189"/>
 </map>

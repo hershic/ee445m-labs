@@ -1,0 +1,5 @@
+<map id="schedule" name="schedule">
+<area shape="rect" id="node2" href="$group___o_s.html#ga3321517db0bac2bb29669d5c87283b5f" title="os_add_thread" alt="" coords="159,5,276,32"/>
+<area shape="rect" id="node4" href="$os_8c.html#a2e06c0d5b44dc2b4733dfbff30142519" title="schedule_hash_find_int" alt="" coords="132,56,303,83"/>
+<area shape="rect" id="node3" href="$group___o_s.html#ga753ce24080e7c2b9cb0a49f15651556a" title="_os_reset_thread_stack" alt="" coords="351,5,525,32"/>
+</map>

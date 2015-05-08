@@ -114,80 +114,113 @@ $(document).ready(function(){initNavTree('lib_2libtimer_2timer_8h.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="hardware_8h_source.html">libhw/hardware.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for timer.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="lib_2libtimer_2timer_8h__incl.png" border="0" usemap="#lib_2libtimer_2timer_8h" alt=""/></div>
 <map name="lib_2libtimer_2timer_8h" id="lib_2libtimer_2timer_8h">
-</map>
+<area shape="rect" id="node4" href="hardware_8h.html" title="libhw/hardware.h" alt="" coords="229,80,357,107"/><area shape="rect" id="node5" href="notify_8h.html" title="libnotify/notify.h" alt="" coords="144,453,264,480"/><area shape="rect" id="node6" href="nexus_8h.html" title="libstd/nexus.h" alt="" coords="122,528,233,555"/><area shape="rect" id="node8" href="semaphore_8h.html" title="libos/semaphore.h" alt="" coords="321,155,461,181"/><area shape="rect" id="node7" href="defines_8h.html" title="defines.h" alt="" coords="391,603,471,629"/><area shape="rect" id="node9" href="os_8h.html" title="os.h" alt="" coords="451,229,501,256"/><area shape="rect" id="node10" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="234,304,337,331"/><area shape="rect" id="node11" href="edf_8h.html" title="libschedule/edf.h" alt="" coords="412,304,540,331"/><area shape="rect" id="node12" href="thread__structures_8h.html" title="libos/thread_structures.h" alt="" coords="421,453,603,480"/><area shape="rect" id="node13" href="priority__schedule__structures_8h.html" title="priority_schedule_structures.h" alt="" coords="259,379,474,405"/><area shape="rect" id="node14" href="uthash_8h.html" title="libut/uthash.h" alt="" coords="288,453,397,480"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="lib_2libtimer_2timer_8h__dep__incl.png" border="0" usemap="#lib_2libtimer_2timer_8hdep" alt=""/></div>
 <map name="lib_2libtimer_2timer_8hdep" id="lib_2libtimer_2timer_8hdep">
-<area shape="rect" id="node2" href="test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="5,80,173,121"/><area shape="rect" id="node3" href="lib_2libadc_2adc_8h.html" title="lib/libadc/adc.h" alt="" coords="198,87,314,114"/><area shape="rect" id="node6" href="lib_2libtimer_2timer_8c.html" title="lib/libtimer/timer.c" alt="" coords="339,87,475,114"/><area shape="rect" id="node4" href="test-adc_8c.html" title="board&#45;progs/test&#45;adc\l/test&#45;adc.c" alt="" coords="97,169,255,211"/><area shape="rect" id="node5" href="lib_2libadc_2adc_8c.html" title="lib/libadc/adc.c" alt="" coords="279,177,393,203"/></map>
+<area shape="rect" id="node2" href="test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="5,87,219,129"/><area shape="rect" id="node3" href="test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="243,87,440,129"/><area shape="rect" id="node4" href="test-edf_8c.html" title="board&#45;progs/test&#45;edf\l/test&#45;edf.c" alt="" coords="464,87,619,129"/><area shape="rect" id="node5" href="test-priority-scheduler_8c.html" title="board&#45;progs/test&#45;priority\l&#45;scheduler/test&#45;priority\l&#45;scheduler.c" alt="" coords="643,80,821,136"/><area shape="rect" id="node6" href="test-semaphore_8c.html" title="board&#45;progs/test&#45;semaphore\l/test&#45;semaphore.c" alt="" coords="846,87,1053,129"/><area shape="rect" id="node7" href="test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="1077,87,1245,129"/><area shape="rect" id="node8" href="hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="1270,95,1415,121"/><area shape="rect" id="node9" href="lib_2libtimer_2timer_8c.html" title="lib/libtimer/timer.c" alt="" coords="1440,95,1576,121"/></map>
 </div>
 </div>
 <p><a href="lib_2libtimer_2timer_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2344d042b01c5e206dc80d736560cda0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2libtimer_2timer_8h.html#a2344d042b01c5e206dc80d736560cda0">Hz</a></td></tr>
-<tr class="memdesc:a2344d042b01c5e206dc80d736560cda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule a task (function) to be invoked periodically.  <a href="#a2344d042b01c5e206dc80d736560cda0">More...</a><br /></td></tr>
-<tr class="separator:a2344d042b01c5e206dc80d736560cda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a245e0a3a87cc3f1718f060a485fed1d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2libtimer_2timer_8h.html#a245e0a3a87cc3f1718f060a485fed1d4">timer_metadata_init_</a>(_name,  _base,  _frequency,  _interrupt,  _periodic)</td></tr>
+<tr class="separator:a245e0a3a87cc3f1718f060a485fed1d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5407ddd40746962057f9ee037cbe0828"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2libtimer_2timer_8h.html#a5407ddd40746962057f9ee037cbe0828">timer_metadata_init</a>(_base,  _frequency,  _interrupt,  _periodic)&#160;&#160;&#160;<a class="el" href="lib_2libtimer_2timer_8h.html#a245e0a3a87cc3f1718f060a485fed1d4">timer_metadata_init_</a>(timer_metadata, _base, _frequency, _interrupt, _periodic)</td></tr>
+<tr class="separator:a5407ddd40746962057f9ee037cbe0828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a704234a42b3ec7054f5e2bf8c8ddd364"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2libtimer_2timer_8h.html#a704234a42b3ec7054f5e2bf8c8ddd364">timer_add_periodic_interrupt</a> (uint32_t frequency, uint32_t timer_peripheral)</td></tr>
-<tr class="separator:a704234a42b3ec7054f5e2bf8c8ddd364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eeca9a71be3572b1bf0148e62466989"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_2libtimer_2timer_8h.html#a2eeca9a71be3572b1bf0148e62466989">timer_add_interrupt</a> (<a class="el" href="unionhw__metadata.html">hw_metadata</a> metadata)</td></tr>
+<tr class="separator:a2eeca9a71be3572b1bf0148e62466989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a2344d042b01c5e206dc80d736560cda0"></a>
+<a class="anchor" id="a5407ddd40746962057f9ee037cbe0828"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Hz</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Schedule a task (function) to be invoked periodically. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">task</td><td>A pointer to the function to execute every  milliseconds </td></tr>
-    <tr><td class="paramname">period_in_ms</td><td>Number of milliseconds to wait before invoking  repeatedly </td></tr>
-    <tr><td class="paramname">priority</td><td>The value to be specified in the NVIC for this thread (task) </td></tr>
-    <tr><td class="paramname">timer_peripheral</td><td>The timer device (peripheral) to use for scheduling </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>TODO </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Note that this function name was chosen by the class administrators. This name has been the source of some confusion; namely the fact that the function name refers to a thread and the function argument refers to a task. This function actually takes a task (a function pointer, not a fully-fledged thread) and invokes said function on the designated schedule. No true threads exist in this context. </dd></dl>
-
-<p>Definition at line <a class="el" href="lib_2libtimer_2timer_8h_source.html#l00024">24</a> of file <a class="el" href="lib_2libtimer_2timer_8h_source.html">timer.h</a>.</p>
-
-<p>Referenced by <a class="el" href="test-timer_8c_source.html#l00039">main()</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a704234a42b3ec7054f5e2bf8c8ddd364"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool timer_add_periodic_interrupt </td>
+          <td class="memname">#define timer_metadata_init</td>
           <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>frequency</em>, </td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_base, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>timer_peripheral</em>&#160;</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_frequency, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_interrupt, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_periodic&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="lib_2libtimer_2timer_8h.html#a245e0a3a87cc3f1718f060a485fed1d4">timer_metadata_init_</a>(timer_metadata, _base, _frequency, _interrupt, _periodic)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Create a  struct named `timer_metadata'. </p>
+
+<p>Definition at line <a class="el" href="lib_2libtimer_2timer_8h_source.html#l00021">21</a> of file <a class="el" href="lib_2libtimer_2timer_8h_source.html">timer.h</a>.</p>
+
+<p>Referenced by <a class="el" href="test-combination_8c_source.html#l00066">button_debounce_start()</a>, <a class="el" href="test-combination_8c_source.html#l00173">main()</a>, <a class="el" href="bin_2lisp_2templates_2timer_8c_source.html#l00007">sA_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00341">TIMER0A_Handler()</a>, <a class="el" href="hardware_8c_source.html#l00355">TIMER1A_Handler()</a>, and <a class="el" href="hardware_8c_source.html#l00370">TIMER2A_Handler()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a245e0a3a87cc3f1718f060a485fed1d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define timer_metadata_init_</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_base, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_frequency, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_interrupt, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_periodic&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -196,87 +229,88 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="unionhw__metadata.html">hw_metadata</a> _name;                          \</div>
+<div class="line">    _name.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a> = (<a class="code" href="structhw__timer__metadata.html">hw_timer_metadata</a>) {                 \</div>
+<div class="line">        .<a class="code" href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">base</a>      = (<a class="code" href="nexus_8h.html#ac227902e4f2e6d64f7807cb692643d13">memory_address_t</a>) _base,              \</div>
+<div class="line">        .frequency = (uint32_t)  _frequency,                \</div>
+<div class="line">        .interrupt = (uint32_t)  _interrupt,                \</div>
+<div class="line">        .periodic  = (uint32_t)  _periodic              \</div>
+<div class="line">    }</div>
+<div class="ttc" id="structhw__timer__metadata_html_a7c062bb98a4a1124b1866ecfeda0245b"><div class="ttname"><a href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">hw_timer_metadata::base</a></div><div class="ttdeci">memory_address_t base</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00063">hardware.h:63</a></div></div>
+<div class="ttc" id="unionhw__metadata_html_ae835490cd4d8a87138f19783e142b984"><div class="ttname"><a href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">hw_metadata::timer</a></div><div class="ttdeci">hw_timer_metadata timer</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00098">hardware.h:98</a></div></div>
+<div class="ttc" id="unionhw__metadata_html"><div class="ttname"><a href="unionhw__metadata.html">hw_metadata</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00096">hardware.h:96</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html"><div class="ttname"><a href="structhw__timer__metadata.html">hw_timer_metadata</a></div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00062">hardware.h:62</a></div></div>
+<div class="ttc" id="nexus_8h_html_ac227902e4f2e6d64f7807cb692643d13"><div class="ttname"><a href="nexus_8h.html#ac227902e4f2e6d64f7807cb692643d13">memory_address_t</a></div><div class="ttdeci">int32_t memory_address_t</div><div class="ttdef"><b>Definition:</b> <a href="nexus_8h_source.html#l00048">nexus.h:48</a></div></div>
+</div><!-- fragment --><p>Create a  struct named _name. </p>
 
-<p>Definition at line <a class="el" href="lib_2libtimer_2timer_8c_source.html#l00016">16</a> of file <a class="el" href="lib_2libtimer_2timer_8c_source.html">timer.c</a>.</p>
+<p>Definition at line <a class="el" href="lib_2libtimer_2timer_8h_source.html#l00011">11</a> of file <a class="el" href="lib_2libtimer_2timer_8h_source.html">timer.h</a>.</p>
 
-<p>References <a class="el" href="hw__ints_8h_source.html#l00435">INT_TIMER0A</a>, <a class="el" href="hw__ints_8h_source.html#l00437">INT_TIMER1A</a>, <a class="el" href="hw__ints_8h_source.html#l00439">INT_TIMER2A</a>, <a class="el" href="interrupt_8c_source.html#l00610">IntEnable()</a>, <a class="el" href="sysctl_8h_source.html#l00114">SYSCTL_PERIPH_TIMER0</a>, <a class="el" href="sysctl_8h_source.html#l00115">SYSCTL_PERIPH_TIMER1</a>, <a class="el" href="sysctl_8h_source.html#l00116">SYSCTL_PERIPH_TIMER2</a>, <a class="el" href="sysctl_8c_source.html#l02727">SysCtlClockGet()</a>, <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>, <a class="el" href="hw__memmap_8h_source.html#l00081">TIMER0_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00082">TIMER1_BASE</a>, <a class="el" href="hw__memmap_8h_source.html#l00083">TIMER2_BASE</a>, <a class="el" href="driverlib_2timer_8h_source.html#l00152">TIMER_A</a>, <a class="el" href="driverlib_2timer_8h_source.html#l00062">TIMER_CFG_PERIODIC</a>, <a class="el" href="driverlib_2timer_8h_source.html#l00135">TIMER_TIMA_TIMEOUT</a>, <a class="el" href="driverlib_2timer_8c_source.html#l00347">TimerConfigure()</a>, <a class="el" href="driverlib_2timer_8c_source.html#l00210">TimerEnable()</a>, <a class="el" href="driverlib_2timer_8c_source.html#l01464">TimerIntEnable()</a>, and <a class="el" href="driverlib_2timer_8c_source.html#l00969">TimerLoadSet()</a>.</p>
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a2eeca9a71be3572b1bf0148e62466989"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void timer_add_interrupt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionhw__metadata.html">hw_metadata</a>&#160;</td>
+          <td class="paramname"><em>metadata</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Schedule a task (function) to be invoked periodically. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Metadata</td><td>regarding the timer peripheral and isr to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Referenced by <a class="el" href="hardware_8c_source.html#l00071">hw_channel_init()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                                             {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    uint32_t timer_base, timer_periph, timer_int;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">/* can give it a raw timer address (TIMERx_BASE) or an int with</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">       the timer number (0, 1, 2) for convenience */</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">switch</span> (timer_peripheral) {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="hw__memmap_8h.html#a7a5c55fc79dee34c91502b0503404375">TIMER0_BASE</a>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        timer_base = <a class="code" href="hw__memmap_8h.html#a7a5c55fc79dee34c91502b0503404375">TIMER0_BASE</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        timer_periph = <a class="code" href="sysctl_8h.html#a2bec12e520ecd4068f3d6155c9856b29">SYSCTL_PERIPH_TIMER0</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        timer_int = <a class="code" href="hw__ints_8h.html#a6443091601a7d739bf5366c7a691556d">INT_TIMER0A</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="hw__memmap_8h.html#a7a4bd01d91a70285f0bec70f4e9e88bb">TIMER1_BASE</a>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        timer_base = <a class="code" href="hw__memmap_8h.html#a7a4bd01d91a70285f0bec70f4e9e88bb">TIMER1_BASE</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        timer_periph = <a class="code" href="sysctl_8h.html#a90729f9a7e5bded1d976dd49f004780a">SYSCTL_PERIPH_TIMER1</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        timer_int = <a class="code" href="hw__ints_8h.html#a6892773550bab5f40261dc94d9a2f4fd">INT_TIMER1A</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="hw__memmap_8h.html#a933376d74e94dae8f42e17c09bd91faa">TIMER2_BASE</a>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        timer_base = <a class="code" href="hw__memmap_8h.html#a933376d74e94dae8f42e17c09bd91faa">TIMER2_BASE</a>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        timer_periph = <a class="code" href="sysctl_8h.html#a2e20530c746e8845eee6e18ae701d422">SYSCTL_PERIPH_TIMER2</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        timer_int = <a class="code" href="hw__ints_8h.html#ac80f255247c61c3faa6e90e681460a60">INT_TIMER2A</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">/* you broke the world */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(timer_periph);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">TimerConfigure</a>(timer_base, <a class="code" href="driverlib_2timer_8h.html#ab1cbfa3c9bc642108f8f2265541df7f4">TIMER_CFG_PERIODIC</a>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613">TimerLoadSet</a>(timer_base, <a class="code" href="driverlib_2timer_8h.html#a47d0eac91b49052bcd964223eb8eeffc">TIMER_A</a>, <a class="code" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a>() / frequency);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf">TimerIntEnable</a>(timer_base, <a class="code" href="driverlib_2timer_8h.html#a62f2b2418367f36c760584d319ddb0f5">TIMER_TIMA_TIMEOUT</a>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">/* TODO: Fill in priority */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce">IntEnable</a>(timer_int, 0);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c">TimerEnable</a>(timer_base, <a class="code" href="driverlib_2timer_8h.html#a47d0eac91b49052bcd964223eb8eeffc">TIMER_A</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">/* Success */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
-<div class="ttc" id="driverlib_2timer_8h_html_ab1cbfa3c9bc642108f8f2265541df7f4"><div class="ttname"><a href="driverlib_2timer_8h.html#ab1cbfa3c9bc642108f8f2265541df7f4">TIMER_CFG_PERIODIC</a></div><div class="ttdeci">#define TIMER_CFG_PERIODIC</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8h_source.html#l00062">timer.h:62</a></div></div>
+<p>Definition at line <a class="el" href="lib_2libtimer_2timer_8c_source.html#l00018">18</a> of file <a class="el" href="lib_2libtimer_2timer_8c_source.html">timer.c</a>.</p>
+
+<p>References <a class="el" href="hardware_8h_source.html#l00063">hw_timer_metadata::base</a>, <a class="el" href="hardware_8h_source.html#l00064">hw_timer_metadata::frequency</a>, <a class="el" href="interrupt_8c_source.html#l00610">IntEnable()</a>, <a class="el" href="hardware_8h_source.html#l00065">hw_timer_metadata::interrupt</a>, <a class="el" href="hardware_8h_source.html#l00066">hw_timer_metadata::periodic</a>, <a class="el" href="sysctl_8c_source.html#l02727">SysCtlClockGet()</a>, <a class="el" href="hardware_8h_source.html#l00098">hw_metadata::timer</a>, <a class="el" href="driverlib_2timer_8h_source.html#l00152">TIMER_A</a>, <a class="el" href="lib_2libtimer_2timer_8c_source.html#l00016">TIMER_DEFAULT_PRIORITY</a>, <a class="el" href="driverlib_2timer_8h_source.html#l00135">TIMER_TIMA_TIMEOUT</a>, <a class="el" href="driverlib_2timer_8c_source.html#l00347">TimerConfigure()</a>, <a class="el" href="driverlib_2timer_8c_source.html#l00210">TimerEnable()</a>, <a class="el" href="driverlib_2timer_8c_source.html#l01464">TimerIntEnable()</a>, and <a class="el" href="driverlib_2timer_8c_source.html#l00969">TimerLoadSet()</a>.</p>
+
+<p>Referenced by <a class="el" href="hardware_8c_source.html#l00094">hw_channel_init()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                               {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">TimerConfigure</a>(metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">base</a>, metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#a984b08462710210578e190c376d1ff77">periodic</a>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613">TimerLoadSet</a>(metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">base</a>, <a class="code" href="driverlib_2timer_8h.html#a47d0eac91b49052bcd964223eb8eeffc">TIMER_A</a>, <a class="code" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a>() / metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#a6dc2603e26981f3382fcb5d8d0222347">frequency</a>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf">TimerIntEnable</a>(metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">base</a>, <a class="code" href="driverlib_2timer_8h.html#a62f2b2418367f36c760584d319ddb0f5">TIMER_TIMA_TIMEOUT</a>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce">IntEnable</a>(metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#ae806255a94fc0bd8574a057d8a121973">interrupt</a>, <a class="code" href="lib_2libtimer_2timer_8c.html#a8afa1384fe94cdeeef0204cb9f74dfe1">TIMER_DEFAULT_PRIORITY</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c">TimerEnable</a>(metadata.<a class="code" href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">timer</a>.<a class="code" href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">base</a>, <a class="code" href="driverlib_2timer_8h.html#a47d0eac91b49052bcd964223eb8eeffc">TIMER_A</a>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 <div class="ttc" id="group__timer__api_html_gaf5153c3e27648ca57b95adc691d0afdf"><div class="ttname"><a href="group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf">TimerIntEnable</a></div><div class="ttdeci">void TimerIntEnable(uint32_t ui32Base, uint32_t ui32IntFlags)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8c_source.html#l01464">timer.c:1464</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a7a5c55fc79dee34c91502b0503404375"><div class="ttname"><a href="hw__memmap_8h.html#a7a5c55fc79dee34c91502b0503404375">TIMER0_BASE</a></div><div class="ttdeci">#define TIMER0_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00081">hw_memmap.h:81</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a933376d74e94dae8f42e17c09bd91faa"><div class="ttname"><a href="hw__memmap_8h.html#a933376d74e94dae8f42e17c09bd91faa">TIMER2_BASE</a></div><div class="ttdeci">#define TIMER2_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00083">hw_memmap.h:83</a></div></div>
-<div class="ttc" id="hw__ints_8h_html_a6892773550bab5f40261dc94d9a2f4fd"><div class="ttname"><a href="hw__ints_8h.html#a6892773550bab5f40261dc94d9a2f4fd">INT_TIMER1A</a></div><div class="ttdeci">#define INT_TIMER1A</div><div class="ttdef"><b>Definition:</b> <a href="hw__ints_8h_source.html#l00437">hw_ints.h:437</a></div></div>
 <div class="ttc" id="driverlib_2timer_8h_html_a62f2b2418367f36c760584d319ddb0f5"><div class="ttname"><a href="driverlib_2timer_8h.html#a62f2b2418367f36c760584d319ddb0f5">TIMER_TIMA_TIMEOUT</a></div><div class="ttdeci">#define TIMER_TIMA_TIMEOUT</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8h_source.html#l00135">timer.h:135</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a2e20530c746e8845eee6e18ae701d422"><div class="ttname"><a href="sysctl_8h.html#a2e20530c746e8845eee6e18ae701d422">SYSCTL_PERIPH_TIMER2</a></div><div class="ttdeci">#define SYSCTL_PERIPH_TIMER2</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00116">sysctl.h:116</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_ga97d96b02b249a16354577bde88ece728"><div class="ttname"><a href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728">SysCtlClockGet</a></div><div class="ttdeci">uint32_t SysCtlClockGet(void)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l02727">sysctl.c:2727</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a90729f9a7e5bded1d976dd49f004780a"><div class="ttname"><a href="sysctl_8h.html#a90729f9a7e5bded1d976dd49f004780a">SYSCTL_PERIPH_TIMER1</a></div><div class="ttdeci">#define SYSCTL_PERIPH_TIMER1</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00115">sysctl.h:115</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_a6dc2603e26981f3382fcb5d8d0222347"><div class="ttname"><a href="structhw__timer__metadata.html#a6dc2603e26981f3382fcb5d8d0222347">hw_timer_metadata::frequency</a></div><div class="ttdeci">frequency_t frequency</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00064">hardware.h:64</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_ae806255a94fc0bd8574a057d8a121973"><div class="ttname"><a href="structhw__timer__metadata.html#ae806255a94fc0bd8574a057d8a121973">hw_timer_metadata::interrupt</a></div><div class="ttdeci">uint32_t interrupt</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00065">hardware.h:65</a></div></div>
 <div class="ttc" id="driverlib_2timer_8h_html_a47d0eac91b49052bcd964223eb8eeffc"><div class="ttname"><a href="driverlib_2timer_8h.html#a47d0eac91b49052bcd964223eb8eeffc">TIMER_A</a></div><div class="ttdeci">#define TIMER_A</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8h_source.html#l00152">timer.h:152</a></div></div>
-<div class="ttc" id="hw__ints_8h_html_ac80f255247c61c3faa6e90e681460a60"><div class="ttname"><a href="hw__ints_8h.html#ac80f255247c61c3faa6e90e681460a60">INT_TIMER2A</a></div><div class="ttdeci">#define INT_TIMER2A</div><div class="ttdef"><b>Definition:</b> <a href="hw__ints_8h_source.html#l00439">hw_ints.h:439</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_a7c062bb98a4a1124b1866ecfeda0245b"><div class="ttname"><a href="structhw__timer__metadata.html#a7c062bb98a4a1124b1866ecfeda0245b">hw_timer_metadata::base</a></div><div class="ttdeci">memory_address_t base</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00063">hardware.h:63</a></div></div>
 <div class="ttc" id="group__timer__api_html_ga906bd1ce13ef11046b0d4b2722f3a9a8"><div class="ttname"><a href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8">TimerConfigure</a></div><div class="ttdeci">void TimerConfigure(uint32_t ui32Base, uint32_t ui32Config)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8c_source.html#l00347">timer.c:347</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a7a4bd01d91a70285f0bec70f4e9e88bb"><div class="ttname"><a href="hw__memmap_8h.html#a7a4bd01d91a70285f0bec70f4e9e88bb">TIMER1_BASE</a></div><div class="ttdeci">#define TIMER1_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00082">hw_memmap.h:82</a></div></div>
-<div class="ttc" id="sysctl_8h_html_a2bec12e520ecd4068f3d6155c9856b29"><div class="ttname"><a href="sysctl_8h.html#a2bec12e520ecd4068f3d6155c9856b29">SYSCTL_PERIPH_TIMER0</a></div><div class="ttdeci">#define SYSCTL_PERIPH_TIMER0</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00114">sysctl.h:114</a></div></div>
-<div class="ttc" id="group__sysctl__api_html_ga2fbae61db465e1d861a62785d28e3ad6"><div class="ttname"><a href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a></div><div class="ttdeci">void SysCtlPeripheralEnable(uint32_t ui32Peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l00841">sysctl.c:841</a></div></div>
+<div class="ttc" id="lib_2libtimer_2timer_8c_html_a8afa1384fe94cdeeef0204cb9f74dfe1"><div class="ttname"><a href="lib_2libtimer_2timer_8c.html#a8afa1384fe94cdeeef0204cb9f74dfe1">TIMER_DEFAULT_PRIORITY</a></div><div class="ttdeci">#define TIMER_DEFAULT_PRIORITY</div><div class="ttdef"><b>Definition:</b> <a href="lib_2libtimer_2timer_8c_source.html#l00016">timer.c:16</a></div></div>
+<div class="ttc" id="unionhw__metadata_html_ae835490cd4d8a87138f19783e142b984"><div class="ttname"><a href="unionhw__metadata.html#ae835490cd4d8a87138f19783e142b984">hw_metadata::timer</a></div><div class="ttdeci">hw_timer_metadata timer</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00098">hardware.h:98</a></div></div>
+<div class="ttc" id="structhw__timer__metadata_html_a984b08462710210578e190c376d1ff77"><div class="ttname"><a href="structhw__timer__metadata.html#a984b08462710210578e190c376d1ff77">hw_timer_metadata::periodic</a></div><div class="ttdeci">uint32_t periodic</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00066">hardware.h:66</a></div></div>
 <div class="ttc" id="group__timer__api_html_ga13a66ae0ebdd8467176d85e057ed212c"><div class="ttname"><a href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c">TimerEnable</a></div><div class="ttdeci">void TimerEnable(uint32_t ui32Base, uint32_t ui32Timer)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8c_source.html#l00210">timer.c:210</a></div></div>
 <div class="ttc" id="group__timer__api_html_ga20a168e18a8d3502809ad53c031e4613"><div class="ttname"><a href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613">TimerLoadSet</a></div><div class="ttdeci">void TimerLoadSet(uint32_t ui32Base, uint32_t ui32Timer, uint32_t ui32Value)</div><div class="ttdef"><b>Definition:</b> <a href="driverlib_2timer_8c_source.html#l00969">timer.c:969</a></div></div>
-<div class="ttc" id="hw__ints_8h_html_a6443091601a7d739bf5366c7a691556d"><div class="ttname"><a href="hw__ints_8h.html#a6443091601a7d739bf5366c7a691556d">INT_TIMER0A</a></div><div class="ttdeci">#define INT_TIMER0A</div><div class="ttdef"><b>Definition:</b> <a href="hw__ints_8h_source.html#l00435">hw_ints.h:435</a></div></div>
 <div class="ttc" id="group__interrupt__api_html_ga49fc9c3d1a0f8c42a20249f8c5d360ce"><div class="ttname"><a href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce">IntEnable</a></div><div class="ttdeci">void IntEnable(uint32_t ui32Interrupt)</div><div class="ttdef"><b>Definition:</b> <a href="interrupt_8c_source.html#l00610">interrupt.c:610</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_cgraph.png" border="0" usemap="#lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_cgraph" alt=""/></div>
-<map name="lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_cgraph" id="lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_cgraph">
-<area shape="rect" id="node2" href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="241,5,323,32"/><area shape="rect" id="node3" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="223,56,341,83"/><area shape="rect" id="node4" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6" title="SysCtlPeripheralEnable" alt="" coords="197,107,367,133"/><area shape="rect" id="node5" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8" title="TimerConfigure" alt="" coords="223,157,341,184"/><area shape="rect" id="node6" href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c" title="TimerEnable" alt="" coords="231,208,333,235"/><area shape="rect" id="node7" href="group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf" title="TimerIntEnable" alt="" coords="223,259,341,285"/><area shape="rect" id="node8" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613" title="TimerLoadSet" alt="" coords="227,309,337,336"/></map>
+<div class="center"><img src="lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_cgraph.png" border="0" usemap="#lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_cgraph" alt=""/></div>
+<map name="lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_cgraph" id="lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_cgraph">
+<area shape="rect" id="node2" href="group__interrupt__api.html#ga49fc9c3d1a0f8c42a20249f8c5d360ce" title="IntEnable" alt="" coords="221,5,303,32"/><area shape="rect" id="node3" href="group__sysctl__api.html#ga97d96b02b249a16354577bde88ece728" title="SysCtlClockGet" alt="" coords="203,56,321,83"/><area shape="rect" id="node4" href="group__timer__api.html#ga906bd1ce13ef11046b0d4b2722f3a9a8" title="TimerConfigure" alt="" coords="203,107,321,133"/><area shape="rect" id="node5" href="group__timer__api.html#ga13a66ae0ebdd8467176d85e057ed212c" title="TimerEnable" alt="" coords="211,157,313,184"/><area shape="rect" id="node6" href="group__timer__api.html#gaf5153c3e27648ca57b95adc691d0afdf" title="TimerIntEnable" alt="" coords="203,208,321,235"/><area shape="rect" id="node7" href="group__timer__api.html#ga20a168e18a8d3502809ad53c031e4613" title="TimerLoadSet" alt="" coords="207,259,317,285"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_icgraph.png" border="0" usemap="#lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_icgraph" alt=""/></div>
-<map name="lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_icgraph" id="lib_2libtimer_2timer_8h_a704234a42b3ec7054f5e2bf8c8ddd364_icgraph">
-<area shape="rect" id="node2" href="hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="197,13,320,39"/><area shape="rect" id="node3" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="368,13,423,39"/></map>
+<div class="center"><img src="lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_icgraph.png" border="0" usemap="#lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_icgraph" alt=""/></div>
+<map name="lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_icgraph" id="lib_2libtimer_2timer_8h_a2eeca9a71be3572b1bf0148e62466989_icgraph">
+<area shape="rect" id="node2" href="hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="203,56,325,83"/><area shape="rect" id="node3" href="test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="373,5,544,32"/><area shape="rect" id="node4" href="test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="431,56,486,83"/><area shape="rect" id="node5" href="lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="392,107,525,133"/><area shape="rect" id="node6" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="592,107,647,133"/></map>
 </div>
 </p>
 
@@ -288,7 +322,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_f8c5a451f8cbfcc7ed1f49a8a4087dcf.html">libtimer</a></li><li class="navelem"><a class="el" href="lib_2libtimer_2timer_8h.html">timer.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:08 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:38 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -1,5 +1,12 @@
 <map id="lib/libheart/heartbeat.h" name="lib/libheart/heartbeat.h">
-<area shape="rect" id="node2" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,80,168,121"/>
-<area shape="rect" id="node3" href="$test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="192,80,360,121"/>
-<area shape="rect" id="node4" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="384,80,544,121"/>
+<area shape="rect" id="node2" href="$test-adc_8c.html" title="board&#45;progs/test&#45;adc\l/test&#45;adc.c" alt="" coords="5,87,163,129"/>
+<area shape="rect" id="node3" href="$test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="187,87,400,129"/>
+<area shape="rect" id="node4" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="424,87,621,129"/>
+<area shape="rect" id="node5" href="$test-edf_8c.html" title="board&#45;progs/test&#45;edf\l/test&#45;edf.c" alt="" coords="645,87,800,129"/>
+<area shape="rect" id="node6" href="$test-os_8c.html" title="board&#45;progs/test&#45;os\l/test&#45;os.c" alt="" coords="824,87,973,129"/>
+<area shape="rect" id="node7" href="$test-priority-scheduler_8c.html" title="board&#45;progs/test&#45;priority\l&#45;scheduler/test&#45;priority\l&#45;scheduler.c" alt="" coords="997,80,1176,136"/>
+<area shape="rect" id="node8" href="$test-semaphore_8c.html" title="board&#45;progs/test&#45;semaphore\l/test&#45;semaphore.c" alt="" coords="1201,87,1407,129"/>
+<area shape="rect" id="node9" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="1432,87,1595,129"/>
+<area shape="rect" id="node10" href="$test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="1619,87,1787,129"/>
+<area shape="rect" id="node11" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="1811,87,1971,129"/>
 </map>

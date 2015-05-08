@@ -1,0 +1,11 @@
+<map id="s_Handler" name="s_Handler">
+<area shape="rect" id="node2" href="$hardware_8c.html#a1aac20922af64474d68eb42c09f79535" title="hw_notify" alt="" coords="159,5,241,32"/>
+<area shape="rect" id="node5" href="$group___u_a_r_t.html#ga36116526b4c84562aec19bca46a0827e" title="Read a char from the active uart channel. " alt="" coords="145,107,255,133"/>
+<area shape="rect" id="node7" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="523,56,637,83"/>
+<area shape="rect" id="node10" href="$group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="140,157,260,184"/>
+<area shape="rect" id="node3" href="$hardware_8c.html#a73e596066c57796c48171d06e03d95ce" title="_hw_get_channel" alt="" coords="308,5,439,32"/>
+<area shape="rect" id="node4" href="$hardware_8c.html#a64e042016d6e24d230958978c57ba51d" title="hw_driver_singleton" alt="" coords="507,5,653,32"/>
+<area shape="rect" id="node6" href="$group___u_a_r_t.html#ga0593e5b14ac9f3f08558d7eda7e0be48" title="Read a char from the specified uart channel. " alt="" coords="314,107,433,133"/>
+<area shape="rect" id="node8" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="528,107,632,133"/>
+<area shape="rect" id="node9" href="$group__uart__api.html#gaad338221fc820412b005653855cedaf7" title="UARTCharGetNonBlocking" alt="" coords="487,157,673,184"/>
+</map>

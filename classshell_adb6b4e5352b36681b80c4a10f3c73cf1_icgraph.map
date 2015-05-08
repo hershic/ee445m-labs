@@ -1,0 +1,6 @@
+<map id="shell::motor_stop" name="shell::motor_stop">
+<area shape="rect" id="node2" href="$classshell.html#abc8aa0b3a30e5213f44e14a2b0bb2918" title="shell::execute_command" alt="" coords="187,5,369,32"/>
+<area shape="rect" id="node3" href="$classshell.html#a02dc63d453efec7549b5b9e621e14187" title="shell::accept" alt="" coords="417,5,520,32"/>
+<area shape="rect" id="node4" href="$move-main_8cpp.html#a459dda223a13ec840d5fdc0a77950ff4" title="shell_handler" alt="" coords="568,5,675,32"/>
+<area shape="rect" id="node5" href="$move-main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="723,5,777,32"/>
+</map>

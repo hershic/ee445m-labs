@@ -1,6 +1,6 @@
 <map id="driverlib/uart.h" name="driverlib/uart.h">
-<area shape="rect" id="node2" href="$driverlib_2uart_8c.html" title="driverlib/uart.c" alt="" coords="5,80,119,107"/>
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="143,80,264,107"/>
-<area shape="rect" id="node4" href="$softuart_8c.html" title="utils/softuart.c" alt="" coords="288,80,401,107"/>
-<area shape="rect" id="node5" href="$uartstdio_8c.html" title="utils/uartstdio.c" alt="" coords="426,80,546,107"/>
+<area shape="rect" id="node2" href="$test-os_8c.html" title="board&#45;progs/test&#45;os\l/test&#45;os.c" alt="" coords="5,80,155,121"/>
+<area shape="rect" id="node3" href="$driverlib_2uart_8c.html" title="driverlib/uart.c" alt="" coords="179,87,293,114"/>
+<area shape="rect" id="node4" href="$hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="317,87,462,114"/>
+<area shape="rect" id="node5" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="486,87,607,114"/>
 </map>

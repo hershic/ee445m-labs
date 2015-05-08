@@ -1,0 +1,8 @@
+<map id="Timer1A_Handler" name="Timer1A_Handler">
+<area shape="rect" id="node2" href="$classlswitch.html#a12e13c6396b45a856dc089e198983a0d" title="lswitch::end_debounce" alt="" coords="185,56,352,83"/>
+<area shape="rect" id="node3" href="$classtimer.html#a68a9a30c02c73d8bb1e572d3d199597b" title="timer::ack" alt="" coords="422,5,509,32"/>
+<area shape="rect" id="node4" href="$group__semaphore.html#ga14c3b9f4312c43d9400905c938752665" title="semaphore::post" alt="" coords="400,56,531,83"/>
+<area shape="rect" id="node7" href="$classlswitch.html#a60673188fb3debdc93abf3ad84a246d8" title="lswitch::sample" alt="" coords="406,107,525,133"/>
+<area shape="rect" id="node5" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="579,31,725,57"/>
+<area shape="rect" id="node6" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="583,81,721,108"/>
+</map>

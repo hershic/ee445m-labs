@@ -1,0 +1,9 @@
+<map id="board&#45;progs/autonomous&#45;racer/common/motorpp.hpp" name="board&#45;progs/autonomous&#45;racer/common/motorpp.hpp">
+<area shape="rect" id="node2" href="$drivepp_8hpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/drivepp.hpp" alt="" coords="502,95,702,136"/>
+<area shape="rect" id="node3" href="$drivepp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/drivepp.cpp" alt="" coords="5,191,204,233"/>
+<area shape="rect" id="node4" href="$move-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/move/move&#45;main.cpp" alt="" coords="228,191,432,233"/>
+<area shape="rect" id="node5" href="$sense-main_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/sense/sense&#45;main.cpp" alt="" coords="457,191,665,233"/>
+<area shape="rect" id="node6" href="$test-countdown_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;countdown\l/test&#45;countdown.cpp" alt="" coords="689,184,875,240"/>
+<area shape="rect" id="node7" href="$test-ping_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/test&#45;ping/test\l&#45;ping.cpp" alt="" coords="899,184,1084,240"/>
+<area shape="rect" id="node8" href="$motorpp_8cpp.html" title="board&#45;progs/autonomous\l&#45;racer/common/motorpp.cpp" alt="" coords="828,95,1035,136"/>
+</map>

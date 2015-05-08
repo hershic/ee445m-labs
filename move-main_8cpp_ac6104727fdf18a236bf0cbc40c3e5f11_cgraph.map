@@ -1,0 +1,10 @@
+<map id="Timer0A_Handler" name="Timer0A_Handler">
+<area shape="rect" id="node2" href="$classtimer.html#a68a9a30c02c73d8bb1e572d3d199597b" title="timer::ack" alt="" coords="187,5,273,32"/>
+<area shape="rect" id="node3" href="$classdrive.html#a544bace6cc9a43b7f39d58fe36fddb74" title="drive::stop" alt="" coords="185,56,275,83"/>
+<area shape="rect" id="node4" href="$classmotor.html#acbcea523aac48de7d1640904d3c70791" title="motor::stop" alt="" coords="323,56,420,83"/>
+<area shape="rect" id="node5" href="$classmotor.html#a7d422d0ff4f2d93b31fa7f4a567c4daa" title="motor::set" alt="" coords="468,56,557,83"/>
+<area shape="rect" id="node6" href="$group__math.html#ga7b3ff1805d7e50020363b0fbb296430b" title="clamp" alt="" coords="668,31,729,57"/>
+<area shape="rect" id="node8" href="$classmotor.html#a727b50d42de63105af2a7df209c8ce40" title="motor::adjusted_direction" alt="" coords="605,81,792,108"/>
+<area shape="rect" id="node7" href="$group__math.html#ga6ae8adad8e6df7d8e1b66e3e50f1e293" title="max" alt="" coords="868,31,919,57"/>
+<area shape="rect" id="node9" href="$classnav.html#ac95eb00f0732946144fff3d98f243104" title="nav::opposite" alt="" coords="840,81,947,108"/>
+</map>

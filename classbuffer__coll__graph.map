@@ -1,0 +1,4 @@
+<map id="buffer&lt; T, N &gt;" name="buffer&lt; T, N &gt;">
+<area shape="rect" id="node2" href="$classsemaphore.html" title="{semaphore\n|&#45; value\l&#45; total_posts\l|+ semaphore()\l+ semaphore()\l+ init()\l+ post()\l+ wait()\l+ take()\l+ guard()\l+ blocked()\l+ reset()\l}" alt="" coords="27,176,147,385"/>
+<area shape="rect" id="node3" href="$classcritical.html" title="{critical\n||+ StartCritical()\l+ EndCritical()\l+ static_StartCritical()\l+ static_EndCritical()\l}" alt="" coords="5,5,169,127"/>
+</map>

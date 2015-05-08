@@ -1,0 +1,11 @@
+<map id="board&#45;progs/autonomous&#45;racer/common/ir.cpp" name="board&#45;progs/autonomous&#45;racer/common/ir.cpp">
+<area shape="rect" id="node2" href="$ir_8hpp.html" title="ir.hpp" alt="" coords="953,95,1010,121"/>
+<area shape="rect" id="node15" href="$math_8hpp.html" title="math.hpp" alt="" coords="1197,169,1281,196"/>
+<area shape="rect" id="node3" href="$circularbuffer_8hpp.html" title="circularbuffer.hpp" alt="" coords="967,169,1099,196"/>
+<area shape="rect" id="node6" href="$semaphorepp_8hpp.html" title="semaphorepp.hpp" alt="" coords="881,319,1020,345"/>
+<area shape="rect" id="node9" href="$adcpp_8hpp.html" title="adcpp.hpp" alt="" coords="685,244,774,271"/>
+<area shape="rect" id="node5" href="$bufferpp_8hpp.html" title="bufferpp.hpp" alt="" coords="967,244,1070,271"/>
+<area shape="rect" id="node7" href="$criticalpp_8hpp.html" title="criticalpp.hpp" alt="" coords="812,393,919,420"/>
+<area shape="rect" id="node10" href="$interruptable_8hpp.html" title="interruptable.hpp" alt="" coords="94,393,226,420"/>
+<area shape="rect" id="node11" href="$timerpp_8hpp.html" title="timerpp.hpp" alt="" coords="565,319,665,345"/>
+</map>

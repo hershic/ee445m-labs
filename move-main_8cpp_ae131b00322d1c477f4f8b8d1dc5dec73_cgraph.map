@@ -1,0 +1,12 @@
+<map id="switch_responder" name="switch_responder">
+<area shape="rect" id="node2" href="$group__semaphore.html#gabf0cab4b7d34f7dc03b3e8bea35ad76a" title="semaphore::guard" alt="" coords="189,56,329,83"/>
+<area shape="rect" id="node5" href="$classdrive.html#a2a2233c30769f76601f61782cb72b656" title="drive::reset_history" alt="" coords="187,107,331,133"/>
+<area shape="rect" id="node6" href="$classmotor.html#a4c75033e798997e8cd920b81a9534388" title="motor::reverse" alt="" coords="200,157,317,184"/>
+<area shape="rect" id="node3" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="379,5,525,32"/>
+<area shape="rect" id="node4" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="383,56,521,83"/>
+<area shape="rect" id="node7" href="$classmotor.html#a7d422d0ff4f2d93b31fa7f4a567c4daa" title="motor::set" alt="" coords="407,132,497,159"/>
+<area shape="rect" id="node11" href="$classnav.html#ac95eb00f0732946144fff3d98f243104" title="nav::opposite" alt="" coords="808,157,915,184"/>
+<area shape="rect" id="node8" href="$group__math.html#ga7b3ff1805d7e50020363b0fbb296430b" title="clamp" alt="" coords="636,81,697,108"/>
+<area shape="rect" id="node10" href="$classmotor.html#a727b50d42de63105af2a7df209c8ce40" title="motor::adjusted_direction" alt="" coords="573,132,760,159"/>
+<area shape="rect" id="node9" href="$group__math.html#ga6ae8adad8e6df7d8e1b66e3e50f1e293" title="max" alt="" coords="836,81,887,108"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="uart::atomic_printf" name="uart::atomic_printf">
+<area shape="rect" id="node2" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="197,5,336,32"/>
+<area shape="rect" id="node3" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="193,56,340,83"/>
+<area shape="rect" id="node4" href="$classuart.html#abc16bbe576600cb436dac853566779e9" title="uart::vprintf" alt="" coords="219,107,315,133"/>
+<area shape="rect" id="node5" href="$uartpp_8cpp.html#aa3ccf12f132efb18693ee7c504e0c7ad" title="UARTwrite" alt="" coords="388,107,471,133"/>
+</map>

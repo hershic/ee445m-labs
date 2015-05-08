@@ -1,7 +1,9 @@
 <map id="GPIOPinTypeUART" name="GPIOPinTypeUART">
-<area shape="rect" id="node2" href="$lib_2libuart_2uart_8h.html#ac720323e085cb349e70d972a0f6fe261" title="uart_init_" alt="" coords="187,31,268,57"/>
-<area shape="rect" id="node3" href="$lib_2libuart_2uart_8h.html#a01f5996cfbcef121abc486e732b208c7" title="uart_init" alt="" coords="316,31,391,57"/>
-<area shape="rect" id="node4" href="$hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="439,5,561,32"/>
-<area shape="rect" id="node6" href="$test-uart_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="473,56,527,83"/>
-<area shape="rect" id="node5" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="609,5,664,32"/>
+<area shape="rect" id="node2" href="$test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="197,5,251,32"/>
+<area shape="rect" id="node3" href="$group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f" title="uart_init" alt="" coords="187,56,261,83"/>
+<area shape="rect" id="node4" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="309,56,432,83"/>
+<area shape="rect" id="node5" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="499,5,632,32"/>
+<area shape="rect" id="node7" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="480,56,651,83"/>
+<area shape="rect" id="node8" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="538,107,593,133"/>
+<area shape="rect" id="node6" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="699,5,753,32"/>
 </map>

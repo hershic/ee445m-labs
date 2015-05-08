@@ -1,5 +1,5 @@
 <map id="SysCtlPeripheralReset" name="SysCtlPeripheralReset">
-<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#a2b815e6730e8723a6d1d06d9ef8f31c0" title="adc_init" alt="" coords="252,5,323,32"/>
+<area shape="rect" id="node2" href="$lib_2libadc_2adc_8h.html#aa67c6db02c5779013fd326b77e30d9e6" title="adc_init" alt="" coords="252,5,323,32"/>
 <area shape="rect" id="node4" href="$group__eeprom__api.html#ga1f1d0bb65a54f1febbb8bb71ddff2b22" title="EEPROMInit" alt="" coords="240,56,335,83"/>
 <area shape="rect" id="node5" href="$group__eeprom__api.html#ga98a7be211398870f47277ba82db14a5d" title="EEPROMMassErase" alt="" coords="215,107,359,133"/>
 <area shape="rect" id="node6" href="$group__emac__api.html#ga6f369bdbe2e8ea108ef1398242030198" title="EMACPHYConfigSet" alt="" coords="215,157,360,184"/>

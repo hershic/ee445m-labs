@@ -1,0 +1,7 @@
+<map id="ping::handle_gpio" name="ping::handle_gpio">
+<area shape="rect" id="node2" href="$classcircularbuffer.html#ae4e55fc946f2a87e240dbc1881a24be3" title="circularbuffer::add" alt="" coords="188,5,325,32"/>
+<area shape="rect" id="node3" href="$classtimer.html#a23160d65a63cae1840227f7cc9823e26" title="timer::get" alt="" coords="214,56,299,83"/>
+<area shape="rect" id="node4" href="$classtimer.html#a49b32422cd555e11e0126440a090c1e0" title="timer::load" alt="" coords="373,132,464,159"/>
+<area shape="rect" id="node5" href="$classtimer.html#a3ebac59dc8c4f71c7542ec1eecb178b9" title="timer::reload" alt="" coords="205,157,309,184"/>
+<area shape="rect" id="node6" href="$classtimer.html#a9aa894a57748b2bdf3adce46f5736794" title="timer::start" alt="" coords="209,208,304,235"/>
+</map>

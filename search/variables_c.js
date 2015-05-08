@@ -1,9 +1,24 @@
 var searchData=
 [
-  ['message',['Message',['../_s_t7735_8c.html#ae193a91af382974197f8b515323be81d',1,'ST7735.c']]],
-  ['messageindex',['Messageindex',['../_s_t7735_8c.html#af0e2dbcad30fb44bc546a43768a463e1',1,'ST7735.c']]],
-  ['minutes',['minutes',['../structclocktime.html#ad747748f4c4dddb5bbda841a6d5fa6c0',1,'clocktime']]],
-  ['mode',['mode',['../structclocktime.html#a8e8df19cf71f92820f002173723ee178',1,'clocktime']]],
-  ['most_5frecent_5fdata_5fpoint',['most_recent_data_point',['../structgraph.html#ae3b69bcaa30b1af7e1acfd1cf366c97d',1,'graph']]],
-  ['ms',['ms',['../structclocktime.html#afdea01f6165295ca92dc3f62677f01c8',1,'clocktime']]]
+  ['scanmessage',['sCANMessage',['../classcan.html#abcf2c4dc31b88a10c7d02c9e12456b2f',1,'can']]],
+  ['sem',['sem',['../classbuffer.html#a06a4996dad3f96bb9df2052ef837337a',1,'buffer::sem()'],['../classping.html#a43daef0a5f544967b545c1e6c0aece1c',1,'ping::sem()'],['../classlswitch.html#a42a00e5e5d7dce6182e670d617dd7c5e',1,'lswitch::sem()']]],
+  ['sem_5fblink_5fblue',['sem_blink_blue',['../move-main_8cpp.html#a20d94a9b528e8a81510b956cba9e8a89',1,'move-main.cpp']]],
+  ['sem_5fblink_5fgreen',['sem_blink_green',['../move-main_8cpp.html#a020dc3125eccff48fc5160b2e442202d',1,'move-main.cpp']]],
+  ['sem_5fblink_5fred',['sem_blink_red',['../move-main_8cpp.html#a76588b8d207e09e134ae84a582960007',1,'move-main.cpp']]],
+  ['sem_5fswitch',['sem_switch',['../move-main_8cpp.html#adbf6c36959721c0410e129ae76135128',1,'move-main.cpp']]],
+  ['sender',['sender',['../classcan.html#a2e8875eef7e6146c6d828d8e186eb3e9',1,'can']]],
+  ['sens_5fir_5fleft',['sens_ir_left',['../move-main_8cpp.html#a82118d65a2db82f4cd82f846771ac027',1,'move-main.cpp']]],
+  ['sens_5fir_5fleft_5ffront',['sens_ir_left_front',['../move-main_8cpp.html#a9733a265e25837544937d34921551e60',1,'move-main.cpp']]],
+  ['sens_5fir_5fright',['sens_ir_right',['../move-main_8cpp.html#aa1f79acc129388474898de405cba2f7f',1,'move-main.cpp']]],
+  ['sens_5fir_5fright_5ffront',['sens_ir_right_front',['../move-main_8cpp.html#acfe7839fc5b7976f4791ad5c59563198',1,'move-main.cpp']]],
+  ['sens_5fping_5ffront',['sens_ping_front',['../move-main_8cpp.html#acfe5d3b6640848f6dd36d1c6c8ffd754',1,'move-main.cpp']]],
+  ['sequencer',['sequencer',['../classadc.html#a54663ad9b41ffb3cffa60d418d28330d',1,'adc']]],
+  ['sequencer_5fdata',['sequencer_data',['../classadc.html#a7b7d60e7dac8268ca326413583e9e4a9',1,'adc']]],
+  ['shell0',['shell0',['../move-main_8cpp.html#a9af2e73b16ce0a014d7720e9aa525bff',1,'shell0():&#160;move-main.cpp'],['../sense-main_8cpp.html#a9af2e73b16ce0a014d7720e9aa525bff',1,'shell0():&#160;sense-main.cpp']]],
+  ['sig',['sig',['../classping.html#ad189b364a39ba2804b654c5270c8520a',1,'ping']]],
+  ['status',['status',['../classping.html#a5868f3b2fc62760010c86e9f6b8f48f6',1,'ping']]],
+  ['subtimer',['subtimer',['../classtimer.html#a7e9b19a25c85fbe291c47026b01a381d',1,'timer']]],
+  ['switch0',['switch0',['../move-main_8cpp.html#a85e0efdd02b091807ea7c8468ef89f2b',1,'move-main.cpp']]],
+  ['system_5fcommand_5ffuncs',['system_command_funcs',['../classshell.html#a68f559a3022c6bfd5750a24ae150ec56',1,'shell']]],
+  ['system_5fcommand_5fnames',['system_command_names',['../classshell.html#a47b744cd6ba608f14df2a844232c313f',1,'shell']]]
 ];

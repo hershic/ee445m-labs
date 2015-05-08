@@ -1,0 +1,8 @@
+<map id="lib/libbutton/button.h" name="lib/libbutton/button.h">
+<area shape="rect" id="node2" href="$test-button_8c.html" title="board&#45;progs/test&#45;button\l/test&#45;button.c" alt="" coords="5,80,181,121"/>
+<area shape="rect" id="node3" href="$test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="205,80,419,121"/>
+<area shape="rect" id="node4" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="443,80,640,121"/>
+<area shape="rect" id="node5" href="$test-edf_8c.html" title="board&#45;progs/test&#45;edf\l/test&#45;edf.c" alt="" coords="664,80,819,121"/>
+<area shape="rect" id="node6" href="$libbutton_2button_8c.html" title="lib/libbutton/button.c" alt="" coords="843,87,997,114"/>
+<area shape="rect" id="node7" href="$hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="1021,87,1166,114"/>
+</map>

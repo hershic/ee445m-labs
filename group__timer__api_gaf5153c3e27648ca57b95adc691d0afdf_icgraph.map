@@ -1,5 +1,9 @@
 <map id="TimerIntEnable" name="TimerIntEnable">
-<area shape="rect" id="node2" href="$lib_2libtimer_2timer_8h.html#a704234a42b3ec7054f5e2bf8c8ddd364" title="timer_add_periodic\l_interrupt" alt="" coords="171,5,315,47"/>
-<area shape="rect" id="node3" href="$hardware_8h.html#a3c4a2d78cca2b223ce5110b4429f8d35" title="hw_channel_init" alt="" coords="363,13,485,39"/>
-<area shape="rect" id="node4" href="$test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="533,13,588,39"/>
+<area shape="rect" id="node2" href="$test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="218,5,273,32"/>
+<area shape="rect" id="node3" href="$lib_2libtimer_2timer_8h.html#a2eeca9a71be3572b1bf0148e62466989" title="timer_add_interrupt" alt="" coords="171,56,320,83"/>
+<area shape="rect" id="node4" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="368,56,491,83"/>
+<area shape="rect" id="node5" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="557,5,691,32"/>
+<area shape="rect" id="node7" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="539,56,709,83"/>
+<area shape="rect" id="node8" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="597,107,651,133"/>
+<area shape="rect" id="node6" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="757,5,812,32"/>
 </map>

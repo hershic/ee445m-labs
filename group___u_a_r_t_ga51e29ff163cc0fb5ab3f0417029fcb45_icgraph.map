@@ -1,0 +1,8 @@
+<map id="uart_set_active_metadata" name="uart_set_active_metadata">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#ga2a349c960c3d5b43edcdbd6df5056a9f" title="uart_init" alt="" coords="244,56,319,83"/>
+<area shape="rect" id="node3" href="$hardware_8h.html#ac1507d784d195aad7202e6f78ddd2f2f" title="hw_channel_init" alt="" coords="367,56,489,83"/>
+<area shape="rect" id="node4" href="$lib_2libadc_2adc_8h.html#af25a4123b6a3a85c67676b87c3eeaae7" title="adc_interrupt_init" alt="" coords="556,5,689,32"/>
+<area shape="rect" id="node6" href="$test-combination_8c.html#a09c902ab96e840b0d9be70ec61bb61d1" title="button_debounce_start" alt="" coords="537,56,708,83"/>
+<area shape="rect" id="node7" href="$test-timer_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="595,107,650,133"/>
+<area shape="rect" id="node5" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="756,5,811,32"/>
+</map>

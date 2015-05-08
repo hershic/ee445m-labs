@@ -1,0 +1,6 @@
+<map id="uart_get_string_" name="uart_get_string_">
+<area shape="rect" id="node2" href="$group__uart__api.html#gafc065333d747a8f71331c4fa2b5ace9e" title="UARTCharGet" alt="" coords="187,5,293,32"/>
+<area shape="rect" id="node3" href="$group__uart__api.html#ga4ef85e7bc642ef7169d6641cfa5265c6" title="UARTCharsAvail" alt="" coords="180,56,300,83"/>
+<area shape="rect" id="node4" href="$group__uart__api.html#ga1bd3174cd85cc338aba82883c09df981" title="UARTIntClear" alt="" coords="188,107,292,133"/>
+<area shape="rect" id="node5" href="$group__uart__api.html#ga7a204fab5a079529d9ed4a69d13e119e" title="UARTIntStatus" alt="" coords="183,157,297,184"/>
+</map>

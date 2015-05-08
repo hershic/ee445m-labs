@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qei_5fapi',['Qei_api',['../group__qei__api.html',1,'']]]
+  ['pwm_5fapi',['Pwm_api',['../group__pwm__api.html',1,'']]]
 ];

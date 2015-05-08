@@ -104,34 +104,36 @@ $(document).ready(function(){initNavTree('bug.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_bug000002"></a>globalScope&gt; Global <a class="el" href="group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd">fb_draw_line_gradient</a>  (framebuffer fb, point *point1, point *point2, shade_t shade)</dt>
+<dt><a class="anchor" id="_bug000001"></a>globalScope&gt; Global <a class="el" href="group___buffer.html#gaff4fae5bc2db4d28be459c46e137d053">buffer_add</a>  (buf, elt)</dt>
+<dd>No warning on overflow failure  </dd>
+<dt><a class="anchor" id="_bug000002"></a>globalScope&gt; Global <a class="el" href="group___buffer.html#ga951004e3a29c15cb6c6a36ff6d29a5bd">buffer_dec_</a>  (buf, amount)</dt>
+<dd><p class="startdd">No warning on underflow failure </p>
+<p class="enddd">Non-atomic  </p>
+</dd>
+<dt><a class="anchor" id="_bug000004"></a>globalScope&gt; Global <a class="el" href="group___framebuffer.html#ga039f78f2117a30d555677fdc6b7d44bd">fb_draw_line_gradient</a>  (framebuffer fb, point *point1, point *point2, shade_t shade)</dt>
 <dd><p class="startdd">This function is not implemented yet (pass-through).</p>
 <p class="enddd"></p>
 </dd>
-<dt><a class="anchor" id="_bug000001"></a>Module <a class="el" href="group___font.html">Font</a>  </dt>
+<dt><a class="anchor" id="_bug000003"></a>Module <a class="el" href="group___font.html">Font</a>  </dt>
 <dd>No font transformation functions are included yet.  </dd>
-<dt><a class="anchor" id="_bug000003"></a>Module <a class="el" href="group___framebuffer.html">Framebuffer</a>  </dt>
+<dt><a class="anchor" id="_bug000005"></a>Module <a class="el" href="group___framebuffer.html">Framebuffer</a>  </dt>
 <dd>This library is not modal (taking one framebuffer to act upon at a time).  </dd>
-<dt><a class="anchor" id="_bug000010"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#ab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a>  ()</dt>
+<dt><a class="anchor" id="_bug000012"></a>globalScope&gt; Global <a class="el" href="group___shell.html#gab1d2819a7bd745c8de3853ed4526fb70">shell_execute_command</a>  ()</dt>
 <dd>This function does not allow the passing of arguments  </dd>
-<dt><a class="anchor" id="_bug000007"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#a2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a>  ()</dt>
+<dt><a class="anchor" id="_bug000009"></a>globalScope&gt; Global <a class="el" href="group___shell.html#ga2eedbe4e196101938ff65d3ba7fc788a">shell_kill</a>  ()</dt>
 <dd>The behavior of killing a non-spawned shell is undetermined.  </dd>
-<dt><a class="anchor" id="_bug000009"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#a2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a>  ()</dt>
+<dt><a class="anchor" id="_bug000011"></a>globalScope&gt; Global <a class="el" href="group___shell.html#ga2c27dcedd94d65632369ca4dda2cfbfb">shell_print_ps1</a>  ()</dt>
 <dd>Ambiguity on which uart channel is used for terminal communication. <dl class="section note"><dt>Note</dt><dd>This just displays to stdout, not a uart channel, which can be picked up by a display entity driver or whatever they're going to be called.  </dd></dl>
 </dd>
-<dt><a class="anchor" id="_bug000006"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#a49dea7b7117069659519b1e5edbcc5b7">shell_represent</a>  ()</dt>
+<dt><a class="anchor" id="_bug000008"></a>globalScope&gt; Global <a class="el" href="group___shell.html#ga49dea7b7117069659519b1e5edbcc5b7">shell_represent</a>  ()</dt>
 <dd><p class="startdd">This is not the sole method of displaying this process - it should be. </p>
 <p class="enddd">The behavior of representing a non-spawned shell is undetermined.  </p>
 </dd>
-<dt><a class="anchor" id="_bug000005"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#a44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a>  ()</dt>
+<dt><a class="anchor" id="_bug000007"></a>globalScope&gt; Global <a class="el" href="group___shell.html#ga44f2d49f37741178da7a3c0e86c5c1db">shell_spawn</a>  ()</dt>
 <dd>No scoreboard prevents multiple shells from spawning - better trust the init'ing dev  </dd>
-<dt><a class="anchor" id="_bug000008"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e">shell_uart0_handler</a>  (char)</dt>
+<dt><a class="anchor" id="_bug000010"></a>globalScope&gt; Global <a class="el" href="group___shell.html#gaec52690701ae80176644c9f0178f895c">shell_uart_handler</a>  (notification)</dt>
 <dd>Ambiguity on which uart channel is used for terminal communication.  </dd>
-<dt><a class="anchor" id="_bug000008"></a>globalScope&gt; Global <a class="el" href="shell_8h.html#a51e2ae976e37f2523278e11886675f7e">shell_uart0_handler</a>  (char)</dt>
-<dd>Ambiguity on which uart channel is used for terminal communication.  </dd>
-<dt><a class="anchor" id="_bug000004"></a>globalScope&gt; Global <a class="el" href="system_8h.html#abf61e582e309546744891e3135f0aa81">system_exec</a>  (const char *, const char **)</dt>
-<dd>Currently argument passing is not supported.  </dd>
-<dt><a class="anchor" id="_bug000004"></a>globalScope&gt; Global <a class="el" href="system_8h.html#abf61e582e309546744891e3135f0aa81">system_exec</a>  (const char *, const char **)</dt>
+<dt><a class="anchor" id="_bug000006"></a>globalScope&gt; Global <a class="el" href="group___system.html#gabf61e582e309546744891e3135f0aa81">system_exec</a>  (const char *, const char **)</dt>
 <dd>Currently argument passing is not supported. </dd>
 </dl>
 </div></div><!-- contents -->
@@ -139,7 +141,7 @@ $(document).ready(function(){initNavTree('bug.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

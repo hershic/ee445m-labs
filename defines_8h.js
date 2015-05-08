@@ -55,6 +55,9 @@ var defines_8h =
     [ "x_range_t", "defines_8h.html#a4ff1206831ffe829beaa8b79caec05c9", null ],
     [ "y_pixel_t", "defines_8h.html#a63f3b32712c80ed2ffc02e8474987293", null ],
     [ "y_range_t", "defines_8h.html#af577aec6dd423bbf9aad5ccb048e5061", null ],
+    [ "frequency_t", "defines_8h.html#a0ed2dce7e14c65de6dca847479629276", null ],
+    [ "isr_t", "defines_8h.html#a5078d4c812298229dc1952cf9fc994d9", null ],
+    [ "task_t", "defines_8h.html#a78a55c2ac757b7addb3150081812288b", null ],
     [ "uchar", "defines_8h.html#a65f85814a8290f9797005d3b28e7e5fc", null ],
     [ "ulong", "defines_8h.html#a718b4eb2652c286f4d42dc18a8e71a1a", null ],
     [ "ushort", "defines_8h.html#ab95f123a6c9bcfee6a343170ef8c5f69", null ]

@@ -1,6 +1,7 @@
 <map id="lib/libshell/shell.h" name="lib/libshell/shell.h">
-<area shape="rect" id="node3" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="66,155,177,181"/>
-<area shape="rect" id="node6" href="$system_8h.html" title="libos/system.h" alt="" coords="89,80,204,107"/>
-<area shape="rect" id="node7" href="$kbd_8h.html" title="libio/kbd.h" alt="" coords="229,80,315,107"/>
-<area shape="rect" id="node4" href="$defines_8h.html" title="defines.h" alt="" coords="20,229,100,256"/>
+<area shape="rect" id="node3" href="$nexus_8h.html" title="libstd/nexus.h" alt="" coords="133,155,244,181"/>
+<area shape="rect" id="node6" href="$system_8h.html" title="libos/system.h" alt="" coords="36,80,151,107"/>
+<area shape="rect" id="node7" href="$kbd_8h.html" title="libio/kbd.h" alt="" coords="226,80,313,107"/>
+<area shape="rect" id="node8" href="$notify_8h.html" title="libnotify/notify.h" alt="" coords="338,80,458,107"/>
+<area shape="rect" id="node4" href="$defines_8h.html" title="defines.h" alt="" coords="108,229,188,256"/>
 </map>

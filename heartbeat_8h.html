@@ -106,39 +106,167 @@ $(document).ready(function(){initNavTree('heartbeat_8h.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">heartbeat.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="hw__ints_8h_source.html">inc/hw_ints.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hw__memmap_8h_source.html">inc/hw_memmap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="debug_8h_source.html">driverlib/debug.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fpu_8h_source.html">driverlib/fpu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gpio_8h_source.html">driverlib/gpio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="interrupt_8h_source.html">driverlib/interrupt.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pin__map_8h_source.html">driverlib/pin_map.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sysctl_8h_source.html">driverlib/sysctl.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="driverlib_2timer_8h_source.html">driverlib/timer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="rom_8h_source.html">driverlib/rom.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for heartbeat.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="heartbeat_8h__incl.png" border="0" usemap="#lib_2libheart_2heartbeat_8h" alt=""/></div>
+<map name="lib_2libheart_2heartbeat_8h" id="lib_2libheart_2heartbeat_8h">
+<area shape="rect" id="node6" href="hw__ints_8h.html" title="inc/hw_ints.h" alt="" coords="387,80,489,107"/><area shape="rect" id="node7" href="hw__memmap_8h.html" title="inc/hw_memmap.h" alt="" coords="513,80,656,107"/><area shape="rect" id="node8" href="debug_8h.html" title="driverlib/debug.h" alt="" coords="681,80,809,107"/><area shape="rect" id="node9" href="fpu_8h.html" title="driverlib/fpu.h" alt="" coords="833,80,941,107"/><area shape="rect" id="node10" href="gpio_8h.html" title="driverlib/gpio.h" alt="" coords="966,80,1081,107"/><area shape="rect" id="node11" href="interrupt_8h.html" title="driverlib/interrupt.h" alt="" coords="1105,80,1248,107"/><area shape="rect" id="node12" href="pin__map_8h.html" title="driverlib/pin_map.h" alt="" coords="1272,80,1415,107"/><area shape="rect" id="node13" href="sysctl_8h.html" title="driverlib/sysctl.h" alt="" coords="1439,80,1563,107"/><area shape="rect" id="node14" href="driverlib_2timer_8h.html" title="driverlib/timer.h" alt="" coords="1587,80,1708,107"/><area shape="rect" id="node15" href="rom_8h.html" title="driverlib/rom.h" alt="" coords="1733,80,1847,107"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="heartbeat_8h__dep__incl.png" border="0" usemap="#lib_2libheart_2heartbeat_8hdep" alt=""/></div>
 <map name="lib_2libheart_2heartbeat_8hdep" id="lib_2libheart_2heartbeat_8hdep">
-<area shape="rect" id="node2" href="test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="5,80,168,121"/><area shape="rect" id="node3" href="test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="192,80,360,121"/><area shape="rect" id="node4" href="test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="384,80,544,121"/></map>
+<area shape="rect" id="node2" href="test-adc_8c.html" title="board&#45;progs/test&#45;adc\l/test&#45;adc.c" alt="" coords="5,87,163,129"/><area shape="rect" id="node3" href="test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="187,87,400,129"/><area shape="rect" id="node4" href="test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="424,87,621,129"/><area shape="rect" id="node5" href="test-edf_8c.html" title="board&#45;progs/test&#45;edf\l/test&#45;edf.c" alt="" coords="645,87,800,129"/><area shape="rect" id="node6" href="test-os_8c.html" title="board&#45;progs/test&#45;os\l/test&#45;os.c" alt="" coords="824,87,973,129"/><area shape="rect" id="node7" href="test-priority-scheduler_8c.html" title="board&#45;progs/test&#45;priority\l&#45;scheduler/test&#45;priority\l&#45;scheduler.c" alt="" coords="997,80,1176,136"/><area shape="rect" id="node8" href="test-semaphore_8c.html" title="board&#45;progs/test&#45;semaphore\l/test&#45;semaphore.c" alt="" coords="1201,87,1407,129"/><area shape="rect" id="node9" href="test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="1432,87,1595,129"/><area shape="rect" id="node10" href="test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="1619,87,1787,129"/><area shape="rect" id="node11" href="test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="1811,87,1971,129"/></map>
 </div>
 </div>
 <p><a href="heartbeat_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:acf8b18544ce9c390726eb4f5c33a016a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#acf8b18544ce9c390726eb4f5c33a016a">HEART_RED</a>&#160;&#160;&#160;<a class="el" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></td></tr>
+<tr class="separator:acf8b18544ce9c390726eb4f5c33a016a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41089926f9320211349345090c453288"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>&#160;&#160;&#160;<a class="el" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></td></tr>
+<tr class="separator:a41089926f9320211349345090c453288"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3386d03cc272de48aac90ee8366efb8f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a3386d03cc272de48aac90ee8366efb8f">HEART_GREEN</a>&#160;&#160;&#160;<a class="el" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></td></tr>
+<tr class="separator:a3386d03cc272de48aac90ee8366efb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e0a85f9463873e933949728c2a1974"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>&#160;&#160;&#160;<a class="el" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></td></tr>
+<tr class="separator:a56e0a85f9463873e933949728c2a1974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70eb11bdfc6e9ff279105ef863dc33b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a70eb11bdfc6e9ff279105ef863dc33b9">heart_wrap</a>(x)</td></tr>
+<tr class="separator:a70eb11bdfc6e9ff279105ef863dc33b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a32aede06bdbbb7d5f923442f8e726615"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a32aede06bdbbb7d5f923442f8e726615">heart_init</a> ()</td></tr>
-<tr class="memdesc:a32aede06bdbbb7d5f923442f8e726615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the heart for visible transformation.  <a href="#a32aede06bdbbb7d5f923442f8e726615">More...</a><br /></td></tr>
+<tr class="memdesc:a32aede06bdbbb7d5f923442f8e726615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize  for visible transformation.  <a href="#a32aede06bdbbb7d5f923442f8e726615">More...</a><br /></td></tr>
 <tr class="separator:a32aede06bdbbb7d5f923442f8e726615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ff5755d4082335f328cfc7398b3a0f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f">heart_status</a> ()</td></tr>
+<tr class="memdesc:ae1ff5755d4082335f328cfc7398b3a0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the status of .  <a href="#ae1ff5755d4082335f328cfc7398b3a0f">More...</a><br /></td></tr>
+<tr class="separator:ae1ff5755d4082335f328cfc7398b3a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4e09294b286f9c177f810f1d9257b71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#ac4e09294b286f9c177f810f1d9257b71">heart_off</a> ()</td></tr>
-<tr class="memdesc:ac4e09294b286f9c177f810f1d9257b71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn the heart off.  <a href="#ac4e09294b286f9c177f810f1d9257b71">More...</a><br /></td></tr>
+<tr class="memdesc:ac4e09294b286f9c177f810f1d9257b71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn  off.  <a href="#ac4e09294b286f9c177f810f1d9257b71">More...</a><br /></td></tr>
 <tr class="separator:ac4e09294b286f9c177f810f1d9257b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dac0247d04d756de0ead8adeeea16e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a9dac0247d04d756de0ead8adeeea16e8">heart_on</a> ()</td></tr>
-<tr class="memdesc:a9dac0247d04d756de0ead8adeeea16e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn the heart on.  <a href="#a9dac0247d04d756de0ead8adeeea16e8">More...</a><br /></td></tr>
+<tr class="memdesc:a9dac0247d04d756de0ead8adeeea16e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn  on.  <a href="#a9dac0247d04d756de0ead8adeeea16e8">More...</a><br /></td></tr>
 <tr class="separator:a9dac0247d04d756de0ead8adeeea16e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a198ca9dded444d14998585ecbaf2670a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a">heart_toggle</a> ()</td></tr>
-<tr class="memdesc:a198ca9dded444d14998585ecbaf2670a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the heart once.  <a href="#a198ca9dded444d14998585ecbaf2670a">More...</a><br /></td></tr>
+<tr class="memdesc:a198ca9dded444d14998585ecbaf2670a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle  once.  <a href="#a198ca9dded444d14998585ecbaf2670a">More...</a><br /></td></tr>
 <tr class="separator:a198ca9dded444d14998585ecbaf2670a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6da9e44029c67ea80ffa494d9328384"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384">heart_beat</a> ()</td></tr>
-<tr class="memdesc:ac6da9e44029c67ea80ffa494d9328384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the heart twice.  <a href="#ac6da9e44029c67ea80ffa494d9328384">More...</a><br /></td></tr>
+<tr class="memdesc:ac6da9e44029c67ea80ffa494d9328384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle  twice.  <a href="#ac6da9e44029c67ea80ffa494d9328384">More...</a><br /></td></tr>
 <tr class="separator:ac6da9e44029c67ea80ffa494d9328384"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a41089926f9320211349345090c453288"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEART_BLUE&#160;&#160;&#160;<a class="el" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00031">31</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+
+<p>Referenced by <a class="el" href="heartbeat_8h_source.html#l00120">heart_beat()</a>, <a class="el" href="heartbeat_8h_source.html#l00049">heart_init()</a>, <a class="el" href="heartbeat_8h_source.html#l00079">heart_off()</a>, <a class="el" href="heartbeat_8h_source.html#l00092">heart_on()</a>, <a class="el" href="heartbeat_8h_source.html#l00066">heart_status()</a>, and <a class="el" href="heartbeat_8h_source.html#l00106">heart_toggle()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3386d03cc272de48aac90ee8366efb8f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEART_GREEN&#160;&#160;&#160;<a class="el" href="gpio_8h.html#adcaf899c018a0dde572b5af783565c62">GPIO_PIN_3</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00032">32</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf8b18544ce9c390726eb4f5c33a016a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEART_RED&#160;&#160;&#160;<a class="el" href="gpio_8h.html#a6c35af4e75c3cb57bb650feaa7a136b5">GPIO_PIN_1</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The on-board LED colloquially referred to as the 'heart.' Does every computer have one? </p>
+
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00030">30</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a70eb11bdfc6e9ff279105ef863dc33b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define heart_wrap</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384">heart_beat</a>();     <a class="code" href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a">\</a></div>
+<div class="line"><a class="code" href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a">    x                 \</a></div>
+<div class="line"><a class="code" href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a">    heart_toggle</a>();   \</div>
+<div class="ttc" id="heartbeat_8h_html_ac6da9e44029c67ea80ffa494d9328384"><div class="ttname"><a href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384">heart_beat</a></div><div class="ttdeci">void heart_beat()</div><div class="ttdoc">Toggle  twice. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00120">heartbeat.h:120</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a198ca9dded444d14998585ecbaf2670a"><div class="ttname"><a href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a">heart_toggle</a></div><div class="ttdeci">void heart_toggle()</div><div class="ttdoc">Toggle  once. </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00106">heartbeat.h:106</a></div></div>
+</div><!-- fragment --><p>Surround the execution of a code block with two hooks.</p><ul>
+<li>pre_hook: <a class="el" href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle  twice. ">heart_beat()</a>;</li>
+<li>post_hook: <a class="el" href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle  once. ">heart_toggle()</a>; </li>
+</ul>
+
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00132">132</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a56e0a85f9463873e933949728c2a1974"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define THORACIC_CAVITY&#160;&#160;&#160;<a class="el" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The GPIO base where the  may be found. Otherwise knows as a subdivision of the ventral body cavity which houses the heart. </p>
+
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00037">37</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+
+<p>Referenced by <a class="el" href="heartbeat_8h_source.html#l00120">heart_beat()</a>, <a class="el" href="heartbeat_8h_source.html#l00049">heart_init()</a>, <a class="el" href="heartbeat_8h_source.html#l00079">heart_off()</a>, <a class="el" href="heartbeat_8h_source.html#l00092">heart_on()</a>, <a class="el" href="heartbeat_8h_source.html#l00066">heart_status()</a>, and <a class="el" href="heartbeat_8h_source.html#l00106">heart_toggle()</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ac6da9e44029c67ea80ffa494d9328384"></a>
 <div class="memitem">
@@ -161,42 +289,30 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Toggle the heart twice. </p>
+<p>Toggle  twice. </p>
 <p>end_state = starting_state </p><dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00062">62</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00120">120</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, and <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>.</p>
-
-<p>Referenced by <a class="el" href="test-timer_8c_source.html#l00031">blink_onboard_led()</a>, and <a class="el" href="test-uart_8c_source.html#l00025">UART0_Handler()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                  {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* This is unrolled -- ensure it matches \heart_toggle() */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;         <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>) ^ <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;         <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>) ^ <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<p>References <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="heartbeat_8h_source.html#l00031">HEART_BLUE</a>, <a class="el" href="heartbeat_8h_source.html#l00066">heart_status()</a>, and <a class="el" href="heartbeat_8h_source.html#l00037">THORACIC_CAVITY</a>.</p>
+<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                  {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#if !(defined(PROFILING_DISABLE))</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>, <a class="code" href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f">heart_status</a>() ^ <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>, <a class="code" href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f">heart_status</a>() ^ <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 <div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_ae1ff5755d4082335f328cfc7398b3a0f"><div class="ttname"><a href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f">heart_status</a></div><div class="ttdeci">int32_t heart_status()</div><div class="ttdoc">Return the status of . </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00066">heartbeat.h:66</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a41089926f9320211349345090c453288"><div class="ttname"><a href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a></div><div class="ttdeci">#define HEART_BLUE</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00031">heartbeat.h:31</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a56e0a85f9463873e933949728c2a1974"><div class="ttname"><a href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a></div><div class="ttdeci">#define THORACIC_CAVITY</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00037">heartbeat.h:37</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_cgraph.png" border="0" usemap="#heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_cgraph" alt=""/></div>
 <map name="heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_cgraph" id="heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_cgraph">
-<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="145,5,248,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="145,56,248,83"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_icgraph.png" border="0" usemap="#heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_icgraph" alt=""/></div>
-<map name="heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_icgraph" id="heartbeat_8h_ac6da9e44029c67ea80ffa494d9328384_icgraph">
-<area shape="rect" id="node2" href="test-timer_8c.html#a08e9ca8d337b256ff66bf838eb68ecd4" title="Blink the onboard LED three times to show activity. " alt="" coords="145,5,283,32"/><area shape="rect" id="node3" href="test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="154,56,274,83"/><area shape="rect" id="node4" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="331,56,436,83"/></map>
+<area shape="rect" id="node2" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="145,5,248,32"/><area shape="rect" id="node3" href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f" title="Return the status of . " alt="" coords="145,56,248,83"/><area shape="rect" id="node4" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="296,56,399,83"/></map>
 </div>
 </p>
 
@@ -223,27 +339,29 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Initialize the heart for visible transformation. </p>
+<p>Initialize  for visible transformation. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00011">11</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00049">49</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01427">GPIOPinTypeGPIOOutput()</a>, <a class="el" href="sysctl_8h_source.html#l00076">SYSCTL_PERIPH_GPIOF</a>, and <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>.</p>
+<p>References <a class="el" href="gpio_8c_source.html#l01427">GPIOPinTypeGPIOOutput()</a>, <a class="el" href="heartbeat_8h_source.html#l00031">HEART_BLUE</a>, <a class="el" href="sysctl_8h_source.html#l00076">SYSCTL_PERIPH_GPIOF</a>, <a class="el" href="sysctl_8c_source.html#l00841">SysCtlPeripheralEnable()</a>, and <a class="el" href="heartbeat_8h_source.html#l00037">THORACIC_CAVITY</a>.</p>
 
-<p>Referenced by <a class="el" href="test-shell_8c_source.html#l00041">main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                  {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<p>Referenced by <a class="el" href="test-adc_8c_source.html#l00065">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                  {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#if !(defined(PROFILING_DISABLE))</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">/* Enable the GPIO port that is used for the on-board LED. */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a>(<a class="code" href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">/* Enable the GPIO pins for the LED (PF2). */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 <div class="ttc" id="sysctl_8h_html_a2222c3af2259930587efcb2a33c74fcc"><div class="ttname"><a href="sysctl_8h.html#a2222c3af2259930587efcb2a33c74fcc">SYSCTL_PERIPH_GPIOF</a></div><div class="ttdeci">#define SYSCTL_PERIPH_GPIOF</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8h_source.html#l00076">sysctl.h:76</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
 <div class="ttc" id="group__sysctl__api_html_ga2fbae61db465e1d861a62785d28e3ad6"><div class="ttname"><a href="group__sysctl__api.html#ga2fbae61db465e1d861a62785d28e3ad6">SysCtlPeripheralEnable</a></div><div class="ttdeci">void SysCtlPeripheralEnable(uint32_t ui32Peripheral)</div><div class="ttdef"><b>Definition:</b> <a href="sysctl_8c_source.html#l00841">sysctl.c:841</a></div></div>
 <div class="ttc" id="group__gpio__api_html_gac962b2917f42452a32c1fea0d050e52e"><div class="ttname"><a href="group__gpio__api.html#gac962b2917f42452a32c1fea0d050e52e">GPIOPinTypeGPIOOutput</a></div><div class="ttdeci">void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01427">gpio.c:1427</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a41089926f9320211349345090c453288"><div class="ttname"><a href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a></div><div class="ttdeci">#define HEART_BLUE</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00031">heartbeat.h:31</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a56e0a85f9463873e933949728c2a1974"><div class="ttname"><a href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a></div><div class="ttdeci">#define THORACIC_CAVITY</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00037">heartbeat.h:37</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -259,7 +377,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="heartbeat_8h_a32aede06bdbbb7d5f923442f8e726615_icgraph.png" border="0" usemap="#heartbeat_8h_a32aede06bdbbb7d5f923442f8e726615_icgraph" alt=""/></div>
 <map name="heartbeat_8h_a32aede06bdbbb7d5f923442f8e726615_icgraph" id="heartbeat_8h_a32aede06bdbbb7d5f923442f8e726615_icgraph">
-<area shape="rect" id="node2" href="test-shell_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="136,5,191,32"/></map>
+<area shape="rect" id="node2" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="136,5,191,32"/></map>
 </div>
 </p>
 
@@ -286,21 +404,21 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Turn the heart off. </p>
+<p>Turn  off. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00026">26</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00079">79</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, and <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>.</p>
-
-<p>Referenced by <a class="el" href="test-uart_8c_source.html#l00025">UART0_Handler()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                 {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>, 0);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<p>References <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="heartbeat_8h_source.html#l00031">HEART_BLUE</a>, and <a class="el" href="heartbeat_8h_source.html#l00037">THORACIC_CAVITY</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                 {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#if !(defined(PROFILING_DISABLE))</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>, 0);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
 <div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a41089926f9320211349345090c453288"><div class="ttname"><a href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a></div><div class="ttdeci">#define HEART_BLUE</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00031">heartbeat.h:31</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a56e0a85f9463873e933949728c2a1974"><div class="ttname"><a href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a></div><div class="ttdeci">#define THORACIC_CAVITY</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00037">heartbeat.h:37</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -308,15 +426,6 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_cgraph.png" border="0" usemap="#heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_cgraph" alt=""/></div>
 <map name="heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_cgraph" id="heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_cgraph">
 <area shape="rect" id="node2" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="132,5,235,32"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_icgraph.png" border="0" usemap="#heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_icgraph" alt=""/></div>
-<map name="heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_icgraph" id="heartbeat_8h_ac4e09294b286f9c177f810f1d9257b71_icgraph">
-<area shape="rect" id="node2" href="test-uart_8c.html#a82b7b0fba46f37a99898682733d4c73f" title="UART0_Handler" alt="" coords="132,5,252,32"/><area shape="rect" id="node3" href="blinky_2startup__gcc_8c.html#a201468129b483039afc5a619e2d31097" title="__attribute__" alt="" coords="300,5,405,32"/></map>
 </div>
 </p>
 
@@ -343,19 +452,21 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Turn the heart on. </p>
+<p>Turn  on. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00037">37</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00092">92</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, and <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>, 1);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<p>References <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="heartbeat_8h_source.html#l00031">HEART_BLUE</a>, and <a class="el" href="heartbeat_8h_source.html#l00037">THORACIC_CAVITY</a>.</p>
+<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#if !(defined(PROFILING_DISABLE))</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>, 1);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
 <div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a41089926f9320211349345090c453288"><div class="ttname"><a href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a></div><div class="ttdeci">#define HEART_BLUE</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00031">heartbeat.h:31</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a56e0a85f9463873e933949728c2a1974"><div class="ttname"><a href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a></div><div class="ttdeci">#define THORACIC_CAVITY</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00037">heartbeat.h:37</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -363,6 +474,65 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="heartbeat_8h_a9dac0247d04d756de0ead8adeeea16e8_cgraph.png" border="0" usemap="#heartbeat_8h_a9dac0247d04d756de0ead8adeeea16e8_cgraph" alt=""/></div>
 <map name="heartbeat_8h_a9dac0247d04d756de0ead8adeeea16e8_cgraph" id="heartbeat_8h_a9dac0247d04d756de0ead8adeeea16e8_cgraph">
 <area shape="rect" id="node2" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="132,5,235,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1ff5755d4082335f328cfc7398b3a0f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t heart_status </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the status of . </p>
+<dl class="section return"><dt>Returns</dt><dd>The current status of . </dd></dl>
+
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00066">66</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+
+<p>References <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, <a class="el" href="heartbeat_8h_source.html#l00031">HEART_BLUE</a>, and <a class="el" href="heartbeat_8h_source.html#l00037">THORACIC_CAVITY</a>.</p>
+
+<p>Referenced by <a class="el" href="heartbeat_8h_source.html#l00120">heart_beat()</a>, and <a class="el" href="heartbeat_8h_source.html#l00106">heart_toggle()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                       {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#if !(defined(PROFILING_DISABLE))</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<div class="ttc" id="heartbeat_8h_html_a41089926f9320211349345090c453288"><div class="ttname"><a href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a></div><div class="ttdeci">#define HEART_BLUE</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00031">heartbeat.h:31</a></div></div>
+<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a56e0a85f9463873e933949728c2a1974"><div class="ttname"><a href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a></div><div class="ttdeci">#define THORACIC_CAVITY</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00037">heartbeat.h:37</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_cgraph.png" border="0" usemap="#heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_cgraph" alt=""/></div>
+<map name="heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_cgraph" id="heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_cgraph">
+<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="156,5,259,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_icgraph.png" border="0" usemap="#heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_icgraph" alt=""/></div>
+<map name="heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_icgraph" id="heartbeat_8h_ae1ff5755d4082335f328cfc7398b3a0f_icgraph">
+<area shape="rect" id="node2" href="heartbeat_8h.html#ac6da9e44029c67ea80ffa494d9328384" title="Toggle &#160;twice. " alt="" coords="161,5,253,32"/><area shape="rect" id="node3" href="heartbeat_8h.html#a198ca9dded444d14998585ecbaf2670a" title="Toggle &#160;once. " alt="" coords="156,56,259,83"/><area shape="rect" id="node4" href="test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336" title="Task1" alt="" coords="307,56,364,83"/><area shape="rect" id="node5" href="test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="412,56,467,83"/></map>
 </div>
 </p>
 
@@ -389,30 +559,31 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Toggle the heart once. </p>
+<p>Toggle  once. </p>
 <p>end_state = ~starting_state </p><dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00049">49</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
+<p>Definition at line <a class="el" href="heartbeat_8h_source.html#l00106">106</a> of file <a class="el" href="heartbeat_8h_source.html">heartbeat.h</a>.</p>
 
-<p>References <a class="el" href="gpio_8h_source.html#l00062">GPIO_PIN_2</a>, <a class="el" href="hw__memmap_8h_source.html#l00074">GPIO_PORTF_BASE</a>, <a class="el" href="gpio_8c_source.html#l01006">GPIOPinRead()</a>, and <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>.</p>
+<p>References <a class="el" href="gpio_8c_source.html#l01038">GPIOPinWrite()</a>, <a class="el" href="heartbeat_8h_source.html#l00031">HEART_BLUE</a>, <a class="el" href="heartbeat_8h_source.html#l00066">heart_status()</a>, and <a class="el" href="heartbeat_8h_source.html#l00037">THORACIC_CAVITY</a>.</p>
 
-<p>Referenced by <a class="el" href="test-timer_8c_source.html#l00031">blink_onboard_led()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;         <a class="code" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a>(<a class="code" href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a>, <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>) ^ <a class="code" href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<p>Referenced by <a class="el" href="test-priority-scheduler_8c_source.html#l00040">Task1()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#if !(defined(PROFILING_DISABLE))</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a>(<a class="code" href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a>, <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>, <a class="code" href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f">heart_status</a>() ^ <a class="code" href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
 <div class="ttc" id="group__gpio__api_html_gaa0605843a6c1e2e1724dc32183760ab6"><div class="ttname"><a href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6">GPIOPinWrite</a></div><div class="ttdeci">void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01038">gpio.c:1038</a></div></div>
-<div class="ttc" id="gpio_8h_html_a6eee38b797a7268f04357dfa2759efd2"><div class="ttname"><a href="gpio_8h.html#a6eee38b797a7268f04357dfa2759efd2">GPIO_PIN_2</a></div><div class="ttdeci">#define GPIO_PIN_2</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8h_source.html#l00062">gpio.h:62</a></div></div>
-<div class="ttc" id="group__gpio__api_html_gaf48b907fe6f6cb18045a12c68b4372cc"><div class="ttname"><a href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc">GPIOPinRead</a></div><div class="ttdeci">int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l01006">gpio.c:1006</a></div></div>
-<div class="ttc" id="hw__memmap_8h_html_a0b2f67242c2f03a60c1010c751360b15"><div class="ttname"><a href="hw__memmap_8h.html#a0b2f67242c2f03a60c1010c751360b15">GPIO_PORTF_BASE</a></div><div class="ttdeci">#define GPIO_PORTF_BASE</div><div class="ttdef"><b>Definition:</b> <a href="hw__memmap_8h_source.html#l00074">hw_memmap.h:74</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_ae1ff5755d4082335f328cfc7398b3a0f"><div class="ttname"><a href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f">heart_status</a></div><div class="ttdeci">int32_t heart_status()</div><div class="ttdoc">Return the status of . </div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00066">heartbeat.h:66</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a41089926f9320211349345090c453288"><div class="ttname"><a href="heartbeat_8h.html#a41089926f9320211349345090c453288">HEART_BLUE</a></div><div class="ttdeci">#define HEART_BLUE</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00031">heartbeat.h:31</a></div></div>
+<div class="ttc" id="heartbeat_8h_html_a56e0a85f9463873e933949728c2a1974"><div class="ttname"><a href="heartbeat_8h.html#a56e0a85f9463873e933949728c2a1974">THORACIC_CAVITY</a></div><div class="ttdeci">#define THORACIC_CAVITY</div><div class="ttdef"><b>Definition:</b> <a href="heartbeat_8h_source.html#l00037">heartbeat.h:37</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_cgraph.png" border="0" usemap="#heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_cgraph" alt=""/></div>
 <map name="heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_cgraph" id="heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_cgraph">
-<area shape="rect" id="node2" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="156,5,259,32"/><area shape="rect" id="node3" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="156,56,259,83"/></map>
+<area shape="rect" id="node2" href="group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="156,5,259,32"/><area shape="rect" id="node3" href="heartbeat_8h.html#ae1ff5755d4082335f328cfc7398b3a0f" title="Return the status of . " alt="" coords="156,56,259,83"/><area shape="rect" id="node4" href="group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="307,56,409,83"/></map>
 </div>
 </p>
 
@@ -421,7 +592,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_icgraph.png" border="0" usemap="#heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_icgraph" alt=""/></div>
 <map name="heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_icgraph" id="heartbeat_8h_a198ca9dded444d14998585ecbaf2670a_icgraph">
-<area shape="rect" id="node2" href="test-timer_8c.html#a08e9ca8d337b256ff66bf838eb68ecd4" title="Blink the onboard LED three times to show activity. " alt="" coords="156,5,293,32"/></map>
+<area shape="rect" id="node2" href="test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336" title="Task1" alt="" coords="156,5,213,32"/><area shape="rect" id="node3" href="test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="261,5,316,32"/></map>
 </div>
 </p>
 
@@ -433,7 +604,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_35d4998c072ab5682caeba3956a174cc.html">libheart</a></li><li class="navelem"><a class="el" href="heartbeat_8h.html">heartbeat.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:11 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:41 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

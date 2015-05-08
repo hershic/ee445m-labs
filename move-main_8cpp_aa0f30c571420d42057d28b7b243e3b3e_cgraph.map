@@ -1,0 +1,8 @@
+<map id="CAN0_Handler" name="CAN0_Handler">
+<area shape="rect" id="node2" href="$classcan.html#ac8887c7e560dd07ebfb18697566ac401" title="can::ack" alt="" coords="196,5,271,32"/>
+<area shape="rect" id="node4" href="$classcan.html#a8d77220e35d5ca2e91160b169847d62e" title="can::error_tx" alt="" coords="182,56,285,83"/>
+<area shape="rect" id="node5" href="$group__semaphore.html#ga14c3b9f4312c43d9400905c938752665" title="semaphore::post" alt="" coords="168,107,299,133"/>
+<area shape="rect" id="node3" href="$classcan.html#a0dca84a7f0f8b2bc1ab7080262795739" title="can::count_message" alt="" coords="347,5,501,32"/>
+<area shape="rect" id="node6" href="$classcritical.html#a9f69bc8119742b2b0241b8418b7b4da2" title="critical::StartCritical" alt="" coords="351,81,497,108"/>
+<area shape="rect" id="node7" href="$classcritical.html#aac20de66d40a2389f2a167ba5a605945" title="critical::EndCritical" alt="" coords="355,132,493,159"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="uart_handler" name="uart_handler">
+<area shape="rect" id="node2" href="$test-uart_8c.html#a222d45b9e4999c84a7113b56a2733887" title="led_blink_green" alt="" coords="156,56,277,83"/>
+<area shape="rect" id="node5" href="$group___u_a_r_t.html#gae628f67337f847a32fe8cfb2127007ca" title="uart_send_char" alt="" coords="156,107,277,133"/>
+<area shape="rect" id="node3" href="$group__gpio__api.html#gaf48b907fe6f6cb18045a12c68b4372cc" title="GPIOPinRead" alt="" coords="338,5,441,32"/>
+<area shape="rect" id="node4" href="$group__gpio__api.html#gaa0605843a6c1e2e1724dc32183760ab6" title="GPIOPinWrite" alt="" coords="338,56,441,83"/>
+<area shape="rect" id="node6" href="$group___u_a_r_t.html#ga1b09d796a7f93a651ecd7241868f0e16" title="uart_send_char_" alt="" coords="325,107,453,133"/>
+<area shape="rect" id="node7" href="$group__uart__api.html#ga583652831f505f339f62b13d4b4b31fb" title="UARTCharPut" alt="" coords="501,107,607,133"/>
+</map>

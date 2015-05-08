@@ -1,4 +1,11 @@
 <map id="IntPendSet" name="IntPendSet">
-<area shape="rect" id="node2" href="$os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="145,5,272,32"/>
-<area shape="rect" id="node3" href="$test-os_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="320,5,425,32"/>
+<area shape="rect" id="node2" href="$os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="145,69,307,96"/>
+<area shape="rect" id="node9" href="$test-priority-scheduler_8c.html#a981008700b24339f2f3510a01188a336" title="Task1" alt="" coords="197,132,255,159"/>
+<area shape="rect" id="node3" href="$schedule_8h.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="355,5,536,32"/>
+<area shape="rect" id="node6" href="$group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9" title="os_suspend" alt="" coords="396,56,495,83"/>
+<area shape="rect" id="node7" href="$os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="382,107,509,133"/>
+<area shape="rect" id="node4" href="$group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="593,5,680,32"/>
+<area shape="rect" id="node5" href="$test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="737,5,792,32"/>
+<area shape="rect" id="node8" href="$test-button_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="584,107,689,133"/>
+<area shape="rect" id="node10" href="$test-priority-scheduler_8c.html#a6288eba0f8e8ad3ab1544ad731eb7667" title="main" alt="" coords="418,157,473,184"/>
 </map>

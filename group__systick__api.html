@@ -149,6 +149,8 @@ Functions</h2></td></tr>
 <p>Definition at line <a class="el" href="systick_8c_source.html#l00094">94</a> of file <a class="el" href="systick_8c_source.html">systick.c</a>.</p>
 
 <p>References <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>, <a class="el" href="hw__nvic_8h_source.html#l00049">NVIC_ST_CTRL</a>, and <a class="el" href="hw__nvic_8h_source.html#l00175">NVIC_ST_CTRL_ENABLE</a>.</p>
+
+<p>Referenced by <a class="el" href="os_8c_source.html#l00237">scheduler_reschedule()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Disable SysTick.</span></div>
@@ -159,6 +161,15 @@ Functions</h2></td></tr>
 <div class="ttc" id="hw__nvic_8h_html_a767bbd2f329184ac62b26b3882a4590b"><div class="ttname"><a href="hw__nvic_8h.html#a767bbd2f329184ac62b26b3882a4590b">NVIC_ST_CTRL</a></div><div class="ttdeci">#define NVIC_ST_CTRL</div><div class="ttdef"><b>Definition:</b> <a href="hw__nvic_8h_source.html#l00049">hw_nvic.h:49</a></div></div>
 <div class="ttc" id="hw__nvic_8h_html_a10796236e9ce72fc8b59a0ac57ccc3c4"><div class="ttname"><a href="hw__nvic_8h.html#a10796236e9ce72fc8b59a0ac57ccc3c4">NVIC_ST_CTRL_ENABLE</a></div><div class="ttdeci">#define NVIC_ST_CTRL_ENABLE</div><div class="ttdef"><b>Definition:</b> <a href="hw__nvic_8h_source.html#l00175">hw_nvic.h:175</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__systick__api_ga0b993bfbd72abac7286c4f54369576f2_icgraph.png" border="0" usemap="#group__systick__api_ga0b993bfbd72abac7286c4f54369576f2_icgraph" alt=""/></div>
+<map name="group__systick__api_ga0b993bfbd72abac7286c4f54369576f2_icgraph" id="group__systick__api_ga0b993bfbd72abac7286c4f54369576f2_icgraph">
+<area shape="rect" id="node2" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="169,56,331,83"/><area shape="rect" id="node3" href="schedule_8h.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="379,5,560,32"/><area shape="rect" id="node6" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9" title="os_suspend" alt="" coords="420,56,519,83"/><area shape="rect" id="node7" href="os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="406,107,533,133"/><area shape="rect" id="node4" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="617,5,704,32"/><area shape="rect" id="node5" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="761,5,816,32"/><area shape="rect" id="node8" href="test-button_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="608,107,713,133"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ga6fa7e44c447e4f861e63a2bf4d175afd"></a>
@@ -183,7 +194,7 @@ Functions</h2></td></tr>
 
 <p>References <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>, <a class="el" href="hw__nvic_8h_source.html#l00049">NVIC_ST_CTRL</a>, <a class="el" href="hw__nvic_8h_source.html#l00173">NVIC_ST_CTRL_CLK_SRC</a>, and <a class="el" href="hw__nvic_8h_source.html#l00175">NVIC_ST_CTRL_ENABLE</a>.</p>
 
-<p>Referenced by <a class="el" href="test-os_8c_source.html#l00040">main()</a>, and <a class="el" href="scheduler_8c_source.html#l00084">SchedulerInit()</a>.</p>
+<p>Referenced by <a class="el" href="os_8c_source.html#l00237">scheduler_reschedule()</a>, and <a class="el" href="lib_2libsystick_2systick_8h_source.html#l00015">systick_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Enable SysTick.</span></div>
@@ -200,7 +211,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__systick__api_ga6fa7e44c447e4f861e63a2bf4d175afd_icgraph.png" border="0" usemap="#group__systick__api_ga6fa7e44c447e4f861e63a2bf4d175afd_icgraph" alt=""/></div>
 <map name="group__systick__api_ga6fa7e44c447e4f861e63a2bf4d175afd_icgraph" id="group__systick__api_ga6fa7e44c447e4f861e63a2bf4d175afd_icgraph">
-<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="191,5,245,32"/><area shape="rect" id="node3" href="group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="165,56,271,83"/></map>
+<area shape="rect" id="node2" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="165,56,327,83"/><area shape="rect" id="node9" href="lib_2libsystick_2systick_8h.html#a61e0e39074284f88a1ebf53aa2342ea0" title="systick_init" alt="" coords="201,107,291,133"/><area shape="rect" id="node3" href="schedule_8h.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="375,5,556,32"/><area shape="rect" id="node6" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9" title="os_suspend" alt="" coords="416,56,515,83"/><area shape="rect" id="node7" href="os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="402,107,529,133"/><area shape="rect" id="node4" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="613,5,700,32"/><area shape="rect" id="node5" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="757,5,812,32"/><area shape="rect" id="node8" href="test-button_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="604,107,709,133"/></map>
 </div>
 </p>
 
@@ -260,7 +271,7 @@ Here is the caller graph for this function:</div>
 
 <p>References <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>, <a class="el" href="hw__nvic_8h_source.html#l00049">NVIC_ST_CTRL</a>, and <a class="el" href="hw__nvic_8h_source.html#l00174">NVIC_ST_CTRL_INTEN</a>.</p>
 
-<p>Referenced by <a class="el" href="test-os_8c_source.html#l00040">main()</a>, and <a class="el" href="scheduler_8c_source.html#l00084">SchedulerInit()</a>.</p>
+<p>Referenced by <a class="el" href="os_8c_source.html#l00237">scheduler_reschedule()</a>, and <a class="el" href="lib_2libsystick_2systick_8h_source.html#l00015">systick_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;{</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="comment">// Enable the SysTick interrupt.</span></div>
@@ -276,7 +287,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__systick__api_gae9621f9d2bcf0cfe021cd5b7ff98edcc_icgraph.png" border="0" usemap="#group__systick__api_gae9621f9d2bcf0cfe021cd5b7ff98edcc_icgraph" alt=""/></div>
 <map name="group__systick__api_gae9621f9d2bcf0cfe021cd5b7ff98edcc_icgraph" id="group__systick__api_gae9621f9d2bcf0cfe021cd5b7ff98edcc_icgraph">
-<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="207,5,261,32"/><area shape="rect" id="node3" href="group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="181,56,287,83"/></map>
+<area shape="rect" id="node2" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="181,56,343,83"/><area shape="rect" id="node9" href="lib_2libsystick_2systick_8h.html#a61e0e39074284f88a1ebf53aa2342ea0" title="systick_init" alt="" coords="217,107,307,133"/><area shape="rect" id="node3" href="schedule_8h.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="391,5,572,32"/><area shape="rect" id="node6" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9" title="os_suspend" alt="" coords="432,56,531,83"/><area shape="rect" id="node7" href="os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="418,107,545,133"/><area shape="rect" id="node4" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="629,5,716,32"/><area shape="rect" id="node5" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="773,5,828,32"/><area shape="rect" id="node8" href="test-button_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="620,107,725,133"/></map>
 </div>
 </p>
 
@@ -445,7 +456,7 @@ Here is the call graph for this function:</div>
 
 <p>References <a class="el" href="debug_8h_source.html#l00067">ASSERT</a>, <a class="el" href="hw__types_8h_source.html#l00048">HWREG</a>, and <a class="el" href="hw__nvic_8h_source.html#l00051">NVIC_ST_RELOAD</a>.</p>
 
-<p>Referenced by <a class="el" href="test-os_8c_source.html#l00040">main()</a>, and <a class="el" href="scheduler_8c_source.html#l00084">SchedulerInit()</a>.</p>
+<p>Referenced by <a class="el" href="os_8c_source.html#l00237">scheduler_reschedule()</a>, and <a class="el" href="lib_2libsystick_2systick_8h_source.html#l00015">systick_init()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;{</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="comment">// Check the arguments.</span></div>
@@ -466,7 +477,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__systick__api_ga5892f33d986c614769aa4cfe20bfc80d_icgraph.png" border="0" usemap="#group__systick__api_ga5892f33d986c614769aa4cfe20bfc80d_icgraph" alt=""/></div>
 <map name="group__systick__api_ga5892f33d986c614769aa4cfe20bfc80d_icgraph" id="group__systick__api_ga5892f33d986c614769aa4cfe20bfc80d_icgraph">
-<area shape="rect" id="node2" href="test-os_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="209,5,264,32"/><area shape="rect" id="node3" href="group__scheduler__api.html#ga2ed1fb3704cb426cbb887f8061a12e12" title="SchedulerInit" alt="" coords="184,56,289,83"/></map>
+<area shape="rect" id="node2" href="os_8c.html#a3a22ce900ef726a4c4da3aee85a5c3d1" title="scheduler_reschedule" alt="" coords="184,56,345,83"/><area shape="rect" id="node9" href="lib_2libsystick_2systick_8h.html#a61e0e39074284f88a1ebf53aa2342ea0" title="systick_init" alt="" coords="219,107,310,133"/><area shape="rect" id="node3" href="schedule_8h.html#a82b7c0ca4a9b2f972d971f4316109ea4" title="_os_choose_next_thread" alt="" coords="393,5,575,32"/><area shape="rect" id="node6" href="group___o_s.html#ga6e88fee294920ba7cb0881765825b5b9" title="os_suspend" alt="" coords="435,56,533,83"/><area shape="rect" id="node7" href="os_8c.html#aafb8d3e0fd06464b1ee0ae1edbc3c7d6" title="SysTick_Handler" alt="" coords="421,107,547,133"/><area shape="rect" id="node4" href="group___o_s.html#gafde304ef5313ffa073cea003547b33eb" title="os_launch" alt="" coords="632,5,719,32"/><area shape="rect" id="node5" href="test-adc_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="776,5,831,32"/><area shape="rect" id="node8" href="test-button_2startup__gcc_8c.html#acebe980784c59c373626efbbf419bf05" title="__attribute__" alt="" coords="623,107,728,133"/></map>
 </div>
 </p>
 
@@ -508,7 +519,7 @@ Here is the caller graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 16 2015 10:10:13 for EE445M RTOS by
+    <li class="footer">Generated on Fri Mar 13 2015 21:18:43 for EE445M RTOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

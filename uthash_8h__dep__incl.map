@@ -1,0 +1,30 @@
+<map id="lib/libut/uthash.h" name="lib/libut/uthash.h">
+<area shape="rect" id="node2" href="$priority__schedule__structures_8h.html" title="lib/libschedule/priority\l_schedule_structures.h" alt="" coords="2053,80,2224,121"/>
+<area shape="rect" id="node3" href="$edf_8h.html" title="lib/libschedule/edf.h" alt="" coords="2065,169,2212,196"/>
+<area shape="rect" id="node24" href="$schedule_8h.html" title="lib/libschedule/schedule.h" alt="" coords="2441,475,2625,502"/>
+<area shape="rect" id="node4" href="$os_8h.html" title="lib/libos/os.h" alt="" coords="2033,244,2133,271"/>
+<area shape="rect" id="node5" href="$test-button_8c.html" title="board&#45;progs/test&#45;button\l/test&#45;button.c" alt="" coords="2765,565,2941,606"/>
+<area shape="rect" id="node6" href="$test-combination_8c.html" title="board&#45;progs/test&#45;combination\l/test&#45;combination.c" alt="" coords="2020,565,2233,606"/>
+<area shape="rect" id="node7" href="$test-debounce_8c.html" title="board&#45;progs/test&#45;debounce\l/test&#45;debounce.c" alt="" coords="1479,565,1676,606"/>
+<area shape="rect" id="node8" href="$test-edf_8c.html" title="board&#45;progs/test&#45;edf\l/test&#45;edf.c" alt="" coords="2587,565,2741,606"/>
+<area shape="rect" id="node9" href="$test-os_8c.html" title="board&#45;progs/test&#45;os\l/test&#45;os.c" alt="" coords="777,468,927,509"/>
+<area shape="rect" id="node10" href="$test-priority-scheduler_8c.html" title="board&#45;progs/test&#45;priority\l&#45;scheduler/test&#45;priority\l&#45;scheduler.c" alt="" coords="5,557,184,613"/>
+<area shape="rect" id="node11" href="$test-semaphore_8c.html" title="board&#45;progs/test&#45;semaphore\l/test&#45;semaphore.c" alt="" coords="209,565,415,606"/>
+<area shape="rect" id="node12" href="$test-shell_8c.html" title="board&#45;progs/test&#45;shell\l/test&#45;shell.c" alt="" coords="632,565,795,606"/>
+<area shape="rect" id="node13" href="$os_8c.html" title="lib/libos/os.c" alt="" coords="2965,572,3064,599"/>
+<area shape="rect" id="node14" href="$semaphore_8h.html" title="lib/libos/semaphore.h" alt="" coords="1438,319,1597,345"/>
+<area shape="rect" id="node25" href="$shell_8c.html" title="lib/libshell/shell.c" alt="" coords="2435,572,2562,599"/>
+<area shape="rect" id="node15" href="$test-timer_8c.html" title="board&#45;progs/test&#45;timer\l/test&#45;timer.c" alt="" coords="440,565,608,606"/>
+<area shape="rect" id="node16" href="$hardware_8h.html" title="lib/libhw/hardware.h" alt="" coords="1444,393,1591,420"/>
+<area shape="rect" id="node17" href="$test-uart_8c.html" title="board&#45;progs/test&#45;uart\l/test&#45;uart.c" alt="" coords="979,565,1139,606"/>
+<area shape="rect" id="node18" href="$lib_2libadc_2adc_8h.html" title="lib/libadc/adc.h" alt="" coords="1717,475,1833,502"/>
+<area shape="rect" id="node20" href="$lib_2libadc_2adc_8c.html" title="lib/libadc/adc.c" alt="" coords="1881,572,1996,599"/>
+<area shape="rect" id="node21" href="$libbutton_2button_8h.html" title="lib/libbutton/button.h" alt="" coords="1908,475,2063,502"/>
+<area shape="rect" id="node22" href="$libbutton_2button_8c.html" title="lib/libbutton/button.c" alt="" coords="2258,572,2411,599"/>
+<area shape="rect" id="node23" href="$hardware_8c.html" title="lib/libhw/hardware.c" alt="" coords="1163,572,1309,599"/>
+<area shape="rect" id="node26" href="$lib_2libtimer_2timer_8h.html" title="lib/libtimer/timer.h" alt="" coords="1154,475,1291,502"/>
+<area shape="rect" id="node27" href="$lib_2libtimer_2timer_8c.html" title="lib/libtimer/timer.c" alt="" coords="819,572,955,599"/>
+<area shape="rect" id="node28" href="$lib_2libuart_2uart_8h.html" title="lib/libuart/uart.h" alt="" coords="1417,475,1540,502"/>
+<area shape="rect" id="node19" href="$test-adc_8c.html" title="board&#45;progs/test&#45;adc\l/test&#45;adc.c" alt="" coords="1700,565,1857,606"/>
+<area shape="rect" id="node29" href="$lib_2libuart_2uart_8c.html" title="lib/libuart/uart.c" alt="" coords="1333,572,1454,599"/>
+</map>
