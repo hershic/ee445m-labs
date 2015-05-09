@@ -56,11 +56,6 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     Direction dir = FORWARD;
 
-
-    left_sens = 0;
-    right_sens = 0;
-    front_sens = 0;
-
     int32_t left_speed = left->pwm_max_period*55/100;
     int32_t right_speed = right->pwm_max_period*55/100;
 
