@@ -61,35 +61,8 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
     right_sens = 0;
     front_sens = 0;
 
-    /* if (last_counter >= steps_to_wait) { */
-    /*     last_counter = 0; */
-
-    /*     if (abs(last_left_sens - left_sens) > reset_thresh) { */
-    /*         integral_oblique_error = 0; */
-    /*         integral_side_error = 0; */
-    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
-    /*     } else if(abs(last_left_front_sens - left_front_sens) > reset_thresh) { */
-    /*         integral_oblique_error = 0; */
-    /*         integral_side_error = 0; */
-    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
-    /*     } else if(abs(last_right_sens - right_sens) > reset_thresh) { */
-    /*         integral_oblique_error = 0; */
-    /*         integral_side_error = 0; */
-    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
-    /*     } else if(abs(last_right_front_sens - right_front_sens) > reset_thresh) { */
-    /*         integral_oblique_error = 0; */
-    /*         integral_side_error = 0; */
-    /*         GPIOPinWrite(GPIO_PORTF_BASE, PIN_RED, PIN_RED ^ GPIOPinRead(GPIO_PORTF_BASE, PIN_RED)); */
-    /*     } */
-
-    /*     last_left_sens = left_sens; */
-    /*     last_left_front_sens = left_front_sens; */
-    /*     last_right_sens = right_sens; */
-    /*     last_right_front_sens = right_front_sens; */
-    /* } */
-
-    int32_t left_speed = left->pwm_max_period/2;
-    int32_t right_speed = right->pwm_max_period/2;
+    int32_t left_speed = left->pwm_max_period*55/100;
+    int32_t right_speed = right->pwm_max_period*55/100;
 
     int32_t oblique_error = ((int32_t)left_front_sens - (int32_t)right_front_sens);
     integral_oblique_error = clamp(integral_oblique_error + oblique_error, -motor::pwm_max_period/4, motor::pwm_max_period/4);
@@ -102,11 +75,7 @@ void drive::steer(uint32_t left_sens, uint32_t left_front_sens,
 
     int32_t should_slow_down = front_sens < 200;
 
-    //int32_t delta = oblique_error*kp_oblique_num/kp_oblique_denom +
-    //     (should_use_side_sensors * side_error * kp_side_num/kp_side_denom) +
-                                                   //    (integral_oblique_error*ki_oblique_num/ki_oblique_denom) + (integral_side_error*ki_side_num/ki_side_denom);
     int32_t delta = oblique_error*kp_oblique_num/kp_oblique_denom;
-    //+ (integral_oblique_error*ki_oblique_num/ki_oblique_denom);
 
     if (should_slow_down > 0) { delta /= 2; }
 
