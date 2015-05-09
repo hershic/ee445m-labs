@@ -17,7 +17,7 @@
    * @{
     */
 
-typedef uint8_t timer_t;
+typedef uint8_t utimer_t;
 typedef uint32_t subtimer_t;
 typedef uint32_t reload_t;
 
@@ -26,7 +26,7 @@ const uint32_t TIMER_DEFAULT_PRIORITY = 0;
 class timer : public interruptable {
 private:
     /*! Defined between 0 to 4, where 0 indicates TIMER0 */
-    timer_t id;
+    utimer_t id;
 
     /*! The base address of the specified timer */
     uint32_t base;
@@ -48,7 +48,7 @@ private:
 public:
 
     timer();
-    timer(timer_t timer_id, subtimer_t timer_subtimer,
+    timer(utimer_t timer_id, subtimer_t timer_subtimer,
           uint32_t timer_configuration, reload_t timer_load_val,
           uint32_t timer_interrupt, bool timer_start = false);
 

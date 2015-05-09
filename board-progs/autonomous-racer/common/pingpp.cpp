@@ -11,7 +11,7 @@
 ping::ping() {}
 
 ping::ping(memory_address_t ping_base, memory_address_t ping_pin,
-           timer_t ping_timer_id, subtimer_t ping_timer_subtimer) {
+           utimer_t ping_timer_id, subtimer_t ping_timer_subtimer) {
 
     status = ping_not_active;
 

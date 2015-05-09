@@ -18,7 +18,7 @@ lswitch::lswitch() {
 }
 
 lswitch::lswitch(memory_address_t lswitch_base, memory_address_t lswitch_pin,
-                 semaphore *sem, timer_t timer_id, subtimer_t timer_subtimer,
+                 semaphore *sem, utimer_t timer_id, subtimer_t timer_subtimer,
                  uint32_t switch_interrupt, uint32_t interrupt_mask, bool start) {
 
     base = lswitch_base;

@@ -41,7 +41,7 @@ private:
 public:
     ping();
     ping(memory_address_t port_base, memory_address_t port_pin,
-         timer_t timer_id, subtimer_t timer_subtimer);
+         utimer_t timer_id, subtimer_t timer_subtimer);
     void sample(void);
 
     /*! Start the timer monitoring sig. */
