@@ -7,7 +7,7 @@ if (BUILD_FOR_EMBEDDED)
   add_subdirectory(driverlib)
   # add_subdirectory(cmsis)
 else()
-  message("To build the board programs, do: rm -rf * && cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-gcc-arm-embedded.cmake")
+  message("\n**** INFO: ****\nTo build the board programs, do:\n  rm -rf * && cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-gcc-arm-embedded.cmake\n")
   add_subdirectory(validation)
 endif()
 
