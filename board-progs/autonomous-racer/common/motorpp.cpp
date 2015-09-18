@@ -45,7 +45,7 @@ Direction motor::adjusted_direction() {
 void motor::stop() {
 
     if (direction == BACKWARD) {
-        set(100);
+        set(pwm_max_period);
     } else {
         set(0);
     }
@@ -66,7 +66,7 @@ void motor::set(percent_t speed, Direction dir) {
 
 void motor::set(percent_t speed) {
 
-    speed = clamp(speed, 1, pwm_max_period);
+    speed = clamp(speed, 0, pwm_max_period);
 
     current_speed = speed;
 
@@ -106,9 +106,9 @@ void motor::pwm_init() {
     ctlsys::enable_periph(GPIO_PORTB_BASE);
     ctlsys::enable_periph(ctrl_base);
 
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_1);
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_8);
     PWMGenConfigure(pwm_base, pwm_gen, PWM_GEN_MODE_DOWN | PWM_GEN_MODE_NO_SYNC);
-    PWMGenPeriodSet(pwm_base, pwm_gen, DEFAULT_PWM_PERIOD);
+    PWMGenPeriodSet(pwm_base, pwm_gen, pwm_max_period);
     PWMGenEnable(pwm_base, pwm_gen);
 
     switch(pwm_out) {

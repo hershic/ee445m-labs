@@ -14,7 +14,7 @@
 
 typedef int32_t percent_t;
 typedef uint32_t memory_address_t;
-#define DEFAULT_PWM_PERIOD 10000
+#define DEFAULT_PWM_PERIOD 40000 /* 1000000 */
 
 class motor : public critical {
 private:

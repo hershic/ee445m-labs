@@ -314,7 +314,11 @@ int main(void) {
     shell0 = shell(&uart0, &motor_start, &motor_stop);
     motor0 = motor(GPIO_PORTA_BASE, GPIO_PIN_6, PWM0_BASE, PWM_GEN_0, PWM_OUT_0);
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
-    drive0 = drive(&motor0, &motor1, 50);
+    /* drive0 = drive(&motor0, &motor1, 20); */
+
+    motor0.set(7*motor::pwm_max_period/100);
+    motor0.start();
+
     countdown_timer = timer(0, TIMER_BOTH, TIMER_CFG_ONE_SHOT, SysCtlClockGet()*180,
                             TIMER_TIMA_TIMEOUT, true);
     switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
