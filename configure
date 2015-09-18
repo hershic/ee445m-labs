@@ -1,0 +1,50 @@
+export REPO_ROOT=`pwd`
+export CMAKE_ROOT=${REPO_ROOT}
+export CMAKE_TOOLCHAIN_FILE=${CMAKE_ROOT}/toolchain-gcc-arm-embedded.cmake
+export BUILD_ROOT=${CMAKE_ROOT}/build
+export COV_ROOT=${CMAKE_ROOT}/coverage
+export MAKEFLAGS="-j32"
+
+unconfigure() {
+    rm -rf ${BUILD_ROOT}
+    rm -rf ${COV_ROOT};
+    cd ${REPO_ROOT}
+}
+
+reconfigure() {
+    cd ${CMAKE_ROOT} && rm -rf ${BUILD_ROOT} &&
+        mkdir -p ${BUILD_ROOT} && cd ${BUILD_ROOT} &&
+        cmake -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE} $@ ..
+}
+
+reconfigure_guard() {
+    if [[ ! -d ${BUILD_ROOT} ]]; then reconfigure; fi;
+}
+
+build() {
+    reconfigure_guard && pushd ${BUILD_ROOT}; make ${MAKEFLAGS}
+}
+
+fbuild() {
+    build; popd
+}
+
+gencov() {
+    if [[ ! -d ${BUILD_ROOT} ]]; then
+        reconfigure -DPROFILE=1;
+    fi;
+
+    mkdir -p ${COV_ROOT}
+    build
+
+    lcov --no-external --capture --initial --directory `realpath ${REPO_ROOT}` --output-file ${COV_ROOT}/initial.info
+    make test
+    lcov --no-external --capture --directory `realpath ${REPO_ROOT}` --output-file ${COV_ROOT}/test.info
+    lcov --add-tracefile ${COV_ROOT}/initial.info --add-tracefile ${COV_ROOT}/test.info --output-file ${COV_ROOT}/complete.info
+    genhtml --prefix ${REPO_ROOT} --ignore-errors source ${COV_ROOT}/complete.info \
+            --legend --title `git rev-parse HEAD` --output-directory=${COV_ROOT}/html
+}
+
+gencovr() {
+    unconfigure && gencov;
+}
