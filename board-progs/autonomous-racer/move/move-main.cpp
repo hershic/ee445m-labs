@@ -4,6 +4,7 @@
 
 #include "adcpp.hpp"
 #include "blinker.hpp"
+#include "math.hpp"
 #include "uartpp.hpp"
 #include "shellpp.hpp"
 #include "semaphorepp.hpp"
@@ -29,6 +30,10 @@
 #include "driverlib/uart.h"
 #include "driverlib/pwm.h"
 
+#define BUTTON_LEFT          GPIO_PIN_4
+#define BUTTON_RIGHT         GPIO_PIN_0
+#define BUTTONS_BOTH         (BUTTON_LEFT | BUTTON_RIGHT)
+
 #define thread(x)                   \
     do {                            \
         x;                          \
@@ -44,6 +49,8 @@ uint16_t sens_ir_left_front;
 uint16_t sens_ir_right;
 uint16_t sens_ir_right_front;
 uint16_t sens_ping_front;
+
+uint16_t duty_cycle;
 
 lswitch switch0;
 semaphore sem_switch;
@@ -175,7 +182,7 @@ extern "C" void CAN0_Handler(void) {
     }
 }
 
-extern "C" void GPIOPortE_Handler() {
+extern "C" void GPIOPortF_Handler() {
 
     switch0.ack();
     switch0.debounce();
@@ -183,7 +190,7 @@ extern "C" void GPIOPortE_Handler() {
 
 void switch_responder() {
 
-    const uint32_t counter_max = SysCtlClockGet()/25;
+    const uint32_t counter_max = SysCtlClockGet()/100;
     uint32_t pins, counter;
     percent_t left_speed, right_speed;
 
@@ -191,20 +198,18 @@ void switch_responder() {
         if(sem_switch.guard() && switch0.debounced_data) {
             counter = 0;
 
-            if(switch0.debounced_data & GPIO_PIN_1) {
-                left_speed = 100;
-                right_speed = 0;
-            } else if(switch0.debounced_data & GPIO_PIN_2) {
-                left_speed = 0;
-                right_speed = 100;
+            if(switch0.debounced_data == BUTTON_LEFT) {
+                blink.toggle(PIN_RED);
+                duty_cycle = clamp(duty_cycle-1, 0, 200);
+                motor0.set(duty_cycle*motor::pwm_max_period/200);
+            } else if(switch0.debounced_data == BUTTON_RIGHT) {
+                blink.toggle(PIN_BLUE);
+                duty_cycle = clamp(duty_cycle+1, 0, 200);
+                motor0.set(duty_cycle*motor::pwm_max_period/200);
             }
+            uart0.atomic_printf("%i\n", duty_cycle/2);
 
-            motor0.reverse();
-            motor1.reverse();
-            while (++counter < counter_max) { }
-            motor0.reverse();
-            motor1.reverse();
-            drive0.reset_history();
+            /* while (++counter < counter_max) { } */
         }
         os_surrender_context();
     }
@@ -231,11 +236,11 @@ void can_handler(void) {
                 sens_ping_front = (can_data[5] << 8) | (can_data[4]);
             }
 
-            uart0.atomic_printf("                                                \r");
-            uart0.atomic_printf("l: %u lf: %u r: %u rf: %u pf: %u\r",
-                                sens_ir_left, sens_ir_left_front,
-                                sens_ir_right, sens_ir_right_front,
-                                sens_ping_front);
+            /* uart0.atomic_printf("                                                \r"); */
+            /* uart0.atomic_printf("l: %u lf: %u r: %u rf: %u pf: %u\r", */
+            /*                     sens_ir_left, sens_ir_left_front, */
+            /*                     sens_ir_right, sens_ir_right_front, */
+            /*                     sens_ping_front); */
 
             /* uart0.atomic_printf("Received CAN data: %0X %0X %0X %0X %0X %0X %0X %0X \n", */
             /*                     can_data[0], can_data[1], can_data[2], can_data[3], */
@@ -309,6 +314,8 @@ int main(void) {
 
     can0 = can(CAN0_BASE, INT_CAN0, can_sender, can_data_length);
 
+    duty_cycle = 15;
+
     motor_start = semaphore();
     motor_stop = semaphore();
     shell0 = shell(&uart0, &motor_start, &motor_stop);
@@ -316,14 +323,14 @@ int main(void) {
     motor1 = motor(GPIO_PORTA_BASE, GPIO_PIN_7, PWM0_BASE, PWM_GEN_0, PWM_OUT_1);
     /* drive0 = drive(&motor0, &motor1, 20); */
 
-    motor0.set(7*motor::pwm_max_period/100);
+    motor0.set(duty_cycle*motor::pwm_max_period/200);
     motor0.start();
 
     countdown_timer = timer(0, TIMER_BOTH, TIMER_CFG_ONE_SHOT, SysCtlClockGet()*180,
                             TIMER_TIMA_TIMEOUT, true);
-    switch0 = lswitch(GPIO_PORTE_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,
+    switch0 = lswitch(GPIO_PORTF_BASE, BUTTONS_BOTH,
                       &sem_switch, 1, TIMER_A, GPIO_BOTH_EDGES,
-                      INT_GPIOE_TM4C123, true);
+                      INT_GPIOF_TM4C123, true);
 
     os_threading_init();
     schedule(motor_control, 200);
