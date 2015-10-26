@@ -139,28 +139,13 @@ declare -r openocd_args_debug="gdb_port ${openocd_gdb_port}"
 ## @ingroup OpenOCD
 declare openocd_timeout="timeout 3"
 
-
-# TODO: document
-# TODO: kill after three seconds of no activity
-retry() {
-    local n=0
-    local try=$1
-    shift
-
-    until [[ $n -ge $try ]]; do
-        "$@" && break || {
-                ((n++))
-            }
-    done
-}
-
 ## @fn openocd_program()
 ## @brief Program the M4
 ## @retval 0 if success
 ## @ingroup OpenOCD
 openocd_program() {
 
-    retry 10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_program}" 2>&1
+    10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_program}" 2>&1
 }
 
 ## @fn openocd_debug()
@@ -169,7 +154,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    retry 10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_debug}" 2>&1
+    10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_debug}" 2>&1
 }
 
 # Obey command line arguments
