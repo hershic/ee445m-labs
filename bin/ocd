@@ -145,7 +145,7 @@ declare openocd_timeout="timeout 3"
 ## @ingroup OpenOCD
 openocd_program() {
 
-    10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_program}" 2>&1
+    ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_program}" 2>&1
 }
 
 ## @fn openocd_debug()
@@ -154,7 +154,7 @@ openocd_program() {
 ## @ingroup OpenOCD
 openocd_debug() {
 
-    10 ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_debug}" 2>&1
+    ${ocd_timeout} ${ocd_execute} ${ocd_openocd} --file "${ocd_interface}" -c "${openocd_args_debug}" 2>&1
 }
 
 # Obey command line arguments
